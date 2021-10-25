@@ -91,7 +91,7 @@ mydf <- mydf %>%
   mutate(song = ifelse(song=="the argument", "argument", song))
 
 
-# Filter the data to remove blank rows, intros, interludes, and one-offs -----------------------------------------------------------------
+# Filter the data to remove blank rows, intros, interludes, sound checks -----------------------------------------------------------------
 
 mydf <- mydf %>%
   filter(nchar>0)
@@ -122,6 +122,39 @@ mydf <- mydf %>%
 
 mydf <- mydf %>%
   filter(!grepl("soundcheck",song))
+
+
+# Filter to remove unreleased songs or improvised one-offs ---------------------------------------
+
+mydf <- mydf %>%
+  filter(song!=("heart on my chest"))
+
+mydf <- mydf %>%
+  filter(song!=("lock dug"))
+
+mydf <- mydf %>%
+  filter(song!=("nedcars"))
+
+mydf <- mydf %>%
+  filter(song!=("noisy dub"))
+
+mydf <- mydf %>%
+  filter(song!=("nsa"))
+
+mydf <- mydf %>%
+  filter(song!=("set the charges"))
+
+mydf <- mydf %>%
+  filter(song!=("she is blind"))
+
+mydf <- mydf %>%
+  filter(song!=("world beat"))
+
+mydf <- mydf %>%
+  filter(song!=("surf tune"))
+
+mydf <- mydf %>%
+  filter(song!=("preprovisional"))
 
 
 # Summarise the data to check frequency counts for all songs --------------
