@@ -52,7 +52,25 @@ mydf <- mydf %>%
   filter(!grepl("intro",song))
 
 mydf <- mydf %>%
-  filter(!grepl("tracks",song))
+  filter(!grepl("track",song))
+
+mydf <- mydf %>%
+  filter(!grepl("surf",song))
+
+mydf <- mydf %>%
+  filter(!grepl("remarks",song))
+
+mydf <- mydf %>%
+  filter(!grepl("ice cream",song))
+
+mydf <- mydf %>%
+  filter(!grepl("outside",song))
+
+mydf <- mydf %>%
+  filter(!grepl("sound check",song))
+
+mydf <- mydf %>%
+  filter(!grepl("world beat",song))
 
 mycount <- mydf %>%
   group_by(song) %>%
