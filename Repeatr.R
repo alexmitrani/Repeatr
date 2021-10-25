@@ -8,7 +8,7 @@ saveRDS(fugotcha, "fugotcha.rds")
 # Select the most relevant columns -------
 
 
-mydf <- subset(fugotcha, select = -c(V2, V3, V4, V5, V6, V7, V8, V9))
+mydf <- subset(fugotcha, select = -c(V2, V4, V5, V6, V7, V8, V9))
 
 names(mydf)
 
@@ -16,6 +16,7 @@ names(mydf)
 # Define gig id -----------------------------------------------------------
 
 names(mydf)[names(mydf) == "V1"] <- "gid"
+names(mydf)[names(mydf) == "V3"] <- "date"
 
 
 # Rename variables to make reshaping the data easier ----------------------
@@ -38,7 +39,7 @@ for(mysong in 1:44) {
 
 mydf <- reshape(data = mydf
                             , direction = "long"
-                            , varying = 2:45
+                            , varying = 3:46
                             , idvar = "gid"
 )
 
