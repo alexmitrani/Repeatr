@@ -4,12 +4,21 @@ library(stringr)
 fugotcha <- read.csv("fugotcha.csv", header=FALSE)
 saveRDS(fugotcha, "fugotcha.rds")
 
+
+# Select the most relevant columns -------
+
+
 mydf <- subset(fugotcha, select = -c(V2, V3, V4, V5, V6, V7, V8, V9))
 
 names(mydf)
 
-#gig id
+
+# Define gig id -----------------------------------------------------------
+
 names(mydf)[names(mydf) == "V1"] <- "gid"
+
+
+# Rename variables to make reshaping the data easier ----------------------
 
 myv <- 10
 
@@ -22,13 +31,20 @@ for(mysong in 1:44) {
   
 }
 
+
+# Reshape to long format with 1 row per song ------------------------------
+
+
+
 mydf <- reshape(data = mydf
                             , direction = "long"
                             , varying = 2:45
                             , idvar = "gid"
 )
 
-#songnumber
+
+# Define song number ------------------------------------------------------
+
 names(mydf)[names(mydf) == "time"] <- "song_number"
 
 mydf <- mydf %>% 
@@ -37,10 +53,48 @@ mydf <- mydf %>%
 mydf$nchar <- nchar(mydf$song)
 
 mydf <- mydf %>%
-  filter(nchar>0)
+  mutate(song = str_to_lower(song))
+
+# Recode variants of song titles to the main song title -------------------
 
 mydf <- mydf %>%
-  mutate(song = str_to_lower(song))
+  mutate(song = str_replace(song, " instrumental", ""))
+
+mydf <- mydf %>%
+  mutate(song = str_replace(song, " acapella", ""))
+
+mydf <- mydf %>%
+  mutate(song = str_replace(song, " drum and bass jam", ""))
+
+mydf <- mydf %>%
+  mutate(song = ifelse(song=="bed for the scraping (continued)", "bed for the scraping", song))
+
+mydf <- mydf %>%
+  mutate(song = ifelse(song=="surf tune 1", "surf tune", song))
+
+mydf <- mydf %>%
+  mutate(song = ifelse(song=="surf tune 2", "surf tune", song))
+
+mydf <- mydf %>%
+  mutate(song = ifelse(song=="surf tune 3", "surf tune", song))
+
+mydf <- mydf %>%
+  mutate(song = ifelse(song=="promises bit soundcheck", "promises", song))
+
+mydf <- mydf %>%
+  mutate(song = ifelse(song=="promises coda", "promises", song))
+
+mydf <- mydf %>%
+  mutate(song = ifelse(song=="provisional medley", "provisional", song))
+
+mydf <- mydf %>%
+  mutate(song = ifelse(song=="the argument", "argument", song))
+
+
+# Filter the data to remove blank rows, intros, interludes, and one-offs -----------------------------------------------------------------
+
+mydf <- mydf %>%
+  filter(nchar>0)
 
 mydf <- mydf %>%
   filter(!grepl("interlude",song))
@@ -55,9 +109,6 @@ mydf <- mydf %>%
   filter(!grepl("track",song))
 
 mydf <- mydf %>%
-  filter(!grepl("surf",song))
-
-mydf <- mydf %>%
   filter(!grepl("remarks",song))
 
 mydf <- mydf %>%
@@ -70,7 +121,10 @@ mydf <- mydf %>%
   filter(!grepl("sound check",song))
 
 mydf <- mydf %>%
-  filter(!grepl("world beat",song))
+  filter(!grepl("soundcheck",song))
+
+
+# Summarise the data to check frequency counts for all songs --------------
 
 mycount <- mydf %>%
   group_by(song) %>%
@@ -79,6 +133,9 @@ mycount <- mydf %>%
 
 mycount <- mycount %>%
   arrange(song)
+
+mycount <- mycount %>%
+  arrange(count)
 
 saveRDS(mydf, "Repeatr.rds")
 
