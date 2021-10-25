@@ -157,6 +157,10 @@ mydf <- mydf %>%
   filter(song!=("preprovisional"))
 
 
+# Save disaggregate data in long format -----------------------------------
+
+saveRDS(mydf, "Repeatr.rds")
+
 # Summarise the data to check frequency counts for all songs --------------
 
 mycount <- mydf %>%
@@ -165,12 +169,11 @@ mycount <- mydf %>%
   ungroup()
 
 mycount <- mycount %>%
-  arrange(song)
+  arrange(desc(count))
 
-mycount <- mycount %>%
-  arrange(count)
+write.csv(mycount, "fugazi_song_counts.csv")
 
-saveRDS(mydf, "Repeatr.rds")
+
 
 
 #
