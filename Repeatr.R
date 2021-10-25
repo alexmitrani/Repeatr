@@ -31,7 +31,8 @@ mydf <- reshape(data = mydf
 #songnumber
 names(mydf)[names(mydf) == "time"] <- "song_number"
 
-mydf <- mydf %>% arrange(gid, song_number)
+mydf <- mydf %>% 
+  arrange(gid, song_number)
 
 mydf$nchar <- nchar(mydf$song)
 
@@ -39,10 +40,19 @@ mydf <- mydf %>%
   filter(nchar>0)
 
 mydf <- mydf %>%
-  filter(!grepl("Interlude",song))
+  mutate(song = str_to_lower(song))
 
 mydf <- mydf %>%
-  filter(!grepl("Intro",song))
+  filter(!grepl("interlude",song))
+
+mydf <- mydf %>%
+  filter(!grepl("encore",song))
+
+mydf <- mydf %>%
+  filter(!grepl("intro",song))
+
+mydf <- mydf %>%
+  filter(!grepl("tracks",song))
 
 mycount <- mydf %>%
   group_by(song) %>%
@@ -50,7 +60,7 @@ mycount <- mydf %>%
   ungroup()
 
 mycount <- mycount %>%
-  arrange(count)
+  arrange(song)
 
 saveRDS(mydf, "Repeatr.rds")
 
