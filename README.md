@@ -23,4 +23,6 @@ A song was considered available during a gig if it was available in the repertoi
 
 The results of this analysis can be viewed here: https://github.com/alexmitrani/Repeatr/blob/main/fugazi_song_performance_intensity.csv
 
+The "songid" variable indicates the raw frequency ranking of each song, so allowing easy comparison between the intensity and frequency measures.  
+
 Thanks. 
