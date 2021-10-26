@@ -90,6 +90,8 @@ mydf <- mydf %>%
 mydf <- mydf %>%
   filter(nchar>0)
 
+mydf$nchar <- NULL
+
 mydf <- mydf %>%
   filter(!grepl("interlude",song))
 
@@ -223,7 +225,7 @@ mydf2 <- mydf2 %>% rename(available_rl = available)
 
 # summarise the data at gig level
 mycount2_gl <- mydf2 %>%
-  group_by(gid, date, songid, song) %>%
+  group_by(gid, date, songid) %>%
   summarise(chosen= sum(chosen), available_rl=max(available_rl)) %>%
   arrange(date, gid, songid) %>%
   ungroup()
@@ -234,7 +236,7 @@ available_rl_lookup <- mycount2_gl %>%
 # summarise the data at song level
 
 mycount2_sl <- mycount2_gl %>%
-  group_by(songid, song) %>%
+  group_by(songid) %>%
   summarise(chosen= sum(chosen), available_rl=sum(available_rl)) %>%
   ungroup()
 
@@ -243,6 +245,12 @@ mycount2_sl <- mycount2_sl %>%
 
 mycount2_sl <- mycount2_sl %>%
   arrange(desc(intensity))
+
+mycount2_sl <- mycount2_sl %>%
+  left_join(mysongidlookup)
+
+mycount2_sl <- mycount2_sl %>%
+  select(songid, song, chosen, available_rl, intensity)
 
 write.csv(mycount2_sl, "fugazi_song_performance_intensity.csv")
 
