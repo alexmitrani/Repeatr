@@ -15,11 +15,9 @@ The results of this analysis can be viewed here: https://github.com/alexmitrani/
 
 A slightly more detailed analysis was undertaken by calculating the performance intensity of each song.  
 
-Song performance intensity = number of times a song was played / number of times it was available as an option.  
+Song performance intensity = number of times a song was played / number of shows at which it was available in the repertoire.  
 
-A song was considered available in the repertoire from the first time it was performed (in this data).  
-
-A song was considered available during a gig if it was available in the repertoire and if it had not already been played during that gig.  
+A song was considered available in the repertoire from the first show it was performed.  
 
 The results of this analysis can be viewed here: https://github.com/alexmitrani/Repeatr/blob/main/fugazi_song_performance_intensity.csv
 
