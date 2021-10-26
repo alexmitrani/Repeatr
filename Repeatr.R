@@ -4,7 +4,6 @@ library(stringr)
 fugotcha <- read.csv("fugotcha.csv", header=FALSE)
 saveRDS(fugotcha, "fugotcha.rds")
 
-
 # Select the most relevant columns -------
 
 
@@ -12,12 +11,10 @@ mydf <- subset(fugotcha, select = -c(V2, V4, V5, V6, V7, V8, V9))
 
 names(mydf)
 
-
 # Define gig id -----------------------------------------------------------
 
 names(mydf)[names(mydf) == "V1"] <- "gid"
 names(mydf)[names(mydf) == "V3"] <- "date"
-
 
 # Rename variables to make reshaping the data easier ----------------------
 
@@ -32,17 +29,13 @@ for(mysong in 1:44) {
   
 }
 
-
 # Reshape to long format with 1 row per song ------------------------------
-
-
 
 mydf <- reshape(data = mydf
                             , direction = "long"
                             , varying = 3:46
                             , idvar = "gid"
 )
-
 
 # Define song number ------------------------------------------------------
 
@@ -124,7 +117,6 @@ mydf <- mydf %>%
 mydf <- mydf %>%
   filter(!grepl("soundcheck",song))
 
-
 # Filter to remove unreleased songs or improvised one-offs ---------------------------------------
 
 mydf <- mydf %>%
@@ -157,11 +149,6 @@ mydf <- mydf %>%
 mydf <- mydf %>%
   filter(song!=("preprovisional"))
 
-
-# Save disaggregate data in long format -----------------------------------
-
-saveRDS(mydf, "Repeatr.rds")
-
 # Summarise the data to check frequency counts for all songs --------------
 
 mycount <- mydf %>%
@@ -172,10 +159,97 @@ mycount <- mydf %>%
 mycount <- mycount %>%
   arrange(desc(count))
 
+mycount <- mycount %>% mutate(songid = row_number())
+mycount <- mycount %>% relocate(songid)
+
 write.csv(mycount, "fugazi_song_counts.csv")
 
+# Create lookup table to go from song id to song title --------------
+
+mysongidlookup <- mycount
+mysongidlookup$count <- NULL
+
+# Add dummy variable for each song to the disaggregate data --------------
+
+mydf <- mydf %>% arrange(date, song_number)
+
+for(mysongid in 1:92) {
+  
+  myvarname <- paste0("song.", mysongid)
+  mysongname <- as.character(mysongidlookup[mysongid,2])
+  mydf <- mydf %>% mutate(!!myvarname := ifelse(song == mysongname,1,0))
+  
+}
+
+for(mysongid in 1:92) {
+  
+  mysongvar <- rlang::sym(paste0("song.", mysongid))
+  myavailablevarname <- paste0("available.", mysongid)
+  mydf <- mydf %>% mutate(!!myavailablevarname := ifelse(cumsum(!!mysongvar)>=1,1,0))
+  
+}
+
+for(mysongid in 1:92) {
+  
+  mysongvar <- rlang::sym(paste0("song.", mysongid))
+  myplayedvarname <- paste0("played.", mysongid)
+  mydf <- mydf %>% 
+    group_by(gid) %>%
+    mutate(!!myplayedvarname := ifelse(cumsum(!!mysongvar)>=1,1,0)) %>%
+    ungroup()
+  
+}
+
+# Reshape to long again so that there will now be one row per combination of song performed and song potentially available ------------------------------
+
+mydf2 <- mydf
+mydf2$song <- NULL
+mydf2$nchar <- NULL
+
+mydf2 <- reshape(data = mydf2
+                , direction = "long"
+                , varying = 4:279
+                , idvar = c("gid", "song_number")
+)
+
+mydf2 <- mydf2 %>% rename(songid = time)
+mydf2 <- mydf2 %>% rename(chosen = song)
+mydf2 <- mydf2 %>% arrange(date, song_number, songid)
+mydf2 <- mydf2 %>% mutate(available=ifelse((played==1 & chosen==0),0,available))
+mydf2 <- mydf2 %>% filter(available==1)
+mydf2 <- mydf2 %>% left_join(mysongidlookup)
+mydf2 <- mydf2 %>% select(gid, date, song_number, songid, song, chosen, played, available)
+mydf2 <- mydf2 %>% arrange(date, gid, song_number, songid)
 
 
+# Summarise the long data to check frequency counts for all songs --------------
+
+mycount2 <- mydf2 %>%
+  group_by(songid) %>%
+  summarise(played= sum(chosen), available=sum(available)) %>%
+  ungroup()
+
+mycount2 <- mycount2 %>%
+  arrange(desc(played))
+
+mycount2 <- mycount2 %>%
+  left_join(mysongidlookup)
+
+mycount2 <- mycount2 %>%
+  select(songid, song, available, played)
+
+mycount2 <- mycount2 %>%
+  mutate(intensity = played/available)
+
+mycount2 <- mycount2 %>%
+  arrange(desc(intensity))
+
+write.csv(mycount2, "fugazi_song_performance_intensity.csv")
+
+# Save disaggregate data -----------------------------------
+
+saveRDS(mydf, "Repeatr1.rds")
+saveRDS(mydf2, "Repeatr2.rds")
 
 #
 
