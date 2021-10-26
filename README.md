@@ -21,6 +21,6 @@ A song was considered available in the repertoire from the first show it was per
 
 The results of this analysis can be viewed here: https://github.com/alexmitrani/Repeatr/blob/main/fugazi_song_performance_intensity.csv
 
-The "songid" variable indicates the raw frequency ranking of each song, so allowing easy comparison between the intensity and frequency measures.  
+The "songid" variable indicates the raw frequency ranking of each song, allowing easy comparison between the intensity and frequency measures.  
 
 Thanks. 
