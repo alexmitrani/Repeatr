@@ -215,36 +215,46 @@ mydf2 <- reshape(data = mydf2
 mydf2 <- mydf2 %>% rename(songid = time)
 mydf2 <- mydf2 %>% rename(chosen = song)
 mydf2 <- mydf2 %>% arrange(date, song_number, songid)
-mydf2 <- mydf2 %>% mutate(available=ifelse((played==1 & chosen==0),0,available))
-mydf2 <- mydf2 %>% filter(available==1)
-mydf2 <- mydf2 %>% left_join(mysongidlookup)
-mydf2 <- mydf2 %>% select(gid, date, song_number, songid, song, chosen, played, available)
-mydf2 <- mydf2 %>% arrange(date, gid, song_number, songid)
 
+# available_rl is repertoire-level availability: is the song available in the repertoire?  It is considered available at the repertoire level from the time of its first performance in this data onwards.  
+mydf2 <- mydf2 %>% rename(available_rl = available)
 
 # Summarise the long data to check frequency counts for all songs --------------
 
-mycount2 <- mydf2 %>%
-  group_by(songid) %>%
-  summarise(played= sum(chosen), available=sum(available)) %>%
+# summarise the data at gig level
+mycount2_gl <- mydf2 %>%
+  group_by(gid, date, songid, song) %>%
+  summarise(chosen= sum(chosen), available_rl=max(available_rl)) %>%
+  arrange(date, gid, songid) %>%
   ungroup()
 
-mycount2 <- mycount2 %>%
-  arrange(desc(played))
+available_rl_lookup <- mycount2_gl %>%
+  select(gid, songid, available_rl)
 
-mycount2 <- mycount2 %>%
-  left_join(mysongidlookup)
+# summarise the data at song level
 
-mycount2 <- mycount2 %>%
-  select(songid, song, available, played)
+mycount2_sl <- mycount2_gl %>%
+  group_by(songid, song) %>%
+  summarise(chosen= sum(chosen), available_rl=sum(available_rl)) %>%
+  ungroup()
 
-mycount2 <- mycount2 %>%
-  mutate(intensity = played/available)
+mycount2_sl <- mycount2_sl %>%
+  mutate(intensity = chosen/available_rl)
 
-mycount2 <- mycount2 %>%
+mycount2_sl <- mycount2_sl %>%
   arrange(desc(intensity))
 
-write.csv(mycount2, "fugazi_song_performance_intensity.csv")
+write.csv(mycount2_sl, "fugazi_song_performance_intensity.csv")
+
+# merge on repertoire-level availability
+mydf2$available_rl <- NULL
+mydf2 <- mydf2 %>% left_join(available_rl_lookup)
+
+# available_gl is gig-level availability.  A song is considered available at the gig level if it is available in the repertoire and it has not already been played.
+mydf2 <- mydf2 %>% mutate(available_gl=ifelse((played==1 & chosen==0),0,available_rl))
+mydf2 <- mydf2 %>% left_join(mysongidlookup)
+mydf2 <- mydf2 %>% select(gid, date, song_number, songid, song, chosen, played, available_rl, available_gl)
+mydf2 <- mydf2 %>% arrange(date, gid, song_number, songid)
 
 # Save disaggregate data -----------------------------------
 
