@@ -17,7 +17,7 @@ A slightly more detailed analysis was undertaken by calculating the performance 
 
 Song performance intensity = number of times a song was played / number of times it was available as an option.  
 
-A song was considered available in the repertoire from the first time it is performed (in this data).  
+A song was considered available in the repertoire from the first time it was performed (in this data).  
 
 A song was considered available during a gig if it was available in the repertoire and if it had not already been played during that gig.  
 
