@@ -282,7 +282,10 @@ mycount2_sl <- mycount2_sl %>%
   left_join(mysongidlookup)
 
 mycount2_sl <- mycount2_sl %>%
-  select(songid, song, chosen, available_rl, intensity)
+  left_join(mylaunchdatelookup)
+
+mycount2_sl <- mycount2_sl %>%
+  select(songid, song, launchdate, chosen, available_rl, intensity)
 
 write.csv(mycount2_sl, "fugazi_song_performance_intensity.csv")
 
