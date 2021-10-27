@@ -531,7 +531,7 @@ results.ml.sc4 <- rbind(results.ml.sc4, results.ml.sc4.os)
 results.ml.sc4 <- results.ml.sc4 %>%
   arrange(desc(Estimate))
 
-write.csv(results.ml.sc4, "fugazi_song_preferences_implied_by_choices.csv")
+write.csv(results.ml.sc4, "fugazi_song_preferences.csv")
 
 #
 
