@@ -8,11 +8,11 @@ The initial data was provided by Ian James Wright of the Alphabetical Fugazi pod
 
 ## Song counts
 
-The code generates performance counts of all released Fugazi songs, in descending order, based on data from 1048 shows up to and including FLS1045. 
+Performance counts were calculated for all the released Fugazi songs that were performed live, using data from 1048 shows up to and including FLS1045. 
 
-The frequency counts do not necessarily measure the band's preferences for the songs, as more recently released songs were available for fewer shows than older songs.  
+These frequency counts do not necessarily measure the band's preferences for the songs, as more recently released songs were available for fewer shows than older songs.  
 
-The results of this analysis can be viewed here: https://github.com/alexmitrani/Repeatr/blob/main/fugazi_song_counts.csv
+The results of this analysis, in descending order of performance count, can be viewed here: https://github.com/alexmitrani/Repeatr/blob/main/fugazi_song_counts.csv
 
 ## Performance intensity
 
