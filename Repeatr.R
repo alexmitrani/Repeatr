@@ -188,6 +188,7 @@ mycount <- mycount %>% relocate(songid)
 
 mysongidlookup <- mycount
 mysongidlookup$count <- NULL
+saveRDS(mysongidlookup, "mysongidlookup.rds")
 
 # Add dummy variable for each song to the disaggregate data --------------
 
@@ -341,10 +342,14 @@ saveRDS(mydf2, "Repeatr2.rds")
 
 # Narrow the data down to the specific variables needed for the choice modelling
 
+mydf2 <- readRDS("Repeatr2.rds")
+
 sc <- mydf2 %>% 
-  select(case, alt, choice, year, yearsold)
+  select(case, alt, choice, yearsold)
 
 # Add a set of dummy variables, one for each song, to be used as alternative-specific constants in the choice model
+
+mysongidlookup <- readRDS("mysongidlookup.rds")
 
 for(mysongid in 1:92) {
   
@@ -354,8 +359,8 @@ for(mysongid in 1:92) {
   
 }
 
-sc <- sc %>%
-  filter(year>=2000)
+# sc <- sc %>%
+#  filter(year>=2000)
 
 saveRDS(sc, "sc.rds")
 
