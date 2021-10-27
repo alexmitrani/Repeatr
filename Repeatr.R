@@ -396,7 +396,7 @@ mydf2 <- mydf2 %>%
   left_join(mycaseidlookup) %>%
   relocate(case)
 
-mydf2 <- mydf2 %>% rename(alt = song)
+mydf2 <- mydf2 %>% rename(alt = songid)
 mydf2 <- mydf2 %>% rename(choice = chosen)
 
 mydf2 <- mydf2 %>%
