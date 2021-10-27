@@ -329,29 +329,55 @@ mydf2 <- mydf2 %>%
 
 mydf2 <- mydf2 %>% rename(alt = song)
 mydf2 <- mydf2 %>% rename(choice = chosen)
-sc <- mydf2 %>% select(case, alt, choice, yearsold)
 
-# Add a set of dummy variables, one for each song, to be used as alternative-specific constants in the choice model
-
-for(mysongid in 1:92) {
-  
-  myvarname <- paste0("song.", mysongid)
-  mysongname <- as.character(mysongidlookup[mysongid,2])
-  sc <- sc %>% mutate(!!myvarname := ifelse(alt == mysongname,1,0))
-  
-}
-
-rm(mydf, mydf2)
-gc()
-
-sc <- dfidx(sc)
-
-ml.sc1 <- mlogit(choice ~ yearsold, data = sc)
+mydf2 <- mydf2 %>%
+  mutate(year = year(date)) %>%
+  relocate(year, .after=date)
 
 # Save disaggregate data -----------------------------------
 
 saveRDS(mydf, "Repeatr1.rds")
 saveRDS(mydf2, "Repeatr2.rds")
+
+# Narrow the data down to the specific variables needed for the choice modelling
+
+sc <- mydf2 %>% 
+  select(case, alt, choice, year, yearsold)
+
+# Add a set of dummy variables, one for each song, to be used as alternative-specific constants in the choice model
+
+for(mysongid in 1:92) {
+  
+  myvarname <- paste0("s.", mysongid)
+  mysongname <- as.character(mysongidlookup[mysongid,2])
+  sc <- sc %>% mutate(!!myvarname := ifelse(alt == mysongname,1,0))
+  
+}
+
+sc <- sc %>%
+  filter(year>=2000)
+
+saveRDS(sc, "sc.rds")
+
+
+# Read in data needed for choice modelling --------------------------------
+
+sc <- readRDS("sc.rds")
+
+sc <- dfidx(sc)
+
+ml.sc1 <- mlogit(choice ~ yearsold + s.2 + s.3 + s.4 + s.5 + s.6 + s.7 + s.8 + s.9 + s.10
+                 + s.11 + s.12 + s.13 + s.14 + s.15 + s.16 + s.17 + s.18 + s.19 + s.20 
+                 + s.21 + s.22 + s.23 + s.24 + s.25 + s.26 + s.27 + s.28 + s.29 + s.30
+                 + s.31 + s.32 + s.33 + s.34 + s.35 + s.36 + s.37 + s.38 + s.39 + s.31
+                 + s.41 + s.42 + s.43 + s.44 + s.45 + s.46 + s.47 + s.48 + s.49 + s.50
+                 + s.51 + s.52 + s.53 + s.54 + s.55 + s.56 + s.57 + s.58 + s.59 + s.60
+                 + s.61 + s.62 + s.63 + s.64 + s.65 + s.66 + s.67 + s.68 + s.69 + s.70
+                 + s.71 + s.72 + s.73 + s.74 + s.75 + s.76 + s.77 + s.78 + s.79 + s.80
+                 + s.81 + s.82 + s.83 + s.84 + s.85 + s.86 + s.87 + s.88 + s.89 + s.90
+                 + s.91 + s.92, data = sc)
+
+
 
 #
 
