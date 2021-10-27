@@ -450,6 +450,9 @@ sc$alt <- as.factor(sc$alt)
 sc$choice <- as.logical(sc$choice)
 sc <- dfidx(sc, idx = c("case", "alt"), drop.index = FALSE)
 
+checksongcounts <- sc %>% group_by(alt) %>% summarise(count = sum(choice)) %>% ungroup()
+checksongcounts
+
 saveRDS(sc, "sc.rds")
 
 # Choice modelling --------------------------------
@@ -477,8 +480,6 @@ ml.sc4 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + ye
 
 
 # Report results of the choice modelling ----------------------------------
-
-
 
 summary.ml.sc4 <- summary(ml.sc4)
 
