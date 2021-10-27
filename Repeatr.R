@@ -483,8 +483,29 @@ results.ml.sc4 <- results.ml.sc4 %>%
   mutate(parameter_id = row_number()) %>%
   relocate(parameter_id)
 
+results.ml.sc4 <- results.ml.sc4 %>%
+  filter(parameter_id<=91)
 
+results.ml.sc4 <- results.ml.sc4 %>%
+  mutate(songid = parameter_id+1)
 
+results.ml.sc4 <- results.ml.sc4 %>%
+  left_join(mysongidlookup)
+
+results.ml.sc4 <- results.ml.sc4 %>%
+  select(songid, song, Estimate, "z-value")
+
+results.ml.sc4.os <- mysongidlookup %>%
+  filter(songid==1) %>%
+  mutate(Estimate = 0) %>%
+  mutate("z-value" = NA)
+
+results.ml.sc4 <- rbind(results.ml.sc4, results.ml.sc4.os)
+
+results.ml.sc4 <- results.ml.sc4 %>%
+  arrange(desc(Estimate))
+
+write.csv(results.ml.sc4, "fugazi_song_preferences_implied_by_choices.csv")
 
 #
 
