@@ -1,12 +1,12 @@
 library(dplyr)
 library(stringr)
 library(lubridate)
+library(mlogit)
 
 fugotcha <- read.csv("fugotcha.csv", header=FALSE)
 saveRDS(fugotcha, "fugotcha.rds")
 
 # Select the most relevant columns -------
-
 
 mydf <- subset(fugotcha, select = -c(V2, V4, V5, V6, V7, V8, V9))
 
@@ -298,6 +298,54 @@ mydf2 <- mydf2 %>% mutate(available_gl=ifelse((played==1 & chosen==0),0,availabl
 mydf2 <- mydf2 %>% left_join(mysongidlookup)
 mydf2 <- mydf2 %>% select(gid, date, song_number, songid, song, chosen, played, available_rl, available_gl)
 mydf2 <- mydf2 %>% arrange(date, gid, song_number, songid)
+
+# Merge on the launch date of each song and calculate how many years old each song is at the time of each gig
+mydf2 <- mydf2 %>% left_join(mylaunchdatelookup)
+mydf2 <- mydf2 %>% relocate(launchdate, .after=date)
+mydf2 <- mydf2 %>% mutate(yearsold = ifelse(available_rl==1,as.duration(launchdate %--% date) / dyears(1),0))
+mydf2 <- mydf2 %>% relocate(yearsold, .after=launchdate)
+
+# Remove records for unavailable songs
+
+mydf2 <- mydf2 %>% filter(available_gl==1)
+
+# Choice modelling with multinomial logit
+
+# define case variable and add it to the data
+
+mycaseidlookup <- mydf %>% 
+  group_by(gid, song_number) %>% 
+  summarise(records = n(), date=min(date)) %>% 
+  arrange(date, song_number) %>%
+  select(gid, song_number) %>%
+  ungroup()
+
+mycaseidlookup <- mycaseidlookup %>%
+  mutate(case = row_number())
+
+mydf2 <- mydf2 %>%
+  left_join(mycaseidlookup) %>%
+  relocate(case)
+
+mydf2 <- mydf2 %>% rename(alt = song)
+mydf2 <- mydf2 %>% rename(choice = chosen)
+sc <- mydf2 %>% select(case, alt, choice, yearsold)
+
+# Add a set of dummy variables, one for each song, to be used as alternative-specific constants in the choice model
+
+for(mysongid in 1:92) {
+  
+  myvarname <- paste0("song.", mysongid)
+  mysongname <- as.character(mysongidlookup[mysongid,2])
+  sc <- sc %>% mutate(!!myvarname := ifelse(alt == mysongname,1,0))
+  
+}
+
+sc <- dfidx(sc)
+rm(mydf, mydf2)
+gc()
+
+ml.sc1 <- mlogit(choice ~ yearsold, data = sc)
 
 # Save disaggregate data -----------------------------------
 
