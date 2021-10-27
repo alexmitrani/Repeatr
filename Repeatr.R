@@ -341,9 +341,10 @@ for(mysongid in 1:92) {
   
 }
 
-sc <- dfidx(sc)
 rm(mydf, mydf2)
 gc()
+
+sc <- dfidx(sc)
 
 ml.sc1 <- mlogit(choice ~ yearsold, data = sc)
 
