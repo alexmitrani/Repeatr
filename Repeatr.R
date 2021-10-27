@@ -2,6 +2,72 @@ library(dplyr)
 library(stringr)
 library(lubridate)
 library(mlogit)
+library(fastDummies)
+library(rlang)
+
+# Version history
+# 20210119 v1 01 by Alex Mitrani.  This function was inspired by the "compress" function in Stata and a need to reduce the size of large datafiles by optimizing the storage modes of variables.
+# 20210610 v1 02 by Alex Mitrani.  Removed tidyverse dependency.
+
+#' @name compressr
+#' @title changes the type of specified variables to integer
+#' @description compressr is used to reduce the size of data files with double-precision storage of integer variables, by changing the storage type of these variables to integer.
+#' @details compressr is used internally by the fsm package.
+#'
+#' @import tidyverse
+#' @import crayon
+#' @import rlang
+#'
+#' @param mydf the dataframe to be modified.
+#' @param ... a list of the variables to have their storage modes changed to integer.
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' mydf <- mtcars
+#' mycompressrvars <- scan(text="vs am gear carb", what="")
+#' mydf <- compressr(mydf, mycompressrvars)
+#' mydf
+#'
+compressr <- function(mydf,...) {
+  
+  my_return_name <- deparse(substitute(mydf))
+  
+  myinitialsize <- round(object.size(mydf)/1000000, digits = 3)
+  cat(paste0("Size of ", my_return_name, " before converting the storage modes of specified variables to integer: ", myinitialsize, " MB. \n"))
+  
+  
+  variables_to_compress <- c(...)
+  cat(paste0("The following variables will have their storage modes converted to integer, if they exist in ", my_return_name,  ": ", "\n"))
+  print(variables_to_compress)
+  
+  for (var in variables_to_compress) {
+    
+    if(var %in% colnames(mydf)) {
+      
+      myparsedvar <- parse_expr(var)
+      
+      mydf <- mydf %>%
+        mutate(!!myparsedvar := as.integer(!!myparsedvar))
+      
+    }
+    
+  }
+  
+  myfinalsize <- round(object.size(mydf)/1000000, digits = 3)
+  cat(paste0("Size of ", my_return_name, " after converting storage mode of variables to integer: ", myfinalsize, " MB. \n"))
+  ramsaved <- round(myinitialsize - myfinalsize, digits = 3)
+  cat(paste0("RAM saved: ", ramsaved, " MB. \n"))
+  
+  return(mydf)
+  
+}
+
+#
+
+
+
 
 fugotcha <- read.csv("fugotcha.csv", header=FALSE)
 saveRDS(fugotcha, "fugotcha.rds")
@@ -360,6 +426,35 @@ for(mysongid in 1:92) {
   
 }
 
+sc <- sc %>%
+  mutate(yearsold = case_when(
+    yearsold >= 0 & yearsold < 1  ~ 0L,
+    yearsold >= 1 & yearsold < 2  ~ 1L,
+    yearsold >= 2 & yearsold < 3  ~ 2L,
+    yearsold >= 3 & yearsold < 4  ~ 3L,
+    yearsold >= 4 & yearsold < 5  ~ 4L,
+    yearsold >= 5 & yearsold < 6  ~ 5L,
+    yearsold >= 6 & yearsold < 7  ~ 6L,
+    yearsold >= 7 & yearsold < 8  ~ 7L,
+    yearsold >= 8 & yearsold < 9  ~ 8L,
+    yearsold >= 9 & yearsold < 10  ~ 9L,
+    yearsold >= 10 & yearsold < 11  ~ 10L,
+    yearsold >= 11 & yearsold < 12  ~ 11L,
+    yearsold >= 12 & yearsold < 13  ~ 12L,
+    yearsold >= 13 & yearsold < 14  ~ 13L,
+    yearsold >= 14 & yearsold < 15  ~ 14L,
+    TRUE ~ 15L
+    )
+  )
+
+sc <- dummy_cols(sc, select_columns = "yearsold")
+
+mycompressrvars <- scan(text="yearsold_1 yearsold_2 yearsold_3 yearsold_4 yearsold_5 yearsold_6 yearsold_7 yearsold_8 yearsold_9 yearsold_10 yearsold_11 yearsold_12 yearsold_13 yearsold_14 yearsold_15 s.2 s.3 s.4 s.5 s.6 s.7 s.8 s.9 s.10 s.11 s.12 s.13 s.14 s.15 s.16 s.17 s.18 s.19 s.20 s.21 s.22 s.23 s.24 s.25 s.26 s.27 s.28 s.29 s.30 s.31 s.32 s.33 s.34 s.35 s.36 s.37 s.38 s.39 s.31 s.41 s.42 s.43 s.44 s.45 s.46 s.47 s.48 s.49 s.50 s.51 s.52 s.53 s.54 s.55 s.56 s.57 s.58 s.59 s.60 s.61 s.62 s.63 s.64 s.65 s.66 s.67 s.68 s.69 s.70 s.71 s.72 s.73 s.74 s.75 s.76 s.77 s.78 s.79 s.80 s.81 s.82 s.83 s.84 s.85 s.86 s.87 s.88 s.89 s.90 s.91 s.92", what="")
+sc <- compressr(sc, mycompressrvars)
+
+sc <- sc %>%
+  mutate(choice =ifelse(choice==1,TRUE,FALSE))
+
 saveRDS(sc, "sc.rds")
 
 # Choice modelling --------------------------------
@@ -368,7 +463,10 @@ sc <- readRDS("sc.rds")
 
 sc <- dfidx(sc)
 
-ml.sc1 <- mlogit(choice ~ yearsold + s.2 + s.3 + s.4 + s.5 + s.6 + s.7 + s.8 + s.9 + s.10
+ml.sc1 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5 
+                 + yearsold_6 + yearsold_7 + yearsold_8 + yearsold_9 + yearsold_10
+                 + yearsold_11 + yearsold_12 + yearsold_13 + yearsold_14 + yearsold_15
+                 + s.2 + s.3 + s.4 + s.5 + s.6 + s.7 + s.8 + s.9 + s.10
                  + s.11 + s.12 + s.13 + s.14 + s.15 + s.16 + s.17 + s.18 + s.19 + s.20 
                  + s.21 + s.22 + s.23 + s.24 + s.25 + s.26 + s.27 + s.28 + s.29 + s.30
                  + s.31 + s.32 + s.33 + s.34 + s.35 + s.36 + s.37 + s.38 + s.39 + s.31
