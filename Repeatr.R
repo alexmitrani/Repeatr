@@ -475,6 +475,11 @@ summary(ml.sc3)
 ml.sc4 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5 
                  + yearsold_6 + yearsold_7 + yearsold_other , data = sc)
 
+
+# Report results of the choice modelling ----------------------------------
+
+
+
 summary.ml.sc4 <- summary(ml.sc4)
 
 results.ml.sc4 <- as.data.frame(summary.ml.sc4[["CoefTable"]])
@@ -482,6 +487,24 @@ results.ml.sc4 <- as.data.frame(summary.ml.sc4[["CoefTable"]])
 results.ml.sc4 <- results.ml.sc4 %>%
   mutate(parameter_id = row_number()) %>%
   relocate(parameter_id)
+
+variable <- row.names(results.ml.sc4)
+
+choice_model_results_table <- cbind(variable, results.ml.sc4)
+
+choice_model_results_table <- choice_model_results_table %>%
+  mutate(songid = ifelse(parameter_id<=91,parameter_id+1,NA))
+
+choice_model_results_table <- choice_model_results_table %>%
+  left_join(mysongidlookup)
+
+choice_model_results_table <- choice_model_results_table %>%
+  mutate(variable = ifelse(parameter_id<=91,song,variable))
+
+choice_model_results_table$songid <- NULL
+choice_model_results_table$song <- NULL
+
+write.csv(choice_model_results_table, "fugazi_song_choice_model.csv")
 
 results.ml.sc4 <- results.ml.sc4 %>%
   filter(parameter_id<=91)
