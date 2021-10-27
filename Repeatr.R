@@ -1,5 +1,6 @@
 library(dplyr)
 library(stringr)
+library(lubridate)
 
 fugotcha <- read.csv("fugotcha.csv", header=FALSE)
 saveRDS(fugotcha, "fugotcha.rds")
@@ -14,7 +15,26 @@ names(mydf)
 # Define gig id -----------------------------------------------------------
 
 names(mydf)[names(mydf) == "V1"] <- "gid"
+
+
+# Define date variables ----------------------------------------------------
+
 names(mydf)[names(mydf) == "V3"] <- "date"
+
+mydf <- mydf %>% 
+  mutate(date = as.Date(date))
+
+mydf <- mydf %>%
+  mutate(year = year(date)) %>%
+  relocate(year, .after=date)
+
+mydf <- mydf %>%
+  mutate(month = month(date)) %>%
+  relocate(month, .after=year)
+
+mydf <- mydf %>%
+  mutate(day = day(date)) %>%
+  relocate(day, .after=month)
 
 # Rename variables to make reshaping the data easier ----------------------
 
@@ -33,7 +53,7 @@ for(mysong in 1:44) {
 
 mydf <- reshape(data = mydf
                             , direction = "long"
-                            , varying = 3:46
+                            , varying = 6:49
                             , idvar = "gid"
 )
 
@@ -164,8 +184,6 @@ mycount <- mycount %>%
 mycount <- mycount %>% mutate(songid = row_number())
 mycount <- mycount %>% relocate(songid)
 
-write.csv(mycount, "fugazi_song_counts.csv")
-
 # Create lookup table to go from song id to song title --------------
 
 mysongidlookup <- mycount
@@ -210,13 +228,13 @@ mydf2$nchar <- NULL
 
 mydf2 <- reshape(data = mydf2
                 , direction = "long"
-                , varying = 4:279
+                , varying = 7:282
                 , idvar = c("gid", "song_number")
 )
 
 mydf2 <- mydf2 %>% rename(songid = time)
 mydf2 <- mydf2 %>% rename(chosen = song)
-mydf2 <- mydf2 %>% arrange(date, song_number, songid)
+mydf2 <- mydf2 %>% arrange(date, year, month, day, song_number, songid)
 
 # available_rl is repertoire-level availability: is the song available in the repertoire?  It is considered available at the repertoire level from the time of its first performance in this data onwards.  
 mydf2 <- mydf2 %>% rename(available_rl = available)
@@ -232,6 +250,20 @@ mycount2_gl <- mydf2 %>%
 
 available_rl_lookup <- mycount2_gl %>%
   select(gid, songid, available_rl)
+
+# get the launch date of each song
+mylaunchdatelookup <- mycount2_gl %>%
+  filter(available_rl==1) %>%
+  group_by(songid) %>%
+  summarise(launchdate = min(date)) %>%
+  ungroup()
+
+# add launch dates to count file
+mycount <- mycount %>%
+  left_join(mylaunchdatelookup) %>%
+  select(songid, song, launchdate, count)
+
+write.csv(mycount, "fugazi_song_counts.csv")
 
 # summarise the data at song level
 
