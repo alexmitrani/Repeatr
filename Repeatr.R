@@ -324,6 +324,8 @@ mycaseidlookup <- mydf %>%
 mycaseidlookup <- mycaseidlookup %>%
   mutate(case = row_number())
 
+saveRDS(mycaseidlookup, "mycaseidlookup.rds")
+
 mydf2 <- mydf2 %>%
   left_join(mycaseidlookup) %>%
   relocate(case)
@@ -339,15 +341,14 @@ mydf2 <- mydf2 %>%
 
 saveRDS(mydf, "Repeatr1.rds")
 saveRDS(mydf2, "Repeatr2.rds")
+rm(mydf, mydf2)
 
-# Narrow the data down to the specific variables needed for the choice modelling
+# Keep only the specific variables needed for the modelling --------
 
 mydf2 <- readRDS("Repeatr2.rds")
 
 sc <- mydf2 %>% 
   select(case, alt, choice, yearsold)
-
-# Add a set of dummy variables, one for each song, to be used as alternative-specific constants in the choice model
 
 mysongidlookup <- readRDS("mysongidlookup.rds")
 
@@ -359,13 +360,9 @@ for(mysongid in 1:92) {
   
 }
 
-# sc <- sc %>%
-#  filter(year>=2000)
-
 saveRDS(sc, "sc.rds")
 
-
-# Read in data needed for choice modelling --------------------------------
+# Choice modelling --------------------------------
 
 sc <- readRDS("sc.rds")
 
@@ -382,7 +379,7 @@ ml.sc1 <- mlogit(choice ~ yearsold + s.2 + s.3 + s.4 + s.5 + s.6 + s.7 + s.8 + s
                  + s.81 + s.82 + s.83 + s.84 + s.85 + s.86 + s.87 + s.88 + s.89 + s.90
                  + s.91 + s.92, data = sc)
 
-
+summary(ml.sc1)
 
 #
 
