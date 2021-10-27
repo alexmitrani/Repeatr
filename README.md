@@ -46,13 +46,13 @@ The age of the songs needs considering because bands generally prioritise new ma
 | More than 7 years but less than 8 years old   | yearsold_7        |
 | More than 8 years old   | yearsold_other        |
 
-The above categories were defined after some experimentation to establish which categories deserved separate representation and which could be grouped together. The "Less than a year old" variable was omitted because it is always necessary to omit one of each set of dummy variables in this type of model. An omitted dummy variable has a parameter of zero by definition and provides a reference point for the parameters whose values are estimated.   
+The above categories were defined after some experimentation to establish which categories deserved separate representation and which could be grouped together. The "less than a year old" variable was omitted because it is always necessary to omit one of each set of dummy variables in this type of model. An omitted dummy variable has a parameter of zero by definition and provides a reference point for the parameters whose values are estimated.   
 
-The band's collective preference for each song was represented using a dummy variable (on/off) for each song, such that the parameters associated with these variables will represent the strength of preference for each song.  The dummy variable for "Waiting Room" was omitted and therefore the preference parameter for this song was zero by definition.  
+The band's collective preference for each song was represented using a dummy variable (on/off) for each song, such that the parameters associated with these variables would represent the strength of preference for each song.  The dummy variable for "Waiting Room" was omitted and therefore the preference parameter for this song was zero by definition.  
 
 The results of the choice modelling can be seen here: https://github.com/alexmitrani/Repeatr/blob/main/fugazi_song_choice_model.csv
 
-The parameters related to the age of the songs support the hypothesis that recent material tends to be favoured in the band's choices of songs to be performed. 
+The parameters related to the age of the songs support the hypothesis that recent material tended to be favoured in the band's choices of songs to be performed. 
 
 The implied preferences for each song can be viewed as a ranked table in descending order of preference here: https://github.com/alexmitrani/Repeatr/blob/main/fugazi_song_preferences.csv
 
