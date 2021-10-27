@@ -1,6 +1,6 @@
 # Repeatr
 
-## "I had a name, but now I'm a number" - Repeater by Fugazi (https://fugazi.bandcamp.com/track/repeater)
+## ["I had a name, but now I'm a number"](https://fugazi.bandcamp.com/track/repeater)
 
 R code for analysis of Fugazi Live Series metadata: https://www.dischord.com/fugazi_live_series
 
