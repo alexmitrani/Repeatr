@@ -461,7 +461,7 @@ saveRDS(sc, "sc.rds")
 
 sc <- readRDS("sc.rds")
 
-sc <- dfidx(sc)
+sc <- dfidx(sc, idx = c("case", "alt"))
 
 ml.sc1 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5 
                  + yearsold_6 + yearsold_7 + yearsold_8 + yearsold_9 + yearsold_10
