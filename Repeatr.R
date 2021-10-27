@@ -519,6 +519,8 @@ results.ml.sc4 <- results.ml.sc4 %>%
 results.ml.sc4 <- results.ml.sc4 %>%
   select(songid, song, Estimate, "z-value")
 
+# to add back in "waiting room" which was the omitted constant in the choice model and has a parameter value of zero by definition.  
+
 results.ml.sc4.os <- mysongidlookup %>%
   filter(songid==1) %>%
   mutate(Estimate = 0) %>%
