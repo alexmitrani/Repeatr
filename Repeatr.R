@@ -416,16 +416,6 @@ mydf2 <- readRDS("Repeatr2.rds")
 sc <- mydf2 %>% 
   select(case, alt, choice, yearsold)
 
-mysongidlookup <- readRDS("mysongidlookup.rds")
-
-for(mysongid in 1:92) {
-  
-  myvarname <- paste0("s.", mysongid)
-  mysongname <- as.character(mysongidlookup[mysongid,2])
-  sc <- sc %>% mutate(!!myvarname := ifelse(alt == mysongname,1,0))
-  
-}
-
 sc <- sc %>%
   mutate(yearsold = case_when(
     yearsold >= 0 & yearsold < 1  ~ 0L,
@@ -447,13 +437,18 @@ sc <- sc %>%
     )
   )
 
+sc <- sc %>%
+  mutate(yearsold_other = yearsold_8 + yearsold_9 + yearsold_10 + yearsold_11 + yearsold_12 + yearsold_13 + yearsold_14 + yearsold_15)
+
 sc <- dummy_cols(sc, select_columns = "yearsold")
 
 mycompressrvars <- scan(text="yearsold_1 yearsold_2 yearsold_3 yearsold_4 yearsold_5 yearsold_6 yearsold_7 yearsold_8 yearsold_9 yearsold_10 yearsold_11 yearsold_12 yearsold_13 yearsold_14 yearsold_15 s.2 s.3 s.4 s.5 s.6 s.7 s.8 s.9 s.10 s.11 s.12 s.13 s.14 s.15 s.16 s.17 s.18 s.19 s.20 s.21 s.22 s.23 s.24 s.25 s.26 s.27 s.28 s.29 s.30 s.31 s.32 s.33 s.34 s.35 s.36 s.37 s.38 s.39 s.31 s.41 s.42 s.43 s.44 s.45 s.46 s.47 s.48 s.49 s.50 s.51 s.52 s.53 s.54 s.55 s.56 s.57 s.58 s.59 s.60 s.61 s.62 s.63 s.64 s.65 s.66 s.67 s.68 s.69 s.70 s.71 s.72 s.73 s.74 s.75 s.76 s.77 s.78 s.79 s.80 s.81 s.82 s.83 s.84 s.85 s.86 s.87 s.88 s.89 s.90 s.91 s.92", what="")
 sc <- compressr(sc, mycompressrvars)
 
-sc <- sc %>%
-  mutate(choice =ifelse(choice==1,TRUE,FALSE))
+sc$case <- factor(as.numeric(as.factor(sc$case)))
+sc$alt <- as.factor(sc$alt)
+sc$choice <- as.logical(sc$choice)
+sc <- dfidx(sc, idx = c("case", "alt"), drop.index = FALSE)
 
 saveRDS(sc, "sc.rds")
 
@@ -461,23 +456,35 @@ saveRDS(sc, "sc.rds")
 
 sc <- readRDS("sc.rds")
 
-sc <- dfidx(sc, idx = c("case", "alt"))
-
-ml.sc1 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5 
-                 + yearsold_6 + yearsold_7 + yearsold_8 + yearsold_9 + yearsold_10
-                 + yearsold_11 + yearsold_12 + yearsold_13 + yearsold_14 + yearsold_15
-                 + s.2 + s.3 + s.4 + s.5 + s.6 + s.7 + s.8 + s.9 + s.10
-                 + s.11 + s.12 + s.13 + s.14 + s.15 + s.16 + s.17 + s.18 + s.19 + s.20 
-                 + s.21 + s.22 + s.23 + s.24 + s.25 + s.26 + s.27 + s.28 + s.29 + s.30
-                 + s.31 + s.32 + s.33 + s.34 + s.35 + s.36 + s.37 + s.38 + s.39 + s.31
-                 + s.41 + s.42 + s.43 + s.44 + s.45 + s.46 + s.47 + s.48 + s.49 + s.50
-                 + s.51 + s.52 + s.53 + s.54 + s.55 + s.56 + s.57 + s.58 + s.59 + s.60
-                 + s.61 + s.62 + s.63 + s.64 + s.65 + s.66 + s.67 + s.68 + s.69 + s.70
-                 + s.71 + s.72 + s.73 + s.74 + s.75 + s.76 + s.77 + s.78 + s.79 + s.80
-                 + s.81 + s.82 + s.83 + s.84 + s.85 + s.86 + s.87 + s.88 + s.89 + s.90
-                 + s.91 + s.92, data = sc)
+ml.sc1 <- mlogit(choice ~ yearsold, data = sc)
 
 summary(ml.sc1)
+
+ml.sc2 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5 
+                 + yearsold_6 + yearsold_7 + yearsold_8 + yearsold_9 + yearsold_10
+                 + yearsold_11 + yearsold_12 + yearsold_13 + yearsold_14 + yearsold_15
+                 , data = sc)
+
+summary(ml.sc2)
+
+
+ml.sc3 <- mlogit(choice ~ yearsold_0 + yearsold_1 + yearsold_2, data = sc)
+
+summary(ml.sc3)
+
+ml.sc4 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5 
+                 + yearsold_6 + yearsold_7 + yearsold_other , data = sc)
+
+summary.ml.sc4 <- summary(ml.sc4)
+
+results.ml.sc4 <- as.data.frame(summary.ml.sc4[["CoefTable"]])
+
+results.ml.sc4 <- results.ml.sc4 %>%
+  mutate(parameter_id = row_number()) %>%
+  relocate(parameter_id)
+
+
+
 
 #
 
