@@ -163,4 +163,8 @@ The following table shows ratings based on the preferences described in the sect
 
 The data used in the above table can be found here: https://github.com/alexmitrani/Repeatr/blob/main/summary.csv
 
+I hope you have found this interesting.  If you want to recreate the analysis this should be possible by running [Repeatr.R](https://github.com/alexmitrani/Repeatr/blob/main/Repeatr.R) after installing the various libraries that are listed at the top of the file. It is recommended to use a machine with 16 GB RAM or more to run the choice models.
+
+If you have any comments or suggestions please feel to add an issue to this repository.  
+
 Thanks. 
