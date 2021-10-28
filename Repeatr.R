@@ -264,6 +264,8 @@ mysongidlookup <- mycount
 mysongidlookup$count <- NULL
 saveRDS(mysongidlookup, "mysongidlookup.rds")
 
+write.csv(mysongidlookup, "mysongidlookup.csv")
+
 # Add dummy variable for each song to the disaggregate data --------------
 
 mydf <- mydf %>% arrange(date, song_number)
@@ -570,6 +572,59 @@ mydf2 <- mydf2 %>%
   arrange(desc(rating))
 
 write.csv(mydf2, "summary.csv")
+
+
+# Evaluation of releases using the song ratings ---------------------------
+
+mydf <- read.csv("songs_releases.csv")
+
+mydf <- mydf %>%
+  group_by(release) %>%
+  summarise(releaseid = mean(releaseid), releasedate=min(releasedate)) %>%
+  ungroup()
+
+mydf <- mydf %>%
+  select(releaseid, release, releasedate) %>%
+  arrange(releasedate)
+
+write.csv(mydf, "releases.csv")
+
+mydf <- read.csv("songs_releases.csv")
+
+mydf2 <- read.csv("summary.csv")
+
+mydf2 <- mydf2 %>%
+  select(songid, song, rating)
+
+mydf2 <- mydf2 %>%
+  left_join(mydf)
+
+mydf2 <- mydf2 %>%
+  group_by(release, releaseid, releasedate) %>%
+  summarise(rating = mean(rating), songs_rated = n()) %>%
+  ungroup()
+
+mydf2 <- mydf2 %>%
+  arrange(desc(rating))
+
+# remove First Demo as it is not comparable to the others. 
+mydf2 <- mydf2 %>%
+  filter(releaseid!=11)
+
+write.csv(mydf2, "releases_rated.csv")
+
+mydf <- read.csv("releases_rated_rym.csv")
+
+mydf$X <- NULL
+
+mydf <- mydf %>%
+  filter(is.na(releaseid)==FALSE)
+
+mydf <- mydf %>%
+  select(release, releaseid, releasedate, songs_rated, rating, rym_rating)
+
+knitr::kable(mydf, "pipe")
+
 
 #
 

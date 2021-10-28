@@ -163,7 +163,28 @@ The following table shows ratings based on the preferences described in the sect
 
 The data used in the above table can be found here: https://github.com/alexmitrani/Repeatr/blob/main/summary.csv
 
-I hope you have found this interesting.  If you want to recreate the analysis this should be possible by running [Repeatr.R](https://github.com/alexmitrani/Repeatr/blob/main/Repeatr.R) after installing the various libraries that are listed at the top of the file. It is recommended to use a machine with 16 GB RAM or more to run the choice models.
+## Ratings applied to studio releases and compared to RYM ratings
+
+As a check on whether the song ratings make sense they were used to calculate average ratings for the band's studio releases and these were compared to the average ratings for the same releases at [https://rateyourmusic.com/artist/fugazi](https://web.archive.org/web/20210211085323/https://rateyourmusic.com/artist/fugazi), as at the 11 February 2021.  The results are shown below.   
+
+|release                | releaseid|releasedate | songs_rated|    rating| rym_rating|
+|:----------------------|---------:|:-----------|-----------:|---------:|----------:|
+|the argument           |         9|2001-10-11  |          10| 0.7894826|      0.778|
+|end hits               |         8|1998-04-27  |          13| 0.7859644|      0.734|
+|repeater               |         4|1990-03-20  |          11| 0.7669451|      0.774|
+|red medicine           |         7|1995-08-14  |          13| 0.7222171|      0.762|
+|fugazi                 |         1|1988-11-19  |           7| 0.7213858|      0.796|
+|in on the killtaker    |         6|1993-06-30  |          12| 0.7176343|      0.756|
+|3 songs                |         3|1990-01-15  |           3| 0.6265567|      0.656|
+|steady diet of nothing |         5|1991-07-15  |          11| 0.6126059|      0.708|
+|margin walker          |         2|1989-06-15  |           6| 0.6118652|      0.744|
+|furniture              |        10|2001-10-15  |           3| 0.5548548|      0.734|
+
+Although many of the ratings are similar in magnitude, there are clearly some differences. There is more variation in the ratings that have been calculated using the FLS data compared to the RYM ratings, and the lowest FSL ratings are considerably lower than the lowest RYM ratings.   Differences such as these were to be expected.  The FSL ratings were calculated in a consistent way, based largely on the real choices of the band regarding which songs to play at shows, and the band actually played the songs they chose to a live audience!  The RYM ratings were from larger groups of people, not necessarily the same people in each case, who were simply expressing how much they liked or disliked the music, with no restrictions and no consequences.   
+
+## The End
+
+I hope you have found this interesting.  If you want to recreate the analysis this should be possible by running [Repeatr.R](https://github.com/alexmitrani/Repeatr/blob/main/Repeatr.R) after installing the various libraries that are listed at the top of the file. It is recommended to use a machine with 16 GB RAM or more to run the choice model.
 
 If you have any comments or suggestions please feel to add an issue to this repository.  
 
