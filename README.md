@@ -8,7 +8,7 @@ The initial data was provided by Ian James Wright of the Alphabetical Fugazi pod
 
 ## Song counts
 
-Performance counts were calculated for all the released Fugazi songs that were performed live, using data from 1048 shows up to and including FLS1045. 
+Performance counts were calculated for all the released Fugazi songs that were performed live, using data from 896 shows from FLS0001 up to and including FLS1045. 
 
 These frequency counts do not necessarily measure the band's preferences for the songs, as more recently released songs were available for fewer shows than older songs.  
 
@@ -28,9 +28,11 @@ The "songid" variable indicates the raw frequency ranking of each song, allowing
 
 ## Song preferences
 
-The Fugazi Live Series data includes 17297 choices of songs made by the band during their live shows. This data was used to estimate the band's collective preferences for the songs in their live music repertoire. 
+The Fugazi Live Series data includes 17297 choices of songs made by the band during their live shows. This data was used to estimate the strength of preference for each of the songs in their live music repertoire. 
 
-Song availability was considered at both repertoire and gig level, that is songs were only considered available from the time they were first played and within any given gig, once a song had been played it would be considered unavailable for the rest of the gig.  
+Song availability was considered at both repertoire and gig level, that is songs were only considered available from the time they were first played and within any given gig, once a song had been played it would be considered unavailable for the rest of the gig.  There is some evidence that certain songs were discontinued but this has not been represented here.
+> "To the guy who is yelling for Steady Diet, I got bad news for you. Every time before we go out for a tour, we take a week to go through every record that we've done, and we relearn every song and we make sure that we know everything, because we make up the sets as we go, and we relearn everything so we can play anything at anytime... but there's three songs that we have not been able to remember how to play, one of them is Steady Diet, I am sorry to say, the other is Polish, and the other one, I can't remember the name of, but basically, you can call out anything else, but if you call out Steady Diet, you are wasting your breath" - Guy Picciotto 6/27/2001
+Source: https://www.dischord.com/fugazi_live_series/minneapolis-mn-usa-62701
 
 The age of the songs needs considering because bands generally prioritise new material when they play live and Fugazi was no exception to this. Dummy variables (on/off) were used to represent the age of the songs at the time of each gig, as follows: 
 
@@ -48,13 +50,15 @@ The age of the songs needs considering because bands generally prioritise new ma
 
 The above categories were defined after some experimentation to establish which categories deserved separate representation and which could be grouped together. The "less than a year old" variable was omitted because it is always necessary to omit one of each set of dummy variables in this type of model. An omitted dummy variable has a parameter of zero by definition and provides a reference point for the parameters whose values are estimated.   
 
-The band's collective preference for each song was represented using a dummy variable (on/off) for each song, such that the parameters associated with these variables would represent the strength of preference for each song.  The dummy variable for "Waiting Room" was omitted and therefore the preference parameter for this song was zero by definition.  
+The strength of preference for each song was represented using a dummy variable (on/off) for each song, such that the parameters associated with these variables would represent the strength of preference for each song.  The dummy variable for "Waiting Room" was omitted and therefore the preference parameter for this song was zero by definition.  
 
 The results of the choice modelling can be seen here: https://github.com/alexmitrani/Repeatr/blob/main/fugazi_song_choice_model.csv
 
 The parameters related to the age of the songs support the hypothesis that recent material tended to be favoured in the band's choices of songs to be performed. 
 
 The implied preferences for each song can be viewed as a ranked table in descending order of preference here: https://github.com/alexmitrani/Repeatr/blob/main/fugazi_song_preferences.csv
+
+It is hard to say exactly whose preferences are represented by these results. It seems reasonable to assume that they mainly represent the band's preferences, but the preferences of the audience may also have influenced the choice of the songs that were performed, directly or indirectly. 
 
 ## ["Do you like me?"](https://fugazi.bandcamp.com/track/do-you-like-me)
 

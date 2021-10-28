@@ -116,6 +116,13 @@ for(mysong in 1:44) {
   
 }
 
+mydf$nchar <- nchar(mydf$song.1)
+
+mydf <- mydf %>%
+  filter(nchar>0)
+
+mydf$nchar <- NULL
+
 # Reshape to long format with 1 row per song ------------------------------
 
 mydf <- reshape(data = mydf
