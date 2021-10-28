@@ -167,7 +167,7 @@ The data used in the above table can be found here: https://github.com/alexmitra
 
 As a check on whether the song ratings make sense they were used to calculate average ratings for the band's studio releases and these were compared to the average ratings for the same releases at [https://rateyourmusic.com/artist/fugazi](https://web.archive.org/web/20210211085323/https://rateyourmusic.com/artist/fugazi), as at the 11 February 2021.  The results are shown below.   
 
-|release                | releaseid|releasedate | songs_rated|    rating| rym_rating|
+|release                | releaseid|releasedate | songs_rated|    average rating| rym_rating|
 |:----------------------|---------:|:-----------|-----------:|---------:|----------:|
 |the argument           |         9|2001-10-11  |          10| 0.7894826|      0.778|
 |end hits               |         8|1998-04-27  |          13| 0.7859644|      0.734|
@@ -184,7 +184,7 @@ Although many of the ratings are similar in magnitude, there are clearly some di
 
 ## The End
 
-I hope you have found this interesting.  If you want to recreate the analysis this should be possible by running [Repeatr.R](https://github.com/alexmitrani/Repeatr/blob/main/Repeatr.R) after installing the various libraries that are listed at the top of the file. It is recommended to use a machine with 16 GB RAM or more to run the choice model.
+I hope you have found this interesting.  If you want to recreate the analysis, this should be possible by running [Repeatr.R](https://github.com/alexmitrani/Repeatr/blob/main/Repeatr.R) after installing the various libraries that are listed at the top of the file. It is recommended to use a machine with 16 GB RAM or more to run the choice model.
 
 If you have any comments or suggestions please feel to add an issue to this repository.  
 
