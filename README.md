@@ -167,7 +167,7 @@ The data used in the above table can be found here: https://github.com/alexmitra
 
 The song ratings calculated using the Fugazi Live Series (FLS) data were used to calculate average ratings for the band's studio releases. These were compared to the average ratings for the same releases at [https://rateyourmusic.com/artist/fugazi](https://web.archive.org/web/20210211085323/https://rateyourmusic.com/artist/fugazi), as at 11 February 2021.  The original RYM ratings were on a scale from 0 to 5 stars, so these were multiplied by 0.2 to convert them to the same scale as the FLS ratings. The results are shown below.   
 
-|release                | releaseid|releasedate | songs_rated|    fls_rating| rym_rating|
+|release                | releaseid|releasedate | songs_rated|    FLS_rating| RYM_rating|
 |:----------------------|---------:|:-----------|-----------:|---------:|----------:|
 |the argument           |         9|2001-10-11  |          10| 0.7894826|      0.778|
 |end hits               |         8|1998-04-27  |          13| 0.7859644|      0.734|
