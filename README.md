@@ -165,9 +165,9 @@ The data used in the above table can be found here: https://github.com/alexmitra
 
 ## Ratings applied to studio releases and compared to RYM ratings
 
-As a check on whether the song ratings make sense they were used to calculate average ratings for the band's studio releases and these were compared to the average ratings for the same releases at [https://rateyourmusic.com/artist/fugazi](https://web.archive.org/web/20210211085323/https://rateyourmusic.com/artist/fugazi), as at the 11 February 2021.  The results are shown below.   
+The song ratings calculated using the Fugazi Live Series (FLS) data were used to calculate average ratings for the band's studio releases. These were compared to the average ratings for the same releases at [https://rateyourmusic.com/artist/fugazi](https://web.archive.org/web/20210211085323/https://rateyourmusic.com/artist/fugazi), as at 11 February 2021.  The original RYM ratings were on a scale from 0 to 5 stars, so these were multiplied by 0.2 to convert them to the same scale as the FLS ratings. The results are shown below.   
 
-|release                | releaseid|releasedate | songs_rated|    average rating| rym_rating|
+|release                | releaseid|releasedate | songs_rated|    fls_rating| rym_rating|
 |:----------------------|---------:|:-----------|-----------:|---------:|----------:|
 |the argument           |         9|2001-10-11  |          10| 0.7894826|      0.778|
 |end hits               |         8|1998-04-27  |          13| 0.7859644|      0.734|
@@ -180,7 +180,7 @@ As a check on whether the song ratings make sense they were used to calculate av
 |margin walker          |         2|1989-06-15  |           6| 0.6118652|      0.744|
 |furniture              |        10|2001-10-15  |           3| 0.5548548|      0.734|
 
-Although many of the ratings are similar in magnitude, there are clearly some differences. There is more variation in the ratings that have been calculated using the FLS data compared to the RYM ratings, and the lowest FSL ratings are considerably lower than the lowest RYM ratings.   Differences such as these were to be expected.  The FSL ratings were calculated in a consistent way, based largely on the real choices of the band regarding which songs to play at shows, and the band actually played the songs they chose to a live audience!  The RYM ratings were from larger groups of people, not necessarily the same people in each case, who were simply expressing how much they liked or disliked the music, with no restrictions and no consequences.   
+Although many of the ratings are similar in magnitude, there are clearly some differences. There is more variation in the ratings that have been calculated using the FLS data compared to the RYM ratings, and the lowest FLS ratings are considerably lower than the lowest RYM ratings.   Differences such as these were to be expected.  The FLS ratings were calculated in a consistent way, based largely on the real choices of the band regarding which songs to play at shows, and the band actually played the songs they chose to a live audience!  The RYM ratings were from larger groups of people, not necessarily the same people in each case, who were simply expressing how much they liked or disliked the music, with no restrictions and no consequences.   
 
 ## The End
 
