@@ -571,7 +571,24 @@ mydf2$X <- NULL
 mydf2 <- mydf2 %>%
   arrange(desc(rating))
 
+mydf2 <- mydf2 %>% 
+  rename(rank_rating = X)
+
+mydf3 <- read_csv("releases_songs_durations_wikipedia.csv")
+mydf3 <- mydf3 %>% mutate(duration = seconds_to_period(duration_seconds))
+mydf3 <- mydf3 %>% mutate(duration = sprintf('%02d:%02d', minute(duration), second(duration)))
+mydf3 <- mydf3 %>% select(songid, duration)
+write.csv(mydf3, "mysongdurationlookup.csv")
+
+mydf2 <- mydf2 %>%
+  left_join(mydf3)
+
+mydf2 <- mydf2 %>%
+  relocate(duration, .after=launchdate)
+
 write.csv(mydf2, "summary.csv")
+
+knitr::kable(mydf2, "pipe")
 
 
 # Evaluation of releases using the song ratings ---------------------------
