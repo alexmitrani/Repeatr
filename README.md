@@ -60,7 +60,10 @@ The parameters related to the age of the songs support the hypothesis that recen
 
 The implied preferences for each song can be viewed as a ranked table in descending order of preference here: https://github.com/alexmitrani/Repeatr/blob/main/fugazi_song_preferences.csv
 
-It is hard to say exactly whose preferences are represented by these results. It seems reasonable to assume that they mainly represent the band's preferences, but the preferences of the audience may also have influenced the choice of the songs that were performed, directly or indirectly. 
+It is hard to say exactly whose preferences are represented by these results. It seems reasonable to assume that they mainly represent the band's preferences, more often than not Ian MacKaye and Guy Picciotto, but the preferences of the audience may also have influenced the choice of the songs that were performed, directly or indirectly. 
+
+> “We played without a setlist from the first show to the last show. We never had a program for the night before we hit the stage. Right before we went on stage we'd get together and decide on a song to start with. From then on, we were basically improvising the set as we went. That meant, before we went on tour, we had to have these insanely long rehearsals where we relearned very piece of music that we knew so that everyone was ready. So, every night was completely different show. You could pick from over 100 songs. The only methodology we had was that we alternated singing. Once Ian was wrapping up his song, I knew that I had to have a song ready to go for my thing." - Guy Picciotto, 25/5/2018
+Source: https://web.archive.org/web/20201123023401/https://www.abc.net.au/doublej/music-reads/features/fugazi-the-past-the-future-and-the-ethos-that-drove-them/10265848
 
 ## ["Do you like me?"](https://fugazi.bandcamp.com/track/do-you-like-me)
 
