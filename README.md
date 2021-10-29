@@ -38,17 +38,17 @@ Within any given gig, the songs were sorted in the order that they were performe
 
 The age of the songs needs considering because bands generally prioritise new material when they play live and Fugazi was no exception to this. Dummy variables (on/off) were used to represent the age of the songs at the time of each gig, as follows: 
 
-| Age category      | Dummy variable |
+| Age (years)      | Dummy variable |
 | ----------- | ----------- |
-| Less than a year old      | (omitted)       |
-| More than a year but less than 2 years old   | yearsold_1        |
-| More than 2 years but less than 3 years old   | yearsold_2        |
-| More than 3 years but less than 4 years old   | yearsold_3        |
-| More than 4 years but less than 5 years old   | yearsold_4        |
-| More than 5 years but less than 6 years old   | yearsold_5        |
-| More than 6 years but less than 7 years old   | yearsold_6        |
-| More than 7 years but less than 8 years old   | yearsold_7        |
-| More than 8 years old   | yearsold_other        |
+| 0 < age < 1      | (omitted)       |
+| 1 ≤ age < 2    | yearsold_1        |
+| 2 ≤ age < 3   | yearsold_2        |
+| 3 ≤ age < 4   | yearsold_3        |
+| 4 ≤ age < 5   | yearsold_4        |
+| 5 ≤ age < 6   | yearsold_5        |
+| 6 ≤ age < 7   | yearsold_6        |
+| 7 ≤ age < 8   | yearsold_7        |
+| 8 ≤ age   | yearsold_other        |
 
 The above categories were defined after some experimentation to establish which categories deserved separate representation and which could be grouped together. The "less than a year old" variable was omitted because it is always necessary to omit one of each set of dummy variables in this type of model. An omitted dummy variable has a parameter of zero by definition and provides a reference point for the parameters whose values are estimated.   
 
