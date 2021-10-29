@@ -1,102 +1,93 @@
-releaseid,release,track_number,songid,song,lead_vocals,duration_fraction,constant_seconds,duration_seconds
-1,Fugazi,1,1,waiting room,MacKaye,0.120138889,1440,173
-1,Fugazi,2,33,bulldog front,Picciotto,0.120138889,1440,173
-1,Fugazi,3,21,bad mouth,MacKaye,0.107638889,1440,155
-1,Fugazi,4,34,burning,Picciotto,0.110416667,1440,159
-1,Fugazi,5,13,give me the cure,Picciotto,0.123611111,1440,178
-1,Fugazi,6,15,suggestion,MacKaye,0.197222222,1440,284
-1,Fugazi,7,57,glueman,Picciotto,0.182638889,1440,263
-2,Margin Walker,1,6,margin walker,Picciotto,0.104166667,1440,150
-2,Margin Walker,2,11,and the same,MacKaye,0.14375,1440,207
-2,Margin Walker,3,35,burning too,MacKaye,0.118055556,1440,170
-2,Margin Walker,4,90,provisional,Picciotto,0.095138889,1440,137
-2,Margin Walker,5,43,lockdown,Picciotto,0.090277778,1440,130
-2,Margin Walker,6,10,promises,MacKaye,0.168055556,1440,242
-3,3 Songs,1,17,song #1,NA,0.120833333,1440,174
-3,3 Songs,2,58,joe #1,NA,0.125694444,1440,181
-3,3 Songs,3,53,break-in,,0.063888889,1440,92
-4,Repeater,1,9,turnover,Picciotto,0.177777778,1440,256
-4,Repeater,2,8,repeater,MacKaye,0.125694444,1440,181
-4,Repeater,3,45,brendan #1,NA,0.105555556,1440,152
-4,Repeater,4,5,merchandise,MacKaye,0.124305556,1440,179
-4,Repeater,5,3,blueprint,Picciotto,0.161111111,1440,232
-4,Repeater,6,7,sieve-fisted find,Picciotto,0.141666667,1440,204
-4,Repeater,7,38,greed,MacKaye/Picciotto,0.074305556,1440,107
-4,Repeater,8,12,two beats off,Picciotto,0.144444444,1440,208
-4,Repeater,9,20,styrofoam,MacKaye,0.106944444,1440,154
-4,Repeater,10,23,reprovisional,Picciotto,0.095833333,1440,138
-4,Repeater,11,16,shut the door,MacKaye,0.200694444,1440,289
-5,Steady Diet,1,22,exit only,Picciotto,0.132638889,1440,191
-5,Steady Diet,2,2,reclamation,MacKaye,0.139583333,1440,201
-5,Steady Diet,3,60,nice new outfit,Picciotto,0.143055556,1440,206
-5,Steady Diet,4,47,stacks,MacKaye,0.130555556,1440,188
-5,Steady Diet,5,39,latin roots,Picciotto,0.134027778,1440,193
-5,Steady Diet,6,74,steady diet,NA,0.154166667,1440,222
-5,Steady Diet,7,4,long division,MacKaye,0.091666667,1440,132
-5,Steady Diet,8,27,runaway return,Picciotto,0.165277778,1440,238
-5,Steady Diet,9,91,polish,MacKaye,0.151388889,1440,218
-5,Steady Diet,10,48,dear justice letter,Picciotto,0.14375,1440,207
-5,Steady Diet,11,40,kyeo,MacKaye,0.123611111,1440,178
-6,In on the Killtaker,1,19,facet squared,MacKaye,0.1125,1440,162
-6,In on the Killtaker,2,28,public witness program,Picciotto,0.086111111,1440,124
-6,In on the Killtaker,3,55,returning the screw,MacKaye,0.134027778,1440,193
-6,In on the Killtaker,4,30,smallpox champion,Picciotto,0.167361111,1440,241
-6,In on the Killtaker,5,14,rend it,Picciotto,0.158333333,1440,228
-6,In on the Killtaker,6,83,23 beats off,MacKaye,0.278472222,1440,401
-6,In on the Killtaker,7,31,sweet and low,NA,0.15,1440,216
-6,In on the Killtaker,8,41,cassavetes,Picciotto,0.104166667,1440,150
-6,In on the Killtaker,9,26,great cop,MacKaye,0.077777778,1440,112
-6,In on the Killtaker,10,50,walken's syndrome,Picciotto,0.1375,1440,198
-6,In on the Killtaker,11,25,instrument,MacKaye,0.154861111,1440,223
-6,In on the Killtaker,12,51,last chance for a slow dance,Picciotto,0.193055556,1440,278
-7,Red Medicine,1,24,do you like me,Picciotto,0.136111111,1440,196
-7,Red Medicine,2,18,bed for the scraping,MacKaye,0.118055556,1440,170
-7,Red Medicine,3,76,latest disgrace,Picciotto,0.148611111,1440,214
-7,Red Medicine,4,37,birthday pony,MacKaye,0.130555556,1440,188
-7,Red Medicine,5,36,forensic scene,Picciotto,0.128472222,1440,185
-7,Red Medicine,6,86,combination lock,NA,0.129166667,1440,186
-7,Red Medicine,7,54,"fell, destroyed",Picciotto,0.156944444,1440,226
-7,Red Medicine,8,32,by you,Lally,0.215972222,1440,311
-7,Red Medicine,9,78,version,NA,0.138888889,1440,200
-7,Red Medicine,10,29,target,Picciotto,0.147222222,1440,212
-7,Red Medicine,11,52,back to base,MacKaye,0.072916667,1440,105
-7,Red Medicine,12,62,downed city,Picciotto,0.120138889,1440,173
-7,Red Medicine,13,61,long distance runner,MacKaye,0.178472222,1440,257
-8,End Hits,1,42,break,MacKaye,0.091666667,1440,132
-8,End Hits,2,56,place position,Picciotto,0.114583333,1440,165
-8,End Hits,3,49,recap modotti,Lally,0.159722222,1440,230
-8,End Hits,4,67,no surprise,"Picciotto, chorus: MacKaye",0.175,1440,252
-8,End Hits,5,63,five corporations,MacKaye,0.103472222,1440,149
-8,End Hits,6,72,caustic acrostic,Picciotto,0.084027778,1440,121
-8,End Hits,7,44,closed captioned,MacKaye,0.202777778,1440,292
-8,End Hits,8,65,floating boy,Picciotto,0.239583333,1440,345
-8,End Hits,9,79,foreman's dog,Picciotto,0.18125,1440,261
-8,End Hits,10,46,arpeggiator,NA,0.186111111,1440,268
-8,End Hits,11,80,guilford fall,Picciotto,0.122916667,1440,177
-8,End Hits,12,69,pink frosty,MacKaye,0.172916667,1440,249
-8,End Hits,13,59,fd,MacKaye/Picciotto,0.154166667,1440,222
-9,The Argument,1,NA,intro,NA,0.036111111,1440,52
-9,The Argument,2,71,cashout,MacKaye,0.183333333,1440,264
-9,The Argument,3,85,full disclosure,Picciotto,0.161805556,1440,233
-9,The Argument,4,82,epic problem,MacKaye,0.165972222,1440,239
-9,The Argument,5,87,life and limb,Picciotto,0.13125,1440,189
-9,The Argument,6,77,the kill,Lally,0.227083333,1440,327
-9,The Argument,7,88,strangelight,Picciotto,0.245138889,1440,353
-9,The Argument,8,68,oh,Picciotto,0.186805556,1440,269
-9,The Argument,9,73,ex-spectator,MacKaye,0.179166667,1440,258
-9,The Argument,10,75,nightshop,Picciotto,0.168055556,1440,242
-9,The Argument,11,70,argument,MacKaye,0.185416667,1440,267
-10,Furniture,1,66,furniture,MacKaye,0.149305556,1440,215
-10,Furniture,2,64,number 5,NA,0.13125,1440,189
-10,Furniture,3,92,hello morning,Picciotto,0.0875,1440,126
-11,First Demo,1,1,waiting room,MacKaye,0.131944444,1440,190
-11,First Demo,2,5,merchandise,MacKaye,0.129861111,1440,187
-11,First Demo,3,66,furniture,MacKaye,0.171527778,1440,247
-11,First Demo,4,17,song #1,MacKaye,0.125,1440,180
-11,First Demo,5,81,the word,MacKaye,0.193055556,1440,278
-11,First Demo,6,21,bad mouth,MacKaye,0.120833333,1440,174
-11,First Demo,7,53,break-in,Picciotto,0.066666667,1440,96
-11,First Demo,8,89,turn off your guns,MacKaye,0.154861111,1440,223
-11,First Demo,9,11,and the same,MacKaye,0.213888889,1440,308
-11,First Demo,10,84,in defense of humans,MacKaye,0.115972222,1440,167
-11,First Demo,11,58,joe #1,NA,0.070138889,1440,101
+rank_length,releaseid,release,track_number,songid,song,lead_vocals,duration_fraction,constant_seconds,duration_seconds
+1,6,In on the Killtaker,6,83,23 beats off,MacKaye,0.278472222,1440,401
+2,9,The Argument,7,88,strangelight,Picciotto,0.245138889,1440,353
+3,8,End Hits,8,65,floating boy,Picciotto,0.239583333,1440,345
+4,9,The Argument,6,77,the kill,Lally,0.227083333,1440,327
+5,7,Red Medicine,8,32,by you,Lally,0.215972222,1440,311
+6,8,End Hits,7,44,closed captioned,MacKaye,0.202777778,1440,292
+7,4,Repeater,11,16,shut the door,MacKaye,0.200694444,1440,289
+8,1,Fugazi,6,15,suggestion,MacKaye,0.197222222,1440,284
+9,6,In on the Killtaker,12,51,last chance for a slow dance,Picciotto,0.193055556,1440,278
+10,11,First Demo,5,81,the word,MacKaye,0.193055556,1440,278
+11,9,The Argument,8,68,oh,Picciotto,0.186805556,1440,269
+12,8,End Hits,10,46,arpeggiator,NA,0.186111111,1440,268
+13,9,The Argument,11,70,argument,MacKaye,0.185416667,1440,267
+14,9,The Argument,2,71,cashout,MacKaye,0.183333333,1440,264
+15,1,Fugazi,7,57,glueman,Picciotto,0.182638889,1440,263
+16,8,End Hits,9,79,foreman's dog,Picciotto,0.18125,1440,261
+17,9,The Argument,9,73,ex-spectator,MacKaye,0.179166667,1440,258
+18,7,Red Medicine,13,61,long distance runner,MacKaye,0.178472222,1440,257
+19,4,Repeater,1,9,turnover,Picciotto,0.177777778,1440,256
+20,8,End Hits,4,67,no surprise,Picciotto/MacKaye,0.175,1440,252
+21,8,End Hits,12,69,pink frosty,MacKaye,0.172916667,1440,249
+22,2,Margin Walker,6,10,promises,MacKaye,0.168055556,1440,242
+23,9,The Argument,10,75,nightshop,Picciotto,0.168055556,1440,242
+24,6,In on the Killtaker,4,30,smallpox champion,Picciotto,0.167361111,1440,241
+25,9,The Argument,4,82,epic problem,MacKaye,0.165972222,1440,239
+26,5,Steady Diet,8,27,runaway return,Picciotto,0.165277778,1440,238
+27,9,The Argument,3,85,full disclosure,Picciotto,0.161805556,1440,233
+28,4,Repeater,5,3,blueprint,Picciotto,0.161111111,1440,232
+29,8,End Hits,3,49,recap modotti,Lally,0.159722222,1440,230
+30,6,In on the Killtaker,5,14,rend it,Picciotto,0.158333333,1440,228
+31,7,Red Medicine,7,54,"fell, destroyed",Picciotto,0.156944444,1440,226
+32,6,In on the Killtaker,11,25,instrument,MacKaye,0.154861111,1440,223
+33,11,First Demo,8,89,turn off your guns,MacKaye,0.154861111,1440,223
+34,5,Steady Diet,6,74,steady diet,NA,0.154166667,1440,222
+35,8,End Hits,13,59,fd,MacKaye/Picciotto,0.154166667,1440,222
+36,5,Steady Diet,9,91,polish,MacKaye,0.151388889,1440,218
+37,6,In on the Killtaker,7,31,sweet and low,NA,0.15,1440,216
+38,10,Furniture,1,66,furniture,MacKaye,0.149305556,1440,215
+39,7,Red Medicine,3,76,latest disgrace,Picciotto,0.148611111,1440,214
+40,7,Red Medicine,10,29,target,Picciotto,0.147222222,1440,212
+41,4,Repeater,8,12,two beats off,Picciotto,0.144444444,1440,208
+42,2,Margin Walker,2,11,and the same,MacKaye,0.14375,1440,207
+43,5,Steady Diet,10,48,dear justice letter,Picciotto,0.14375,1440,207
+44,5,Steady Diet,3,60,nice new outfit,Picciotto,0.143055556,1440,206
+45,4,Repeater,6,7,sieve-fisted find,Picciotto,0.141666667,1440,204
+46,5,Steady Diet,2,2,reclamation,MacKaye,0.139583333,1440,201
+47,7,Red Medicine,9,78,version,NA,0.138888889,1440,200
+48,6,In on the Killtaker,10,50,walken's syndrome,Picciotto,0.1375,1440,198
+49,7,Red Medicine,1,24,do you like me,Picciotto,0.136111111,1440,196
+50,5,Steady Diet,5,39,latin roots,Picciotto,0.134027778,1440,193
+51,6,In on the Killtaker,3,55,returning the screw,MacKaye,0.134027778,1440,193
+52,5,Steady Diet,1,22,exit only,Picciotto,0.132638889,1440,191
+53,9,The Argument,5,87,life and limb,Picciotto,0.13125,1440,189
+54,10,Furniture,2,64,number 5,NA,0.13125,1440,189
+55,5,Steady Diet,4,47,stacks,MacKaye,0.130555556,1440,188
+56,7,Red Medicine,4,37,birthday pony,MacKaye,0.130555556,1440,188
+57,7,Red Medicine,6,86,combination lock,NA,0.129166667,1440,186
+58,7,Red Medicine,5,36,forensic scene,Picciotto,0.128472222,1440,185
+59,3,3 Songs,2,58,joe #1,NA,0.125694444,1440,181
+60,4,Repeater,2,8,repeater,MacKaye,0.125694444,1440,181
+61,4,Repeater,4,5,merchandise,MacKaye,0.124305556,1440,179
+62,1,Fugazi,5,13,give me the cure,Picciotto,0.123611111,1440,178
+63,5,Steady Diet,11,40,kyeo,MacKaye,0.123611111,1440,178
+64,8,End Hits,11,80,guilford fall,Picciotto,0.122916667,1440,177
+65,3,3 Songs,1,17,song #1,NA,0.120833333,1440,174
+66,1,Fugazi,1,1,waiting room,MacKaye,0.120138889,1440,173
+67,1,Fugazi,2,33,bulldog front,Picciotto,0.120138889,1440,173
+68,7,Red Medicine,12,62,downed city,Picciotto,0.120138889,1440,173
+69,2,Margin Walker,3,35,burning too,MacKaye,0.118055556,1440,170
+70,7,Red Medicine,2,18,bed for the scraping,MacKaye,0.118055556,1440,170
+71,11,First Demo,10,84,in defense of humans,MacKaye,0.115972222,1440,167
+72,8,End Hits,2,56,place position,Picciotto,0.114583333,1440,165
+73,6,In on the Killtaker,1,19,facet squared,MacKaye,0.1125,1440,162
+74,1,Fugazi,4,34,burning,Picciotto,0.110416667,1440,159
+75,1,Fugazi,3,21,bad mouth,MacKaye,0.107638889,1440,155
+76,4,Repeater,9,20,styrofoam,MacKaye,0.106944444,1440,154
+77,4,Repeater,3,45,brendan #1,NA,0.105555556,1440,152
+78,2,Margin Walker,1,6,margin walker,Picciotto,0.104166667,1440,150
+79,6,In on the Killtaker,8,41,cassavetes,Picciotto,0.104166667,1440,150
+80,8,End Hits,5,63,five corporations,MacKaye,0.103472222,1440,149
+81,4,Repeater,10,23,reprovisional,Picciotto,0.095833333,1440,138
+82,2,Margin Walker,4,90,provisional,Picciotto,0.095138889,1440,137
+83,5,Steady Diet,7,4,long division,MacKaye,0.091666667,1440,132
+84,8,End Hits,1,42,break,MacKaye,0.091666667,1440,132
+85,2,Margin Walker,5,43,lockdown,Picciotto,0.090277778,1440,130
+86,10,Furniture,3,92,hello morning,Picciotto,0.0875,1440,126
+87,6,In on the Killtaker,2,28,public witness program,Picciotto,0.086111111,1440,124
+88,8,End Hits,6,72,caustic acrostic,Picciotto,0.084027778,1440,121
+89,6,In on the Killtaker,9,26,great cop,MacKaye,0.077777778,1440,112
+90,4,Repeater,7,38,greed,MacKaye/Picciotto,0.074305556,1440,107
+91,7,Red Medicine,11,52,back to base,MacKaye,0.072916667,1440,105
+92,3,3 Songs,3,53,break-in,Picciotto,0.063888889,1440,92
