@@ -490,9 +490,12 @@ Repeatr_sc <- Repeatr_sc %>%
   mutate(yearsold_7_vp = yearsold_7*vocals_picciotto) %>%
   mutate(yearsold_8_vp = yearsold_8*vocals_picciotto)
 
+Repeatr_sc <- Repeatr_sc %>%
+  mutate(first_song_instrumental = first_song*instrumental)
+
 # compress the data by converting variables to integers --------
 
-mycompressrvars <- scan(text="vocals_mackaye vocals_picciotto vocals_lally instrumental songnumberone songnumberone_instrumental duration_seconds yearsold yearsold_1 yearsold_2 yearsold_3 yearsold_4 yearsold_5 yearsold_6 yearsold_7 yearsold_8 yearsold_1_vp yearsold_2_vp yearsold_3_vp yearsold_4_vp yearsold_5_vp yearsold_6_vp yearsold_7_vp yearsold_8_vp", what="")
+mycompressrvars <- scan(text="vocals_mackaye vocals_picciotto vocals_lally instrumental songnumberone first_song_instrumental duration_seconds yearsold yearsold_1 yearsold_2 yearsold_3 yearsold_4 yearsold_5 yearsold_6 yearsold_7 yearsold_8 yearsold_1_vp yearsold_2_vp yearsold_3_vp yearsold_4_vp yearsold_5_vp yearsold_6_vp yearsold_7_vp yearsold_8_vp", what="")
 Repeatr_sc <- compressr(Repeatr_sc, mycompressrvars)
 
 Repeatr_sc$case <- factor(as.numeric(as.factor(Repeatr_sc$case)))
@@ -509,55 +512,23 @@ gc()
 
 # Choice modelling --------------------------------
 
-# ml.sc1 <- mlogit(choice ~ yearsold, data = sc)
-#
-# summary(ml.sc1)
-#
-# ml.sc2 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5
-#                  + yearsold_6 + yearsold_7 + yearsold_8 + yearsold_9 + yearsold_10
-#                  + yearsold_11 + yearsold_12 + yearsold_13 + yearsold_14 + yearsold_15
-#                  , data = sc)
-#
-# summary(ml.sc2)
-#
-#
-# ml.sc3 <- mlogit(choice ~ yearsold_0 + yearsold_1 + yearsold_2, data = sc)
-#
-# summary(ml.sc3)
-
 # The basic model.
 
-ml.sc4 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5
-                  + yearsold_6 + yearsold_7 + yearsold_8 , data = sc)
+ml.Repeatr_sc1 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5
+                  + yearsold_6 + yearsold_7 + yearsold_8 , data = Repeatr_sc)
 
-summary.ml.sc4 <- summary(ml.sc4)
+summary.ml.Repeatr_sc1 <- summary(ml.Repeatr_sc1)
 
-summary.ml.sc4
-
-# A slightly more detailed model that includes first song instrumental effect.
-
-ml.sc5 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5
-                 + yearsold_6 + yearsold_7 + yearsold_8 + songnumberone_instrumental, data = sc)
-
-summary.ml.sc5 <- summary(ml.sc5)
-
-summary.ml.sc5
+summary.ml.Repeatr_sc1
 
 # A more detailed model that includes first song instrumental effect and potential differences between the preferences of Ian MacKaye and Guy Picciotto regarding the age of their songs.
 
-ml.sc6 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5
-                 + yearsold_6 + yearsold_7 + yearsold_8 + yearsold_1_vp + yearsold_2_vp + yearsold_3_vp + yearsold_4_vp + yearsold_5_vp + yearsold_6_vp + yearsold_7_vp + yearsold_8_vp + songnumberone_instrumental, data = sc)
+ml.Repeatr_sc2 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5
+                 + yearsold_6 + yearsold_7 + yearsold_8 + yearsold_1_vp + yearsold_2_vp + yearsold_3_vp + yearsold_4_vp + yearsold_5_vp + yearsold_6_vp + yearsold_7_vp + yearsold_8_vp + first_song_instrumental, data = Repeatr_sc)
 
-summary.ml.sc6 <- summary(ml.sc6)
+summary.ml.Repeatr_sc2 <- summary(ml.Repeatr_sc2)
 
-summary.ml.sc6
-
-save(ml.sc4, file = "ml_sc4.RData")
-
-save(ml.sc5, file = "ml_sc5.RData")
-
-save(ml.sc6, file = "ml_sc6.RData")
-
+summary.ml.Repeatr_sc2
 
 # First song model ---------------------------------------------------
 
@@ -586,11 +557,11 @@ Repeatr_sc_fs <- Repeatr_sc_fs %>%
 Repeatr_sc_fs <- Repeatr_sc_fs %>%
   filter(is.na(chosen)==FALSE)
 
-ml.sc7 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3, data = Repeatr_sc_fs)
+ml.Repeatr_sc3 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3, data = Repeatr_sc_fs)
 
-summary.ml.sc7 <- summary(ml.sc7)
+summary.ml.Repeatr_sc3 <- summary(ml.Repeatr_sc3)
 
-summary.ml.sc7
+summary.ml.Repeatr_sc3
 
 # Last song model ---------------------------------------------------
 
@@ -616,11 +587,33 @@ Repeatr_sc_ls <- Repeatr_sc_ls %>%
 Repeatr_sc_ls <- Repeatr_sc_ls %>%
   filter(is.na(chosen)==FALSE)
 
-ml.sc8 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5 + yearsold_6 + yearsold_7 + yearsold_8, data = Repeatr_sc_ls)
+ml.Repeatr_sc4 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5 + yearsold_6 + yearsold_7 + yearsold_8, data = Repeatr_sc_ls)
 
-summary.ml.sc8 <- summary(ml.sc8)
+summary.ml.Repeatr_sc4 <- summary(ml.Repeatr_sc4)
 
-summary.ml.sc8
+summary.ml.Repeatr_sc4
+
+# intermediate song model, the idea being to model the two main vocalists taking turns to sing
+
+Repeatr_sc_is <- Repeatr_sc %>%
+  mutate(lag_vocals_mackaye = lag(vocals_mackaye, n=1L)) %>%
+  mutate(lag_vocals_picciotto = lag(vocals_mackaye, n=1L)) %>%
+  mutate(vp_lag_vocals_mackaye = vocals_picciotto*lag_vocals_mackaye) %>%
+  mutate(vm_lag_vocals_picciotto = vocals_mackaye*lag_vocals_picciotto)
+
+Repeatr_sc_is <- Repeatr_sc_is %>%
+  filter(first_song!=1 & last_song!=1)
+
+ml.Repeatr_sc5 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5
+                         + yearsold_6 + yearsold_7 + yearsold_8 + yearsold_1_vp + yearsold_2_vp + yearsold_3_vp + yearsold_4_vp + yearsold_5_vp + yearsold_6_vp + yearsold_7_vp + yearsold_8_vp + vp_lag_vocals_mackaye + vm_lag_vocals_picciotto, data = Repeatr_sc_is)
+
+
+summary.ml.Repeatr_sc5 <- summary(ml.Repeatr_sc5)
+
+summary.ml.Repeatr_sc5
+
+# save choice models
+save(Repeatr_wide, Repeatr_long, Repeatr_sc, ml.Repeatr_sc1, ml.Repeatr_sc2, ml.Repeatr_sc3, ml.Repeatr_sc4, file = "data.RData", compress = "xz")
 
 # Report results of the choice modelling for the preferred choice model ----------------------------------
 
