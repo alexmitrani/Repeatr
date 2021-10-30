@@ -634,7 +634,7 @@ summary.ml.Repeatr_sc_is <- summary(ml.Repeatr_sc_is)
 summary.ml.Repeatr_sc_is
 
 # save choice models
-save(Repeatr_wide, Repeatr_long, Repeatr_sc, ml.Repeatr_sc1, ml.Repeatr_sc2, ml.Repeatr_sc3, ml.Repeatr_sc4, file = "data.RData", compress = "xz")
+save(Repeatr_wide, Repeatr_long, Repeatr_sc, ml.Repeatr_sc1, ml.Repeatr_sc2, ml.Repeatr_sc_fs, ml.Repeatr_sc_ls, ml.Repeatr_sc_is, file = "data.RData", compress = "xz")
 
 # Report results of the choice modelling for the preferred choice model ----------------------------------
 
