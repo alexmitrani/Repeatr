@@ -11,59 +11,59 @@ library(knitr)
 
 
 dropr <- function(mydf,...) {
-  
+
   my_return_name <- deparse(substitute(mydf))
-  
+
   myinitialsize <- round(object.size(mydf)/1000000, digits = 3)
   cat(paste0("Size of ", my_return_name, " before removing variables: ", myinitialsize, " MB. \n"))
-  
+
   names_to_drop <- c(...)
   mytext <- paste("The following variables will be dropped from ", my_return_name, ": ", sep = "")
   print(mytext)
   print(names_to_drop)
   mydf <- mydf[,!names(mydf) %in% names_to_drop]
-  
+
   myfinalsize <- round(object.size(mydf)/1000000, digits = 3)
   cat(paste0("Size of ", my_return_name, " after removing variables: ", myfinalsize, " MB. \n"))
   ramsaved <- round(myinitialsize - myfinalsize, digits = 3)
   cat(paste0("RAM saved: ", ramsaved, " MB. \n"))
-  
+
   return(mydf)
-  
+
 }
 
 compressr <- function(mydf,...) {
-  
+
   my_return_name <- deparse(substitute(mydf))
-  
+
   myinitialsize <- round(object.size(mydf)/1000000, digits = 3)
   cat(paste0("Size of ", my_return_name, " before converting the storage modes of specified variables to integer: ", myinitialsize, " MB. \n"))
-  
-  
+
+
   variables_to_compress <- c(...)
   cat(paste0("The following variables will have their storage modes converted to integer, if they exist in ", my_return_name,  ": ", "\n"))
   print(variables_to_compress)
-  
+
   for (var in variables_to_compress) {
-    
+
     if(var %in% colnames(mydf)) {
-      
+
       myparsedvar <- parse_expr(var)
-      
+
       mydf <- mydf %>%
         mutate(!!myparsedvar := as.integer(!!myparsedvar))
-      
+
     }
-    
+
   }
-  
+
   myfinalsize <- round(object.size(mydf)/1000000, digits = 3)
   cat(paste0("Size of ", my_return_name, " after converting storage mode of variables to integer: ", myfinalsize, " MB. \n"))
   ramsaved <- round(myinitialsize - myfinalsize, digits = 3)
   cat(paste0("RAM saved: ", ramsaved, " MB. \n"))
-  
+
   return(mydf)
-  
+
 }
 
 
@@ -88,7 +88,7 @@ names(mydf)[names(mydf) == "V1"] <- "gid"
 
 names(mydf)[names(mydf) == "V3"] <- "date"
 
-mydf <- mydf %>% 
+mydf <- mydf %>%
   mutate(date = as.Date(date))
 
 mydf <- mydf %>%
@@ -108,12 +108,12 @@ mydf <- mydf %>%
 myv <- 10
 
 for(mysong in 1:44) {
-  
+
   myinitialname <- paste0("V", myv)
   mynewname <- paste0("song.", mysong)
   names(mydf)[names(mydf) == myinitialname] <- mynewname
   myv <- myv + 1
-  
+
 }
 
 mydf$nchar <- nchar(mydf$song.1)
@@ -135,7 +135,7 @@ mydf <- reshape(data = mydf
 
 names(mydf)[names(mydf) == "time"] <- "song_number"
 
-mydf <- mydf %>% 
+mydf <- mydf %>%
   arrange(gid, song_number)
 
 mydf$nchar <- nchar(mydf$song)
@@ -271,30 +271,30 @@ write.csv(mysongidlookup, "mysongidlookup.csv")
 mydf <- mydf %>% arrange(date, song_number)
 
 for(mysongid in 1:92) {
-  
+
   myvarname <- paste0("song.", mysongid)
   mysongname <- as.character(mysongidlookup[mysongid,2])
   mydf <- mydf %>% mutate(!!myvarname := ifelse(song == mysongname,1,0))
-  
+
 }
 
 for(mysongid in 1:92) {
-  
+
   mysongvar <- rlang::sym(paste0("song.", mysongid))
   myavailablevarname <- paste0("available.", mysongid)
   mydf <- mydf %>% mutate(!!myavailablevarname := ifelse(cumsum(!!mysongvar)>=1,1,0))
-  
+
 }
 
 for(mysongid in 1:92) {
-  
+
   mysongvar <- rlang::sym(paste0("song.", mysongid))
   myplayedvarname <- paste0("played.", mysongid)
-  mydf <- mydf %>% 
+  mydf <- mydf %>%
     group_by(gid) %>%
     mutate(!!myplayedvarname := ifelse(cumsum(!!mysongvar)>=1,1,0)) %>%
     ungroup()
-  
+
 }
 
 # Reshape to long again so that there will now be one row per combination of song performed and song potentially available ------------------------------
@@ -313,7 +313,7 @@ mydf2 <- mydf2 %>% rename(songid = time)
 mydf2 <- mydf2 %>% rename(chosen = song)
 mydf2 <- mydf2 %>% arrange(date, year, month, day, song_number, songid)
 
-# available_rl is repertoire-level availability: is the song available in the repertoire?  It is considered available at the repertoire level from the time of its first performance in this data onwards.  
+# available_rl is repertoire-level availability: is the song available in the repertoire?  It is considered available at the repertoire level from the time of its first performance in this data onwards.
 mydf2 <- mydf2 %>% rename(available_rl = available)
 
 # Summarise the long data to check frequency counts for all songs --------------
@@ -340,7 +340,11 @@ mycount <- mycount %>%
   left_join(mylaunchdatelookup) %>%
   select(songid, song, launchdate, count)
 
+knitr::kable(mycount, "pipe")
+
 write.csv(mycount, "fugazi_song_counts.csv")
+
+
 
 # summarise the data at song level
 
@@ -363,6 +367,8 @@ mycount2_sl <- mycount2_sl %>%
 
 mycount2_sl <- mycount2_sl %>%
   select(songid, song, launchdate, chosen, available_rl, intensity)
+
+knitr::kable(mycount2_sl, "pipe")
 
 write.csv(mycount2_sl, "fugazi_song_performance_intensity.csv")
 
@@ -390,9 +396,9 @@ mydf2 <- mydf2 %>% filter(available_gl==1)
 
 # define case variable and add it to the data
 
-mycaseidlookup <- mydf %>% 
-  group_by(gid, song_number) %>% 
-  summarise(records = n(), date=min(date)) %>% 
+mycaseidlookup <- mydf %>%
+  group_by(gid, song_number) %>%
+  summarise(records = n(), date=min(date)) %>%
   arrange(date, song_number) %>%
   select(gid, song_number) %>%
   ungroup()
@@ -437,7 +443,7 @@ rm(mydf)
 
 # Keep only the specific variables needed for the modelling --------
 
-sc <- mydf2 %>% 
+sc <- mydf2 %>%
   select(case, alt, choice, yearsold, vocals_mackaye, vocals_picciotto, vocals_lally, instrumental, songnumberone, songnumberone_instrumental, duration_seconds)
 
 sc <- sc %>%
@@ -488,19 +494,19 @@ gc()
 # Choice modelling --------------------------------
 
 # ml.sc1 <- mlogit(choice ~ yearsold, data = sc)
-# 
+#
 # summary(ml.sc1)
-# 
-# ml.sc2 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5 
+#
+# ml.sc2 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5
 #                  + yearsold_6 + yearsold_7 + yearsold_8 + yearsold_9 + yearsold_10
 #                  + yearsold_11 + yearsold_12 + yearsold_13 + yearsold_14 + yearsold_15
 #                  , data = sc)
-# 
+#
 # summary(ml.sc2)
-# 
-# 
+#
+#
 # ml.sc3 <- mlogit(choice ~ yearsold_0 + yearsold_1 + yearsold_2, data = sc)
-# 
+#
 # summary(ml.sc3)
 
 # The basic model.
@@ -523,7 +529,7 @@ summary.ml.sc5
 
 # A more detailed model that includes first song instrumental effect and potential differences between the preferences of Ian MacKaye and Guy Picciotto regarding the age of their songs.
 
-ml.sc6 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5 
+ml.sc6 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5
                  + yearsold_6 + yearsold_7 + yearsold_8 + yearsold_1_vp + yearsold_2_vp + yearsold_3_vp + yearsold_4_vp + yearsold_5_vp + yearsold_6_vp + yearsold_7_vp + yearsold_8_vp + songnumberone_instrumental, data = sc)
 
 summary.ml.sc6 <- summary(ml.sc6)
@@ -560,6 +566,8 @@ choice_model_results_table <- choice_model_results_table %>%
 choice_model_results_table$songid <- NULL
 choice_model_results_table$song <- NULL
 
+knitr::kable(choice_model_results_table, "pipe")
+
 write.csv(choice_model_results_table, "fugazi_song_choice_model.csv")
 
 results.ml.sc6 <- results.ml.sc6 %>%
@@ -574,7 +582,7 @@ results.ml.sc6 <- results.ml.sc6 %>%
 results.ml.sc6 <- results.ml.sc6 %>%
   select(songid, song, Estimate, "z-value")
 
-# to add back in "waiting room" which was the omitted constant in the choice model and has a parameter value of zero by definition.  
+# to add back in "waiting room" which was the omitted constant in the choice model and has a parameter value of zero by definition.
 
 results.ml.sc6.os <- mysongidlookup %>%
   filter(songid==1) %>%
@@ -593,7 +601,7 @@ write.csv(results.ml.sc6, "fugazi_song_preferences.csv")
 
 mydf <- read.csv("fugazi_song_preferences.csv")
 
-mydf <- mydf %>% 
+mydf <- mydf %>%
   rename(rank_rating = X)
 
 mydf <- mydf %>%
@@ -622,7 +630,7 @@ mydf2 <- mydf2 %>%
 mydf2 <- mydf2 %>%
   arrange(desc(rating))
 
-mydf2 <- mydf2 %>% 
+mydf2 <- mydf2 %>%
   relocate(rank_rating)
 
 mydf3 <- read.csv("releases_songs_durations_wikipedia.csv")
@@ -675,7 +683,7 @@ mydf2 <- mydf2 %>%
 mydf2 <- mydf2 %>%
   arrange(desc(rating))
 
-# remove First Demo as it is not comparable to the others. 
+# remove First Demo as it is not comparable to the others.
 mydf2 <- mydf2 %>%
   filter(releaseid!=11)
 
