@@ -282,7 +282,8 @@ mydf <- mydf %>%
 mydf <- mydf %>%
   group_by(gid) %>%
   mutate(number_songs = n()) %>%
-  mutate(last_song = ifelse(song_number==number_songs, 1, 0))
+  mutate(last_song = ifelse(song_number==number_songs, 1, 0)) %>%
+  ungroup()
 
 
 # Add dummy variable for each song to the disaggregate data --------------
@@ -353,7 +354,6 @@ mylaunchdatelookup <- mycount2_gl %>%
   group_by(songid) %>%
   summarise(launchdate = min(date)) %>%
   ungroup()
-
 
 # add launch dates to count file
 mycount <- mycount %>%
@@ -559,39 +559,68 @@ save(ml.sc5, file = "ml_sc5.RData")
 save(ml.sc6, file = "ml_sc6.RData")
 
 
-# Song number one model ---------------------------------------------------
+# First song model ---------------------------------------------------
 
-Repeatr_sc_sno <- Repeatr_sc %>%
+Repeatr_sc_fs <- Repeatr_sc %>%
   filter(first_song==1)
 
-Repeatr_sc_sno_counts <- Repeatr_sc_sno %>%
+Repeatr_sc_fs_counts <- Repeatr_sc_fs %>%
   filter(choice==TRUE) %>%
   group_by(alt) %>%
   summarise(chosen=n()) %>%
   mutate(songid=as.integer(alt)) %>%
   ungroup()
 
-Repeatr_sc_sno_counts <- Repeatr_sc_sno_counts %>%
+Repeatr_sc_fs_counts <- Repeatr_sc_fs_counts %>%
   left_join(mysongidlookup) %>%
   select(alt, song, chosen)
 
-Repeatr_sc_sno <- Repeatr_sc_sno %>%
+Repeatr_sc_fs <- Repeatr_sc_fs %>%
   left_join(Repeatr_sc_sno_counts)
 
-Repeatr_sc_sno <- Repeatr_sc_sno %>%
+Repeatr_sc_fs <- Repeatr_sc_fs %>%
   mutate(yearsold_3 = yearsold_3 + yearsold_4 + yearsold_5 + yearsold_6 + yearsold_7 + yearsold_8)
 
 # It is necessary to remove the alternatives that were never chosen as the first song
 
-Repeatr_sc_sno <- Repeatr_sc_sno %>%
+Repeatr_sc_fs <- Repeatr_sc_fs %>%
   filter(is.na(chosen)==FALSE)
 
-ml.sc7 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3, data = Repeatr_sc_sno)
+ml.sc7 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3, data = Repeatr_sc_fs)
 
 summary.ml.sc7 <- summary(ml.sc7)
 
 summary.ml.sc7
 
+# Last song model ---------------------------------------------------
+
+Repeatr_sc_ls <- Repeatr_sc %>%
+  filter(last_song==1)
+
+Repeatr_sc_ls_counts <- Repeatr_sc_ls %>%
+  filter(choice==TRUE) %>%
+  group_by(alt) %>%
+  summarise(chosen=n()) %>%
+  mutate(songid=as.integer(alt)) %>%
+  ungroup()
+
+Repeatr_sc_ls_counts <- Repeatr_sc_ls_counts %>%
+  left_join(mysongidlookup) %>%
+  select(alt, song, chosen)
+
+Repeatr_sc_ls <- Repeatr_sc_ls %>%
+  left_join(Repeatr_sc_ls_counts)
+
+# It is necessary to remove the alternatives that were never chosen as the last song
+
+Repeatr_sc_ls <- Repeatr_sc_ls %>%
+  filter(is.na(chosen)==FALSE)
+
+ml.sc8 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5 + yearsold_6 + yearsold_7 + yearsold_8, data = Repeatr_sc_ls)
+
+summary.ml.sc8 <- summary(ml.sc8)
+
+summary.ml.sc8
 
 # Report results of the choice modelling for the preferred choice model ----------------------------------
 
