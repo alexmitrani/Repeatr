@@ -64,7 +64,7 @@ choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5
                  + yearsold_6 + yearsold_7 + yearsold_8 + yearsold_1_vp + yearsold_2_vp + yearsold_3_vp + yearsold_4_vp + yearsold_5_vp + yearsold_6_vp + yearsold_7_vp + yearsold_8_vp + songnumberone_instrumental
                  + song2 + ... + song92
 
-The model is fitted by an optimisation process which estimates a parameter for each of the independent variables such that the likelihood of correctly predicting the observed choices is maximised. 
+The model was fitted by an optimisation process which estimates a parameter for each of the independent variables, such that the likelihood of correctly predicting the observed choices would be maximised. 
 
 The results of the choice modelling can be seen here: https://github.com/alexmitrani/Repeatr/blob/main/fugazi_song_choice_model.csv
 
