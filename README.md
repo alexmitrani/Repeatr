@@ -48,11 +48,17 @@ The age of the songs needs considering because bands generally prioritise new ma
 | 5 ≤ age < 6   | yearsold_5        |
 | 6 ≤ age < 7   | yearsold_6        |
 | 7 ≤ age < 8   | yearsold_7        |
-| 8 ≤ age   | yearsold_other        |
+| 8 ≤ age   | yearsold_8        |
 
 The above categories were defined after some experimentation to establish which categories deserved separate representation and which could be grouped together. The "less than a year old" variable was omitted because it is always necessary to omit one of each set of dummy variables in this type of model. An omitted dummy variable has a parameter of zero by definition and provides a reference point for the parameters whose values are estimated.   
 
+A second set of dummy variables (yearsold_1_vp ... yearsold_8_vp) was included in the model to allow for these preferences potentially being different for songs with lead vocals by Guy Picciotto.  
+
+The dummy variable songnumberone_instrumental was included to represent the tendency of the band to pick an instrumental as a show opener in order to check the sound quality with the venue full of people.  
+
 The strength of preference for each song was represented using a dummy variable (on/off) for each song, such that the parameters associated with these variables would represent the strength of preference for each song.  The dummy variable for "Waiting Room" was omitted and therefore the preference parameter for this song was zero by definition.  
+
+
 
 The results of the choice modelling can be seen here: https://github.com/alexmitrani/Repeatr/blob/main/fugazi_song_choice_model.csv
 
