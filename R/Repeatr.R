@@ -515,11 +515,15 @@ Repeatr_sc <- Repeatr_sc %>%
 
 Repeatr_sc <- Repeatr_sc %>%
   mutate(vp_lag_vocals_mackaye = vocals_picciotto*vocals_mackaye_lag) %>%
+  mutate(vp_lag_vocals_picciotto = vocals_picciotto*vocals_picciotto_lag) %>%
+  mutate(vm_lag_vocals_mackaye = vocals_mackaye*vocals_mackaye_lag) %>%
   mutate(vm_lag_vocals_picciotto = vocals_mackaye*vocals_picciotto_lag)
+
+
 
 # compress the data by converting variables to integers --------
 
-mycompressrvars <- scan(text="vocals_mackaye vocals_picciotto vocals_lally vocals_mackaye_lag vocals_picciotto_lag vp_lag_vocals_mackaye vm_lag_vocals_picciotto instrumental song_number first_song_instrumental duration_seconds yearsold yearsold_1 yearsold_2 yearsold_3 yearsold_4 yearsold_5 yearsold_6 yearsold_7 yearsold_8 yearsold_1_vp yearsold_2_vp yearsold_3_vp yearsold_4_vp yearsold_5_vp yearsold_6_vp yearsold_7_vp yearsold_8_vp", what="")
+mycompressrvars <- scan(text="vocals_mackaye vocals_picciotto vocals_lally vocals_mackaye_lag vocals_picciotto_lag vp_lag_vocals_mackaye vp_lag_vocals_picciotto vm_lag_vocals_picciotto vm_lag_vocals_mackaye instrumental song_number first_song_instrumental duration_seconds yearsold yearsold_1 yearsold_2 yearsold_3 yearsold_4 yearsold_5 yearsold_6 yearsold_7 yearsold_8 yearsold_1_vp yearsold_2_vp yearsold_3_vp yearsold_4_vp yearsold_5_vp yearsold_6_vp yearsold_7_vp yearsold_8_vp", what="")
 Repeatr_sc <- compressr(Repeatr_sc, mycompressrvars)
 
 Repeatr_sc$case <- factor(as.numeric(as.factor(Repeatr_sc$case)))
@@ -623,7 +627,7 @@ Repeatr_sc_is <- Repeatr_sc %>%
   filter(first_song==0 & last_song==0)
 
 ml.Repeatr_sc_is <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5
-                         + yearsold_6 + yearsold_7 + yearsold_8 + yearsold_1_vp + yearsold_2_vp + yearsold_3_vp + yearsold_4_vp + yearsold_5_vp + yearsold_6_vp + yearsold_7_vp + yearsold_8_vp + vp_lag_vocals_mackaye + vm_lag_vocals_picciotto, data = Repeatr_sc_is)
+                         + yearsold_6 + yearsold_7 + yearsold_8 + vp_lag_vocals_mackaye + vm_lag_vocals_picciotto, data = Repeatr_sc_is)
 
 summary.ml.Repeatr_sc_is <- summary(ml.Repeatr_sc_is)
 
