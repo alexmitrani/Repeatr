@@ -6,6 +6,70 @@ library(fastDummies)
 library(rlang)
 library(knitr)
 
+
+# Load useful functions ---------------------------------------------------
+
+
+dropr <- function(mydf,...) {
+  
+  my_return_name <- deparse(substitute(mydf))
+  
+  myinitialsize <- round(object.size(mydf)/1000000, digits = 3)
+  cat(paste0("Size of ", my_return_name, " before removing variables: ", myinitialsize, " MB. \n"))
+  
+  names_to_drop <- c(...)
+  mytext <- paste("The following variables will be dropped from ", my_return_name, ": ", sep = "")
+  print(mytext)
+  print(names_to_drop)
+  mydf <- mydf[,!names(mydf) %in% names_to_drop]
+  
+  myfinalsize <- round(object.size(mydf)/1000000, digits = 3)
+  cat(paste0("Size of ", my_return_name, " after removing variables: ", myfinalsize, " MB. \n"))
+  ramsaved <- round(myinitialsize - myfinalsize, digits = 3)
+  cat(paste0("RAM saved: ", ramsaved, " MB. \n"))
+  
+  return(mydf)
+  
+}
+
+compressr <- function(mydf,...) {
+  
+  my_return_name <- deparse(substitute(mydf))
+  
+  myinitialsize <- round(object.size(mydf)/1000000, digits = 3)
+  cat(paste0("Size of ", my_return_name, " before converting the storage modes of specified variables to integer: ", myinitialsize, " MB. \n"))
+  
+  
+  variables_to_compress <- c(...)
+  cat(paste0("The following variables will have their storage modes converted to integer, if they exist in ", my_return_name,  ": ", "\n"))
+  print(variables_to_compress)
+  
+  for (var in variables_to_compress) {
+    
+    if(var %in% colnames(mydf)) {
+      
+      myparsedvar <- parse_expr(var)
+      
+      mydf <- mydf %>%
+        mutate(!!myparsedvar := as.integer(!!myparsedvar))
+      
+    }
+    
+  }
+  
+  myfinalsize <- round(object.size(mydf)/1000000, digits = 3)
+  cat(paste0("Size of ", my_return_name, " after converting storage mode of variables to integer: ", myfinalsize, " MB. \n"))
+  ramsaved <- round(myinitialsize - myfinalsize, digits = 3)
+  cat(paste0("RAM saved: ", ramsaved, " MB. \n"))
+  
+  return(mydf)
+  
+}
+
+
+# This is where the work with the FLS data starts -------------------------
+
+
 fugotcha <- read.csv("fugotcha.csv", header=FALSE)
 saveRDS(fugotcha, "fugotcha.rds")
 
@@ -342,12 +406,28 @@ mydf2 <- mydf2 %>%
   left_join(mycaseidlookup) %>%
   relocate(case)
 
+# add additional variables for potential use in the choice modelling
+mydf3 <- read.csv("releases_songs_durations_wikipedia.csv")
+mysongvarslookup <- mydf3 %>% select(songid, instrumental, vocals_picciotto, vocals_mackaye, vocals_lally, duration_seconds)
+
+mydf2 <- mydf2 %>%
+  left_join(mysongvarslookup)
+
+write.csv(mysongvarslookup, "mysongvarslookup.csv")
+
 mydf2 <- mydf2 %>% rename(alt = songid)
 mydf2 <- mydf2 %>% rename(choice = chosen)
 
 mydf2 <- mydf2 %>%
   mutate(year = year(date)) %>%
   relocate(year, .after=date)
+
+mydf2 <- mydf2 %>%
+  mutate(songnumberone = ifelse(song_number==1,1,0))
+
+mydf2 <- mydf2 %>%
+  mutate(songnumberone_instrumental = songnumberone*instrumental)
+
 
 # Save disaggregate data -----------------------------------
 
@@ -358,7 +438,7 @@ rm(mydf)
 # Keep only the specific variables needed for the modelling --------
 
 sc <- mydf2 %>% 
-  select(case, alt, choice, yearsold)
+  select(case, alt, choice, yearsold, vocals_mackaye, vocals_picciotto, vocals_lally, instrumental, songnumberone, songnumberone_instrumental, duration_seconds)
 
 sc <- sc %>%
   mutate(yearsold = case_when(
@@ -370,61 +450,26 @@ sc <- sc %>%
     yearsold >= 5 & yearsold < 6  ~ 5L,
     yearsold >= 6 & yearsold < 7  ~ 6L,
     yearsold >= 7 & yearsold < 8  ~ 7L,
-    yearsold >= 8 & yearsold < 9  ~ 8L,
-    yearsold >= 9 & yearsold < 10  ~ 9L,
-    yearsold >= 10 & yearsold < 11  ~ 10L,
-    yearsold >= 11 & yearsold < 12  ~ 11L,
-    yearsold >= 12 & yearsold < 13  ~ 12L,
-    yearsold >= 13 & yearsold < 14  ~ 13L,
-    yearsold >= 14 & yearsold < 15  ~ 14L,
-    TRUE ~ 15L
+    yearsold >= 8  ~ 8L,
+    TRUE ~ 9L
     )
   )
 
 sc <- dummy_cols(sc, select_columns = "yearsold")
 
 sc <- sc %>%
-  mutate(yearsold_other = yearsold_8 + yearsold_9 + yearsold_10 + yearsold_11 + yearsold_12 + yearsold_13 + yearsold_14 + yearsold_15)
-
+  mutate(yearsold_1_vp = yearsold_1*vocals_picciotto) %>%
+  mutate(yearsold_2_vp = yearsold_2*vocals_picciotto) %>%
+  mutate(yearsold_3_vp = yearsold_3*vocals_picciotto) %>%
+  mutate(yearsold_4_vp = yearsold_4*vocals_picciotto) %>%
+  mutate(yearsold_5_vp = yearsold_5*vocals_picciotto) %>%
+  mutate(yearsold_6_vp = yearsold_6*vocals_picciotto) %>%
+  mutate(yearsold_7_vp = yearsold_7*vocals_picciotto) %>%
+  mutate(yearsold_8_vp = yearsold_8*vocals_picciotto)
 
 # compress the data by converting variables to integers --------
 
-
-compressr <- function(mydf,...) {
-  
-  my_return_name <- deparse(substitute(mydf))
-  
-  myinitialsize <- round(object.size(mydf)/1000000, digits = 3)
-  cat(paste0("Size of ", my_return_name, " before converting the storage modes of specified variables to integer: ", myinitialsize, " MB. \n"))
-  
-  
-  variables_to_compress <- c(...)
-  cat(paste0("The following variables will have their storage modes converted to integer, if they exist in ", my_return_name,  ": ", "\n"))
-  print(variables_to_compress)
-  
-  for (var in variables_to_compress) {
-    
-    if(var %in% colnames(mydf)) {
-      
-      myparsedvar <- parse_expr(var)
-      
-      mydf <- mydf %>%
-        mutate(!!myparsedvar := as.integer(!!myparsedvar))
-      
-    }
-    
-  }
-  
-  myfinalsize <- round(object.size(mydf)/1000000, digits = 3)
-  cat(paste0("Size of ", my_return_name, " after converting storage mode of variables to integer: ", myfinalsize, " MB. \n"))
-  ramsaved <- round(myinitialsize - myfinalsize, digits = 3)
-  cat(paste0("RAM saved: ", ramsaved, " MB. \n"))
-  
-  return(mydf)
-  
-}
-
-mycompressrvars <- scan(text="yearsold_1 yearsold_2 yearsold_3 yearsold_4 yearsold_5 yearsold_6 yearsold_7 yearsold_8 yearsold_9 yearsold_10 yearsold_11 yearsold_12 yearsold_13 yearsold_14 yearsold_15", what="")
+mycompressrvars <- scan(text="vocals_mackaye vocals_picciotto vocals_lally instrumental songnumberone songnumberone_instrumental duration_seconds yearsold yearsold_1 yearsold_2 yearsold_3 yearsold_4 yearsold_5 yearsold_6 yearsold_7 yearsold_8 yearsold_1_vp yearsold_2_vp yearsold_3_vp yearsold_4_vp yearsold_5_vp yearsold_6_vp yearsold_7_vp yearsold_8_vp", what="")
 sc <- compressr(sc, mycompressrvars)
 
 sc$case <- factor(as.numeric(as.factor(sc$case)))
@@ -436,7 +481,8 @@ checksongcounts <- sc %>% group_by(alt) %>% summarise(count = sum(choice)) %>% u
 checksongcounts
 
 saveRDS(sc, "sc.rds")
-rm(mydf)
+write.csv(sc, "sc.csv")
+
 gc()
 
 # Choice modelling --------------------------------
@@ -457,22 +503,50 @@ gc()
 # 
 # summary(ml.sc3)
 
-ml.sc4 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5 
-                 + yearsold_6 + yearsold_7 + yearsold_other , data = sc)
+# The basic model.
+
+ml.sc4 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5
+                  + yearsold_6 + yearsold_7 + yearsold_8 , data = sc)
 
 summary.ml.sc4 <- summary(ml.sc4)
 
-# Report results of the choice modelling ----------------------------------
+summary.ml.sc4
 
-results.ml.sc4 <- as.data.frame(summary.ml.sc4[["CoefTable"]])
+# A slightly more detailed model that includes first song instrumental effect.
 
-results.ml.sc4 <- results.ml.sc4 %>%
+ml.sc5 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5
+                 + yearsold_6 + yearsold_7 + yearsold_8 + songnumberone_instrumental, data = sc)
+
+summary.ml.sc5 <- summary(ml.sc5)
+
+summary.ml.sc5
+
+# A more detailed model that includes first song instrumental effect and potential differences between the preferences of Ian MacKaye and Guy Picciotto regarding the age of their songs.
+
+ml.sc6 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5 
+                 + yearsold_6 + yearsold_7 + yearsold_8 + yearsold_1_vp + yearsold_2_vp + yearsold_3_vp + yearsold_4_vp + yearsold_5_vp + yearsold_6_vp + yearsold_7_vp + yearsold_8_vp + songnumberone_instrumental, data = sc)
+
+summary.ml.sc6 <- summary(ml.sc6)
+
+summary.ml.sc6
+
+save(ml.sc4, file = "ml_sc4.RData")
+
+save(ml.sc5, file = "ml_sc5.RData")
+
+save(ml.sc6, file = "ml_sc6.RData")
+
+# Report results of the choice modelling for the preferred choice model ----------------------------------
+
+results.ml.sc6 <- as.data.frame(summary.ml.sc6[["CoefTable"]])
+
+results.ml.sc6 <- results.ml.sc6 %>%
   mutate(parameter_id = row_number()) %>%
   relocate(parameter_id)
 
-variable <- row.names(results.ml.sc4)
+variable <- row.names(results.ml.sc6)
 
-choice_model_results_table <- cbind(variable, results.ml.sc4)
+choice_model_results_table <- cbind(variable, results.ml.sc6)
 
 choice_model_results_table <- choice_model_results_table %>%
   mutate(songid = ifelse(parameter_id<=91,parameter_id+1,NA))
@@ -488,39 +562,42 @@ choice_model_results_table$song <- NULL
 
 write.csv(choice_model_results_table, "fugazi_song_choice_model.csv")
 
-results.ml.sc4 <- results.ml.sc4 %>%
+results.ml.sc6 <- results.ml.sc6 %>%
   filter(parameter_id<=91)
 
-results.ml.sc4 <- results.ml.sc4 %>%
+results.ml.sc6 <- results.ml.sc6 %>%
   mutate(songid = parameter_id+1)
 
-results.ml.sc4 <- results.ml.sc4 %>%
+results.ml.sc6 <- results.ml.sc6 %>%
   left_join(mysongidlookup)
 
-results.ml.sc4 <- results.ml.sc4 %>%
+results.ml.sc6 <- results.ml.sc6 %>%
   select(songid, song, Estimate, "z-value")
 
 # to add back in "waiting room" which was the omitted constant in the choice model and has a parameter value of zero by definition.  
 
-results.ml.sc4.os <- mysongidlookup %>%
+results.ml.sc6.os <- mysongidlookup %>%
   filter(songid==1) %>%
   mutate(Estimate = 0) %>%
   mutate("z-value" = NA)
 
-results.ml.sc4 <- rbind(results.ml.sc4, results.ml.sc4.os)
+results.ml.sc6 <- rbind(results.ml.sc6, results.ml.sc6.os)
 
-results.ml.sc4 <- results.ml.sc4 %>%
+results.ml.sc6 <- results.ml.sc6 %>%
   arrange(desc(Estimate))
 
-write.csv(results.ml.sc4, "fugazi_song_preferences.csv")
+write.csv(results.ml.sc6, "fugazi_song_preferences.csv")
 
 
 # To produce normalised ratings on the interval [0,1] ------------------------
 
 mydf <- read.csv("fugazi_song_preferences.csv")
 
+mydf <- mydf %>% 
+  rename(rank_rating = X)
+
 mydf <- mydf %>%
-  select(songid, song, Estimate)
+  select(rank_rating, songid, song, Estimate)
 
 mymin <- min(mydf$Estimate)
 
@@ -533,22 +610,22 @@ mydf <- mydf %>%
   mutate(rating = Estimate2/mymax)
 
 mydf <- mydf %>%
-  select(songid, rating)
+  select(rank_rating, songid, rating)
 
 mydf2 <- read.csv("fugazi_song_performance_intensity.csv")
 
+mydf2$X <- NULL
+
 mydf2 <- mydf2 %>%
   left_join(mydf)
-
-mydf2$X <- NULL
 
 mydf2 <- mydf2 %>%
   arrange(desc(rating))
 
 mydf2 <- mydf2 %>% 
-  rename(rank_rating = X)
+  relocate(rank_rating)
 
-mydf3 <- read_csv("releases_songs_durations_wikipedia.csv")
+mydf3 <- read.csv("releases_songs_durations_wikipedia.csv")
 mydf3 <- mydf3 %>% mutate(duration = seconds_to_period(duration_seconds))
 mydf3 <- mydf3 %>% mutate(duration = sprintf('%02d:%02d', minute(duration), second(duration)))
 mydf3 <- mydf3 %>% select(songid, duration)
@@ -615,7 +692,6 @@ mydf <- mydf %>%
   select(release, releaseid, releasedate, songs_rated, rating, rym_rating)
 
 knitr::kable(mydf, "pipe")
-
 
 #
 
