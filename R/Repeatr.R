@@ -266,6 +266,25 @@ saveRDS(mysongidlookup, "mysongidlookup.rds")
 
 write.csv(mysongidlookup, "mysongidlookup.csv")
 
+
+# Redefine song index in terms of the included songs ----------------------
+
+mydf <- mydf %>%
+  arrange(gid, song_number)
+
+mydf <- mydf %>%
+  group_by(gid) %>%
+  mutate(song_number = row_number())
+
+mydf <- mydf %>%
+  mutate(first_song = ifelse(song_number==1, 1, 0))
+
+mydf <- mydf %>%
+  group_by(gid) %>%
+  mutate(number_songs = n()) %>%
+  mutate(last_song = ifelse(song_number==number_songs, 1, 0))
+
+
 # Add dummy variable for each song to the disaggregate data --------------
 
 mydf <- mydf %>% arrange(date, song_number)
@@ -305,7 +324,7 @@ mydf2$nchar <- NULL
 
 mydf2 <- reshape(data = mydf2
                 , direction = "long"
-                , varying = 7:282
+                , varying = 10:285
                 , idvar = c("gid", "song_number")
 )
 
@@ -334,6 +353,7 @@ mylaunchdatelookup <- mycount2_gl %>%
   group_by(songid) %>%
   summarise(launchdate = min(date)) %>%
   ungroup()
+
 
 # add launch dates to count file
 mycount <- mycount %>%
@@ -379,7 +399,7 @@ mydf2 <- mydf2 %>% left_join(available_rl_lookup)
 # available_gl is gig-level availability.  A song is considered available at the gig level if it is available in the repertoire and it has not already been played.
 mydf2 <- mydf2 %>% mutate(available_gl=ifelse((played==1 & chosen==0),0,available_rl))
 mydf2 <- mydf2 %>% left_join(mysongidlookup)
-mydf2 <- mydf2 %>% select(gid, date, song_number, songid, song, chosen, played, available_rl, available_gl)
+mydf2 <- mydf2 %>% select(gid, date, song_number, songid, song, chosen, played, available_rl, available_gl, first_song, last_song)
 mydf2 <- mydf2 %>% arrange(date, gid, song_number, songid)
 
 # Merge on the launch date of each song and calculate how many years old each song is at the time of each gig
@@ -429,24 +449,21 @@ mydf2 <- mydf2 %>%
   relocate(year, .after=date)
 
 mydf2 <- mydf2 %>%
-  mutate(songnumberone = ifelse(song_number==1,1,0))
-
-mydf2 <- mydf2 %>%
-  mutate(songnumberone_instrumental = songnumberone*instrumental)
-
+  mutate(first_song_instrumental = first_song*instrumental)
 
 # Save disaggregate data -----------------------------------
 
-saveRDS(mydf, "Repeatr1.rds")
-saveRDS(mydf2, "Repeatr2.rds")
-rm(mydf)
+Repeatr_wide <- mydf %>% select(gid, date, year, month, day, song_number, song, first_song, number_songs, last_song)
+Repeatr_long <- mydf2
+save(Repeatr_wide, Repeatr_long, file = "data.RData", compress = "xz")
+rm(mydf, mydf2)
 
 # Keep only the specific variables needed for the modelling --------
 
-sc <- mydf2 %>%
-  select(case, alt, choice, yearsold, vocals_mackaye, vocals_picciotto, vocals_lally, instrumental, songnumberone, songnumberone_instrumental, duration_seconds)
+Repeatr_sc <- Repeatr_long %>%
+  select(case, alt, choice, yearsold, vocals_mackaye, vocals_picciotto, vocals_lally, instrumental, first_song, last_song, duration_seconds)
 
-sc <- sc %>%
+Repeatr_sc <- Repeatr_sc %>%
   mutate(yearsold = case_when(
     yearsold >= 0 & yearsold < 1  ~ 0L,
     yearsold >= 1 & yearsold < 2  ~ 1L,
@@ -461,9 +478,9 @@ sc <- sc %>%
     )
   )
 
-sc <- dummy_cols(sc, select_columns = "yearsold")
+Repeatr_sc <- dummy_cols(Repeatr_sc, select_columns = "yearsold")
 
-sc <- sc %>%
+Repeatr_sc <- Repeatr_sc %>%
   mutate(yearsold_1_vp = yearsold_1*vocals_picciotto) %>%
   mutate(yearsold_2_vp = yearsold_2*vocals_picciotto) %>%
   mutate(yearsold_3_vp = yearsold_3*vocals_picciotto) %>%
@@ -476,18 +493,17 @@ sc <- sc %>%
 # compress the data by converting variables to integers --------
 
 mycompressrvars <- scan(text="vocals_mackaye vocals_picciotto vocals_lally instrumental songnumberone songnumberone_instrumental duration_seconds yearsold yearsold_1 yearsold_2 yearsold_3 yearsold_4 yearsold_5 yearsold_6 yearsold_7 yearsold_8 yearsold_1_vp yearsold_2_vp yearsold_3_vp yearsold_4_vp yearsold_5_vp yearsold_6_vp yearsold_7_vp yearsold_8_vp", what="")
-sc <- compressr(sc, mycompressrvars)
+Repeatr_sc <- compressr(Repeatr_sc, mycompressrvars)
 
-sc$case <- factor(as.numeric(as.factor(sc$case)))
-sc$alt <- as.factor(sc$alt)
-sc$choice <- as.logical(sc$choice)
-sc <- dfidx(sc, idx = c("case", "alt"), drop.index = FALSE)
+Repeatr_sc$case <- factor(as.numeric(as.factor(Repeatr_sc$case)))
+Repeatr_sc$alt <- as.factor(Repeatr_sc$alt)
+Repeatr_sc$choice <- as.logical(Repeatr_sc$choice)
+Repeatr_sc <- dfidx(Repeatr_sc, idx = c("case", "alt"), drop.index = FALSE)
 
-checksongcounts <- sc %>% group_by(alt) %>% summarise(count = sum(choice)) %>% ungroup()
+checksongcounts <- Repeatr_sc %>% group_by(alt) %>% summarise(count = sum(choice)) %>% ungroup()
 checksongcounts
 
-saveRDS(sc, "sc.rds")
-write.csv(sc, "sc.csv")
+save(Repeatr_wide, Repeatr_long, Repeatr_sc, file = "data.RData", compress = "xz")
 
 gc()
 
@@ -541,6 +557,41 @@ save(ml.sc4, file = "ml_sc4.RData")
 save(ml.sc5, file = "ml_sc5.RData")
 
 save(ml.sc6, file = "ml_sc6.RData")
+
+
+# Song number one model ---------------------------------------------------
+
+Repeatr_sc_sno <- Repeatr_sc %>%
+  filter(first_song==1)
+
+Repeatr_sc_sno_counts <- Repeatr_sc_sno %>%
+  filter(choice==TRUE) %>%
+  group_by(alt) %>%
+  summarise(chosen=n()) %>%
+  mutate(songid=as.integer(alt)) %>%
+  ungroup()
+
+Repeatr_sc_sno_counts <- Repeatr_sc_sno_counts %>%
+  left_join(mysongidlookup) %>%
+  select(alt, song, chosen)
+
+Repeatr_sc_sno <- Repeatr_sc_sno %>%
+  left_join(Repeatr_sc_sno_counts)
+
+Repeatr_sc_sno <- Repeatr_sc_sno %>%
+  mutate(yearsold_3 = yearsold_3 + yearsold_4 + yearsold_5 + yearsold_6 + yearsold_7 + yearsold_8)
+
+# It is necessary to remove the alternatives that were never chosen as the first song
+
+Repeatr_sc_sno <- Repeatr_sc_sno %>%
+  filter(is.na(chosen)==FALSE)
+
+ml.sc7 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3, data = Repeatr_sc_sno)
+
+summary.ml.sc7 <- summary(ml.sc7)
+
+summary.ml.sc7
+
 
 # Report results of the choice modelling for the preferred choice model ----------------------------------
 
