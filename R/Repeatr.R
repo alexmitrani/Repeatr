@@ -461,7 +461,8 @@ rm(mydf, mydf2)
 # Keep only the specific variables needed for the modelling --------
 
 Repeatr_sc <- Repeatr_long %>%
-  select(case, alt, choice, yearsold, vocals_mackaye, vocals_picciotto, vocals_lally, instrumental, first_song, last_song, duration_seconds)
+  select(case, song_number, alt, choice, yearsold, vocals_mackaye, vocals_picciotto, vocals_lally, instrumental, first_song, last_song, duration_seconds) %>%
+  arrange(case, song_number, alt)
 
 Repeatr_sc <- Repeatr_sc %>%
   mutate(yearsold = case_when(
@@ -495,7 +496,7 @@ Repeatr_sc <- Repeatr_sc %>%
 
 # compress the data by converting variables to integers --------
 
-mycompressrvars <- scan(text="vocals_mackaye vocals_picciotto vocals_lally instrumental songnumberone first_song_instrumental duration_seconds yearsold yearsold_1 yearsold_2 yearsold_3 yearsold_4 yearsold_5 yearsold_6 yearsold_7 yearsold_8 yearsold_1_vp yearsold_2_vp yearsold_3_vp yearsold_4_vp yearsold_5_vp yearsold_6_vp yearsold_7_vp yearsold_8_vp", what="")
+mycompressrvars <- scan(text="vocals_mackaye vocals_picciotto vocals_lally instrumental song_number first_song_instrumental duration_seconds yearsold yearsold_1 yearsold_2 yearsold_3 yearsold_4 yearsold_5 yearsold_6 yearsold_7 yearsold_8 yearsold_1_vp yearsold_2_vp yearsold_3_vp yearsold_4_vp yearsold_5_vp yearsold_6_vp yearsold_7_vp yearsold_8_vp", what="")
 Repeatr_sc <- compressr(Repeatr_sc, mycompressrvars)
 
 Repeatr_sc$case <- factor(as.numeric(as.factor(Repeatr_sc$case)))
