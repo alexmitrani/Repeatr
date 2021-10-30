@@ -119,7 +119,7 @@ A song was considered available in the repertoire from the first show it was per
 
 The results of this analysis look like this: 
 
-| rank_intensity| songid|song                         |launchdate | chosen| available_rl| intensity|
+| rank | songid|song                         |launchdate | chosen| available_rl| intensity|
 |--------------:|------:|:----------------------------|:----------|------:|------------:|---------:|
 |              1|     71|cashout                      |2000-09-30 |     59|           65| 0.9076923|
 |              2|     44|closed captioned             |1997-06-18 |    158|          198| 0.7979798|
@@ -260,7 +260,7 @@ The parameters related to the age of the songs support the hypothesis that recen
 The implied preferences for each song are shown here in descending order of preference: 
 
 
-| rank_preference| songid|song                         |   Estimate|     z.value|
+| rank | songid|song                         |   Estimate|     z.value|
 |---------------:|------:|:----------------------------|----------:|-----------:|
 |               1|     24|do you like me               |  0.6048215|   4.9227169|
 |               2|     42|break                        |  0.5333678|   3.7081070|
@@ -364,7 +364,7 @@ Source: https://web.archive.org/web/20201123023401/https://www.abc.net.au/double
 
 The following table shows ratings based on the preferences described in the section above, together with the indicators described in previous sections: performance counts and intensities. The ratings are simply the preferences normalised in such a way that the highest preference has a value of 1 and the lowest a value of 0. This way it will be easy to scale these values for comparison with ratings defined on other intervals. 
 
-| rank_rating| songid|song                         |launchdate |duration | chosen| available_rl| intensity|    rating|
+| rank | songid|song                         |launchdate |duration | chosen| available_rl| intensity|    rating|
 |-----------:|------:|:----------------------------|:----------|:--------|------:|------------:|---------:|---------:|
 |           1|     24|do you like me               |1994-11-20 |03:16    |    272|          376| 0.7234043| 1.0000000|
 |           2|     42|break                        |1996-08-15 |02:12    |    170|          228| 0.7456140| 0.9869712|
