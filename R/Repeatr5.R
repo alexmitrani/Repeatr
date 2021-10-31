@@ -25,8 +25,12 @@
 #'
 Repeatr5 <- function(mymodel = NULL) {
 
+  songs_releases <- read.csv("releases_rym.csv")
+  songs_releases$X <- NULL
 
   # Report results of the choice modelling for the preferred choice model ----------------------------------
+
+  browser()
 
   summary.mymodel <- summary(mymodel)
 
@@ -106,8 +110,7 @@ Repeatr5 <- function(mymodel = NULL) {
   mydf <- mydf %>%
     select(rank_rating, songid, rating)
 
-
-  mydf2$X <- NULL
+  mydf2 <- fugazi_song_performance_intensity
 
   mydf2 <- mydf2 %>%
     left_join(mydf)
@@ -118,14 +121,8 @@ Repeatr5 <- function(mymodel = NULL) {
   mydf2 <- mydf2 %>%
     relocate(rank_rating)
 
-  mydf3 <- read.csv("releases_songs_durations_wikipedia.csv")
-  mydf3 <- mydf3 %>% mutate(duration = seconds_to_period(duration_seconds))
-  mydf3 <- mydf3 %>% mutate(duration = sprintf('%02d:%02d', minute(duration), second(duration)))
-  mydf3 <- mydf3 %>% select(songid, duration)
-  write.csv(mydf3, "mysongdurationlookup.csv")
-
   mydf2 <- mydf2 %>%
-    left_join(mydf3)
+    left_join(mysongvarslookup)
 
   mydf2 <- mydf2 %>%
     relocate(duration, .after=launchdate)
