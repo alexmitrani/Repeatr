@@ -25,9 +25,6 @@
 #'
 Repeatr5 <- function(mymodel = NULL) {
 
-  songs_releases <- read.csv("releases_rym.csv")
-  songs_releases$X <- NULL
-
   # Report results of the choice modelling for the preferred choice model ----------------------------------
 
   browser()
