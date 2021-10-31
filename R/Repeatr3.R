@@ -1,5 +1,38 @@
 
-Repeatr3 <- function() {
+#' @name Repeatr3
+#' @title takes a dataframe with gid, song_number, and songid, and modifies it to make it suitable for choice modelling.  Runs several choice models on the data.
+#' @description
+#' @description
+#' @description "gid" is short for "gig id"
+#'
+#' @import dplyr
+#' @import stringr
+#' @import lubridate
+#' @import mlogit
+#' @import fastDummies
+#' @import rlang
+#' @import knitr
+#'
+#' @param mydf
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#'
+#'
+#'
+Repeatr3 <- function(mydf = NULL) {
+
+  if (is.null(mydf)==FALSE) {
+
+    Repeatr2 <- mydf
+
+  } else {
+
+    Repeatr2 <- Repeatr2
+
+  }
 
   # Keep only the specific variables needed for the modelling --------
 
