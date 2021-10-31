@@ -6,4 +6,4 @@ library(fastDummies)
 library(rlang)
 library(knitr)
 
-source("~/GitHub/Repeatr/R/compressr.R")
+source("~/Documents/GitHub/Repeatr/R/compressr.R")
