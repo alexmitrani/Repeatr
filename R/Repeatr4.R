@@ -19,7 +19,7 @@
 #' @export
 #'
 #' @examples
-#' Repeatr4 <- Repeatr4(mydf = Repeatr4)
+#' Repeatr4 <- Repeatr4(mydf = Repeatr3)
 #'
 #'
 #'
@@ -38,12 +38,12 @@ Repeatr4 <- function(mydf = NULL) {
 
   if (is.null(mydf)==FALSE) {
 
-    Repeatr4 <- mydf
+    Repeatr3 <- mydf
 
   }
 
-  Repeatr4 <- Repeatr4
-  rm(Repeatr4)
+  Repeatr4 <- Repeatr3
+  rm(Repeatr3)
 
   Repeatr4$case <- factor(as.numeric(as.factor(Repeatr4$case)))
   Repeatr4$alt <- as.factor(Repeatr4$alt)
