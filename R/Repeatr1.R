@@ -24,11 +24,6 @@
 #'
 #' @examples
 #' Repeatr1_results <- Repeatr1(mycsvfile = "fugotcha.csv", mysongdatafile = "releases_songs_durations_wikipedia.csv")
-#' Repeatr0 <- Repeatr1_results[[1]]
-#' Repeatr1 <- Repeatr1_results[[2]]
-#' mysongidlookup <- Repeatr1_results[[3]]
-#' mycount <- Repeatr1_results[[4]]
-#' mysongvarslookup <- Repeatr1_results[[5]]
 #'
 Repeatr1 <- function(mycsvfile = NULL, mysongdatafile = NULL) {
 

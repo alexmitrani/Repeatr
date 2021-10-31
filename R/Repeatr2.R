@@ -169,7 +169,7 @@ Repeatr2 <- function(mydf = NULL) {
 
   # define case variable and add it to the data
 
-  mycaseidlookup <- mydf %>%
+  mycaseidlookup <- Repeatr1 %>%
     group_by(gid, song_number) %>%
     summarise(records = n(), date=min(date)) %>%
     arrange(date, song_number) %>%
