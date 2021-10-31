@@ -1,0 +1,295 @@
+
+#' @name Repeatr1
+#' @title imports raw data in CSV format, cleans the data, and reshapes it long so that the rows are identified by combinations of gid and song_number.
+#' @description This was originally developed with a file called "fugotcha.csv", the first line of which went like this:
+#' @description washington-dc-usa-90387	FLS0001	03/09/1987	Wilson Center	$5	300	Joey Picuri	Fugazi	Cassette	Joe #1	Intro	Song #1	Furniture	Merchandise	Turn Off Your Guns	In Defense Of Humans	Waiting Room	The Word
+#' @description "gid" is short for "gig id"
+#' @description Another data file that was used was called "releases_songs_durations_wikipedia.csv" and was obtained from the Wikipedia data on the Fugazi discography.
+#' @description This file contains the following variables: index	releaseid	release	track_number	songid	song	instrumental	vocals_picciotto	vocals_mackaye	vocals_lally	duration_seconds
+
+#'
+#' @import dplyr
+#' @import stringr
+#' @import lubridate
+#' @import mlogit
+#' @import fastDummies
+#' @import rlang
+#' @import knitr
+#'
+#' @param mycsvfile
+#' @param mysongdatafile
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' Repeatr1_results <- Repeatr1(mycsvfile = "fugotcha.csv", mysongdatafile = "releases_songs_durations_wikipedia.csv")
+#' Repeatr0 <- Repeatr1_results[[1]]
+#' Repeatr1 <- Repeatr1_results[[2]]
+#' mysongidlookup <- Repeatr1_results[[3]]
+#' mycount <- Repeatr1_results[[4]]
+#' mysongvarslookup <- Repeatr1_results[[5]]
+#'
+Repeatr1 <- function(mycsvfile = NULL, mysongdatafile = NULL) {
+
+
+# Import data -------------------------------------------------------------
+
+
+  if (is.null(mycsvfile)==FALSE) {
+
+    Repeatr0 <- read.csv(mycsvfile, header=FALSE)
+
+  } else {
+
+    Repeatr0 <- system.file("extdata", "fugotcha.csv", package = "Repeatr")
+    Repeatr0 <- read.csv(fugotcha, header=FALSE)
+
+  }
+
+  if (is.null(mysongdatafile)==FALSE) {
+
+    mysongvarslookup <- read.csv(mysongdatafile)
+
+  } else {
+
+    mysongdatafile <- system.file("extdata", "releases_songs_durations_wikipedia.csv", package = "Repeatr")
+    mysongvarslookup <- read.csv(mysongdatafile)
+
+  }
+
+  # Select the most relevant columns -------
+
+  Repeatr1 <- subset(Repeatr0, select = -c(V2, V4, V5, V6, V7, V8, V9))
+
+  names(Repeatr1)
+
+  # Define gig id -----------------------------------------------------------
+
+  names(Repeatr1)[names(Repeatr1) == "V1"] <- "gid"
+
+
+  # Define date variables ----------------------------------------------------
+
+  names(Repeatr1)[names(Repeatr1) == "V3"] <- "date"
+
+  Repeatr1 <- Repeatr1 %>%
+    mutate(date = as.Date(date))
+
+  Repeatr1 <- Repeatr1 %>%
+    mutate(year = year(date)) %>%
+    relocate(year, .after=date)
+
+  Repeatr1 <- Repeatr1 %>%
+    mutate(month = month(date)) %>%
+    relocate(month, .after=year)
+
+  Repeatr1 <- Repeatr1 %>%
+    mutate(day = day(date)) %>%
+    relocate(day, .after=month)
+
+  # Rename variables to make reshaping the data easier ----------------------
+
+  myv <- 10
+
+  for(mysong in 1:44) {
+
+    myinitialname <- paste0("V", myv)
+    mynewname <- paste0("song.", mysong)
+    names(Repeatr1)[names(Repeatr1) == myinitialname] <- mynewname
+    myv <- myv + 1
+
+  }
+
+  Repeatr1$nchar <- nchar(Repeatr1$song.1)
+
+  Repeatr1 <- Repeatr1 %>%
+    filter(nchar>0)
+
+  Repeatr1$nchar <- NULL
+
+  # Reshape to long format with 1 row per song ------------------------------
+
+  Repeatr1 <- reshape(data = Repeatr1
+                              , direction = "long"
+                              , varying = 6:49
+                              , idvar = "gid"
+  )
+
+  # Define song number ------------------------------------------------------
+
+  names(Repeatr1)[names(Repeatr1) == "time"] <- "song_number"
+
+  Repeatr1 <- Repeatr1 %>%
+    arrange(gid, song_number)
+
+  Repeatr1$nchar <- nchar(Repeatr1$song)
+
+  Repeatr1 <- Repeatr1 %>%
+    mutate(song = str_to_lower(song))
+
+  # Recode variants of song titles to the main song title -------------------
+
+  Repeatr1 <- Repeatr1 %>%
+    mutate(song = str_replace(song, " instrumental", ""))
+
+  Repeatr1 <- Repeatr1 %>%
+    mutate(song = str_replace(song, " acapella", ""))
+
+  Repeatr1 <- Repeatr1 %>%
+    mutate(song = str_replace(song, " drum and bass jam", ""))
+
+  Repeatr1 <- Repeatr1 %>%
+    mutate(song = ifelse(song=="bed for the scraping (continued)", "bed for the scraping", song))
+
+  Repeatr1 <- Repeatr1 %>%
+    mutate(song = ifelse(song=="surf tune 1", "surf tune", song))
+
+  Repeatr1 <- Repeatr1 %>%
+    mutate(song = ifelse(song=="surf tune 2", "surf tune", song))
+
+  Repeatr1 <- Repeatr1 %>%
+    mutate(song = ifelse(song=="surf tune 3", "surf tune", song))
+
+  Repeatr1 <- Repeatr1 %>%
+    mutate(song = ifelse(song=="promises bit soundcheck", "promises", song))
+
+  Repeatr1 <- Repeatr1 %>%
+    mutate(song = ifelse(song=="promises coda", "promises", song))
+
+  Repeatr1 <- Repeatr1 %>%
+    mutate(song = ifelse(song=="provisional medley", "provisional", song))
+
+  Repeatr1 <- Repeatr1 %>%
+    mutate(song = ifelse(song=="the argument", "argument", song))
+
+
+  # Filter the data to remove blank rows, intros, interludes, sound checks -----------------------------------------------------------------
+
+  Repeatr1 <- Repeatr1 %>%
+    filter(nchar>0)
+
+  Repeatr1$nchar <- NULL
+
+  Repeatr1 <- Repeatr1 %>%
+    filter(!grepl("interlude",song))
+
+  Repeatr1 <- Repeatr1 %>%
+    filter(!grepl("encore",song))
+
+  Repeatr1 <- Repeatr1 %>%
+    filter(!grepl("intro",song))
+
+  Repeatr1 <- Repeatr1 %>%
+    filter(!grepl("track",song))
+
+  Repeatr1 <- Repeatr1 %>%
+    filter(!grepl("remarks",song))
+
+  Repeatr1 <- Repeatr1 %>%
+    filter(!grepl("ice cream",song))
+
+  Repeatr1 <- Repeatr1 %>%
+    filter(!grepl("outside",song))
+
+  Repeatr1 <- Repeatr1 %>%
+    filter(!grepl("sound check",song))
+
+  Repeatr1 <- Repeatr1 %>%
+    filter(!grepl("soundcheck",song))
+
+  # Filter to remove unreleased songs or improvised one-offs ---------------------------------------
+
+  Repeatr1 <- Repeatr1 %>%
+    filter(song!=("heart on my chest"))
+
+  Repeatr1 <- Repeatr1 %>%
+    filter(song!=("lock dug"))
+
+  Repeatr1 <- Repeatr1 %>%
+    filter(song!=("nedcars"))
+
+  Repeatr1 <- Repeatr1 %>%
+    filter(song!=("noisy dub"))
+
+  Repeatr1 <- Repeatr1 %>%
+    filter(song!=("nsa"))
+
+  Repeatr1 <- Repeatr1 %>%
+    filter(song!=("set the charges"))
+
+  Repeatr1 <- Repeatr1 %>%
+    filter(song!=("she is blind"))
+
+  Repeatr1 <- Repeatr1 %>%
+    filter(song!=("world beat"))
+
+  Repeatr1 <- Repeatr1 %>%
+    filter(song!=("surf tune"))
+
+  Repeatr1 <- Repeatr1 %>%
+    filter(song!=("preprovisional"))
+
+  # Summarise the data to check frequency counts for all songs --------------
+
+  mycount <- Repeatr1 %>%
+    group_by(song) %>%
+    summarise(count= n()) %>%
+    ungroup()
+
+  mycount <- mycount %>%
+    arrange(desc(count))
+
+  mycount <- mycount %>% mutate(songid = row_number())
+  mycount <- mycount %>% relocate(songid)
+
+  # Create lookup table to go from song id to song title --------------
+
+  mysongidlookup <- mycount
+  mysongidlookup$count <- NULL
+  saveRDS(mysongidlookup, "mysongidlookup.rds")
+
+  write.csv(mysongidlookup, "mysongidlookup.csv")
+
+
+  # Redefine song index in terms of the included songs ----------------------
+
+  Repeatr1 <- Repeatr1 %>%
+    arrange(gid, song_number)
+
+  Repeatr1 <- Repeatr1 %>%
+    group_by(gid) %>%
+    mutate(song_number = row_number())
+
+  Repeatr1 <- Repeatr1 %>%
+    mutate(first_song = ifelse(song_number==1, 1, 0))
+
+  Repeatr1 <- Repeatr1 %>%
+    group_by(gid) %>%
+    mutate(number_songs = n()) %>%
+    mutate(last_song = ifelse(song_number==number_songs, 1, 0)) %>%
+    ungroup()
+
+  Repeatr1 <- Repeatr1 %>% left_join(mysongidlookup)
+
+  # add additional variables for potential use in the choice modelling
+  mysongvarslookup <- mysongvarslookup %>% select(songid, releaseid, release, track_number, instrumental, vocals_picciotto, vocals_mackaye, vocals_lally, duration_seconds)
+
+  Repeatr1 <- Repeatr1 %>%
+    left_join(mysongvarslookup)
+
+  write.csv(mysongvarslookup, "mysongvarslookup.csv")
+
+  # Save disaggregate data -----------------------------------
+
+  Repeatr1 <- Repeatr1 %>%
+    select(gid, date, year, month, day, song_number, songid, song, number_songs, first_song, last_song, releaseid,	release, track_number, instrumental,	vocals_picciotto,	vocals_mackaye,	vocals_lally,	duration_seconds) %>%
+    arrange(date, song_number)
+
+  save(Repeatr0, Repeatr1, mysongidlookup, file = "data.RData", compress = "xz")
+
+  myreturnlist <- list(Repeatr0, Repeatr1, mysongidlookup, mycount, mysongvarslookup)
+
+  return(myreturnlist)
+
+}

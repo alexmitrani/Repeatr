@@ -7,69 +7,6 @@ library(rlang)
 library(knitr)
 
 
-# Load useful functions ---------------------------------------------------
-
-
-dropr <- function(mydf,...) {
-
-  my_return_name <- deparse(substitute(mydf))
-
-  myinitialsize <- round(object.size(mydf)/1000000, digits = 3)
-  cat(paste0("Size of ", my_return_name, " before removing variables: ", myinitialsize, " MB. \n"))
-
-  names_to_drop <- c(...)
-  mytext <- paste("The following variables will be dropped from ", my_return_name, ": ", sep = "")
-  print(mytext)
-  print(names_to_drop)
-  mydf <- mydf[,!names(mydf) %in% names_to_drop]
-
-  myfinalsize <- round(object.size(mydf)/1000000, digits = 3)
-  cat(paste0("Size of ", my_return_name, " after removing variables: ", myfinalsize, " MB. \n"))
-  ramsaved <- round(myinitialsize - myfinalsize, digits = 3)
-  cat(paste0("RAM saved: ", ramsaved, " MB. \n"))
-
-  return(mydf)
-
-}
-
-compressr <- function(mydf,...) {
-
-  my_return_name <- deparse(substitute(mydf))
-
-  myinitialsize <- round(object.size(mydf)/1000000, digits = 3)
-  cat(paste0("Size of ", my_return_name, " before converting the storage modes of specified variables to integer: ", myinitialsize, " MB. \n"))
-
-
-  variables_to_compress <- c(...)
-  cat(paste0("The following variables will have their storage modes converted to integer, if they exist in ", my_return_name,  ": ", "\n"))
-  print(variables_to_compress)
-
-  for (var in variables_to_compress) {
-
-    if(var %in% colnames(mydf)) {
-
-      myparsedvar <- parse_expr(var)
-
-      mydf <- mydf %>%
-        mutate(!!myparsedvar := as.integer(!!myparsedvar))
-
-    }
-
-  }
-
-  myfinalsize <- round(object.size(mydf)/1000000, digits = 3)
-  cat(paste0("Size of ", my_return_name, " after converting storage mode of variables to integer: ", myfinalsize, " MB. \n"))
-  ramsaved <- round(myinitialsize - myfinalsize, digits = 3)
-  cat(paste0("RAM saved: ", ramsaved, " MB. \n"))
-
-  return(mydf)
-
-}
-
-
-# This is where the work with the FLS data starts -------------------------
-
-
 fugotcha <- read.csv("fugotcha.csv", header=FALSE)
 saveRDS(fugotcha, "fugotcha.rds")
 
