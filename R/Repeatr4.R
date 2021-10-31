@@ -66,6 +66,8 @@ Repeatr4 <- function(mydf = NULL) {
 
   summary.ml.Repeatr32
 
+
+
   # First song model ---------------------------------------------------
 
   Repeatr3_fs <- Repeatr3 %>%
@@ -128,6 +130,13 @@ Repeatr4 <- function(mydf = NULL) {
   summary.ml.Repeatr3_ls <- summary(ml.Repeatr3_ls)
 
   summary.ml.Repeatr3_ls
+
+  save(Repeatr0, Repeatr1, Repeatr2, Repeatr3, fugazi_song_counts, fugazi_song_performance_intensity, mysongidlookup, mycount, mysongvarslookup, ml.Repeatr31, ml.Repeatr32, ml.Repeatr3_fs, ml.Repeatr3_ls, file = "data.RData", compress = "xz")
+
+  myreturnlist <- list(ml.Repeatr31, ml.Repeatr32, ml.Repeatr3_fs, ml.Repeatr3_ls)
+
+  return(myreturnlist)
+
 
 }
 
