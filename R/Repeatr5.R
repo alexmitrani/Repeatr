@@ -25,9 +25,10 @@
 #'
 Repeatr5 <- function(mymodel = NULL) {
 
+
   # Report results of the choice modelling for the preferred choice model ----------------------------------
 
-  summary.mymodel <- summary(summary.mymodel)
+  summary.mymodel <- summary(mymodel)
 
   results.mymodel <- as.data.frame(summary.mymodel[["CoefTable"]])
 
@@ -105,7 +106,6 @@ Repeatr5 <- function(mymodel = NULL) {
   mydf <- mydf %>%
     select(rank_rating, songid, rating)
 
-  mydf2 <- read.csv("fugazi_song_performance_intensity.csv")
 
   mydf2$X <- NULL
 
