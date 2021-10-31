@@ -207,7 +207,7 @@ Repeatr2 <- function(mydf = NULL) {
 
   # Save disaggregate data -----------------------------------
 
-  save(Repeatr0, Repeatr1, Repeatr2, fugazi_song_counts, fugazi_song_performance_intensity, mysongidlookup, mycount, mysongvarslookup, file = "data.RData", compress = "xz")
+  save(Repeatr0, Repeatr1, Repeatr2, fugazi_song_counts, fugazi_song_performance_intensity, mysongidlookup, mycount, mysongvarslookup, releasesdatalookup, file = "data.RData", compress = "xz")
 
   return(Repeatr2)
 

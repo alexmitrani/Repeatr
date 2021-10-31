@@ -84,15 +84,17 @@ Repeatr5 <- function(mymodel = NULL) {
   results.mymodel <- results.mymodel %>%
     arrange(desc(Estimate))
 
-  write.csv(results.mymodel, "fugazi_song_preferences.csv")
+  fugazi_song_preferences <- results.mymodel
 
+  fugazi_song_preferences <- fugazi_song_preferences %>%
+    mutate(rank_rating = row_number()) %>%
+    relocate(rank_rating)
+
+  write.csv(fugazi_song_preferences, "fugazi_song_preferences.csv")
 
   # To produce normalised ratings on the interval [0,1] ------------------------
 
-  mydf <- read.csv("fugazi_song_preferences.csv")
-
-  mydf <- mydf %>%
-    rename(rank_rating = X)
+  mydf <- fugazi_song_preferences
 
   mydf <- mydf %>%
     select(rank_rating, songid, song, Estimate)
@@ -127,29 +129,17 @@ Repeatr5 <- function(mymodel = NULL) {
   mydf2 <- mydf2 %>%
     relocate(duration, .after=launchdate)
 
-  write.csv(mydf2, "summary.csv")
+  summary <- mydf2
 
-  knitr::kable(mydf2, "pipe")
+  write.csv(summary, "summary.csv")
 
+  knitr::kable(summary, "pipe")
 
   # Evaluation of releases using the song ratings ---------------------------
 
-  mydf <- read.csv("songs_releases.csv")
+  mydf <- releasesdatalookup
 
-  mydf <- mydf %>%
-    group_by(release) %>%
-    summarise(releaseid = mean(releaseid), releasedate=min(releasedate)) %>%
-    ungroup()
-
-  mydf <- mydf %>%
-    select(releaseid, release, releasedate) %>%
-    arrange(releasedate)
-
-  write.csv(mydf, "releases.csv")
-
-  mydf <- read.csv("songs_releases.csv")
-
-  mydf2 <- read.csv("summary.csv")
+  mydf2 <- summary
 
   mydf2 <- mydf2 %>%
     select(songid, song, rating)
@@ -166,21 +156,19 @@ Repeatr5 <- function(mymodel = NULL) {
     arrange(desc(rating))
 
   # remove First Demo as it is not comparable to the others.
-  mydf2 <- mydf2 %>%
+  releases_rated <- mydf2 %>%
     filter(releaseid!=11)
 
-  write.csv(mydf2, "releases_rated.csv")
-
-  mydf <- read.csv("releases_rated_rym.csv")
-
-  mydf$X <- NULL
-
-  mydf <- mydf %>%
+  releases_rated <- releases_rated %>%
     filter(is.na(releaseid)==FALSE)
 
-  mydf <- mydf %>%
+  releases_rated <- releases_rated %>%
     select(release, releaseid, releasedate, songs_rated, rating, rym_rating)
 
-  knitr::kable(mydf, "pipe")
+  write.csv(releases_rated, "releases_rated.csv")
+
+  knitr::kable(releases_rated, "pipe")
+
+  save(Repeatr0, Repeatr1, Repeatr2, Repeatr3, Repeatr4, fugazi_song_counts, fugazi_song_performance_intensity, mysongidlookup, mycount, mysongvarslookup, releasesdatalookup, choice_model_results_table, fugazi_song_preferences, summary, releases_rated,  ml.Repeatr4, ml.Repeatr4_fs, ml.Repeatr4_ls, ml.Repeatr4_is, file = "data.RData", compress = "xz")
 
 }

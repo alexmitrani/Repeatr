@@ -18,6 +18,7 @@
 #'
 #' @param mycsvfile
 #' @param mysongdatafile
+#' @param releasesdatafile
 #'
 #' @return
 #' @export
@@ -25,7 +26,7 @@
 #' @examples
 #' Repeatr1_results <- Repeatr1(mycsvfile = "fugotcha.csv", mysongdatafile = "releases_songs_durations_wikipedia.csv")
 #'
-Repeatr1 <- function(mycsvfile = NULL, mysongdatafile = NULL) {
+Repeatr1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile = NULL) {
 
 
 # Import data -------------------------------------------------------------
@@ -50,6 +51,18 @@ Repeatr1 <- function(mycsvfile = NULL, mysongdatafile = NULL) {
 
     mysongdatafile <- system.file("extdata", "releases_songs_durations_wikipedia.csv", package = "Repeatr")
     mysongvarslookup <- read.csv(mysongdatafile)
+
+  }
+
+  if (is.null(releasesdatafile)==FALSE) {
+
+    releasesdatalookup <- read.csv(releasesdatafile)
+
+  } else {
+
+    releasesdatafile <- system.file("extdata", "releases_rym.csv", package = "Repeatr")
+    releasesdatalookup <- read.csv(releasesdatafile)
+    releasesdatalookup$X <- NULL
 
   }
 
@@ -281,9 +294,9 @@ Repeatr1 <- function(mycsvfile = NULL, mysongdatafile = NULL) {
     select(gid, date, year, month, day, song_number, songid, song, number_songs, first_song, last_song, releaseid,	release, track_number, instrumental,	vocals_picciotto,	vocals_mackaye,	vocals_lally,	duration_seconds) %>%
     arrange(date, song_number)
 
-  save(Repeatr0, Repeatr1, mysongidlookup, mycount, mysongvarslookup, file = "data.RData", compress = "xz")
+  save(Repeatr0, Repeatr1, mysongidlookup, mycount, mysongvarslookup, releasesdatalookup, file = "data.RData", compress = "xz")
 
-  myreturnlist <- list(Repeatr0, Repeatr1, mysongidlookup, mycount, mysongvarslookup)
+  myreturnlist <- list(Repeatr0, Repeatr1, mysongidlookup, mycount, mysongvarslookup, releasesdatalookup)
 
   return(myreturnlist)
 
