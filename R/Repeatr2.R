@@ -77,6 +77,7 @@ Repeatr2 <- function(mydf = NULL, mysongidlookup = mysongidlookup, mycount = myc
                    , idvar = c("gid", "song_number")
   )
 
+  Repeatr2$songid <- NULL
   Repeatr2 <- Repeatr2 %>% rename(songid = time)
   Repeatr2 <- Repeatr2 %>% rename(chosen = song)
   Repeatr2 <- Repeatr2 %>% arrange(date, year, month, day, song_number, songid)
@@ -104,13 +105,13 @@ Repeatr2 <- function(mydf = NULL, mysongidlookup = mysongidlookup, mycount = myc
     ungroup()
 
   # add launch dates to count file
-  mycount <- mycount %>%
+  fugazi_song_counts <- mycount %>%
     left_join(mylaunchdatelookup) %>%
     select(songid, song, launchdate, count)
 
-  knitr::kable(mycount, "pipe")
+  knitr::kable(fugazi_song_counts, "pipe")
 
-  write.csv(mycount, "fugazi_song_counts.csv")
+  write.csv(fugazi_song_counts, "fugazi_song_counts.csv")
 
 
 
@@ -133,12 +134,12 @@ Repeatr2 <- function(mydf = NULL, mysongidlookup = mysongidlookup, mycount = myc
   mycount2_sl <- mycount2_sl %>%
     left_join(mylaunchdatelookup)
 
-  mycount2_sl <- mycount2_sl %>%
+  fugazi_song_performance_intensity <- mycount2_sl %>%
     select(songid, song, launchdate, chosen, available_rl, intensity)
 
-  knitr::kable(mycount2_sl, "pipe")
+  knitr::kable(fugazi_song_performance_intensity, "pipe")
 
-  write.csv(mycount2_sl, "fugazi_song_performance_intensity.csv")
+  write.csv(fugazi_song_performance_intensity, "fugazi_song_performance_intensity.csv")
 
   # merge on repertoire-level availability
   Repeatr2$available_rl <- NULL
@@ -147,7 +148,7 @@ Repeatr2 <- function(mydf = NULL, mysongidlookup = mysongidlookup, mycount = myc
   # available_gl is gig-level availability.  A song is considered available at the gig level if it is available in the repertoire and it has not already been played.
   Repeatr2 <- Repeatr2 %>% mutate(available_gl=ifelse((played==1 & chosen==0),0,available_rl))
   Repeatr2 <- Repeatr2 %>% left_join(mysongidlookup)
-  Repeatr2 <- Repeatr2 %>% select(gid, date, song_number, songid, song, chosen, played, available_rl, available_gl, first_song, last_song)
+  Repeatr2 <- Repeatr2 %>% select(gid, date, song_number, songid, song, chosen, played, available_rl, available_gl, first_song, last_song, releaseid,	release, track_number, instrumental,	vocals_picciotto,	vocals_mackaye,	vocals_lally,	duration_seconds)
   Repeatr2 <- Repeatr2 %>% arrange(date, gid, song_number, songid)
 
   # Merge on the launch date of each song and calculate how many years old each song is at the time of each gig
@@ -192,7 +193,7 @@ Repeatr2 <- function(mydf = NULL, mysongidlookup = mysongidlookup, mycount = myc
 
   # Save disaggregate data -----------------------------------
 
-  save(fugotcha, Repeatr1, Repeatr2, file = "data.RData", compress = "xz")
+  save(Repeatr0, Repeatr1, Repeatr2, fugazi_song_counts, fugazi_song_performance_intensity, file = "data.RData", compress = "xz")
 
   return(Repeatr2)
 
