@@ -50,23 +50,14 @@ Repeatr4 <- function(mydf = NULL) {
 
   # The basic model.
 
-  ml.Repeatr31 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5
+  ml.Repeatr3 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5
                          + yearsold_6 + yearsold_7 + yearsold_8 , data = Repeatr3)
 
-  summary.ml.Repeatr31 <- summary(ml.Repeatr31)
+  summary.ml.Repeatr3 <- summary(ml.Repeatr3)
 
-  summary.ml.Repeatr31
+  summary.ml.Repeatr3
 
-  # A more detailed model that includes first song instrumental effect and potential differences between the preferences of Ian MacKaye and Guy Picciotto regarding the age of their songs.
-
-  ml.Repeatr32 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5
-                         + yearsold_6 + yearsold_7 + yearsold_8 + yearsold_1_vp + yearsold_2_vp + yearsold_3_vp + yearsold_4_vp + yearsold_5_vp + yearsold_6_vp + yearsold_7_vp + yearsold_8_vp + first_song_instrumental, data = Repeatr3)
-
-  summary.ml.Repeatr32 <- summary(ml.Repeatr32)
-
-  summary.ml.Repeatr32
-
-
+  save(Repeatr0, Repeatr1, Repeatr2, Repeatr3, fugazi_song_counts, fugazi_song_performance_intensity, mysongidlookup, mycount, mysongvarslookup, ml.Repeatr3, file = "data.RData", compress = "xz")
 
   # First song model ---------------------------------------------------
 
@@ -85,12 +76,12 @@ Repeatr4 <- function(mydf = NULL) {
     select(alt, song, chosen)
 
   Repeatr3_fs <- Repeatr3_fs %>%
-    left_join(Repeatr3_sno_counts)
+    left_join(Repeatr3_fs_counts)
 
   Repeatr3_fs <- Repeatr3_fs %>%
     mutate(yearsold_3 = yearsold_3 + yearsold_4 + yearsold_5 + yearsold_6 + yearsold_7 + yearsold_8)
 
-  # It is necessary to remove the alternatives that were never chosen as the first song
+  # It is necessary to remove the alternatives that were never chosen
 
   Repeatr3_fs <- Repeatr3_fs %>%
     filter(is.na(chosen)==FALSE)
@@ -100,6 +91,8 @@ Repeatr4 <- function(mydf = NULL) {
   summary.ml.Repeatr3_fs <- summary(ml.Repeatr3_fs)
 
   summary.ml.Repeatr3_fs
+
+  save(Repeatr0, Repeatr1, Repeatr2, Repeatr3, fugazi_song_counts, fugazi_song_performance_intensity, mysongidlookup, mycount, mysongvarslookup, ml.Repeatr3, Repeatr3_fs, file = "data.RData", compress = "xz")
 
   # Last song model ---------------------------------------------------
 
@@ -120,7 +113,7 @@ Repeatr4 <- function(mydf = NULL) {
   Repeatr3_ls <- Repeatr3_ls %>%
     left_join(Repeatr3_ls_counts)
 
-  # It is necessary to remove the alternatives that were never chosen as the last song
+  # It is necessary to remove the alternatives that were never chosen
 
   Repeatr3_ls <- Repeatr3_ls %>%
     filter(is.na(chosen)==FALSE)
@@ -131,12 +124,47 @@ Repeatr4 <- function(mydf = NULL) {
 
   summary.ml.Repeatr3_ls
 
-  save(Repeatr0, Repeatr1, Repeatr2, Repeatr3, fugazi_song_counts, fugazi_song_performance_intensity, mysongidlookup, mycount, mysongvarslookup, ml.Repeatr31, ml.Repeatr32, ml.Repeatr3_fs, ml.Repeatr3_ls, file = "data.RData", compress = "xz")
+  save(Repeatr0, Repeatr1, Repeatr2, Repeatr3, fugazi_song_counts, fugazi_song_performance_intensity, mysongidlookup, mycount, mysongvarslookup, ml.Repeatr3, Repeatr3_fs, Repeatr3_ls, file = "data.RData", compress = "xz")
+
+# Intermediate song model -------------------------------------------------
+
+  Repeatr3_is <- Repeatr3 %>%
+    filter(first_song==0 & last_song==0)
+
+  Repeatr3_is_counts <- Repeatr3_is %>%
+    filter(choice==TRUE) %>%
+    group_by(alt) %>%
+    summarise(chosen=n()) %>%
+    mutate(songid=as.integer(alt)) %>%
+    ungroup()
+
+  Repeatr3_is_counts <- Repeatr3_is_counts %>%
+    left_join(mysongidlookup) %>%
+    select(alt, song, chosen)
+
+  Repeatr3_is <- Repeatr3_is %>%
+    left_join(Repeatr3_is_counts)
+
+  # It is necessary to remove the alternatives that were never chosen
+
+  Repeatr3_is <- Repeatr3_is %>%
+    filter(is.na(chosen)==FALSE)
+
+  ml.Repeatr3_is <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5
+                         + yearsold_6 + yearsold_7 + yearsold_8 + yearsold_1_vp + yearsold_2_vp + yearsold_3_vp + yearsold_4_vp + yearsold_5_vp + yearsold_6_vp + yearsold_7_vp + yearsold_8_vp + first_song_instrumental, data = Repeatr3_is)
+
+  summary.ml.Repeatr3_is <- summary(ml.Repeatr3_is)
+
+  summary.ml.Repeatr3_is
+
+
+# Save results ------------------------------------------------------------
+
+  save(Repeatr0, Repeatr1, Repeatr2, Repeatr3, fugazi_song_counts, fugazi_song_performance_intensity, mysongidlookup, mycount, mysongvarslookup, ml.Repeatr31, ml.Repeatr32, ml.Repeatr3_fs, ml.Repeatr3_ls, ml.Repeatr3_is, file = "data.RData", compress = "xz")
 
   myreturnlist <- list(ml.Repeatr31, ml.Repeatr32, ml.Repeatr3_fs, ml.Repeatr3_ls)
 
   return(myreturnlist)
-
 
 }
 
