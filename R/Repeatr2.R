@@ -71,9 +71,11 @@ Repeatr2 <- function(mydf = NULL, mysongidlookup = mysongidlookup, mycount = myc
   Repeatr2$song <- NULL
   Repeatr2$nchar <- NULL
 
+  browser()
+
   Repeatr2 <- reshape(data = Repeatr2
                    , direction = "long"
-                   , varying = 10:285
+                   , varying = 19:294
                    , idvar = c("gid", "song_number")
   )
 
