@@ -27,8 +27,6 @@ Repeatr5 <- function(mymodel = NULL) {
 
   # Report results of the choice modelling for the preferred choice model ----------------------------------
 
-  browser()
-
   summary.mymodel <- summary(mymodel)
 
   results.mymodel <- as.data.frame(summary.mymodel[["CoefTable"]])
@@ -124,7 +122,7 @@ Repeatr5 <- function(mymodel = NULL) {
     left_join(mysongvarslookup)
 
   mydf2 <- mydf2 %>%
-    relocate(duration, .after=launchdate)
+    relocate(duration_seconds, .after=launchdate)
 
   summary <- mydf2
 
@@ -139,13 +137,15 @@ Repeatr5 <- function(mymodel = NULL) {
   mydf2 <- summary
 
   mydf2 <- mydf2 %>%
-    select(songid, song, rating)
+    select(songid, releaseid, song, rating)
+
+  browser()
 
   mydf2 <- mydf2 %>%
     left_join(mydf)
 
   mydf2 <- mydf2 %>%
-    group_by(release, releaseid, releasedate) %>%
+    group_by(release, releaseid, rym_rating, releasedate) %>%
     summarise(rating = mean(rating), songs_rated = n()) %>%
     ungroup()
 
