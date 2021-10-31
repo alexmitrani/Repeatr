@@ -94,7 +94,7 @@ Repeatr4 <- function(mydf = NULL) {
 
   summary.ml.Repeatr4_fs
 
-  save(Repeatr0, Repeatr1, Repeatr2, Repeatr4, fugazi_song_counts, fugazi_song_performance_intensity, mysongidlookup, mycount, mysongvarslookup, ml.Repeatr4, Repeatr4_fs, file = "data.RData", compress = "xz")
+  save(Repeatr0, Repeatr1, Repeatr2, Repeatr4, fugazi_song_counts, fugazi_song_performance_intensity, mysongidlookup, mycount, mysongvarslookup, ml.Repeatr4, ml.Repeatr4_fs, file = "data.RData", compress = "xz")
 
   # Last song model ---------------------------------------------------
 
@@ -126,7 +126,7 @@ Repeatr4 <- function(mydf = NULL) {
 
   summary.ml.Repeatr4_ls
 
-  save(Repeatr0, Repeatr1, Repeatr2, Repeatr4, fugazi_song_counts, fugazi_song_performance_intensity, mysongidlookup, mycount, mysongvarslookup, ml.Repeatr4, Repeatr4_fs, Repeatr4_ls, file = "data.RData", compress = "xz")
+  save(Repeatr0, Repeatr1, Repeatr2, Repeatr4, fugazi_song_counts, fugazi_song_performance_intensity, mysongidlookup, mycount, mysongvarslookup, ml.Repeatr4, ml.Repeatr4_fs, ml.Repeatr4_ls, file = "data.RData", compress = "xz")
 
 # Intermediate song model -------------------------------------------------
 
@@ -162,7 +162,7 @@ Repeatr4 <- function(mydf = NULL) {
 
 # Save results ------------------------------------------------------------
 
-  save(Repeatr0, Repeatr1, Repeatr2, Repeatr3, Repeatr4, fugazi_song_counts, fugazi_song_performance_intensity, mysongidlookup, mycount, mysongvarslookup, ml.Repeatr41, ml.Repeatr42, ml.Repeatr4_fs, ml.Repeatr4_ls, ml.Repeatr4_is, file = "data.RData", compress = "xz")
+  save(Repeatr0, Repeatr1, Repeatr2, Repeatr3, Repeatr4, fugazi_song_counts, fugazi_song_performance_intensity, mysongidlookup, mycount, mysongvarslookup, ml.Repeatr4, ml.Repeatr4_fs, ml.Repeatr4_ls, ml.Repeatr4_is, file = "data.RData", compress = "xz")
 
   myreturnlist <- list(ml.Repeatr41, ml.Repeatr42, ml.Repeatr4_fs, ml.Repeatr4_ls, ml.Repeatr4_is)
 
