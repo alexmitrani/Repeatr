@@ -19,7 +19,7 @@
 #' @export
 #'
 #' @examples
-#'
+#' Repeatr5 <- Repeatr5 (mymodel = ml.Repeatr4)
 #'
 #'
 #'
