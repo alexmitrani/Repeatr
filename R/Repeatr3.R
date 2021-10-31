@@ -33,10 +33,6 @@ Repeatr3 <- function(mydf = NULL) {
 
     Repeatr2 <- mydf
 
-  } else {
-
-    Repeatr2 <- Repeatr2
-
   }
 
   # Keep only the specific variables needed for the modelling --------
@@ -44,6 +40,8 @@ Repeatr3 <- function(mydf = NULL) {
   Repeatr3 <- Repeatr2 %>%
     select(gid, case, song_number, alt, choice, yearsold, vocals_mackaye, vocals_picciotto, vocals_lally, instrumental, first_song, last_song, duration_seconds) %>%
     arrange(case, song_number, alt)
+
+  rm(Repeatr2)
 
   Repeatr3 <- Repeatr3 %>%
     mutate(yearsold = case_when(
@@ -77,43 +75,38 @@ Repeatr3 <- function(mydf = NULL) {
 
   Repeatr3_lookup <- Repeatr3 %>%
     filter(choice==TRUE) %>%
-    group_by(gid, song_number, case) %>%
+    group_by(gid, song_number) %>%
     slice(1) %>%
     ungroup()
 
   Repeatr3_lookup <- Repeatr3_lookup %>%
-    mutate(song_number = song_number+1)
+    group_by(gid) %>%
+    arrange(gid, song_number) %>%
+    mutate(vocals_picciotto_sum = cumsum(vocals_picciotto)) %>%
+    mutate(vocals_mackaye_sum = cumsum(vocals_mackaye)) %>%
+    mutate(vocals_lally_sum = cumsum(vocals_lally)) %>%
+    ungroup()
 
   Repeatr3_lookup <- Repeatr3_lookup %>%
-    rename(vocals_picciotto_lag = vocals_picciotto) %>%
-    rename(vocals_mackaye_lag = vocals_mackaye)
-
-  Repeatr3_lookup <- Repeatr3_lookup %>%
-    select(case, vocals_mackaye_lag, vocals_picciotto_lag)
+    select(case, vocals_picciotto_sum, vocals_mackaye_sum, vocals_lally_sum)
 
   Repeatr3 <- Repeatr3 %>%
     left_join(Repeatr3_lookup)
 
-  Repeatr3 <- Repeatr3 %>%
-    mutate(vp_lag_vocals_mackaye = vocals_picciotto*vocals_mackaye_lag) %>%
-    mutate(vp_lag_vocals_picciotto = vocals_picciotto*vocals_picciotto_lag) %>%
-    mutate(vm_lag_vocals_mackaye = vocals_mackaye*vocals_mackaye_lag) %>%
-    mutate(vm_lag_vocals_picciotto = vocals_mackaye*vocals_picciotto_lag)
-
   # compress the data by converting variables to integers --------
 
-  mycompressrvars <- scan(text="vocals_mackaye vocals_picciotto vocals_lally vocals_mackaye_lag vocals_picciotto_lag vp_lag_vocals_mackaye vp_lag_vocals_picciotto vm_lag_vocals_picciotto vm_lag_vocals_mackaye instrumental song_number first_song_instrumental duration_seconds yearsold yearsold_1 yearsold_2 yearsold_3 yearsold_4 yearsold_5 yearsold_6 yearsold_7 yearsold_8 yearsold_1_vp yearsold_2_vp yearsold_3_vp yearsold_4_vp yearsold_5_vp yearsold_6_vp yearsold_7_vp yearsold_8_vp", what="")
+  mycompressrvars <- scan(text="vocals_mackaye vocals_picciotto vocals_lally vocals_picciotto_sum vocals_mackaye_sum vocals_lally_sum instrumental song_number first_song_instrumental duration_seconds yearsold yearsold_1 yearsold_2 yearsold_3 yearsold_4 yearsold_5 yearsold_6 yearsold_7 yearsold_8 yearsold_1_vp yearsold_2_vp yearsold_3_vp yearsold_4_vp yearsold_5_vp yearsold_6_vp yearsold_7_vp yearsold_8_vp", what="")
   Repeatr3 <- compressr(Repeatr3, mycompressrvars)
 
-  Repeatr3$case <- factor(as.numeric(as.factor(Repeatr3$case)))
-  Repeatr3$alt <- as.factor(Repeatr3$alt)
-  Repeatr3$choice <- as.logical(Repeatr3$choice)
-  Repeatr3 <- dfidx(Repeatr3, idx = c("case", "alt"), drop.index = FALSE)
+  # Repeatr3$case <- factor(as.numeric(as.factor(Repeatr3$case)))
+  # Repeatr3$alt <- as.factor(Repeatr3$alt)
+  # Repeatr3$choice <- as.logical(Repeatr3$choice)
+  # Repeatr3 <- dfidx(Repeatr3, idx = c("case", "alt"), drop.index = FALSE)
 
   checksongcounts <- Repeatr3 %>% group_by(alt) %>% summarise(count = sum(choice)) %>% ungroup()
   checksongcounts
 
-  save(Repeatr0, Repeatr1, Repeatr2, fugazi_song_counts, fugazi_song_performance_intensity, Repeatr3, file = "data.RData", compress = "xz")
+  save(Repeatr0, Repeatr1, Repeatr2, Repeatr3, fugazi_song_counts, fugazi_song_performance_intensity, mysongidlookup, mycount, mysongvarslookup, file = "data.RData", compress = "xz")
 
   return(Repeatr3)
 

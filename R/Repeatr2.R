@@ -27,6 +27,11 @@ Repeatr2 <- function(mydf = NULL) {
 
     load("data.RData")
 
+  } else {
+
+    mydata <- system.file("data", "data.Rdata", package = "Repeatr")
+    load("mydata")
+
   }
 
   # Reshape to long again so that there will now be one row per combination of song performed and song potentially available ------------------------------
@@ -148,11 +153,8 @@ Repeatr2 <- function(mydf = NULL) {
   # merge on repertoire-level availability
   Repeatr2$available_rl <- NULL
   Repeatr2 <- Repeatr2 %>% left_join(available_rl_lookup)
-
-  # available_gl is gig-level availability.  A song is considered available at the gig level if it is available in the repertoire and it has not already been played.
-  Repeatr2 <- Repeatr2 %>% mutate(available_gl=ifelse((played==1 & chosen==0),0,available_rl))
   Repeatr2 <- Repeatr2 %>% left_join(mysongidlookup)
-  Repeatr2 <- Repeatr2 %>% select(gid, date, song_number, songid, song, chosen, played, available_rl, available_gl, first_song, last_song, releaseid,	release, track_number, instrumental,	vocals_picciotto,	vocals_mackaye,	vocals_lally,	duration_seconds)
+  Repeatr2 <- Repeatr2 %>% select(gid, date, song_number, songid, song, chosen, played, available_rl, first_song, last_song, releaseid,	release, track_number, instrumental,	vocals_picciotto,	vocals_mackaye,	vocals_lally,	duration_seconds)
   Repeatr2 <- Repeatr2 %>% arrange(date, gid, song_number, songid)
 
   # Merge on the launch date of each song and calculate how many years old each song is at the time of each gig
@@ -160,6 +162,14 @@ Repeatr2 <- function(mydf = NULL) {
   Repeatr2 <- Repeatr2 %>% relocate(launchdate, .after=date)
   Repeatr2 <- Repeatr2 %>% mutate(yearsold = ifelse(available_rl==1,as.duration(launchdate %--% date) / dyears(1),0))
   Repeatr2 <- Repeatr2 %>% relocate(yearsold, .after=launchdate)
+
+  # set the song "provisional" to unavailable after the launch of "reprovisional"
+  Repeatr2 <- Repeatr2 %>%
+    mutate(available_rl=ifelse((date>="1989-12-29" & song=="provisional"), 0, available_rl))
+
+  # available_gl is gig-level availability.  A song is considered available at the gig level if it is available in the repertoire and it has not already been played.
+  Repeatr2 <- Repeatr2 %>% mutate(available_gl=ifelse((played==1 & chosen==0),0,available_rl))
+  Repeatr2 <- Repeatr2 %>% relocate(available_gl, .after=available_rl)
 
   # Remove records for unavailable songs
 
@@ -197,7 +207,7 @@ Repeatr2 <- function(mydf = NULL) {
 
   # Save disaggregate data -----------------------------------
 
-  save(Repeatr0, Repeatr1, Repeatr2, fugazi_song_counts, fugazi_song_performance_intensity, file = "data.RData", compress = "xz")
+  save(Repeatr0, Repeatr1, Repeatr2, fugazi_song_counts, fugazi_song_performance_intensity, mysongidlookup, mycount, mysongvarslookup, file = "data.RData", compress = "xz")
 
   return(Repeatr2)
 
