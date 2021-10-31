@@ -151,7 +151,7 @@ Repeatr4 <- function(mydf = NULL) {
     filter(is.na(chosen)==FALSE)
 
   ml.Repeatr3_is <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5
-                         + yearsold_6 + yearsold_7 + yearsold_8 + yearsold_1_vp + yearsold_2_vp + yearsold_3_vp + yearsold_4_vp + yearsold_5_vp + yearsold_6_vp + yearsold_7_vp + yearsold_8_vp + first_song_instrumental, data = Repeatr3_is)
+                         + yearsold_6 + yearsold_7 + yearsold_8 + yearsold_1_vp + yearsold_2_vp + yearsold_3_vp + yearsold_4_vp + yearsold_5_vp + yearsold_6_vp + yearsold_7_vp + yearsold_8_vp, data = Repeatr3_is)
 
   summary.ml.Repeatr3_is <- summary(ml.Repeatr3_is)
 
