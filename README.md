@@ -482,8 +482,6 @@ Although many of the ratings are similar in magnitude, there are some difference
 
 ## The End
 
-I hope you have found this interesting.  If you want to recreate the analysis, this should be possible by running [Repeatr.R](https://github.com/alexmitrani/Repeatr/blob/main/R/Repeatr.R) after installing the various libraries that are listed at the top of the file. It is recommended to use a machine with 16 GB RAM or more to run the choice model.
-
-If you have any comments or suggestions please add an issue to this repository.  
+I hope you have found this interesting. If you have any comments or suggestions please add an issue to this repository.  
 
 Thanks. 
