@@ -13,17 +13,21 @@
 #' @import knitr
 #'
 #' @param mydf
-#' @param mysongidlookup
-#' @param mycount
 #'
 #' @return
 #' @export
 #'
 #' @examples
-#' Repeatr2 <- Repeatr2(mydf = Repeatr1, mysongidlookup = mysongidlookup, mycount = mycount)
+#' Repeatr2 <- Repeatr2(mydf = Repeatr1)
 #'
 
-Repeatr2 <- function(mydf = NULL, mysongidlookup = mysongidlookup, mycount = mycount) {
+Repeatr2 <- function(mydf = NULL) {
+
+  if(file.exists("data.RData")) {
+
+    load("data.RData")
+
+  }
 
   # Reshape to long again so that there will now be one row per combination of song performed and song potentially available ------------------------------
 
