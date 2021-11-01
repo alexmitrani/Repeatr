@@ -13,7 +13,6 @@
 #' @import knitr
 #'
 #' @param mydf
-#' @param savedata
 #'
 #' @return
 #' @export
@@ -24,7 +23,7 @@
 #' Repeatr_2_results <- Repeatr_2(mydf = Repeatr1)
 #'
 
-Repeatr_2 <- function(mydf = NULL, savedata = FALSE) {
+Repeatr_2 <- function(mydf = NULL) {
 
   # Reshape to long again so that there will now be one row per combination of song performed and song potentially available ------------------------------
 
@@ -196,14 +195,6 @@ Repeatr_2 <- function(mydf = NULL, savedata = FALSE) {
 
   Repeatr2 <- Repeatr2 %>%
     mutate(first_song_instrumental = first_song*instrumental)
-
-  # Save disaggregate data -----------------------------------
-
-  if (savedata==TRUE) {
-
-    save(Repeatr0, Repeatr1, Repeatr2, fugazi_song_counts, fugazi_song_performance_intensity, mysongidlookup, mycount, mysongvarslookup, releasesdatalookup, file = "data.RData", compress = "xz")
-
-  }
 
   return(Repeatr2)
 
