@@ -18,12 +18,14 @@
 #' @export
 #'
 #' @examples
-#' mydata <- system.file("data", "Repeatr1.rda", package = "Repeatr")
-#' load(mydata)
-#' Repeatr_2_results <- Repeatr_2(mydf = Repeatr1)
+#' myRepeatr1 <- system.file("data", "Repeatr1.rda", package = "Repeatr")
+#' load(myRepeatr1)
+#' mysongidlookup <- system.file("data", "songidlookup.rda", package = "Repeatr")
+#' load(mysongidlookup)
+#' Repeatr_2_results <- Repeatr_2(mydf = Repeatr1, mysongidlookup = songidlookup)
 #'
 
-Repeatr_2 <- function(mydf = NULL) {
+Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL) {
 
   # Reshape to long again so that there will now be one row per combination of song performed and song potentially available ------------------------------
 
