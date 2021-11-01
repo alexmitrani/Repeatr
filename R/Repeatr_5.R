@@ -19,11 +19,19 @@
 #' @export
 #'
 #' @examples
-#' Repeatr_5_results <- Repeatr_5(mymodel = ml.Repeatr4)
+#' mlRepeatr <- system.file("data", "mlRepeatr.rdata", package = "Repeatr")
+#' load(mlRepeatr)
+#' mysongidlookup <- system.file("data", "songidlookup.rda", package = "Repeatr")
+#' load(mysongidlookup)
+#' mysongvarslookup <- system.file("data", "songvarslookup.rda", package = "Repeatr")
+#' load(mysongvarslookup)
+#' fugazi_song_performance_intensity <- system.file("data", "fugazi_song_performance_intensity.rda", package = "Repeatr")
+#' load(fugazi_song_performance_intensity)
+#' Repeatr_5_results <- Repeatr_5(mymodel = ml.Repeatr4, mysongidlookup = songidlookup, mysongvarslookup = songvarslookup, fugazi_song_performance_intensity = fugazi_song_performance_intensity)
 #'
 #'
 #'
-Repeatr_5 <- function(mymodel = NULL) {
+Repeatr_5 <- function(mymodel = NULL, mysongidlookup = songidlookup, mysongvarslookup = songvarslookup) {
 
   # Report results of the choice modelling for the preferred choice model ----------------------------------
 
