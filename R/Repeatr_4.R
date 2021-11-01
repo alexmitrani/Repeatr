@@ -24,6 +24,8 @@
 #' @export
 #'
 #' @examples
+#' myRepeatr3 <- system.file("data", "Repeatr3.rda", package = "Repeatr")
+#' load(myRepeatr3)
 #' Repeatr_4_results <- Repeatr_4(mydf = Repeatr3)
 #'
 #'
@@ -50,9 +52,9 @@ Repeatr_4 <- function(mydf = NULL, runchoicemodels = FALSE, basic_model = FALSE,
   Repeatr4$choice <- as.logical(Repeatr4$choice)
   Repeatr4 <- dfidx(Repeatr4, idx = c("case", "alt"), drop.index = FALSE)
 
-  if (runchoicemodels == TRUE) {
+  myreturnlist <- list()
 
-    myreturnlist <- list()
+  if (runchoicemodels == TRUE) {
 
     if (basic_model == TRUE) {
 
