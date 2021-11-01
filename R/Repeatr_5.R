@@ -31,7 +31,7 @@
 #'
 #'
 #'
-Repeatr_5 <- function(mymodel = NULL, mysongidlookup = songidlookup, mysongvarslookup = songvarslookup) {
+Repeatr_5 <- function(mymodel = NULL, mysongidlookup = songidlookup, mysongvarslookup = songvarslookup, fugazi_song_performance_intensity = fugazi_song_performance_intensity) {
 
   # Report results of the choice modelling for the preferred choice model ----------------------------------
 
