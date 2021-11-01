@@ -54,7 +54,7 @@ Repeatr_4 <- function(mydf = NULL, runchoicemodels = FALSE, basic_model = FALSE,
 
     myreturnlist <- list()
 
-    if (basic_model = TRUE) {
+    if (basic_model == TRUE) {
 
       # The basic model.
 
@@ -69,7 +69,7 @@ Repeatr_4 <- function(mydf = NULL, runchoicemodels = FALSE, basic_model = FALSE,
 
     }
 
-    if (first_song_model = TRUE) {
+    if (first_song_model == TRUE) {
 
       # First song model ---------------------------------------------------
 
@@ -108,7 +108,7 @@ Repeatr_4 <- function(mydf = NULL, runchoicemodels = FALSE, basic_model = FALSE,
 
     }
 
-    if (last_song_model = TRUE) {
+    if (last_song_model == TRUE) {
 
       # Last song model ---------------------------------------------------
 
@@ -144,7 +144,7 @@ Repeatr_4 <- function(mydf = NULL, runchoicemodels = FALSE, basic_model = FALSE,
 
     }
 
-    if (intermediate_song_model = TRUE) {
+    if (intermediate_song_model == TRUE) {
 
       # Intermediate song model -------------------------------------------------
 
