@@ -19,21 +19,12 @@
 #' @export
 #'
 #' @examples
+#' mydata <- system.file("data", "data.RData", package = "Repeatr")
+#' load(mydata)
 #' Repeatr_2_results <- Repeatr_2(mydf = Repeatr1)
 #'
 
 Repeatr_2 <- function(mydf = NULL, savedata = FALSE) {
-
-  if(file.exists("data.RData")) {
-
-    load("data.RData")
-
-  } else {
-
-    mydata <- system.file("data", "data.RData", package = "Repeatr")
-    load(mydata)
-
-  }
 
   # Reshape to long again so that there will now be one row per combination of song performed and song potentially available ------------------------------
 
