@@ -25,7 +25,10 @@
 #' @export
 #'
 #' @examples
-#' Repeatr1_results <- Repeatr1(mycsvfile = "fugotcha.csv", mysongdatafile = "releases_songs_durations_wikipedia.csv")
+#' fugotcha <- system.file("extdata", "fugotcha.csv", package = "Repeatr")
+#' releases_songs_durations_wikipedia <- system.file("extdata", "releases_songs_durations_wikipedia.csv", package = "Repeatr")
+#' releasesdatafile <- system.file("extdata", "releases_rym.csv", package = "Repeatr")
+#' Repeatr1_results <- Repeatr1(mycsvfile = fugotcha, mysongdatafile = releases_songs_durations_wikipedia, releasesdatafile = releasesdatafile)
 #'
 Repeatr1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile = NULL, savedata = FALSE) {
 
