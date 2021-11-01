@@ -22,10 +22,12 @@
 #' load(myRepeatr1)
 #' mysongidlookup <- system.file("data", "songidlookup.rda", package = "Repeatr")
 #' load(mysongidlookup)
-#' Repeatr_2_results <- Repeatr_2(mydf = Repeatr1, mysongidlookup = songidlookup)
+#' mycount <- system.file("data", "fugazi_song_counts.rda", package = "Repeatr")
+#' load(mycount)
+#' Repeatr_2_results <- Repeatr_2(mydf = Repeatr1, mysongidlookup = songidlookup, mycount = fugazi_song_counts)
 #'
 
-Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL) {
+Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, mycount = NULL) {
 
   # Reshape to long again so that there will now be one row per combination of song performed and song potentially available ------------------------------
 
