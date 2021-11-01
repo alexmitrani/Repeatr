@@ -30,8 +30,8 @@ Repeatr2 <- function(mydf = NULL, savedata = FALSE) {
 
   } else {
 
-    mydata <- system.file("data", "data.Rdata", package = "Repeatr")
-    load("mydata")
+    mydata <- system.file("data", "data.RData", package = "Repeatr")
+    load(mydata)
 
   }
 
