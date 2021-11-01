@@ -14,16 +14,17 @@
 #'
 #'
 #' @param mymodel
+#' @param savedata
 #'
 #' @return
 #' @export
 #'
 #' @examples
-#' Repeatr5 <- Repeatr5 (mymodel = ml.Repeatr4)
+#' results <- Repeatr5(mymodel = ml.Repeatr4)
 #'
 #'
 #'
-Repeatr5 <- function(mymodel = NULL) {
+Repeatr5 <- function(mymodel = NULL, savedata = FALSE) {
 
   # Report results of the choice modelling for the preferred choice model ----------------------------------
 
@@ -139,8 +140,6 @@ Repeatr5 <- function(mymodel = NULL) {
   mydf2 <- mydf2 %>%
     select(songid, releaseid, song, rating)
 
-  browser()
-
   mydf2 <- mydf2 %>%
     left_join(mydf)
 
@@ -166,6 +165,14 @@ Repeatr5 <- function(mymodel = NULL) {
 
   knitr::kable(releases_rated, "pipe")
 
-  save(Repeatr0, Repeatr1, Repeatr2, Repeatr3, Repeatr4, fugazi_song_counts, fugazi_song_performance_intensity, mysongidlookup, mycount, mysongvarslookup, releasesdatalookup, choice_model_results_table, fugazi_song_preferences, summary, releases_rated,  ml.Repeatr4, ml.Repeatr4_fs, ml.Repeatr4_ls, ml.Repeatr4_is, file = "data.RData", compress = "xz")
+  myreturnlist <- list(choice_model_results_table, fugazi_song_preferences, summary, releases_rated)
+
+  return(myreturnlist)
+
+  if (savedata==TRUE) {
+
+    save(Repeatr0, Repeatr1, Repeatr2, Repeatr3, Repeatr4, fugazi_song_counts, fugazi_song_performance_intensity, mysongidlookup, mycount, mysongvarslookup, releasesdatalookup, choice_model_results_table, fugazi_song_preferences, summary, releases_rated,  ml.Repeatr4, ml.Repeatr4_fs, ml.Repeatr4_ls, ml.Repeatr4_is, file = "data.RData", compress = "xz")
+
+  }
 
 }
