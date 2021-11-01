@@ -14,6 +14,7 @@
 #'
 #'
 #' @param mydf
+#' @param savedata
 #'
 #' @return
 #' @export
@@ -26,7 +27,7 @@
 #'
 #'
 
-Repeatr4 <- function(mydf = NULL) {
+Repeatr4 <- function(mydf = NULL, savedata = FALSE) {
 
   # Choice modelling --------------------------------
 
@@ -162,7 +163,11 @@ Repeatr4 <- function(mydf = NULL) {
 
 # Save results ------------------------------------------------------------
 
-  save(Repeatr0, Repeatr1, Repeatr2, Repeatr3, Repeatr4, fugazi_song_counts, fugazi_song_performance_intensity, mysongidlookup, mycount, mysongvarslookup, releasesdatalookup, ml.Repeatr4, ml.Repeatr4_fs, ml.Repeatr4_ls, ml.Repeatr4_is, file = "data.RData", compress = "xz")
+  if (savedata==TRUE) {
+
+    save(Repeatr0, Repeatr1, Repeatr2, Repeatr3, Repeatr4, fugazi_song_counts, fugazi_song_performance_intensity, mysongidlookup, mycount, mysongvarslookup, releasesdatalookup, ml.Repeatr4, ml.Repeatr4_fs, ml.Repeatr4_ls, ml.Repeatr4_is, file = "data.RData", compress = "xz")
+
+  }
 
   myreturnlist <- list(ml.Repeatr4, ml.Repeatr4_fs, ml.Repeatr4_ls, ml.Repeatr4_is)
 

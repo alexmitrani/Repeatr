@@ -125,7 +125,12 @@ Repeatr5 <- function(mymodel = NULL, savedata = FALSE) {
   mydf2 <- mydf2 %>%
     relocate(duration_seconds, .after=launchdate)
 
-  summary <- mydf2
+  summary <- mydf2 %>%
+    select(songid, song, launchdate, duration_seconds, chosen, available_rl, intensity, rating) %>%
+    arrange(desc(rating)) %>%
+    mutate(rank = row_number()) %>%
+    relocate(rank) %>%
+    rename(duration = duration_seconds)
 
   write.csv(summary, "summary.csv")
 
@@ -135,7 +140,8 @@ Repeatr5 <- function(mymodel = NULL, savedata = FALSE) {
 
   mydf <- releasesdatalookup
 
-  mydf2 <- summary
+  mydf2 <- summary %>%
+    left_join(mysongvarslookup)
 
   mydf2 <- mydf2 %>%
     select(songid, releaseid, song, rating)

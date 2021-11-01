@@ -13,6 +13,7 @@
 #' @import knitr
 #'
 #' @param mydf
+#' @param savedata
 #'
 #' @return
 #' @export
@@ -21,7 +22,7 @@
 #' Repeatr2 <- Repeatr2(mydf = Repeatr1)
 #'
 
-Repeatr2 <- function(mydf = NULL) {
+Repeatr2 <- function(mydf = NULL, savedata = FALSE) {
 
   if(file.exists("data.RData")) {
 
@@ -207,7 +208,11 @@ Repeatr2 <- function(mydf = NULL) {
 
   # Save disaggregate data -----------------------------------
 
-  save(Repeatr0, Repeatr1, Repeatr2, fugazi_song_counts, fugazi_song_performance_intensity, mysongidlookup, mycount, mysongvarslookup, releasesdatalookup, file = "data.RData", compress = "xz")
+  if (savedata==TRUE) {
+
+    save(Repeatr0, Repeatr1, Repeatr2, fugazi_song_counts, fugazi_song_performance_intensity, mysongidlookup, mycount, mysongvarslookup, releasesdatalookup, file = "data.RData", compress = "xz")
+
+  }
 
   return(Repeatr2)
 

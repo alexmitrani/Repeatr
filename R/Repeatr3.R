@@ -14,6 +14,7 @@
 #' @import knitr
 #'
 #' @param mydf
+#' @param savedata
 #'
 #' @return
 #' @export
@@ -21,7 +22,7 @@
 #' @examples
 #' Repeatr3 <- Repeatr3(mydf = Repeatr2)
 #'
-Repeatr3 <- function(mydf = NULL) {
+Repeatr3 <- function(mydf = NULL, savedata = FALSE) {
 
   if(file.exists("data.RData")) {
 
@@ -106,7 +107,11 @@ Repeatr3 <- function(mydf = NULL) {
   checksongcounts <- Repeatr3 %>% group_by(alt) %>% summarise(count = sum(choice)) %>% ungroup()
   checksongcounts
 
-  save(Repeatr0, Repeatr1, Repeatr2, Repeatr3, fugazi_song_counts, fugazi_song_performance_intensity, mysongidlookup, mycount, mysongvarslookup, releasesdatalookup, file = "data.RData", compress = "xz")
+  if (savedata==TRUE) {
+
+    save(Repeatr0, Repeatr1, Repeatr2, Repeatr3, fugazi_song_counts, fugazi_song_performance_intensity, mysongidlookup, mycount, mysongvarslookup, releasesdatalookup, file = "data.RData", compress = "xz")
+
+  }
 
   return(Repeatr3)
 
