@@ -18,7 +18,7 @@
 #' @export
 #'
 #' @examples
-#' mydata <- system.file("data", "data.RData", package = "Repeatr")
+#' mydata <- system.file("data", "Repeatr1.rda", package = "Repeatr")
 #' load(mydata)
 #' Repeatr_2_results <- Repeatr_2(mydf = Repeatr1)
 #'
