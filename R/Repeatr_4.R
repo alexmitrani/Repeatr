@@ -14,7 +14,6 @@
 #'
 #'
 #' @param mydf
-#' @param savedata
 #' @param runchoicemodels
 #' @param basic_model
 #' @param first_song_model
@@ -32,7 +31,7 @@
 #'
 #'
 
-Repeatr_4 <- function(mydf = NULL, runchoicemodels = FALSE, basic_model = FALSE, first_song_model = FALSE, last_song_model = FALSE, intermediate_song_model = FALSE, savedata = FALSE) {
+Repeatr_4 <- function(mydf = NULL, runchoicemodels = FALSE, basic_model = FALSE, first_song_model = FALSE, last_song_model = FALSE, intermediate_song_model = FALSE) {
 
   # Choice modelling --------------------------------
 
@@ -181,14 +180,6 @@ Repeatr_4 <- function(mydf = NULL, runchoicemodels = FALSE, basic_model = FALSE,
       myreturnlist <- c(myreturnlist, ml.Repeatr4_is)
 
     }
-
-  }
-
-# Save results ------------------------------------------------------------
-
-  if (savedata==TRUE) {
-
-    save(Repeatr0, Repeatr1, Repeatr2, Repeatr3, Repeatr4, fugazi_song_counts, fugazi_song_performance_intensity, mysongidlookup, mycount, mysongvarslookup, releasesdatalookup, ml.Repeatr4, ml.Repeatr4_fs, ml.Repeatr4_ls, ml.Repeatr4_is, file = "data.RData", compress = "xz")
 
   }
 
