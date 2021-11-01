@@ -1,4 +1,4 @@
-#' @name Repeatr2
+#' @name Repeatr_2
 #' @title takes a dataframe with one row per show-song and reshapes it long again so that the rows are identified by combinations of gid, song_number, and songid.
 #' @description The first line of the data this was originally developed with:
 #' @description washington-dc-usa-90387	FLS0001	03/09/1987	Wilson Center	$5	300	Joey Picuri	Fugazi	Cassette	Joe #1	Intro	Song #1	Furniture	Merchandise	Turn Off Your Guns	In Defense Of Humans	Waiting Room	The Word
@@ -19,10 +19,10 @@
 #' @export
 #'
 #' @examples
-#' Repeatr2 <- Repeatr2(mydf = Repeatr1)
+#' Repeatr_2_results <- Repeatr_2(mydf = Repeatr1)
 #'
 
-Repeatr2 <- function(mydf = NULL, savedata = FALSE) {
+Repeatr_2 <- function(mydf = NULL, savedata = FALSE) {
 
   if(file.exists("data.RData")) {
 

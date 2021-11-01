@@ -1,5 +1,5 @@
 
-#' @name Repeatr3
+#' @name Repeatr_3
 #' @title takes a dataframe with gid, song_number, and songid, and modifies it to make it suitable for choice modelling.
 #' @description
 #' @description
@@ -20,9 +20,9 @@
 #' @export
 #'
 #' @examples
-#' Repeatr3 <- Repeatr3(mydf = Repeatr2)
+#' Repeatr_3_results <- Repeatr_3(mydf = Repeatr2)
 #'
-Repeatr3 <- function(mydf = NULL, savedata = FALSE) {
+Repeatr_3 <- function(mydf = NULL, savedata = FALSE) {
 
   if(file.exists("data.RData")) {
 

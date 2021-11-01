@@ -1,5 +1,5 @@
 
-#' @name Repeatr1
+#' @name Repeatr_1
 #' @title imports raw data in CSV format, cleans the data, and reshapes it long so that the rows are identified by combinations of gid and song_number.
 #' @description This was originally developed with a file called "fugotcha.csv", the first line of which went like this:
 #' @description washington-dc-usa-90387	FLS0001	03/09/1987	Wilson Center	$5	300	Joey Picuri	Fugazi	Cassette	Joe #1	Intro	Song #1	Furniture	Merchandise	Turn Off Your Guns	In Defense Of Humans	Waiting Room	The Word
@@ -28,9 +28,9 @@
 #' fugotcha <- system.file("extdata", "fugotcha.csv", package = "Repeatr")
 #' releases_songs_durations_wikipedia <- system.file("extdata", "releases_songs_durations_wikipedia.csv", package = "Repeatr")
 #' releasesdatafile <- system.file("extdata", "releases_rym.csv", package = "Repeatr")
-#' Repeatr1_results <- Repeatr1(mycsvfile = fugotcha, mysongdatafile = releases_songs_durations_wikipedia, releasesdatafile = releasesdatafile)
+#' Repeatr_1_results <- Repeatr_1(mycsvfile = fugotcha, mysongdatafile = releases_songs_durations_wikipedia, releasesdatafile = releasesdatafile)
 #'
-Repeatr1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile = NULL, savedata = FALSE) {
+Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile = NULL, savedata = FALSE) {
 
 
 # Devel setup -------------------------------------------------------------

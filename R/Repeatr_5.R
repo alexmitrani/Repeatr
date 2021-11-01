@@ -1,4 +1,4 @@
-#' @name Repeatr5
+#' @name Repeatr_5
 #' @title Produces results using a preferred choice model supplied by the user as "mymodel"
 #' @description
 #' @description
@@ -20,11 +20,11 @@
 #' @export
 #'
 #' @examples
-#' results <- Repeatr5(mymodel = ml.Repeatr4)
+#' Repeatr_5_results <- Repeatr_5(mymodel = ml.Repeatr4)
 #'
 #'
 #'
-Repeatr5 <- function(mymodel = NULL, savedata = FALSE) {
+Repeatr_5 <- function(mymodel = NULL, savedata = FALSE) {
 
   if(file.exists("data.RData")) {
 

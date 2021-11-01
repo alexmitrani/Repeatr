@@ -1,4 +1,4 @@
-#' @name Repeatr4
+#' @name Repeatr_4
 #' @title Prepares data for choice modelling with mlogit
 #' @description
 #' @description
@@ -21,14 +21,14 @@
 #' @export
 #'
 #' @examples
-#' Repeatr4 <- Repeatr4(mydf = Repeatr3)
+#' Repeatr_4_results <- Repeatr_4(mydf = Repeatr3)
 #'
 #'
 #'
 #'
 #'
 
-Repeatr4 <- function(mydf = NULL, runchoicemodels = FALSE, savedata = FALSE) {
+Repeatr_4 <- function(mydf = NULL, runchoicemodels = FALSE, savedata = FALSE) {
 
   # Choice modelling --------------------------------
 
