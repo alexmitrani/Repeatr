@@ -32,11 +32,6 @@ Repeatr_4 <- function(mydf = NULL, runchoicemodels = FALSE, savedata = FALSE) {
 
   # Choice modelling --------------------------------
 
-  if(file.exists("data.RData")) {
-
-    load("data.RData")
-
-  }
 
   if (is.null(mydf)==FALSE) {
 

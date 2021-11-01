@@ -24,12 +24,6 @@
 #'
 Repeatr_3 <- function(mydf = NULL, savedata = FALSE) {
 
-  if(file.exists("data.RData")) {
-
-    load("data.RData")
-
-  }
-
   if (is.null(mydf)==FALSE) {
 
     Repeatr2 <- mydf

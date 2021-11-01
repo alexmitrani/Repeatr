@@ -26,12 +26,6 @@
 #'
 Repeatr_5 <- function(mymodel = NULL, savedata = FALSE) {
 
-  if(file.exists("data.RData")) {
-
-    load("data.RData")
-
-  }
-
   # Report results of the choice modelling for the preferred choice model ----------------------------------
 
   summary.mymodel <- summary(mymodel)
