@@ -20,14 +20,10 @@
 #' @examples
 #' myRepeatr1 <- system.file("data", "Repeatr1.rda", package = "Repeatr")
 #' load(myRepeatr1)
-#' mysongidlookup <- system.file("data", "songidlookup.rda", package = "Repeatr")
-#' load(mysongidlookup)
-#' mycount <- system.file("data", "fugazi_song_counts.rda", package = "Repeatr")
-#' load(mycount)
-#' Repeatr_2_results <- Repeatr_2(mydf = Repeatr1, mysongidlookup = songidlookup, mycount = fugazi_song_counts)
+#' Repeatr_2_results <- Repeatr_2(mydf = Repeatr1)
 #'
 
-Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, mycount = NULL) {
+Repeatr_2 <- function(mydf = NULL) {
 
   # Reshape to long again so that there will now be one row per combination of song performed and song potentially available ------------------------------
 
@@ -109,7 +105,7 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, mycount = NULL) {
     ungroup()
 
   # add launch dates to count file
-  fugazi_song_counts <- mycount %>%
+  fugazi_song_counts <- fugazi_song_counts %>%
     left_join(mylaunchdatelookup) %>%
     select(songid, song, launchdate, count)
 
@@ -133,10 +129,10 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, mycount = NULL) {
     arrange(desc(intensity))
 
   mycount2_sl <- mycount2_sl %>%
-    left_join(mysongidlookup)
+    left_join(songidlookup)
 
   mycount2_sl <- mycount2_sl %>%
-    left_join(mylaunchdatelookup)
+    left_join(releasesdatalookup)
 
   fugazi_song_performance_intensity <- mycount2_sl %>%
     select(songid, song, launchdate, chosen, available_rl, intensity)
