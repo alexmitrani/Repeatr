@@ -24,9 +24,9 @@
 #' @export
 #'
 #' @examples
-#' fugotcha <- "./inst/extdata/fugotcha.csv"
-#' releases_songs_durations_wikipedia <- "./inst/extdata/releases_songs_durations_wikipedia.csv"
-#' releasesdatafile <- "./inst/extdata/releases_rym.csv"
+#' fugotcha <- "./extdata/fugotcha.csv"
+#' releases_songs_durations_wikipedia <- "./extdata/releases_songs_durations_wikipedia.csv"
+#' releasesdatafile <- "./extdata/releases_rym.csv"
 #' Repeatr_1_results <- Repeatr_1(mycsvfile = fugotcha, mysongdatafile = releases_songs_durations_wikipedia, releasesdatafile = releasesdatafile)
 #'
 Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile = NULL) {
@@ -55,7 +55,8 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   } else {
 
-    Repeatr0 <- system.file("extdata", "fugotcha.csv", package = "Repeatr")
+    # Repeatr0 <- system.file("extdata", "fugotcha.csv", package = "Repeatr")
+    Repeatr0 <- "./extdata/fugotcha.csv"
     Repeatr0 <- read.csv(fugotcha, header=FALSE)
 
   }
@@ -66,7 +67,8 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   } else {
 
-    mysongdatafile <- system.file("extdata", "releases_songs_durations_wikipedia.csv", package = "Repeatr")
+    # mysongdatafile <- system.file("extdata", "releases_songs_durations_wikipedia.csv", package = "Repeatr")
+    mysongdatafile <- "./extdata/releases_songs_durations_wikipedia.csv"
     mysongvarslookup <- read.csv(mysongdatafile)
 
   }
@@ -77,7 +79,8 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   } else {
 
-    releasesdatafile <- system.file("extdata", "releases_rym.csv", package = "Repeatr")
+    # releasesdatafile <- system.file("extdata", "releases_rym.csv", package = "Repeatr")
+    releasesdatafile <- "./extdata/releases_rym.csv"
     releasesdatalookup <- read.csv(releasesdatafile)
     releasesdatalookup$X <- NULL
 
