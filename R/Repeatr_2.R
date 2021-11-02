@@ -42,7 +42,7 @@ Repeatr_2 <- function(mydf = NULL) {
   for(mysongid in 1:92) {
 
     myvarname <- paste0("song.", mysongid)
-    mysongname <- as.character(mysongidlookup[mysongid,2])
+    mysongname <- as.character(songidlookup[mysongid,2])
     Repeatr2 <- Repeatr2 %>% mutate(!!myvarname := ifelse(song == mysongname,1,0))
 
   }
@@ -130,7 +130,7 @@ Repeatr_2 <- function(mydf = NULL) {
     left_join(songidlookup)
 
   mycount2_sl <- mycount2_sl %>%
-    left_join(releasesdatalookup)
+    left_join(fugazi_song_counts)
 
   fugazi_song_performance_intensity <- mycount2_sl %>%
     select(songid, song, launchdate, chosen, available_rl, intensity)
@@ -142,7 +142,7 @@ Repeatr_2 <- function(mydf = NULL) {
   # merge on repertoire-level availability
   Repeatr2$available_rl <- NULL
   Repeatr2 <- Repeatr2 %>% left_join(available_rl_lookup)
-  Repeatr2 <- Repeatr2 %>% left_join(mysongidlookup)
+  Repeatr2 <- Repeatr2 %>% left_join(songidlookup)
   Repeatr2 <- Repeatr2 %>% select(gid, date, song_number, songid, song, chosen, played, available_rl, first_song, last_song, releaseid,	release, track_number, instrumental,	vocals_picciotto,	vocals_mackaye,	vocals_lally,	duration_seconds)
   Repeatr2 <- Repeatr2 %>% arrange(date, gid, song_number, songid)
 
