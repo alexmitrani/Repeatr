@@ -3,7 +3,7 @@
 #' This data was scraped from the Fugazi Live Series website by Carni Klirs for his project "Visualizing the History of Fugazi".
 #'
 #' @source https://www.dischord.com/fugazi_live_series
-#' @format CSV file with one show per row.
+#' @format dataframe with one show per row.
 #' \describe{
 #' \item{V1}{show id}
 #' \item{V2}{Fugazi Live Series id}
@@ -18,6 +18,5 @@
 
 #' }
 #' @examples
-#'   fugotcha <- "./inst/extdata/fugotcha.csv"
-#'   mydf <- read.csv(fugotcha, header=FALSE)
-"fugotcha.csv"
+#'   Repeatr0
+"Repeatr0"
