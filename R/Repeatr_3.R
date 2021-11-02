@@ -14,7 +14,6 @@
 #' @import knitr
 #'
 #' @param mydf
-#' @param savedata
 #'
 #' @return
 #' @export
