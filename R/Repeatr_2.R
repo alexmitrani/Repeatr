@@ -18,12 +18,9 @@
 #' @export
 #'
 #' @examples
-#' myRepeatr1 <- system.file("data", "Repeatr1.rda", package = "Repeatr")
-#' load(myRepeatr1)
-#' mysongidlookup <- system.file("data", "songidlookup.rda", package = "Repeatr")
-#' load(mysongidlookup)
-#' mycount <- system.file("data", "fugazi_song_counts.rda", package = "Repeatr")
-#' load(mycount)
+#' load("./data/Repeatr1.rda")
+#' load("./data/songidlookup.rda")
+#' load("./data/fugazi_song_counts.rda")
 #' Repeatr_2_results <- Repeatr_2(mydf = Repeatr1, mysongidlookup = songidlookup, mycount = fugazi_song_counts)
 #'
 
