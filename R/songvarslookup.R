@@ -3,7 +3,7 @@
 #' Song data from the Fugazi discography pages on Wikipedia. The variables attributing lead vocals are simplifications in some cases where lead vocals were shared.
 #'
 #' @source https://web.archive.org/web/20201112000517/http://en.wikipedia.org/wiki/Fugazi_discography
-#' @format dataframe with one song per row.
+#' @format dataframe with one row for each song in the Fugazi discography, except those which never appear in the Fugazi Live Series data.
 #' \describe{
 #' \item{songid}{numeric id for each song}
 #' \item{releaseid}{numeric id in ascending chronological order}
