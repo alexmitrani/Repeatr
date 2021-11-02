@@ -18,7 +18,7 @@ Repeatr_5(
 
 }
 \description{
-
+Produces a summary table that includes song performance counts, song performance intensities, and ratings based on the estimated choice model parameters.
 }
 \examples{
 mlRepeatr <- system.file("data", "mlRepeatr.rdata", package = "Repeatr")

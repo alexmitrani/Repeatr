@@ -7,7 +7,7 @@
 Repeatr_3(mydf = NULL)
 }
 \arguments{
-\item{savedata}{}
+\item{mydf}{}
 }
 \value{
 
