@@ -17,7 +17,7 @@
 #' @export
 #'
 #' @examples
-#' Repeatr_5_results <- Repeatr_5(mymodel = ml.Repeatr4, mysongidlookup = songidlookup, mysongvarslookup = songvarslookup, fugazi_song_performance_intensity = fugazi_song_performance_intensity)
+#' Repeatr_5_results <- Repeatr_5(mymodel = ml.Repeatr4)
 #'
 Repeatr_5 <- function(mymodel = NULL) {
 
