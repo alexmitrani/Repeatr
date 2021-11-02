@@ -29,6 +29,14 @@ Repeatr0
 This data was scraped from the Fugazi Live Series website by Carni Klirs for his project "Visualizing the History of Fugazi".
 }
 \examples{
-  Repeatr0
+# What is the total number of people that Fugazi performed for in the shows that are available in the Fugazi Live Series data?
+test <- Repeatr0
+test <- test \%>\% mutate(attendancedata = nchar(V6))
+test <- test \%>\% filter(attendancedata>0)
+test <- test \%>\% mutate(attendance = as.numeric(V6))
+test <- test \%>\% filter(is.na(attendance)==FALSE)
+totalpeople <- sum(test$attendance)
+totalpeople
+
 }
 \keyword{datasets}
