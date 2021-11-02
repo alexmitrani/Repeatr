@@ -1,6 +1,6 @@
 #' Fugazi releases data
 #'
-#' This data was scraped from the Fugazi Live Series website by Carni Klirs for his project "Visualizing the History of Fugazi".
+#' Data on Fugazi releases from rateyourmusic.com.
 #'
 #' @source https://web.archive.org/web/20210211085323/https://rateyourmusic.com/artist/fugazi
 #' @format dataframe with one row for each release.
