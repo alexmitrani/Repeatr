@@ -1,8 +1,6 @@
 #' @name Repeatr_4
 #' @title Prepares data for choice modelling with mlogit
-#' @description
-#' @description
-#' @description
+#' @description Defines indices, makes changes to variable formats and data structure to prepare for choice modelling with mlogit.
 #'
 #' @import dplyr
 #' @import stringr
