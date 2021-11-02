@@ -23,6 +23,12 @@ Repeatr_5 <- function(mymodel = NULL) {
 
   # Report results of the choice modelling for the preferred choice model ----------------------------------
 
+  if(is.null(mymodel)==TRUE) {
+
+    mymodel = ml.Repeatr4
+
+  }
+
   summary.mymodel <- summary(mymodel)
 
   results.mymodel <- as.data.frame(summary.mymodel[["CoefTable"]])
