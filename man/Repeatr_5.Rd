@@ -21,14 +21,10 @@ Repeatr_5(
 Produces a summary table that includes song performance counts, song performance intensities, and ratings based on the estimated choice model parameters.
 }
 \examples{
-mlRepeatr <- system.file("data", "mlRepeatr.rdata", package = "Repeatr")
-load(mlRepeatr)
-mysongidlookup <- system.file("data", "songidlookup.rda", package = "Repeatr")
-load(mysongidlookup)
-mysongvarslookup <- system.file("data", "songvarslookup.rda", package = "Repeatr")
-load(mysongvarslookup)
-fugazi_song_performance_intensity <- system.file("data", "fugazi_song_performance_intensity.rda", package = "Repeatr")
-load(fugazi_song_performance_intensity)
+load("./data/mlRepeatr.rdata")
+load("./data/songidlookup.rda")
+load("./data/songvarslookup.rda")
+load("./data/fugazi_song_performance_intensity.rda")
 Repeatr_5_results <- Repeatr_5(mymodel = ml.Repeatr4, mysongidlookup = songidlookup, mysongvarslookup = songvarslookup, fugazi_song_performance_intensity = fugazi_song_performance_intensity)
 
 

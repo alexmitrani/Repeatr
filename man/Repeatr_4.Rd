@@ -23,8 +23,7 @@ Repeatr_4(
 Defines indices, makes changes to variable formats and data structure to prepare for choice modelling with mlogit.
 }
 \examples{
-myRepeatr3 <- system.file("data", "Repeatr3.rda", package = "Repeatr")
-load(myRepeatr3)
+load("./data/Repeatr3.rda")
 Repeatr_4_results <- Repeatr_4(mydf = Repeatr3)
 
 
