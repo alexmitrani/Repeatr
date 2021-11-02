@@ -245,9 +245,9 @@ The above categories were defined after some experimentation to establish which 
 The strength of preference for each song was represented using a dummy variable (on/off) for each song, such that the parameters associated with these variables would represent the strength of preference for each song.  The dummy variable for "Waiting Room" was omitted and therefore the preference parameter for this song was zero by definition.  
 The utility formula used for the preferred model was this one:
 
-choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5 
-                 + yearsold_6 + yearsold_7 + yearsold_8 + yearsold_1_vp + yearsold_2_vp + yearsold_3_vp + yearsold_4_vp + yearsold_5_vp + yearsold_6_vp + yearsold_7_vp + yearsold_8_vp + songnumberone_instrumental
-                 + song2 + ... + song92
+choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 
+          + yearsold_5 + yearsold_6 + yearsold_7 + yearsold_8
+          + song2 + ... + song92
 
 The model was fitted by an optimisation process which estimated a parameter for each of the independent variables, such that the likelihood of correctly predicting the observed choices would be maximised. 
 
@@ -255,101 +255,100 @@ The parameters related to the age of the songs support the hypothesis that recen
 
 The implied preferences for each song are shown here in descending order of preference: 
 
-
-| rank | songid|song                         |   Estimate|     z.value|
-|---------------:|------:|:----------------------------|----------:|-----------:|
-|               1|     24|do you like me               |  0.6048215|   4.9227169|
-|               2|     42|break                        |  0.5333678|   3.7081070|
-|               3|     18|bed for the scraping         |  0.5272844|   4.5142199|
-|               4|      2|reclamation                  |  0.5026333|   7.5551208|
-|               5|     56|place position               |  0.3844278|   2.5128434|
-|               6|     29|target                       |  0.3289904|   2.7390744|
-|               7|     71|cashout                      |  0.3093017|   1.4822617|
-|               8|     44|closed captioned             |  0.2762255|   1.8172473|
-|               9|      7|sieve-fisted find            |  0.2313300|   2.9326569|
-|              10|      3|blueprint                    |  0.2163303|   2.8482410|
-|              11|     14|rend it                      |  0.1171681|   1.2305587|
-|              12|     49|recap modotti                |  0.0612181|   0.4011761|
-|              13|      6|margin walker                |  0.0314990|   0.4076057|
-|              14|      1|waiting room                 |  0.0000000|          NA|
-|              15|      9|turnover                     | -0.0078740|  -0.0987649|
-|              16|     64|number 5                     | -0.0445538|  -0.2559931|
-|              17|     28|public witness program       | -0.0939300|  -0.8816959|
-|              18|      5|merchandise                  | -0.1901821|  -3.0494837|
-|              19|     36|forensic scene               | -0.2248567|  -1.7936684|
-|              20|     30|smallpox champion            | -0.2289405|  -2.1666559|
-|              21|     46|arpeggiator                  | -0.2307076|  -1.5225920|
-|              22|     77|the kill                     | -0.2332632|  -0.9787581|
-|              23|     68|oh                           | -0.2423260|  -1.2956627|
-|              24|     65|floating boy                 | -0.2566677|  -1.6059355|
-|              25|     37|birthday pony                | -0.2626375|  -2.1799984|
-|              26|     70|argument                     | -0.2873278|  -1.4772253|
-|              27|     19|facet squared                | -0.2878682|  -3.3403466|
-|              28|     13|give me the cure             | -0.3629705|  -4.5816825|
-|              29|      4|long division                | -0.3782087|  -5.8705723|
-|              30|     12|two beats off                | -0.4091923|  -5.0852619|
-|              31|     59|fd                           | -0.4469060|  -2.8296841|
-|              32|     32|by you                       | -0.5014571|  -4.8217879|
-|              33|     63|five corporations            | -0.5266728|  -3.4217844|
-|              34|     67|no surprise                  | -0.5494068|  -3.3253854|
-|              35|     87|life and limb                | -0.5577754|  -1.9783532|
-|              36|     25|instrument                   | -0.5686202|  -6.2234191|
-|              37|     11|and the same                 | -0.5733936|  -8.5623403|
-|              38|     73|ex-spectator                 | -0.5824468|  -2.7594447|
-|              39|     85|full disclosure              | -0.6082479|  -2.2949509|
-|              40|     22|exit only                    | -0.6396781|  -7.1601008|
-|              41|     26|great cop                    | -0.6508605|  -7.1222170|
-|              42|     82|epic problem                 | -0.6947491|  -2.8437461|
-|              43|      8|repeater                     | -0.7490069| -10.8410232|
-|              44|     17|song #1                      | -0.7726258| -11.0508863|
-|              45|     75|nightshop                    | -0.7798517|  -3.5915192|
-|              46|     27|runaway return               | -0.7985376|  -9.0163428|
-|              47|     20|styrofoam                    | -0.8008973| -10.1347948|
-|              48|     10|promises                     | -0.8385634| -12.3031021|
-|              49|     33|bulldog front                | -0.8466024|  -9.3998760|
-|              50|     52|back to base                 | -0.8660534|  -6.4792459|
-|              51|     15|suggestion                   | -0.8724658| -12.6854575|
-|              52|     23|reprovisional                | -0.9089955| -10.5779555|
-|              53|     50|walken's syndrome            | -0.9118379|  -7.6306548|
-|              54|     34|burning                      | -0.9328529| -10.2710262|
-|              55|     16|shut the door                | -0.9367075| -12.9431546|
-|              56|     62|downed city                  | -0.9439336|  -6.6097795|
-|              57|     31|sweet and low                | -0.9501281|  -9.9159970|
-|              58|     54|fell, destroyed              | -0.9729306|  -7.7085084|
-|              59|     21|bad mouth                    | -0.9790204| -13.3559392|
-|              60|     41|cassavetes                   | -0.9987770|  -9.4458472|
-|              61|     39|latin roots                  | -1.0430587| -10.4205831|
-|              62|     88|strangelight                 | -1.0893161|  -3.8203424|
-|              63|     48|dear justice letter          | -1.1636623| -10.7991956|
-|              64|     61|long distance runner         | -1.2147931|  -8.7308100|
-|              65|     72|caustic acrostic             | -1.2623956|  -6.8413261|
-|              66|     69|pink frosty                  | -1.3000547|  -7.7373248|
-|              67|     51|last chance for a slow dance | -1.3010953| -11.5474950|
-|              68|     43|lockdown                     | -1.3016907| -13.3825741|
-|              69|     55|returning the screw          | -1.3114796| -11.3594965|
-|              70|     35|burning too                  | -1.3183706| -16.2188086|
-|              71|     38|greed                        | -1.3779277| -15.9211257|
-|              72|     60|nice new outfit              | -1.4905509| -12.7929043|
-|              73|     47|stacks                       | -1.5103555| -15.0953498|
-|              74|     53|break-in                     | -1.5331057| -14.7470910|
-|              75|     79|foreman's dog                | -1.6291463|  -7.2289465|
-|              76|     57|glueman                      | -1.6748376| -15.9894030|
-|              77|     80|guilford fall                | -1.6783320|  -7.7253397|
-|              78|     45|brendan #1                   | -1.6895158| -18.1786458|
-|              79|     40|kyeo                         | -1.7342721| -19.9729588|
-|              80|     58|joe #1                       | -2.0155436| -20.5640398|
-|              81|     76|latest disgrace              | -2.0749113| -10.7699970|
-|              82|     66|furniture                    | -2.2872137| -20.4727081|
-|              83|     78|version                      | -2.5394767| -12.8536318|
-|              84|     74|steady diet                  | -2.7813610| -17.4521065|
-|              85|     86|combination lock             | -2.9705633| -12.3216951|
-|              86|     83|23 beats off                 | -3.0839526| -14.6435558|
-|              87|     92|hello morning                | -3.2070688|  -4.4088405|
-|              88|     81|the word                     | -3.5371836| -18.8652331|
-|              89|     84|in defense of humans         | -3.6977472| -18.0978375|
-|              90|     89|turn off your guns           | -4.2165325| -16.1225882|
-|              91|     90|provisional                  | -4.5725821| -12.7464885|
-|              92|     91|polish                       | -4.8794679| -11.8286749|
+| rank_rating| songid|song                         |   Estimate|     z-value|
+|-----------:|------:|:----------------------------|----------:|-----------:|
+|           1|     18|bed for the scraping         |  0.4685948|   4.0205493|
+|           2|      2|reclamation                  |  0.4503064|   6.7623932|
+|           3|     42|break                        |  0.4472362|   3.1116140|
+|           4|     24|do you like me               |  0.2930470|   2.4816259|
+|           5|     44|closed captioned             |  0.1790967|   1.1789557|
+|           6|     71|cashout                      |  0.1320922|   0.6345307|
+|           7|     56|place position               |  0.0724564|   0.4875292|
+|           8|     29|target                       |  0.0142068|   0.1236963|
+|           9|      1|waiting room                 |  0.0000000|          NA|
+|          10|     49|recap modotti                | -0.0115039|  -0.0754252|
+|          11|     64|number 5                     | -0.1267786|  -0.7309953|
+|          12|      3|blueprint                    | -0.1268010|  -1.9431757|
+|          13|      7|sieve-fisted find            | -0.1797580|  -2.6700352|
+|          14|      5|merchandise                  | -0.1919736|  -3.0745552|
+|          15|     14|rend it                      | -0.2080671|  -2.4047496|
+|          16|     46|arpeggiator                  | -0.2681258|  -1.7743566|
+|          17|     37|birthday pony                | -0.3492089|  -2.9047570|
+|          18|     19|facet squared                | -0.3668103|  -4.2527223|
+|          19|      6|margin walker                | -0.3755100|  -5.7653869|
+|          20|      9|turnover                     | -0.4011295|  -5.8639174|
+|          21|     70|argument                     | -0.4339950|  -2.2341859|
+|          22|      4|long division                | -0.4417501|  -6.8714045|
+|          23|     77|the kill                     | -0.4451615|  -1.8739556|
+|          24|     28|public witness program       | -0.4529438|  -4.5203743|
+|          25|     68|oh                           | -0.4830675|  -2.6188749|
+|          26|     59|fd                           | -0.5274612|  -3.3423489|
+|          27|     36|forensic scene               | -0.5367091|  -4.4688752|
+|          28|     32|by you                       | -0.5704158|  -5.4983645|
+|          29|     63|five corporations            | -0.5765618|  -3.7477441|
+|          30|     30|smallpox champion            | -0.5808545|  -5.8600689|
+|          31|     11|and the same                 | -0.5825235|  -8.6892163|
+|          32|     65|floating boy                 | -0.6002985|  -3.8640181|
+|          33|     25|instrument                   | -0.6445183|  -7.0706312|
+|          34|     26|great cop                    | -0.7312454|  -8.0170660|
+|          35|     73|ex-spectator                 | -0.7403676|  -3.5123380|
+|          36|     17|song #1                      | -0.7594505| -10.8546807|
+|          37|     13|give me the cure             | -0.7651534| -11.3590913|
+|          38|     12|two beats off                | -0.7658490| -10.9935842|
+|          39|     87|life and limb                | -0.7667828|  -2.7331275|
+|          40|     85|full disclosure              | -0.8144959|  -3.0877915|
+|          41|      8|repeater                     | -0.8165212| -11.8294782|
+|          42|     20|styrofoam                    | -0.8629219| -10.9209256|
+|          43|     82|epic problem                 | -0.8688107|  -3.5623883|
+|          44|     15|suggestion                   | -0.8712364| -12.6718599|
+|          45|     67|no surprise                  | -0.8858005|  -5.5064657|
+|          46|     10|promises                     | -0.8909414| -13.0838910|
+|          47|     52|back to base                 | -0.9537431|  -7.1500783|
+|          48|     21|bad mouth                    | -0.9685272| -13.2052790|
+|          49|     22|exit only                    | -0.9687153| -11.9057337|
+|          50|     16|shut the door                | -0.9830089| -13.5979099|
+|          51|     75|nightshop                    | -1.0018271|  -4.6685897|
+|          52|     31|sweet and low                | -1.0093410| -10.5808286|
+|          53|     27|runaway return               | -1.1353145| -14.2416451|
+|          54|     62|downed city                  | -1.2355232|  -8.8859418|
+|          55|     33|bulldog front                | -1.2553896| -15.7485348|
+|          56|     50|walken's syndrome            | -1.2564881| -11.0491557|
+|          57|     23|reprovisional                | -1.2637145| -16.7414705|
+|          58|     54|fell, destroyed              | -1.2776550| -10.5755254|
+|          59|     88|strangelight                 | -1.2933124|  -4.5597364|
+|          60|     61|long distance runner         | -1.3076671|  -9.4196796|
+|          61|     41|cassavetes                   | -1.3214664| -13.2606963|
+|          62|     35|burning too                  | -1.3330914| -16.3947028|
+|          63|     69|pink frosty                  | -1.3455647|  -8.0194203|
+|          64|     34|burning                      | -1.3505795| -16.7569759|
+|          65|     55|returning the screw          | -1.3622898| -11.8250831|
+|          66|     39|latin roots                  | -1.3864897| -14.8729959|
+|          67|     38|greed                        | -1.4236855| -16.4615836|
+|          68|     48|dear justice letter          | -1.5339713| -15.2271530|
+|          69|     47|stacks                       | -1.5704129| -15.7211129|
+|          70|     72|caustic acrostic             | -1.5772779|  -8.7318517|
+|          71|     51|last chance for a slow dance | -1.6346883| -15.3370123|
+|          72|     43|lockdown                     | -1.6888388| -18.9444164|
+|          73|     45|brendan #1                   | -1.6914230| -18.2917945|
+|          74|     40|kyeo                         | -1.7318589| -19.9392013|
+|          75|     60|nice new outfit              | -1.8434366| -16.6845364|
+|          76|     79|foreman's dog                | -1.8785768|  -8.4448863|
+|          77|     53|break-in                     | -1.9233088| -20.0643187|
+|          78|     58|joe #1                       | -1.9676901| -20.1655277|
+|          79|     80|guilford fall                | -2.0028130|  -9.3636217|
+|          80|     57|glueman                      | -2.0503602| -21.1530772|
+|          81|     66|furniture                    | -2.2816073| -20.4162133|
+|          82|     76|latest disgrace              | -2.3674757| -12.4776190|
+|          83|     90|provisional                  | -2.5528997|  -7.1098902|
+|          84|     78|version                      | -2.5991644| -13.1774297|
+|          85|     74|steady diet                  | -2.7951190| -17.5681954|
+|          86|     86|combination lock             | -3.0312456| -12.5887263|
+|          87|     83|23 beats off                 | -3.1431784| -14.9350630|
+|          88|     92|hello morning                | -3.4122526|  -4.6949122|
+|          89|     81|the word                     | -3.5349788| -18.8528885|
+|          90|     84|in defense of humans         | -3.6961693| -18.0883489|
+|          91|     89|turn off your guns           | -4.2152626| -16.1168400|
+|          92|     91|polish                       | -4.9432476| -11.9842692|
 
 It is hard to say exactly whose preferences are represented by these results. It seems reasonable to assume that they mainly represent the band's preferences, more often than not Ian MacKaye and Guy Picciotto, but the preferences of the audience may also have influenced the choice of the songs that were performed, directly or indirectly. 
 
