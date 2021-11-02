@@ -2,7 +2,7 @@
 % Please edit documentation in R/Repeatr_4.R
 \name{Repeatr_4}
 \alias{Repeatr_4}
-\title{Prepares data for choice modelling with mlogit}
+\title{Prepares data for choice modelling with mlogit.  Running pre-defined choice models is optional.}
 \usage{
 Repeatr_4(
   mydf = NULL,
@@ -23,12 +23,5 @@ Repeatr_4(
 Defines indices, makes changes to variable formats and data structure to prepare for choice modelling with mlogit.
 }
 \examples{
-myRepeatr3 <- system.file("data", "Repeatr3.rda", package = "Repeatr")
-load(myRepeatr3)
 Repeatr_4_results <- Repeatr_4(mydf = Repeatr3)
-
-
-
-
-
 }
