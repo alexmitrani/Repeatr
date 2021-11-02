@@ -17,19 +17,9 @@
 #' @export
 #'
 #' @examples
-#' mlRepeatr <- system.file("data", "mlRepeatr.rdata", package = "Repeatr")
-#' load(mlRepeatr)
-#' mysongidlookup <- system.file("data", "songidlookup.rda", package = "Repeatr")
-#' load(mysongidlookup)
-#' mysongvarslookup <- system.file("data", "songvarslookup.rda", package = "Repeatr")
-#' load(mysongvarslookup)
-#' fugazi_song_performance_intensity <- system.file("data", "fugazi_song_performance_intensity.rda", package = "Repeatr")
-#' load(fugazi_song_performance_intensity)
 #' Repeatr_5_results <- Repeatr_5(mymodel = ml.Repeatr4, mysongidlookup = songidlookup, mysongvarslookup = songvarslookup, fugazi_song_performance_intensity = fugazi_song_performance_intensity)
 #'
-#'
-#'
-Repeatr_5 <- function(mymodel = NULL, mysongidlookup = songidlookup, mysongvarslookup = songvarslookup, fugazi_song_performance_intensity = fugazi_song_performance_intensity) {
+Repeatr_5 <- function(mymodel = NULL) {
 
   # Report results of the choice modelling for the preferred choice model ----------------------------------
 
@@ -49,7 +39,7 @@ Repeatr_5 <- function(mymodel = NULL, mysongidlookup = songidlookup, mysongvarsl
     mutate(songid = ifelse(parameter_id<=91,parameter_id+1,NA))
 
   choice_model_results_table <- choice_model_results_table %>%
-    left_join(mysongidlookup)
+    left_join(songidlookup)
 
   choice_model_results_table <- choice_model_results_table %>%
     mutate(variable = ifelse(parameter_id<=91,song,variable))
@@ -68,14 +58,14 @@ Repeatr_5 <- function(mymodel = NULL, mysongidlookup = songidlookup, mysongvarsl
     mutate(songid = parameter_id+1)
 
   results.mymodel <- results.mymodel %>%
-    left_join(mysongidlookup)
+    left_join(songidlookup)
 
   results.mymodel <- results.mymodel %>%
     select(songid, song, Estimate, "z-value")
 
   # to add back in "waiting room" which was the omitted constant in the choice model and has a parameter value of zero by definition.
 
-  results.mymodel.os <- mysongidlookup %>%
+  results.mymodel.os <- songidlookup %>%
     filter(songid==1) %>%
     mutate(Estimate = 0) %>%
     mutate("z-value" = NA)
@@ -125,7 +115,7 @@ Repeatr_5 <- function(mymodel = NULL, mysongidlookup = songidlookup, mysongvarsl
     relocate(rank_rating)
 
   mydf2 <- mydf2 %>%
-    left_join(mysongvarslookup)
+    left_join(songvarslookup)
 
   mydf2 <- mydf2 %>%
     relocate(duration_seconds, .after=launchdate)
@@ -146,7 +136,7 @@ Repeatr_5 <- function(mymodel = NULL, mysongidlookup = songidlookup, mysongvarsl
   mydf <- releasesdatalookup
 
   mydf2 <- summary %>%
-    left_join(mysongvarslookup)
+    left_join(songvarslookup)
 
   mydf2 <- mydf2 %>%
     select(songid, releaseid, song, rating)
