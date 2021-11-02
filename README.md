@@ -2,7 +2,7 @@
 
 ## ["I had a name, but now I'm a number"](https://fugazi.bandcamp.com/track/repeater)
 
-Analysis and modelling of Fugazi Live Series metadata: https://www.dischord.com/fugazi_live_series
+Analysis and modelling of Fugazi Live Series metadata from https://www.dischord.com/fugazi_live_series
 
 The initial data was provided by Ian James Wright of the Alphabetical Fugazi podcast, who got it from Carni Klirs who did the project [Visualizing the History of Fugazi](https://www.carniklirs.com/project/fugazi).
 
@@ -471,7 +471,11 @@ The song ratings calculated using the Fugazi Live Series (FLS) data were used to
 |steady diet of nothing |         5|15/07/1991  |          11| 0.6127255|      0.708|
 |furniture              |        10|15/10/2001  |           3| 0.5549006|      0.734|
 
-Although many of the ratings are similar in magnitude, there are some differences. There is more variation in the ratings that have been calculated using the FLS data compared to the RYM ratings, and the lowest FLS ratings are considerably lower than the lowest RYM ratings.   Differences such as these were to be expected.  The FLS ratings were calculated in a consistent way, based largely on the real choices of the band regarding which songs to play at shows, and the band actually played the songs they chose to a live audience!  The RYM ratings were from larger groups of people, not necessarily the same people in each case, who were simply expressing how much they liked or disliked the music, with no restrictions and no consequences.   
+Although many of the ratings are similar in magnitude, there are some differences. There is more variation in the ratings that have been calculated using the FLS data compared to the RYM ratings, and the lowest FLS ratings are considerably lower than the lowest RYM ratings.   Differences such as these were to be expected.  The FLS ratings were calculated in a consistent way, based largely on the real choices of the band regarding which songs to play at shows, and the band actually played the songs they chose to a live audience!  The RYM ratings were from larger groups of people, not necessarily the same people in each case, who were simply expressing how much they liked or disliked the music, with no restrictions and no consequences.  
+
+## Repeatr package for R
+
+The Repeatr package can be installed from RStudio using the .tar.gz file in the root directory of this repository.  The package gives easy access to the functions, dataframes, and related documentation.  
 
 ## The End
 
