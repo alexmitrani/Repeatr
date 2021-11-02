@@ -5,13 +5,13 @@
 \alias{Repeatr0}
 \title{Fugazi Live Series data}
 \format{
-dataframe with one show per row.
+dataframe with one row for each show.
 \describe{
 \item{V1}{show id}
 \item{V2}{Fugazi Live Series id}
-\item{V3}{Show Date}
+\item{V3}{Show date}
 \item{V4}{Venue}
-\item{V5}{Door Price}
+\item{V5}{Door price}
 \item{V6}{Attendance}
 \item{V7}{Recorded by}
 \item{V8}{Mastered by}
