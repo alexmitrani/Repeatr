@@ -20,7 +20,8 @@ https://web.archive.org/web/20210211085323/https://rateyourmusic.com/artist/fuga
 releasesdatalookup
 }
 \description{
-This data was scraped from the Fugazi Live Series website by Carni Klirs for his project "Visualizing the History of Fugazi".
+Data on Fugazi releases from rateyourmusic.com.
+First Demo was excluded because only 3 of the songs on this release appear in the Fugazi Live Series data, so it was not possible to compare the RYM ratings with ratings based on the choice modelling results in this case.
 }
 \examples{
   releasesdatalookup
