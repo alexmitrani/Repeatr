@@ -1,8 +1,6 @@
 #' @name Repeatr_5
 #' @title Produces results using a preferred choice model supplied by the user as "mymodel"
-#' @description
-#' @description
-#' @description
+#' @description Produces a summary table that includes song performance counts, song performance intensities, and ratings based on the estimated choice model parameters.
 #'
 #' @import dplyr
 #' @import stringr
