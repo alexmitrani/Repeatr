@@ -20,9 +20,12 @@ washington-dc-usa-90387	FLS0001	03/09/1987	Wilson Center	$5	300	Joey Picuri	Fuga
 "gid" is short for "gig id"
 }
 \examples{
-load("./data/Repeatr1.rda")
-load("./data/songidlookup.rda")
-load("./data/fugazi_song_counts.rda")
+myRepeatr1 <- system.file("data", "Repeatr1.rda", package = "Repeatr")
+load(myRepeatr1)
+mysongidlookup <- system.file("data", "songidlookup.rda", package = "Repeatr")
+load(mysongidlookup)
+mycount <- system.file("data", "fugazi_song_counts.rda", package = "Repeatr")
+load(mycount)
 Repeatr_2_results <- Repeatr_2(mydf = Repeatr1, mysongidlookup = songidlookup, mycount = fugazi_song_counts)
 
 }

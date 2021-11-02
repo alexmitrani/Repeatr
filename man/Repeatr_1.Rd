@@ -24,9 +24,9 @@ Another data file that was used was called "releases_songs_durations_wikipedia.c
 This file contains the following variables: index	releaseid	release	track_number	songid	song	instrumental	vocals_picciotto	vocals_mackaye	vocals_lally	duration_seconds
 }
 \examples{
-fugotcha <- "./extdata/fugotcha.csv"
-releases_songs_durations_wikipedia <- "./extdata/releases_songs_durations_wikipedia.csv"
-releasesdatafile <- "./extdata/releases_rym.csv"
+fugotcha <- system.file("extdata", "fugotcha.csv", package = "Repeatr")
+releases_songs_durations_wikipedia <- system.file("extdata", "releases_songs_durations_wikipedia.csv", package = "Repeatr")
+releasesdatafile <- system.file("extdata", "releases_rym.csv", package = "Repeatr")
 Repeatr_1_results <- Repeatr_1(mycsvfile = fugotcha, mysongdatafile = releases_songs_durations_wikipedia, releasesdatafile = releasesdatafile)
 
 }
