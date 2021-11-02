@@ -22,14 +22,7 @@
 #' @export
 #'
 #' @examples
-#' myRepeatr3 <- system.file("data", "Repeatr3.rda", package = "Repeatr")
-#' load(myRepeatr3)
 #' Repeatr_4_results <- Repeatr_4(mydf = Repeatr3)
-#'
-#'
-#'
-#'
-#'
 
 Repeatr_4 <- function(mydf = NULL, runchoicemodels = FALSE, basic_model = FALSE, first_song_model = FALSE, last_song_model = FALSE, intermediate_song_model = FALSE) {
 
