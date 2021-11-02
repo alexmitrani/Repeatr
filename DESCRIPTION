@@ -1,5 +1,5 @@
 Package: Repeatr
-Title: R code for analysis and modelling of Fugazi Live Series metadata.
+Title: Analysis and modelling of Fugazi Live Series metadata.
 Version: 0.0.0.9001
 Authors@R: 
     person("Alex", "Mitrani", , "27974470+alexmitrani@users.noreply.github.com", role = c("aut", "cre"),
