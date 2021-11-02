@@ -19,7 +19,8 @@
 #' @export
 #'
 #' @examples
-#' load("./data/Repeatr2.rda")
+#' myRepeatr2 <- system.file("data", "Repeatr2.rda", package = "Repeatr")
+#' load(myRepeatr2)
 #' Repeatr_3_results <- Repeatr_3(mydf = Repeatr2)
 #'
 Repeatr_3 <- function(mydf = NULL) {
