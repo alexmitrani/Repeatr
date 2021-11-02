@@ -8,7 +8,7 @@ The initial data was provided by Ian James Wright of the Alphabetical Fugazi pod
 
 ## Song counts
 
-Performance counts were calculated for all the released Fugazi songs that were performed live, using data from 896 shows from FLS0001 up to and including FLS1045. 
+Performance counts were calculated for all the released Fugazi songs that were performed live, using data from 895 shows from FLS0001 up to and including FLS1045. 
 
 These frequency counts do not necessarily measure the band's preferences for the songs, as more recently released songs were available for fewer shows than older songs.  
 
