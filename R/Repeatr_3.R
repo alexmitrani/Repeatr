@@ -1,8 +1,6 @@
 
 #' @name Repeatr_3
 #' @title takes a dataframe with gid, song_number, and songid, and modifies it to make it suitable for choice modelling.
-#' @description
-#' @description
 #' @description "gid" is short for "gig id"
 #'
 #' @import dplyr
