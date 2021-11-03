@@ -16,9 +16,9 @@
 #' @import rlang
 #' @import knitr
 #'
-#' @param mycsvfile
-#' @param mysongdatafile
-#' @param releasesdatafile
+#' @param mycsvfile Optional name of CSV file containing Fugazi Live Series data to be used. If omitted, the default file provided with the package will be used.
+#' @param mysongdatafile Optional name of CSV file containing song data to be used. If omitted, the default file provided with the package will be used.
+#' @param releasesdatafile Optional name of CSV file containing releases data to be used. If omitted, the default file provided with the package will be used.
 #'
 #' @return
 #' @export
