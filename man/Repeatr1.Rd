@@ -5,7 +5,7 @@
 \alias{Repeatr1}
 \title{Fugazi Live Series data in long format with related discography data}
 \format{
-dataframe with one row for each song performed in all the Fugazi Live Series shows that have data available.
+dataframe with one row for show and each song performed in all the Fugazi Live Series shows with data.
 \describe{
 \item{gid}{gig id.  This is a concatenation of city, country, and date}
 \item{date}{Show date}
