@@ -1,21 +1,25 @@
-#' Fugazi Live Series data in long format with related discography data
+#' Fugazi Live Series choice data in long format with related discography data
 #'
 #' Song data from the Fugazi discography pages on Wikipedia. The variables attributing lead vocals are simplifications in some cases where lead vocals were shared.
 #' The variables song_number, first_song and last_song were defined after data cleaning, so intros, outros, sound checks, interludes and one-offs are not included.
 #'
 #' @source https://www.dischord.com/fugazi_live_series
 #' @source https://web.archive.org/web/20201112000517/http://en.wikipedia.org/wiki/Fugazi_discography
-#' @format dataframe with one row for show and each song performed in all the Fugazi Live Series shows with data.
+#' @format dataframe with one row for each show, each song performed and each song available in all the Fugazi Live Series shows with data.
 #' \describe{
+#' \item{case}{This is a numerical id with unique values for each combination of gid and song_number}
 #' \item{gid}{gig id.  This is a concatenation of city, country, and date}
 #' \item{date}{Show date}
 #' \item{year}{Year}
-#' \item{month}{Month, as a number}
-#' \item{day}{Day, as a number}
+#' \item{launchdate}{The date on which the song was first performed according to the data}
+#' \item{yearsold}{The difference between the date of the show and the launchdate of the song, measured in years}
 #' \item{song_number}{The number of the song in the sequence of songs that were performed as part of that show}
-#' \item{songid}{numeric id for each song}
+#' \item{alt}{alt is the songid variable renamed}
 #' \item{song}{The name of the song}
-#' \item{number_songs}{The number of songs that were performed as part of that show}
+#' \item{choice}{1 if the song was performed at that point in the show, 0 otherwise}
+#' \item{played}{1 if the song was performed at or before that point in the show, 0 otherwise}
+#' \item{available_rl}{Repertoire-level availability: 1 if the song was available in the repertoire for this show, 0 otherwise}
+#' \item{available_gl}{Gig-level availability: 1 if the song was available in the repertoire and was available to be played at this point in this show, 0 otherwise}
 #' \item{first_song}{Identifies the first song of the set}
 #' \item{last_song}{Identifies the last song of the set}
 #' \item{releaseid}{numeric id in ascending chronological order}
@@ -26,7 +30,8 @@
 #' \item{vocals_mackaye}{indicates whether or not Ian Mackaye sang lead vocals on this track}
 #' \item{vocals_lally}{indicates whether or not Joe Lally sang lead vocals on this track}
 #' \item{duration_seconds}{The duration of the song in seconds}
+#' \item{first_song_instrumental}{1 if first song of the show and instrumental, 0 otherwise}
 #' }
 #' @examples
-#'   Repeatr1
-"Repeatr1"
+#'   Repeatr2
+"Repeatr2"
