@@ -83,6 +83,22 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   }
 
+  # Define data file with other variables for possible later use
+  othervariables <- Repeatr0 %>%
+    select(V1, V2, V4, V5, V6, V7, V8, V9)
+
+  othervariables <- othervariables %>%
+    rename(gid = V1) %>%
+    rename(flsid = V2) %>%
+    rename(venue = V4) %>%
+    rename(doorprice = V5) %>%
+    rename(attendance = V6) %>%
+    rename(recorded_by = V7) %>%
+    rename(mastered_by = V8) %>%
+    rename(original_source = V9)
+
+
+
   # Select the most relevant columns -------
 
   Repeatr1 <- subset(Repeatr0, select = -c(V2, V4, V5, V6, V7, V8, V9))

@@ -10,7 +10,7 @@ dataframe with one row for each release.
 \item{release}{release name}
 \item{releaseid}{numeric id in ascending chronological order}
 \item{releasedate}{release date}
-\item{rym_rating}{RYM rating scaled to the interval \link{0,1}}
+\item{rym_rating}{RYM rating scaled to the interval between 0 and 1}
 }
 }
 \source{

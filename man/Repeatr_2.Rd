@@ -7,7 +7,7 @@
 Repeatr_2(mydf = NULL)
 }
 \arguments{
-\item{mydf}{}
+\item{mydf}{optional dataframe to be used.  If omitted the default dataframe will be used.}
 }
 \value{
 

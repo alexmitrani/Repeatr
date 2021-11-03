@@ -7,7 +7,7 @@
 Repeatr_5(mymodel = NULL)
 }
 \arguments{
-\item{mymodel}{}
+\item{mymodel}{optional choice model to be used to generate the results. If omitted, the default choice model will be used, which is ml.Repeatr4.}
 }
 \value{
 

@@ -15,7 +15,7 @@ dataframe with one row for each song in the Fugazi discography, except those whi
 \item{chosen}{The number of times the song was performed according to the data}
 \item{available_rl}{The number of shows for which the song was available in the band's repertoire}
 \item{intensity}{The performance intensity is the ratio of chosen/available_rl}
-\item{rating}{Rating on the interval \link{0,1} where 1 is the highest rating and 0 the lowest.}
+\item{rating}{Rating on the interval between 0 and 1 where 1 is the highest rating and 0 the lowest.}
 \item{releaseid}{numeric id in ascending chronological order}
 \item{release}{release name}
 \item{track_number}{The track number for the song on the release}
