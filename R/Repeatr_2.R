@@ -12,7 +12,7 @@
 #' @import rlang
 #' @import knitr
 #'
-#' @param mydf
+#' @param mydf optional dataframe to be used.  If omitted the default dataframe will be used.
 #'
 #' @return
 #' @export

@@ -11,4 +11,4 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 LazyData: true
 Depends: 
-    R (>= 2.10), crayon(>= 1.4.1), dplyr(>= 1.0.7), fastDummies(>= 1.6.3), knitr(>= 1.36), lubridate(>= 1.8.0), mlogit(>= 1.1-1), rlang(>= 0.4.12), stringr(>= 1.4.0)   
+    R (>= 3.5.0), crayon(>= 1.4.1), dplyr(>= 1.0.7), fastDummies(>= 1.6.3), knitr(>= 1.36), lubridate(>= 1.8.0), mlogit(>= 1.1-1), rlang(>= 0.4.12), stringr(>= 1.4.0)   

@@ -14,7 +14,17 @@ Repeatr_4(
 )
 }
 \arguments{
-\item{intermediate_song_model}{}
+\item{mydf}{optional dataframe to be used.  If omitted, the default dataframe will be used.}
+
+\item{runchoicemodels}{This should be set to TRUE if one or more choice models should be run, otherwise they will all be skipped.}
+
+\item{basic_model}{This should be set to TRUE if the basic choice model should be run, otherwise it will be skipped.}
+
+\item{first_song_model}{This should be set to TRUE if the first song choice model should be run, otherwise it will be skipped.}
+
+\item{last_song_model}{This should be set to TRUE if the last song choice model should be run, otherwise it will be skipped.}
+
+\item{intermediate_song_model}{This should be set to TRUE if the intermediate song choice model should be run, otherwise it will be skipped.}
 }
 \value{
 
