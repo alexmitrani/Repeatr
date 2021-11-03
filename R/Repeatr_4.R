@@ -11,12 +11,12 @@
 #' @import knitr
 #'
 #'
-#' @param mydf
-#' @param runchoicemodels
-#' @param basic_model
-#' @param first_song_model
-#' @param last_song_model
-#' @param intermediate_song_model
+#' @param mydf optional dataframe to be used.  If omitted, the default dataframe will be used.
+#' @param runchoicemodels This should be set to TRUE if one or more choice models should be run, otherwise they will all be skipped.
+#' @param basic_model This should be set to TRUE if the basic choice model should be run, otherwise it will be skipped.
+#' @param first_song_model This should be set to TRUE if the first song choice model should be run, otherwise it will be skipped.
+#' @param last_song_model This should be set to TRUE if the last song choice model should be run, otherwise it will be skipped.
+#' @param intermediate_song_model This should be set to TRUE if the intermediate song choice model should be run, otherwise it will be skipped.
 #'
 #' @return
 #' @export
