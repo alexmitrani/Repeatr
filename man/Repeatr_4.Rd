@@ -6,25 +6,19 @@
 \usage{
 Repeatr_4(
   mydf = NULL,
-  runchoicemodels = FALSE,
   basic_model = FALSE,
   first_song_model = FALSE,
-  last_song_model = FALSE,
-  intermediate_song_model = FALSE
+  other_songs_model = FALSE
 )
 }
 \arguments{
 \item{mydf}{optional dataframe to be used.  If omitted, the default dataframe will be used.}
 
-\item{runchoicemodels}{This should be set to TRUE if one or more choice models should be run, otherwise they will all be skipped.}
-
 \item{basic_model}{This should be set to TRUE if the basic choice model should be run, otherwise it will be skipped.}
 
 \item{first_song_model}{This should be set to TRUE if the first song choice model should be run, otherwise it will be skipped.}
 
-\item{last_song_model}{This should be set to TRUE if the last song choice model should be run, otherwise it will be skipped.}
-
-\item{intermediate_song_model}{This should be set to TRUE if the intermediate song choice model should be run, otherwise it will be skipped.}
+\item{other_songs_model}{This should be set to TRUE if the other songs choice model should be run, otherwise it will be skipped.}
 }
 \value{
 
@@ -33,5 +27,5 @@ Repeatr_4(
 Defines indices, makes changes to variable formats and data structure to prepare for choice modelling with mlogit.
 }
 \examples{
-Repeatr_4_results <- Repeatr_4(mydf = Repeatr3)
+ml.Repeatr4_fs <- Repeatr_4(first_song_model = TRUE)
 }
