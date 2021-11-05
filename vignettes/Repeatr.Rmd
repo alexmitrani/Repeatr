@@ -88,7 +88,7 @@ The age of the songs needs considering because bands generally prioritise new ma
 The above categories were defined after some experimentation to establish which categories deserved separate representation and which could be grouped together. The "less than a year old" variable was omitted because it is always necessary to omit one of each set of dummy variables in this type of model. An omitted dummy variable has a parameter of zero by definition and provides a reference point for the parameters whose values are estimated.   
 
 The strength of preference for each song was represented using a dummy variable (on/off) for each song, such that the parameters associated with these variables would represent the strength of preference for each song.  The dummy variable for "Waiting Room" was omitted and therefore the preference parameter for this song was zero by definition.  
-The utility formula used for the preferred model was this one:
+The formula used for the preferred model was this one:
 
 choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 
           + yearsold_5 + yearsold_6 + yearsold_7 + yearsold_8
