@@ -475,7 +475,7 @@ Although many of the ratings are similar in magnitude, there are some difference
 
 ## Repeatr package for R
 
-The Repeatr package can be installed from RStudio using the .tar.gz file in the root directory of this repository.  The package gives easy access to the functions, dataframes, and related documentation.  
+The Repeatr package can be installed from RStudio using the .tar.gz file in the root directory of this repository.  The package gives easy access to the functions, dataframes, and related documentation.  The documentation contains a version of this article that demonstrates the R code used to calculate all the numbers.  
 
 ## The End
 
