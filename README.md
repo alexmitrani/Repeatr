@@ -2,7 +2,7 @@
 
 ## ["I had a name, but now I'm a number"](https://fugazi.bandcamp.com/track/repeater)
 
-Analysis and modelling of metadata from the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series)
+Analysis and modelling of [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) metadata. 
 
 The initial data was provided by Ian James Wright of the Alphabetical Fugazi podcast, who got it from Carni Klirs who did the project [Visualizing the History of Fugazi](https://www.carniklirs.com/project/fugazi).
 
