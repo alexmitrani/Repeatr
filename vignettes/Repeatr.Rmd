@@ -18,13 +18,18 @@ knitr::opts_chunk$set(
 library(Repeatr)
 ```
 
-## "I had a name, but now I'm a number"
-Analysis and modelling of Fugazi Live Series metadata from https://www.dischord.com/fugazi_live_series
+## ["I had a name, but now I'm a number"](https://fugazi.bandcamp.com/track/repeater)
+Analysis and modelling of Fugazi Live Series metadata from the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series)
 
-The initial data was provided by Ian James Wright of the Alphabetical Fugazi podcast, who got it from Carni Klirs who did the project Visualizing the History of Fugazi.
+The initial data was provided by Ian James Wright of the Alphabetical Fugazi podcast, who got it from Carni Klirs who did the project [Visualizing the History of Fugazi](https://www.carniklirs.com/project/fugazi).
 
 ## Song counts
-Performance counts were calculated for all the released Fugazi songs that were performed live, using data from 895 shows from FLS0001 up to and including FLS1045.
+Performance counts were calculated for all the released Fugazi songs that were performed live, using data from ... how many shows? 
+
+```{r }
+one_row_per_show <- Repeatr1 %>% group_by(gid) %>% slice(1) %>% ungroup()
+nrow(one_row_per_show)
+``` 
 
 These frequency counts do not necessarily measure the band's preferences for the songs, as more recently released songs were available for fewer shows than older songs.
 
@@ -52,11 +57,17 @@ The "songid" variable indicates the raw frequency ranking of each song, allowing
 
 ## Song preferences
 
-The Fugazi Live Series data includes 17297 choices of songs made by the band during their live shows. This data was used to estimate the strength of preference for each of the songs in their live music repertoire.
+The Fugazi Live Series data includes ... how many choices of songs made by the band during their live shows? 
+
+```{r }
+nrow(Repeatr1)
+``` 
+
+This data was used to estimate the strength of preference for each of the songs in their live music repertoire.
 
 Song availability was considered at both repertoire and gig level. Songs were only considered available from the time they were first played, but thereafter they were assumed to be always available. There is some evidence that certain songs were discontinued but this has not been represented here.
 
-> "To the guy who is yelling for Steady Diet, I got bad news for you. Every time before we go out for a tour, we take a week to go through every record that we've done, and we relearn every song and we make sure that we know everything, because we make up the sets as we go, and we relearn everything so we can play anything at anytime... but there's three songs that we have not been able to remember how to play, one of them is Steady Diet, I am sorry to say, the other is Polish, and the other one, I can't remember the name of, but basically, you can call out anything else, but if you call out Steady Diet, you are wasting your breath" - Guy Picciotto 6/27/2001 Source: https://www.dischord.com/fugazi_live_series/minneapolis-mn-usa-62701
+> "To the guy who is yelling for Steady Diet, I got bad news for you. Every time before we go out for a tour, we take a week to go through every record that we've done, and we relearn every song and we make sure that we know everything, because we make up the sets as we go, and we relearn everything so we can play anything at anytime... but there's three songs that we have not been able to remember how to play, one of them is Steady Diet, I am sorry to say, the other is Polish, and the other one, I can't remember the name of, but basically, you can call out anything else, but if you call out Steady Diet, you are wasting your breath" - [Guy Picciotto 27/6/2001](https://www.dischord.com/fugazi_live_series/minneapolis-mn-usa-62701)
 
 Within any given gig, the songs were sorted in the order that they were performed, and once a song had been played it was assumed to be unavailable for the rest of the gig.
 
