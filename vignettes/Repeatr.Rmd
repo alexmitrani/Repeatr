@@ -1,0 +1,126 @@
+---
+title: "Repeatr"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Repeatr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r, include = FALSE}
+library(Repeatr)
+```
+
+## "I had a name, but now I'm a number"
+Analysis and modelling of Fugazi Live Series metadata from https://www.dischord.com/fugazi_live_series
+
+The initial data was provided by Ian James Wright of the Alphabetical Fugazi podcast, who got it from Carni Klirs who did the project Visualizing the History of Fugazi.
+
+## Song counts
+Performance counts were calculated for all the released Fugazi songs that were performed live, using data from 895 shows from FLS0001 up to and including FLS1045.
+
+These frequency counts do not necessarily measure the band's preferences for the songs, as more recently released songs were available for fewer shows than older songs.
+
+The results of this analysis, in descending order of performance count, are as follows:
+
+```{r }
+knitr::kable(fugazi_song_counts, "pipe")
+```   
+
+## Performance intensity
+
+A slightly more detailed analysis was undertaken by calculating the performance intensity of each song.
+
+Song performance intensity = number of times a song was played / number of shows at which it was available in the repertoire.
+
+A song was considered available in the repertoire from the first show it was performed.
+
+The results of this analysis look like this:
+
+```{r }
+knitr::kable(fugazi_song_performance_intensity, "pipe")
+```   
+
+The "songid" variable indicates the raw frequency ranking of each song, allowing easy comparison between the intensity and frequency measures.
+
+## Song preferences
+
+The Fugazi Live Series data includes 17297 choices of songs made by the band during their live shows. This data was used to estimate the strength of preference for each of the songs in their live music repertoire.
+
+Song availability was considered at both repertoire and gig level. Songs were only considered available from the time they were first played, but thereafter they were assumed to be always available. There is some evidence that certain songs were discontinued but this has not been represented here.
+
+> "To the guy who is yelling for Steady Diet, I got bad news for you. Every time before we go out for a tour, we take a week to go through every record that we've done, and we relearn every song and we make sure that we know everything, because we make up the sets as we go, and we relearn everything so we can play anything at anytime... but there's three songs that we have not been able to remember how to play, one of them is Steady Diet, I am sorry to say, the other is Polish, and the other one, I can't remember the name of, but basically, you can call out anything else, but if you call out Steady Diet, you are wasting your breath" - Guy Picciotto 6/27/2001 Source: https://www.dischord.com/fugazi_live_series/minneapolis-mn-usa-62701
+
+Within any given gig, the songs were sorted in the order that they were performed, and once a song had been played it was assumed to be unavailable for the rest of the gig.
+
+The age of the songs needs considering because bands generally prioritise new material when they play live and Fugazi was no exception to this. Dummy variables (on/off) were used to represent the age of the songs at the time of each gig, as follows:
+
+| Age (years)      | Dummy variable |
+| ----------- | ----------- |
+| 0 < age < 1      | (omitted)       |
+| 1 ≤ age < 2    | yearsold_1        |
+| 2 ≤ age < 3   | yearsold_2        |
+| 3 ≤ age < 4   | yearsold_3        |
+| 4 ≤ age < 5   | yearsold_4        |
+| 5 ≤ age < 6   | yearsold_5        |
+| 6 ≤ age < 7   | yearsold_6        |
+| 7 ≤ age < 8   | yearsold_7        |
+| 8 ≤ age   | yearsold_8        |
+
+The above categories were defined after some experimentation to establish which categories deserved separate representation and which could be grouped together. The "less than a year old" variable was omitted because it is always necessary to omit one of each set of dummy variables in this type of model. An omitted dummy variable has a parameter of zero by definition and provides a reference point for the parameters whose values are estimated.   
+
+The strength of preference for each song was represented using a dummy variable (on/off) for each song, such that the parameters associated with these variables would represent the strength of preference for each song.  The dummy variable for "Waiting Room" was omitted and therefore the preference parameter for this song was zero by definition.  
+The utility formula used for the preferred model was this one:
+
+choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 
+          + yearsold_5 + yearsold_6 + yearsold_7 + yearsold_8
+          + song2 + ... + song92
+
+The model was fitted by an optimisation process which estimated a parameter for each of the independent variables, such that the likelihood of correctly predicting the observed choices would be maximised. 
+
+The parameters related to the age of the songs support the hypothesis that recent material tended to be favoured in the band's choices of songs to be performed. 
+
+The implied preferences for each song are shown here in descending order of preference: 
+
+```{r }
+Repeatr_5_results <- Repeatr_5(mymodel = ml.Repeatr4)
+knitr::kable(Repeatr_5_results[[1]], "pipe")
+```   
+
+It is hard to say exactly whose preferences are represented by these results. It seems reasonable to assume that they mainly represent the band's preferences, more often than not Ian MacKaye and Guy Picciotto, but the preferences of the audience may also have influenced the choice of the songs that were performed, directly or indirectly. 
+
+> “We played without a setlist from the first show to the last show. We never had a program for the night before we hit the stage. Right before we went on stage we'd get together and decide on a song to start with. From then on, we were basically improvising the set as we went. That meant, before we went on tour, we had to have these insanely long rehearsals where we relearned very piece of music that we knew so that everyone was ready. So, every night was completely different show. You could pick from over 100 songs. The only methodology we had was that we alternated singing. Once Ian was wrapping up his song, I knew that I had to have a song ready to go for my thing." - Guy Picciotto, 25/5/2018
+Source: https://web.archive.org/web/20201123023401/https://www.abc.net.au/doublej/music-reads/features/fugazi-the-past-the-future-and-the-ethos-that-drove-them/10265848
+
+## ["Do you like me?"](https://fugazi.bandcamp.com/track/do-you-like-me)
+
+The following table shows ratings based on the preferences described in the section above, together with the indicators described in previous sections: performance counts and intensities. The ratings are simply the preferences normalised in such a way that the highest preference has a value of 1 and the lowest a value of 0. This way it will be easy to scale these values for comparison with ratings defined on other intervals. 
+
+```{r }
+Repeatr_5_results <- Repeatr_5(mymodel = ml.Repeatr4)
+knitr::kable(Repeatr_5_results[[3]], "pipe")
+```
+
+## Ratings applied to studio releases and compared to RYM ratings
+
+The song ratings calculated using the Fugazi Live Series (FLS) data were used to calculate average ratings for the band's studio releases. These were compared to the average ratings for the same releases at [https://rateyourmusic.com/artist/fugazi](https://web.archive.org/web/20210211085323/https://rateyourmusic.com/artist/fugazi), as at 11 February 2021.  The original RYM ratings were on a scale from 0 to 5 stars, so these were multiplied by 0.2 to convert them to the same scale as the FLS ratings. The results are shown below.   
+
+```{r }
+Repeatr_5_results <- Repeatr_5(mymodel = ml.Repeatr4)
+knitr::kable(Repeatr_5_results[[4]], "pipe")
+```
+
+Although many of the ratings are similar in magnitude, there are some differences. There is more variation in the ratings that have been calculated using the FLS data compared to the RYM ratings, and the lowest FLS ratings are considerably lower than the lowest RYM ratings.   Differences such as these were to be expected.  The FLS ratings were calculated in a consistent way, based largely on the real choices of the band regarding which songs to play at shows, and the band actually played the songs they chose to a live audience!  The RYM ratings were from larger groups of people, not necessarily the same people in each case, who were simply expressing how much they liked or disliked the music, with no restrictions and no consequences.
+
+## The End
+
+I hope you have found this interesting. If you have any comments or suggestions please add an issue to the repository on GitHub: https://github.com/alexmitrani/Repeatr/  
+
+Thanks. 
