@@ -23,6 +23,8 @@ Repeatr_4(
 
 }
 \examples{
+myRepeatr3 <- system.file("data", "Repeatr3.rda", package = "Repeatr")
+load(myRepeatr3)
 Repeatr_4_results <- Repeatr_4(mydf = Repeatr3)
 
 
