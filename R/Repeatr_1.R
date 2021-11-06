@@ -44,6 +44,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   # library(rlang)
   # library(knitr)
   # library(crayon)
+  # library(readr)
   #
   # source("~/Documents/GitHub/Repeatr/R/compressr.R")
 
