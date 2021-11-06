@@ -8,7 +8,7 @@
 #' @export
 #'
 #' @examples
-#' test <- rankr(mymodel = ml.Repeatr4, fromcoef = 1, tocoef = 20)
+#' test <- rankr(mymodel = ml.Repeatr4, fromcoef = 1, tocoef = 91)
 #'
 rankr <- function(mymodel = NULL, fromcoef = NULL, tocoef = NULL) {
 
