@@ -1,5 +1,7 @@
 #' rankr
 #'
+#' @import readr
+#'
 #' @param mymodel
 #' @param fromcoef
 #' @param tocoef
@@ -8,7 +10,7 @@
 #' @export
 #'
 #' @examples
-#' test <- rankr(mymodel = ml.Repeatr4, fromcoef = 1, tocoef = 91)
+#' myranking <- rankr(mymodel = ml.Repeatr4, fromcoef = 1, tocoef = 91)
 #'
 rankr <- function(mymodel = NULL, fromcoef = NULL, tocoef = NULL) {
 
@@ -32,6 +34,28 @@ rankr <- function(mymodel = NULL, fromcoef = NULL, tocoef = NULL) {
     }
 
   }
+
+  myresultsdf <- myresultsdf %>%
+    mutate(songid1 = parse_number(var1)) %>%
+    mutate(songid2 = parse_number(var2))
+
+  songidlookup1 <- songidlookup %>%
+    rename(songid1 = songid) %>%
+    rename(song1 = song)
+
+  songidlookup2 <- songidlookup %>%
+    rename(songid2 = songid) %>%
+    rename(song2 = song)
+
+  myresultsdf <- myresultsdf %>%
+    left_join(songidlookup1) %>%
+    left_join(songidlookup2) %>%
+
+  myresultsdf <- myresultsdf %>%
+    relocate(song1, song2)
+
+  myresultsdf <- myresultsdf %>%
+    select(song1, song2, mycoef1, mycoef2, mycoefdiff, myz, myp, lower95ci, upper95ci)
 
   return(myresultsdf)
 
