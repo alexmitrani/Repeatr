@@ -3,6 +3,7 @@
 #' @description The function finds the standard error of the difference between the two coefficients in terms of their variances and their covariance: myse <- (sqrt(myvar1 + myvar2 - 2*mycov))
 #' @description It then proceeds to calculate a z-statistic: myz <- (mycoefdiff)/myse
 #' @description A z-statistic of 1.96 or greater would indicate that the difference between the coefficients is significant at the 95% level of confidence.
+#' @description The index numbers are based on the model coefficient table with the coefficients ranked in descending order, so the most positive coefficient will be number one.
 #'
 #' @import mlogit
 #' @import crayon
@@ -22,7 +23,11 @@ diffr <- function(mymodel = NULL, coefindex1 = NULL, coefindex2 = NULL) {
   # Source: https://stats.stackexchange.com/questions/59085/how-to-test-for-simultaneous-equality-of-choosen-coefficients-in-logit-or-probit
 
   mycoefs <- as.matrix(mymodel[["coefficients"]])
-  myvcovmat <- as.matrix(vcov(mymodel))
+  mycoefs <- as.data.frame(mycoefs)
+  mycoefs <- mycoefs %>%
+    arrange(desc(V1))
+
+  myvcovmat <- as.data.frame(vcov(mymodel))
 
   mycoef1 <- as.numeric(mycoefs[coefindex1,])
 
@@ -59,11 +64,11 @@ diffr <- function(mymodel = NULL, coefindex1 = NULL, coefindex2 = NULL) {
 
   lower95ci <- mycoefdiff - 1.96*myse
 
-  cat(yellow(paste0("Lower boundary of 95% confidence interval: ", lower95ci, " \n \n")))
+  cat(yellow(paste0("Lower boundary of 95% confidence interval of the difference between the two coefficients: ", lower95ci, " \n \n")))
 
   upper95ci <- mycoefdiff + 1.96*myse
 
-  cat(yellow(paste0("Upper boundary of 95% confidence interval: ", upper95ci, " \n \n")))
+  cat(yellow(paste0("Upper boundary of 95% confidence interval of the difference between the two coefficients: ", upper95ci, " \n \n")))
 
   myreturnlist <- list(mycoefdiff, myz, myp, lower95ci, upper95ci)
 
