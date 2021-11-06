@@ -1,10 +1,13 @@
 #' rankr
+#' @title Undertakes paired comparisons for ranking a set of coefficients, considering whether the differences between the coefficients are significant or not.
+#' @description The index numbers are based on the model coefficient table that comes straight out of the model, with no sorting.
+#' @description The function will return a dataframe with the results for each pair of coeeficients tested.
 #'
 #' @import readr
 #'
-#' @param mymodel
-#' @param fromcoef
-#' @param tocoef
+#' @param mymodel the choice model to be used
+#' @param fromcoef index number of first coefficient to be ranked
+#' @param tocoef index number of second coefficient to be tested
 #'
 #' @return
 #' @export
