@@ -1,8 +1,6 @@
 
 #' @name Repeatr_3
 #' @title takes a dataframe with gid, song_number, and songid, and modifies it to make it suitable for choice modelling.
-#' @description
-#' @description
 #' @description "gid" is short for "gig id"
 #'
 #' @import dplyr
@@ -13,15 +11,12 @@
 #' @import rlang
 #' @import knitr
 #'
-#' @param mydf
-#' @param savedata
+#' @param mydf optional dataframe to be used.  If omitted the default dataframe will be used.
 #'
 #' @return
 #' @export
 #'
 #' @examples
-#' myRepeatr2 <- system.file("data", "Repeatr2.rda", package = "Repeatr")
-#' load(myRepeatr2)
 #' Repeatr_3_results <- Repeatr_3(mydf = Repeatr2)
 #'
 Repeatr_3 <- function(mydf = NULL) {

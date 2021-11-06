@@ -2,33 +2,30 @@
 % Please edit documentation in R/Repeatr_4.R
 \name{Repeatr_4}
 \alias{Repeatr_4}
-\title{Prepares data for choice modelling with mlogit}
+\title{Prepares data for choice modelling with mlogit.  Running pre-defined choice models is optional.}
 \usage{
 Repeatr_4(
   mydf = NULL,
-  runchoicemodels = FALSE,
   basic_model = FALSE,
   first_song_model = FALSE,
-  last_song_model = FALSE,
-  intermediate_song_model = FALSE
+  other_songs_model = FALSE
 )
 }
 \arguments{
-\item{intermediate_song_model}{}
+\item{mydf}{optional dataframe to be used.  If omitted, the default dataframe will be used.}
+
+\item{basic_model}{This should be set to TRUE if the basic choice model should be run, otherwise it will be skipped.}
+
+\item{first_song_model}{This should be set to TRUE if the first song choice model should be run, otherwise it will be skipped.}
+
+\item{other_songs_model}{This should be set to TRUE if the other songs choice model should be run, otherwise it will be skipped.}
 }
 \value{
 
 }
 \description{
-
+Defines indices, makes changes to variable formats and data structure to prepare for choice modelling with mlogit.
 }
 \examples{
-myRepeatr3 <- system.file("data", "Repeatr3.rda", package = "Repeatr")
-load(myRepeatr3)
-Repeatr_4_results <- Repeatr_4(mydf = Repeatr3)
-
-
-
-
-
+ml.Repeatr4_fs <- Repeatr_4(first_song_model = TRUE)
 }

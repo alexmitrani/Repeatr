@@ -12,13 +12,13 @@ Repeatr_5(
 )
 }
 \arguments{
-\item{mymodel}{}
+\item{mymodel}{optional choice model to be used to generate the results. If omitted, the default choice model will be used, which is ml.Repeatr4.}
 }
 \value{
 
 }
 \description{
-
+Produces a summary table that includes song performance counts, song performance intensities, and ratings based on the estimated choice model parameters.
 }
 \examples{
 mlRepeatr <- system.file("data", "mlRepeatr.rdata", package = "Repeatr")
@@ -30,7 +30,5 @@ load(mysongvarslookup)
 fugazi_song_performance_intensity <- system.file("data", "fugazi_song_performance_intensity.rda", package = "Repeatr")
 load(fugazi_song_performance_intensity)
 Repeatr_5_results <- Repeatr_5(mymodel = ml.Repeatr4, mysongidlookup = songidlookup, mysongvarslookup = songvarslookup, fugazi_song_performance_intensity = fugazi_song_performance_intensity)
-
-
 
 }

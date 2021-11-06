@@ -4,10 +4,10 @@
 \alias{Repeatr_2}
 \title{takes a dataframe with one row per show-song and reshapes it long again so that the rows are identified by combinations of gid, song_number, and songid.}
 \usage{
-Repeatr_2(mydf = NULL, mysongidlookup = NULL, mycount = NULL)
+Repeatr_2(mydf = NULL)
 }
 \arguments{
-\item{mydf}{}
+\item{mydf}{optional dataframe to be used.  If omitted the default dataframe will be used.}
 }
 \value{
 
@@ -20,12 +20,6 @@ washington-dc-usa-90387	FLS0001	03/09/1987	Wilson Center	$5	300	Joey Picuri	Fuga
 "gid" is short for "gig id"
 }
 \examples{
-myRepeatr1 <- system.file("data", "Repeatr1.rda", package = "Repeatr")
-load(myRepeatr1)
-mysongidlookup <- system.file("data", "songidlookup.rda", package = "Repeatr")
-load(mysongidlookup)
-mycount <- system.file("data", "fugazi_song_counts.rda", package = "Repeatr")
-load(mycount)
-Repeatr_2_results <- Repeatr_2(mydf = Repeatr1, mysongidlookup = songidlookup, mycount = fugazi_song_counts)
+Repeatr_2_results <- Repeatr_2(mydf = Repeatr1)
 
 }

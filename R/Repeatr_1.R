@@ -16,9 +16,9 @@
 #' @import rlang
 #' @import knitr
 #'
-#' @param mycsvfile
-#' @param mysongdatafile
-#' @param releasesdatafile
+#' @param mycsvfile Optional name of CSV file containing Fugazi Live Series data to be used. If omitted, the default file provided with the package will be used.
+#' @param mysongdatafile Optional name of CSV file containing song data to be used. If omitted, the default file provided with the package will be used.
+#' @param releasesdatafile Optional name of CSV file containing releases data to be used. If omitted, the default file provided with the package will be used.
 #'
 #' @return
 #' @export
@@ -82,6 +82,22 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     releasesdatalookup$X <- NULL
 
   }
+
+  # Define data file with other variables for possible later use
+  othervariables <- Repeatr0 %>%
+    select(V1, V2, V4, V5, V6, V7, V8, V9)
+
+  othervariables <- othervariables %>%
+    rename(gid = V1) %>%
+    rename(flsid = V2) %>%
+    rename(venue = V4) %>%
+    rename(doorprice = V5) %>%
+    rename(attendance = V6) %>%
+    rename(recorded_by = V7) %>%
+    rename(mastered_by = V8) %>%
+    rename(original_source = V9)
+
+
 
   # Select the most relevant columns -------
 

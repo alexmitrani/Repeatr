@@ -12,22 +12,16 @@
 #' @import rlang
 #' @import knitr
 #'
-#' @param mydf
+#' @param mydf optional dataframe to be used.  If omitted the default dataframe will be used.
 #'
 #' @return
 #' @export
 #'
 #' @examples
-#' myRepeatr1 <- system.file("data", "Repeatr1.rda", package = "Repeatr")
-#' load(myRepeatr1)
-#' mysongidlookup <- system.file("data", "songidlookup.rda", package = "Repeatr")
-#' load(mysongidlookup)
-#' mycount <- system.file("data", "fugazi_song_counts.rda", package = "Repeatr")
-#' load(mycount)
-#' Repeatr_2_results <- Repeatr_2(mydf = Repeatr1, mysongidlookup = songidlookup, mycount = fugazi_song_counts)
+#' Repeatr_2_results <- Repeatr_2(mydf = Repeatr1)
 #'
 
-Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, mycount = NULL) {
+Repeatr_2 <- function(mydf = NULL) {
 
   # Reshape to long again so that there will now be one row per combination of song performed and song potentially available ------------------------------
 
@@ -48,7 +42,7 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, mycount = NULL) {
   for(mysongid in 1:92) {
 
     myvarname <- paste0("song.", mysongid)
-    mysongname <- as.character(mysongidlookup[mysongid,2])
+    mysongname <- as.character(songidlookup[mysongid,2])
     Repeatr2 <- Repeatr2 %>% mutate(!!myvarname := ifelse(song == mysongname,1,0))
 
   }
@@ -109,7 +103,7 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, mycount = NULL) {
     ungroup()
 
   # add launch dates to count file
-  fugazi_song_counts <- mycount %>%
+  fugazi_song_counts <- fugazi_song_counts %>%
     left_join(mylaunchdatelookup) %>%
     select(songid, song, launchdate, count)
 
@@ -133,10 +127,10 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, mycount = NULL) {
     arrange(desc(intensity))
 
   mycount2_sl <- mycount2_sl %>%
-    left_join(mysongidlookup)
+    left_join(songidlookup)
 
   mycount2_sl <- mycount2_sl %>%
-    left_join(mylaunchdatelookup)
+    left_join(fugazi_song_counts)
 
   fugazi_song_performance_intensity <- mycount2_sl %>%
     select(songid, song, launchdate, chosen, available_rl, intensity)
@@ -148,7 +142,7 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, mycount = NULL) {
   # merge on repertoire-level availability
   Repeatr2$available_rl <- NULL
   Repeatr2 <- Repeatr2 %>% left_join(available_rl_lookup)
-  Repeatr2 <- Repeatr2 %>% left_join(mysongidlookup)
+  Repeatr2 <- Repeatr2 %>% left_join(songidlookup)
   Repeatr2 <- Repeatr2 %>% select(gid, date, song_number, songid, song, chosen, played, available_rl, first_song, last_song, releaseid,	release, track_number, instrumental,	vocals_picciotto,	vocals_mackaye,	vocals_lally,	duration_seconds)
   Repeatr2 <- Repeatr2 %>% arrange(date, gid, song_number, songid)
 

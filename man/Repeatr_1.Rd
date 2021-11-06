@@ -7,7 +7,11 @@
 Repeatr_1(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile = NULL)
 }
 \arguments{
-\item{releasesdatafile}{}
+\item{mycsvfile}{Optional name of CSV file containing Fugazi Live Series data to be used. If omitted, the default file provided with the package will be used.}
+
+\item{mysongdatafile}{Optional name of CSV file containing song data to be used. If omitted, the default file provided with the package will be used.}
+
+\item{releasesdatafile}{Optional name of CSV file containing releases data to be used. If omitted, the default file provided with the package will be used.}
 }
 \value{
 
