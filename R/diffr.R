@@ -4,7 +4,7 @@
 #' @description It then proceeds to calculate a z-statistic: myz <- (mycoefdiff)/myse
 #' @description A z-statistic of 1.96 or greater would indicate that the difference between the coefficients is significant at the 95% level of confidence.
 #' @description The index numbers are based on the model coefficient table that comes straight out of the model, with no sorting.
-#' @description The function will return a one-row dataframe with the following columns: coefindex1, coefindex2, mycoefdiff, myz, myp, lower95ci, upper95ci
+#' @description The function will return a one-row dataframe with the following columns: var1, var2, coefindex1, coefindex2, mycoefdiff, myz, myp, lower95ci, upper95ci
 #'
 #' @import mlogit
 #' @import crayon
@@ -23,15 +23,19 @@ diffr <- function(mymodel = NULL, coefindex1 = NULL, coefindex2 = NULL) {
 
   # Source: https://stats.stackexchange.com/questions/59085/how-to-test-for-simultaneous-equality-of-choosen-coefficients-in-logit-or-probit
 
-  mycoefs <- as.matrix(mymodel[["coefficients"]])
+  mycoefs <- as.data.frame(mymodel[["coefficients"]])
+
+  mycoefs$varname <- row.names(mycoefs)
 
   myvcovmat <- as.data.frame(vcov(mymodel))
 
-  mycoef1 <- as.numeric(mycoefs[coefindex1,])
+  mycoef1 <- as.numeric(mycoefs[coefindex1,1])
+  var1 <- mycoefs[coefindex1,2]
 
   cat(yellow(paste0("\n \n",  "First coefficient: ", mycoef1, " \n \n")))
 
-  mycoef2 <- as.numeric(mycoefs[coefindex2,])
+  mycoef2 <- as.numeric(mycoefs[coefindex2,1])
+  var2 <- mycoefs[coefindex2,2]
 
   cat(yellow(paste0("Second coefficient: ", mycoef2, " \n \n")))
 
@@ -68,7 +72,7 @@ diffr <- function(mymodel = NULL, coefindex1 = NULL, coefindex2 = NULL) {
 
   cat(yellow(paste0("Upper boundary of 95% confidence interval of the difference between the two coefficients: ", upper95ci, " \n \n")))
 
-  myreturndf <- as.data.frame(cbind(coefindex1, coefindex2, mycoefdiff, myz, myp, lower95ci, upper95ci))
+  myreturndf <- as.data.frame(cbind(var1, var2, coefindex1, coefindex2, mycoefdiff, myz, myp, lower95ci, upper95ci))
 
   return(myreturndf)
 
