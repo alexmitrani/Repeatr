@@ -31,23 +31,6 @@
 #'
 Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile = NULL) {
 
-
-# Devel setup -------------------------------------------------------------
-
-  # Uncomment and run the following lines to test the code outside the package
-
-  # library(dplyr)
-  # library(stringr)
-  # library(lubridate)
-  # library(mlogit)
-  # library(fastDummies)
-  # library(rlang)
-  # library(knitr)
-  # library(crayon)
-  # library(readr)
-  #
-  # source("~/Documents/GitHub/Repeatr/R/compressr.R")
-
 # Import data -------------------------------------------------------------
 
 
