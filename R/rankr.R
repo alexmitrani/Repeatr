@@ -5,14 +5,14 @@
 #'
 #' @import readr
 #'
+#' @param mysongidlist a dataframe containing the list of song ids to be tested
 #' @param mymodel the choice model to be used
-#' @param fromcoef index number of first coefficient to be ranked
 #'
 #' @return
 #' @export
 #'
 #' @examples
-#' mysongidlist <- as.data.frame(summary$songid)
+#' mysongidlist <- summary %>% select(songid, song)
 #' myranking <- rankr(mymodel = ml.Repeatr4, mysongidlist = mysongidlist)
 #'
 rankr <- function(mymodel = NULL, mysongidlist = NULL) {
@@ -22,8 +22,8 @@ rankr <- function(mymodel = NULL, mysongidlist = NULL) {
 
   for(test in 1:ntests) {
 
-    coefindex1 <- mysongidlist[test,]-1
-    coefindex2 <- mysongidlist[test+1,]-1
+    coefindex1 <- as.numeric(mysongidlist[test,1]-1)
+    coefindex2 <- as.numeric(mysongidlist[test+1,1]-1)
 
     if(coefindex1>=1 & coefindex2>=1) {
 
