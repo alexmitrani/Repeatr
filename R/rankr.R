@@ -7,26 +7,31 @@
 #'
 #' @param mymodel the choice model to be used
 #' @param fromcoef index number of first coefficient to be ranked
-#' @param tocoef index number of second coefficient to be tested
 #'
 #' @return
 #' @export
 #'
 #' @examples
-#' myranking <- rankr(mymodel = ml.Repeatr4, fromcoef = 1, tocoef = 91)
+#' mysongidlist <- as.data.frame(summary$songid)
+#' myranking <- rankr(mymodel = ml.Repeatr4, mysongidlist = mysongidlist)
 #'
-rankr <- function(mymodel = NULL, fromcoef = NULL, tocoef = NULL) {
+rankr <- function(mymodel = NULL, mysongidlist = NULL) {
 
-  myfirstcoef <- fromcoef
-  mylastcoef <- tocoef - 1
+  nsongs <- nrow(mysongidlist)
+  ntests <- nsongs - 1
 
-  for(mycoef in myfirstcoef:mylastcoef) {
+  for(test in 1:ntests) {
 
-    mynextcoef <- mycoef + 1
+    coefindex1 <- mysongidlist[test,]-1
+    coefindex2 <- mysongidlist[test+1,]-1
 
-    mytest <- diffr(mymodel = mymodel, coefindex1 = mycoef, coefindex2 = mynextcoef)
+    if(coefindex1>=1 & coefindex2>=1) {
 
-    if(mycoef == myfirstcoef) {
+      mytest <- diffr(mymodel = mymodel, coefindex1 = coefindex1, coefindex2 = coefindex2)
+
+    }
+
+    if(test == 1) {
 
       myresultsdf <- mytest
 
