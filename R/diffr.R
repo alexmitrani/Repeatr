@@ -5,6 +5,7 @@
 #' @description A z-statistic of 1.96 or greater would indicate that the difference between the coefficients is significant at the 95% level of confidence.
 #' @description The index numbers are based on the model coefficient table that comes straight out of the model, with no sorting.
 #' @description The function will return a one-row dataframe with the following columns: var1, var2, coefindex1, coefindex2, mycoef1, mycoef2, mycoefdiff, myz, myp, lower95ci, upper95ci
+#' @description A coefficient index of 0 will be interpreted as referring to the omitted constant.
 #'
 #' @import mlogit
 #' @import crayon
@@ -29,28 +30,70 @@ diffr <- function(mymodel = NULL, coefindex1 = NULL, coefindex2 = NULL) {
 
   myvcovmat <- as.data.frame(vcov(mymodel))
 
-  mycoef1 <- as.numeric(mycoefs[coefindex1,1])
-  var1 <- mycoefs[coefindex1,2]
+  if (coefindex1==0) {
+
+    mycoef1 <- 0
+    var1 <- "(Intercept):1"
+
+  } else {
+
+    mycoef1 <- as.numeric(mycoefs[coefindex1,1])
+    var1 <- mycoefs[coefindex1,2]
+
+  }
 
   cat(yellow(paste0("\n \n",  "First coefficient: ", mycoef1, " \n \n")))
 
-  mycoef2 <- as.numeric(mycoefs[coefindex2,1])
-  var2 <- mycoefs[coefindex2,2]
+  if (coefindex2==0) {
+
+    mycoef2 <- 0
+    var2 <- "(Intercept):1"
+
+  } else {
+
+    mycoef2 <- as.numeric(mycoefs[coefindex2,1])
+    var2 <- mycoefs[coefindex2,2]
+
+  }
 
   cat(yellow(paste0("Second coefficient: ", mycoef2, " \n \n")))
 
   mycoefdiff <- as.numeric(mycoef1 - mycoef2)
   cat(yellow(paste0("Difference to be tested: ", mycoefdiff, " \n \n")))
 
-  myvar1 <- as.numeric(myvcovmat[coefindex1,coefindex1])
+  if (coefindex1==0) {
+
+    myvar1 <- 0
+
+  } else {
+
+    myvar1 <- as.numeric(myvcovmat[coefindex1,coefindex1])
+
+  }
 
   cat(yellow(paste0("Variance of the first coefficient: ", myvar1, " \n \n")))
 
-  myvar2 <- as.numeric(myvcovmat[coefindex2,coefindex2])
+  if (coefindex2==0) {
+
+    myvar2 <- 0
+
+  } else {
+
+    myvar2 <- as.numeric(myvcovmat[coefindex2,coefindex2])
+
+  }
 
   cat(yellow(paste0("Variance of the second coefficient: ", myvar2, " \n \n")))
 
-  mycov <- as.numeric(myvcovmat[coefindex1,coefindex2])
+  if (coefindex1==0 | coefindex2==0) {
+
+    mycov <- 0
+
+  } else {
+
+    mycov <- as.numeric(myvcovmat[coefindex1,coefindex2])
+
+  }
 
   cat(yellow(paste0("Covariance of the two coefficients: ", mycov, " \n \n")))
 

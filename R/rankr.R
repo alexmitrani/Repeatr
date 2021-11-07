@@ -5,17 +5,21 @@
 #'
 #' @import readr
 #'
-#' @param mysongidlist a dataframe containing the list of song ids to be tested
+#' @param mysongidlist a dataframe containing the list of song ids to be tested.  It can contain other variables but only songid will be used.
 #' @param mymodel the choice model to be used
 #'
 #' @return
 #' @export
 #'
 #' @examples
-#' mysongidlist <- summary %>% select(songid, song)
-#' myranking <- rankr(mymodel = ml.Repeatr4, mysongidlist = mysongidlist)
+#' songstobecompared <- summary %>% slice(seq(from=1, to=92, by=10))
+#' mycomparisons <- rankr(mymodel = ml.Repeatr4, mysongidlist = songstobecompared)
+#' mycomparisons
 #'
 rankr <- function(mymodel = NULL, mysongidlist = NULL) {
+
+  mysongidlist <- mysongidlist %>%
+    select(songid)
 
   nsongs <- nrow(mysongidlist)
   ntests <- nsongs - 1
@@ -25,11 +29,7 @@ rankr <- function(mymodel = NULL, mysongidlist = NULL) {
     coefindex1 <- as.numeric(mysongidlist[test,1]-1)
     coefindex2 <- as.numeric(mysongidlist[test+1,1]-1)
 
-    if(coefindex1>=1 & coefindex2>=1) {
-
-      mytest <- diffr(mymodel = mymodel, coefindex1 = coefindex1, coefindex2 = coefindex2)
-
-    }
+    mytest <- diffr(mymodel = mymodel, coefindex1 = coefindex1, coefindex2 = coefindex2)
 
     if(test == 1) {
 
