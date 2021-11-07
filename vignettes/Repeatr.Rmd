@@ -119,6 +119,22 @@ Repeatr_5_results <- Repeatr_5(mymodel = ml.Repeatr4)
 knitr::kable(Repeatr_5_results[[3]], "pipe")
 ```
 
+Some of the differences between the ratings are very small and the differences between the ratings of adjacent songs in the table tend to be insignificant. 
+
+```{r }
+songstobecompared <- summary %>% slice(seq(from=1, to=10, by=1))
+mycomparisons <- rankr(mymodel = ml.Repeatr4, mysongidlist = songstobecompared)
+knitr::kable(mycomparisons, "pipe")
+```
+
+However some of the differences between songs further apart on the table are significant.  
+
+```{r }
+songstobecompared <- summary %>% slice(seq(from=1, to=92, by=10))
+mycomparisons <- rankr(mymodel = ml.Repeatr4, mysongidlist = songstobecompared)
+knitr::kable(mycomparisons, "pipe")
+```
+
 ## Ratings applied to studio releases and compared to RYM ratings
 
 The song ratings calculated using the Fugazi Live Series (FLS) data were used to calculate average ratings for the band's studio releases. These were compared to the average ratings for the same releases at [https://rateyourmusic.com/artist/fugazi](https://web.archive.org/web/20210211085323/https://rateyourmusic.com/artist/fugazi), as at 11 February 2021.  The original RYM ratings were on a scale from 0 to 5 stars, so these were multiplied by 0.2 to convert them to the same scale as the FLS ratings. The results are shown below.   
