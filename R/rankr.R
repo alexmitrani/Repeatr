@@ -51,14 +51,16 @@ rankr <- function(mymodel = NULL, fromcoef = NULL, tocoef = NULL) {
     rename(song2 = song)
 
   myresultsdf <- myresultsdf %>%
-    left_join(songidlookup1) %>%
+    left_join(songidlookup1)
+
+  myresultsdf <- myresultsdf %>%
     left_join(songidlookup2) %>%
 
   myresultsdf <- myresultsdf %>%
     relocate(song1, song2)
 
-  myresultsdf <- myresultsdf %>%
-    select(song1, song2, mycoef1, mycoef2, mycoefdiff, myz, myp, lower95ci, upper95ci)
+# myresultsdf <- myresultsdf %>%
+ #   select(song1, song2, mycoef1, mycoef2, mycoefdiff, myz, myp, lower95ci, upper95ci)
 
   return(myresultsdf)
 
