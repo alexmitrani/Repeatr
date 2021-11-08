@@ -37,7 +37,7 @@ rankr <- function(mymodel = NULL, mysongidlist = NULL) {
 
     } else {
 
-      myresultsdf <- rbind(myresultsdf, mytest)
+      myresultsdf <- rbind.data.frame(myresultsdf, mytest)
 
     }
 

@@ -115,7 +115,7 @@ diffr <- function(mymodel = NULL, coefindex1 = NULL, coefindex2 = NULL) {
 
   cat(yellow(paste0("Upper boundary of 95% confidence interval of the difference between the two coefficients: ", upper95ci, " \n \n")))
 
-  myreturndf <- as.data.frame(cbind(var1, var2, coefindex1, coefindex2, mycoef1, mycoef2, mycoefdiff, myz, myp, lower95ci, upper95ci))
+  myreturndf <- data.frame(var1, var2, coefindex1, coefindex2, mycoef1, mycoef2, mycoefdiff, myz, myp, lower95ci, upper95ci)
 
   return(myreturndf)
 
