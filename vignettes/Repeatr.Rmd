@@ -119,10 +119,12 @@ Repeatr_5_results <- Repeatr_5(mymodel = ml.Repeatr4)
 knitr::kable(Repeatr_5_results[[3]], "pipe")
 ```
 
-Some of the differences between the ratings are very small and the differences between the ratings of adjacent songs in the table tend to be insignificant. The rankr function makes it easy to test which differences between song ratings are significant and which are not.  For instance, do the results really indicate that "Bed for the scraping" was the song that Fugazi most liked to play live?  
+## Breaking ranks
+
+The rank order of songs derived from the rating is not very strong. Some of the differences between the ratings are very small and the differences between the ratings of adjacent songs in the table turned out to be insignificant. The rankr function makes it easy to test which differences between song ratings are significant and which are not.  For instance, do the results really indicate that "Bed for the Scraping" was preferred over "Reclamation"?  
 
 ```{r echo=T, results='hide'}
-songstobecompared <- Repeatr_5_results[[3]] %>% slice(seq(from=1, to=10, by=1))
+songstobecompared <- Repeatr_5_results[[3]] %>% slice(seq(from=1, to=2, by=1))
 mycomparisons <- rankr(mymodel = ml.Repeatr4, mysongidlist = songstobecompared)
 mycomparisons <- mycomparisons %>%
   select(song1, song2, mycoef1, mycoef2, mycoefdiff, myz) %>%
@@ -133,7 +135,7 @@ mycomparisons <- mycomparisons %>%
 knitr::kable(mycomparisons, format = "pipe", digits = 3)
 ```
 
-A z statistic of 1.96 or greater indicates a difference that is statistically significant with 95% confidence. The difference between "Bed for the Scraping" and "Reclamation" is not statistically significant. In fact, none of the differences between adjacent songs in the top 10 positions are statistically significant. However, some of the differences between songs further apart on the table are significant, as can be seen below.  
+A z-statistic of 1.96 or greater indicates a difference that is statistically significant with 95% confidence. The difference between "Bed for the Scraping" and "Reclamation" is not statistically significant. In fact, none of the differences between adjacent songs are statistically significant. However, some of the differences between songs further apart on the table are significant, as can be seen below.  
 
 ```{r echo=T, results='hide'}
 songstobecompared <- Repeatr_5_results[[3]] %>% slice(seq(from=1, to=92, by=8))

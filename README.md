@@ -454,6 +454,32 @@ The following table shows ratings based on the preferences described in the sect
 |   91|     89|turn off your guns           |1987-09-03 |      223|     15|          895| 0.0167598| 0.1345170|
 |   92|     91|polish                       |1991-03-06 |      218|      6|          683| 0.0087848| 0.0000000|
 
+## Breaking ranks
+
+The rank order of songs derived from the rating is not very strong. Some of the differences between the ratings are very small and the differences between the ratings of adjacent songs in the table turned out to be insignificant. The rankr function makes it easy to test which differences between song ratings are significant and which are not.  For instance, do the results really indicate that "Bed for the Scraping" was preferred over "Reclamation"?  
+
+|song1                |song2       | coef1| coef2| coefdiff|     z|
+|:--------------------|:-----------|-----:|-----:|--------:|-----:|
+|bed for the scraping |reclamation | 0.469|  0.45|    0.018| 0.191|
+
+A z-statistic of 1.96 or greater indicates a difference that is statistically significant with 95% confidence. The difference between "Bed for the Scraping" and "Reclamation" is not statistically significant. In fact, none of the differences between adjacent songs are statistically significant. However, some of the differences between songs further apart on the table are significant, as can be seen below.  
+
+|song1                |song2               |  coef1|  coef2| coefdiff|     z|
+|:--------------------|:-------------------|------:|------:|--------:|-----:|
+|bed for the scraping |waiting room        |  0.469|  0.000|    0.469| 4.021|
+|waiting room         |birthday pony       |  0.000| -0.349|    0.349| 2.905|
+|birthday pony        |oh                  | -0.349| -0.483|    0.134| 0.921|
+|oh                   |instrument          | -0.483| -0.645|    0.161| 1.033|
+|instrument           |repeater            | -0.645| -0.817|    0.172| 2.026|
+|repeater             |exit only           | -0.817| -0.969|    0.152| 1.920|
+|exit only            |reprovisional       | -0.969| -1.264|    0.295| 3.365|
+|reprovisional        |returning the screw | -1.264| -1.362|    0.099| 0.849|
+|returning the screw  |brendan #1          | -1.362| -1.691|    0.329| 2.592|
+|brendan #1           |furniture           | -1.691| -2.282|    0.590| 4.447|
+|furniture            |the word            | -2.282| -3.535|    1.253| 5.958|
+
+So, the ranks should not be interpreted rigidly. Any two of the adjacent songs in the table could be interchanged and the resulting ranking would be just as valid.  
+
 ## Ratings applied to studio releases and compared to RYM ratings
 
 The song ratings calculated using the Fugazi Live Series (FLS) data were used to calculate average ratings for the band's studio releases. These were compared to the average ratings for the same releases at [https://rateyourmusic.com/artist/fugazi](https://web.archive.org/web/20210211085323/https://rateyourmusic.com/artist/fugazi), as at 11 February 2021.  The original RYM ratings were on a scale from 0 to 5 stars, so these were multiplied by 0.2 to convert them to the same scale as the FLS ratings. The results are shown below.   
