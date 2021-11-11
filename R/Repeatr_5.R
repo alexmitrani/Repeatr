@@ -9,6 +9,7 @@
 #' @import fastDummies
 #' @import rlang
 #' @import knitr
+#' @import readr
 #'
 #'
 #' @param mymodel optional choice model to be used to generate the results. If omitted, the default choice model will be used, which is ml.Repeatr4.
@@ -33,22 +34,18 @@ Repeatr_5 <- function(mymodel = NULL) {
 
   results.mymodel <- as.data.frame(summary.mymodel[["CoefTable"]])
 
-  results.mymodel <- results.mymodel %>%
-    mutate(parameter_id = row_number()) %>%
-    relocate(parameter_id)
-
   variable <- row.names(results.mymodel)
 
-  choice_model_results_table <- cbind(variable, results.mymodel)
+  choice_model_results_table <- cbind.data.frame(variable, results.mymodel)
 
   choice_model_results_table <- choice_model_results_table %>%
-    mutate(songid = ifelse(parameter_id<=91,parameter_id+1,NA))
+    mutate(songid = ifelse(grepl("(Intercept)",variable)==TRUE,readr::parse_number(variable),NA))
 
   choice_model_results_table <- choice_model_results_table %>%
     left_join(songidlookup)
 
   choice_model_results_table <- choice_model_results_table %>%
-    mutate(variable = ifelse(parameter_id<=91,song,variable))
+    mutate(variable = ifelse(grepl("(Intercept)",variable)==TRUE,song,variable))
 
   choice_model_results_table$songid <- NULL
   choice_model_results_table$song <- NULL
@@ -57,11 +54,17 @@ Repeatr_5 <- function(mymodel = NULL) {
 
   write.csv(choice_model_results_table, "fugazi_song_choice_model.csv")
 
-  results.mymodel <- results.mymodel %>%
-    filter(parameter_id<=91)
+  results.mymodel <- as.data.frame(summary.mymodel[["CoefTable"]])
+
+  variable <- row.names(results.mymodel)
+
+  results.mymodel <- cbind.data.frame(variable, results.mymodel)
 
   results.mymodel <- results.mymodel %>%
-    mutate(songid = parameter_id+1)
+    filter(grepl("(Intercept)",variable)==TRUE)
+
+  results.mymodel <- results.mymodel %>%
+    mutate(songid = ifelse(grepl("(Intercept)",variable)==TRUE,readr::parse_number(variable),NA))
 
   results.mymodel <- results.mymodel %>%
     left_join(songidlookup)
@@ -76,7 +79,7 @@ Repeatr_5 <- function(mymodel = NULL) {
     mutate(Estimate = 0) %>%
     mutate("z-value" = NA)
 
-  results.mymodel <- rbind(results.mymodel, results.mymodel.os)
+  results.mymodel <- rbind.data.frame(results.mymodel, results.mymodel.os)
 
   results.mymodel <- results.mymodel %>%
     arrange(desc(Estimate))
