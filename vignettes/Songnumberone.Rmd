@@ -1,11 +1,37 @@
+---
+title: "Songnumberone"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Songnumberone}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
 
-# get preferences data from song number one choice model results
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
 
+```{r, include = FALSE}
+library(Repeatr)
+```
+
+## ["Song #1"](https://fugazi.bandcamp.com/track/song-1)
+
+A look into Fugazi's choices of opening songs using metadata from the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series).  
+
+Let's get preferences data from the song number one choice model results.
+
+```{r }
 mydf <- Repeatr_5(mymodel = ml.Repeatr4_fs)
-
 mypreferences <- mydf[[2]]
+``` 
 
-# convert parameter estimates to rating scale from 0 to 1
+Now let's convert the parameter estimates to a rating scale from 0 to 1
+
+```{r }
 
 mymin <- min(mypreferences$Estimate)
 
@@ -17,8 +43,11 @@ mymax <- max(mypreferences$Estimate2)
 mypreferences <- mypreferences %>%
   mutate(rating = Estimate2/mymax)
 
-# calculate counts and performance intensity
+```   
 
+Let's calculate performance counts and performance intensity.
+
+```{r }
 songnumberone_counts <- Repeatr2 %>%
   filter(first_song==1) %>%
   rename(songid = alt)
@@ -44,16 +73,11 @@ songnumberonesummary <- songnumberonesummary %>%
 songnumberonesummary <- songnumberonesummary %>%
   select(songid, song, launchdate, chosen, available_rl, intensity, rating)
 
-# export results
+```   
 
+Finally, let's have a look at the results.  
+
+```{r }
 knitr::kable(songnumberonesummary, "pipe")
-
-write.csv(songnumberonesummary, "songnumberonesummary.csv")
-
-#
-
-
-
-
-
+``` 
 
