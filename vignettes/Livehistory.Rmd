@@ -1,0 +1,53 @@
+---
+title: "Livehistory"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Livehistory}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r, include = FALSE}
+library(Repeatr)
+```
+
+## Live history
+
+A visualization of the songs that Fugazi performed live using metadata from the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series).  
+
+This will be constructed using summary data combined with releases data.
+
+Let's get the data and limit it to the columns that we will be using: 
+
+```{r }
+mygraphdata <- summary %>%
+  left_join(songvarslookup)
+
+mygraphdata <- mygraphdata %>%
+  select(song, launchdate, chosen, release, rating)
+
+knitr::kable(mygraphdata, "pipe")
+
+``` 
+
+Now let's graph the data.  
+
+```{r }
+
+p <- mydf %>%
+  ggplot( aes(x=launchdate, y=rating, size = chosen, color=release, label=song)) +
+  geom_point(shape = 1) +
+  theme_bw()
+
+ggplotly(p)
+
+```   
+
+
