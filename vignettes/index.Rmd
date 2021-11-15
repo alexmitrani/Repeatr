@@ -2,7 +2,7 @@
 title: "92 SONGS"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Livehistory}
+  %\VignetteIndexEntry{92 SONGS}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 params: 
@@ -27,7 +27,7 @@ library(Repeatr)
 
 This page offers a visualization of the songs that Fugazi performed live using metadata from the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series).  
 
-The visualization uses results of a previous analysis process that can be found in the summary data of the  [Repeatr](https://github.com/alexmitrani/Repeatr) package.  
+The visualization uses results of a previous analysis process that can be found in the summary table of the  [Repeatr](https://github.com/alexmitrani/Repeatr) package.  
 
 Let's get the data, limit it to the columns that we will be using, and have a look at the first few rows. 
 
