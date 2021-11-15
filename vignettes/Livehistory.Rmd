@@ -50,6 +50,7 @@ p <- mygraphdata %>%
 
 ggplotly(p)
 
+
 ```   
 
 The graph is interactive: 
