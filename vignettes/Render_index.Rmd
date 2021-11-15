@@ -24,11 +24,12 @@ library(Repeatr)
 ## The following code can be used to produce an index page for GitHub pages.  The markdown file to be used is "index.Rmd" in the vignettes folder.  The output HTML file will be called index.html and will be stored in the docs folder. When the updated index.html page is pushed to GitHub it will be published as the home page for the associated GitHub pages site.  
 
 ```{r }
-code_dir <- here("vignettes")
+code_dir <- "vignettes"
+code_dir <- file.path("..",code_dir)
 index_filename <- "index.Rmd"
 index_filename <- file.path(code_dir, index_filename)
-output_dir <- here("docs")
-output <- file.path("..",output_dir)
+output_dir <- "docs"
+output_dir <- file.path("..",output_dir)
 render(index_filename, output_dir = output_dir, params = list(output_dir = output))
 ``` 
 

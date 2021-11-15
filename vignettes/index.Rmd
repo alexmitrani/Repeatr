@@ -14,7 +14,8 @@ knitr::opts_chunk$set(
   fig.height=5,
   comment = "#>"
 )
-# output_dir <- params$output_dir
+output_dir <- "docs"
+output_dir <- file.path("..",output_dir)
 ```
 
 ```{r, include = FALSE}
