@@ -55,8 +55,12 @@ ggplotly(p)
 ```   
 
 The graph is interactive: 
+
 - hover over a song to see specific details about the song
-- tap on a release in the legend to hide the corresponding bubbles, tap on the release again to reveal them once more.  This is useful to focus on one or more specific releases by hiding the others.   
+
+- tap on a release in the legend to hide the corresponding
+bubbles, tap on the release again to reveal them once more.  This is useful to focus on one or more specific releases by hiding the others.   
+
 
 Enjoy!
 
