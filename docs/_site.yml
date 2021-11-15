@@ -6,7 +6,7 @@ left:
   - text: "Home"
 href: index.html
 - text: "Repeatr"
-href: Repeatr.html
+href: Livehistory.html
 output:
   html_document:
   theme: jekyll-theme-midnight
