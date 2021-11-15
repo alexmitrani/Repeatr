@@ -43,7 +43,7 @@ Now let's graph the data. The idea is to plot each song as a bubble, with the x-
 
 ```{r }
 
-p <- mydf %>%
+p <- mygraphdata %>%
   ggplot( aes(x=launchdate, y=rating, size = chosen, color=release, label=song)) +
   geom_point(shape = 1) +
   theme_bw()
@@ -52,5 +52,10 @@ ggplotly(p)
 
 ```   
 
-The graph is interactive, so that when you hover over a song a box should pop up with the specific details of that song. 
+The graph is interactive: 
+- hover over a song to see specific details about the song
+- tap on a release in the legend to hide the corresponding bubbles, tap on the release again to reveal them once more.  This is useful to focus on one or more specific releases by hiding the others.   
+
+Enjoy!
+
 
