@@ -40,7 +40,7 @@ head(mygraphdata)
 ``` 
 A few of the columns need explanation.  
 
-- launchdate: the data the song was first performed.  
+- launchdate: the date the song was first performed.  
 
 - chosen: the number of times the song was played live. 
 
