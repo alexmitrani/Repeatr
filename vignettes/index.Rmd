@@ -45,11 +45,11 @@ A few of the columns need explanation.
 
 - chosen: the number of times the song was played live. 
 
-- rating: this is an indicator of the strength of preference for the song according to the Fugazi Live Series data, where 1 is the most preferred and 0 is the least preferred. It was calculated by modelling the choices of which songs were performed and which weren't. The data used for this analysis included 17297 choices of songs from 895 shows.  
+- rating: this is an indicator of the strength of preference for the song according to the Fugazi Live Series data, where 1 is the most preferred and 0 is the least preferred. It was calculated by modelling the choices of songs. The data used for this analysis included 17297 choices of songs from 895 shows.  
 
 These are all limited to the data that was available for this analysis. For instance, the launch date of a particular song may not actually be the very first time the song was performed live, but it should be close. 
 
-Now let's graph the data. The idea is to plot each song as a bubble, with the x-coordinate given by the launch date, and the y-coordinate given by the rating calculated from the choice modelling of the Fugazi Live Series data. The size of the bubble will be proportional to the number of times the song was played live, while the color of the bubble will indicate the associated release in the band's discography.  There will be a lot of information packed into this graph!    
+Now let's graph the data. Each song will be plotted as a bubble, with the x-coordinate given by the launch date, and the y-coordinate given by the rating calculated from the choice modelling of the Fugazi Live Series data. The size of the bubble will be proportional to the number of times the song was played live, while the color of the bubble will indicate the associated release in the band's discography.  There will be a lot of information packed into this graph!    
 
 ```{r }
 
@@ -70,6 +70,23 @@ The graph is interactive:
 - tap on a release in the legend to hide the corresponding
 bubbles, tap on the release again to reveal them once more.  This is useful to focus on one or more specific releases by hiding the others.   
 
+When you hover over the graph a toolbar will appear at the top right. This offers several ways of interacting with the graph: 
+
+- camera: download plot as a PNG file
+
+- magnifying glass: zoom in on a specific area
+
+- pan: move around
+
+- the box select and lasso select tools can be used to select particular parts of the graph and fade out the rest. In order to undo the selection, use the box select tool to select everything and tap the box tool again to remove the selection. 
+
+- zoom in and zoom out do just that
+
+- autoscale and reset axes are useful to get the graph back to how it was initially, removing any zoom that might have been applied.  
+
+- show closest data on hover: this is the default option, and will show details for the closest bubble when hovering over the graph
+
+- compare data on hover can be used to simultaneously show details for two bubbles, but it is tricky to use.  
 
 Enjoy!
 
