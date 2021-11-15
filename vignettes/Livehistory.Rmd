@@ -1,5 +1,5 @@
 ---
-title: "Livehistory"
+title: "Repeatr"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Livehistory}
@@ -11,6 +11,7 @@ vignette: >
 knitr::opts_chunk$set(
   collapse = TRUE,
   fig.width=7,
+  fig.height=5,
   comment = "#>"
 )
 ```
@@ -23,20 +24,16 @@ library(Repeatr)
 
 A visualization of the songs that Fugazi performed live using metadata from the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series).  
 
-This will be constructed using two data tables:
-- summary
-- songvarslookup
+This will be constructed using the summary data from the Repeatr package.  
 
-Let's get the data and limit it to the columns that we will be using: 
+Let's get the data, limit it to the columns that we will be using, and have a look at the first few rows. 
 
 ```{r }
-mygraphdata <- summary %>%
-  left_join(songvarslookup)
 
-mygraphdata <- mygraphdata %>%
+mygraphdata <- summary %>%
   select(song, launchdate, chosen, release, rating)
 
-knitr::kable(mygraphdata, "pipe")
+head(mygraphdata)
 
 ``` 
 
