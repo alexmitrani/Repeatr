@@ -1,0 +1,12 @@
+name: "Repeatr"
+output_dir: "docs"
+navbar:
+  title: "Repeatr"
+left:
+  - text: "Home"
+href: index.html
+- text: "Repeatr"
+href: Repeatr.html
+output:
+  html_document:
+  theme: jekyll-theme-midnight
