@@ -5,7 +5,7 @@ navbar:
 left:
   - text: "Home"
 href: index.html
-- text: "Repeatr"
+- text: "Livehistory"
 href: Livehistory.html
 output:
   html_document:
