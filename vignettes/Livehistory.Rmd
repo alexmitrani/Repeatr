@@ -22,7 +22,9 @@ library(Repeatr)
 
 A visualization of the songs that Fugazi performed live using metadata from the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series).  
 
-This will be constructed using summary data combined with releases data.
+This will be constructed using two data tables:
+- summary
+- songvarslookup
 
 Let's get the data and limit it to the columns that we will be using: 
 
@@ -37,7 +39,7 @@ knitr::kable(mygraphdata, "pipe")
 
 ``` 
 
-Now let's graph the data.  
+Now let's graph the data. The idea is to plot each song as a bubble, with the x-coordinate given by the launch date, and the y-coordinate given by the rating calculated from the choice modelling of the FLS data. The size of the bubble will be proportional to the number of times the song was played live, while the color of the bubble indicates the associated release in the band's discography.  There will be a lot of information packed into this graph!    
 
 ```{r }
 
@@ -50,4 +52,5 @@ ggplotly(p)
 
 ```   
 
+The graph is interactive, so that when you hover over a song a box should pop up with the specific details of that song. 
 
