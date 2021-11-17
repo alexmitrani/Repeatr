@@ -6,7 +6,7 @@ Analysis and modelling of [Fugazi Live Series](https://www.dischord.com/fugazi_l
 
 ## Articles
 
-[Repeatr](articles/Repeatr.html) shares some details of the data processing and choice modelling.  
+[Repeatr](articles/Repeatr.html) outlines the process by which song ratings were calculated using the Fugazi Live Series metadata. 
 
 [Songnumberone](articles/Songnumberone.html) presents analysis of the choice of opening songs.  
 
@@ -16,8 +16,13 @@ Analysis and modelling of [Fugazi Live Series](https://www.dischord.com/fugazi_l
 
 The Repeatr package can be installed from RStudio using the .tar.gz file in the root directory of the [GitHub repository](https://github.com/alexmitrani/Repeatr).  The package gives easy access to the functions, dataframes, and related documentation.
 
-## That's all for now
+## Acknowledgements
 
-I hope you have found this interesting. If you have any comments or suggestions please add an issue to the [GitHub repository](https://github.com/alexmitrani/Repeatr).  
+The initial data was provided by Ian James Wright of the [Alphabetical Fugazi podcast](https://the-alphabetical-fugazi.pinecast.co/), who got it from Carni Klirs who did the project [Visualizing the History of Fugazi](https://www.carniklirs.com/project/fugazi).
+
+## That is all for now
+
+I hope you have found this interesting. If you have any comments or suggestions please add an issue to the repository on GitHub: https://github.com/alexmitrani/Repeatr/  
 
 Thanks. 
+
