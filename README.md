@@ -10,7 +10,7 @@ Analysis and modelling of [Fugazi Live Series](https://www.dischord.com/fugazi_l
 
 [Songnumberone](articles/Songnumberone.html) presents analysis of the choice of opening songs.  
 
-[92 SONGS](articles/92songs.html) summarises the main results of the data processing and choice modelling as an interactive graph.  The graph  shows ratings, performance counts and launch dates for the 92 songs that were both performed live and released on albums or EPs.  
+[92 SONGS](articles/92songs.html) summarises the main results of the data processing and choice modelling as an interactive graph.  The graph  shows ratings, performance counts and launch dates for the 92 songs that were performed live and released.  
 
 ## Repeatr package for R
 
