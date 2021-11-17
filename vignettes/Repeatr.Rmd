@@ -20,7 +20,7 @@ library(Repeatr)
 
 ## Introduction
 
-This article outlines the process by which song ratings were calculated using the Fugazi Live Series metadata.  
+This article outlines the process by which song ratings were calculated using the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) metadata.  
 
 ## Song counts
 Performance counts were calculated for all the released Fugazi songs that were performed live, using data from ... how many shows?

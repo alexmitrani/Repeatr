@@ -6,7 +6,7 @@ Analysis and modelling of [Fugazi Live Series](https://www.dischord.com/fugazi_l
 
 ## Articles
 
-[Repeatr](articles/Repeatr.html) outlines the process by which song ratings were calculated using the Fugazi Live Series metadata. 
+[Repeatr](articles/Repeatr.html) outlines the process by which song ratings were calculated using the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) metadata. 
 
 [Songnumberone](articles/Songnumberone.html) presents analysis of the choice of opening songs.  
 
