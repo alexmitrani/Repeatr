@@ -1,6 +1,6 @@
 url: ~
 template:
-  package: preferably
-  params:
-    toggle: manual
+  bootstrap: 5
+  bootswatch: cyborg
+  theme: arrow-dark
 
