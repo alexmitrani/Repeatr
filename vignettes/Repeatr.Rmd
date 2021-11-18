@@ -101,7 +101,9 @@ The implied preferences for each song are shown here in descending order of pref
 
 ```{r }
 Repeatr_5_results <- Repeatr_5(mymodel = ml.Repeatr4)
-knitr::kable(Repeatr_5_results[[1]], "pipe")
+myresults <- as.data.frame(Repeatr_5_results[1]) %>%
+  arrange(desc(Estimate))
+knitr::kable((myresults), "pipe")
 ```   
 
 It is hard to say exactly whose preferences are represented by these results. It seems reasonable to assume that they mainly represent the band's preferences, more often than not Ian MacKaye and Guy Picciotto, but the preferences of the audience may also have influenced the choice of the songs that were performed, directly or indirectly. 
