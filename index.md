@@ -6,11 +6,11 @@ Analysis and modelling of [Fugazi Live Series](https://www.dischord.com/fugazi_l
 
 ## Articles
 
-[Repeatr](https://alexmitrani.github.io/Repeatr/articles/Repeatr.html) outlines the process by which song ratings were calculated using the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) metadata. 
+[Repeatr](articles/Repeatr.html) outlines the process by which song ratings were calculated using the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) metadata. 
 
-[Songnumberone](https://alexmitrani.github.io/Repeatr/articles/Songnumberone.html) presents analysis of the choice of opening songs.  
+[Songnumberone](articles/Songnumberone.html) presents analysis of the choice of opening songs.  
 
-[92 SONGS](https://alexmitrani.github.io/Repeatr/articles/92songs.html) summarises the main results of the data processing and choice modelling as an interactive graph.  The graph  shows ratings, performance counts and launch dates for the 92 songs that were performed live and released.  
+[92 SONGS](articles/92songs.html) summarises the main results of the data processing and choice modelling as an interactive graph.  The graph  shows ratings, performance counts and launch dates for the 92 songs that were performed live and released.  
 
 ## Repeatr package for R
 
