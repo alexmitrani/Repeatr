@@ -25,7 +25,8 @@ A look into Fugazi's choices of opening songs using metadata from the [Fugazi Li
 Let's get preferences data from the song number one choice model results.
 
 ```{r }
-mypreferences <- results.ml.Repeatr4_fs
+mydf <- Repeatr_5(mymodeldf = results.ml.Repeatr4_fs)
+mypreferences <- mydf[[2]]
 ``` 
 
 Now let's convert the parameter estimates to a rating scale from 0 to 1
