@@ -127,7 +127,7 @@ The rank order of songs derived from the ratings is not very strong. Some of the
 
 ```{r echo=T, results='hide'}
 songstobecompared <- Repeatr_5_results[[3]] %>% slice(seq(from=1, to=2, by=1))
-mycomparisons <- rankr(mymodel = ml.Repeatr4, mysongidlist = songstobecompared)
+mycomparisons <- rankr(coeftable = results.ml.Repeatr4, vcovmat = vcovmat.ml.Repeatr4, mysongidlist = songstobecompared)
 mycomparisons <- mycomparisons %>%
   select(song1, song2, mycoef1, mycoef2, mycoefdiff, myz) %>%
   rename(coef1 = mycoef1, coef2 = mycoef2, coefdiff = mycoefdiff, z = myz)
