@@ -22,7 +22,7 @@ The initial data was provided by Ian James Wright of the [Alphabetical Fugazi po
 
 ## That is all for now
 
-I hope you have found this interesting. If you have any comments or suggestions please add an issue to the repository on GitHub: https://github.com/alexmitrani/Repeatr/  
+I hope you have found this interesting. If you have any comments or suggestions please add an issue to the [GitHub repository](https://github.com/alexmitrani/Repeatr/).
 
 Thanks. 
 
