@@ -7,7 +7,6 @@
 #' @import dplyr
 #' @import stringr
 #' @import lubridate
-#' @import mlogit
 #' @import fastDummies
 #' @import rlang
 #' @import knitr
