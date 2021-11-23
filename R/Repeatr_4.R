@@ -37,9 +37,11 @@ Repeatr_4 <- function(mydf = NULL, basic_model = FALSE, first_song_model = FALSE
   Repeatr4$case <- factor(as.numeric(as.factor(Repeatr4$case)))
   Repeatr4$alt <- as.factor(Repeatr4$alt)
   Repeatr4$choice <- as.logical(Repeatr4$choice)
-  Repeatr4 <- dfidx(Repeatr4, idx = c("case", "alt"), drop.index = FALSE)
+
 
   if (basic_model == TRUE) {
+
+    Repeatr4 <- dfidx(Repeatr4, idx = c("case", "alt"), drop.index = FALSE)
 
     # The basic model.
 
@@ -53,6 +55,8 @@ Repeatr_4 <- function(mydf = NULL, basic_model = FALSE, first_song_model = FALSE
     return(ml.Repeatr4)
 
   } else if (first_song_model == TRUE) {
+
+    Repeatr4 <- dfidx(Repeatr4, idx = c("case", "alt"), drop.index = FALSE)
 
     # First song model ---------------------------------------------------
 
@@ -90,6 +94,8 @@ Repeatr_4 <- function(mydf = NULL, basic_model = FALSE, first_song_model = FALSE
     return(ml.Repeatr4_fs)
 
   } else if (other_songs_model == TRUE) {
+
+    Repeatr4 <- dfidx(Repeatr4, idx = c("case", "alt"), drop.index = FALSE)
 
     # Other songs model -------------------------------------------------
 
