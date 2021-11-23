@@ -346,7 +346,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     select(gid, date, year, month, day, song_number, songid, song, number_songs, first_song, last_song, releaseid,	release, track_number, instrumental,	vocals_picciotto,	vocals_mackaye,	vocals_lally,	duration_seconds) %>%
     arrange(date, song_number)
 
-  myreturnlist <- list(Repeatr0, Repeatr1, mysongidlookup, mycount, mysongvarslookup, releasesdatalookup)
+  myreturnlist <- list(Repeatr0, Repeatr1, mysongidlookup, mycount, mysongvarslookup, releasesdatalookup, othervariables)
 
   return(myreturnlist)
 
