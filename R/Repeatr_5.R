@@ -5,34 +5,31 @@
 #' @import dplyr
 #' @import stringr
 #' @import lubridate
-#' @import mlogit
 #' @import fastDummies
 #' @import rlang
 #' @import knitr
 #' @import readr
 #'
 #'
-#' @param mymodel optional choice model to be used to generate the results. If omitted, the default choice model will be used, which is ml.Repeatr4.
+#' @param mymodeldf optional choice model coefficients dataframe to be used to generate the results. If omitted, the default choice model coefficients dataframe will be used, which is results.ml.Repeatr4.
 #'
 #' @return
 #' @export
 #'
 #' @examples
-#' Repeatr_5_results <- Repeatr_5(mymodel = ml.Repeatr4)
+#' Repeatr_5_results <- Repeatr_5(mymodeldf = results.ml.Repeatr4)
 #'
-Repeatr_5 <- function(mymodel = NULL) {
+Repeatr_5 <- function(mymodeldf = NULL) {
 
   # Report results of the choice modelling for the preferred choice model ----------------------------------
 
   if(is.null(mymodel)==TRUE) {
 
-    mymodel = ml.Repeatr4
+    mymodeldf = results.ml.Repeatr4
 
   }
 
-  summary.mymodel <- summary(mymodel)
-
-  results.mymodel <- as.data.frame(summary.mymodel[["CoefTable"]])
+  results.mymodel <- mymodeldf
 
   variable <- row.names(results.mymodel)
 

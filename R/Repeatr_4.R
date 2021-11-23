@@ -5,7 +5,6 @@
 #' @import dplyr
 #' @import stringr
 #' @import lubridate
-#' @import mlogit
 #' @import fastDummies
 #' @import rlang
 #' @import knitr
@@ -20,7 +19,7 @@
 #' @export
 #'
 #' @examples
-#' ml.Repeatr4_fs <- Repeatr_4(first_song_model = TRUE)
+#' ml.Repeatr4_fs <- Repeatr_4()
 
 Repeatr_4 <- function(mydf = NULL, basic_model = FALSE, first_song_model = FALSE, other_songs_model = FALSE) {
 
