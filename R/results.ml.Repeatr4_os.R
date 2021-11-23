@@ -18,5 +18,5 @@
 #' \item{Pr(>|z|)}{The P value of the coefficient}
 #' }
 #' @examples
-#'   results.ml.Repeatr4
-"results.ml.Repeatr4"
+#'   results.ml.Repeatr4_os
+"results.ml.Repeatr4_os"
