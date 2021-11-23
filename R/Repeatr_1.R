@@ -95,6 +95,9 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   }
 
+  geocodedatafile <- geocodedatafile %>%
+    mutate(date = as.Date(date))
+
   # Define data file with other variables for possible later use
   othervariables <- Repeatr0 %>%
     select(V1, V2, V3, V4, V5, V6, V7, V8, V9)
