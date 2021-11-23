@@ -13,6 +13,12 @@
 #' \item{recorded_by}{Recorded by}
 #' \item{mastered_by}{Mastered by}
 #' \item{original_source}{Original source}
+#' \item{x}{longitude}
+#' \item{y}{latitude}
+#' \item{city}{city}
+#' \item{country}{country}
+#' \item{tour}{tour}
+#' \item{year}{year}
 
 #' }
 #' @examples
