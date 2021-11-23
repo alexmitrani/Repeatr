@@ -106,7 +106,7 @@ This file contains the following variables: index	releaseid	release	track_number
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9021</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9023</span>
       </span>
     </div>
 
@@ -179,7 +179,12 @@ This file contains the following variables: index	releaseid	release	track_number
 <p>This file contains the following variables: index	releaseid	release	track_number	songid	song	instrumental	vocals_picciotto	vocals_mackaye	vocals_lally	duration_seconds</p>
     </div>
 
-    <pre class="usage"><span class='fu'>Repeatr_1</span><span class='op'>(</span>mycsvfile <span class='op'>=</span> <span class='cn'>NULL</span>, mysongdatafile <span class='op'>=</span> <span class='cn'>NULL</span>, releasesdatafile <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>Repeatr_1</span><span class='op'>(</span>
+  mycsvfile <span class='op'>=</span> <span class='cn'>NULL</span>,
+  mysongdatafile <span class='op'>=</span> <span class='cn'>NULL</span>,
+  releasesdatafile <span class='op'>=</span> <span class='cn'>NULL</span>,
+  geocodedatafile <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -196,6 +201,10 @@ This file contains the following variables: index	releaseid	release	track_number
       <th>releasesdatafile</th>
       <td><p>Optional name of CSV file containing releases data to be used. If omitted, the default file provided with the package will be used.</p></td>
     </tr>
+    <tr>
+      <th>geocodedatafile</th>
+      <td><p>Optional name of CSV file containing coordinates for each gig and other data. If omitted, the default file provided with the package will be used.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -209,8 +218,9 @@ This file contains the following variables: index	releaseid	release	track_number
 <span class='r-in'><span class='va'>releases_songs_durations_wikipedia</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata"</span>, <span class='st'>"releases_songs_durations_wikipedia.csv"</span>, package <span class='op'>=</span> <span class='st'>"Repeatr"</span><span class='op'>)</span></span>
 <span class='r-in'><span class='va'>releasesdatafile</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata"</span>, <span class='st'>"releases_rym.csv"</span>, package <span class='op'>=</span> <span class='st'>"Repeatr"</span><span class='op'>)</span></span>
 <span class='r-in'><span class='va'>Repeatr_1_results</span> <span class='op'>&lt;-</span> <span class='fu'>Repeatr_1</span><span class='op'>(</span>mycsvfile <span class='op'>=</span> <span class='va'>fugotcha</span>, mysongdatafile <span class='op'>=</span> <span class='va'>releases_songs_durations_wikipedia</span>, releasesdatafile <span class='op'>=</span> <span class='va'>releasesdatafile</span><span class='op'>)</span></span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> Joining, by = "song"</span>
-<span class='r-msg co'><span class='r-pr'>#&gt;</span> Joining, by = "songid"</span>
+<span class='r-err co'><span class='r-pr'>#&gt;</span> <span class='error'>Error:</span> Problem with `mutate()` column `date`.</span>
+<span class='r-err co'><span class='r-pr'>#&gt;</span> <span style='color: #0000BB;'>i</span> `date = as.Date(date)`.</span>
+<span class='r-err co'><span class='r-pr'>#&gt;</span> <span style='color: #BB0000;'>x</span> do not know how to convert 'date' to class "Date"</span>
 <span class='r-in'></span>
 </pre>
   </div>
