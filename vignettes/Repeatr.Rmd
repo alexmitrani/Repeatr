@@ -126,7 +126,7 @@ knitr::kable(Repeatr_5_results[[3]], "pipe")
 The rank order of songs derived from the ratings is not very strong. Some of the differences between the ratings are very small and the differences between the ratings of adjacent songs in the table turned out to be insignificant. The rankr function makes it easy to test which differences between song ratings are significant and which are not.  For instance, do the results really indicate that "Bed for the Scraping" was preferred over "Reclamation"?  
 
 ```{r echo=T, results='hide'}
-songstobecompared <- songstobecompared <- summary %>% slice(seq(from=1, to=92, by=10))
+songstobecompared <- songstobecompared <- summary %>% slice(seq(from=1, to=2, by=1))
 mycomparisons <- rankr(coeftable = results.ml.Repeatr4, vcovmat = vcovmat.ml.Repeatr4, mysongidlist = songstobecompared)
 mycomparisons <- mycomparisons %>%
   select(song1, song2, mycoef1, mycoef2, mycoefdiff, myz) %>%
@@ -140,8 +140,8 @@ knitr::kable(mycomparisons, format = "pipe", digits = 3)
 A z-statistic of 1.96 or greater indicates a difference that is statistically significant with 95% confidence. The difference between "Bed for the Scraping" and "Reclamation" is not statistically significant. In fact, none of the differences between adjacent songs are statistically significant. However, some of the differences between songs further apart on the table are significant, as can be seen below.  
 
 ```{r echo=T, results='hide'}
-songstobecompared <- Repeatr_5_results[[3]] %>% slice(seq(from=1, to=92, by=8))
-mycomparisons <- rankr(mymodel = ml.Repeatr4, mysongidlist = songstobecompared)
+songstobecompared <- songstobecompared <- songstobecompared <- summary %>% slice(seq(from=1, to=92, by=8))
+mycomparisons <- rankr(coeftable = results.ml.Repeatr4, vcovmat = vcovmat.ml.Repeatr4, mysongidlist = songstobecompared)
 mycomparisons <- mycomparisons %>%
   select(song1, song2, mycoef1, mycoef2, mycoefdiff, myz) %>%
   rename(coef1 = mycoef1, coef2 = mycoef2, coefdiff = mycoefdiff, z = myz)
@@ -157,7 +157,7 @@ So, the ranks should not be interpreted rigidly. Any two of the adjacent songs i
 The song ratings calculated using the Fugazi Live Series (FLS) data were used to calculate average ratings for the band's studio releases. These were compared to the average ratings for the same releases at [https://rateyourmusic.com/artist/fugazi](https://web.archive.org/web/20210211085323/https://rateyourmusic.com/artist/fugazi), as at 11 February 2021.  The original RYM ratings were on a scale from 0 to 5 stars, so these were multiplied by 0.2 to convert them to the same scale as the FLS ratings. The results are shown below.   
 
 ```{r }
-Repeatr_5_results <- Repeatr_5(mymodel = ml.Repeatr4)
+Repeatr_5_results <- Repeatr_5(mymodeldf = results.ml.Repeatr4)
 knitr::kable(Repeatr_5_results[[4]], "pipe")
 ```
 
