@@ -117,7 +117,7 @@ Source: https://web.archive.org/web/20201123023401/https://www.abc.net.au/double
 The following table shows ratings based on the preferences described in the section above, together with the indicators described in previous sections: performance counts and intensities. The ratings are simply the preferences normalised in such a way that the highest preference has a value of 1 and the lowest a value of 0. This way it will be easy to scale these values for comparison with ratings defined on other intervals. 
 
 ```{r }
-Repeatr_5_results <- Repeatr_5(mymodel = ml.Repeatr4)
+Repeatr_5_results <- Repeatr_5(mymodeldf = results.ml.Repeatr4)
 knitr::kable(Repeatr_5_results[[3]], "pipe")
 ```
 
@@ -126,7 +126,7 @@ knitr::kable(Repeatr_5_results[[3]], "pipe")
 The rank order of songs derived from the ratings is not very strong. Some of the differences between the ratings are very small and the differences between the ratings of adjacent songs in the table turned out to be insignificant. The rankr function makes it easy to test which differences between song ratings are significant and which are not.  For instance, do the results really indicate that "Bed for the Scraping" was preferred over "Reclamation"?  
 
 ```{r echo=T, results='hide'}
-songstobecompared <- Repeatr_5_results[[3]] %>% slice(seq(from=1, to=2, by=1))
+songstobecompared <- songstobecompared <- summary %>% slice(seq(from=1, to=92, by=10))
 mycomparisons <- rankr(coeftable = results.ml.Repeatr4, vcovmat = vcovmat.ml.Repeatr4, mysongidlist = songstobecompared)
 mycomparisons <- mycomparisons %>%
   select(song1, song2, mycoef1, mycoef2, mycoefdiff, myz) %>%
