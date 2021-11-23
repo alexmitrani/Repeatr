@@ -18,7 +18,7 @@ The Repeatr package can be installed from RStudio using the .tar.gz file in the 
 
 ## Acknowledgements
 
-The initial data was provided by Ian James Wright of the [Alphabetical Fugazi podcast](https://the-alphabetical-fugazi.pinecast.co/), who got it from Carni Klirs who did the project [Visualizing the History of Fugazi](https://www.carniklirs.com/project/fugazi). The coordinates and tour data came from [The D-I-Y Data of Fugazi](https://mathisonian.github.io/diy-data-fugazi/) by Matthew Conlen. 
+The initial data was provided by Ian James Wright of the [Alphabetical Fugazi podcast](https://the-alphabetical-fugazi.pinecast.co/), who got it from Carni Klirs who did the project [Visualizing the History of Fugazi](https://www.carniklirs.com/project/fugazi). The coordinates and tour data came from [The D-I-Y Data of Fugazi](https://github.com/mathisonian/diy-data-fugazi) by Matthew Conlen. 
 
 ## That is all for now
 
