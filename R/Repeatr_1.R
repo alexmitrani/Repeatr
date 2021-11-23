@@ -19,6 +19,7 @@
 #' @param mycsvfile Optional name of CSV file containing Fugazi Live Series data to be used. If omitted, the default file provided with the package will be used.
 #' @param mysongdatafile Optional name of CSV file containing song data to be used. If omitted, the default file provided with the package will be used.
 #' @param releasesdatafile Optional name of CSV file containing releases data to be used. If omitted, the default file provided with the package will be used.
+#' @param geocodedatafile Optional name of CSV file containing coordinates for each gig and other data. If omitted, the default file provided with the package will be used.
 #'
 #' @return
 #' @export
@@ -29,7 +30,7 @@
 #' releasesdatafile <- system.file("extdata", "releases_rym.csv", package = "Repeatr")
 #' Repeatr_1_results <- Repeatr_1(mycsvfile = fugotcha, mysongdatafile = releases_songs_durations_wikipedia, releasesdatafile = releasesdatafile)
 #'
-Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile = NULL) {
+Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile = NULL, geocodedatafile = NULL) {
 
 
 # Devel setup -------------------------------------------------------------
@@ -83,21 +84,37 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   }
 
+  if (is.null(geocodedatafile)==FALSE) {
+
+    geocodedatafile <- read.csv(geocodedatafile)
+
+  } else {
+
+    geocodedatafile <- system.file("extdata", "fugazi-small.csv", package = "Repeatr")
+    geocodedatafile <- read.csv(geocodedatafile)
+    geocodedatafile$X <- NULL
+
+  }
+
   # Define data file with other variables for possible later use
   othervariables <- Repeatr0 %>%
-    select(V1, V2, V4, V5, V6, V7, V8, V9)
+    select(V1, V2, V3, V4, V5, V6, V7, V8, V9)
 
   othervariables <- othervariables %>%
     rename(gid = V1) %>%
     rename(flsid = V2) %>%
+    rename(date = V3) %>%
     rename(venue = V4) %>%
     rename(doorprice = V5) %>%
     rename(attendance = V6) %>%
     rename(recorded_by = V7) %>%
     rename(mastered_by = V8) %>%
-    rename(original_source = V9)
+    rename(original_source = V9) %>%
 
+  othervariables <- othervariables %>%
+    mutate(date = as.Date(date))
 
+  othervariables <- othervariables %>% left_join(geocodedatafile)
 
   # Select the most relevant columns -------
 
