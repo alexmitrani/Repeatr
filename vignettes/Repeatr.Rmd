@@ -100,7 +100,8 @@ The parameters related to the age of the songs support the hypothesis that recen
 The implied preferences for each song are shown here in descending order of preference: 
 
 ```{r }
-Repeatr_5_results <- Repeatr_5(mymodel = ml.Repeatr4)
+
+Repeatr_5_results <- Repeatr_5(mymodeldf = results.ml.Repeatr4)
 myresults <- as.data.frame(Repeatr_5_results[1]) %>%
   arrange(desc(Estimate))
 knitr::kable((myresults), "pipe")

@@ -7,10 +7,10 @@
 #' @description The function will return a one-row dataframe with the following columns: var1, var2, coefindex1, coefindex2, mycoef1, mycoef2, mycoefdiff, myz, myp, lower95ci, upper95ci
 #' @description A coefficient index of 0 will be interpreted as referring to the omitted constant.
 #'
-#' @import mlogit
 #' @import crayon
 #'
-#' @param mymodel model to be used.
+#' @param coeftable coefficients table from mlogit, with one row per coefficient
+#' @param vcovmat variance covariance matrix from mlogit, with one row and one column per coefficient
 #' @param coefindex1 index number of first coefficient to be tested
 #' @param coefindex2 index number of second coefficient to be tested
 #'
@@ -18,17 +18,17 @@
 #' @export
 #'
 #' @examples
-#' mytest <- diffr(mymodel = ml.Repeatr4, coefindex1 = 1, coefindex2 = 2)
+#' mytest <- diffr(coeftable = results.ml.Repeatr4, vcovmat = vcovmat.ml.Repeatr4, coefindex1 = 1, coefindex2 = 2)
 #'
-diffr <- function(mymodel = NULL, coefindex1 = NULL, coefindex2 = NULL) {
+diffr <- function(coeftable = NULL, vcovmat = NULL, coefindex1 = NULL, coefindex2 = NULL) {
 
   # Source: https://stats.stackexchange.com/questions/59085/how-to-test-for-simultaneous-equality-of-choosen-coefficients-in-logit-or-probit
 
-  mycoefs <- as.data.frame(mymodel[["coefficients"]])
+  mycoefs <- coeftable
 
   mycoefs$varname <- row.names(mycoefs)
 
-  myvcovmat <- as.data.frame(vcov(mymodel))
+  myvcovmat <- vcovmat
 
   if (coefindex1==0) {
 
@@ -38,7 +38,7 @@ diffr <- function(mymodel = NULL, coefindex1 = NULL, coefindex2 = NULL) {
   } else {
 
     mycoef1 <- as.numeric(mycoefs[coefindex1,1])
-    var1 <- mycoefs[coefindex1,2]
+    var1 <- mycoefs[coefindex1,5]
 
   }
 
@@ -52,7 +52,7 @@ diffr <- function(mymodel = NULL, coefindex1 = NULL, coefindex2 = NULL) {
   } else {
 
     mycoef2 <- as.numeric(mycoefs[coefindex2,1])
-    var2 <- mycoefs[coefindex2,2]
+    var2 <- mycoefs[coefindex2,5]
 
   }
 
