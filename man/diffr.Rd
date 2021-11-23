@@ -4,10 +4,12 @@
 \alias{diffr}
 \title{Tests whether differences between pairs of model parameters are significant or not.}
 \usage{
-diffr(mymodel = NULL, coefindex1 = NULL, coefindex2 = NULL)
+diffr(coeftable = NULL, vcovmat = NULL, coefindex1 = NULL, coefindex2 = NULL)
 }
 \arguments{
-\item{mymodel}{model to be used.}
+\item{coeftable}{coefficients table from mlogit, with one row per coefficient}
+
+\item{vcovmat}{variance covariance matrix from mlogit, with one row and one column per coefficient}
 
 \item{coefindex1}{index number of first coefficient to be tested}
 
@@ -30,6 +32,6 @@ The function will return a one-row dataframe with the following columns: var1, v
 A coefficient index of 0 will be interpreted as referring to the omitted constant.
 }
 \examples{
-mytest <- diffr(mymodel = ml.Repeatr4, coefindex1 = 1, coefindex2 = 2)
+mytest <- diffr(coeftable = results.ml.Repeatr4, vcovmat = vcovmat.ml.Repeatr4, coefindex1 = 1, coefindex2 = 2)
 
 }

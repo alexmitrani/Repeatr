@@ -4,10 +4,12 @@
 \alias{rankr}
 \title{Undertakes paired comparisons for ranking a set of coefficients, considering whether the differences between the coefficients are significant or not.}
 \usage{
-rankr(mymodel = NULL, mysongidlist = NULL)
+rankr(coeftable = NULL, vcovmat = NULL, mysongidlist = NULL)
 }
 \arguments{
-\item{mymodel}{the choice model to be used}
+\item{coeftable}{coefficients table from mlogit, with one row per coefficient}
+
+\item{vcovmat}{variance covariance matrix from mlogit, with one row and one column per coefficient}
 
 \item{mysongidlist}{a dataframe containing the list of song ids to be tested.  It can contain other variables but only songid will be used.}
 }
@@ -24,7 +26,7 @@ rankr
 }
 \examples{
 songstobecompared <- summary \%>\% slice(seq(from=1, to=92, by=10))
-mycomparisons <- rankr(mymodel = ml.Repeatr4, mysongidlist = songstobecompared)
+mycomparisons <- rankr(coeftable = results.ml.Repeatr4, vcovmat = vcovmat.ml.Repeatr4, mysongidlist = songstobecompared)
 mycomparisons
 
 }

@@ -23,7 +23,7 @@ Repeatr_5 <- function(mymodeldf = NULL) {
 
   # Report results of the choice modelling for the preferred choice model ----------------------------------
 
-  if(is.null(mymodel)==TRUE) {
+  if(is.null(mymodeldf)==TRUE) {
 
     mymodeldf = results.ml.Repeatr4
 
@@ -51,7 +51,7 @@ Repeatr_5 <- function(mymodeldf = NULL) {
 
   write.csv(choice_model_results_table, "fugazi_song_choice_model.csv")
 
-  results.mymodel <- as.data.frame(summary.mymodel[["CoefTable"]])
+  results.mymodel <- mymodeldf
 
   variable <- row.names(results.mymodel)
 
