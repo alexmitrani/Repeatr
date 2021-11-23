@@ -108,7 +108,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     rename(attendance = V6) %>%
     rename(recorded_by = V7) %>%
     rename(mastered_by = V8) %>%
-    rename(original_source = V9) %>%
+    rename(original_source = V9)
 
   othervariables <- othervariables %>%
     mutate(date = as.Date(date))
