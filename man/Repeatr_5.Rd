@@ -4,10 +4,10 @@
 \alias{Repeatr_5}
 \title{Produces results using a preferred choice model supplied by the user as "mymodel"}
 \usage{
-Repeatr_5(mymodel = NULL)
+Repeatr_5(mymodeldf = NULL)
 }
 \arguments{
-\item{mymodel}{optional choice model to be used to generate the results. If omitted, the default choice model will be used, which is ml.Repeatr4.}
+\item{mymodeldf}{optional choice model coefficients dataframe to be used to generate the results. If omitted, the default choice model coefficients dataframe will be used, which is results.ml.Repeatr4.}
 }
 \value{
 
@@ -16,6 +16,6 @@ Repeatr_5(mymodel = NULL)
 Produces a summary table that includes song performance counts, song performance intensities, and ratings based on the estimated choice model parameters.
 }
 \examples{
-Repeatr_5_results <- Repeatr_5(mymodel = ml.Repeatr4)
+Repeatr_5_results <- Repeatr_5(mymodeldf = results.ml.Repeatr4)
 
 }

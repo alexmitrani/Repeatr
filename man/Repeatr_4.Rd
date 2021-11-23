@@ -27,5 +27,5 @@ Repeatr_4(
 Defines indices, makes changes to variable formats and data structure to prepare for choice modelling with mlogit.
 }
 \examples{
-ml.Repeatr4_fs <- Repeatr_4(first_song_model = TRUE)
+ml.Repeatr4_fs <- Repeatr_4()
 }
