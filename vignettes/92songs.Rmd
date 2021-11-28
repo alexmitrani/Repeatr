@@ -64,8 +64,10 @@ The graph is interactive:
 
 - hover over a song to see specific details about the song
 
+- double tap on a release in the legend to hide all the bubbles except those corresponding to this release.  Double-tap again to undo.  
+
 - tap on a release in the legend to hide the corresponding
-bubbles, tap on the release again to reveal them once more.  This is useful to focus on one or more specific releases by hiding the others.   
+bubbles, tap on the release again to undo.    
 
 When you hover over the graph a toolbar will appear at the top right. This offers several ways of interacting with the graph: 
 
