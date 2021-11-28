@@ -101,7 +101,7 @@ The implied preferences for each song are shown here in descending order of pref
 
 ```{r }
 
-Repeatr_5_results <- Repeatr_5(mymodeldf = results.ml.Repeatr4)
+Repeatr_5_results <- Repeatr_5(mymodeldf = results_ml_Repeatr4)
 myresults <- as.data.frame(Repeatr_5_results[1]) %>%
   arrange(desc(Estimate))
 knitr::kable((myresults), "pipe")
@@ -117,7 +117,7 @@ Source: https://web.archive.org/web/20201123023401/https://www.abc.net.au/double
 The following table shows ratings based on the preferences described in the section above, together with the indicators described in previous sections: performance counts and intensities. The ratings are simply the preferences normalised in such a way that the highest preference has a value of 1 and the lowest a value of 0. This way it will be easy to scale these values for comparison with ratings defined on other intervals. 
 
 ```{r }
-Repeatr_5_results <- Repeatr_5(mymodeldf = results.ml.Repeatr4)
+Repeatr_5_results <- Repeatr_5(mymodeldf = results_ml_Repeatr4)
 knitr::kable(Repeatr_5_results[[3]], "pipe")
 ```
 
@@ -127,7 +127,7 @@ The rank order of songs derived from the ratings is not very strong. Some of the
 
 ```{r echo=T, results='hide'}
 songstobecompared <- songstobecompared <- summary %>% slice(seq(from=1, to=2, by=1))
-mycomparisons <- rankr(coeftable = results.ml.Repeatr4, vcovmat = vcovmat.ml.Repeatr4, mysongidlist = songstobecompared)
+mycomparisons <- rankr(coeftable = results_ml_Repeatr4, vcovmat = vcovmat_ml_Repeatr4, mysongidlist = songstobecompared)
 mycomparisons <- mycomparisons %>%
   select(song1, song2, mycoef1, mycoef2, mycoefdiff, myz) %>%
   rename(coef1 = mycoef1, coef2 = mycoef2, coefdiff = mycoefdiff, z = myz)
@@ -141,7 +141,7 @@ A z-statistic of 1.96 or greater indicates a difference that is statistically si
 
 ```{r echo=T, results='hide'}
 songstobecompared <- songstobecompared <- songstobecompared <- summary %>% slice(seq(from=1, to=92, by=8))
-mycomparisons <- rankr(coeftable = results.ml.Repeatr4, vcovmat = vcovmat.ml.Repeatr4, mysongidlist = songstobecompared)
+mycomparisons <- rankr(coeftable = results_ml_Repeatr4, vcovmat = vcovmat_ml_Repeatr4, mysongidlist = songstobecompared)
 mycomparisons <- mycomparisons %>%
   select(song1, song2, mycoef1, mycoef2, mycoefdiff, myz) %>%
   rename(coef1 = mycoef1, coef2 = mycoef2, coefdiff = mycoefdiff, z = myz)
@@ -157,7 +157,7 @@ So, the ranks should not be interpreted rigidly. Any two of the adjacent songs i
 The song ratings calculated using the Fugazi Live Series (FLS) data were used to calculate average ratings for the band's studio releases. These were compared to the average ratings for the same releases at [https://rateyourmusic.com/artist/fugazi](https://web.archive.org/web/20210211085323/https://rateyourmusic.com/artist/fugazi), as at 11 February 2021.  The original RYM ratings were on a scale from 0 to 5 stars, so these were multiplied by 0.2 to convert them to the same scale as the FLS ratings. The results are shown below.   
 
 ```{r }
-Repeatr_5_results <- Repeatr_5(mymodeldf = results.ml.Repeatr4)
+Repeatr_5_results <- Repeatr_5(mymodeldf = results_ml_Repeatr4)
 knitr::kable(Repeatr_5_results[[4]], "pipe")
 ```
 

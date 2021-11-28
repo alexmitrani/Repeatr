@@ -14,7 +14,7 @@
 #'
 #' @examples
 #' songstobecompared <- summary %>% slice(seq(from=1, to=92, by=10))
-#' mycomparisons <- rankr(coeftable = results.ml.Repeatr4, vcovmat = vcovmat.ml.Repeatr4, mysongidlist = songstobecompared)
+#' mycomparisons <- rankr(coeftable = results_ml_Repeatr4, vcovmat = vcovmat_ml_Repeatr4, mysongidlist = songstobecompared)
 #' mycomparisons
 #'
 rankr <- function(coeftable = NULL, vcovmat = NULL, mysongidlist = NULL) {

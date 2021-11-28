@@ -18,7 +18,7 @@
 #' @export
 #'
 #' @examples
-#' mytest <- diffr(coeftable = results.ml.Repeatr4, vcovmat = vcovmat.ml.Repeatr4, coefindex1 = 1, coefindex2 = 2)
+#' mytest <- diffr(coeftable = results_ml_Repeatr4, vcovmat = vcovmat_ml_Repeatr4, coefindex1 = 1, coefindex2 = 2)
 #'
 diffr <- function(coeftable = NULL, vcovmat = NULL, coefindex1 = NULL, coefindex2 = NULL) {
 
