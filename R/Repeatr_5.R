@@ -17,7 +17,7 @@
 #' @export
 #'
 #' @examples
-#' Repeatr_5_results <- Repeatr_5(mymodeldf = results.ml.Repeatr4)
+#' Repeatr_5_results <- Repeatr_5(mymodeldf = results_ml_Repeatr4)
 #'
 Repeatr_5 <- function(mymodeldf = NULL) {
 
@@ -25,7 +25,7 @@ Repeatr_5 <- function(mymodeldf = NULL) {
 
   if(is.null(mymodeldf)==TRUE) {
 
-    mymodeldf = results.ml.Repeatr4
+    mymodeldf = results_ml_Repeatr4
 
   }
 
