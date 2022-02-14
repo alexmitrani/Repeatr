@@ -1,3 +1,6 @@
+# Hierarchical Edge Bundling
+# https://www.r-graph-gallery.com/hierarchical-edge-bundling.html
+
 # Libraries
 library(ggraph)
 library(igraph)
@@ -6,7 +9,10 @@ library(RColorBrewer)
 
 load("~/Documents/GitHub/Repeatr/data/Repeatr1.rda")
 
-mydf1 <- Repeatr1 %>% select(gid,song_number,song)
+mydf1 <- Repeatr1 %>%
+  filter(year==2002) %>%
+  select(gid,song_number,song)
+
 mydf2 <- mydf1 %>% mutate(song_number = song_number-1)
 mydf1 <- mydf1 %>% rename(song1 = song)
 mydf2 <- mydf2 %>% rename(song2 = song)
@@ -18,9 +24,8 @@ head(mydf3)
 connect <- mydf3 %>%
   select(song1, song2) %>%
   rename(from = song1) %>%
-  rename(to = song2)
-
-connect$value <- runif(nrow(connect))
+  rename(to = song2) %>%
+  mutate(value = runif(nrow(connect)))
 
 load("~/Documents/GitHub/Repeatr/data/songvarslookup.rda")
 load("~/Documents/GitHub/Repeatr/data/songidlookup.rda")
@@ -83,6 +88,9 @@ ggraph(mygraph, layout = 'dendrogram', circular = TRUE) +
   geom_node_point(aes(filter = leaf, x = x*1.05, y=y*1.05)) +
   theme_void()
 
+# Customize Hierarchical Edge Bundling
+# https://www.r-graph-gallery.com/310-custom-hierarchical-edge-bundling.html
+
 p <- ggraph(mygraph, layout = 'dendrogram', circular = TRUE) +
   geom_node_point(aes(filter = leaf, x = x*1.05, y=y*1.05)) +
   theme_void()
@@ -127,6 +135,9 @@ p +
   scale_colour_manual(values= rep( brewer.pal(9,"Paired") , 30)) +
   scale_size_continuous( range = c(0.1,10) )
 
+# Add labels to Hierarchical Edge Bundling
+# https://www.r-graph-gallery.com/311-add-labels-to-hierarchical-edge-bundling.html
+
 #Let's add information concerning the label we are going to add: angle, horizontal adjustement and potential flip
 #calculate the ANGLE of the labels
 vertices$id <- NA
@@ -161,3 +172,21 @@ ggraph(mygraph, layout = 'dendrogram', circular = TRUE) +
   ) +
   expand_limits(x = c(-1.2, 1.2), y = c(-1.2, 1.2))
 
+# final figure
+
+ggraph(mygraph, layout = 'dendrogram', circular = TRUE) +
+  geom_conn_bundle(data = get_con(from = from, to = to), alpha=0.2, width=0.9, aes(colour=..index..)) +
+  scale_edge_colour_distiller(palette = "RdPu") +
+
+  geom_node_text(aes(x = x*1.15, y=y*1.15, filter = leaf, label=name, angle = angle, hjust=hjust, colour=group), size=2, alpha=1) +
+
+  geom_node_point(aes(filter = leaf, x = x*1.07, y=y*1.07, colour=group, size=value, alpha=0.2)) +
+  scale_colour_manual(values= rep( brewer.pal(9,"Paired") , 30)) +
+  scale_size_continuous( range = c(0.1,10) ) +
+
+  theme_void() +
+  theme(
+    legend.position="none",
+    plot.margin=unit(c(0,0,0,0),"cm"),
+  ) +
+  expand_limits(x = c(-1.3, 1.3), y = c(-1.3, 1.3))
