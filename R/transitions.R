@@ -20,5 +20,11 @@ songvars <- songvarslookup %>% left_join(songidlookup)
 songvars <- songvars %>% select(releaseid,release,track_number,song)
 songvars <- songvars %>% arrange(releaseid,track_number)
 
+load("~/Documents/GitHub/Repeatr/data/releasesdatalookup.rda")
+releases <- releasesdatalookup %>%
+  mutate(from = "origin") %>%
+  rename(to = release) %>%
+  select(from, to)
+
 
 
