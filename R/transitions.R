@@ -127,5 +127,37 @@ p +
   scale_colour_manual(values= rep( brewer.pal(9,"Paired") , 30)) +
   scale_size_continuous( range = c(0.1,10) )
 
+#Let's add information concerning the label we are going to add: angle, horizontal adjustement and potential flip
+#calculate the ANGLE of the labels
+vertices$id <- NA
+myleaves <- which(is.na( match(vertices$name, hierarchy$from) ))
+nleaves <- length(myleaves)
+vertices$id[ myleaves ] <- seq(1:nleaves)
+vertices$angle <- 90 - 360 * vertices$id / nleaves
 
+# calculate the alignment of labels: right or left
+# If I am on the left part of the plot, my labels have currently an angle < -90
+vertices$hjust <- ifelse( vertices$angle < -90, 1, 0)
+
+# flip angle BY to make them readable
+vertices$angle <- ifelse(vertices$angle < -90, vertices$angle+180, vertices$angle)
+
+# Create a graph object
+mygraph <- igraph::graph_from_data_frame( hierarchy, vertices=vertices )
+
+# The connection object must refer to the ids of the leaves:
+from  <-  match( connect$from, vertices$name)
+to  <-  match( connect$to, vertices$name)
+
+# Basic usual argument
+ggraph(mygraph, layout = 'dendrogram', circular = TRUE) +
+  geom_node_point(aes(filter = leaf, x = x*1.05, y=y*1.05)) +
+  geom_conn_bundle(data = get_con(from = from, to = to), alpha=0.2, colour="skyblue", width=0.9) +
+  geom_node_text(aes(x = x*1.1, y=y*1.1, filter = leaf, label=name, angle = angle, hjust=hjust), size=1.5, alpha=1) +
+  theme_void() +
+  theme(
+    legend.position="none",
+    plot.margin=unit(c(0,0,0,0),"cm"),
+  ) +
+  expand_limits(x = c(-1.2, 1.2), y = c(-1.2, 1.2))
 
