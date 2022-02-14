@@ -10,7 +10,7 @@ library(RColorBrewer)
 load("~/Documents/GitHub/Repeatr/data/Repeatr1.rda")
 
 mydf1 <- Repeatr1 %>%
-  filter(year==2002) %>%
+  filter(year==2001) %>%
   select(gid,song_number,song)
 
 mydf2 <- mydf1 %>% mutate(song_number = song_number-1)
@@ -24,8 +24,14 @@ head(mydf3)
 connect <- mydf3 %>%
   select(song1, song2) %>%
   rename(from = song1) %>%
-  rename(to = song2) %>%
-  mutate(value = runif(nrow(connect)))
+  rename(to = song2)
+
+connect <- connect %>%
+  mutate(counter=1) %>%
+  group_by(from, to) %>%
+  summarize(value = sum(counter)) %>%
+  ungroup()
+
 
 load("~/Documents/GitHub/Repeatr/data/songvarslookup.rda")
 load("~/Documents/GitHub/Repeatr/data/songidlookup.rda")
@@ -159,18 +165,6 @@ mygraph <- igraph::graph_from_data_frame( hierarchy, vertices=vertices )
 # The connection object must refer to the ids of the leaves:
 from  <-  match( connect$from, vertices$name)
 to  <-  match( connect$to, vertices$name)
-
-# Basic usual argument
-ggraph(mygraph, layout = 'dendrogram', circular = TRUE) +
-  geom_node_point(aes(filter = leaf, x = x*1.05, y=y*1.05)) +
-  geom_conn_bundle(data = get_con(from = from, to = to), alpha=0.2, colour="skyblue", width=0.9) +
-  geom_node_text(aes(x = x*1.1, y=y*1.1, filter = leaf, label=name, angle = angle, hjust=hjust), size=1.5, alpha=1) +
-  theme_void() +
-  theme(
-    legend.position="none",
-    plot.margin=unit(c(0,0,0,0),"cm"),
-  ) +
-  expand_limits(x = c(-1.2, 1.2), y = c(-1.2, 1.2))
 
 # final figure
 
