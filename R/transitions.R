@@ -19,6 +19,8 @@ connect <- mydf3 %>%
   rename(from = song1) %>%
   rename(to = song2)
 
+connect$value <- runif(nrow(connect))
+
 load("~/Documents/GitHub/Repeatr/data/songvarslookup.rda")
 load("~/Documents/GitHub/Repeatr/data/songidlookup.rda")
 songvars <- songvarslookup %>%
@@ -42,7 +44,12 @@ releases <- releasesdatalookup %>%
 hierarchy <- rbind(releases, songvars)
 
 # create a vertices data.frame. One line per object of our hierarchy, giving features of nodes.
-vertices <- data.frame(name = unique(c(as.character(hierarchy$from), as.character(hierarchy$to))) )
+vertices  <-  data.frame(
+  name = unique(c(as.character(hierarchy$from), as.character(hierarchy$to))) ,
+  value = runif(104)
+)
+# Let's add a column with the group of each name. It will be useful later to color points
+vertices$group  <-  hierarchy$from[ match( vertices$name, hierarchy$to ) ]
 # The connection object must refer to the ids of the leaves:
 from <- match( connect$from, vertices$name)
 to <- match( connect$to, vertices$name)
@@ -75,9 +82,29 @@ ggraph(mygraph, layout = 'dendrogram', circular = TRUE) +
   geom_node_point(aes(filter = leaf, x = x*1.05, y=y*1.05)) +
   theme_void()
 
+p <- ggraph(mygraph, layout = 'dendrogram', circular = TRUE) +
+  geom_node_point(aes(filter = leaf, x = x*1.05, y=y*1.05)) +
+  theme_void()
 
+p +  geom_conn_bundle(data = get_con(from = from, to = to), alpha=0.2, colour="skyblue", width=0.9,
+                      tension=1)
 
+# Use the 'value' column of the connection data frame for the color:
+p +  geom_conn_bundle(data = get_con(from = from, to = to), aes(colour=value, alpha=value))
 
+# In this case you can change the color palette
+p +
+  geom_conn_bundle(data = get_con(from = from, to = to), aes(colour=value)) +
+  scale_edge_color_continuous(low="white", high="red")
+p +
+  geom_conn_bundle(data = get_con(from = from, to = to), aes(colour=value)) +
+  scale_edge_colour_distiller(palette = "BuPu")
+
+# Color depends of the index: the from and the to are different
+p +
+  geom_conn_bundle(data = get_con(from = from, to = to), width=1, alpha=0.2, aes(colour=..index..)) +
+  scale_edge_colour_distiller(palette = "RdPu") +
+  theme(legend.position = "none")
 
 
 
