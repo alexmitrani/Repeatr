@@ -2,6 +2,7 @@
 library(ggraph)
 library(igraph)
 library(dplyr)
+library(RColorBrewer)
 
 load("~/Documents/GitHub/Repeatr/data/Repeatr1.rda")
 
@@ -105,6 +106,26 @@ p +
   geom_conn_bundle(data = get_con(from = from, to = to), width=1, alpha=0.2, aes(colour=..index..)) +
   scale_edge_colour_distiller(palette = "RdPu") +
   theme(legend.position = "none")
+
+# Basic usual argument
+p=ggraph(mygraph, layout = 'dendrogram', circular = TRUE) +
+  geom_conn_bundle(data = get_con(from = from, to = to), width=1, alpha=0.2, aes(colour=..index..)) +
+  scale_edge_colour_distiller(palette = "RdPu") +
+  theme_void() +
+  theme(legend.position = "none")
+
+# just a blue uniform color. Note that the x*1.05 allows to make a space between the points and the connection ends
+p + geom_node_point(aes(filter = leaf, x = x*1.05, y=y*1.05), colour="skyblue", alpha=0.3, size=3)
+
+# It is good to color the points following their group membership
+p + geom_node_point(aes(filter = leaf, x = x*1.05, y=y*1.05, colour=group),   size=3) +
+  scale_colour_manual(values= rep( brewer.pal(9,"Paired") , 30))
+
+# And you can adjust the size to whatever variable quite easily!
+p +
+  geom_node_point(aes(filter = leaf, x = x*1.05, y=y*1.05, colour=group, size=value, alpha=0.2)) +
+  scale_colour_manual(values= rep( brewer.pal(9,"Paired") , 30)) +
+  scale_size_continuous( range = c(0.1,10) )
 
 
 
