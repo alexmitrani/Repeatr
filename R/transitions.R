@@ -6,11 +6,9 @@ library(ggraph)
 library(igraph)
 library(dplyr)
 library(RColorBrewer)
-
-load("~/Documents/GitHub/Repeatr/data/Repeatr1.rda")
+library(Repeatr)
 
 mydf1 <- Repeatr1 %>%
-  filter(year==2001) %>%
   select(gid,song_number,song)
 
 mydf2 <- mydf1 %>% mutate(song_number = song_number-1)
@@ -32,9 +30,6 @@ connect <- connect %>%
   summarize(value = sum(counter)) %>%
   ungroup()
 
-
-load("~/Documents/GitHub/Repeatr/data/songvarslookup.rda")
-load("~/Documents/GitHub/Repeatr/data/songidlookup.rda")
 songvars <- songvarslookup %>%
   left_join(songidlookup) %>%
   select(releaseid,release,track_number,song) %>%
@@ -42,8 +37,6 @@ songvars <- songvarslookup %>%
   rename(from = releaseid) %>%
   rename(to = song) %>%
   select(from, to)
-
-load("~/Documents/GitHub/Repeatr/data/releasesdatalookup.rda")
 
 releases <- releasesdatalookup %>%
   mutate(from = "origin") %>%
