@@ -7,6 +7,7 @@ library(igraph)
 library(dplyr)
 library(RColorBrewer)
 library(Repeatr)
+library(tidyr)
 library(heatmaply)
 
 mydf1 <- Repeatr1 %>%
