@@ -47,10 +47,10 @@ heatmaply(
   Colv=FALSE,
   show_dendrogram=FALSE,
   plot_method = "plotly",
-  file = "heatmaply_plot.html"
+  file = "92_songs_transitions.html"
 )
 
-browseURL("heatmaply_plot.html")
+browseURL("92_songs_transitions.html")
 
 songvars <- songvarslookup %>%
   left_join(songidlookup) %>%
