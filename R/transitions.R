@@ -7,6 +7,7 @@ library(igraph)
 library(dplyr)
 library(RColorBrewer)
 library(Repeatr)
+library(heatmaply)
 
 mydf1 <- Repeatr1 %>%
   select(gid,song_number,song)
@@ -29,6 +30,27 @@ connect <- connect %>%
   group_by(from, to) %>%
   summarize(value = sum(counter)) %>%
   ungroup()
+
+
+heatmapdata <- pivot_wider(connect, names_from = to, values_from = value)
+heatmapdata[is.na(heatmapdata)] <- 0
+heatmapdata <- data.frame(heatmapdata, row.names = 1)
+heatmapdata <- heatmapdata[ , order(names(heatmapdata))]
+heatmapdata <- heatmapdata %>%
+  select(X23.beats.off, everything())
+heatmapdata <- as.matrix(heatmapdata)
+
+heatmaply(
+  as.matrix(heatmapdata),
+  seriate="none",
+  Rowv=FALSE,
+  Colv=FALSE,
+  show_dendrogram=FALSE,
+  plot_method = "plotly",
+  file = "heatmaply_plot.html"
+)
+
+browseURL("heatmaply_plot.html")
 
 songvars <- songvarslookup %>%
   left_join(songidlookup) %>%
