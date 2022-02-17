@@ -1,0 +1,94 @@
+---
+title: "COMBINATION LOCK"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{COMBINATION LOCK}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  fig.width=7,
+  fig.height=5,
+  comment = "#>"
+)
+```
+
+```{r, include = FALSE}
+library(tidyr)
+library(heatmaply)
+library(Repeatr)
+```
+
+## Combinations of songs in the Fugazi Live Series
+
+This page offers a visualisation of the songs that Fugazi performed live using metadata from the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series).  
+
+The raw data was processed previously and the results were stored in the the summary table of the  [Repeatr](https://github.com/alexmitrani/Repeatr) package. Here the summary data will be used without going into details of the data processing.  
+
+Let's get the data, limit it to the columns that we will be using, and have a look at the first few rows. 
+
+```{r }
+
+mygraphdata <- summary %>%
+  select(song, launchdate, chosen, release, rating)
+
+head(mygraphdata)
+
+``` 
+A few of the columns need explanation.  
+
+- launchdate: the date the song was first performed.  
+
+- chosen: the number of times the song was played live. 
+
+- rating: this is an indicator of the strength of preference for the song according to the Fugazi Live Series data, where 1 is the most preferred and 0 is the least preferred. It was calculated by modelling the choices of songs. The data used for this analysis included 17297 choices of songs from 895 shows.  
+
+These are all limited to the data that was available for this analysis. For instance, the launch date of a particular song may not actually be the very first time the song was performed live, but it should be close. 
+
+Now let's graph the data. Each song will be plotted as a bubble, with the x-coordinate given by the launch date, and the y-coordinate given by the rating calculated from the choice modelling of the Fugazi Live Series data. The size of the bubble will be proportional to the number of times the song was played live, while the color of the bubble will indicate the associated release in the band's discography.  There will be a lot of information packed into this graph!    
+
+```{r }
+
+p <- mygraphdata %>%
+  ggplot( aes(x=launchdate, y=rating, size = chosen, color=release, label=song)) +
+  geom_point(shape = 1) +
+  theme_bw()
+
+ggplotly(p)
+
+
+```   
+
+The graph is interactive: 
+
+- hover over a song to see specific details about the song
+
+- double tap on a release in the legend to hide all the bubbles except those corresponding to this release.  Double-tap again to undo.  
+
+- tap on a release in the legend to hide the corresponding
+bubbles, tap on the release again to undo.    
+
+When you hover over the graph a toolbar will appear at the top right. This offers several ways of interacting with the graph: 
+
+- camera: download plot as a PNG file
+
+- magnifying glass: zoom in on a specific area
+
+- pan: move around
+
+- the box select and lasso select tools can be used to select particular parts of the graph and fade out the rest. In order to undo the selection, use the box select tool to select everything and tap the box tool again to remove the selection. 
+
+- zoom in and zoom out do just that
+
+- autoscale and reset axes are useful to get the graph back to how it was initially, removing any zoom that might have been applied.  
+
+- show closest data on hover: this is the default option, and will show details for the closest bubble when hovering over the graph
+
+- compare data on hover can be used to simultaneously show details for two bubbles, but it is tricky to use.  
+
+Enjoy!
+
+
