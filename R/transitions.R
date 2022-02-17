@@ -16,14 +16,19 @@ library(tidyr)
 library(heatmaply)
 
 mydf1 <- Repeatr1 %>%
-  select(gid,song_number,song)
+  select(gid,song_number,song) %>%
+  rename(song1 = song)
 
-mydf2 <- mydf1 %>% mutate(song_number = song_number-1)
-mydf1 <- mydf1 %>% rename(song1 = song)
-mydf2 <- mydf2 %>% rename(song2 = song)
-mydf3 <- mydf1 %>% left_join(mydf2)
-mydf3 <- mydf3 %>% filter(is.na(song2)==FALSE)
-mydf3 <- mydf3 %>% rename(transition_number = song_number)
+mydf2 <- Repeatr1 %>%
+  select(gid,song_number,song) %>%
+  mutate(song_number = song_number-1) %>%
+  rename(song2 = song)
+
+mydf3 <- mydf1 %>%
+  left_join(mydf2) %>%
+  filter(is.na(song2)==FALSE) %>%
+  rename(transition_number = song_number)
+
 head(mydf3)
 
 connect <- mydf3 %>%
@@ -32,9 +37,8 @@ connect <- mydf3 %>%
   rename(to = song2)
 
 connect <- connect %>%
-  mutate(counter=1) %>%
   group_by(from, to) %>%
-  summarize(value = sum(counter)) %>%
+  summarize(value = n()) %>%
   ungroup()
 
 connect$song <- connect$from
