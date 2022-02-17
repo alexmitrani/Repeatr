@@ -1,6 +1,11 @@
 # Hierarchical Edge Bundling
 # https://www.r-graph-gallery.com/hierarchical-edge-bundling.html
 
+# Heat maps
+# https://www.r-graph-gallery.com/215-the-heatmap-function.html
+# https://www.datanovia.com/en/blog/how-to-create-a-beautiful-interactive-heatmap-in-r/
+
+
 # Libraries
 library(ggraph)
 library(igraph)
@@ -32,8 +37,35 @@ connect <- connect %>%
   summarize(value = sum(counter)) %>%
   ungroup()
 
+connect$song <- connect$from
 
-heatmapdata <- pivot_wider(connect, names_from = to, values_from = value)
+mylookup <- fugazi_song_performance_intensity %>%
+  select(song, available_rl)
+
+connect <- connect %>%
+  left_join(mylookup)
+
+connect <- connect %>%
+  rename(from_available_rl = available_rl)
+
+connect$song <- connect$to
+
+connect <- connect %>%
+  left_join(mylookup)
+
+connect <- connect %>%
+  rename(to_available_rl = available_rl)
+
+connect <- connect %>%
+  mutate(available_rl = ifelse(from_available_rl < to_available_rl, from_available_rl, to_available_rl))
+
+connect <- connect %>%
+  mutate(value_scaled = value/available_rl)
+
+connect <- connect %>%
+  select(from, to, value_scaled)
+
+heatmapdata <- pivot_wider(connect, names_from = to, values_from = value_scaled)
 heatmapdata[is.na(heatmapdata)] <- 0
 heatmapdata <- data.frame(heatmapdata, row.names = 1)
 heatmapdata <- heatmapdata[ , order(names(heatmapdata))]
