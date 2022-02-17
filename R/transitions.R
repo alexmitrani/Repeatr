@@ -1,24 +1,34 @@
 # Hierarchical Edge Bundling
 # https://www.r-graph-gallery.com/hierarchical-edge-bundling.html
 
+# Heat maps
+# https://www.r-graph-gallery.com/215-the-heatmap-function.html
+# https://www.datanovia.com/en/blog/how-to-create-a-beautiful-interactive-heatmap-in-r/
+
+
 # Libraries
 library(ggraph)
 library(igraph)
 library(dplyr)
 library(RColorBrewer)
-
-load("~/Documents/GitHub/Repeatr/data/Repeatr1.rda")
+library(Repeatr)
+library(tidyr)
+library(heatmaply)
 
 mydf1 <- Repeatr1 %>%
-  filter(year==2001) %>%
-  select(gid,song_number,song)
+  select(gid,song_number,song) %>%
+  rename(song1 = song)
 
-mydf2 <- mydf1 %>% mutate(song_number = song_number-1)
-mydf1 <- mydf1 %>% rename(song1 = song)
-mydf2 <- mydf2 %>% rename(song2 = song)
-mydf3 <- mydf1 %>% left_join(mydf2)
-mydf3 <- mydf3 %>% filter(is.na(song2)==FALSE)
-mydf3 <- mydf3 %>% rename(transition_number = song_number)
+mydf2 <- Repeatr1 %>%
+  select(gid,song_number,song) %>%
+  mutate(song_number = song_number-1) %>%
+  rename(song2 = song)
+
+mydf3 <- mydf1 %>%
+  left_join(mydf2) %>%
+  filter(is.na(song2)==FALSE) %>%
+  rename(transition_number = song_number)
+
 head(mydf3)
 
 connect <- mydf3 %>%
@@ -27,14 +37,51 @@ connect <- mydf3 %>%
   rename(to = song2)
 
 connect <- connect %>%
-  mutate(counter=1) %>%
   group_by(from, to) %>%
-  summarize(value = sum(counter)) %>%
+  summarize(value = n()) %>%
   ungroup()
 
+connect$song <- connect$from
 
-load("~/Documents/GitHub/Repeatr/data/songvarslookup.rda")
-load("~/Documents/GitHub/Repeatr/data/songidlookup.rda")
+mylookup <- fugazi_song_performance_intensity %>%
+  select(song, available_rl)
+
+connect <- connect %>%
+  left_join(mylookup) %>%
+  rename(from_available_rl = available_rl)
+
+connect$song <- connect$to
+
+connect <- connect %>%
+  left_join(mylookup) %>%
+  rename(to_available_rl = available_rl) %>%
+  mutate(available_rl = ifelse(from_available_rl < to_available_rl, from_available_rl, to_available_rl)) %>%
+  mutate(value_scaled = value/available_rl) %>%
+  select(from, to, value, value_scaled) %>%
+  arrange(desc(value))
+
+head(connect)
+
+heatmapdata <- pivot_wider(connect, names_from = to, values_from = value_scaled)
+heatmapdata[is.na(heatmapdata)] <- 0
+heatmapdata <- data.frame(heatmapdata, row.names = 1)
+heatmapdata <- heatmapdata[ , order(names(heatmapdata))]
+heatmapdata <- heatmapdata %>%
+  select(X23.beats.off, everything())
+heatmapdata <- as.matrix(heatmapdata)
+
+heatmaply(
+  as.matrix(heatmapdata),
+  seriate="none",
+  Rowv=FALSE,
+  Colv=FALSE,
+  show_dendrogram=FALSE,
+  plot_method = "plotly",
+  file = "92_songs_transitions.html"
+)
+
+browseURL("92_songs_transitions.html")
+
 songvars <- songvarslookup %>%
   left_join(songidlookup) %>%
   select(releaseid,release,track_number,song) %>%
@@ -42,8 +89,6 @@ songvars <- songvarslookup %>%
   rename(from = releaseid) %>%
   rename(to = song) %>%
   select(from, to)
-
-load("~/Documents/GitHub/Repeatr/data/releasesdatalookup.rda")
 
 releases <- releasesdatalookup %>%
   mutate(from = "origin") %>%
