@@ -47,27 +47,20 @@ mylookup <- fugazi_song_performance_intensity %>%
   select(song, available_rl)
 
 connect <- connect %>%
-  left_join(mylookup)
-
-connect <- connect %>%
+  left_join(mylookup) %>%
   rename(from_available_rl = available_rl)
 
 connect$song <- connect$to
 
 connect <- connect %>%
-  left_join(mylookup)
+  left_join(mylookup) %>%
+  rename(to_available_rl = available_rl) %>%
+  mutate(available_rl = ifelse(from_available_rl < to_available_rl, from_available_rl, to_available_rl)) %>%
+  mutate(value_scaled = value/available_rl) %>%
+  select(from, to, value, value_scaled) %>%
+  arrange(desc(value))
 
-connect <- connect %>%
-  rename(to_available_rl = available_rl)
-
-connect <- connect %>%
-  mutate(available_rl = ifelse(from_available_rl < to_available_rl, from_available_rl, to_available_rl))
-
-connect <- connect %>%
-  mutate(value_scaled = value/available_rl)
-
-connect <- connect %>%
-  select(from, to, value_scaled)
+head(connect)
 
 heatmapdata <- pivot_wider(connect, names_from = to, values_from = value_scaled)
 heatmapdata[is.na(heatmapdata)] <- 0
