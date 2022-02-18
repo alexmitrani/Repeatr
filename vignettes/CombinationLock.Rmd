@@ -164,7 +164,7 @@ heatmaply(
 
 
 ```
-The graph shows that Fugazi played a broad selection of transitions between songs, with a few favourite transitions that were played again and again, but did the band not play all the possible transitions. With 92 songs there are 8372 possible transitions. The Fugazi Live Series data includes 16402 transitions, so it is not that they did not play enough shows to cover all the transitions. It is likely that some possible transitions just did not seem to work so were not used.   
+The graph shows that Fugazi played a broad selection of transitions between songs, with a few favourite transitions that were played again and again. However, the band did not play all the possible transitions. With 92 songs there are 8372 possible transitions. The Fugazi Live Series data includes 16402 transitions, but some of them were used repeatedly and others were not used at all. The band played enough shows to potentially cover all the possible transitions. It is likely that some of the possible transitions just did not seem to work and so were never used. 
 
 The graph is interactive: 
 
