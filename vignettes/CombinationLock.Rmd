@@ -2,7 +2,7 @@
 title: "Combination Lock"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{COMBINATION LOCK}
+  %\VignetteIndexEntry{Combination Lock}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -17,8 +17,6 @@ knitr::opts_chunk$set(
 ```
 
 ```{r, include = FALSE}
-library(tidyr)
-library(heatmaply)
 library(Repeatr)
 ```
 
