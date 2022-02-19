@@ -23,8 +23,8 @@ library(Repeatr)
 ## Transitions between songs in the Fugazi Live Series
 
 > [Computer voice]
-Wait a minute
-I forgot my combination
+"Wait a minute
+I forgot my combination"
 
 This article offers a visualisation of the transitions between songs that Fugazi performed live using metadata from the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series). For every pair of songs that are performed in sequence there is a transition from the first song to the second song.  For instance, a show with 20 songs will have 19 transitions between pairs of songs. After listening to the Fugazi Live Series for a while, it seems that some transitions were much more common than others, but it is hard to tell for sure without listening to the whole series or looking into the data. Let's have a quick look at the data and see what we find.  
 
@@ -137,20 +137,35 @@ transitions <- transitions %>%
   select(from, to, count_scaled)
 
 ```
-It is pleasing to see that using the scaled counts of the transitions, some transitions featuring more recent songs appear in the list of the top transitions, for instance the transition from "break" to "place position". Now we are in a position to get an overview of all the transitions by graphing the data.  
+It is pleasing to see that using the scaled counts of the transitions, some transitions featuring more recent songs appear in the list of the top transitions, for instance the transition from "break" to "place position". Now we are in a position to get an overview of all the transitions by graphing the data. Let's use a heatmap to give an overview of all of the transitions and their relative frequencies. The songs on both axes are sorted in order of the date they were first performed, with the earliest songs close to the origin.  
 
 ```{r}
 
+launchdateindex_from <- fugazi_song_counts %>%
+  arrange(launchdate) %>%
+  mutate(launchdateindex_from = row_number()) %>%
+  rename(from = song) %>%
+  select(from, launchdateindex_from)
 
+launchdateindex_to <- launchdateindex_from %>%
+  rename(to = from, launchdateindex_to = launchdateindex_from)
 
-heatmapdata <- pivot_wider(transitions, names_from = to, values_from = count_scaled)
+transitions <- transitions %>%
+  left_join(launchdateindex_from) %>%
+  left_join(launchdateindex_to) %>%
+  arrange(launchdateindex_from, launchdateindex_to) %>%
+  mutate(to = paste0("to_", sprintf("%02d", launchdateindex_to), "_", to)) %>%
+  mutate(from = paste0("from_", sprintf("%02d", launchdateindex_from), "_", from)) %>%
+  select(from, to, count_scaled)
+
+heatmapdata <- pivot_wider(transitions, names_from = to, values_from = count_scaled, names_sort=TRUE)
+
 heatmapdata[is.na(heatmapdata)] <- 0
+
 heatmapdata <- heatmapdata %>%
-  arrange(from)
+  arrange(desc(from))
 heatmapdata <- data.frame(heatmapdata, row.names = 1)
 heatmapdata <- heatmapdata[ , order(names(heatmapdata))]
-heatmapdata <- heatmapdata %>%
-  select(X23.beats.off, everything())
 heatmapdata <- as.matrix(heatmapdata)
 
 heatmaply(
@@ -164,9 +179,11 @@ heatmaply(
 
 
 ```
-The graph shows that Fugazi played a broad selection of transitions between songs, with a few favourite transitions that were played again and again. However, the band did not play all the possible transitions. With 92 songs there are 8372 possible transitions. The Fugazi Live Series data includes 16402 transitions, but some of them were used repeatedly and others were not used at all. The band played enough shows to potentially cover all the possible transitions. It is likely that some of the possible transitions just did not seem to work and so were never used. 
+The graph shows that Fugazi played a broad selection of transitions between songs, with a few favourite transitions that were played again and again. However, the band did not play all the possible transitions. With 92 songs there are 8372 possible transitions, and in this data Fugazi played 3053 of those (36.5%) at least once. The Fugazi Live Series data includes 16402 transitions between songs, with some of them used repeatedly. The band played enough shows to potentially cover all the possible transitions. It is likely that some of the possible transitions just did not seem to work and so were never used. 
 
-The graph is interactive: 
+> "We never used set lists, so the shows were always organically grown, there was a flow, and a song like Combination Lock, sometimes it would work as an opener... something about it was hard to drop in to it, something about it... I don't know ... it just didn't seem to fit into the general movement of the set ..." - [Ian Mackaye, 12/2/2022](https://open.spotify.com/episode/49dpXoFyQZJSGA2nGmjb9s?si=qN_u9NcfRCutyXVjVnPFZQ)
+
+The graph above is interactive: 
 
 - hover over a point on the graph to see specific details about the transition.
 

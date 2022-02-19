@@ -12,6 +12,8 @@ Analysis and modelling of [Fugazi Live Series](https://www.dischord.com/fugazi_l
 
 [92 SONGS](https://alexmitrani.github.io/Repeatr/articles/92songs.html) summarises the main results of the data processing and choice modelling as an interactive graph.  The graph  shows ratings, performance counts and launch dates for the 92 songs that were performed live and released.  
 
+[Combination Lock](https://alexmitrani.github.io/Repeatr/articles/CombinationLock.html) explores Fugazi's use of transitions between songs: which ones they played live, and how often compared to others.  
+
 ## Repeatr package for R
 
 The Repeatr package can be installed from RStudio using the .tar.gz file in the root directory of the [GitHub repository](https://github.com/alexmitrani/Repeatr).  The package gives easy access to the functions, dataframes, and related documentation.
