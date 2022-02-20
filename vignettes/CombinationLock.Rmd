@@ -134,7 +134,7 @@ transitions <- transitions %>%
 head(transitions)
 
 transitions <- transitions %>%
-  select(from, to, count_scaled)
+  select(from, to, count, count_scaled)
 
 ```
 It is pleasing to see that using the scaled counts of the transitions, some transitions featuring more recent songs appear in the list of the top transitions, for instance the transition from "break" to "place position". Now we are in a position to get an overview of all the transitions by graphing the data. Let's use a heatmap to give an overview of all of the transitions and their relative frequencies. The songs on both axes are sorted in order of the date they were first performed, with the earliest songs close to the origin.  
@@ -150,7 +150,7 @@ launchdateindex_from <- fugazi_song_counts %>%
 launchdateindex_to <- launchdateindex_from %>%
   rename(to = from, launchdateindex_to = launchdateindex_from)
 
-transitions <- transitions %>%
+transitions2 <- transitions %>%
   left_join(launchdateindex_from) %>%
   left_join(launchdateindex_to) %>%
   arrange(launchdateindex_from, launchdateindex_to) %>%
@@ -158,7 +158,7 @@ transitions <- transitions %>%
   mutate(from = paste0("from_", sprintf("%02d", launchdateindex_from), "_", from)) %>%
   select(from, to, count_scaled)
 
-heatmapdata <- pivot_wider(transitions, names_from = to, values_from = count_scaled, names_sort=TRUE)
+heatmapdata <- pivot_wider(transitions2, names_from = to, values_from = count_scaled, names_sort=TRUE)
 
 heatmapdata[is.na(heatmapdata)] <- 0
 
@@ -183,7 +183,60 @@ The graph shows that Fugazi played a broad selection of transitions between song
 
 > "We never used set lists, so the shows were always organically grown, there was a flow, and a song like Combination Lock, sometimes it would work as an opener... something about it was hard to drop in to it, something about it... I don't know ... it just didn't seem to fit into the general movement of the set ..." - [Ian Mackaye, 12/2/2022](https://open.spotify.com/episode/49dpXoFyQZJSGA2nGmjb9s?si=qN_u9NcfRCutyXVjVnPFZQ)
 
-The graph above is interactive: 
+Finally, let's have a quick look at the transitions between Fugazi songs grouped according to the vocals. There are four groups of songs:
+
+```{r}
+
+mysongvarslookup <- songvarslookup %>%
+  left_join(songidlookup)
+
+mysongvarslookup <- mysongvarslookup %>%
+  mutate(vocals = ifelse(vocals_lally==1,"lally",0)) %>%
+  mutate(vocals = ifelse(vocals_mackaye==1,"mackaye",vocals)) %>%
+  mutate(vocals = ifelse(vocals_picciotto==1,"picciotto",vocals)) %>%
+  mutate(vocals = ifelse(instrumental==1,"instrumental",vocals)) %>%
+  select(song, vocals)
+
+head(mysongvarslookup)
+
+checkvocals <- mysongvarslookup %>%
+  group_by(vocals) %>%
+  summarise(count = n()) %>%
+  ungroup() %>%
+  arrange(desc(count))
+
+checkvocals
+
+```
+
+Transitions between some of these groups were probably much more common than others. To look into this, we need to add the information on the group of each song to the data on transitions between songs. 
+
+```{r}
+
+mysongvarslookup1 <- mysongvarslookup %>% rename(from = song, from_vocals = vocals)
+
+mysongvarslookup2 <- mysongvarslookup %>% rename(to = song, to_vocals = vocals)
+
+transitions3 <- transitions %>%
+  left_join(mysongvarslookup1) %>%
+  left_join(mysongvarslookup2) %>%
+  select(from, to, from_vocals, to_vocals, count)
+
+totaltransitions <- sum(transitions$count)
+
+transitions_by_group <- transitions3 %>%
+  group_by(from_vocals, to_vocals) %>%
+  summarise(count = sum(count)) %>%
+  ungroup() %>%
+  arrange(desc(count)) %>%
+  mutate(proportion = count / totaltransitions)
+
+transitions_by_group
+
+```
+
+
+The graphs above are interactive: 
 
 - hover over a point on the graph to see specific details about the transition.
 
