@@ -24,7 +24,7 @@ library(Repeatr)
 
 This article offers a visualisation of the songs that Fugazi performed live using metadata from the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series).  
 
-The raw data was processed previously and the results were stored in the summary table of the  [Repeatr](https://github.com/alexmitrani/Repeatr) package. Here the summary data will be used without going into details of the data processing.  
+The raw data was processed previously and the results were stored in the summary table of the  [Repeatr](https://github.com/alexmitrani/Repeatr) package. Here the summary data will be used without going into details of the data processing.
 
 Let's get the data, limit it to the columns that we will be using, and have a look at the first few rows. 
 
@@ -36,6 +36,7 @@ mygraphdata <- summary %>%
 head(mygraphdata)
 
 ``` 
+
 A few of the columns need explanation.  
 
 - launchdate: the date the song was first performed.  
@@ -60,6 +61,8 @@ ggplotly(p)
 
 ```   
 
+## How to use the graph
+
 The graph is interactive: 
 
 - hover over a song to see specific details about the song
@@ -73,7 +76,7 @@ When you hover over the graph a toolbar will appear at the top right. This offer
 
 - camera: download plot as a PNG file
 
-- magnifying glass: zoom in on a specific area
+- magnifying glass: zoom in on a specific area by clicking and dragging to select the area
 
 - pan: move around
 

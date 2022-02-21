@@ -20,15 +20,16 @@ knitr::opts_chunk$set(
 library(Repeatr)
 ```
 
-## Transitions between songs in the Fugazi Live Series
+> ["Wait a minute  
+I forgot my combination"](https://fugazi.bandcamp.com/track/combination-lock)
 
-> [Computer voice]
-"Wait a minute
-I forgot my combination"
+## Transitions between songs in the Fugazi Live Series
 
 This article offers a visualisation of the transitions between songs that Fugazi performed live using metadata from the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series). For every pair of songs that are performed in sequence there is a transition from the first song to the second song.  For instance, a show with 20 songs will have 19 transitions between pairs of songs. After listening to the Fugazi Live Series for a while, it seems that some transitions were much more common than others, but it is hard to tell for sure without listening to the whole series or looking into the data. Let's have a quick look at the data and see what we find.  
 
-The raw data was processed previously and here we will use data with one row per song performance from the Repeatr1 dataframe of the [Repeatr](https://github.com/alexmitrani/Repeatr) package.   
+The raw data was processed previously and here we will use data with one row per song performance from the Repeatr1 dataframe of the [Repeatr](https://github.com/alexmitrani/Repeatr) package.  
+
+## Transition counts
 
 Let's get the data, limit it to the columns that we will be using, and have a look at the first few rows. 
 
@@ -87,6 +88,7 @@ numberoftransitions <- numberofsongs - numberofshows
 print(paste0("There are ", numberofsongs, " songs, ", numberofshows, " shows, and ", numberoftransitions, " transitions between songs in the Fugazi Live Series data."  ))
 
 ```
+
 Now let's summarise the data to count how many times each transition occurs.  
 
 ```{r}
@@ -108,6 +110,9 @@ head(transitions)
 
 
 ```
+
+## Probabilities of transitions between songs given availability of both songs
+
 This already gives us a good idea of what the most common transitions were. However, it probably gives too much weight to transitions between older songs and not enough to transitions involving newer songs. In order to correct for this we need to consider how many shows each transition was available to be used. This can be done simply using an availability variable that was calculated previously. The count of available shows for each song is matched on from a lookup table, and the number of shows for which each transition was available is assumed to be the smaller of the two numbers of shows. The frequency count for each transition is divided by the number of available shows to get a scaled count that should be comparable across all the transitions. The scaled counts can be interpreted as probabilities of the given transitions being played, given the availability of both songs in the band's repertoire.
 
 ```{r}
@@ -137,7 +142,12 @@ transitions <- transitions %>%
   select(from, to, count, count_scaled)
 
 ```
-It is pleasing to see that using the scaled counts of the transitions, some transitions featuring more recent songs appear in the list of the top transitions, for instance the transition from "break" to "place position". Now we are in a position to get an overview of all the transitions by graphing the data. Let's use a heatmap to give an overview of all of the transitions and their relative frequencies. The songs on both axes are sorted in order of the date they were first performed, with the earliest songs close to the origin.  
+
+It is pleasing to see that using the scaled counts of the transitions, some transitions featuring more recent songs appear in the list of the top transitions, for instance the transition from "break" to "place position". Now we are in a position to get an overview of all the transitions by graphing the data. 
+
+## Transitions between songs
+
+Let's use a heatmap to give an overview of all of the transitions and their relative frequencies. The songs on both axes are sorted in order of the date they were first performed, with the earliest songs close to the origin.  
 
 ```{r}
 
@@ -182,6 +192,8 @@ heatmaply(
 The graph shows that Fugazi played a broad selection of transitions between songs, with a few favourite transitions that were played again and again. However, the band did not play all the possible transitions. With 92 songs there are 8372 possible transitions, and in this data Fugazi played 3053 of those (36.5%) at least once. The Fugazi Live Series data includes 16402 transitions between songs, with some of them used repeatedly. The band played enough shows to potentially cover all the possible transitions. It is likely that some of the possible transitions just did not seem to work and so were never used. 
 
 > "We never used set lists, so the shows were always organically grown, there was a flow, and a song like Combination Lock, sometimes it would work as an opener... something about it was hard to drop in to it, something about it... I don't know ... it just didn't seem to fit into the general movement of the set ..." - [Ian Mackaye, 12/2/2022](https://open.spotify.com/episode/49dpXoFyQZJSGA2nGmjb9s?si=qN_u9NcfRCutyXVjVnPFZQ)
+
+## Transitions between groups of songs
 
 Finally, let's have a quick look at the transitions between Fugazi songs grouped according to the vocals. There are four groups of songs:
 
@@ -297,9 +309,16 @@ heatmaply(
 
 ```
 
-The graph shows in a visual way the relative scarcity of some types of transitions, and the relative abundance of others. It seems that Fugazi tended to avoid playing consecutive songs from the same group, probably for practical reasons such as giving each vocalist regular breaks from singing and keeping the show as dynamic and interesting as possible.  
+The graph shows in a visual way the relative scarcity of some types of transitions, and the relative abundance of others. It seems that Fugazi tended to avoid playing consecutive songs from the same group, probably for practical reasons such as giving each vocalist regular breaks from singing and keeping the show as dynamic and interesting as possible. 
 
-Both the heatmap graphs above are interactive: 
+> [No CIA  
+No NSA  
+No Satellite  
+Could map our veins](https://fugazi.bandcamp.com/track/no-surprise)
+
+## How to use the graphs
+
+The graphs may appear hard to read at first. Fortunately the graphs are interactive and are made easier to read by tools for zooming and panning. 
 
 - hover over a point on the graph to see specific details about the transition.
 
@@ -307,7 +326,7 @@ When you hover over the graph a toolbar will appear at the top right. This offer
 
 - camera: download plot as a PNG file
 
-- magnifying glass: zoom in on a specific area
+- magnifying glass: zoom in on a specific area by clicking and dragging to select the area
 
 - pan: move around
 
