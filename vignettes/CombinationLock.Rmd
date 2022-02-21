@@ -203,7 +203,8 @@ checkvocals <- mysongvarslookup %>%
   group_by(vocals) %>%
   summarise(count = n()) %>%
   ungroup() %>%
-  arrange(desc(count))
+  arrange(desc(count)) %>%
+  mutate(group = row_number())
 
 checkvocals
 
@@ -229,14 +230,76 @@ transitions_by_group <- transitions3 %>%
   summarise(count = sum(count)) %>%
   ungroup() %>%
   arrange(desc(count)) %>%
-  mutate(proportion = count / totaltransitions)
+  mutate(proportion = round((count / totaltransitions), digits = 2))
 
 transitions_by_group
 
 ```
 
+With four groups of songs there are 16 possible transitions between these groups and all of these were used in the live shows, although some more than others. Transitions between Mackaye and Picciotto songs represent approximately 80% of the cases. 
 
-The graphs above are interactive: 
+Now let's do another heatmap, this time grouping the transitions according to the four groups of songs we just looked into. The transitions on each axis of the graph will be ordered by the four groups of songs (Picciotto, Mackaye, Instrumental, and Lally) and within each group by the launch date of the song (older songs to newer songs).  
+
+```{r}
+
+transitions4 <- transitions %>%
+  left_join(mysongvarslookup1) %>%
+  left_join(mysongvarslookup2) %>%
+  select(from, to, from_vocals, to_vocals, count_scaled)
+
+checkvocals_from <- checkvocals %>%
+  select(vocals, group) %>%
+  rename(from_vocals = vocals, from_group = group)
+
+checkvocals_to <- checkvocals %>%
+  select(vocals, group) %>%
+  rename(to_vocals = vocals, to_group = group)
+
+launchdateindex_from <- fugazi_song_counts %>%
+  arrange(launchdate) %>%
+  mutate(launchdateindex_from = row_number()) %>%
+  rename(from = song) %>%
+  select(from, launchdateindex_from)
+
+launchdateindex_to <- launchdateindex_from %>%
+  rename(to = from, launchdateindex_to = launchdateindex_from)
+
+transitions5 <- transitions4 %>%
+  left_join(launchdateindex_from) %>%
+  left_join(launchdateindex_to) %>%
+  left_join(checkvocals_from) %>%
+  left_join(checkvocals_to) %>%
+  mutate(index_from=from_group*100+launchdateindex_from) %>%
+  mutate(index_to=to_group*100+launchdateindex_to) %>%
+  arrange(index_from, index_to) %>%
+  mutate(to = paste0("to_", sprintf("%03d", index_to), "_", to)) %>%
+  mutate(from = paste0("from_", sprintf("%03d", index_from), "_", from)) %>%
+  select(from, to, count_scaled)
+
+heatmapdata <- pivot_wider(transitions5, names_from = to, values_from = count_scaled, names_sort=TRUE)
+
+heatmapdata[is.na(heatmapdata)] <- 0
+
+heatmapdata <- heatmapdata %>%
+  arrange(desc(from))
+heatmapdata <- data.frame(heatmapdata, row.names = 1)
+heatmapdata <- heatmapdata[ , order(names(heatmapdata))]
+heatmapdata <- as.matrix(heatmapdata)
+
+heatmaply(
+  as.matrix(heatmapdata),
+  seriate="none",
+  Rowv=FALSE,
+  Colv=FALSE,
+  show_dendrogram=FALSE,
+  plot_method = "plotly"
+)
+
+```
+
+The graph shows in a visual way the relative scarcity of some types of transitions, and the relative abundance of others. It seems that Fugazi tended to avoid playing consecutive songs from the same group, probably for practical reasons such as giving each vocalist regular breaks from singing and keeping the show as dynamic and interesting as possible.  
+
+Both the heatmap graphs above are interactive: 
 
 - hover over a point on the graph to see specific details about the transition.
 
