@@ -108,7 +108,7 @@ head(transitions)
 
 
 ```
-This already gives us a good idea of what the most common transitions were. However, it probably gives too much weight to transitions between older songs and not enough to transitions involving newer songs. In order to correct for this we need to consider how many shows each transition was available to be used. This can be done simply using an availability variable that was calculated previously. The count of available shows for each song is matched on from a lookup table, and the number of shows for which each transition was available is assumed to be the smaller of the two numbers of shows. The frequency count for each transition is divided by the number of available shows to get a scaled count that should be comparable across all the transitions.  
+This already gives us a good idea of what the most common transitions were. However, it probably gives too much weight to transitions between older songs and not enough to transitions involving newer songs. In order to correct for this we need to consider how many shows each transition was available to be used. This can be done simply using an availability variable that was calculated previously. The count of available shows for each song is matched on from a lookup table, and the number of shows for which each transition was available is assumed to be the smaller of the two numbers of shows. The frequency count for each transition is divided by the number of available shows to get a scaled count that should be comparable across all the transitions. The scaled counts can be interpreted as probabilities of the given transitions being played, given the availability of both songs in the band's repertoire.
 
 ```{r}
 
