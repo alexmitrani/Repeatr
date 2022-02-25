@@ -25,6 +25,8 @@ I forgot my combination"](https://fugazi.bandcamp.com/track/combination-lock)
 
 ## Transitions between songs in the Fugazi Live Series
 
+> "We never used set lists, so the shows were always organically grown, there was a flow, and a song like Combination Lock, sometimes it would work as an opener... something about it was hard to drop in to it, something about it... I don't know ... it just didn't seem to fit into the general movement of the set ..." - [Ian Mackaye, 12/2/2022](https://open.spotify.com/episode/49dpXoFyQZJSGA2nGmjb9s?si=qN_u9NcfRCutyXVjVnPFZQ)
+
 This article offers a visualisation of the transitions between songs that Fugazi performed live using metadata from the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series). For every pair of songs that are performed in sequence there is a transition from the first song to the second song.  For instance, a show with 20 songs will have 19 transitions between pairs of songs. After listening to the Fugazi Live Series for a while, it seems that some transitions were much more common than others, but it is hard to tell for sure without listening to the whole series or looking into the data. Let's have a quick look at the data and see what we find.  
 
 The raw data was processed previously and here we will use data with one row per song performance from the Repeatr1 dataframe of the [Repeatr](https://github.com/alexmitrani/Repeatr) package.  
@@ -191,11 +193,11 @@ heatmaply(
 ```
 The graph shows that Fugazi played a broad selection of transitions between songs, with a few favourite transitions that were played again and again. However, the band did not play all the possible transitions. With 92 songs there are 8372 possible transitions, and in this data Fugazi played 3053 of those (36.5%) at least once. The Fugazi Live Series data includes 16402 transitions between songs, with some of them used repeatedly. The band played enough shows to potentially cover all the possible transitions. It is likely that some of the possible transitions just did not seem to work and so were never used. 
 
-> "We never used set lists, so the shows were always organically grown, there was a flow, and a song like Combination Lock, sometimes it would work as an opener... something about it was hard to drop in to it, something about it... I don't know ... it just didn't seem to fit into the general movement of the set ..." - [Ian Mackaye, 12/2/2022](https://open.spotify.com/episode/49dpXoFyQZJSGA2nGmjb9s?si=qN_u9NcfRCutyXVjVnPFZQ)
-
 ## Transitions between groups of songs
 
-Finally, let's have a quick look at the transitions between Fugazi songs grouped according to the vocals. There are four groups of songs:
+> “The only methodology we had was that we alternated singing. Once Ian was wrapping up his song, I knew that I had to have a song ready to go for my thing." - [Guy Picciotto, 25/5/2018](https://www.abc.net.au/doublej/music-reads/features/fugazi-the-past-the-future-and-the-ethos-that-drove-them/10265848)
+
+Finally, let's have a quick look at the transitions between Fugazi songs grouped according to the person who sang lead vocals. There are four groups of songs:
 
 ```{r}
 
