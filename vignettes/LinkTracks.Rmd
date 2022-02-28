@@ -40,6 +40,35 @@ mydf %>%
 ```
 The biggest show was the [Food Not Bombs 20th Anniversary](https://www.dischord.com/fugazi_live_series/san-francisco-ca-usa-60400) on the 4th of June 2000 at Mission Dolores Park in San Francisco, with an estimated attendance of 15000 people.  It seems that the show was recorded but it is not available yet as part of the Fugazi Live Series.  [There is a video of the show on youtube](https://www.youtube.com/watch?v=0qYvHzS7v-Q). 
 
+## What was Fugazi's Longest Tour?  
 
+```{r}
+
+medianattendance <- othervariables %>%
+  filter(is.na(attendance)==FALSE) %>%
+  group_by(tour) %>%
+  summarise(medianattendance = median(attendance)) %>%
+  ungroup()
+
+mydf <- othervariables %>%
+  left_join(medianattendance) %>%
+  mutate(attendance = ifelse(is.na(attendance)==TRUE,medianattendance,attendance)) %>%
+  group_by(tour) %>%
+  summarise(start = min(date), end = max(date), shows = n(), duration = as.numeric((end - start)), attendance=sum(attendance)) %>%
+  ungroup() %>%
+  arrange(desc(shows))
+
+head(mydf, n=10)
+  
+```
+
+It looks like a tie between the 1990 Fall European Tour and the 1995 Spring/Summer European Tour, each with 58 shows. On the 1990 Fall European Tour the 58 shows were played in 67 days, compared to 71 days for the 1995 Spring/Summer European Tour. Did the 1995 tour cover a longer distance?  
+
+```{r}
+mydf2 <- mydf %>% filter(tour=="1990 Fall European Tour" | tour == "1995 Spring/Summer European Tour") %>% pivot_wider(names_from = country, values_from = shows)
+
+mydf2
+```
+The 1995 tour included visits to 17 countries compared to only 16 in the 1990 tour. In 1995 Fugazi skipped Sweden and Poland but added visits to Finland, the Czech Republic and Portugal. The 1995 tour almost certainly covered a longer distance which probably explains why a few more days were required to complete it. 
 
 
