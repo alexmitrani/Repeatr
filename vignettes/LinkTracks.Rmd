@@ -40,7 +40,7 @@ mydf %>%
 ```
 The biggest show was the [Food Not Bombs 20th Anniversary](https://www.dischord.com/fugazi_live_series/san-francisco-ca-usa-60400) on the 4th of June 2000 at Mission Dolores Park in San Francisco, with an estimated attendance of 15000 people.  It seems that the show was recorded but it is not available yet as part of the Fugazi Live Series.  [There is a video of the show on youtube](https://www.youtube.com/watch?v=0qYvHzS7v-Q). 
 
-## What was Fugazi's Longest Tour?  
+## What was Fugazi's longest tour?  
 
 ```{r}
 
@@ -62,10 +62,15 @@ head(mydf, n=10)
   
 ```
 
-It looks like a tie between the 1990 Fall European Tour and the 1995 Spring/Summer European Tour, each with 58 shows. On the 1990 Fall European Tour the 58 shows were played in 67 days, compared to 71 days for the 1995 Spring/Summer European Tour. Did the 1995 tour cover a longer distance?  
+It looks like a tie between the 1990 Fall European Tour and the 1995 Spring/Summer European Tour, each with 58 shows. On the 1990 Fall European Tour the 58 shows were played in 67 days, compared to 71 days for the 1995 Spring/Summer European Tour. Did the 1995 tour cover a longer distance? Let's have a look at the number of shows in each country on each of those tours. 
 
 ```{r}
-mydf2 <- mydf %>% filter(tour=="1990 Fall European Tour" | tour == "1995 Spring/Summer European Tour") %>% pivot_wider(names_from = country, values_from = shows)
+
+mydf <- othervariables %>% group_by(tour, country) %>% summarise(shows = n()) %>% ungroup()
+
+mydf2 <- mydf %>% filter(tour=="1990 Fall European Tour" | tour == "1995 Spring/Summer European Tour") %>% pivot_wider(names_from = tour, values_from = shows)
+
+mydf2[is.na(mydf2)] <- 0
 
 mydf2
 ```
