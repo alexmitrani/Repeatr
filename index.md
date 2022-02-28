@@ -14,6 +14,8 @@ Analysis and modelling of [Fugazi Live Series](https://www.dischord.com/fugazi_l
 
 [Combination Lock](articles/CombinationLock.html) explores Fugazi's use of transitions between songs: which ones they played live, and how often compared to others.  
 
+[Link Tracks](articles/LinkTracks.html) A series of brief explorations of the Fugazi Live Series data.  
+
 ## Repeatr package for R
 
 The Repeatr package can be installed from RStudio using the .tar.gz file in the root directory of the [GitHub repository](https://github.com/alexmitrani/Repeatr).  The package gives easy access to the functions, dataframes, and related documentation.
