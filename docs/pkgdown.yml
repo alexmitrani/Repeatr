@@ -1,10 +1,11 @@
-pandoc: 2.11.4
-pkgdown: 1.6.1
+pandoc: 2.14.0.3
+pkgdown: 2.0.2
 pkgdown_sha: ~
 articles:
   92songs: 92songs.html
   CombinationLock: CombinationLock.html
+  LinkTracks: LinkTracks.html
   Repeatr: Repeatr.html
   Songnumberone: Songnumberone.html
-last_built: 2022-02-25T03:33Z
+last_built: 2022-02-28T01:40Z
 
