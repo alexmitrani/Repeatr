@@ -1,0 +1,45 @@
+---
+title: "Link Tracks"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Link Tracks}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  fig.width=7,
+  fig.height=5,
+  comment = "#>"
+)
+```
+
+```{r, include = FALSE}
+library(Repeatr)
+```
+
+## Introduction
+
+A series of brief explorations of the Fugazi Live Series data.  
+
+## What was Fugazi's biggest show?  
+
+```{r}
+mydf <- othervariables %>%
+  filter(is.na(attendance)==FALSE)
+
+maxattendance <- max(mydf$attendance)
+
+maxattendance
+
+mydf %>%
+  filter(attendance == maxattendance)
+```
+The biggest show was the [Food Not Bombs 20th Anniversary](https://www.dischord.com/fugazi_live_series/san-francisco-ca-usa-60400) on the 4th of June 2000 at Mission Dolores Park in San Francisco, with an estimated attendance of 15000 people.  It seems that the show was recorded but it is not available yet as part of the Fugazi Live Series.  [There is a video of the show on youtube](https://www.youtube.com/watch?v=0qYvHzS7v-Q). 
+
+
+
+
