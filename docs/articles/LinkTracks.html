@@ -242,14 +242,14 @@
 <span class="co">#&gt; 6      6 margin walker         2  1989-06-15</span></code></pre></div>
 <p>Now let’s calculate leads and lags by getting summary data on the songs and comparing the song launch dates to the corresponding release dates.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">summary</span> <span class="op">&lt;-</span> <span class="fu">Repeatr</span><span class="fu">::</span><span class="va"><a href="../reference/summary.html">summary</a></span> <span class="op">%&gt;%</span> 
+<code class="sourceCode R"><span class="va">mysummary</span> <span class="op">&lt;-</span> <span class="fu">Repeatr</span><span class="fu">::</span><span class="va"><a href="../reference/summary.html">summary</a></span> <span class="op">%&gt;%</span> 
   <span class="fu">left_join</span><span class="op">(</span><span class="va">mydf</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">mutate</span><span class="op">(</span>lead <span class="op">=</span> <span class="va">releasedate</span> <span class="op">-</span> <span class="va">launchdate</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">select</span><span class="op">(</span><span class="va">song</span>, <span class="va">launchdate</span>, <span class="va">releasedate</span>, <span class="va">lead</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">arrange</span><span class="op">(</span><span class="va">lead</span><span class="op">)</span>
 <span class="co">#&gt; Joining, by = c("songid", "song", "releaseid")</span>
 
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">summary</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mysummary</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 4</span></span>
 <span class="co">#&gt;    song                   launchdate releasedate lead    </span>
 <span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;drtn&gt;</span>  </span>
@@ -265,15 +265,15 @@
 <span class="co">#&gt; <span style="color: #BCBCBC;">10</span> bulldog front          1988-06-15 1988-11-19  157 days</span></code></pre></div>
 <p>Surprisingly, there seem to be only 2 songs whose live debuts lagged behind the corresponding release dates: Styrofoam which was first played live 58 days after the launch of Repeater, and Foreman’s Dog which was first played live 4 days after the launch of End Hits. What was the average lead time for all Fugazi songs with a corresponding release?</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">summary</span><span class="op">$</span><span class="va">lead</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">mysummary</span><span class="op">$</span><span class="va">lead</span><span class="op">)</span>
 <span class="co">#&gt; Time difference of 792.5761 days</span></code></pre></div>
 <p>That is over 2 years, but perhaps the mean is biased upwards by a few extreme values…</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">summary</span> <span class="op">&lt;-</span> <span class="va">summary</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">mysummary</span> <span class="op">&lt;-</span> <span class="va">mysummary</span> <span class="op">%&gt;%</span>
   <span class="fu">select</span><span class="op">(</span><span class="va">song</span>, <span class="va">launchdate</span>, <span class="va">releasedate</span>, <span class="va">lead</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">lead</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">summary</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mysummary</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
 <span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 4</span></span>
 <span class="co">#&gt;    song                 launchdate releasedate lead     </span>
 <span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;drtn&gt;</span>   </span>
@@ -289,10 +289,13 @@
 <span class="co">#&gt; <span style="color: #BCBCBC;">10</span> joe #1               1987-09-03 1990-01-15   865 days</span></code></pre></div>
 <p>The median lead time is probably a more reliable indicator for how long Fugazi would tend to play a song live before it featuring on a discographical release.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">summary</span><span class="op">$</span><span class="va">lead</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">mysummary</span><span class="op">$</span><span class="va">lead</span><span class="op">)</span>
 <span class="co">#&gt; Time difference of 360 days</span></code></pre></div>
-<p>We have discovered several interesting things: 1) Styrofoam was the only Fugazi song whose live debut significantly lagged behind the corresponding release, although the live debut of Foreman’s Dog was 4 days after the release of End Hits.<br>
-2) The median lead time for the live performance of a Fugazi song ahead of its corresponding discographical release date was approximately 1 year: 360 days.</p>
+<p>We have discovered several interesting things:</p>
+<ol style="list-style-type: decimal">
+<li><p>Styrofoam was the only Fugazi song whose live debut significantly lagged behind the corresponding release, although the live debut of Foreman’s Dog was 4 days after the release of End Hits.</p></li>
+<li><p>The median lead time for the live performance of a Fugazi song ahead of its corresponding discographical release date was approximately 1 year: 360 days.</p></li>
+</ol>
 </div>
   </div>
 
