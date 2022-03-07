@@ -82,7 +82,9 @@ Most Fugazi songs were performed live for some time before being released on an 
 
 ```{r}
 releasedates <- releasesdatalookup %>% 
-  select(releaseid, releasedate)
+  select(releaseid, releasedate) %>%
+  mutate(releasedate = as.Date(releasedate, "%d/%m/%Y"))
+
 mydf <- songvarslookup %>% 
   left_join(releasedates) %>%
   left_join(songidlookup)
