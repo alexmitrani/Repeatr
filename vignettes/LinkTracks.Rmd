@@ -126,5 +126,5 @@ The median lead time is probably a more reliable indicator for how long Fugazi w
 median(summary$lead)
 ```
 We have discovered several interesting things: 
-1) Styrofoam was the only Fugazi song whose live debut significantly lagged behind the corresponding release. 
+1) Styrofoam was the only Fugazi song whose live debut significantly lagged behind the corresponding release, although the live debut of Foreman's Dog was 4 days after the release of End Hits.   
 2) The median lead time for the live performance of a Fugazi song ahead of its corresponding discographical release date was approximately 1 year: 360 days. 
