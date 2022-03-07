@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9033</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9034</span>
       </span>
     </div>
 
@@ -214,6 +214,85 @@
 <span class="co">#&gt; <span style="color: #BCBCBC;">18</span> Finland                                0                                  1</span>
 <span class="co">#&gt; <span style="color: #BCBCBC;">19</span> Portugal                               0                                  1</span></code></pre></div>
 <p>The 1995 tour included visits to 17 countries compared to only 16 in the 1990 tour. In 1995 Fugazi skipped Sweden and Poland but added visits to Finland, the Czech Republic and Portugal. The 1995 tour almost certainly covered a longer distance which probably explains why a few more days were required to complete it.</p>
+</div>
+<div class="section level2">
+<h2 id="leads-and-lags">Leads and lags<a class="anchor" aria-label="anchor" href="#leads-and-lags"></a>
+</h2>
+<p>Most Fugazi songs were performed live for some time before being released on an album or EP. These lead times were often very considerable, measured in months or years. Were there any exceptions, songs whose live launch dates lagged behind the corresponding release dates? To find out, let’s start by getting the data on the releases and the corresponding release dates.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">releasedates</span> <span class="op">&lt;-</span> <span class="va">releasesdatalookup</span> <span class="op">%&gt;%</span> 
+  <span class="fu">select</span><span class="op">(</span><span class="va">releaseid</span>, <span class="va">releasedate</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>releasedate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="va">releasedate</span>, <span class="st">"%d/%m/%Y"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">mydf</span> <span class="op">&lt;-</span> <span class="va">songvarslookup</span> <span class="op">%&gt;%</span> 
+  <span class="fu">left_join</span><span class="op">(</span><span class="va">releasedates</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">left_join</span><span class="op">(</span><span class="va">songidlookup</span><span class="op">)</span>
+<span class="co">#&gt; Joining, by = "releaseid"</span>
+<span class="co">#&gt; Joining, by = "songid"</span>
+<span class="va">mydf</span> <span class="op">&lt;-</span> <span class="va">mydf</span> <span class="op">%&gt;%</span> 
+  <span class="fu">select</span><span class="op">(</span><span class="va">songid</span>, <span class="va">song</span>, <span class="va">releaseid</span>, <span class="va">releasedate</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">arrange</span><span class="op">(</span><span class="va">songid</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mydf</span><span class="op">)</span>
+<span class="co">#&gt;   songid          song releaseid releasedate</span>
+<span class="co">#&gt; 1      1  waiting room         1  1988-11-19</span>
+<span class="co">#&gt; 2      2   reclamation         5  1991-07-15</span>
+<span class="co">#&gt; 3      3     blueprint         4  1990-03-20</span>
+<span class="co">#&gt; 4      4 long division         5  1991-07-15</span>
+<span class="co">#&gt; 5      5   merchandise         4  1990-03-20</span>
+<span class="co">#&gt; 6      6 margin walker         2  1989-06-15</span></code></pre></div>
+<p>Now let’s calculate leads and lags by getting summary data on the songs and comparing the song launch dates to the corresponding release dates.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">summary</span> <span class="op">&lt;-</span> <span class="fu">Repeatr</span><span class="fu">::</span><span class="va"><a href="../reference/summary.html">summary</a></span> <span class="op">%&gt;%</span> 
+  <span class="fu">left_join</span><span class="op">(</span><span class="va">mydf</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">mutate</span><span class="op">(</span>lead <span class="op">=</span> <span class="va">releasedate</span> <span class="op">-</span> <span class="va">launchdate</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">select</span><span class="op">(</span><span class="va">song</span>, <span class="va">launchdate</span>, <span class="va">releasedate</span>, <span class="va">lead</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">arrange</span><span class="op">(</span><span class="va">lead</span><span class="op">)</span>
+<span class="co">#&gt; Joining, by = c("songid", "song", "releaseid")</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">summary</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 4</span></span>
+<span class="co">#&gt;    song                   launchdate releasedate lead    </span>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;drtn&gt;</span>  </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> styrofoam              1990-05-17 1990-03-20  -58 days</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> foreman's dog          1998-05-01 1998-04-27   -4 days</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> steady diet            1991-04-12 1991-07-15   94 days</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> life and limb          2001-06-21 2001-10-11  112 days</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> blueprint              1989-11-25 1990-03-20  115 days</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> polish                 1991-03-06 1991-07-15  131 days</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> public witness program 1993-02-05 1993-06-30  145 days</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> nice new outfit        1991-02-20 1991-07-15  145 days</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> stacks                 1991-02-15 1991-07-15  150 days</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> bulldog front          1988-06-15 1988-11-19  157 days</span></code></pre></div>
+<p>Surprisingly, there seem to be only 2 songs whose live debuts lagged behind the corresponding release dates: Styrofoam which was first played live 58 days after the launch of Repeater, and Foreman’s Dog which was first played live 4 days after the launch of End Hits. What was the average lead time for all Fugazi songs with a corresponding release?</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">summary</span><span class="op">$</span><span class="va">lead</span><span class="op">)</span>
+<span class="co">#&gt; Time difference of 792.5761 days</span></code></pre></div>
+<p>That is over 2 years, but perhaps the mean is biased upwards by a few extreme values…</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">summary</span> <span class="op">&lt;-</span> <span class="va">summary</span> <span class="op">%&gt;%</span>
+  <span class="fu">select</span><span class="op">(</span><span class="va">song</span>, <span class="va">launchdate</span>, <span class="va">releasedate</span>, <span class="va">lead</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">lead</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">summary</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 4</span></span>
+<span class="co">#&gt;    song                 launchdate releasedate lead     </span>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;drtn&gt;</span>   </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> the word             1987-09-03 2014-11-11  9931 days</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> in defense of humans 1987-09-03 2014-11-11  9931 days</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> turn off your guns   1987-09-03 2014-11-11  9931 days</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> furniture            1987-09-03 2001-10-15  5156 days</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> kyeo                 1987-10-07 1991-07-15  1377 days</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> number 5             1998-11-21 2001-10-15  1059 days</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> oh                   1998-11-29 2001-10-11  1047 days</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> merchandise          1987-09-03 1990-03-20   929 days</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> song #1              1987-09-03 1990-01-15   865 days</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> joe #1               1987-09-03 1990-01-15   865 days</span></code></pre></div>
+<p>The median lead time is probably a more reliable indicator for how long Fugazi would tend to play a song live before it featuring on a discographical release.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">summary</span><span class="op">$</span><span class="va">lead</span><span class="op">)</span>
+<span class="co">#&gt; Time difference of 360 days</span></code></pre></div>
+<p>We have discovered several interesting things: 1) Styrofoam was the only Fugazi song whose live debut significantly lagged behind the corresponding release, although the live debut of Foreman’s Dog was 4 days after the release of End Hits.<br>
+2) The median lead time for the live performance of a Fugazi song ahead of its corresponding discographical release date was approximately 1 year: 360 days.</p>
 </div>
   </div>
 
