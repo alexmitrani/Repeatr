@@ -2,7 +2,7 @@
 
 > ["I had a name, but now I'm a number"](https://fugazi.bandcamp.com/track/repeater)
 
-Analysis and modelling of [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) metadata. 
+Exploring the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) metadata. 
 
 ## Articles
 
