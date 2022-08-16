@@ -21,7 +21,14 @@ ui <- fluidPage(
                   label = "Number of bins:",
                   min = 1,
                   max = 50,
-                  value = 30)
+                  value = 30),
+
+      # Input: Slider for maximum ----
+      sliderInput(inputId = "mymax",
+                  label = "maximum attendance:",
+                  min = 1,
+                  max = 15000,
+                  value = 15000)
 
     ),
 
@@ -54,6 +61,7 @@ server <- function(input, output) {
     test <- test %>% filter(attendancedata>0)
     test <- test %>% mutate(attendance = as.numeric(V6))
     test <- test %>% filter(is.na(attendance)==FALSE)
+    test <- test %>% filter(attendance<=input$mymax)
     test <- test %>% select(attendance)
 
     x    <- test$attendance
