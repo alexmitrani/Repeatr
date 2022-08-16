@@ -25,7 +25,7 @@ ui <- fluidPage(
 
       # Input: Slider for maximum ----
       sliderInput(inputId = "mymax",
-                  label = "maximum attendance:",
+                  label = "Censor attendance at:",
                   min = 1,
                   max = 15000,
                   value = 15000)
