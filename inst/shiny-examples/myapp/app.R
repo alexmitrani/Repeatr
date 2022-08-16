@@ -35,8 +35,12 @@ ui <- fluidPage(
     # Main panel for displaying outputs ----
     mainPanel(
 
-      # Output: Histogram ----
-      plotOutput(outputId = "distPlot")
+      # Output: Tabset w/ plot, summary, and table ----
+      tabsetPanel(type = "tabs",
+                  tabPanel("Plot", plotOutput(outputId = "distPlot")),
+                  tabPanel("Summary", verbatimTextOutput("summary")),
+                  tabPanel("Table", tableOutput("table"))
+      )
 
     )
   )
@@ -45,17 +49,7 @@ ui <- fluidPage(
 # Define server logic required to draw a histogram ----
 server <- function(input, output) {
 
-  # Histogram of the Old Faithful Geyser Data ----
-  # with requested number of bins
-  # This expression that generates a histogram is wrapped in a call
-  # to renderPlot to indicate that:
-  #
-  # 1. It is "reactive" and therefore should be automatically
-  #    re-executed when inputs (input$bins) change
-  # 2. Its output type is a plot
-  output$distPlot <- renderPlot({
-
-    # What is the total number of people that Fugazi performed for in the shows that are available in the Fugazi Live Series data?
+  x <- reactive({
     test <- Repeatr0
     test <- test %>% mutate(attendancedata = nchar(V6))
     test <- test %>% filter(attendancedata>0)
@@ -63,14 +57,29 @@ server <- function(input, output) {
     test <- test %>% filter(is.na(attendance)==FALSE)
     test <- test %>% filter(attendance<=input$mymax)
     test <- test %>% select(attendance)
+    test <- as.numeric(test$attendance)
 
-    x    <- test$attendance
-    bins <- seq(min(x), max(x), length.out = input$bins + 1)
+  })
 
-    hist(x, breaks = bins, col = "#75AADB", border = "white",
+
+  output$distPlot <- renderPlot({
+
+    # What is the total number of people that Fugazi performed for in the shows that are available in the Fugazi Live Series data?
+    bins <- seq(min(x()), max(x()), length.out = input$bins + 1)
+    hist(x(), breaks = bins, col = "#75AADB", border = "white",
          xlab = "Attendance (people)",
          main = "Histogram of attendance at Fugazi shows")
 
+  })
+
+  # Generate a summary of the data ----
+  output$summary <- renderPrint({
+    summary(x())
+  })
+
+  # Generate an HTML table view of the data ----
+  output$table <- renderTable({
+    x()
   })
 
 }
