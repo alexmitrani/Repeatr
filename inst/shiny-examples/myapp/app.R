@@ -8,7 +8,7 @@ library(Repeatr)
 ui <- fluidPage(
 
   # App title ----
-  titlePanel("Hello Shiny!"),
+  titlePanel("Fugazi Live Series show attendance data"),
 
   # Sidebar layout with input and output definitions ----
   sidebarLayout(
@@ -60,7 +60,7 @@ server <- function(input, output) {
     bins <- seq(min(x), max(x), length.out = input$bins + 1)
 
     hist(x, breaks = bins, col = "#75AADB", border = "white",
-         xlab = "Attendances of Fugazi shows (people)",
+         xlab = "Attendance (people)",
          main = "Histogram of attendance at Fugazi shows")
 
   })
