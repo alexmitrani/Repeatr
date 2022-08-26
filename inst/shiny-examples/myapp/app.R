@@ -10,41 +10,54 @@ ui <- fluidPage(
   # App title ----
   titlePanel("Fugazi Live Series show attendance data"),
 
-  # Sidebar layout with input and output definitions ----
-  sidebarLayout(
 
-    # Sidebar panel for inputs ----
-    sidebarPanel(
-
-      # Input: Slider for the number of bins ----
-      sliderInput(inputId = "bins",
-                  label = "Number of bins:",
-                  min = 1,
-                  max = 50,
-                  value = 30),
-
-      # Input: Slider for maximum ----
-      sliderInput(inputId = "mymax",
-                  label = "Censor attendance at:",
-                  min = 1,
-                  max = 15000,
-                  value = 15000)
-
-    ),
 
     # Main panel for displaying outputs ----
     mainPanel(
 
       # Output: Tabset w/ plot, summary, and table ----
       tabsetPanel(type = "tabs",
-                  tabPanel("Plot", plotOutput(outputId = "distPlot")),
+                  tabPanel("Plot",
+
+                           # Sidebar layout with input and output definitions ----
+                           sidebarLayout(
+
+                             # Sidebar panel for inputs ----
+                             sidebarPanel(
+
+                               # Input: Slider for the number of bins ----
+                               sliderInput(inputId = "bins",
+                                           label = "Number of bins:",
+                                           min = 1,
+                                           max = 50,
+                                           value = 30),
+
+                               # Input: Slider for maximum ----
+                               sliderInput(inputId = "mymax",
+                                           label = "Censor attendance at:",
+                                           min = 1,
+                                           max = 15000,
+                                           value = 15000)
+
+                             ),
+
+                             # Main panel for displaying outputs ----
+                             mainPanel(
+
+                               plotOutput(outputId = "distPlot")
+
+                             )
+
+
+                            ),
+
+                          ),
                   tabPanel("Summary", verbatimTextOutput("summary")),
                   tabPanel("Table", tableOutput("table"))
       )
 
     )
   )
-)
 
 # Define server logic required to draw a histogram ----
 server <- function(input, output) {
