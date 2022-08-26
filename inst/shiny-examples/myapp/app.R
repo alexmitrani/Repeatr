@@ -8,7 +8,7 @@ library(Repeatr)
 ui <- fluidPage(
 
   # App title ----
-  titlePanel("Fugazi Live Series show attendance data"),
+  titlePanel("Fugazi Live Series data"),
 
 
 
@@ -58,7 +58,7 @@ ui <- fluidPage(
                            verbatimTextOutput("summary")
                            ),
 
-                  tabPanel("Table",
+                  tabPanel("Raw data",
                            tableOutput("table")
                            )
 
