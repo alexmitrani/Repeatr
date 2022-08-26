@@ -98,9 +98,9 @@ server <- function(input, output) {
     summary(x())
   })
 
-  # Generate an HTML table view of the data ----
+  # Generate an HTML table view of the raw data ----
   output$table <- renderTable({
-    x()
+    Repeatr0
   })
 
 }
