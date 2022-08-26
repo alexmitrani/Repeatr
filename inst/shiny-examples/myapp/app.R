@@ -17,6 +17,7 @@ ui <- fluidPage(
 
       # Output: Tabset w/ plot, summary, and table ----
       tabsetPanel(type = "tabs",
+
                   tabPanel("Plot",
 
                            # Sidebar layout with input and output definitions ----
@@ -52,8 +53,15 @@ ui <- fluidPage(
                             ),
 
                           ),
-                  tabPanel("Summary", verbatimTextOutput("summary")),
-                  tabPanel("Table", tableOutput("table"))
+
+                  tabPanel("Summary",
+                           verbatimTextOutput("summary")
+                           ),
+
+                  tabPanel("Table",
+                           tableOutput("table")
+                           )
+
       )
 
     )
