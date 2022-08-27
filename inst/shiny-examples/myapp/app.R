@@ -3,7 +3,6 @@ library(shiny)
 library(Repeatr)
 
 
-
 # Define UI for app that draws a histogram ----
 ui <- fluidPage(
 
@@ -99,9 +98,8 @@ server <- function(input, output) {
   })
 
   # Generate an HTML table view of the raw data ----
-  output$table <- renderTable({
-    Repeatr0
-  })
+
+  output$table <- renderTable(Repeatr0)
 
 }
 
