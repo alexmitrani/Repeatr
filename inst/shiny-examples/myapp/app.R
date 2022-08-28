@@ -77,6 +77,12 @@ server <- function(input, output) {
   mysummary$launchdate <- format(mysummary$launchdate,'%d-%m-%Y')
   mysummary$releasedate <- format(mysummary$releasedate,'%d-%m-%Y')
 
+  mysummary$songid <- as.integer(mysummary$songid)
+  mysummary$chosen <- as.integer(mysummary$chosen)
+  mysummary$available_rl <- as.integer(mysummary$available_rl)
+  mysummary$releaseid <- as.integer(mysummary$releaseid)
+  mysummary$lead <- as.integer(mysummary$lead)
+
   output$songsdatatable <- renderTable(mysummary)
 
   # Generate a table of transitions data
@@ -146,6 +152,9 @@ server <- function(input, output) {
 
   toursdata$start <- format(toursdata$start,'%d-%m-%Y')
   toursdata$end <- format(toursdata$end,'%d-%m-%Y')
+
+  toursdata$durationdays <- as.integer(toursdata$durationdays)
+  toursdata$attendance <- as.integer(toursdata$attendance)
 
   output$toursdatatable <- renderTable(toursdata)
 
