@@ -11,8 +11,6 @@ ui <- fluidPage(
   # App title ----
   titlePanel("Fugazi Live Series data"),
 
-
-
     # Main panel for displaying outputs ----
     mainPanel(
 
@@ -37,7 +35,7 @@ ui <- fluidPage(
                                                   "Release year:",
                                                   c("All",
                                                     sort(unique(as.integer(mysummary$releaseyear)))))
-                               ),
+                               )
                              ),
                              # Create a new row for the table.
                              DT::dataTableOutput("songsdatatable")
@@ -48,9 +46,32 @@ ui <- fluidPage(
 
                   tabPanel("Transitions",
 
-                           tableOutput("transitionsdatatable")
+                             fluidPage(
+                               titlePanel("Transitions Data"),
 
-                           ),
+                               # Create a new Row in the UI for selectInputs
+                               fluidRow(
+                                 column(4,
+                                        selectInput("from",
+                                                    "From:",
+                                                    c("All",
+                                                      sort(unique((transitions$from)))))
+                                 ),
+                                 column(4,
+                                        selectInput("to",
+                                                    "To:",
+                                                    c("All",
+                                                      sort(unique(transitions$to))))
+                                  )
+
+                                ),
+
+                             # Create a new row for the table.
+                             DT::dataTableOutput("transitionsdatatable")
+
+                          )
+
+                  ),
 
                   tabPanel("Tours",
 
@@ -76,7 +97,8 @@ ui <- fluidPage(
 
   )
 
-# Define server logic required to draw a histogram ----
+
+# Define server logic
 server <- function(input, output) {
 
   # Generate a table of songs data
@@ -159,10 +181,19 @@ server <- function(input, output) {
 
 
   transitions <- transitions %>%
-    arrange(desc(count)) %>%
-    filter(count>=5)
+    arrange(desc(count))
 
-  output$transitionsdatatable <- renderTable(transitions)
+  # Filter data based on selections
+  output$transitionsdatatable <- DT::renderDataTable(DT::datatable({
+    data <- transitions
+    if (input$from != "All") {
+      data <- data[data$from == input$from,]
+    }
+    if (input$to != "All") {
+      data <- data[data$to == input$to,]
+    }
+    data
+  }))
 
   # Generate a table of tours data
 
