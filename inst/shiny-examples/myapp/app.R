@@ -75,7 +75,30 @@ ui <- fluidPage(
 
                   tabPanel("Tours",
 
-                           tableOutput("toursdatatable")
+                           fluidPage(
+                             titlePanel("Tours Data"),
+
+                             # Create a new Row in the UI for selectInputs
+                             fluidRow(
+                               column(4,
+                                      selectInput("startyear",
+                                                  "From year:",
+                                                  c("All",
+                                                    sort(unique((toursdata$startyear)))))
+                               ),
+                               column(4,
+                                      selectInput("endyear",
+                                                  "To year:",
+                                                  c("All",
+                                                    sort(unique(toursdata$endyear))))
+                               )
+
+                             ),
+
+                             # Create a new row for the table.
+                             DT::dataTableOutput("toursdatatable")
+
+                           )
 
                           ),
 
@@ -130,7 +153,6 @@ server <- function(input, output) {
   mysummary$releaseid <- as.integer(mysummary$releaseid)
   mysummary$lead <- as.integer(mysummary$lead)
 
-  # Filter data based on selections
   output$songsdatatable <- DT::renderDataTable(DT::datatable({
     data <- mysummary
     if (input$launchyear != "All") {
@@ -183,7 +205,6 @@ server <- function(input, output) {
   transitions <- transitions %>%
     arrange(desc(count))
 
-  # Filter data based on selections
   output$transitionsdatatable <- DT::renderDataTable(DT::datatable({
     data <- transitions
     if (input$from != "All") {
@@ -216,13 +237,26 @@ server <- function(input, output) {
     mutate(meanattendance = as.integer(attendance / shows)) %>%
     arrange(start)
 
-  toursdata$start <- format(toursdata$start,'%d-%m-%Y')
-  toursdata$end <- format(toursdata$end,'%d-%m-%Y')
+  toursdata <- toursdata %>%
+    mutate(start = as.Date(start, "%d-%m-%Y")) %>%
+    mutate(end = as.Date(end, "%d-%m-%Y"))
+
+  toursdata$startyear <- lubridate::year(toursdata$start)
+  toursdata$endyear <- lubridate::year(toursdata$end)
 
   toursdata$durationdays <- as.integer(toursdata$durationdays)
   toursdata$attendance <- as.integer(toursdata$attendance)
 
-  output$toursdatatable <- renderTable(toursdata)
+  output$toursdatatable <- DT::renderDataTable(DT::datatable({
+    data <- toursdata
+    if (input$startyear != "All") {
+      data <- data[data$startyear == input$startyear,]
+    }
+    if (input$endyear != "All") {
+      data <- data[data$endyear == input$endyear,]
+    }
+    data
+  }))
 
   # Generate a table with the attendance of each show
 
