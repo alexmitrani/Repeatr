@@ -82,13 +82,13 @@ ui <- fluidPage(
                              fluidRow(
                                column(4,
                                       selectInput("startyear",
-                                                  "From year:",
+                                                  "Start year:",
                                                   c("All",
                                                     sort(unique((toursdata$startyear)))))
                                ),
                                column(4,
                                       selectInput("endyear",
-                                                  "To year:",
+                                                  "End year:",
                                                   c("All",
                                                     sort(unique(toursdata$endyear))))
                                )
