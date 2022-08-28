@@ -17,48 +17,34 @@ ui <- fluidPage(
       # Output: Tabset w/ plot, summary, and table ----
       tabsetPanel(type = "tabs",
 
-                  tabPanel("Plot",
+                  tabPanel("Songs",
 
-                           # Sidebar layout with input and output definitions ----
-                           sidebarLayout(
-
-                             # Sidebar panel for inputs ----
-                             sidebarPanel(
-
-                               # Input: Slider for the number of bins ----
-                               sliderInput(inputId = "bins",
-                                           label = "Number of bins:",
-                                           min = 1,
-                                           max = 50,
-                                           value = 30),
-
-                               # Input: Slider for maximum ----
-                               sliderInput(inputId = "mymax",
-                                           label = "Censor attendance at:",
-                                           min = 1,
-                                           max = 15000,
-                                           value = 15000)
-
-                             ),
-
-                             # Main panel for displaying outputs ----
-                             mainPanel(
-
-                               plotOutput(outputId = "distPlot")
-
-                             )
-
-
-                            ),
+                           tableOutput("songsdatatable")
 
                           ),
 
-                  tabPanel("Summary",
-                           verbatimTextOutput("summary")
+                  tabPanel("Transitions",
+
+                           tableOutput("transitionsdatatable")
+
                            ),
 
+                  tabPanel("Tours",
+
+                           tableOutput("toursdatatable")
+
+                          ),
+
+                  tabPanel("Shows",
+
+                           tableOutput("attendancedatatable")
+
+                          ),
+
                   tabPanel("Raw data",
-                           tableOutput("table")
+
+                           tableOutput("rawdatatable")
+
                            )
 
       )
@@ -69,37 +55,115 @@ ui <- fluidPage(
 # Define server logic required to draw a histogram ----
 server <- function(input, output) {
 
-  x <- reactive({
-    test <- Repeatr0
-    test <- test %>% mutate(attendancedata = nchar(V6))
-    test <- test %>% filter(attendancedata>0)
-    test <- test %>% mutate(attendance = as.numeric(V6))
-    test <- test %>% filter(is.na(attendance)==FALSE)
-    test <- test %>% filter(attendance<=input$mymax)
-    test <- test %>% select(attendance)
-    test <- as.numeric(test$attendance)
+  # Generate a table of songs data
 
-  })
+  releasedates <- releasesdatalookup %>%
+    select(releaseid, releasedate) %>%
+    mutate(releasedate = as.Date(releasedate, "%d/%m/%Y"))
+
+  mydf <- songvarslookup %>%
+    left_join(releasedates) %>%
+    left_join(songidlookup)
+
+  mydf <- mydf %>%
+    select(songid, song, releaseid, releasedate) %>%
+    arrange(songid)
+
+  mysummary <- Repeatr::summary %>%
+    left_join(mydf) %>%
+    mutate(lead = releasedate - launchdate) %>%
+    arrange(launchdate)
+
+  mysummary$launchdate <- format(mysummary$launchdate,'%d-%m-%Y')
+  mysummary$releasedate <- format(mysummary$releasedate,'%d-%m-%Y')
+
+  output$songsdatatable <- renderTable(mysummary)
+
+  # Generate a table of transitions data
+
+  mydf1 <- Repeatr1 %>%
+    select(gid,song_number,song) %>%
+    rename(song1 = song)
+
+  mydf2 <- Repeatr1 %>%
+    select(gid,song_number,song) %>%
+    mutate(song_number = song_number-1) %>%
+    rename(song2 = song)
+
+  mydf3 <- mydf1 %>%
+    left_join(mydf2) %>%
+    filter(is.na(song2)==FALSE) %>%
+    rename(transition_number = song_number)
+
+  checknumberofshows <- Repeatr1 %>%
+    group_by(gid) %>%
+    summarise(songs = n()) %>%
+    ungroup()
+
+  numberofshows <- nrow(checknumberofshows)
+
+  numberofsongs <- sum(checknumberofshows$songs)
+
+  numberoftransitions <- numberofsongs - numberofshows
+
+  transitions <- mydf3 %>%
+    select(song1, song2) %>%
+    rename(from = song1) %>%
+    rename(to = song2)
+
+  transitions <- transitions %>%
+    group_by(from, to) %>%
+    summarize(count = n()) %>%
+    ungroup()
 
 
-  output$distPlot <- renderPlot({
+  transitions <- transitions %>%
+    arrange(desc(count)) %>%
+    filter(count>=5)
 
-    # What is the total number of people that Fugazi performed for in the shows that are available in the Fugazi Live Series data?
-    bins <- seq(min(x()), max(x()), length.out = input$bins + 1)
-    hist(x(), breaks = bins, col = "#75AADB", border = "white",
-         xlab = "Attendance (people)",
-         main = "Histogram of attendance at Fugazi shows")
+  output$transitionsdatatable <- renderTable(transitions)
 
-  })
+  # Generate a table of tours data
 
-  # Generate a summary of the data ----
-  output$summary <- renderPrint({
-    summary(x())
-  })
+  medianattendance <- othervariables %>%
+    filter(is.na(attendance)==FALSE) %>%
+    group_by(tour) %>%
+    summarise(medianattendance = median(attendance)) %>%
+    ungroup()
 
-  # Generate an HTML table view of the raw data ----
+  toursdata <- othervariables %>%
+    left_join(medianattendance) %>%
+    mutate(attendance = ifelse(is.na(attendance)==TRUE,medianattendance,attendance)) %>%
+    group_by(tour) %>%
+    summarise(start = min(date), end = max(date), shows = n(), durationdays = as.numeric((end - start)), attendance=sum(attendance)) %>%
+    ungroup() %>%
+    arrange(desc(shows)) %>%
+    filter(is.na(tour)==FALSE)
 
-  output$table <- renderTable(Repeatr0)
+  toursdata <- toursdata %>%
+    mutate(meanattendance = as.integer(attendance / shows)) %>%
+    arrange(start)
+
+  toursdata$start <- format(toursdata$start,'%d-%m-%Y')
+  toursdata$end <- format(toursdata$end,'%d-%m-%Y')
+
+  output$toursdatatable <- renderTable(toursdata)
+
+  # Generate a table with the attendance of each show
+
+  attendancedata <- othervariables %>%
+    filter(is.na(attendance)==FALSE) %>%
+    mutate(attendance = as.integer(attendance)) %>%
+    select(date, venue, attendance) %>%
+    arrange(-attendance)
+
+  attendancedata$date <- format(attendancedata$date,'%d-%m-%Y')
+
+  output$attendancedatatable <- renderTable(attendancedata)
+
+  # Generate a table of the raw data ----
+
+  output$rawdatatable <- renderTable(Repeatr0)
 
 }
 
