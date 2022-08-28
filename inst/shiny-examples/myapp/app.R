@@ -1,6 +1,8 @@
 
 library(shiny)
 library(Repeatr)
+library(DT)
+library(lubridate)
 
 
 # Define UI for app that draws a histogram ----
@@ -19,7 +21,28 @@ ui <- fluidPage(
 
                   tabPanel("Songs",
 
-                           tableOutput("songsdatatable")
+                           fluidPage(
+                             titlePanel("Songs Data"),
+
+                             # Create a new Row in the UI for selectInputs
+                             fluidRow(
+                               column(4,
+                                      selectInput("launchyear",
+                                                  "Launch year:",
+                                                  c("All",
+                                                    sort(unique(as.integer(mysummary$launchyear)))))
+                               ),
+                               column(4,
+                                      selectInput("releaseyear",
+                                                  "Release year:",
+                                                  c("All",
+                                                    sort(unique(as.integer(mysummary$releaseyear)))))
+                               ),
+                             ),
+                             # Create a new row for the table.
+                             DT::dataTableOutput("songsdatatable")
+
+                           )
 
                           ),
 
@@ -50,6 +73,7 @@ ui <- fluidPage(
       )
 
     )
+
   )
 
 # Define server logic required to draw a histogram ----
@@ -71,11 +95,12 @@ server <- function(input, output) {
 
   mysummary <- Repeatr::summary %>%
     left_join(mydf) %>%
+    mutate(launchdate = as.Date(launchdate, "%d/%m/%Y")) %>%
     mutate(lead = releasedate - launchdate) %>%
     arrange(launchdate)
 
-  mysummary$launchdate <- format(mysummary$launchdate,'%d-%m-%Y')
-  mysummary$releasedate <- format(mysummary$releasedate,'%d-%m-%Y')
+  mysummary$launchyear <- lubridate::year(mysummary$launchdate)
+  mysummary$releaseyear <- lubridate::year(mysummary$releasedate)
 
   mysummary$songid <- as.integer(mysummary$songid)
   mysummary$chosen <- as.integer(mysummary$chosen)
@@ -83,7 +108,17 @@ server <- function(input, output) {
   mysummary$releaseid <- as.integer(mysummary$releaseid)
   mysummary$lead <- as.integer(mysummary$lead)
 
-  output$songsdatatable <- renderTable(mysummary)
+  # Filter data based on selections
+  output$songsdatatable <- DT::renderDataTable(DT::datatable({
+    data <- mysummary
+    if (input$launchyear != "All") {
+      data <- data[data$launchyear == input$launchyear,]
+    }
+    if (input$releaseyear != "All") {
+      data <- data[data$releaseyear == input$releaseyear,]
+    }
+    data
+  }))
 
   # Generate a table of transitions data
 
