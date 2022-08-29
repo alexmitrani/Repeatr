@@ -105,7 +105,7 @@ ui <- fluidPage(
                   tabPanel("Shows",
 
                            fluidPage(
-                             titlePanel("Attendance Data"),
+                             titlePanel("Shows Data"),
 
                              # Create a new Row in the UI for selectInputs
                              fluidRow(
@@ -133,7 +133,7 @@ ui <- fluidPage(
                              # Create a new Row in the UI for selectInputs
                              fluidRow(
                                column(4,
-                                      selectInput("year",
+                                      selectInput("showyear",
                                                   "year:",
                                                   c("All",
                                                     sort(unique((rawdata$year)))))
@@ -211,8 +211,8 @@ server <- function(input, output) {
 
   output$rawdatatable <- DT::renderDataTable(DT::datatable({
     data <- rawdata
-    if (input$year != "All") {
-      data <- data[data$year == input$year,]
+    if (input$showyear != "All") {
+      data <- data[data$year == input$showyear,]
     }
     data
   }))
