@@ -104,13 +104,47 @@ ui <- fluidPage(
 
                   tabPanel("Shows",
 
-                           tableOutput("attendancedatatable")
+                           fluidPage(
+                             titlePanel("Attendance Data"),
+
+                             # Create a new Row in the UI for selectInputs
+                             fluidRow(
+                               column(4,
+                                      selectInput("year",
+                                                  "year:",
+                                                  c("All",
+                                                    sort(unique((attendancedata$year)))))
+                               )
+
+                             ),
+
+                             # Create a new row for the table.
+                             DT::dataTableOutput("attendancedatatable")
+
+                           )
 
                           ),
 
                   tabPanel("Raw data",
 
-                           tableOutput("rawdatatable")
+                           fluidPage(
+                             titlePanel("Raw Data"),
+
+                             # Create a new Row in the UI for selectInputs
+                             fluidRow(
+                               column(4,
+                                      selectInput("year",
+                                                  "year:",
+                                                  c("All",
+                                                    sort(unique((rawdata$year)))))
+                               )
+
+                             ),
+
+                             # Create a new row for the table.
+                             DT::dataTableOutput("rawdatatable")
+
+                           )
 
                            )
 
@@ -165,19 +199,23 @@ server <- function(input, output) {
 
   # Generate a table with the attendance of each show
 
-  attendancedata <- othervariables %>%
-    filter(is.na(attendance)==FALSE) %>%
-    mutate(attendance = as.integer(attendance)) %>%
-    select(date, venue, attendance) %>%
-    arrange(-attendance)
-
-  attendancedata$date <- format(attendancedata$date,'%d-%m-%Y')
-
-  output$attendancedatatable <- renderTable(attendancedata)
+  output$attendancedatatable <- DT::renderDataTable(DT::datatable({
+    data <- attendancedata
+    if (input$year != "All") {
+      data <- data[data$year == input$year,]
+    }
+    data
+  }))
 
   # Generate a table of the raw data ----
 
-  output$rawdatatable <- renderTable(Repeatr0)
+  output$rawdatatable <- DT::renderDataTable(DT::datatable({
+    data <- rawdata
+    if (input$year != "All") {
+      data <- data[data$year == input$year,]
+    }
+    data
+  }))
 
 }
 
