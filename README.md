@@ -18,7 +18,15 @@ Exploring the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) 
 
 ## Repeatr package for R
 
-The Repeatr package can be installed from RStudio using the .tar.gz file in the root directory of the [GitHub repository](https://github.com/alexmitrani/Repeatr).  The package gives easy access to the functions, dataframes, and related documentation.
+The Repeatr package can be installed from RStudio using the following command:
+
+devtools::install_github("alexmitrani/Repeatr")
+
+The package gives easy access to the functions, dataframes, and related documentation.
+
+## Shiny web app
+
+A Shiny web app that presents some of the data from the Repeatr package with interactive controls can be found [here](https://alexmitrani.shinyapps.io/Repeatr-app/).
 
 ## Acknowledgements
 
