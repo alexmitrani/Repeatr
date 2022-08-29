@@ -58,6 +58,13 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     Repeatr0 <- system.file("extdata", "fugotcha.csv", package = "Repeatr")
     Repeatr0 <- read.csv(fugotcha, header=FALSE)
 
+    rawdata <- Repeatr0 %>%
+      mutate(date = as.Date(V3, "%Y-%m-%d")) %>%
+      mutate(year = lubridate::year(date)) %>%
+      relocate(year)
+
+    rawdata$date <- NULL
+
   }
 
   if (is.null(mysongdatafile)==FALSE) {
