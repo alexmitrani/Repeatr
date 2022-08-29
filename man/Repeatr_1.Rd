@@ -20,9 +20,6 @@ Repeatr_1(
 
 \item{geocodedatafile}{Optional name of CSV file containing coordinates for each gig and other data. If omitted, the default file provided with the package will be used.}
 }
-\value{
-
-}
 \description{
 This was originally developed with a file called "fugotcha.csv", the first line of which went like this:
 

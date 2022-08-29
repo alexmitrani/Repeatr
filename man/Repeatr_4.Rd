@@ -20,9 +20,6 @@ Repeatr_4(
 
 \item{other_songs_model}{This should be set to TRUE if the other songs choice model should be run, otherwise it will be skipped.}
 }
-\value{
-
-}
 \description{
 Defines indices, makes changes to variable formats and data structure to prepare for choice modelling with mlogit.
 }

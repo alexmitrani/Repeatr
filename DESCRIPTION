@@ -8,7 +8,7 @@ Description: An exploration of the Fugazi Live Series metadata.
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1
 LazyData: true
 Depends: 
     R (>= 3.5.0), crayon(>= 1.4.1), dplyr(>= 1.0.7), tidyr(>= 1.1.4), fastDummies(>= 1.6.3), heatmaply(>= 1.3.0), knitr(>= 1.36), lubridate(>= 1.8.0), rlang(>= 0.4.12), stringr(>= 1.4.0), readr(>= 2.0.2), ggplot2(>= 3.3.5), plotly(>= 4.10.0), rmarkdown(>= 2.11), shiny(>= 1.7.2), DT(>= 0.24)

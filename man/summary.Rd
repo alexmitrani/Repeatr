@@ -23,6 +23,10 @@ dataframe with one row for each song in the Fugazi discography, except those whi
 \item{vocals_picciotto}{indicates whether or not Guy Picciotto sang lead vocals on this track}
 \item{vocals_mackaye}{indicates whether or not Ian Mackaye sang lead vocals on this track}
 \item{vocals_lally}{indicates whether or not Joe Lally sang lead vocals on this track}
+\item{releasedate}{The date of the corresponding release}
+\item{lead}{The number of days between the launch date and the release date}
+\item{launchyear}{The year in which the song was first performed}
+\item{releaseyear}{The year in which the song was released}
 }
 }
 \source{

@@ -9,9 +9,6 @@ Repeatr_2(mydf = NULL)
 \arguments{
 \item{mydf}{optional dataframe to be used.  If omitted the default dataframe will be used.}
 }
-\value{
-
-}
 \description{
 The first line of the data this was originally developed with:
 

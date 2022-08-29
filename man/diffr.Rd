@@ -15,9 +15,6 @@ diffr(coeftable = NULL, vcovmat = NULL, coefindex1 = NULL, coefindex2 = NULL)
 
 \item{coefindex2}{index number of second coefficient to be tested}
 }
-\value{
-
-}
 \description{
 The function finds the standard error of the difference between the two coefficients in terms of their variances and their covariance: myse <- (sqrt(myvar1 + myvar2 - 2*mycov))
 

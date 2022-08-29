@@ -9,9 +9,6 @@ Repeatr_3(mydf = NULL)
 \arguments{
 \item{mydf}{optional dataframe to be used.  If omitted the default dataframe will be used.}
 }
-\value{
-
-}
 \description{
 "gid" is short for "gig id"
 }

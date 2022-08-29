@@ -9,9 +9,6 @@ Repeatr_5(mymodeldf = NULL)
 \arguments{
 \item{mymodeldf}{optional choice model coefficients dataframe to be used to generate the results. If omitted, the default choice model coefficients dataframe will be used, which is results.ml.Repeatr4.}
 }
-\value{
-
-}
 \description{
 Produces a summary table that includes song performance counts, song performance intensities, and ratings based on the estimated choice model parameters.
 }

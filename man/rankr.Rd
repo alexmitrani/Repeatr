@@ -13,9 +13,6 @@ rankr(coeftable = NULL, vcovmat = NULL, mysongidlist = NULL)
 
 \item{mysongidlist}{a dataframe containing the list of song ids to be tested.  It can contain other variables but only songid will be used.}
 }
-\value{
-
-}
 \description{
 The index numbers are based on the model coefficient table that comes straight out of the model, with no sorting.
 
