@@ -28,13 +28,13 @@ ui <- fluidPage(
                                       selectInput("launchyear",
                                                   "Launch year:",
                                                   c("All",
-                                                    sort(unique(as.integer(mysummary$launchyear)))))
+                                                    sort(unique(as.integer(summary$launchyear)))))
                                ),
                                column(4,
                                       selectInput("releaseyear",
                                                   "Release year:",
                                                   c("All",
-                                                    sort(unique(as.integer(mysummary$releaseyear)))))
+                                                    sort(unique(as.integer(summary$releaseyear)))))
                                )
                              ),
                              # Create a new row for the table.
@@ -138,45 +138,6 @@ server <- function(input, output) {
   }))
 
   # Generate a table of transitions data
-
-  mydf1 <- Repeatr1 %>%
-    select(gid,song_number,song) %>%
-    rename(song1 = song)
-
-  mydf2 <- Repeatr1 %>%
-    select(gid,song_number,song) %>%
-    mutate(song_number = song_number-1) %>%
-    rename(song2 = song)
-
-  mydf3 <- mydf1 %>%
-    left_join(mydf2) %>%
-    filter(is.na(song2)==FALSE) %>%
-    rename(transition_number = song_number)
-
-  checknumberofshows <- Repeatr1 %>%
-    group_by(gid) %>%
-    summarise(songs = n()) %>%
-    ungroup()
-
-  numberofshows <- nrow(checknumberofshows)
-
-  numberofsongs <- sum(checknumberofshows$songs)
-
-  numberoftransitions <- numberofsongs - numberofshows
-
-  transitions <- mydf3 %>%
-    select(song1, song2) %>%
-    rename(from = song1) %>%
-    rename(to = song2)
-
-  transitions <- transitions %>%
-    group_by(from, to) %>%
-    summarize(count = n()) %>%
-    ungroup()
-
-
-  transitions <- transitions %>%
-    arrange(desc(count))
 
   output$transitionsdatatable <- DT::renderDataTable(DT::datatable({
     data <- transitions
