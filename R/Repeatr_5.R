@@ -133,10 +133,6 @@ Repeatr_5 <- function(mymodeldf = NULL) {
     relocate(rank) %>%
     rename(duration = duration_seconds)
 
-  write.csv(summary, "summary.csv")
-
-  knitr::kable(summary, "pipe")
-
   # Evaluation of releases using the song ratings ---------------------------
 
   mydf <- releasesdatalookup
@@ -171,6 +167,39 @@ Repeatr_5 <- function(mymodeldf = NULL) {
   write.csv(releases_rated, "releases_rated.csv")
 
   knitr::kable(releases_rated, "pipe")
+
+  # add other variables to summary table
+
+  releasedates <- releasesdatalookup %>%
+    select(releaseid, releasedate) %>%
+    mutate(releasedate = as.Date(releasedate, "%d/%m/%Y"))
+
+  mydf <- songvarslookup %>%
+    left_join(releasedates) %>%
+    left_join(songidlookup)
+
+  mydf <- mydf %>%
+    select(songid, song, releaseid, releasedate) %>%
+    arrange(songid)
+
+  summary <- summary %>%
+    left_join(mydf) %>%
+    mutate(launchdate = as.Date(launchdate, "%d/%m/%Y")) %>%
+    mutate(lead = releasedate - launchdate) %>%
+    arrange(launchdate)
+
+  summary$launchyear <- lubridate::year(summary$launchdate)
+  summary$releaseyear <- lubridate::year(summary$releasedate)
+
+  summary$songid <- as.integer(summary$songid)
+  summary$chosen <- as.integer(summary$chosen)
+  summary$available_rl <- as.integer(summary$available_rl)
+  summary$releaseid <- as.integer(summary$releaseid)
+  summary$lead <- as.integer(summary$lead)
+
+  write.csv(summary, "summary.csv")
+
+  knitr::kable(summary, "pipe")
 
   myreturnlist <- list(choice_model_results_table, fugazi_song_preferences, summary, releases_rated)
 
