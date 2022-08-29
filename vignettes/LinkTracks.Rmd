@@ -28,14 +28,18 @@ A series of brief explorations of the Fugazi Live Series data.
 ## What was Fugazi's biggest show?  
 
 ```{r}
-mydf <- othervariables %>%
-  filter(is.na(attendance)==FALSE)
+attendancedata <- othervariables %>%
+  filter(is.na(attendance)==FALSE) %>%
+  mutate(attendance = as.integer(attendance)) %>%
+  mutate(date = as.Date(date, "%d-%m-%Y")) %>%
+  mutate(year = lubridate::year(date)) %>%
+  select(year, date, venue, attendance)
 
-maxattendance <- max(mydf$attendance)
+maxattendance <- max(attendancedata$attendance)
 
 maxattendance
 
-mydf %>%
+attendancedata %>%
   filter(attendance == maxattendance)
 ```
 The biggest show was the [Food Not Bombs 20th Anniversary](https://www.dischord.com/fugazi_live_series/san-francisco-ca-usa-60400) on the 4th of June 2000 at Mission Dolores Park in San Francisco, with an estimated attendance of 15000 people.  It seems that the show was recorded but it is not available yet as part of the Fugazi Live Series.  [There is a video of the show on youtube](https://www.youtube.com/watch?v=0qYvHzS7v-Q). 
@@ -45,20 +49,40 @@ The biggest show was the [Food Not Bombs 20th Anniversary](https://www.dischord.
 ```{r}
 
 medianattendance <- othervariables %>%
+  mutate(tour = ifelse(is.na(tour)==TRUE,"Unknown",tour)) %>%
   filter(is.na(attendance)==FALSE) %>%
   group_by(tour) %>%
   summarise(medianattendance = median(attendance)) %>%
   ungroup()
 
-mydf <- othervariables %>%
+toursdata <- othervariables %>%
+  mutate(tour = ifelse(is.na(tour)==TRUE,"Unknown",tour)) %>%
   left_join(medianattendance) %>%
   mutate(attendance = ifelse(is.na(attendance)==TRUE,medianattendance,attendance)) %>%
   group_by(tour) %>%
+  filter(is.na(date)==FALSE) %>%
   summarise(start = min(date), end = max(date), shows = n(), duration = as.numeric((end - start)), attendance=sum(attendance)) %>%
   ungroup() %>%
   arrange(desc(shows))
 
-head(mydf, n=10)
+  toursdata <- toursdata %>%
+    mutate(meanattendance = as.integer(attendance / shows)) %>%
+    arrange(start)
+
+  toursdata <- toursdata %>%
+    mutate(start = as.Date(start, "%d-%m-%Y")) %>%
+    mutate(end = as.Date(end, "%d-%m-%Y"))
+
+  toursdata$startyear <- lubridate::year(toursdata$start)
+  toursdata$endyear <- lubridate::year(toursdata$end)
+
+  toursdata$duration <- as.integer(toursdata$duration)
+  toursdata$attendance <- as.integer(toursdata$attendance)
+  
+  toursdata <- toursdata %>%
+    arrange(desc(shows))
+
+head(toursdata, n=10)
   
 ```
 
