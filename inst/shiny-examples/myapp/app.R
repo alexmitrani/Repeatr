@@ -152,35 +152,6 @@ server <- function(input, output) {
 
   # Generate a table of tours data
 
-  medianattendance <- othervariables %>%
-    filter(is.na(attendance)==FALSE) %>%
-    group_by(tour) %>%
-    summarise(medianattendance = median(attendance)) %>%
-    ungroup()
-
-  toursdata <- othervariables %>%
-    left_join(medianattendance) %>%
-    mutate(attendance = ifelse(is.na(attendance)==TRUE,medianattendance,attendance)) %>%
-    group_by(tour) %>%
-    summarise(start = min(date), end = max(date), shows = n(), durationdays = as.numeric((end - start)), attendance=sum(attendance)) %>%
-    ungroup() %>%
-    arrange(desc(shows)) %>%
-    filter(is.na(tour)==FALSE)
-
-  toursdata <- toursdata %>%
-    mutate(meanattendance = as.integer(attendance / shows)) %>%
-    arrange(start)
-
-  toursdata <- toursdata %>%
-    mutate(start = as.Date(start, "%d-%m-%Y")) %>%
-    mutate(end = as.Date(end, "%d-%m-%Y"))
-
-  toursdata$startyear <- lubridate::year(toursdata$start)
-  toursdata$endyear <- lubridate::year(toursdata$end)
-
-  toursdata$durationdays <- as.integer(toursdata$durationdays)
-  toursdata$attendance <- as.integer(toursdata$attendance)
-
   output$toursdatatable <- DT::renderDataTable(DT::datatable({
     data <- toursdata
     if (input$startyear != "All") {
