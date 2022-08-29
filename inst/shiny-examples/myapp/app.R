@@ -126,35 +126,8 @@ server <- function(input, output) {
 
   # Generate a table of songs data
 
-  releasedates <- releasesdatalookup %>%
-    select(releaseid, releasedate) %>%
-    mutate(releasedate = as.Date(releasedate, "%d/%m/%Y"))
-
-  mydf <- songvarslookup %>%
-    left_join(releasedates) %>%
-    left_join(songidlookup)
-
-  mydf <- mydf %>%
-    select(songid, song, releaseid, releasedate) %>%
-    arrange(songid)
-
-  mysummary <- Repeatr::summary %>%
-    left_join(mydf) %>%
-    mutate(launchdate = as.Date(launchdate, "%d/%m/%Y")) %>%
-    mutate(lead = releasedate - launchdate) %>%
-    arrange(launchdate)
-
-  mysummary$launchyear <- lubridate::year(mysummary$launchdate)
-  mysummary$releaseyear <- lubridate::year(mysummary$releasedate)
-
-  mysummary$songid <- as.integer(mysummary$songid)
-  mysummary$chosen <- as.integer(mysummary$chosen)
-  mysummary$available_rl <- as.integer(mysummary$available_rl)
-  mysummary$releaseid <- as.integer(mysummary$releaseid)
-  mysummary$lead <- as.integer(mysummary$lead)
-
   output$songsdatatable <- DT::renderDataTable(DT::datatable({
-    data <- mysummary
+    data <- summary
     if (input$launchyear != "All") {
       data <- data[data$launchyear == input$launchyear,]
     }
