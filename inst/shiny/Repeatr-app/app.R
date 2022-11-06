@@ -1,5 +1,5 @@
 
-# devtools::install_github("alexmitrani/Repeatr")
+devtools::install_github("alexmitrani/Repeatr")
 
 library(shiny)
 library(Repeatr)
