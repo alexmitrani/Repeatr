@@ -155,3 +155,56 @@ We have discovered several interesting things:
 
 2) The median lead time for the live performance of a Fugazi song ahead of its corresponding discographical release date was approximately 1 year: 360 days. 
 
+## At which venues did Fugazi play the most?  
+
+Listening to the Fugazi Live series in chronological order, the band returns to some venues again and again over the years. Let's have a look at the venues with the largest numbers of Fugazi shows.    
+
+```{r}
+venuesdata <- othervariables %>%
+  mutate(year = year(date)) %>%
+  mutate(city = ifelse(flsid=="FLS1053", "Bremen", city)) %>%
+  mutate(country = ifelse(flsid=="FLS1053", "Germany", country)) %>%
+  filter(is.na(venue)==FALSE & is.na(city)==FALSE & is.na(country)==FALSE) %>%
+  group_by(venue, city, country) %>%
+  summarize(shows = n(), from=min(year), to = max(year)) %>%
+  select(venue, city, country, shows, from, to) %>%
+  arrange(desc(shows)) %>%
+  ungroup()
+
+head(venuesdata, n = 10)
+
+```
+The top 10 venues are all in the uSA, with the top two both in Washington DC - Fort Reno and the 9:30 club are the only 2 venues with more than 10 shows.  In the case of Fort Reno, Fugazi played shows there 12 times between 1988 and 2002, only missing 3 years (1990, 1992 and 1995). 
+
+Let's have a look at the top 10 overseas venues.  
+
+```{r}
+overseas_venuesdata <- venuesdata %>%
+  filter(country!="USA" & shows>=4) %>%
+  arrange(desc(shows))
+
+head(overseas_venuesdata, n = 20)
+
+```
+
+Overseas, the venues with most Fugazi shows were Forte Prenestino in Italy and Paradiso in the Netherlands both with 5 shows. There were 9 other overseas venues with 4 shows. Proud to see that the number 1 Fugazi venue in the UK was the Newcastle Riverside, in my home town, which was where I saw them play in 1990!  
+
+Let's have a quick look at the frequency distribution of the number of shows at each venue.  
+
+```{r}
+number_venues <- nrow(venuesdata)
+
+cat(paste0("\n \n There are ", number_venues, "venues in the Fugazi Live Series data. \n \n"))
+
+overview_venuesdata <- venuesdata %>%
+  group_by(shows) %>%
+  summarize(venues = n()) %>%
+  mutate(percentage = round(100*venues/number_venues, digits = 3)) %>%
+  arrange(desc(shows)) %>%
+  ungroup()
+
+head(overview_venuesdata, n = 11)
+
+```
+
+Fugazi played at 733 venues but at 79.4% of those venues they played there only once, at 12.7% of venues they played two shows, at 3.4% of venues 3 shows, and at 2.3% of venues 4 shows. Venues with 5 or more shows represent only 2.2% of the total. 
