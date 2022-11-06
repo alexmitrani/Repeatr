@@ -194,7 +194,7 @@ Let's have a quick look at the frequency distribution of the number of shows at 
 ```{r}
 number_venues <- nrow(venuesdata)
 
-cat(paste0("\n \n There are ", number_venues, "venues in the Fugazi Live Series data. \n \n"))
+cat(paste0("\n \n There are ", number_venues, " venues in the Fugazi Live Series data. \n \n"))
 
 overview_venuesdata <- venuesdata %>%
   group_by(shows) %>%

@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9038</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9039</span>
       </span>
     </div>
 
@@ -355,6 +355,109 @@ Foreman’s Dog was 4 days after the release of End Hits.</p></li>
 ahead of its corresponding discographical release date was approximately
 1 year: 360 days.</p></li>
 </ol>
+</div>
+<div class="section level2">
+<h2 id="at-which-venues-did-fugazi-play-the-most">At which venues did Fugazi play the most?<a class="anchor" aria-label="anchor" href="#at-which-venues-did-fugazi-play-the-most"></a>
+</h2>
+<p>Listening to the Fugazi Live series in chronological order, the band
+returns to some venues again and again over the years. Let’s have a look
+at the venues with the largest numbers of Fugazi shows.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">venuesdata</span> <span class="op">&lt;-</span> <span class="va">othervariables</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>year <span class="op">=</span> <span class="fu">year</span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>city <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">flsid</span><span class="op">==</span><span class="st">"FLS1053"</span>, <span class="st">"Bremen"</span>, <span class="va">city</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>country <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">flsid</span><span class="op">==</span><span class="st">"FLS1053"</span>, <span class="st">"Germany"</span>, <span class="va">country</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">venue</span><span class="op">)</span><span class="op">==</span><span class="cn">FALSE</span> <span class="op">&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">city</span><span class="op">)</span><span class="op">==</span><span class="cn">FALSE</span> <span class="op">&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">country</span><span class="op">)</span><span class="op">==</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">venue</span>, <span class="va">city</span>, <span class="va">country</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">summarize</span><span class="op">(</span>shows <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span>, from<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span>, to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">year</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">venue</span>, <span class="va">city</span>, <span class="va">country</span>, <span class="va">shows</span>, <span class="va">from</span>, <span class="va">to</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">shows</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'venue', 'city'. You can override using the</span></span>
+<span><span class="co">#&gt; `.groups` argument.</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">venuesdata</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 6</span></span></span>
+<span><span class="co">#&gt;    venue         city        country shows  from    to</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Fort Reno     Washington  USA        12  <span style="text-decoration: underline;">1</span>988  <span style="text-decoration: underline;">2</span>002</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 9:30 Club     Washington  USA        11  <span style="text-decoration: underline;">1</span>988  <span style="text-decoration: underline;">2</span>001</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Liberty Lunch Austin      USA         9  <span style="text-decoration: underline;">1</span>988  <span style="text-decoration: underline;">1</span>998</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 40 Watt       Athens      USA         8  <span style="text-decoration: underline;">1</span>988  <span style="text-decoration: underline;">1</span>999</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> First Avenue  Minneapolis USA         8  <span style="text-decoration: underline;">1</span>991  <span style="text-decoration: underline;">2</span>001</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Maxwell's     Hoboken     USA         8  <span style="text-decoration: underline;">1</span>988  <span style="text-decoration: underline;">1</span>998</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Wilson Center Washington  USA         8  <span style="text-decoration: underline;">1</span>987  <span style="text-decoration: underline;">1</span>997</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Masquerade    Atlanta     USA         7  <span style="text-decoration: underline;">1</span>990  <span style="text-decoration: underline;">1</span>999</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Cat's Cradle  Chapel Hill USA         6  <span style="text-decoration: underline;">1</span>987  <span style="text-decoration: underline;">1</span>993</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> dc space      Washington  USA         6  <span style="text-decoration: underline;">1</span>987  <span style="text-decoration: underline;">1</span>991</span></span></code></pre></div>
+<p>The top 10 venues are all in the uSA, with the top two both in
+Washington DC - Fort Reno and the 9:30 club are the only 2 venues with
+more than 10 shows. In the case of Fort Reno, Fugazi played shows there
+12 times between 1988 and 2002, only missing 3 years (1990, 1992 and
+1995).</p>
+<p>Let’s have a look at the top 10 overseas venues.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">overseas_venuesdata</span> <span class="op">&lt;-</span> <span class="va">venuesdata</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">country</span><span class="op">!=</span><span class="st">"USA"</span> <span class="op">&amp;</span> <span class="va">shows</span><span class="op">&gt;=</span><span class="fl">4</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">shows</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">overseas_venuesdata</span>, n <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 11 × 6</span></span></span>
+<span><span class="co">#&gt;    venue            city       country     shows  from    to</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Forte Prenestino Rome       Italy           5  <span style="text-decoration: underline;">1</span>988  <span style="text-decoration: underline;">1</span>999</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Paradiso         Amsterdam  Netherlands     5  <span style="text-decoration: underline;">1</span>990  <span style="text-decoration: underline;">1</span>999</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 92 Graus         Curitiba   Brazil          4  <span style="text-decoration: underline;">1</span>994  <span style="text-decoration: underline;">1</span>997</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Effenaar         Eindhoven  Netherlands     4  <span style="text-decoration: underline;">1</span>988  <span style="text-decoration: underline;">1</span>995</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Fabrik           Hamburg    Germany         4  <span style="text-decoration: underline;">1</span>990  <span style="text-decoration: underline;">1</span>999</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Powerstation     Auckland   New Zealand     4  <span style="text-decoration: underline;">1</span>991  <span style="text-decoration: underline;">1</span>997</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Riverside        Newcastle  England         4  <span style="text-decoration: underline;">1</span>989  <span style="text-decoration: underline;">1</span>999</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Rote Fabrik      Zurich     Switzerland     4  <span style="text-decoration: underline;">1</span>990  <span style="text-decoration: underline;">1</span>999</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Schlachthof      Bremen     Germany         4  <span style="text-decoration: underline;">1</span>990  <span style="text-decoration: underline;">1</span>999</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Ungdomshuset     Copenhagen Denmark         4  <span style="text-decoration: underline;">1</span>988  <span style="text-decoration: underline;">1</span>995</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> Vera             Groningen  Netherlands     4  <span style="text-decoration: underline;">1</span>989  <span style="text-decoration: underline;">1</span>995</span></span></code></pre></div>
+<p>Overseas, the venues with most Fugazi shows were Forte Prenestino in
+Italy and Paradiso in the Netherlands both with 5 shows. There were 9
+other overseas venues with 4 shows. Proud to see that the number 1
+Fugazi venue in the UK was the Newcastle Riverside, in my home town,
+which was where I saw them play in 1990!</p>
+<p>Let’s have a quick look at the frequency distribution of the number
+of shows at each venue.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">number_venues</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">venuesdata</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"\n \n There are "</span>, <span class="va">number_venues</span>, <span class="st">"venues in the Fugazi Live Series data. \n \n"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt;  There are 733venues in the Fugazi Live Series data. </span></span>
+<span><span class="co">#&gt; </span></span>
+<span></span>
+<span><span class="va">overview_venuesdata</span> <span class="op">&lt;-</span> <span class="va">venuesdata</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">shows</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">summarize</span><span class="op">(</span>venues <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>percentage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">100</span><span class="op">*</span><span class="va">venues</span><span class="op">/</span><span class="va">number_venues</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">shows</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">overview_venuesdata</span>, n <span class="op">=</span> <span class="fl">11</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 11 × 3</span></span></span>
+<span><span class="co">#&gt;    shows venues percentage</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>    12      1      0.136</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>    11      1      0.136</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     9      1      0.136</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     8      4      0.546</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     7      1      0.136</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     6      3      0.409</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     5      5      0.682</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     4     17      2.32 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     3     25      3.41 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>     2     93     12.7  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span>     1    582     79.4</span></span></code></pre></div>
+<p>Fugazi played at 733 venues but at 79.4% of those venues they played
+there only once, at 12.7% of venues they played two shows, at 3.4% of
+venues 3 shows, and at 2.3% of venues 4 shows. Venues with 5 or more
+shows represent only 2.2% of the total.</p>
 </div>
   </div>
 
