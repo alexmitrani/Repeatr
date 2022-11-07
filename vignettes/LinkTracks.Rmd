@@ -174,7 +174,7 @@ venuesdata <- othervariables %>%
 head(venuesdata, n = 10)
 
 ```
-The top 10 venues are all in the uSA, with the top two both in Washington DC - Fort Reno and the 9:30 club are the only 2 venues with more than 10 shows.  In the case of Fort Reno, Fugazi played shows there 12 times between 1988 and 2002, only missing 3 years (1990, 1992 and 1995). 
+The top 10 venues are all in the USA, with the top two both in Washington DC - Fort Reno and the 9:30 club are the only 2 venues with more than 10 shows.  In the case of Fort Reno, Fugazi played shows there 12 times between 1988 and 2002, only missing 3 years (1990, 1992 and 1995). 
 
 Let's have a look at the top 10 overseas venues.  
 
@@ -207,4 +207,4 @@ head(overview_venuesdata, n = 11)
 
 ```
 
-Fugazi played at 733 venues but at 79.4% of those venues they played there only once, at 12.7% of venues they played two shows, at 3.4% of venues 3 shows, and at 2.3% of venues 4 shows. Venues with 5 or more shows represent only 2.2% of the total. 
+Fugazi played at 733 venues but played at 79.4% of them only once, twice at 12.7% of venues, 3 shows at 3.4% of venues, and 4 shows at 2.3% of venues. Only 2.2% of venues had 5 or more shows.
