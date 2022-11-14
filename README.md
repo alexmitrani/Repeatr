@@ -16,6 +16,8 @@ Exploring the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) 
 
 [Link Tracks](https://alexmitrani.github.io/Repeatr/articles/LinkTracks.html) A series of brief explorations of the Fugazi Live Series data.  
 
+[Playlist](https://alexmitrani.github.io/Repeatr/articles/Playlist.html) A list of recommended shows - work in progress.
+
 ## Repeatr package for R
 
 The Repeatr package can be installed from RStudio using the following command:
