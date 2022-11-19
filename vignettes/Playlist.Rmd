@@ -112,5 +112,6 @@ This is a list of shows that I plan to listen to again in future, based on the s
 [FLS0560, Maxwell's, Hoboken, NJ, USA, 1993-08-16](https://www.dischord.com/fugazi_live_series/hoboken-nj-usa-81693)<br>
 [FLS0561, City Gardens, Trenton, NJ, USA, 1993-08-17](https://www.dischord.com/fugazi_live_series/trenton-nj-usa-81793)<br>
 [FLS0573, Illinois State University Student Center Ballroom, Normal, IL, USA, 1993-09-01](https://www.dischord.com/fugazi_live_series/normal-il-usa-90193)<br>
+[FLS0577, Nautica Stage, Cleveland, OH, USA, 1993-09-05](https://www.dischord.com/fugazi_live_series/cleveland-oh-usa-90593)<br>
 
 
