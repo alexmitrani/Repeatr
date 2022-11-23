@@ -211,7 +211,7 @@ Fugazi played at 733 venues but played at 79.4% of them only once, twice at 12.7
 
 ## Did Fugazi randomly pick songs from their entire available repertoire for each show?
 
-First, let's get the data into a suitable format.
+If songs were picked at random from all available songs, the play count for each song should build up in a similar way over time.  This can be checked by plotting the cumulative play counts for a selection of songs.  First, let's get the data into a suitable format.
 
 ```{r}
 
@@ -262,7 +262,7 @@ song_menu <- mydf_long %>%
 
 song_menu
 ```
-Here is a selection of interesting songs to look at.  It would be too cluttered to plot them all at once!
+Here is a selection of interesting songs to look at.  It would be too cluttered to plot all the songs at once!
 
 ```{r}
 
@@ -273,7 +273,7 @@ mydf_long %>%
 
 ```
 
-Returning to the initial question of whether Fugazi picked songs randomly or not, it seems that there was some randomness but they also had preferences.  Sometimes it seems like they got bored of a song, stopped playing it, then after a while started to miss it and brought it back. For instance, there were lengthy periods where KYEO and Furniture were not being played at all, and then they were brought back and played again.  
+Returning to the initial question of whether Fugazi picked songs randomly or not, it seems that there was some randomness but they also had preferences. They sometimes stopped playing certain songs for prolonged periods of time. For instance, there were lengthy periods where KYEO and Furniture were not being played at all, and then they were brought back and played again. Other songs such as Polish were dropped and did not return. Fugazi picked their songs with the randomness and preferences of a band, not the randomness of a machine. They tried [a different system for picking songs](https://www.dischord.com/fugazi_live_series/waukesha-wi-usa-61590) once but it only lasted about one song!    
 
 
 

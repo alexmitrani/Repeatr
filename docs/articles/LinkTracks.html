@@ -465,7 +465,10 @@ of venues. Only 2.2% of venues had 5 or more shows.</p>
 <h2 id="did-fugazi-randomly-pick-songs-from-their-entire-available-repertoire-for-each-show">Did Fugazi randomly pick songs from their entire available
 repertoire for each show?<a class="anchor" aria-label="anchor" href="#did-fugazi-randomly-pick-songs-from-their-entire-available-repertoire-for-each-show"></a>
 </h2>
-<p>First, let’s get the data into a suitable format.</p>
+<p>If songs were picked at random from all available songs, the play
+count for each song should build up in a similar way over time. This can
+be checked by plotting the cumulative play counts for a selection of
+songs. First, let’s get the data into a suitable format.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">mydf</span> <span class="op">&lt;-</span> <span class="va">Repeatr1</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">date</span>, <span class="va">song</span><span class="op">)</span></span>
@@ -543,26 +546,26 @@ times each song was played evolved over time.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">song_menu</span> <span class="op">&lt;-</span> <span class="va">mydf_long</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">song</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">summarize</span><span class="op">(</span>count <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">summarize</span><span class="op">(</span>count <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">song_menu</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 92 × 2</span></span></span>
-<span><span class="co">#&gt;    song                  count</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> and.the.same         <span style="text-decoration: underline;">185</span>116</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> argument               <span style="text-decoration: underline;">3</span>916</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> arpeggiator           <span style="text-decoration: underline;">15</span>336</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> back.to.base          <span style="text-decoration: underline;">30</span>949</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> bad.mouth            <span style="text-decoration: underline;">166</span>293</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> bed.for.the.scraping  <span style="text-decoration: underline;">63</span>344</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> birthday.pony         <span style="text-decoration: underline;">45</span>738</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> blueprint            <span style="text-decoration: underline;">265</span>821</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> break.                <span style="text-decoration: underline;">18</span>342</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> break.in              <span style="text-decoration: underline;">79</span>744</span></span>
+<span><span class="co">#&gt;    song                 count</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> and.the.same           374</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> argument                66</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> arpeggiator            154</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> back.to.base           135</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> bad.mouth              276</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> bed.for.the.scraping   297</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> birthday.pony          199</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> blueprint              582</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> break.                 170</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> break.in               133</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># … with 82 more rows</span></span></span></code></pre></div>
 <p>Here is a selection of interesting songs to look at. It would be too
-cluttered to plot them all at once!</p>
+cluttered to plot all the songs at once!</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">mydf_long</span> <span class="op">%&gt;%</span></span>
@@ -572,11 +575,15 @@ cluttered to plot them all at once!</p>
 <p><img src="LinkTracks_files/figure-html/unnamed-chunk-17-1.png" width="672"></p>
 <p>Returning to the initial question of whether Fugazi picked songs
 randomly or not, it seems that there was some randomness but they also
-had preferences. Sometimes it seems like they got bored of a song,
-stopped playing it, then after a while started to miss it and brought it
-back. For instance, there were lengthy periods where KYEO and Furniture
-were not being played at all, and then they were brought back and played
-again.</p>
+had preferences. They sometimes stopped playing certain songs for
+prolonged periods of time. For instance, there were lengthy periods
+where KYEO and Furniture were not being played at all, and then they
+were brought back and played again. Other songs such as Polish were
+dropped and did not return. Fugazi picked their songs with the
+randomness and preferences of a band, not the randomness of a machine.
+They tried <a href="https://www.dischord.com/fugazi_live_series/waukesha-wi-usa-61590" class="external-link">a
+different system for picking songs</a> once but it only lasted about one
+song!</p>
 </div>
   </div>
 
