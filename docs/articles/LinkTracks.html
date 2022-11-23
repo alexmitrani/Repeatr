@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9040</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9041</span>
       </span>
     </div>
 
@@ -460,6 +460,123 @@ of shows at each venue.</p>
 <p>Fugazi played at 733 venues but played at 79.4% of them only once,
 twice at 12.7% of venues, 3 shows at 3.4% of venues, and 4 shows at 2.3%
 of venues. Only 2.2% of venues had 5 or more shows.</p>
+</div>
+<div class="section level2">
+<h2 id="did-fugazi-randomly-pick-songs-from-their-entire-available-repertoire-for-each-show">Did Fugazi randomly pick songs from their entire available
+repertoire for each show?<a class="anchor" aria-label="anchor" href="#did-fugazi-randomly-pick-songs-from-their-entire-available-repertoire-for-each-show"></a>
+</h2>
+<p>First, let’s get the data into a suitable format.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="va">mydf</span> <span class="op">&lt;-</span> <span class="va">Repeatr1</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">date</span>, <span class="va">song</span><span class="op">)</span></span>
+<span><span class="va">mydf</span> <span class="op">&lt;-</span> <span class="va">mydf</span> <span class="op">%&gt;%</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">date</span>, <span class="va">song</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">slice</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">mydf</span> <span class="op">&lt;-</span> <span class="fu">mutate</span><span class="op">(</span><span class="va">mydf</span>, counter<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">mydf_wide</span> <span class="op">&lt;-</span> <span class="va">mydf</span> <span class="op">%&gt;%</span> <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">song</span>, values_from <span class="op">=</span> <span class="va">counter</span>, values_fill <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mydf_wide</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 93</span></span></span>
+<span><span class="co">#&gt;   date       furniture in defe…¹ joe #…² merch…³ song …⁴ the w…⁵ turn …⁶ waiti…⁷</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 1987-09-03         1         1       1       1       1       1       1       1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 1987-09-26         1         1       0       1       1       1       1       1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 1987-10-07         1         1       1       1       1       1       1       1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 1987-10-16         1         0       1       1       1       1       0       1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 1987-11-25         1         0       1       1       1       1       1       1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 1987-12-03         1         1       0       1       1       1       1       1</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 84 more variables: `and the same` &lt;dbl&gt;, kyeo &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   `bad mouth` &lt;dbl&gt;, `break-in` &lt;dbl&gt;, lockdown &lt;dbl&gt;, suggestion &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   burning &lt;dbl&gt;, `give me the cure` &lt;dbl&gt;, glueman &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   `bulldog front` &lt;dbl&gt;, `burning too` &lt;dbl&gt;, `margin walker` &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   promises &lt;dbl&gt;, provisional &lt;dbl&gt;, reprovisional &lt;dbl&gt;, `brendan #1` &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   greed &lt;dbl&gt;, `shut the door` &lt;dbl&gt;, `sieve-fisted find` &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   `long division` &lt;dbl&gt;, turnover &lt;dbl&gt;, `two beats off` &lt;dbl&gt;, …</span></span></span></code></pre></div>
+<p>Next, let’s transform the variable for each song into a cumulative
+count of the number of times the song was played, and rename the
+variables so the variable names work as they should.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">colindex</span> <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span><span class="fl">93</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  </span>
+<span>  <span class="va">mydf_wide</span><span class="op">[</span>,<span class="va">colindex</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html" class="external-link">cumsum</a></span><span class="op">(</span><span class="va">mydf_wide</span><span class="op">[</span>,<span class="va">colindex</span><span class="op">]</span><span class="op">)</span>     </span>
+<span>  </span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">mydf_wide</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/make.names.html" class="external-link">make.names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">mydf_wide</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mydf_wide</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 93</span></span></span>
+<span><span class="co">#&gt;   date       furniture in.defen…¹ joe..1 merch…² song..1 the.w…³ turn.…⁴ waiti…⁵</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 1987-09-03         1          1      1       1       1       1       1       1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 1987-09-26         2          2      1       2       2       2       2       2</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 1987-10-07         3          3      2       3       3       3       3       3</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 1987-10-16         4          3      3       4       4       4       3       4</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 1987-11-25         5          3      4       5       5       5       4       5</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 1987-12-03         6          4      4       6       6       6       5       6</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 84 more variables: and.the.same &lt;dbl&gt;, kyeo &lt;dbl&gt;, bad.mouth &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   break.in &lt;dbl&gt;, lockdown &lt;dbl&gt;, suggestion &lt;dbl&gt;, burning &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   give.me.the.cure &lt;dbl&gt;, glueman &lt;dbl&gt;, bulldog.front &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   burning.too &lt;dbl&gt;, margin.walker &lt;dbl&gt;, promises &lt;dbl&gt;, provisional &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   reprovisional &lt;dbl&gt;, brendan..1 &lt;dbl&gt;, greed &lt;dbl&gt;, shut.the.door &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   sieve.fisted.find &lt;dbl&gt;, long.division &lt;dbl&gt;, turnover &lt;dbl&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   two.beats.off &lt;dbl&gt;, repeater &lt;dbl&gt;, blueprint &lt;dbl&gt;, …</span></span></span></code></pre></div>
+<p>Now, we can reformat the data again to make it a long list of song
+counts that show how the number of times each song was played built up
+over time.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="va">mydf_long</span> <span class="op">&lt;-</span> <span class="va">mydf_wide</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">pivot_longer</span><span class="op">(</span><span class="op">!</span><span class="va">date</span>, names_to <span class="op">=</span> <span class="st">"song"</span>, values_to <span class="op">=</span> <span class="st">"count"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mydf_long</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 3</span></span></span>
+<span><span class="co">#&gt;   date       song                 count</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 1987-09-03 furniture                1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 1987-09-03 in.defense.of.humans     1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 1987-09-03 joe..1                   1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 1987-09-03 merchandise              1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 1987-09-03 song..1                  1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 1987-09-03 the.word                 1</span></span></code></pre></div>
+<p>Now we are in a position to graph the data so see how the number of
+times each song was played evolved over time.</p>
+<p>This is the list of songs we can choose from:</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">song_menu</span> <span class="op">&lt;-</span> <span class="va">mydf_long</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">song</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">summarize</span><span class="op">(</span>count <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">song_menu</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 92 × 2</span></span></span>
+<span><span class="co">#&gt;    song                  count</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> and.the.same         <span style="text-decoration: underline;">185</span>116</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> argument               <span style="text-decoration: underline;">3</span>916</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> arpeggiator           <span style="text-decoration: underline;">15</span>336</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> back.to.base          <span style="text-decoration: underline;">30</span>949</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> bad.mouth            <span style="text-decoration: underline;">166</span>293</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> bed.for.the.scraping  <span style="text-decoration: underline;">63</span>344</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> birthday.pony         <span style="text-decoration: underline;">45</span>738</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> blueprint            <span style="text-decoration: underline;">265</span>821</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> break.                <span style="text-decoration: underline;">18</span>342</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> break.in              <span style="text-decoration: underline;">79</span>744</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 82 more rows</span></span></span></code></pre></div>
+<p>Here is a selection of interesting songs to look at. It would be too
+cluttered to plot them all at once!</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="va">mydf_long</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">song</span><span class="op">==</span><span class="st">"furniture"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"waiting.room"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"shut.the.door"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"kyeo"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"polish"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"steady.diet"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"smallpox.champion"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"birthday.pony"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"break."</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"nightshop"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">date</span>, <span class="va">count</span>, color <span class="op">=</span> <span class="va">song</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="LinkTracks_files/figure-html/unnamed-chunk-17-1.png" width="672"></p>
+<p>Returning to the initial question of whether Fugazi picked songs
+randomly or not, it seems that there was some randomness but they also
+had preferences. Sometimes it seems like they got bored of a song,
+stopped playing it, then after a while started to miss it and brought it
+back. For instance, there were lengthy periods where KYEO and Furniture
+were not being played at all, and then they were brought back and played
+again.</p>
 </div>
   </div>
 

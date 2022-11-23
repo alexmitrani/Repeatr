@@ -208,3 +208,73 @@ head(overview_venuesdata, n = 11)
 ```
 
 Fugazi played at 733 venues but played at 79.4% of them only once, twice at 12.7% of venues, 3 shows at 3.4% of venues, and 4 shows at 2.3% of venues. Only 2.2% of venues had 5 or more shows.
+
+## Did Fugazi randomly pick songs from their entire available repertoire for each show?
+
+First, let's get the data into a suitable format.
+
+```{r}
+
+mydf <- Repeatr1 %>% select(date, song)
+mydf <- mydf %>% group_by(date, song) %>% slice(1) %>% ungroup()
+mydf <- mutate(mydf, counter=1)
+mydf_wide <- mydf %>% pivot_wider(names_from = song, values_from = counter, values_fill = 0)
+head(mydf_wide)
+
+```
+
+Next, let's transform the variable for each song into a cumulative count of the number of times the song was played, and rename the variables so the variable names work as they should.  
+
+```{r}
+
+for(colindex in 2:93) {
+  
+  mydf_wide[,colindex] <- cumsum(mydf_wide[,colindex])     
+  
+}
+
+names(mydf_wide) <- make.names(names(mydf_wide))
+
+head(mydf_wide)
+
+```
+
+Now, we can reformat the data again to make it a long list of song counts that show how the number of times each song was played built up over time.  
+
+```{r}
+
+mydf_long <- mydf_wide %>%
+  pivot_longer(!date, names_to = "song", values_to = "count")
+
+head(mydf_long)
+
+```
+
+Now we are in a position to graph the data so see how the number of times each song was played evolved over time.  
+
+This is the list of songs we can choose from:
+
+```{r}
+song_menu <- mydf_long %>%
+  group_by(song) %>%
+  summarize(count = sum(count)) %>%
+  ungroup()
+
+song_menu
+```
+Here is a selection of interesting songs to look at.  It would be too cluttered to plot them all at once!
+
+```{r}
+
+mydf_long %>%
+  filter(song=="furniture" | song=="waiting.room" | song=="shut.the.door" | song=="kyeo" | song=="polish" | song=="steady.diet" | song=="smallpox.champion" | song=="birthday.pony" | song=="break." | song=="nightshop") %>%
+  ggplot(aes(date, count, color = song)) +
+  geom_line()
+
+```
+
+Returning to the initial question of whether Fugazi picked songs randomly or not, it seems that there was some randomness but they also had preferences.  Sometimes it seems like they got bored of a song, stopped playing it, then after a while started to miss it and brought it back. For instance, there were lengthy periods where KYEO and Furniture were not being played at all, and then they were brought back and played again.  
+
+
+
+
