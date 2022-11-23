@@ -257,7 +257,7 @@ This is the list of songs we can choose from:
 ```{r}
 song_menu <- mydf_long %>%
   group_by(song) %>%
-  summarize(count = sum(count)) %>%
+  summarize(count = max(count)) %>%
   ungroup()
 
 song_menu
