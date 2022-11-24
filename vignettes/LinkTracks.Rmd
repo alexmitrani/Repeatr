@@ -211,31 +211,36 @@ Fugazi played at 733 venues but played at 79.4% of them only once, twice at 12.7
 
 ## Did Fugazi randomly pick songs from their entire available repertoire for each show?
 
-If songs were picked at random from all available songs, the play count for each song should build up in a similar way over time.  This can be checked by plotting the cumulative play counts for a selection of songs.  First, let's get the data into a suitable format.
+If songs were picked at random from all available songs, the play count for each song should build up in a similar way over time.  This can be checked by plotting the cumulative play counts for a selection of songs.  First, let's get the data into a suitable format, so that it will be easy to count the number of times each song was played.
 
 ```{r}
 
 mydf <- Repeatr1 %>% select(date, song)
-mydf <- mydf %>% group_by(date, song) %>% slice(1) %>% ungroup()
-mydf <- mutate(mydf, counter=1)
-mydf_wide <- mydf %>% pivot_wider(names_from = song, values_from = counter, values_fill = 0)
+
+mydf <- mydf %>% 
+  group_by(date, song) %>% 
+  summarize(count=n()) %>% ungroup()
+
+mydf_wide <- mydf %>% 
+  pivot_wider(names_from = song, values_from = count, values_fill = 0)
+
 head(mydf_wide)
 
 ```
 
-Next, let's transform the variable for each song into a cumulative count of the number of times the song was played, and rename the variables so the variable names work as they should.  
+Next, let's transform the variable for each song into a cumulative count of the number of times the song was played.  
 
 ```{r}
 
+mydf_wide2 <- mydf_wide
+
 for(colindex in 2:93) {
   
-  mydf_wide[,colindex] <- cumsum(mydf_wide[,colindex])     
+  mydf_wide2[,colindex] <- cumsum(mydf_wide2[,colindex])     
   
 }
 
-names(mydf_wide) <- make.names(names(mydf_wide))
-
-head(mydf_wide)
+head(mydf_wide2)
 
 ```
 
@@ -243,8 +248,9 @@ Now, we can reformat the data again to make it a long list of song counts that s
 
 ```{r}
 
-mydf_long <- mydf_wide %>%
-  pivot_longer(!date, names_to = "song", values_to = "count")
+mydf_long <- mydf_wide2 %>%
+  pivot_longer(!date, names_to = "song", values_to = "count") %>%
+  filter(count>0)
 
 head(mydf_long)
 
@@ -252,28 +258,40 @@ head(mydf_long)
 
 Now we are in a position to graph the data so see how the number of times each song was played evolved over time.  
 
-This is the list of songs we can choose from:
-
-```{r}
-song_menu <- mydf_long %>%
-  group_by(song) %>%
-  summarize(count = max(count)) %>%
-  ungroup()
-
-song_menu
-```
 Here is a selection of interesting songs to look at.  It would be too cluttered to plot all the songs at once!
 
 ```{r}
 
 mydf_long %>%
-  filter(song=="furniture" | song=="waiting.room" | song=="shut.the.door" | song=="kyeo" | song=="polish" | song=="steady.diet" | song=="smallpox.champion" | song=="birthday.pony" | song=="break." | song=="nightshop") %>%
+  filter(song=="furniture" | song=="waiting room" | song=="shut the door" | song=="kyeo" | song=="polish" | song=="steady diet" | song=="smallpox champion" | song=="birthday pony" | song=="break" | song=="nightshop") %>%
   ggplot(aes(date, count, color = song)) +
   geom_line()
 
 ```
 
-Returning to the initial question of whether Fugazi picked songs randomly or not, it seems that there was some randomness but they also had preferences. They sometimes stopped playing certain songs for prolonged periods of time. For instance, there were lengthy periods where KYEO and Furniture were not being played at all, and then they were brought back and played again. Other songs such as Polish were dropped and did not return. Fugazi picked their songs with the randomness and preferences of a band, not the randomness of a machine. They tried [a different system for picking songs](https://www.dischord.com/fugazi_live_series/waukesha-wi-usa-61590) once but it only lasted about one song!    
+Another approach is to group the songs by release.  
+
+```{r}
+releases_lookup <- Repeatr1 %>%
+  group_by(song, release) %>%
+  summarize(count = n()) %>%
+  ungroup() %>%
+  select(song, release)
+
+mydf_long <- mydf_long %>%
+  left_join(releases_lookup)
+
+mydf_long %>%
+  filter(release=="Steady Diet") %>%
+  ggplot(aes(date, count, color = song)) +
+  geom_line()
+
+cumulative_song_counts <- mydf_long %>%
+  select(date, song, release, count)
+```
+
+
+Returning to the initial question of whether Fugazi picked songs randomly, the short answer is no, it doesn't look like it. Their choices indicate preferences that became clearer over time, as can be seen in the above graphs. They sometimes stopped playing certain songs for prolonged periods of time. For instance, there were lengthy periods where KYEO and Furniture were not being played at all, and then they were brought back and played again. Other songs such as Polish were dropped and did not return. Some of the decisions of what songs to play were probably spontaneous but spontaneity is not necessarily the same as randomness, although there might be some randomness involved. Fugazi tried [a different system for picking songs](https://www.dischord.com/fugazi_live_series/waukesha-wi-usa-61590) once but it only lasted about one song!    
 
 
 
