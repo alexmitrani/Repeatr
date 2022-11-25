@@ -209,9 +209,9 @@ head(overview_venuesdata, n = 11)
 
 Fugazi played at 733 venues but played at 79.4% of them only once, twice at 12.7% of venues, 3 shows at 3.4% of venues, and 4 shows at 2.3% of venues. Only 2.2% of venues had 5 or more shows.
 
-## Did Fugazi randomly pick songs from their entire available repertoire for each show?
+## Did Fugazi pick songs to perform randomly?
 
-If songs were picked at random from all available songs, the play count for each song should build up in a similar way over time.  This can be checked by plotting the cumulative play counts for a selection of songs.  First, let's get the data into a suitable format, so that it will be easy to count the number of times each song was played.
+If songs were picked at random from all available songs, the performance count for each song should build up in a similar way over time.  This can be checked by plotting the cumulative performance counts for a selection of songs.  First, let's get the data into a suitable format, so that it will be easy to count the number of times each song was played. 
 
 ```{r}
 
@@ -244,7 +244,7 @@ head(mydf_wide2)
 
 ```
 
-Now, we can reformat the data again to make it a long list of song counts that show how the number of times each song was played built up over time.  
+Now, we can reformat the data again to make it a long list of song counts that show how the number of times each song was performed built up over time.  
 
 ```{r}
 
@@ -256,7 +256,7 @@ head(mydf_long)
 
 ```
 
-Now we are in a position to graph the data so see how the number of times each song was played evolved over time.  
+Now we are in a position to graph the data so see how the performance counts evolved over time.  
 
 Here is a selection of interesting songs to look at.  It would be too cluttered to plot all the songs at once!
 
@@ -292,6 +292,9 @@ cumulative_song_counts <- mydf_long %>%
 
 
 Returning to the initial question of whether Fugazi picked songs randomly, the short answer is no, it doesn't look like it. Their choices indicate preferences that became clearer over time, as can be seen in the above graphs. They sometimes stopped playing certain songs for prolonged periods of time. For instance, there were lengthy periods where KYEO and Furniture were not being played at all, and then they were brought back and played again. Other songs such as Polish were dropped and did not return. Some of the decisions of what songs to play were probably spontaneous but spontaneity is not necessarily the same as randomness, although there might be some randomness involved. Fugazi tried [a different system for picking songs](https://www.dischord.com/fugazi_live_series/waukesha-wi-usa-61590) once but it only lasted about one song!    
+
+There is an interactive version of the above graph available [here](https://alexmitrani.shinyapps.io/Repeatr-app/) - have fun!
+
 
 
 

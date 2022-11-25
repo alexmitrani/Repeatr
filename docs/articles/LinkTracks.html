@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9042</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9043</span>
       </span>
     </div>
 
@@ -462,14 +462,14 @@ twice at 12.7% of venues, 3 shows at 3.4% of venues, and 4 shows at 2.3%
 of venues. Only 2.2% of venues had 5 or more shows.</p>
 </div>
 <div class="section level2">
-<h2 id="did-fugazi-randomly-pick-songs-from-their-entire-available-repertoire-for-each-show">Did Fugazi randomly pick songs from their entire available
-repertoire for each show?<a class="anchor" aria-label="anchor" href="#did-fugazi-randomly-pick-songs-from-their-entire-available-repertoire-for-each-show"></a>
+<h2 id="did-fugazi-pick-songs-to-perform-randomly">Did Fugazi pick songs to perform randomly?<a class="anchor" aria-label="anchor" href="#did-fugazi-pick-songs-to-perform-randomly"></a>
 </h2>
-<p>If songs were picked at random from all available songs, the play
-count for each song should build up in a similar way over time. This can
-be checked by plotting the cumulative play counts for a selection of
-songs. First, let’s get the data into a suitable format, so that it will
-be easy to count the number of times each song was played.</p>
+<p>If songs were picked at random from all available songs, the
+performance count for each song should build up in a similar way over
+time. This can be checked by plotting the cumulative performance counts
+for a selection of songs. First, let’s get the data into a suitable
+format, so that it will be easy to count the number of times each song
+was played.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">mydf</span> <span class="op">&lt;-</span> <span class="va">Repeatr1</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">date</span>, <span class="va">song</span><span class="op">)</span></span>
@@ -530,8 +530,8 @@ count of the number of times the song was played.</p>
 <span><span class="co">#&gt; <span style="color: #949494;">#   greed &lt;int&gt;, `shut the door` &lt;int&gt;, `sieve-fisted find` &lt;int&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   `long division` &lt;int&gt;, turnover &lt;int&gt;, `two beats off` &lt;int&gt;, …</span></span></span></code></pre></div>
 <p>Now, we can reformat the data again to make it a long list of song
-counts that show how the number of times each song was played built up
-over time.</p>
+counts that show how the number of times each song was performed built
+up over time.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">mydf_long</span> <span class="op">&lt;-</span> <span class="va">mydf_wide2</span> <span class="op">%&gt;%</span></span>
@@ -548,8 +548,8 @@ over time.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 1987-09-03 merchandise              1</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 1987-09-03 song #1                  1</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 1987-09-03 the word                 1</span></span></code></pre></div>
-<p>Now we are in a position to graph the data so see how the number of
-times each song was played evolved over time.</p>
+<p>Now we are in a position to graph the data so see how the performance
+counts evolved over time.</p>
 <p>Here is a selection of interesting songs to look at. It would be too
 cluttered to plot all the songs at once!</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
@@ -595,6 +595,8 @@ randomness, although there might be some randomness involved. Fugazi
 tried <a href="https://www.dischord.com/fugazi_live_series/waukesha-wi-usa-61590" class="external-link">a
 different system for picking songs</a> once but it only lasted about one
 song!</p>
+<p>There is an interactive version of the above graph available <a href="https://alexmitrani.shinyapps.io/Repeatr-app/" class="external-link">here</a> - have
+fun!</p>
 </div>
   </div>
 
