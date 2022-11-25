@@ -19,6 +19,27 @@ ui <- fluidPage(
       # Output
       tabsetPanel(type = "tabs",
 
+                  tabPanel("Graph",
+
+                           fluidPage(
+                             titlePanel("Performance Counts"),
+
+
+                             # Create a new Row in the UI for selectInputs
+                             fluidRow(
+                               column(4,
+                                      selectizeInput("releaseInput", "Release",
+                                                     choices = unique(cumulative_song_counts$release),
+                                                     selected="Fugazi", multiple =FALSE))
+                             ),
+
+                             # Create a new row for the table.
+                             plotOutput("performance_count_plot")
+
+                           )
+
+                  ),
+
                   tabPanel("Songs",
 
                            fluidPage(
@@ -189,6 +210,12 @@ ui <- fluidPage(
 # Define server logic
 server <- function(input, output) {
 
+  d <- reactive({
+    filtered <- cumulative_song_counts %>%
+      filter(release == input$releaseInput)
+
+  })
+
   # Generate a table of songs data
 
   output$songsdatatable <- DT::renderDataTable(DT::datatable({
@@ -260,6 +287,16 @@ server <- function(input, output) {
     }
     data
   }))
+
+  output$performance_count_plot <- renderPlot({
+
+    ggplot(d(), aes(date, count, color = song)) +
+      geom_line() +
+      theme_bw() +
+      xlab("Date") +
+      ylab("Performances") +
+      ggtitle("Cumulative number of performances over time")
+  })
 
 }
 
