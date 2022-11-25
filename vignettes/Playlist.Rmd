@@ -114,4 +114,5 @@ This is a list of shows that I plan to listen to again in future, based on the s
 [FLS0573, Illinois State University Student Center Ballroom, Normal, IL, USA, 1993-09-01](https://www.dischord.com/fugazi_live_series/normal-il-usa-90193)<br>
 [FLS0577, Nautica Stage, Cleveland, OH, USA, 1993-09-05](https://www.dischord.com/fugazi_live_series/cleveland-oh-usa-90593)<br>
 [FLS0579, Peter Clark Hall University of Guelph, Guelph, Ontario, Canada, 1993-09-08](https://www.dischord.com/fugazi_live_series/guelph-ont-canada-90893)<br>
+[FLS0584, Cook Commons, Burlington, Vermont, USA, 1993-09-13](https://www.dischord.com/fugazi_live_series/burlington-vt-usa-91393)<br>
 
