@@ -29,12 +29,21 @@ ui <- fluidPage(
                              fluidRow(
                                column(4,
                                       selectizeInput("releaseInput", "Release",
-                                                     choices = unique(cumulative_song_counts$release),
-                                                     selected="Fugazi", multiple =FALSE))
+                                                     choices = c("All", unique(cumulative_song_counts$release)),
+                                                     selected="All", multiple =FALSE)),
+
+                               uiOutput("menuOptions")
+
                              ),
 
                              # Create a new row for the table.
-                             plotOutput("performance_count_plot")
+                             plotOutput("performance_count_plot"),
+
+                             fluidRow(
+                               column(4,
+                                      sliderInput("dateInput", "Date", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                                                  value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
+                             ),
 
                            )
 
@@ -211,10 +220,54 @@ ui <- fluidPage(
 server <- function(input, output) {
 
   d <- reactive({
-    filtered <- cumulative_song_counts %>%
-      filter(release == input$releaseInput)
+
+    if (input$releaseInput != "All" & is.null(input$songInput)==FALSE) {
+      filtered <- cumulative_song_counts %>%
+        filter(date >= input$dateInput[1],
+               date <= input$dateInput[2],
+               release == input$releaseInput,
+               song %in% input$songInput)
+    } else if (input$releaseInput != "All" & is.null(input$songInput)==TRUE) {
+      filtered <- cumulative_song_counts %>%
+        filter(date >= input$dateInput[1],
+               date <= input$dateInput[2],
+               release == input$releaseInput)
+    } else if (input$releaseInput == "All" & is.null(input$songInput)==FALSE) {
+      filtered <- cumulative_song_counts %>%
+        filter(date >= input$dateInput[1],
+               date <= input$dateInput[2],
+               song %in% input$songInput)
+    } else if (input$releaseInput == "All" & is.null(input$songInput)==TRUE) {
+      filtered <- cumulative_song_counts %>%
+        filter(date >= input$dateInput[1],
+               date <= input$dateInput[2])
+    }
 
   })
+
+
+  # Dynamic UI
+
+  output$menuOptions <- renderUI({
+
+    if (input$releaseInput != "All") {
+
+      menudata <- cumulative_song_counts %>%
+        filter(release == input$releaseInput)
+
+    } else {
+
+      menudata <- cumulative_song_counts
+
+    }
+
+
+    selectizeInput("songInput", "Songs",
+                   choices = c(unique(menudata$song)),
+                   selected=NULL, multiple =TRUE)
+
+  })
+
 
   # Generate a table of songs data
 
