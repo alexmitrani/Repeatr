@@ -11,19 +11,23 @@ library(lubridate)
 ui <- fluidPage(
 
   # App title ----
-  titlePanel("Repeatr"),
+  h1("Repeatr"),
+  h5("Exploring the Fugazi Live Series"),
 
     # Main panel for displaying outputs ----
     mainPanel(
 
+
+
       # Output
       tabsetPanel(type = "tabs",
 
-                  tabPanel("Counts",
+                  tabPanel("Songs",
 
                            fluidPage(
-                             titlePanel("Song Performance Counts"),
+                             h3("Song Performance Counts"),
 
+                             h4("Choose a release and/or a selection of songs."),
 
                              # Release and song selection controls
 
@@ -47,11 +51,16 @@ ui <- fluidPage(
 
                              # Slider control
 
+                            h4("The start and end dates can be modified to focus on a specific period."),
+
                             fluidRow(
                                column(12,
                                       sliderInput("dateInput", "Date", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                                                   value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
                              ),
+
+                            h4("The table below shows the number of times each song was performed in the specified period."),
+
 
                             fluidRow(
                               column(12,
@@ -63,37 +72,11 @@ ui <- fluidPage(
 
                   ),
 
-                  tabPanel("Songs",
-
-                           fluidPage(
-                             titlePanel("Songs Data"),
-
-                             # Create a new Row in the UI for selectInputs
-                             fluidRow(
-                               column(4,
-                                      selectInput("launchyear",
-                                                  "Launch year:",
-                                                  c("All",
-                                                    sort(unique(as.integer(summary$launchyear)))))
-                               ),
-                               column(4,
-                                      selectInput("releaseyear",
-                                                  "Release year:",
-                                                  c("All",
-                                                    sort(unique(as.integer(summary$releaseyear)))))
-                               )
-                             ),
-                             # Create a new row for the table.
-                             DT::dataTableOutput("songsdatatable")
-
-                           )
-
-                          ),
 
                   tabPanel("Transitions",
 
                              fluidPage(
-                               titlePanel("Transitions Data"),
+                               h3("Transitions Data"),
 
                                # Create a new Row in the UI for selectInputs
                                fluidRow(
@@ -122,7 +105,8 @@ ui <- fluidPage(
                   tabPanel("Tours",
 
                            fluidPage(
-                             titlePanel("Tours Data"),
+                             h3("Tours Data"),
+
 
                              # Create a new Row in the UI for selectInputs
                              fluidRow(
@@ -151,7 +135,8 @@ ui <- fluidPage(
                   tabPanel("Venues",
 
                            fluidPage(
-                             titlePanel("Venues Data"),
+                             h3("Venues Data"),
+
 
                              # Create a new Row in the UI for selectInputs
                              fluidRow(
@@ -180,7 +165,7 @@ ui <- fluidPage(
                   tabPanel("Shows",
 
                            fluidPage(
-                             titlePanel("Shows Data"),
+                             h3("Shows Data"),
 
                              # Create a new Row in the UI for selectInputs
                              fluidRow(
@@ -237,7 +222,6 @@ server <- function(input, output) {
 
   })
 
-
   # Dynamic UI
 
   output$menuOptions <- renderUI({
@@ -260,42 +244,37 @@ server <- function(input, output) {
 
   })
 
-  # Generate a table of songs data
+  # Graph of cumulative song counts
 
-  output$songsdatatable <- DT::renderDataTable(DT::datatable({
-    data <- summary
-    if (input$launchyear != "All") {
-      data <- data[data$launchyear == input$launchyear,]
-    }
-    if (input$releaseyear != "All") {
-      data <- data[data$releaseyear == input$releaseyear,]
-    }
-    data
-  }))
+  output$performance_count_plot <- renderPlot({
 
-  # Generate a table of songs data
+    ggplot(d(), aes(date, count, color = song)) +
+      geom_line() +
+      theme_bw() +
+      xlab("Date") +
+      ylab("Performances") +
+      ggtitle("Cumulative number of performances over time")
+  })
+
+  # Generate a table of song counts between dates
 
   output$songsdatatable2 <- DT::renderDataTable(DT::datatable({
-    data <- summary %>%
-      arrange(desc(chosen)) %>%
-      select("release", "song", "launchdate", "releasedate", "chosen")
-
-    if (input$releaseInput != "All") {
-      data <- data[data$release == input$releaseInput,]
-    }
-    if(is.null(input$songInput)==FALSE){
-      data <- data %>%
-        filter(song %in% input$songInput)
-    }
-
-    data
-
+    data <- d()
+    data <- data %>%
+      group_by(release, song) %>%
+      summarize(count = max(count)-min(count)) %>%
+      ungroup() %>%
+      arrange(desc(count))
   }))
+
+
 
   # Generate a table of transitions data
 
   output$transitionsdatatable <- DT::renderDataTable(DT::datatable({
-    data <- transitions
+    data <- transitions %>%
+      select(from, to, count)
+
     if (input$from != "All") {
       data <- data[data$from == input$from,]
     }
@@ -309,12 +288,18 @@ server <- function(input, output) {
 
   output$toursdatatable <- DT::renderDataTable(DT::datatable({
     data <- toursdata
+
     if (input$startyear != "All") {
       data <- data[data$startyear == input$startyear,]
     }
     if (input$endyear != "All") {
       data <- data[data$endyear == input$endyear,]
     }
+
+    data <- data %>%
+      select(-startyear, -endyear) %>%
+      rename(mean_attendance = meanattendance)
+
     data
   }))
 
@@ -341,15 +326,6 @@ server <- function(input, output) {
     data
   }))
 
-  output$performance_count_plot <- renderPlot({
-
-    ggplot(d(), aes(date, count, color = song)) +
-      geom_line() +
-      theme_bw() +
-      xlab("Date") +
-      ylab("Performances") +
-      ggtitle("Cumulative number of performances over time")
-  })
 
 }
 
