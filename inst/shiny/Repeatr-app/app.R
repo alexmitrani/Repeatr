@@ -51,7 +51,13 @@ ui <- fluidPage(
                                column(12,
                                       sliderInput("dateInput", "Date", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                                                   value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
-                             )
+                             ),
+
+                            fluidRow(
+                              column(12,
+                                     DT::dataTableOutput("songsdatatable2")
+                                     )
+                            )
 
                           )
 
@@ -265,6 +271,25 @@ server <- function(input, output) {
       data <- data[data$releaseyear == input$releaseyear,]
     }
     data
+  }))
+
+  # Generate a table of songs data
+
+  output$songsdatatable2 <- DT::renderDataTable(DT::datatable({
+    data <- summary %>%
+      arrange(desc(chosen)) %>%
+      select("release", "song", "launchdate", "releasedate", "chosen")
+
+    if (input$releaseInput != "All") {
+      data <- data[data$release == input$releaseInput,]
+    }
+    if(is.null(input$songInput)==FALSE){
+      data <- data %>%
+        filter(song %in% input$songInput)
+    }
+
+    data
+
   }))
 
   # Generate a table of transitions data
