@@ -11,7 +11,7 @@ library(lubridate)
 ui <- fluidPage(
 
   # App title ----
-  titlePanel("Fugazi Live Series data"),
+  titlePanel("Repeatr"),
 
     # Main panel for displaying outputs ----
     mainPanel(
@@ -19,33 +19,41 @@ ui <- fluidPage(
       # Output
       tabsetPanel(type = "tabs",
 
-                  tabPanel("Graph",
+                  tabPanel("Counts",
 
                            fluidPage(
-                             titlePanel("Performance Counts"),
+                             titlePanel("Song Performance Counts"),
 
 
-                             # Create a new Row in the UI for selectInputs
+                             # Release and song selection controls
+
                              fluidRow(
-                               column(4,
+                               column(12,
                                       selectizeInput("releaseInput", "Release",
                                                      choices = c("All", unique(cumulative_song_counts$release)),
-                                                     selected="All", multiple =FALSE)),
+                                                     selected="Repeater", multiple =FALSE),
+                                      uiOutput("menuOptions"))
 
-                               uiOutput("menuOptions")
 
                              ),
 
-                             # Create a new row for the table.
-                             plotOutput("performance_count_plot"),
+                             # Graph
 
                              fluidRow(
-                               column(4,
+                               column(12,
+                                        plotOutput("performance_count_plot")
+                                      )
+                               ),
+
+                             # Slider control
+
+                            fluidRow(
+                               column(12,
                                       sliderInput("dateInput", "Date", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                                                   value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
-                             ),
+                             )
 
-                           )
+                          )
 
                   ),
 
@@ -184,36 +192,14 @@ ui <- fluidPage(
 
                            )
 
-                          ),
-
-                  tabPanel("Raw data",
-
-                           fluidPage(
-                             titlePanel("Raw Data"),
-
-                             # Create a new Row in the UI for selectInputs
-                             fluidRow(
-                               column(4,
-                                      selectInput("showyear",
-                                                  "year:",
-                                                  c("All",
-                                                    sort(unique((rawdata$year)))))
-                               )
-
-                             ),
-
-                             # Create a new row for the table.
-                             DT::dataTableOutput("rawdatatable")
-
-                           )
-
-                           )
+                          )
 
       )
 
     )
 
-  )
+    )
+
 
 
 # Define server logic
@@ -267,7 +253,6 @@ server <- function(input, output) {
                    selected=NULL, multiple =TRUE)
 
   })
-
 
   # Generate a table of songs data
 
@@ -327,16 +312,6 @@ server <- function(input, output) {
     data <- attendancedata
     if (input$year != "All") {
       data <- data[data$year == input$year,]
-    }
-    data
-  }))
-
-  # Generate a table of the raw data ----
-
-  output$rawdatatable <- DT::renderDataTable(DT::datatable({
-    data <- rawdata
-    if (input$showyear != "All") {
-      data <- data[data$year == input$showyear,]
     }
     data
   }))
