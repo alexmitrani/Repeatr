@@ -27,15 +27,17 @@ ui <- fluidPage(
                            fluidPage(
                              h3("Song Performance Counts"),
 
-                             h4("Choose a release and/or a selection of up to 20 songs."),
+                             h4("Choose one or more releases and/or a selection of songs."),
+
+                             h4("The output will be limited to a maximum of 20 songs."),
 
                              # Release and song selection controls
 
                              fluidRow(
                                column(12,
                                       selectizeInput("releaseInput", "Release",
-                                                     choices = c("All", unique(cumulative_song_counts$release)),
-                                                     selected="Repeater", multiple =FALSE),
+                                                     choices = c(unique(cumulative_song_counts$release)),
+                                                     selected="Repeater", multiple =TRUE),
                                       uiOutput("menuOptions"))
 
 
@@ -200,79 +202,49 @@ server <- function(input, output) {
 
   d <- reactive({
 
-    if (input$releaseInput != "All" & is.null(input$songInput)==FALSE) {
+    if (is.null(input$releaseInput)==FALSE & is.null(input$songInput)==FALSE) {
       mydf <- cumulative_song_counts %>%
         filter(date >= input$dateInput[1],
                date <= input$dateInput[2],
-               release == input$releaseInput,
+               release %in% input$releaseInput,
                song %in% input$songInput)
-
-      mysongs <- mydf %>%
-        group_by(song) %>%
-        summarize(count = sum(count)) %>%
-        ungroup() %>%
-        arrange(desc(count)) %>%
-        mutate(index = row_number()) %>%
-        select(song, index)
-
-      mydf <- mydf %>%
-        left_join(mysongs) %>%
-        filter(index<=max_songs)
-
-
-    } else if (input$releaseInput != "All" & is.null(input$songInput)==TRUE) {
-      mydf <- cumulative_song_counts %>%
-        filter(date >= input$dateInput[1],
-               date <= input$dateInput[2],
-               release == input$releaseInput)
-
-      mysongs <- mydf %>%
-        group_by(song) %>%
-        summarize(count = sum(count)) %>%
-        ungroup() %>%
-        arrange(desc(count)) %>%
-        mutate(index = row_number()) %>%
-        select(song, index)
-
-      mydf <- mydf %>%
-        left_join(mysongs) %>%
-        filter(index<=max_songs)
-
-    } else if (input$releaseInput == "All" & is.null(input$songInput)==FALSE) {
-      mydf <- cumulative_song_counts %>%
-        filter(date >= input$dateInput[1],
-               date <= input$dateInput[2],
-               song %in% input$songInput)
-
-      mysongs <- mydf %>%
-        group_by(song) %>%
-        summarize(count = sum(count)) %>%
-        ungroup() %>%
-        arrange(desc(count)) %>%
-        mutate(index = row_number()) %>%
-        select(song, index)
-
-      mydf <- mydf %>%
-        left_join(mysongs) %>%
-        filter(index<=max_songs)
-
-    } else if (input$releaseInput == "All" & is.null(input$songInput)==TRUE) {
-
-      mydf <- cumulative_song_counts
-
-      mysongs <- mydf %>%
-        group_by(song) %>%
-        summarize(count = sum(count)) %>%
-        ungroup() %>%
-        arrange(desc(count)) %>%
-        mutate(index = row_number()) %>%
-        select(song, index)
-
-      mydf <- mydf %>%
-        left_join(mysongs) %>%
-        filter(index<=max_songs)
 
     }
+
+    if (is.null(input$releaseInput)==FALSE & is.null(input$songInput)==TRUE) {
+      mydf <- cumulative_song_counts %>%
+        filter(date >= input$dateInput[1],
+               date <= input$dateInput[2],
+               release %in% input$releaseInput)
+
+    }
+
+    if (is.null(input$releaseInput)==TRUE & is.null(input$songInput)==FALSE) {
+      mydf <- cumulative_song_counts %>%
+        filter(date >= input$dateInput[1],
+               date <= input$dateInput[2],
+               song %in% input$songInput)
+
+    }
+
+    if (is.null(input$releaseInput)==TRUE & is.null(input$songInput)==TRUE) {
+      mydf <- cumulative_song_counts %>%
+        filter(date >= input$dateInput[1],
+               date <= input$dateInput[2])
+
+    }
+
+    mysongs <- mydf %>%
+      group_by(song) %>%
+      summarize(count = sum(count)) %>%
+      ungroup() %>%
+      arrange(desc(count)) %>%
+      mutate(index = row_number()) %>%
+      select(song, index)
+
+    mydf <- mydf %>%
+      left_join(mysongs) %>%
+      filter(index<=max_songs)
 
   })
 
@@ -280,17 +252,14 @@ server <- function(input, output) {
 
   output$menuOptions <- renderUI({
 
-    if (input$releaseInput != "All") {
-
+    if (is.null(input$releaseInput)==FALSE) {
       menudata <- cumulative_song_counts %>%
-        filter(release == input$releaseInput)
-
+        filter(release %in% input$releaseInput) %>%
+        arrange(song)
     } else {
-
-      menudata <- cumulative_song_counts
-
+      menudata <- cumulative_song_counts %>%
+        arrange(song)
     }
-
 
     selectizeInput("songInput", "Songs",
                    choices = c(unique(menudata$song)),
