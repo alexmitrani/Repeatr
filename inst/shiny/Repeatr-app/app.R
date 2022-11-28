@@ -187,14 +187,17 @@ ui <- fluidPage(
                                       selectInput("yearInput_shows",
                                                   "year:",
                                                   c("All",
-                                                    sort(unique((othervariables$year))))),
+                                                    sort(unique((othervariables$year)))))
+                                      ),
+
+                               column(4,
                                       selectInput("countryInput_shows",
                                                   "country:",
                                                   c("All",
                                                     sort(unique((othervariables$country)))))
                                )
+                               ),
 
-                             ),
 
                              # Create a new row for the table.
                              DT::dataTableOutput("showsdatatable")
