@@ -66,7 +66,7 @@ ui <- fluidPage(
 
                             fluidRow(
                               column(12,
-                                     DT::dataTableOutput("songsdatatable2")
+                                     DT::dataTableOutput("songsdatatable")
                                      )
                             )
 
@@ -200,7 +200,7 @@ server <- function(input, output) {
 
   max_songs <- 20
 
-  d <- reactive({
+  songs_data <- reactive({
 
     if (is.null(input$releaseInput)==FALSE & is.null(input$songInput)==FALSE) {
       mydf <- cumulative_song_counts %>%
@@ -271,7 +271,7 @@ server <- function(input, output) {
 
   output$performance_count_plot <- renderPlot({
 
-    ggplot(d(), aes(date, count, color = song)) +
+    ggplot(songs_data(), aes(date, count, color = song)) +
       geom_line() +
       theme_bw() +
       xlab("Date") +
@@ -281,8 +281,8 @@ server <- function(input, output) {
 
   # Generate a table of song counts between dates
 
-  output$songsdatatable2 <- DT::renderDataTable(DT::datatable({
-    data <- d()
+  output$songsdatatable <- DT::renderDataTable(DT::datatable({
+    data <- songs_data()
     data <- data %>%
       group_by(release, song) %>%
       summarize(count = max(count)-min(count)) %>%
@@ -296,7 +296,8 @@ server <- function(input, output) {
 
   output$transitionsdatatable <- DT::renderDataTable(DT::datatable({
     data <- transitions %>%
-      select(from, to, count)
+      select(from, to, count) %>%
+      arrange(desc(count))
 
     if (input$from != "All") {
       data <- data[data$from == input$from,]
@@ -310,7 +311,8 @@ server <- function(input, output) {
   # Generate a table of tours data
 
   output$toursdatatable <- DT::renderDataTable(DT::datatable({
-    data <- toursdata
+    data <- toursdata  %>%
+      arrange(desc(attendance))
 
     if (input$startyear != "All") {
       data <- data[data$startyear == input$startyear,]
@@ -329,7 +331,8 @@ server <- function(input, output) {
   # Generate a table of venues data
 
   output$venuesdatatable <- DT::renderDataTable(DT::datatable({
-    data <- venuesdata
+    data <- venuesdata  %>%
+      arrange(desc(shows))
     if (input$country != "All") {
       data <- data[data$country == input$country,]
     }
@@ -342,7 +345,8 @@ server <- function(input, output) {
   # Generate a table with the attendance of each show
 
   output$attendancedatatable <- DT::renderDataTable(DT::datatable({
-    data <- attendancedata
+    data <- attendancedata  %>%
+      arrange(desc(attendance))
     if (input$year != "All") {
       data <- data[data$year == input$year,]
     }
