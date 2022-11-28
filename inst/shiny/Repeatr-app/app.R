@@ -184,16 +184,20 @@ ui <- fluidPage(
                              # Create a new Row in the UI for selectInputs
                              fluidRow(
                                column(4,
-                                      selectInput("year",
+                                      selectInput("yearInput_shows",
                                                   "year:",
                                                   c("All",
-                                                    sort(unique((attendancedata$year)))))
+                                                    sort(unique((othervariables$year))))),
+                                      selectInput("countryInput_shows",
+                                                  "country:",
+                                                  c("All",
+                                                    sort(unique((othervariables$country)))))
                                )
 
                              ),
 
                              # Create a new row for the table.
-                             DT::dataTableOutput("attendancedatatable")
+                             DT::dataTableOutput("showsdatatable")
 
                            )
 
@@ -413,21 +417,26 @@ server <- function(input, output) {
     data
   }))
 
-  # Generate a table with the attendance of each show
+  # Generate a table with basic data about each show
 
-  myattendancedata <- othervariables %>%
-    filter(is.na(attendance)==FALSE) %>%
+  shows_data <- othervariables %>%
+    filter(is.na(attendance)==FALSE &
+             is.na(year)==FALSE) %>%
     mutate(attendance = as.integer(attendance)) %>%
     mutate(date = as.Date(date, "%d-%m-%Y")) %>%
     mutate(year = lubridate::year(date)) %>%
-    select(flsid, year, date, venue, attendance, doorprice, recorded_by, mastered_by) %>%
-    rename(door_price = doorprice)
+    select(flsid, year, date, venue, city, country, attendance, doorprice) %>%
+    rename(door_price = doorprice,
+           fls_id = flsid)
 
-  output$attendancedatatable <- DT::renderDataTable(DT::datatable({
-    data <- myattendancedata  %>%
-      arrange(desc(attendance))
-    if (input$year != "All") {
-      data <- data[data$year == input$year,]
+  output$showsdatatable <- DT::renderDataTable(DT::datatable({
+    data <- shows_data  %>%
+      arrange(date)
+    if (input$yearInput_shows != "All") {
+      data <- data[data$year == input$yearInput_shows,]
+    }
+    if (input$countryInput_shows != "All") {
+      data <- data[data$country == input$countryInput_shows,]
     }
     data
   }))
