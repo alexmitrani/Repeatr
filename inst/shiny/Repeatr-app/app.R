@@ -97,10 +97,26 @@ ui <- fluidPage(
 
                                 ),
 
-                             # Create a new row for the table.
-                             DT::dataTableOutput("transitionsdatatable")
+                               # Slider control
 
-                          )
+                               h4("The start and end dates can be modified to focus on a specific period."),
+
+                               fluidRow(
+                                 column(12,
+                                        sliderInput("dateInput_transitions", "Date", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                                                    value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
+                               ),
+
+                               h4("The table below shows the number of times each song was performed in the specified period."),
+
+
+                               fluidRow(
+                                 column(12,
+                                        DT::dataTableOutput("transitionsdatatable")
+                                 )
+                               ),
+
+                             )
 
                   ),
 
@@ -290,12 +306,43 @@ server <- function(input, output) {
       arrange(desc(count))
   }))
 
-
-
   # Generate a table of transitions data
 
+  transitions_data <- reactive({
+
+    mydf1 <- Repeatr1 %>%
+      select(gid,date,song_number,song) %>%
+      rename(song1 = song)
+
+    mydf2 <- Repeatr1 %>%
+      select(gid,date,song_number,song) %>%
+      mutate(song_number = song_number-1) %>%
+      rename(song2 = song)
+
+    mydf3 <- mydf1 %>%
+      left_join(mydf2) %>%
+      filter(is.na(song2)==FALSE) %>%
+      rename(transition_number = song_number) %>%
+      filter(date >= input$dateInput_transitions[1],
+             date <= input$dateInput_transitions[2])
+
+    mytransitions <- mydf3 %>%
+      select(song1, song2) %>%
+      rename(from = song1) %>%
+      rename(to = song2)
+
+    mytransitions <- mytransitions %>%
+      group_by(from, to) %>%
+      summarize(count = n()) %>%
+      ungroup()
+
+    mytransitions <- mytransitions %>%
+      arrange(desc(count))
+
+  })
+
   output$transitionsdatatable <- DT::renderDataTable(DT::datatable({
-    data <- transitions %>%
+    data <- transitions_data() %>%
       select(from, to, count) %>%
       arrange(desc(count))
 
