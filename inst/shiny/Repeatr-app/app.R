@@ -37,7 +37,7 @@ ui <- fluidPage(
                                column(12,
                                       selectizeInput("releaseInput", "Release",
                                                      choices = c(unique(cumulative_song_counts$release)),
-                                                     selected="Repeater", multiple =TRUE),
+                                                     selected=NULL, multiple =TRUE),
                                       uiOutput("menuOptions"))
 
 
@@ -223,32 +223,32 @@ server <- function(input, output) {
 
     if (is.null(input$releaseInput)==FALSE & is.null(input$songInput)==FALSE) {
       mydf <- cumulative_song_counts %>%
-        filter(date >= input$dateInput[1],
-               date <= input$dateInput[2],
-               release %in% input$releaseInput,
+        filter(date >= input$dateInput[1] &
+               date <= input$dateInput[2] &
+               release %in% input$releaseInput &
                song %in% input$songInput)
 
     }
 
     if (is.null(input$releaseInput)==FALSE & is.null(input$songInput)==TRUE) {
       mydf <- cumulative_song_counts %>%
-        filter(date >= input$dateInput[1],
-               date <= input$dateInput[2],
+        filter(date >= input$dateInput[1] &
+               date <= input$dateInput[2] &
                release %in% input$releaseInput)
 
     }
 
     if (is.null(input$releaseInput)==TRUE & is.null(input$songInput)==FALSE) {
       mydf <- cumulative_song_counts %>%
-        filter(date >= input$dateInput[1],
-               date <= input$dateInput[2],
+        filter(date >= input$dateInput[1] &
+               date <= input$dateInput[2] &
                song %in% input$songInput)
 
     }
 
     if (is.null(input$releaseInput)==TRUE & is.null(input$songInput)==TRUE) {
       mydf <- cumulative_song_counts %>%
-        filter(date >= input$dateInput[1],
+        filter(date >= input$dateInput[1] &
                date <= input$dateInput[2])
 
     }
@@ -326,7 +326,7 @@ server <- function(input, output) {
       left_join(mydf2) %>%
       filter(is.na(song2)==FALSE) %>%
       rename(transition_number = song_number) %>%
-      filter(date >= input$dateInput_transitions[1],
+      filter(date >= input$dateInput_transitions[1] &
              date <= input$dateInput_transitions[2])
 
     mytransitions <- mydf3 %>%
