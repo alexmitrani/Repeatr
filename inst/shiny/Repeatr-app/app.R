@@ -25,7 +25,7 @@ ui <- fluidPage(
                   tabPanel("Songs",
 
                            fluidPage(
-                             h3("Song Performance Counts"),
+                             h3("Songs"),
 
                              h4("Choose one or more releases and/or a selection of songs."),
 
@@ -78,7 +78,7 @@ ui <- fluidPage(
                   tabPanel("Transitions",
 
                              fluidPage(
-                               h3("Transitions Data"),
+                               h3("Transitions"),
 
                                # Create a new Row in the UI for selectInputs
                                fluidRow(
@@ -107,7 +107,7 @@ ui <- fluidPage(
                   tabPanel("Tours",
 
                            fluidPage(
-                             h3("Tours Data"),
+                             h3("Tours"),
 
 
                              # Create a new Row in the UI for selectInputs
@@ -137,7 +137,7 @@ ui <- fluidPage(
                   tabPanel("Venues",
 
                            fluidPage(
-                             h3("Venues Data"),
+                             h3("Venues"),
 
 
                              # Create a new Row in the UI for selectInputs
@@ -167,7 +167,7 @@ ui <- fluidPage(
                   tabPanel("Shows",
 
                            fluidPage(
-                             h3("Shows Data"),
+                             h3("Shows"),
 
                              # Create a new Row in the UI for selectInputs
                              fluidRow(
