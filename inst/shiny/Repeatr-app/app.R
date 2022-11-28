@@ -80,23 +80,6 @@ ui <- fluidPage(
                              fluidPage(
                                h3("Transitions"),
 
-                               # Create a new Row in the UI for selectInputs
-                               fluidRow(
-                                 column(4,
-                                        selectInput("from",
-                                                    "From:",
-                                                    c("All",
-                                                      sort(unique((transitions$from)))))
-                                 ),
-                                 column(4,
-                                        selectInput("to",
-                                                    "To:",
-                                                    c("All",
-                                                      sort(unique(transitions$to))))
-                                  )
-
-                                ),
-
                                # Slider control
 
                                h4("The start and end dates can be modified to focus on a specific period."),
@@ -107,7 +90,20 @@ ui <- fluidPage(
                                                     value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
                                ),
 
-                               h4("The table below shows the number of times each song was performed in the specified period."),
+                               h4("A specific origin or destination song can be selected."),
+                               h4("These selections will reset if the period is changed."),
+
+                               fluidRow(
+                                 column(4,
+                                        uiOutput("menuOptions_transitions_from")
+                                 ),
+                                 column(4,
+                                        uiOutput("menuOptions_transitions_to")
+                                 )
+
+                               ),
+
+                               h4("The table below shows the number of times each transition featured in the specified period."),
 
 
                                fluidRow(
@@ -264,7 +260,7 @@ server <- function(input, output) {
 
   })
 
-  # Dynamic UI
+  # Songs dynamic UI
 
   output$menuOptions <- renderUI({
 
@@ -341,16 +337,44 @@ server <- function(input, output) {
 
   })
 
+  # Transitions dynamic UI
+
+  output$menuOptions_transitions_from <- renderUI({
+
+      transitions_menudata_from <- transitions_data() %>%
+        arrange(from)
+
+    selectInput("fromInput_transitions",
+                "From:",
+                c("All",
+                  sort(unique((transitions_menudata_from$from)))))
+
+  })
+
+  output$menuOptions_transitions_to <- renderUI({
+
+    transitions_menudata_to <- transitions_data() %>%
+      arrange(to)
+
+    selectInput("toInput_transitions",
+                "To:",
+                c("All",
+                  sort(unique((transitions_menudata_to$to)))))
+
+  })
+
+  # Generate a table of transitions between dates
+
   output$transitionsdatatable <- DT::renderDataTable(DT::datatable({
     data <- transitions_data() %>%
       select(from, to, count) %>%
       arrange(desc(count))
 
-    if (input$from != "All") {
-      data <- data[data$from == input$from,]
+    if (input$fromInput_transitions != "All") {
+      data <- data[data$from == input$fromInput_transitions,]
     }
-    if (input$to != "All") {
-      data <- data[data$to == input$to,]
+    if (input$toInput_transitions != "All") {
+      data <- data[data$to == input$toInput_transitions,]
     }
     data
   }))
@@ -391,8 +415,16 @@ server <- function(input, output) {
 
   # Generate a table with the attendance of each show
 
+  myattendancedata <- othervariables %>%
+    filter(is.na(attendance)==FALSE) %>%
+    mutate(attendance = as.integer(attendance)) %>%
+    mutate(date = as.Date(date, "%d-%m-%Y")) %>%
+    mutate(year = lubridate::year(date)) %>%
+    select(flsid, year, date, venue, attendance, doorprice, recorded_by, mastered_by) %>%
+    rename(door_price = doorprice)
+
   output$attendancedatatable <- DT::renderDataTable(DT::datatable({
-    data <- attendancedata  %>%
+    data <- myattendancedata  %>%
       arrange(desc(attendance))
     if (input$year != "All") {
       data <- data[data$year == input$year,]
