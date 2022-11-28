@@ -255,7 +255,7 @@ server <- function(input, output) {
 
     mysongs <- mydf %>%
       group_by(song) %>%
-      summarize(count = sum(count)) %>%
+      summarize(count = max(count)) %>%
       ungroup() %>%
       arrange(desc(count)) %>%
       mutate(index = row_number()) %>%
