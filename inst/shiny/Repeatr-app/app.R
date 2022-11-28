@@ -390,6 +390,8 @@ server <- function(input, output) {
 
   output$toursdatatable <- DT::renderDataTable(DT::datatable({
     data <- toursdata  %>%
+      filter(tour!="Unknown") %>%
+      rename(duration_days = duration) %>%
       arrange(desc(attendance))
 
     if (input$startyear != "All") {
