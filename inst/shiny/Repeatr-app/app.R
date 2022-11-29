@@ -219,54 +219,6 @@ server <- function(input, output) {
 
   max_songs <- 20
 
-  songs_data <- reactive({
-
-    if (is.null(input$releaseInput)==FALSE & is.null(input$songInput)==FALSE) {
-      mydf <- cumulative_song_counts %>%
-        filter(date >= input$dateInput[1] &
-               date <= input$dateInput[2] &
-               release %in% input$releaseInput &
-               song %in% input$songInput)
-
-    }
-
-    if (is.null(input$releaseInput)==FALSE & is.null(input$songInput)==TRUE) {
-      mydf <- cumulative_song_counts %>%
-        filter(date >= input$dateInput[1] &
-               date <= input$dateInput[2] &
-               release %in% input$releaseInput)
-
-    }
-
-    if (is.null(input$releaseInput)==TRUE & is.null(input$songInput)==FALSE) {
-      mydf <- cumulative_song_counts %>%
-        filter(date >= input$dateInput[1] &
-               date <= input$dateInput[2] &
-               song %in% input$songInput)
-
-    }
-
-    if (is.null(input$releaseInput)==TRUE & is.null(input$songInput)==TRUE) {
-      mydf <- cumulative_song_counts %>%
-        filter(date >= input$dateInput[1] &
-               date <= input$dateInput[2])
-
-    }
-
-    mysongs <- mydf %>%
-      group_by(song) %>%
-      summarize(count = max(count)) %>%
-      ungroup() %>%
-      arrange(desc(count)) %>%
-      mutate(index = row_number()) %>%
-      select(song, index)
-
-    mydf <- mydf %>%
-      left_join(mysongs) %>%
-      filter(index<=max_songs)
-
-  })
-
   # Songs dynamic UI
 
   output$menuOptions <- renderUI({
@@ -281,8 +233,57 @@ server <- function(input, output) {
     }
 
     selectizeInput("songInput", "Songs",
-                   choices = c(unique(menudata$song)),
-                   selected=NULL, multiple =TRUE)
+                   choices = c(unique(menudata$song)), multiple =TRUE)
+
+  })
+
+  songs_data <- reactive({
+
+    if (is.null(input$releaseInput)==FALSE & is.null(input$songInput)==FALSE) {
+      mydf <- cumulative_song_counts %>%
+        filter(date >= input$dateInput[1] &
+               date <= input$dateInput[2] &
+               release %in% input$releaseInput &
+               song %in% input$songInput)
+
+    } else if (is.null(input$releaseInput)==FALSE & is.null(input$songInput)==TRUE) {
+      mydf <- cumulative_song_counts %>%
+        filter(date >= input$dateInput[1] &
+               date <= input$dateInput[2] &
+               release %in% input$releaseInput)
+
+    } else if (is.null(input$releaseInput)==TRUE & is.null(input$songInput)==FALSE) {
+      mydf <- cumulative_song_counts %>%
+        filter(date >= input$dateInput[1] &
+               date <= input$dateInput[2] &
+               song %in% input$songInput)
+
+    } else {
+      mydf <- cumulative_song_counts %>%
+        filter(date >= input$dateInput[1] &
+               date <= input$dateInput[2])
+
+    }
+
+  })
+
+  songs_data2 <- reactive({
+
+    mysongs <- songs_data() %>%
+      group_by(song) %>%
+      summarize(count = max(count) - min(count)) %>%
+      ungroup() %>%
+      arrange(desc(count)) %>%
+      mutate(index = row_number()) %>%
+      select(song, index)
+
+  })
+
+  songs_data3 <- reactive({
+
+    mydf <- songs_data() %>%
+      left_join(songs_data2()) %>%
+      filter(index<=max_songs)
 
   })
 
@@ -290,7 +291,7 @@ server <- function(input, output) {
 
   output$performance_count_plot <- renderPlot({
 
-    ggplot(songs_data(), aes(date, count, color = song)) +
+    ggplot(songs_data3(), aes(date, count, color = song)) +
       geom_line() +
       theme_bw() +
       xlab("Date") +
@@ -301,10 +302,9 @@ server <- function(input, output) {
   # Generate a table of song counts between dates
 
   output$songsdatatable <- DT::renderDataTable(DT::datatable({
-    data <- songs_data()
-    data <- data %>%
+    data <- songs_data3() %>%
       group_by(release, song) %>%
-      summarize(count = max(count)-min(count)) %>%
+      summarize(count = max(count) - min(count)) %>%
       ungroup() %>%
       arrange(desc(count))
   }))
