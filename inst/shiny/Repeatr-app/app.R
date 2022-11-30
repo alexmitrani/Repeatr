@@ -47,7 +47,7 @@ ui <- fluidPage(
 
                              fluidRow(
                                column(12,
-                                        plotOutput("performance_count_plot")
+                                        plotlyOutput("performance_count_plot")
                                       )
                                ),
 
@@ -284,14 +284,17 @@ server <- function(input, output) {
 
   # Graph of cumulative song counts
 
-  output$performance_count_plot <- renderPlot({
+  output$performance_count_plot <- renderPlotly({
 
-    ggplot(songs_data3(), aes(date, count, color = song)) +
+    p <- ggplot(songs_data3(), aes(date, count, color = song)) +
       geom_line() +
       theme_bw() +
       xlab("Date") +
       ylab("Performances") +
       ggtitle("Cumulative number of performances over time")
+
+    plotly::ggplotly(p)
+
   })
 
   # Generate a table of song counts between dates
