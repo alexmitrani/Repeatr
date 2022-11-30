@@ -90,19 +90,6 @@ ui <- fluidPage(
                                                     value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
                                ),
 
-                               h4("A specific origin or destination song can be selected."),
-                               h4("These selections will reset if the period is changed."),
-
-                               fluidRow(
-                                 column(4,
-                                        uiOutput("menuOptions_transitions_from")
-                                 ),
-                                 column(4,
-                                        uiOutput("menuOptions_transitions_to")
-                                 )
-
-                               ),
-
                                # Graph
 
                                fluidRow(
@@ -345,68 +332,19 @@ server <- function(input, output) {
     mytransitions <- mytransitions %>%
       group_by(from, to) %>%
       summarize(count = n()) %>%
-      ungroup()
-
-    mytransitions <- mytransitions %>%
+      ungroup() %>%
       arrange(desc(count))
 
     mytransitions
 
   })
 
-  # Transitions dynamic UI
-
-  output$menuOptions_transitions_from <- renderUI({
-
-      transitions_menudata_from <- transitions_data() %>%
-        arrange(from)
-
-    selectInput("fromInput_transitions",
-                "From:",
-                c("All",
-                  sort(unique((transitions_menudata_from$from)))))
-
-  })
-
-  output$menuOptions_transitions_to <- renderUI({
-
-    transitions_menudata_to <- transitions_data() %>%
-      arrange(to)
-
-    selectInput("toInput_transitions",
-                "To:",
-                c("All",
-                  sort(unique((transitions_menudata_to$to)))))
-
-  })
-
-  transitions_data2 <- reactive({
-
-    mytransitions <- transitions_data() %>%
-      select(from, to, count) %>%
-      arrange(desc(count))
-
-      if (input$fromInput_transitions != "All") {
-
-        mytransitions <- mytransitions[mytransitions$from == input$fromInput_transitions,]
-
-      }
-
-      if (input$toInput_transitions != "All") {
-
-        mytransitions <- mytransitions[mytransitions$to == input$toInput_transitions,]
-
-      }
-
-      mytransitions
-
-  })
 
   # Generate a table of transitions between dates
 
   output$transitionsdatatable <- DT::renderDataTable(DT::datatable({
 
-    data <- transitions_data2()
+    data <- transitions_data()
 
     data
 
@@ -416,7 +354,7 @@ server <- function(input, output) {
 
   output$transitions_heatmap <- renderPlotly({
 
-    heatmapdata <- pivot_wider(transitions_data2(), names_from = to, values_from = count, names_sort=TRUE)
+    heatmapdata <- pivot_wider(transitions_data(), names_from = to, values_from = count, names_sort=TRUE)
 
     heatmapdata[is.na(heatmapdata)] <- 0
 
