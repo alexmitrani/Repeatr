@@ -103,6 +103,14 @@ ui <- fluidPage(
 
                                ),
 
+                               # Graph
+
+                               fluidRow(
+                                 column(12,
+                                        plotlyOutput("transitions_heatmap")
+                                 )
+                               ),
+
                                h4("The table below shows the number of times each transition featured in the specified period."),
 
 
@@ -342,6 +350,8 @@ server <- function(input, output) {
     mytransitions <- mytransitions %>%
       arrange(desc(count))
 
+    mytransitions
+
   })
 
   # Transitions dynamic UI
@@ -370,21 +380,62 @@ server <- function(input, output) {
 
   })
 
-  # Generate a table of transitions between dates
+  transitions_data2 <- reactive({
 
-  output$transitionsdatatable <- DT::renderDataTable(DT::datatable({
-    data <- transitions_data() %>%
+    mytransitions <- transitions_data() %>%
       select(from, to, count) %>%
       arrange(desc(count))
 
-    if (input$fromInput_transitions != "All") {
-      data <- data[data$from == input$fromInput_transitions,]
-    }
-    if (input$toInput_transitions != "All") {
-      data <- data[data$to == input$toInput_transitions,]
-    }
+      if (input$fromInput_transitions != "All") {
+
+        mytransitions <- mytransitions[mytransitions$from == input$fromInput_transitions,]
+
+      }
+
+      if (input$toInput_transitions != "All") {
+
+        mytransitions <- mytransitions[mytransitions$to == input$toInput_transitions,]
+
+      }
+
+      mytransitions
+
+  })
+
+  # Generate a table of transitions between dates
+
+  output$transitionsdatatable <- DT::renderDataTable(DT::datatable({
+
+    data <- transitions_data2()
+
     data
+
   }))
+
+  # Heatmap of transitions
+
+  output$transitions_heatmap <- renderPlotly({
+
+    heatmapdata <- pivot_wider(transitions_data2(), names_from = to, values_from = count, names_sort=TRUE)
+
+    heatmapdata[is.na(heatmapdata)] <- 0
+
+    heatmapdata <- heatmapdata %>%
+      arrange(desc(from))
+    heatmapdata <- data.frame(heatmapdata, row.names = 1)
+    heatmapdata <- heatmapdata[ , order(names(heatmapdata))]
+    heatmapdata <- as.matrix(heatmapdata)
+
+    heatmaply(
+      as.matrix(heatmapdata),
+      seriate="none",
+      Rowv=FALSE,
+      Colv=FALSE,
+      show_dendrogram=FALSE,
+      plot_method = "plotly"
+    )
+
+  })
 
   # Generate a table of tours data
 
