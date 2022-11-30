@@ -417,14 +417,17 @@ server <- function(input, output) {
   # Generate a table with basic data about each show
 
   shows_data <- othervariables %>%
-    filter(is.na(attendance)==FALSE &
-             is.na(year)==FALSE) %>%
+    filter(is.na(attendance)==FALSE) %>%
     mutate(attendance = as.integer(attendance)) %>%
     mutate(date = as.Date(date, "%d-%m-%Y")) %>%
     mutate(year = lubridate::year(date)) %>%
     select(flsid, year, date, venue, city, country, attendance, doorprice) %>%
     rename(door_price = doorprice,
            fls_id = flsid)
+
+  shows_data <- shows_data %>%
+    mutate(country = ifelse(fls_id=="FLS0970", "USA", country),
+           city = ifelse(fls_id=="FLS0970", "San Francisco", city))
 
   output$showsdatatable <- DT::renderDataTable(DT::datatable({
     data <- shows_data  %>%
