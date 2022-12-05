@@ -116,5 +116,7 @@ This is a list of shows that I plan to listen to again in future, based on the s
 [FLS0579, Peter Clark Hall University of Guelph, Guelph, Ontario, Canada, 1993-09-08](https://www.dischord.com/fugazi_live_series/guelph-ont-canada-90893)<br>
 [FLS0584, Cook Commons, Burlington, Vermont, USA, 1993-09-13](https://www.dischord.com/fugazi_live_series/burlington-vt-usa-91393)<br>
 [FLS0587, Wallace Civic Center, Fitchburg, MA, USA, 1993-09-17](https://www.dischord.com/fugazi_live_series/fitchburg-ma-usa-91793)<br>
+[FLS0589, Lupo's Heartbreak Hotel, Providence, RI, USA, 1993-09-19](https://www.dischord.com/fugazi_live_series/providence-ri-usa-91993)<br>
+[FLS0592, S.U.N.Y. Binghamton, Binghamton, NY, USA, 1993-09-22](https://www.dischord.com/fugazi_live_series/binghamton-ny-usa-92293)<br>
 
 
