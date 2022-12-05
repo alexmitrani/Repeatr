@@ -390,7 +390,7 @@ server <- function(input, output) {
     data <- toursdata  %>%
       filter(tour!="Unknown") %>%
       rename(duration_days = duration) %>%
-      arrange(desc(attendance))
+      arrange(start)
 
     if (input$startyear != "All") {
       data <- data[data$startyear == input$startyear,]
