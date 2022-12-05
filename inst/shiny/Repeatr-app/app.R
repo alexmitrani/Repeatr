@@ -130,12 +130,6 @@ ui <- fluidPage(
                                                   "Start year:",
                                                   c("All",
                                                     sort(unique((toursdata$startyear)))))
-                               ),
-                               column(4,
-                                      selectInput("endyear",
-                                                  "End year:",
-                                                  c("All",
-                                                    sort(unique(toursdata$endyear))))
                                )
 
                              ),
@@ -199,15 +193,14 @@ ui <- fluidPage(
                                )
                                ),
 
-                             # Input: Slider for the number of bins ----
-                             sliderInput(inputId = "bins",
-                                         label = "Number of bins:",
+                             sliderInput("bins",
+                                         "Number of bins:",
                                          min = 1,
-                                         max = 50,
-                                         value = 30),
+                                         max = 100,
+                                         value = 50),
 
 
-                             plotOutput(outputId = "distPlot"),
+                             plotlyOutput(outputId = "distPlot"),
 
                              # Slider control
 
@@ -414,9 +407,6 @@ server <- function(input, output) {
     if (input$startyear != "All") {
       data <- data[data$startyear == input$startyear,]
     }
-    if (input$endyear != "All") {
-      data <- data[data$endyear == input$endyear,]
-    }
 
     data <- data %>%
       select(-startyear, -endyear) %>%
@@ -473,15 +463,19 @@ server <- function(input, output) {
 
   })
 
-  output$distPlot <- renderPlot({
+  output$distPlot <- renderPlotly({
 
     data <- shows_data2()
-    x    <- data$attendance
-    bins <- seq(min(x), max(x), length.out = input$bins + 1)
+    attendance    <- data$attendance
 
-    hist(x, breaks = bins, col = "#007bc2", border = "white",
-         xlab = "Attendance",
-         main = "Histogram of show attendance")
+    h <- plot_ly(x = attendance,
+                  type = "histogram", nbinsx = input$bins) %>%
+      layout(title = "Histogram of show attendance",
+             xaxis = list(title = "Attendance",
+                          zeroline = FALSE),
+             yaxis = list(title = "Shows",
+                          zeroline = FALSE))
+    h
 
   })
 
