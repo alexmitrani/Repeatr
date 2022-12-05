@@ -12,7 +12,13 @@ ui <- fluidPage(
 
   # App title ----
   h1("Repeatr"),
-  h5("Exploring the Fugazi Live Series"),
+  tags$div(
+    "Exploring the ",
+    tags$a(href="https://www.dischord.com/fugazi_live_series", "Fugazi Live Series"),
+    tags$br(),
+    tags$br()
+  ),
+
 
     # Main panel for displaying outputs ----
     mainPanel(
