@@ -47,6 +47,14 @@ ui <- fluidPage(
 
                              ),
 
+                             # Slider control
+
+                             fluidRow(
+                               column(12,
+                                      sliderInput("dateInput", "Date range:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                                                  value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
+                             ),
+
                              # Graph
 
                              fluidRow(
@@ -55,17 +63,9 @@ ui <- fluidPage(
                                       )
                                ),
 
-                             # Slider control
-
-                            h4("The start and end dates can be modified to focus on a specific period."),
-
-                            fluidRow(
-                               column(12,
-                                      sliderInput("dateInput", "Date", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
-                                                  value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
-                             ),
-
+                            tags$br(),
                             h4("The table below shows the number of times each song was performed in the specified period."),
+                            tags$br(),
 
 
                             fluidRow(
@@ -86,11 +86,9 @@ ui <- fluidPage(
 
                                # Slider control
 
-                               h4("The start and end dates can be modified to focus on a specific period."),
-
                                fluidRow(
                                  column(12,
-                                        sliderInput("dateInput_transitions", "Date", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                                        sliderInput("dateInput_transitions", "Date range:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                                                     value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
                                ),
 
@@ -137,24 +135,23 @@ ui <- fluidPage(
                                )
                              ),
 
-                             sliderInput("bins",
-                                         "Number of bins:",
-                                         min = 1,
-                                         max = 100,
-                                         value = 50),
+                             # Slider control
+
+                             fluidRow(
+                               column(6,
+                                      sliderInput("dateInput_shows", "Date range:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                                                  value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F")),
+                               column(6,
+                                      sliderInput("bins",
+                                                  "Number of bins:",
+                                                  min = 1,
+                                                  max = 100,
+                                                  value = 50))
+                             ),
 
 
                              plotlyOutput(outputId = "distPlot"),
 
-                             # Slider control
-
-                             h4("The start and end dates can be modified to focus on a specific period."),
-
-                             fluidRow(
-                               column(12,
-                                      sliderInput("dateInput_shows", "Date", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
-                                                  value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
-                             ),
 
                              # Create a new row for the table.
                              DT::dataTableOutput("showsdatatable")
