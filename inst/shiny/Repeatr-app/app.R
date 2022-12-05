@@ -23,8 +23,6 @@ ui <- fluidPage(
     # Main panel for displaying outputs ----
     mainPanel(
 
-
-
       # Output
       tabsetPanel(type = "tabs",
 
@@ -117,29 +115,53 @@ ui <- fluidPage(
 
                   ),
 
-                  tabPanel("Tours",
+                  tabPanel("Shows",
 
                            fluidPage(
-                             h3("Tours"),
-
+                             h3("Shows"),
 
                              # Create a new Row in the UI for selectInputs
                              fluidRow(
                                column(4,
-                                      selectInput("startyear",
-                                                  "Start year:",
+                                      selectInput("yearInput_shows",
+                                                  "year:",
                                                   c("All",
-                                                    sort(unique((toursdata$startyear)))))
-                               )
+                                                    sort(unique((othervariables$year)))))
+                               ),
 
+                               column(4,
+                                      selectInput("countryInput_shows",
+                                                  "country:",
+                                                  c("All",
+                                                    sort(unique((othervariables$country)))))
+                               )
+                             ),
+
+                             sliderInput("bins",
+                                         "Number of bins:",
+                                         min = 1,
+                                         max = 100,
+                                         value = 50),
+
+
+                             plotlyOutput(outputId = "distPlot"),
+
+                             # Slider control
+
+                             h4("The start and end dates can be modified to focus on a specific period."),
+
+                             fluidRow(
+                               column(12,
+                                      sliderInput("dateInput_shows", "Date", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                                                  value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
                              ),
 
                              # Create a new row for the table.
-                             DT::dataTableOutput("toursdatatable")
+                             DT::dataTableOutput("showsdatatable")
 
                            )
 
-                          ),
+                  ),
 
                   tabPanel("Venues",
 
@@ -171,54 +193,40 @@ ui <- fluidPage(
 
                   ),
 
-                  tabPanel("Shows",
+                  tabPanel("Tours",
 
                            fluidPage(
-                             h3("Shows"),
+                             h3("Tours"),
+
 
                              # Create a new Row in the UI for selectInputs
                              fluidRow(
                                column(4,
-                                      selectInput("yearInput_shows",
-                                                  "year:",
+                                      selectInput("startyear",
+                                                  "Start year:",
                                                   c("All",
-                                                    sort(unique((othervariables$year)))))
-                                      ),
-
-                               column(4,
-                                      selectInput("countryInput_shows",
-                                                  "country:",
-                                                  c("All",
-                                                    sort(unique((othervariables$country)))))
+                                                    sort(unique((toursdata$startyear)))))
                                )
-                               ),
 
-                             sliderInput("bins",
-                                         "Number of bins:",
-                                         min = 1,
-                                         max = 100,
-                                         value = 50),
-
-
-                             plotlyOutput(outputId = "distPlot"),
-
-                             # Slider control
-
-                             h4("The start and end dates can be modified to focus on a specific period."),
-
-                             fluidRow(
-                               column(12,
-                                      sliderInput("dateInput_shows", "Date", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
-                                                  value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
                              ),
 
                              # Create a new row for the table.
-                             DT::dataTableOutput("showsdatatable")
+                             DT::dataTableOutput("toursdatatable")
 
                            )
 
-                          )
+                  )
 
+
+      ),
+
+      tags$div(
+        tags$br(),
+        "Visit the ",
+        tags$a(href="https://alexmitrani.github.io/Repeatr/", "Repeatr website"),
+        " for further information.",
+        tags$br(),
+        tags$br()
       )
 
     )
