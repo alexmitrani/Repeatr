@@ -199,6 +199,16 @@ ui <- fluidPage(
                                )
                                ),
 
+                             # Input: Slider for the number of bins ----
+                             sliderInput(inputId = "bins",
+                                         label = "Number of bins:",
+                                         min = 1,
+                                         max = 50,
+                                         value = 30),
+
+
+                             plotOutput(outputId = "distPlot"),
+
                              # Slider control
 
                              h4("The start and end dates can be modified to focus on a specific period."),
@@ -444,7 +454,8 @@ server <- function(input, output) {
     mutate(country = ifelse(fls_id=="FLS0970", "USA", country),
            city = ifelse(fls_id=="FLS0970", "San Francisco", city))
 
-  output$showsdatatable <- DT::renderDataTable(DT::datatable({
+  shows_data2 <- reactive({
+
     data <- shows_data  %>%
       arrange(date)
     if (input$yearInput_shows != "All") {
@@ -459,6 +470,24 @@ server <- function(input, output) {
                date <= input$dateInput_shows[2])
 
     data
+
+  })
+
+  output$distPlot <- renderPlot({
+
+    data <- shows_data2()
+    x    <- data$attendance
+    bins <- seq(min(x), max(x), length.out = input$bins + 1)
+
+    hist(x, breaks = bins, col = "#007bc2", border = "white",
+         xlab = "Attendance",
+         main = "Histogram of show attendance")
+
+  })
+
+  output$showsdatatable <- DT::renderDataTable(DT::datatable({
+
+    data <- shows_data2()
 
   }))
 
