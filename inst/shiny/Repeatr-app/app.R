@@ -199,6 +199,15 @@ ui <- fluidPage(
                                )
                                ),
 
+                             # Slider control
+
+                             h4("The start and end dates can be modified to focus on a specific period."),
+
+                             fluidRow(
+                               column(12,
+                                      sliderInput("dateInput_shows", "Date", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                                                  value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
+                             ),
 
                              # Create a new row for the table.
                              DT::dataTableOutput("showsdatatable")
@@ -444,7 +453,13 @@ server <- function(input, output) {
     if (input$countryInput_shows != "All") {
       data <- data[data$country == input$countryInput_shows,]
     }
+
+    data <- data %>%
+      filter(date >= input$dateInput_shows[1] &
+               date <= input$dateInput_shows[2])
+
     data
+
   }))
 
 
