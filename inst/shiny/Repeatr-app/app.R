@@ -132,6 +132,13 @@ ui <- fluidPage(
                                                   "country:",
                                                   c("All",
                                                     sort(unique((othervariables$country)))))
+                               ),
+
+                               column(4,
+                                      selectInput("tourInput_shows",
+                                                  "tour:",
+                                                  c("All",
+                                                    sort(unique((othervariables$tour)))))
                                )
                              ),
 
@@ -438,10 +445,11 @@ server <- function(input, output) {
 
   shows_data <- othervariables %>%
     filter(is.na(attendance)==FALSE) %>%
+    filter(is.na(tour)==FALSE) %>%
     mutate(attendance = as.integer(attendance)) %>%
     mutate(date = as.Date(date, "%d-%m-%Y")) %>%
     mutate(year = lubridate::year(date)) %>%
-    select(flsid, year, date, venue, city, country, attendance, doorprice) %>%
+    select(flsid, tour, year, date, venue, city, country, attendance, doorprice, x, y) %>%
     rename(door_price = doorprice,
            fls_id = flsid)
 
@@ -458,6 +466,9 @@ server <- function(input, output) {
     }
     if (input$countryInput_shows != "All") {
       data <- data[data$country == input$countryInput_shows,]
+    }
+    if (input$tourInput_shows != "All") {
+      data <- data[data$tour == input$tourInput_shows,]
     }
 
     data <- data %>%
