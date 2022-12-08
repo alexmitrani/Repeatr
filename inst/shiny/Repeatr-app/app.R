@@ -5,7 +5,7 @@ library(shiny)
 library(Repeatr)
 library(DT)
 library(lubridate)
-
+library(leaflet)
 
 # Define UI for app  ----
 ui <- fluidPage(
@@ -449,7 +449,9 @@ server <- function(input, output) {
     mutate(attendance = as.integer(attendance)) %>%
     mutate(date = as.Date(date, "%d-%m-%Y")) %>%
     mutate(year = lubridate::year(date)) %>%
-    select(flsid, tour, year, date, venue, city, country, attendance, doorprice, x, y) %>%
+    rename(latitude = y) %>%
+    rename(longitude = x) %>%
+    select(flsid, tour, year, date, venue, city, country, attendance, doorprice, latitude, longitude) %>%
     rename(door_price = doorprice,
            fls_id = flsid)
 
