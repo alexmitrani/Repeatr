@@ -147,17 +147,11 @@ ui <- fluidPage(
                              fluidRow(
                                column(6,
                                       sliderInput("dateInput_shows", "Date range:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
-                                                  value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F")),
-                               column(6,
-                                      sliderInput("bins",
-                                                  "Number of bins:",
-                                                  min = 1,
-                                                  max = 100,
-                                                  value = 50))
+                                                  value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
                              ),
 
 
-                             plotlyOutput(outputId = "distPlot"),
+                             leafletOutput("mymap", height = 500, width = 500),
 
 
                              # Create a new row for the table.
@@ -481,19 +475,36 @@ server <- function(input, output) {
 
   })
 
-  output$distPlot <- renderPlotly({
+  output$mymap <- renderLeaflet({
+    df <- shows_data2()
 
-    data <- shows_data2()
-    attendance    <- data$attendance
+    ref_latitude <- mean(df$latitude)
+    ref_longitude <- mean(df$longitude)
 
-    h <- plot_ly(x = attendance,
-                  type = "histogram", nbinsx = input$bins) %>%
-      layout(title = "Histogram of show attendance",
-             xaxis = list(title = "Attendance",
-                          zeroline = FALSE),
-             yaxis = list(title = "Shows",
-                          zeroline = FALSE))
-    h
+    min_latitude <- min(df$latitude)
+    min_longitude <- min(df$longitude)
+
+    max_latitude <- max(df$latitude)
+    max_longitude <- max(df$longitude)
+
+    m <- leaflet(data = df) %>%
+      setView(lng = ref_longitude, lat = ref_latitude, zoom = 6) %>%
+      fitBounds(lng1 = min_longitude, lat1 = min_latitude, lng2 = max_longitude, lat2 = max_latitude) %>%
+      addProviderTiles("Esri.WorldStreetMap") %>%
+      addCircles(
+        data = df,
+        radius = df$attendance,
+        color = "#F60D1D",
+        fillColor = "#F60D1D",
+        fillOpacity = 0.25,
+        popup = paste0(
+          "<strong>Date: </strong>", df$date, "<br>",
+          "<strong>Venue: </strong>", df$venue, "<br>",
+          "<strong>City: </strong>", df$city, "<br>",
+          "<strong>Attendance: </strong>", df$attendance, "<br>"
+        )
+      )
+    m
 
   })
 
