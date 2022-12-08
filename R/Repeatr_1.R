@@ -125,6 +125,16 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   othervariables <- othervariables %>% left_join(geocodedatafile)
 
+  # correct values where necessary
+
+  othervariables <- othervariables %>%
+    mutate(x = ifelse(city=="Newcastle" & venue=="Riverside", -1.6069442, x)) %>%
+    mutate(y = ifelse(city=="Newcastle" & venue=="Riverside", 54.9718324, y))
+
+  othervariables <- othervariables %>%
+    mutate(country = ifelse(flsid=="FLS0970", "USA", country),
+           city = ifelse(flsid=="FLS0970", "San Francisco", city))
+
   # Select the most relevant columns -------
 
   Repeatr1 <- subset(Repeatr0, select = -c(V2, V4, V5, V6, V7, V8, V9))
