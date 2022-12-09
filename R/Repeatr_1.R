@@ -130,8 +130,8 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   othervariables <- othervariables %>%
     mutate(x = ifelse(city=="Newcastle" & venue=="Riverside", -1.6069442, x)) %>%
     mutate(y = ifelse(city=="Newcastle" & venue=="Riverside", 54.9718324, y)) %>%
-    mutate(x = ifelse(city=="Lisbon" & venue=="Gartejo", -9.1772548, x)) %>%
-    mutate(y = ifelse(city=="Lisbon" & venue=="Gartejo", 38.6893861, y))
+    mutate(x = ifelse(city=="Lisbon" & venue=="Gartejo", -9.1755975, x)) %>%
+    mutate(y = ifelse(city=="Lisbon" & venue=="Gartejo", 38.7042177, y))
 
   othervariables <- othervariables %>%
     mutate(country = ifelse(flsid=="FLS0970", "USA", country),
