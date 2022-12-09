@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9046</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9049</span>
       </span>
     </div>
 
@@ -94,7 +94,12 @@
           </a>
         </li>
         
-        
+        <li>
+  <a href="https://github.com/alexmitrani/Repeatr/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
         
         
 
@@ -115,7 +120,7 @@
       <h1 data-toc-skip>Link Tracks</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/alexmitrani/Repeatr/blob/HEAD/vignettes/LinkTracks.Rmd" class="external-link"><code>vignettes/LinkTracks.Rmd</code></a></small>
       <div class="hidden name"><code>LinkTracks.Rmd</code></div>
 
     </div>
@@ -160,23 +165,23 @@ the show on youtube</a>.</p>
 </h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
-<span><span class="va">medianattendance</span> <span class="op">&lt;-</span> <span class="va">othervariables</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">mutate</span><span class="op">(</span>tour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">tour</span><span class="op">)</span><span class="op">==</span><span class="cn">TRUE</span>,<span class="st">"Unknown"</span>,<span class="va">tour</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">attendance</span><span class="op">)</span><span class="op">==</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">tour</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">summarise</span><span class="op">(</span>medianattendance <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">attendance</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span><span class="va">meanattendance</span> <span class="op">&lt;-</span> <span class="va">othervariables</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">tour</span><span class="op">)</span><span class="op">==</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>attendance <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">attendance</span><span class="op">)</span><span class="op">==</span><span class="cn">TRUE</span>, <span class="fl">100</span>, <span class="va">attendance</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">summarise</span><span class="op">(</span>meanattendance <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">attendance</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">toursdata</span> <span class="op">&lt;-</span> <span class="va">othervariables</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">mutate</span><span class="op">(</span>tour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">tour</span><span class="op">)</span><span class="op">==</span><span class="cn">TRUE</span>,<span class="st">"Unknown"</span>,<span class="va">tour</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">medianattendance</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">mutate</span><span class="op">(</span>attendance <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">attendance</span><span class="op">)</span><span class="op">==</span><span class="cn">TRUE</span>,<span class="va">medianattendance</span>,<span class="va">attendance</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">tour</span><span class="op">)</span><span class="op">==</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">meanattendance</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>attendance <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">attendance</span><span class="op">)</span><span class="op">==</span><span class="cn">TRUE</span>,<span class="va">meanattendance</span>,<span class="va">attendance</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">tour</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">==</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">summarise</span><span class="op">(</span>start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span>, end <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span>, shows <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span>, duration <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="op">(</span><span class="va">end</span> <span class="op">-</span> <span class="va">start</span><span class="op">)</span><span class="op">)</span>, attendance<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">attendance</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">shows</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Joining, by = "tour"</span></span>
+<span><span class="co">#&gt; Joining, by = "year"</span></span>
 <span></span>
 <span>  <span class="va">toursdata</span> <span class="op">&lt;-</span> <span class="va">toursdata</span> <span class="op">%&gt;%</span></span>
 <span>    <span class="fu">mutate</span><span class="op">(</span>meanattendance <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer</a></span><span class="op">(</span><span class="va">attendance</span> <span class="op">/</span> <span class="va">shows</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
@@ -202,16 +207,16 @@ the show on youtube</a>.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 9</span></span></span>
 <span><span class="co">#&gt;    tour      start      end        shows durat…¹ atten…² meana…³ start…⁴ endyear</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 1990 Fal… 1990-09-01 1990-11-07    58      67   <span style="text-decoration: underline;">42</span>360     730    <span style="text-decoration: underline;">1</span>990    <span style="text-decoration: underline;">1</span>990</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 1995 Spr… 1995-05-04 1995-07-14    58      71   <span style="text-decoration: underline;">69</span>375    <span style="text-decoration: underline;">1</span>196    <span style="text-decoration: underline;">1</span>995    <span style="text-decoration: underline;">1</span>995</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 1990 Fal… 1990-09-01 1990-11-07    58      67   <span style="text-decoration: underline;">42</span>292     729    <span style="text-decoration: underline;">1</span>990    <span style="text-decoration: underline;">1</span>990</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 1995 Spr… 1995-05-04 1995-07-14    58      71   <span style="text-decoration: underline;">70</span>841    <span style="text-decoration: underline;">1</span>221    <span style="text-decoration: underline;">1</span>995    <span style="text-decoration: underline;">1</span>995</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 1992 Spr… 1992-05-01 1992-07-11    55      71   <span style="text-decoration: underline;">54</span>967     999    <span style="text-decoration: underline;">1</span>992    <span style="text-decoration: underline;">1</span>992</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 1995 Fal… 1995-09-16 1995-11-20    49      65   <span style="text-decoration: underline;">68</span>053    <span style="text-decoration: underline;">1</span>388    <span style="text-decoration: underline;">1</span>995    <span style="text-decoration: underline;">1</span>995</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 1993 Spr… 1993-04-02 1993-05-31    46      59   <span style="text-decoration: underline;">71</span>950    <span style="text-decoration: underline;">1</span>564    <span style="text-decoration: underline;">1</span>993    <span style="text-decoration: underline;">1</span>993</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 1990 Spr… 1990-05-02 1990-06-30    42      59   <span style="text-decoration: underline;">23</span>130     550    <span style="text-decoration: underline;">1</span>990    <span style="text-decoration: underline;">1</span>990</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 1988 Fal… 1988-10-14 1988-12-16    39      63    <span style="text-decoration: underline;">1</span>950      50    <span style="text-decoration: underline;">1</span>988    <span style="text-decoration: underline;">1</span>988</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 1988 Fal… 1988-10-14 1988-12-16    39      63    <span style="text-decoration: underline;">5</span>330     136    <span style="text-decoration: underline;">1</span>988    <span style="text-decoration: underline;">1</span>988</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 1993 Fal… 1993-08-16 1993-09-29    39      44   <span style="text-decoration: underline;">58</span>075    <span style="text-decoration: underline;">1</span>489    <span style="text-decoration: underline;">1</span>993    <span style="text-decoration: underline;">1</span>993</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 1991 Spr… 1991-05-01 1991-06-14    37      44   <span style="text-decoration: underline;">26</span>823     724    <span style="text-decoration: underline;">1</span>991    <span style="text-decoration: underline;">1</span>991</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 1989 Spr… 1989-04-05 1989-06-16    34      72   <span style="text-decoration: underline;">10</span>760     316    <span style="text-decoration: underline;">1</span>989    <span style="text-decoration: underline;">1</span>989</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 1989 Spr… 1989-04-05 1989-06-16    34      72   <span style="text-decoration: underline;">10</span>884     320    <span style="text-decoration: underline;">1</span>989    <span style="text-decoration: underline;">1</span>989</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># … with abbreviated variable names ¹​duration, ²​attendance, ³​meanattendance,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   ⁴​startyear</span></span></span></code></pre></div>
 <p>It looks like a tie between the 1990 Fall European Tour and the 1995
