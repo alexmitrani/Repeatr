@@ -450,6 +450,7 @@ server <- function(input, output) {
   # Generate a table with basic data about each show
 
   shows_data <- othervariables %>%
+    mutate(attendance = ifelse(flsid=="FLS0677", 500, attendance)) %>%
     filter(is.na(attendance)==FALSE) %>%
     filter(is.na(tour)==FALSE) %>%
     mutate(attendance = as.integer(attendance)) %>%
