@@ -150,12 +150,24 @@ ui <- fluidPage(
                                                   value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
                              ),
 
+                             fluidRow(
 
-                             leafletOutput("mymap", height = 500, width = 500),
+
+                              leafletOutput("mymap", height = 500, width = 500)
 
 
-                             # Create a new row for the table.
-                             DT::dataTableOutput("showsdatatable")
+                             ),
+
+                             tags$br(),
+                             h4("The table below gives details for the selected shows."),
+                             tags$br(),
+
+                             fluidRow(
+
+                               # Create a new row for the table.
+                               DT::dataTableOutput("showsdatatable")
+
+                             )
 
                            )
 
@@ -449,10 +461,6 @@ server <- function(input, output) {
     rename(door_price = doorprice,
            fls_id = flsid)
 
-  shows_data <- shows_data %>%
-    mutate(country = ifelse(fls_id=="FLS0970", "USA", country),
-           city = ifelse(fls_id=="FLS0970", "San Francisco", city))
-
   shows_data2 <- reactive({
 
     data <- shows_data  %>%
@@ -478,17 +486,19 @@ server <- function(input, output) {
   output$mymap <- renderLeaflet({
     df <- shows_data2()
 
+    margin_value <- 0.2
+
     ref_latitude <- mean(df$latitude)
     ref_longitude <- mean(df$longitude)
 
-    min_latitude <- min(df$latitude)
-    min_longitude <- min(df$longitude)
+    min_latitude <- min(df$latitude)-margin_value
+    min_longitude <- min(df$longitude)-margin_value
 
-    max_latitude <- max(df$latitude)
-    max_longitude <- max(df$longitude)
+    max_latitude <- max(df$latitude)+margin_value
+    max_longitude <- max(df$longitude)+margin_value
 
     m <- leaflet(data = df) %>%
-      setView(lng = ref_longitude, lat = ref_latitude, zoom = 6) %>%
+      # setView(lng = ref_longitude, lat = ref_latitude, zoom = 6) %>%
       fitBounds(lng1 = min_longitude, lat1 = min_latitude, lng2 = max_longitude, lat2 = max_latitude) %>%
       addProviderTiles("Esri.WorldStreetMap") %>%
       addCircles(
@@ -501,6 +511,7 @@ server <- function(input, output) {
           "<strong>Date: </strong>", df$date, "<br>",
           "<strong>Venue: </strong>", df$venue, "<br>",
           "<strong>City: </strong>", df$city, "<br>",
+          "<strong>Country: </strong>", df$country, "<br>",
           "<strong>Attendance: </strong>", df$attendance, "<br>"
         )
       )
