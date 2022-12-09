@@ -7,10 +7,14 @@ library(DT)
 library(lubridate)
 library(leaflet)
 
-# Define UI for app  ----
+
+# User Interface ----------------------------------------------------------
+
+
+
 ui <- fluidPage(
 
-  # App title ----
+
   h1("Repeatr"),
   tags$div(
     "Exploring the ",
@@ -19,8 +23,6 @@ ui <- fluidPage(
     tags$br()
   ),
 
-
-    # Main panel for displaying outputs ----
     mainPanel(
 
       # Output
@@ -30,6 +32,8 @@ ui <- fluidPage(
 
                            fluidPage(
                              h3("Shows"),
+
+                             h4("Choose a year, a country, a tour, or a range of dates."),
 
                              # Create a new Row in the UI for selectInputs
                              fluidRow(
@@ -59,9 +63,11 @@ ui <- fluidPage(
 
                              fluidRow(
                                column(6,
-                                      sliderInput("dateInput_shows", "Date range:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                                      sliderInput("dateInput_shows", "Range of dates:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                                                   value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
                              ),
+
+                             h4("Select a show on the map to get further details."),
 
                              fluidRow(
 
@@ -146,9 +152,9 @@ ui <- fluidPage(
                            fluidPage(
                              h3("Songs"),
 
-                             h4("Choose one or more releases and/or a selection of songs."),
+                             h4("Choose one or more releases, a selection of songs, or a range of dates."),
 
-                             h4("The output will be limited to a maximum of 20 songs."),
+                             h6("The output will be limited to a maximum of 20 songs."),
 
                              # Release and song selection controls
 
@@ -166,7 +172,7 @@ ui <- fluidPage(
 
                              fluidRow(
                                column(12,
-                                      sliderInput("dateInput", "Date range:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                                      sliderInput("dateInput", "Range of dates:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                                                   value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
                              ),
 
@@ -215,7 +221,7 @@ ui <- fluidPage(
 
                                fluidRow(
                                  column(12,
-                                        sliderInput("dateInput_transitions", "Date range:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                                        sliderInput("dateInput_transitions", "Range of dates:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                                                     value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
                                ),
 
@@ -258,213 +264,14 @@ ui <- fluidPage(
 
 
 
-# Define server logic
+
+# Server -----------------------------------------------------
+
+
 server <- function(input, output) {
 
-  max_songs <- 20
 
-  # Songs dynamic UI
-
-  output$menuOptions <- renderUI({
-
-    if (is.null(input$releaseInput)==FALSE) {
-      menudata <- cumulative_song_counts %>%
-        filter(release %in% input$releaseInput) %>%
-        arrange(song)
-    } else {
-      menudata <- cumulative_song_counts %>%
-        arrange(song)
-    }
-
-    selectizeInput("songInput", "Songs",
-                   choices = c(unique(menudata$song)), multiple =TRUE)
-
-  })
-
-  songs_data <- reactive({
-
-    if (is.null(input$releaseInput)==FALSE & is.null(input$songInput)==FALSE) {
-      mydf <- cumulative_song_counts %>%
-        filter(date >= input$dateInput[1] &
-               date <= input$dateInput[2] &
-               release %in% input$releaseInput &
-               song %in% input$songInput)
-
-    } else if (is.null(input$releaseInput)==FALSE & is.null(input$songInput)==TRUE) {
-      mydf <- cumulative_song_counts %>%
-        filter(date >= input$dateInput[1] &
-               date <= input$dateInput[2] &
-               release %in% input$releaseInput)
-
-    } else if (is.null(input$releaseInput)==TRUE & is.null(input$songInput)==FALSE) {
-      mydf <- cumulative_song_counts %>%
-        filter(date >= input$dateInput[1] &
-               date <= input$dateInput[2] &
-               song %in% input$songInput)
-
-    } else {
-      mydf <- cumulative_song_counts %>%
-        filter(date >= input$dateInput[1] &
-               date <= input$dateInput[2])
-
-    }
-
-  })
-
-  songs_data2 <- reactive({
-
-    mysongs <- songs_data() %>%
-      group_by(song) %>%
-      summarize(count = max(count) - min(count)) %>%
-      ungroup() %>%
-      arrange(desc(count)) %>%
-      mutate(index = row_number()) %>%
-      select(song, index)
-
-  })
-
-  songs_data3 <- reactive({
-
-    mydf <- songs_data() %>%
-      left_join(songs_data2()) %>%
-      filter(index<=max_songs)
-
-  })
-
-  # Graph of cumulative song counts
-
-  output$performance_count_plot <- renderPlotly({
-
-    p <- ggplot(songs_data3(), aes(date, count, color = song)) +
-      geom_line() +
-      theme_bw() +
-      xlab("Date") +
-      ylab("Performances") +
-      ggtitle("Cumulative number of performances over time")
-
-    plotly::ggplotly(p)
-
-  })
-
-  # Generate a table of song counts between dates
-
-  output$songsdatatable <- DT::renderDataTable(DT::datatable({
-    data <- songs_data3() %>%
-      group_by(release, song) %>%
-      summarize(count = max(count) - min(count)) %>%
-      ungroup() %>%
-      arrange(desc(count))
-  }))
-
-  # Generate a table of transitions data
-
-  transitions_data <- reactive({
-
-    mydf1 <- Repeatr1 %>%
-      select(gid,year,date,song_number,song) %>%
-      rename(song1 = song)
-
-    mydf2 <- Repeatr1 %>%
-      select(gid,year,date,song_number,song) %>%
-      mutate(song_number = song_number-1) %>%
-      rename(song2 = song)
-
-    mydf3 <- mydf1 %>%
-      left_join(mydf2) %>%
-      filter(is.na(song2)==FALSE) %>%
-      rename(transition_number = song_number) %>%
-      filter(date >= input$dateInput_transitions[1] &
-             date <= input$dateInput_transitions[2])
-
-    if (input$year_transitions != "All") {
-      mydf3 <- mydf3[mydf3$year == input$year_transitions,]
-    }
-
-    mytransitions <- mydf3 %>%
-      select(song1, song2) %>%
-      rename(from = song1) %>%
-      rename(to = song2)
-
-    mytransitions <- mytransitions %>%
-      group_by(from, to) %>%
-      summarize(count = n()) %>%
-      ungroup() %>%
-      arrange(desc(count))
-
-    mytransitions
-
-  })
-
-
-  # Generate a table of transitions between dates
-
-  output$transitionsdatatable <- DT::renderDataTable(DT::datatable({
-
-    data <- transitions_data()
-
-    data
-
-  }))
-
-  # Heatmap of transitions
-
-  output$transitions_heatmap <- renderPlotly({
-
-    heatmapdata <- pivot_wider(transitions_data(), names_from = to, values_from = count, names_sort=TRUE)
-
-    heatmapdata[is.na(heatmapdata)] <- 0
-
-    heatmapdata <- heatmapdata %>%
-      arrange(desc(from))
-    heatmapdata <- data.frame(heatmapdata, row.names = 1)
-    heatmapdata <- heatmapdata[ , order(names(heatmapdata))]
-    heatmapdata <- as.matrix(heatmapdata)
-
-    heatmaply(
-      as.matrix(heatmapdata),
-      seriate="none",
-      Rowv=FALSE,
-      Colv=FALSE,
-      show_dendrogram=FALSE,
-      plot_method = "plotly"
-    )
-
-  })
-
-  # Generate a table of tours data
-
-  output$toursdatatable <- DT::renderDataTable(DT::datatable({
-    data <- toursdata  %>%
-      filter(tour!="Unknown") %>%
-      rename(duration_days = duration) %>%
-      arrange(start)
-
-    if (input$startyear != "All") {
-      data <- data[data$startyear == input$startyear,]
-    }
-
-    data <- data %>%
-      select(-startyear, -endyear) %>%
-      rename(mean_attendance = meanattendance)
-
-    data
-  }))
-
-  # Generate a table of venues data
-
-  output$venuesdatatable <- DT::renderDataTable(DT::datatable({
-    data <- venuesdata  %>%
-      arrange(desc(shows))
-    if (input$country != "All") {
-      data <- data[data$country == input$country,]
-    }
-    if (input$city != "All") {
-      data <- data[data$city == input$city,]
-    }
-    data
-  }))
-
-  # Generate a table with basic data about each show
+# Shows -------------------------------------------------------------------
 
   shows_data <- othervariables %>%
     filter(is.na(attendance)==FALSE) %>%
@@ -515,7 +322,6 @@ server <- function(input, output) {
     max_longitude <- max(df$longitude)+margin_value
 
     m <- leaflet(data = df) %>%
-      # setView(lng = ref_longitude, lat = ref_latitude, zoom = 6) %>%
       fitBounds(lng1 = min_longitude, lat1 = min_latitude, lng2 = max_longitude, lat2 = max_latitude) %>%
       addProviderTiles("Esri.WorldStreetMap") %>%
       addCircles(
@@ -542,6 +348,210 @@ server <- function(input, output) {
 
   }))
 
+
+# Tours -------------------------------------------------------------------
+
+
+  output$toursdatatable <- DT::renderDataTable(DT::datatable({
+    data <- toursdata  %>%
+      filter(tour!="Unknown") %>%
+      rename(duration_days = duration) %>%
+      arrange(start)
+
+    if (input$startyear != "All") {
+      data <- data[data$startyear == input$startyear,]
+    }
+
+    data <- data %>%
+      select(-startyear, -endyear) %>%
+      rename(mean_attendance = meanattendance)
+
+    data
+  }))
+
+
+# Venues ------------------------------------------------------------------
+
+
+
+  output$venuesdatatable <- DT::renderDataTable(DT::datatable({
+    data <- venuesdata  %>%
+      arrange(desc(shows))
+    if (input$country != "All") {
+      data <- data[data$country == input$country,]
+    }
+    if (input$city != "All") {
+      data <- data[data$city == input$city,]
+    }
+    data
+  }))
+
+
+# Songs -------------------------------------------------------------------
+
+
+
+  max_songs <- 20
+
+  output$menuOptions <- renderUI({
+
+    if (is.null(input$releaseInput)==FALSE) {
+      menudata <- cumulative_song_counts %>%
+        filter(release %in% input$releaseInput) %>%
+        arrange(song)
+    } else {
+      menudata <- cumulative_song_counts %>%
+        arrange(song)
+    }
+
+    selectizeInput("songInput", "Songs",
+                   choices = c(unique(menudata$song)), multiple =TRUE)
+
+  })
+
+  songs_data <- reactive({
+
+    if (is.null(input$releaseInput)==FALSE & is.null(input$songInput)==FALSE) {
+      mydf <- cumulative_song_counts %>%
+        filter(date >= input$dateInput[1] &
+                 date <= input$dateInput[2] &
+                 release %in% input$releaseInput &
+                 song %in% input$songInput)
+
+    } else if (is.null(input$releaseInput)==FALSE & is.null(input$songInput)==TRUE) {
+      mydf <- cumulative_song_counts %>%
+        filter(date >= input$dateInput[1] &
+                 date <= input$dateInput[2] &
+                 release %in% input$releaseInput)
+
+    } else if (is.null(input$releaseInput)==TRUE & is.null(input$songInput)==FALSE) {
+      mydf <- cumulative_song_counts %>%
+        filter(date >= input$dateInput[1] &
+                 date <= input$dateInput[2] &
+                 song %in% input$songInput)
+
+    } else {
+      mydf <- cumulative_song_counts %>%
+        filter(date >= input$dateInput[1] &
+                 date <= input$dateInput[2])
+
+    }
+
+  })
+
+  songs_data2 <- reactive({
+
+    mysongs <- songs_data() %>%
+      group_by(song) %>%
+      summarize(count = max(count) - min(count)) %>%
+      ungroup() %>%
+      arrange(desc(count)) %>%
+      mutate(index = row_number()) %>%
+      select(song, index)
+
+  })
+
+  songs_data3 <- reactive({
+
+    mydf <- songs_data() %>%
+      left_join(songs_data2()) %>%
+      filter(index<=max_songs)
+
+  })
+
+  output$performance_count_plot <- renderPlotly({
+
+    p <- ggplot(songs_data3(), aes(date, count, color = song)) +
+      geom_line() +
+      theme_bw() +
+      xlab("Date") +
+      ylab("Performances") +
+      ggtitle("Cumulative number of performances over time")
+
+    plotly::ggplotly(p)
+
+  })
+
+  output$songsdatatable <- DT::renderDataTable(DT::datatable({
+    data <- songs_data3() %>%
+      group_by(release, song) %>%
+      summarize(count = max(count) - min(count)) %>%
+      ungroup() %>%
+      arrange(desc(count))
+  }))
+
+
+# Transitions -------------------------------------------------------------
+
+
+
+  transitions_data <- reactive({
+
+    mydf1 <- Repeatr1 %>%
+      select(gid,year,date,song_number,song) %>%
+      rename(song1 = song)
+
+    mydf2 <- Repeatr1 %>%
+      select(gid,year,date,song_number,song) %>%
+      mutate(song_number = song_number-1) %>%
+      rename(song2 = song)
+
+    mydf3 <- mydf1 %>%
+      left_join(mydf2) %>%
+      filter(is.na(song2)==FALSE) %>%
+      rename(transition_number = song_number) %>%
+      filter(date >= input$dateInput_transitions[1] &
+               date <= input$dateInput_transitions[2])
+
+    if (input$year_transitions != "All") {
+      mydf3 <- mydf3[mydf3$year == input$year_transitions,]
+    }
+
+    mytransitions <- mydf3 %>%
+      select(song1, song2) %>%
+      rename(from = song1) %>%
+      rename(to = song2)
+
+    mytransitions <- mytransitions %>%
+      group_by(from, to) %>%
+      summarize(count = n()) %>%
+      ungroup() %>%
+      arrange(desc(count))
+
+    mytransitions
+
+  })
+
+  output$transitionsdatatable <- DT::renderDataTable(DT::datatable({
+
+    data <- transitions_data()
+
+    data
+
+  }))
+
+  output$transitions_heatmap <- renderPlotly({
+
+    heatmapdata <- pivot_wider(transitions_data(), names_from = to, values_from = count, names_sort=TRUE)
+
+    heatmapdata[is.na(heatmapdata)] <- 0
+
+    heatmapdata <- heatmapdata %>%
+      arrange(desc(from))
+    heatmapdata <- data.frame(heatmapdata, row.names = 1)
+    heatmapdata <- heatmapdata[ , order(names(heatmapdata))]
+    heatmapdata <- as.matrix(heatmapdata)
+
+    heatmaply(
+      as.matrix(heatmapdata),
+      seriate="none",
+      Rowv=FALSE,
+      Colv=FALSE,
+      show_dendrogram=FALSE,
+      plot_method = "plotly"
+    )
+
+  })
 
 }
 
