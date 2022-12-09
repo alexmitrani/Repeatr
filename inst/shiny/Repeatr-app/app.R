@@ -26,6 +26,121 @@ ui <- fluidPage(
       # Output
       tabsetPanel(type = "tabs",
 
+                  tabPanel("Shows",
+
+                           fluidPage(
+                             h3("Shows"),
+
+                             # Create a new Row in the UI for selectInputs
+                             fluidRow(
+                               column(4,
+                                      selectInput("yearInput_shows",
+                                                  "year:",
+                                                  c("All",
+                                                    sort(unique((othervariables$year)))))
+                               ),
+
+                               column(4,
+                                      selectInput("countryInput_shows",
+                                                  "country:",
+                                                  c("All",
+                                                    sort(unique((othervariables$country)))))
+                               ),
+
+                               column(4,
+                                      selectInput("tourInput_shows",
+                                                  "tour:",
+                                                  c("All",
+                                                    sort(unique((toursdata$tour)))))
+                               )
+                             ),
+
+                             # Slider control
+
+                             fluidRow(
+                               column(6,
+                                      sliderInput("dateInput_shows", "Date range:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                                                  value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
+                             ),
+
+                             fluidRow(
+
+
+                               leafletOutput("mymap", height = 500, width = 500)
+
+
+                             ),
+
+                             tags$br(),
+                             h4("The table below gives details for the selected shows."),
+                             tags$br(),
+
+                             fluidRow(
+
+                               # Create a new row for the table.
+                               DT::dataTableOutput("showsdatatable")
+
+                             )
+
+                           )
+
+                  ),
+
+                  tabPanel("Tours",
+
+                           fluidPage(
+                             h3("Tours"),
+
+
+                             # Create a new Row in the UI for selectInputs
+                             fluidRow(
+                               column(4,
+                                      selectInput("startyear",
+                                                  "Start year:",
+                                                  c("All",
+                                                    sort(unique((toursdata$startyear)))))
+                               )
+
+                             ),
+
+                             # Create a new row for the table.
+                             DT::dataTableOutput("toursdatatable")
+
+                           )
+
+                  ),
+
+
+                  tabPanel("Venues",
+
+                           fluidPage(
+                             h3("Venues"),
+
+
+                             # Create a new Row in the UI for selectInputs
+                             fluidRow(
+                               column(4,
+                                      selectInput("city",
+                                                  "City:",
+                                                  c("All",
+                                                    sort(unique((venuesdata$city)))))
+                               ),
+                               column(4,
+                                      selectInput("country",
+                                                  "Country:",
+                                                  c("All",
+                                                    sort(unique(venuesdata$country))))
+                               )
+
+                             ),
+
+                             # Create a new row for the table.
+                             DT::dataTableOutput("venuesdatatable")
+
+                           )
+
+                  ),
+
                   tabPanel("Songs",
 
                            fluidPage(
@@ -84,6 +199,18 @@ ui <- fluidPage(
                              fluidPage(
                                h3("Transitions"),
 
+                               # Create a new Row in the UI for selectInputs
+                               fluidRow(
+                                 column(4,
+                                        selectInput(inputId = "year_transitions",
+                                                    label = "Year:",
+                                                    choices = c("All",
+                                                      sort(unique((toursdata$startyear)))),
+                                                    selected = "1987")
+                                 )
+
+                               ),
+
                                # Slider control
 
                                fluidRow(
@@ -110,120 +237,6 @@ ui <- fluidPage(
                                ),
 
                              )
-
-                  ),
-
-                  tabPanel("Shows",
-
-                           fluidPage(
-                             h3("Shows"),
-
-                             # Create a new Row in the UI for selectInputs
-                             fluidRow(
-                               column(4,
-                                      selectInput("yearInput_shows",
-                                                  "year:",
-                                                  c("All",
-                                                    sort(unique((othervariables$year)))))
-                               ),
-
-                               column(4,
-                                      selectInput("countryInput_shows",
-                                                  "country:",
-                                                  c("All",
-                                                    sort(unique((othervariables$country)))))
-                               ),
-
-                               column(4,
-                                      selectInput("tourInput_shows",
-                                                  "tour:",
-                                                  c("All",
-                                                    sort(unique((othervariables$tour)))))
-                               )
-                             ),
-
-                             # Slider control
-
-                             fluidRow(
-                               column(6,
-                                      sliderInput("dateInput_shows", "Date range:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
-                                                  value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
-                             ),
-
-                             fluidRow(
-
-
-                              leafletOutput("mymap", height = 500, width = 500)
-
-
-                             ),
-
-                             tags$br(),
-                             h4("The table below gives details for the selected shows."),
-                             tags$br(),
-
-                             fluidRow(
-
-                               # Create a new row for the table.
-                               DT::dataTableOutput("showsdatatable")
-
-                             )
-
-                           )
-
-                  ),
-
-                  tabPanel("Venues",
-
-                           fluidPage(
-                             h3("Venues"),
-
-
-                             # Create a new Row in the UI for selectInputs
-                             fluidRow(
-                               column(4,
-                                      selectInput("city",
-                                                  "City:",
-                                                  c("All",
-                                                    sort(unique((venuesdata$city)))))
-                               ),
-                               column(4,
-                                      selectInput("country",
-                                                  "Country:",
-                                                  c("All",
-                                                    sort(unique(venuesdata$country))))
-                               )
-
-                             ),
-
-                             # Create a new row for the table.
-                             DT::dataTableOutput("venuesdatatable")
-
-                           )
-
-                  ),
-
-                  tabPanel("Tours",
-
-                           fluidPage(
-                             h3("Tours"),
-
-
-                             # Create a new Row in the UI for selectInputs
-                             fluidRow(
-                               column(4,
-                                      selectInput("startyear",
-                                                  "Start year:",
-                                                  c("All",
-                                                    sort(unique((toursdata$startyear)))))
-                               )
-
-                             ),
-
-                             # Create a new row for the table.
-                             DT::dataTableOutput("toursdatatable")
-
-                           )
 
                   )
 
@@ -348,11 +361,11 @@ server <- function(input, output) {
   transitions_data <- reactive({
 
     mydf1 <- Repeatr1 %>%
-      select(gid,date,song_number,song) %>%
+      select(gid,year,date,song_number,song) %>%
       rename(song1 = song)
 
     mydf2 <- Repeatr1 %>%
-      select(gid,date,song_number,song) %>%
+      select(gid,year,date,song_number,song) %>%
       mutate(song_number = song_number-1) %>%
       rename(song2 = song)
 
@@ -362,6 +375,10 @@ server <- function(input, output) {
       rename(transition_number = song_number) %>%
       filter(date >= input$dateInput_transitions[1] &
              date <= input$dateInput_transitions[2])
+
+    if (input$year_transitions != "All") {
+      mydf3 <- mydf3[mydf3$year == input$year_transitions,]
+    }
 
     mytransitions <- mydf3 %>%
       select(song1, song2) %>%
@@ -450,7 +467,6 @@ server <- function(input, output) {
   # Generate a table with basic data about each show
 
   shows_data <- othervariables %>%
-    mutate(attendance = ifelse(flsid=="FLS0677", 500, attendance)) %>%
     filter(is.na(attendance)==FALSE) %>%
     filter(is.na(tour)==FALSE) %>%
     mutate(attendance = as.integer(attendance)) %>%

@@ -48,17 +48,17 @@ The biggest show was the [Food Not Bombs 20th Anniversary](https://www.dischord.
 
 ```{r}
 
-medianattendance <- othervariables %>%
-  mutate(tour = ifelse(is.na(tour)==TRUE,"Unknown",tour)) %>%
-  filter(is.na(attendance)==FALSE) %>%
-  group_by(tour) %>%
-  summarise(medianattendance = median(attendance)) %>%
+meanattendance <- othervariables %>%
+  filter(is.na(tour)==FALSE) %>%
+  mutate(attendance = ifelse(is.na(attendance)==TRUE, 100, attendance)) %>%
+  group_by(year) %>%
+  summarise(meanattendance = mean(attendance)) %>%
   ungroup()
 
 toursdata <- othervariables %>%
-  mutate(tour = ifelse(is.na(tour)==TRUE,"Unknown",tour)) %>%
-  left_join(medianattendance) %>%
-  mutate(attendance = ifelse(is.na(attendance)==TRUE,medianattendance,attendance)) %>%
+  filter(is.na(tour)==FALSE) %>%
+  left_join(meanattendance) %>%
+  mutate(attendance = ifelse(is.na(attendance)==TRUE,meanattendance,attendance)) %>%
   group_by(tour) %>%
   filter(is.na(date)==FALSE) %>%
   summarise(start = min(date), end = max(date), shows = n(), duration = as.numeric((end - start)), attendance=sum(attendance)) %>%
