@@ -137,9 +137,19 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     mutate(country = ifelse(flsid=="FLS0970", "USA", country),
            city = ifelse(flsid=="FLS0970", "San Francisco", city))
 
-  # estimated attendance 500 for show in Lisbon, Portugal
+  # impute values where they are missing
+  meanattendance <- othervariables %>%
+    filter(is.na(tour)==FALSE) %>%
+    mutate(attendance = ifelse(is.na(attendance)==TRUE, 100, attendance)) %>%
+    group_by(year) %>%
+    summarise(meanattendance = mean(attendance)) %>%
+    ungroup()
+
   othervariables <- othervariables %>%
-    mutate(attendance = ifelse(flsid=="FLS0677", 500, attendance))
+    filter(is.na(tour)==FALSE) %>%
+    mutate(attendance = ifelse(flsid=="FLS0677", 500, attendance)) %>%
+    left_join(meanattendance) %>%
+    mutate(attendance = ifelse(is.na(attendance)==TRUE,meanattendance,attendance))
 
   # Select the most relevant columns -------
 
