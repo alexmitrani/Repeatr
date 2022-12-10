@@ -1,24 +1,24 @@
-﻿gid;flsid;date;venue;doorprice;attendance;recorded_by;mastered_by;original_source;x;y;city;country;tour;year
-clarksville-in-usa-50788;FLS0026;05-07-1988;Thunderdrone Sports Complex;;100;Mike Bucayu;;Cassette;-85.7566773;38.2813271;Clarksville;USA;1988 Spring USA Tour;1988
-champaign-il-usa-60789;FLS0122;06-07-1989;Latzer Hall YMCA;$5;250;;;;-88.2312715;40.1066485;Champaign;USA;1989 Spring USA Tour;1989
-paris-france-121189;FLS0176;12-11-1989;Forum de Grenelle;;;Phillipe Roger;;VHS;2.2986508;48.8471066;Paris;France;1989 Fall European Tour;1989
-paris-france-110590;FLS0302;11-05-1990;Espace Ornano;50FR;500;Joey Picuri;Warren Russell-Smith;Cassette;2.3435722;48.8966815;Paris;France;1990 Fall European Tour;1990
-wageningen-netherlands-90890;FLS0251;09-08-1990;Unitas;;;Joey Picuri;Warren Russell-Smith;Cassette;5.6645883;51.9660684;Wageningen;Netherlands;1990 Fall European Tour;1990
-champaign-il-usa-60691;FLS0358;06-06-1991;Latzer Hall YMCA;5;450;Joey Picuri;Jerry Busher;Cassette;-88.2312715;40.1066485;Champaign;USA;1991 Spring USA Tour;1991
-lyon-france-60895;FLS0683;06-08-1995;Espace Jean Bargoin;;800;Tom Korbler;Warren Russell-Smith;Cassette;4.8792489;45.7362792;Lyon;France;1995 Spring/Summer European Tour;1995
-oxford-ms-usa-41096;FLS0784;04-10-1996;Lafayettes;5;600;Nick Pellicciotto;Warren Russell-Smith;DAT;-89.520289;34.3667624;Oxford;USA;1996 Southern USA Tour;1996
-stockholm-sweden-100100;FLS0974;10-01-2000;Kolingsborg;;700;Nick Pellicciotto;Warren Russell-Smith;DAT;18.0713951;59.320658;Stockholm;Sweden;2000 Fall Northern European Tour;2000
-jonkoping-sweden-100600;FLS0978;10-06-2000;Kulturhuset;;600;;;;14.1562813;57.7854308;Jonkoping;Sweden;2000 Fall Northern European Tour;2000
-victoria-bc-canada-70601;FLS1011;07-06-2001;Archie Browning Centre;10 (can);1100;Joey Picuri;Warren Russell-Smith;DAT;-123.4099078;48.4289549;Victoria;Canada;2001 Summer Mid-West/Canada Tour;2001
-east-lansing-mi-12088;FLS1048;01-20-1988;Matt Kelly's Basement;$3;;;;;-84.5707659;42.7106863;Lansing;USA;1988 Winter Michigan Dates;1988
-watsonville-ca-usa-22099;FLS0893;02-20-1999;Veteran's Memorial Hall;6;1350;Nick Pellicciotto;Warren Russell-Smith;DAT;-121.7545246;36.9126013;Watsonville;USA;1999 West Coast USA Tour;1999
-college-station-tx-usa-52688;FLS0036;05-26-1988;Eastgate Live;;;ANON;Warren Russell-Smith;Cassette;-96.3301579;30.6246076;College Station;USA;1988 Spring USA Tour;1988
-diksmuide-belgium-52692;FLS0450;05-26-1992;Boterhalle;;445;Joey Picuri;Warren Russell-Smith;Cassette;2.864301;51.0329364;Diksmuide;Belgium;1992 Spring European Tour;1992
-chicago-il-usa-52893;FLS0553;05-28-1993;Oak Theatre;5;1300;Joey Picuri;Warren Russell-Smith;DAT;-87.6879633;41.9177542;Chicago;USA;1993 Spring USA Tour;1993
-chicago-il-usa-52993;FLS0554;05-29-1993;Oak Theatre;5;1300;Joey Picuri;Warren Russell-Smith;DAT;-87.6879633;41.9177542;Chicago;USA;1993 Spring USA Tour;1993
-st-louis-mo-usa-61390;FLS0228;06-13-1990;1227;5;950;Joey Picuri;Warren Russell-Smith;Cassette;-90.1982255;38.6322924;St Louis;USA;1990 Spring/Summer USA Tour;1990
-bremen-germany-091799;FLS1053;09-17-1999;Schlachthof;;;Torsten Meyer;;VHS audio;8.8099035;53.0884866;Bremen;Germany;1999 Fall European Tour;1999
-ottawa-on-canada-92695;FLS0719;09-26-1995;Carleton University Porter Hall;7(can);850;Joey Picuri;Warren Russell-Smith;DAT;-75.6978497;45.3840001;Ottawa;Canada;1995 Fall USA/Canada Tour;1995
-croydon-vic-australia-101991;FLS0402;10-19-1991;The Hull;;500;Joey Picuri;Warren Russell-Smith;Cassette;145.2903702;-37.7958944;Croydon;Australia;1991 Australia/New Zealand/Japan Tour;1991
-sydney-australia-111796;FLS1052;11-17-1996;Metro Theatre;;;ANON;Warren Russell-Smith;;151.2066274;-33.8756943;Sydney;Australia;1996 US/Japan/Hong Kong/Australia Tour;1996
-wollongong-australia-111896;FLS1054;11-18-1996;Youth Centre;;;;;;150.8928958;-34.4264333;Wollongong;Australia;1996 US/Japan/Hong Kong/Australia Tour;1996
+gid,flsid,date,venue,doorprice,attendance,recorded_by,mastered_by,original_source,x,y,city,country,tour,year
+clarksville-in-usa-50788,FLS0026,05-07-1988,Thunderdrone Sports Complex,,100,Mike Bucayu,,Cassette,-85.7566773,38.2813271,Clarksville,USA,1988 Spring USA Tour,1988
+champaign-il-usa-60789,FLS0122,06-07-1989,Latzer Hall YMCA,$5,250,,,,-88.2312715,40.1066485,Champaign,USA,1989 Spring USA Tour,1989
+paris-france-121189,FLS0176,12-11-1989,Forum de Grenelle,,,Phillipe Roger,,VHS,2.2986508,48.8471066,Paris,France,1989 Fall European Tour,1989
+paris-france-110590,FLS0302,11-05-1990,Espace Ornano,50FR,500,Joey Picuri,Warren Russell-Smith,Cassette,2.3435722,48.8966815,Paris,France,1990 Fall European Tour,1990
+wageningen-netherlands-90890,FLS0251,09-08-1990,Unitas,,,Joey Picuri,Warren Russell-Smith,Cassette,5.6645883,51.9660684,Wageningen,Netherlands,1990 Fall European Tour,1990
+champaign-il-usa-60691,FLS0358,06-06-1991,Latzer Hall YMCA,5,450,Joey Picuri,Jerry Busher,Cassette,-88.2312715,40.1066485,Champaign,USA,1991 Spring USA Tour,1991
+lyon-france-60895,FLS0683,06-08-1995,Espace Jean Bargoin,,800,Tom Korbler,Warren Russell-Smith,Cassette,4.8792489,45.7362792,Lyon,France,1995 Spring/Summer European Tour,1995
+oxford-ms-usa-41096,FLS0784,04-10-1996,Lafayettes,5,600,Nick Pellicciotto,Warren Russell-Smith,DAT,-89.520289,34.3667624,Oxford,USA,1996 Southern USA Tour,1996
+stockholm-sweden-100100,FLS0974,10-01-2000,Kolingsborg,,700,Nick Pellicciotto,Warren Russell-Smith,DAT,18.0713951,59.320658,Stockholm,Sweden,2000 Fall Northern European Tour,2000
+jonkoping-sweden-100600,FLS0978,10-06-2000,Kulturhuset,,600,,,,14.1562813,57.7854308,Jonkoping,Sweden,2000 Fall Northern European Tour,2000
+victoria-bc-canada-70601,FLS1011,07-06-2001,Archie Browning Centre,10 (can),1100,Joey Picuri,Warren Russell-Smith,DAT,-123.4099078,48.4289549,Victoria,Canada,2001 Summer Mid-West/Canada Tour,2001
+east-lansing-mi-12088,FLS1048,01-20-1988,Matt Kelly's Basement,$3,,,,,-84.5707659,42.7106863,Lansing,USA,1988 Winter Michigan Dates,1988
+watsonville-ca-usa-22099,FLS0893,02-20-1999,Veteran's Memorial Hall,6,1350,Nick Pellicciotto,Warren Russell-Smith,DAT,-121.7545246,36.9126013,Watsonville,USA,1999 West Coast USA Tour,1999
+college-station-tx-usa-52688,FLS0036,05-26-1988,Eastgate Live,,,ANON,Warren Russell-Smith,Cassette,-96.3301579,30.6246076,College Station,USA,1988 Spring USA Tour,1988
+diksmuide-belgium-52692,FLS0450,05-26-1992,Boterhalle,,445,Joey Picuri,Warren Russell-Smith,Cassette,2.864301,51.0329364,Diksmuide,Belgium,1992 Spring European Tour,1992
+chicago-il-usa-52893,FLS0553,05-28-1993,Oak Theatre,5,1300,Joey Picuri,Warren Russell-Smith,DAT,-87.6879633,41.9177542,Chicago,USA,1993 Spring USA Tour,1993
+chicago-il-usa-52993,FLS0554,05-29-1993,Oak Theatre,5,1300,Joey Picuri,Warren Russell-Smith,DAT,-87.6879633,41.9177542,Chicago,USA,1993 Spring USA Tour,1993
+st-louis-mo-usa-61390,FLS0228,06-13-1990,1227,5,950,Joey Picuri,Warren Russell-Smith,Cassette,-90.1982255,38.6322924,St Louis,USA,1990 Spring/Summer USA Tour,1990
+bremen-germany-091799,FLS1053,09-17-1999,Schlachthof,,,Torsten Meyer,,VHS audio,8.8099035,53.0884866,Bremen,Germany,1999 Fall European Tour,1999
+ottawa-on-canada-92695,FLS0719,09-26-1995,Carleton University Porter Hall,7(can),850,Joey Picuri,Warren Russell-Smith,DAT,-75.6978497,45.3840001,Ottawa,Canada,1995 Fall USA/Canada Tour,1995
+croydon-vic-australia-101991,FLS0402,10-19-1991,The Hull,,500,Joey Picuri,Warren Russell-Smith,Cassette,145.2903702,-37.7958944,Croydon,Australia,1991 Australia/New Zealand/Japan Tour,1991
+sydney-australia-111796,FLS1052,11-17-1996,Metro Theatre,,,ANON,Warren Russell-Smith,,151.2066274,-33.8756943,Sydney,Australia,1996 US/Japan/Hong Kong/Australia Tour,1996
+wollongong-australia-111896,FLS1054,11-18-1996,Youth Centre,,,,,,150.8928958,-34.4264333,Wollongong,Australia,1996 US/Japan/Hong Kong/Australia Tour,1996
