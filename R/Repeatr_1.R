@@ -130,11 +130,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   othervariables <- othervariables %>%
     mutate(attendance = as.numeric(attendance))
 
-  othervariables <- othervariables %>% inner_join(geocodedatafile)
-
-  othervariables <- rbind.data.frame(othervariables, othervariables_patchfile)
-
-  # correct values where necessary
+  othervariables <- othervariables %>% left_join(geocodedatafile)
 
   othervariables <- othervariables %>%
     mutate(country = ifelse(flsid=="FLS0970", "USA", country),
@@ -145,6 +141,12 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
            year = ifelse(flsid=="FLS0970", 2000, year),
            recorded_by = ifelse(flsid=="FLS0970", "Stephen Kozlowski", recorded_by))
 
+  othervariables <- othervariables %>%
+    filter(is.na(x)==FALSE)
+
+  othervariables <- rbind.data.frame(othervariables, othervariables_patchfile)
+
+  # correct values where necessary
 
   othervariables <- othervariables %>%
     mutate(x = ifelse(city=="Newcastle" & venue=="Riverside", -1.6069442, x)) %>%
