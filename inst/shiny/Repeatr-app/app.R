@@ -334,7 +334,6 @@ server <- function(input, output) {
           "<strong>Date: </strong>", df$date, "<br>",
           "<strong>Venue: </strong>", df$venue, "<br>",
           "<strong>City: </strong>", df$city, "<br>",
-          "<strong>Country: </strong>", df$country, "<br>",
           "<strong>Attendance: </strong>", df$attendance, "<br>"
         )
       )
