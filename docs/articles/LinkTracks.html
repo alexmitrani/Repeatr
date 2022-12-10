@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9055</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9056</span>
       </span>
     </div>
 
@@ -146,17 +146,12 @@
 <span><span class="va">maxattendance</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">attendancedata</span><span class="op">$</span><span class="va">attendance</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">maxattendance</span></span>
-<span><span class="co">#&gt; [1] 5000</span></span>
+<span><span class="co">#&gt; [1] 15000</span></span>
 <span></span>
 <span><span class="va">attendancedata</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">attendance</span> <span class="op">==</span> <span class="va">maxattendance</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   year       date                      venue attendance</span></span>
-<span><span class="co">#&gt; 1 1993 1993-04-30   UC Berkeley Sproul Plaza       5000</span></span>
-<span><span class="co">#&gt; 2 1993 1993-08-07             Sylvan Theater       5000</span></span>
-<span><span class="co">#&gt; 3 1993 1993-09-04  Phoenix Plaza Ampitheater       5000</span></span>
-<span><span class="co">#&gt; 4 1995 1995-06-18 Porto Catania Outdoor Show       5000</span></span>
-<span><span class="co">#&gt; 5 1995 1995-06-20           Forte Prenestino       5000</span></span>
-<span><span class="co">#&gt; 6 1999 1999-09-30           Forte Prenestino       5000</span></span></code></pre></div>
+<span><span class="co">#&gt;   year       date                venue attendance</span></span>
+<span><span class="co">#&gt; 1 2000 2000-06-04 Mission Dolores Park      15000</span></span></code></pre></div>
 <p>The biggest show was the <a href="https://www.dischord.com/fugazi_live_series/san-francisco-ca-usa-60400" class="external-link">Food
 Not Bombs 20th Anniversary</a> on the 4th of June 2000 at Mission
 Dolores Park in San Francisco, with an estimated attendance of 15000
@@ -438,7 +433,7 @@ of shows at each venue.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"\n \n There are "</span>, <span class="va">number_venues</span>, <span class="st">" venues in the Fugazi Live Series data. \n \n"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  </span></span>
-<span><span class="co">#&gt;  There are 750 venues in the Fugazi Live Series data. </span></span>
+<span><span class="co">#&gt;  There are 751 venues in the Fugazi Live Series data. </span></span>
 <span><span class="co">#&gt; </span></span>
 <span></span>
 <span><span class="va">overview_venuesdata</span> <span class="op">&lt;-</span> <span class="va">venuesdata</span> <span class="op">%&gt;%</span></span>
@@ -457,12 +452,12 @@ of shows at each venue.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     9      1      0.133</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     8      4      0.533</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     7      1      0.133</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     6      3      0.4  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     5      5      0.667</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     4     17      2.27 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     6      3      0.399</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     5      5      0.666</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     4     17      2.26 </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     3     25      3.33 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>     2     98     13.1  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span>     1    594     79.2</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>     2     98     13.0  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span>     1    595     79.2</span></span></code></pre></div>
 <p>Fugazi played at 733 venues but played at 79.4% of them only once,
 twice at 12.7% of venues, 3 shows at 3.4% of venues, and 4 shows at 2.3%
 of venues. Only 2.2% of venues had 5 or more shows.</p>
