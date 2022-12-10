@@ -96,8 +96,8 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   } else {
 
-    geocodedatafile <- system.file("extdata", "fugazi-small.csv", package = "Repeatr")
-    geocodedatafile <- read.csv(geocodedatafile)
+    geocodedatafilename <- system.file("extdata", "fugazi-small.csv", package = "Repeatr")
+    geocodedatafile <- read.csv(geocodedatafilename)
     geocodedatafile$X <- NULL
 
   }
@@ -105,8 +105,9 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   geocodedatafile <- geocodedatafile %>%
     mutate(date = as.Date(date))
 
-  othervariables_patchfile <- system.file("extdata", "othervariables_patch.csv", package = "Repeatr")
-  othervariables_patchfile <- read.csv(othervariables_patchfile)
+  othervariables_patchfilename <- system.file("extdata", "othervariables_patch.csv", package = "Repeatr")
+  othervariables_patchfile <- read.csv(othervariables_patchfilename) %>%
+    mutate(date = as.Date(date, "%m-%d-%Y"))
 
   # Define data file with other variables for possible later use
   othervariables <- Repeatr0 %>%
@@ -129,7 +130,9 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   othervariables <- othervariables %>%
     mutate(attendance = as.numeric(attendance))
 
-  othervariables <- othervariables %>% left_join(geocodedatafile)
+  othervariables <- othervariables %>% inner_join(geocodedatafile)
+
+  othervariables <- rbind.data.frame(othervariables, othervariables_patchfile)
 
   # correct values where necessary
 
@@ -153,9 +156,6 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     mutate(x = ifelse(country == "Japan" & city=="Osaka" & venue=="Sun Hall", 135.4808578, x)) %>%
     mutate(y = ifelse(country == "Japan" & city=="Osaka" & venue=="Sun Hall", 34.6709861, y))
 
-
-
-
   # impute values where they are missing
   meanattendance <- othervariables %>%
     filter(is.na(tour)==FALSE) %>%
@@ -172,6 +172,8 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   othervariables <- othervariables %>%
     select(-meanattendance)
+
+  save(othervariables, file="othervariables.rda")
 
   # Select the most relevant columns -------
 
