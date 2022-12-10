@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9051</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9055</span>
       </span>
     </div>
 
@@ -142,17 +142,21 @@
 <span>  <span class="fu">mutate</span><span class="op">(</span>date <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="va">date</span>, <span class="st">"%d-%m-%Y"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>year <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/year.html" class="external-link">year</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="va">year</span>, <span class="va">date</span>, <span class="va">venue</span>, <span class="va">attendance</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning in as.POSIXlt.POSIXct(x, tz = tz): unknown timezone '%d-%m-%Y'</span></span>
 <span></span>
 <span><span class="va">maxattendance</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">attendancedata</span><span class="op">$</span><span class="va">attendance</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">maxattendance</span></span>
-<span><span class="co">#&gt; [1] 15000</span></span>
+<span><span class="co">#&gt; [1] 5000</span></span>
 <span></span>
 <span><span class="va">attendancedata</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">attendance</span> <span class="op">==</span> <span class="va">maxattendance</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   year       date                venue attendance</span></span>
-<span><span class="co">#&gt; 1 2000 2000-06-04 Mission Dolores Park      15000</span></span></code></pre></div>
+<span><span class="co">#&gt;   year       date                      venue attendance</span></span>
+<span><span class="co">#&gt; 1 1993 1993-04-30   UC Berkeley Sproul Plaza       5000</span></span>
+<span><span class="co">#&gt; 2 1993 1993-08-07             Sylvan Theater       5000</span></span>
+<span><span class="co">#&gt; 3 1993 1993-09-04  Phoenix Plaza Ampitheater       5000</span></span>
+<span><span class="co">#&gt; 4 1995 1995-06-18 Porto Catania Outdoor Show       5000</span></span>
+<span><span class="co">#&gt; 5 1995 1995-06-20           Forte Prenestino       5000</span></span>
+<span><span class="co">#&gt; 6 1999 1999-09-30           Forte Prenestino       5000</span></span></code></pre></div>
 <p>The biggest show was the <a href="https://www.dischord.com/fugazi_live_series/san-francisco-ca-usa-60400" class="external-link">Food
 Not Bombs 20th Anniversary</a> on the 4th of June 2000 at Mission
 Dolores Park in San Francisco, with an estimated attendance of 15000
@@ -190,9 +194,6 @@ the show on youtube</a>.</p>
 <span>  <span class="va">toursdata</span> <span class="op">&lt;-</span> <span class="va">toursdata</span> <span class="op">%&gt;%</span></span>
 <span>    <span class="fu">mutate</span><span class="op">(</span>start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="va">start</span>, <span class="st">"%d-%m-%Y"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>    <span class="fu">mutate</span><span class="op">(</span>end <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="va">end</span>, <span class="st">"%d-%m-%Y"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning in as.POSIXlt.POSIXct(x, tz = tz): unknown timezone '%d-%m-%Y'</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in as.POSIXlt.POSIXct(x, tz = tz): unknown timezone '%d-%m-%Y'</span></span>
 <span></span>
 <span>  <span class="va">toursdata</span><span class="op">$</span><span class="va">startyear</span> <span class="op">&lt;-</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/year.html" class="external-link">year</a></span><span class="op">(</span><span class="va">toursdata</span><span class="op">$</span><span class="va">start</span><span class="op">)</span></span>
 <span>  <span class="va">toursdata</span><span class="op">$</span><span class="va">endyear</span> <span class="op">&lt;-</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/year.html" class="external-link">year</a></span><span class="op">(</span><span class="va">toursdata</span><span class="op">$</span><span class="va">end</span><span class="op">)</span></span>
@@ -207,16 +208,16 @@ the show on youtube</a>.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 9</span></span></span>
 <span><span class="co">#&gt;    tour      start      end        shows durat…¹ atten…² meana…³ start…⁴ endyear</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 1990 Fal… 1990-09-01 1990-11-07    58      67   <span style="text-decoration: underline;">42</span>292     729    <span style="text-decoration: underline;">1</span>990    <span style="text-decoration: underline;">1</span>990</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 1995 Spr… 1995-05-04 1995-07-14    58      71   <span style="text-decoration: underline;">70</span>151    <span style="text-decoration: underline;">1</span>209    <span style="text-decoration: underline;">1</span>995    <span style="text-decoration: underline;">1</span>995</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 1992 Spr… 1992-05-01 1992-07-11    55      71   <span style="text-decoration: underline;">54</span>967     999    <span style="text-decoration: underline;">1</span>992    <span style="text-decoration: underline;">1</span>992</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 1995 Fal… 1995-09-16 1995-11-20    49      65   <span style="text-decoration: underline;">68</span>053    <span style="text-decoration: underline;">1</span>388    <span style="text-decoration: underline;">1</span>995    <span style="text-decoration: underline;">1</span>995</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 1993 Spr… 1993-04-02 1993-05-31    46      59   <span style="text-decoration: underline;">71</span>950    <span style="text-decoration: underline;">1</span>564    <span style="text-decoration: underline;">1</span>993    <span style="text-decoration: underline;">1</span>993</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 1990 Spr… 1990-05-02 1990-06-30    42      59   <span style="text-decoration: underline;">23</span>130     550    <span style="text-decoration: underline;">1</span>990    <span style="text-decoration: underline;">1</span>990</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 1988 Fal… 1988-10-14 1988-12-16    39      63    <span style="text-decoration: underline;">5</span>330     136    <span style="text-decoration: underline;">1</span>988    <span style="text-decoration: underline;">1</span>988</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 1990 Fal… 1990-09-01 1990-11-07    60      67   <span style="text-decoration: underline;">43</span>409     723    <span style="text-decoration: underline;">1</span>990    <span style="text-decoration: underline;">1</span>990</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 1995 Spr… 1995-05-04 1995-07-14    59      71   <span style="text-decoration: underline;">70</span>894    <span style="text-decoration: underline;">1</span>201    <span style="text-decoration: underline;">1</span>995    <span style="text-decoration: underline;">1</span>995</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 1992 Spr… 1992-05-01 1992-07-11    56      71   <span style="text-decoration: underline;">55</span>412     989    <span style="text-decoration: underline;">1</span>992    <span style="text-decoration: underline;">1</span>992</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 1995 Fal… 1995-09-16 1995-11-20    50      65   <span style="text-decoration: underline;">68</span>903    <span style="text-decoration: underline;">1</span>378    <span style="text-decoration: underline;">1</span>995    <span style="text-decoration: underline;">1</span>995</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 1993 Spr… 1993-04-02 1993-05-31    48      59   <span style="text-decoration: underline;">74</span>550    <span style="text-decoration: underline;">1</span>553    <span style="text-decoration: underline;">1</span>993    <span style="text-decoration: underline;">1</span>993</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 1990 Spr… 1990-05-02 1990-06-30    43      59   <span style="text-decoration: underline;">24</span>080     560    <span style="text-decoration: underline;">1</span>990    <span style="text-decoration: underline;">1</span>990</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 1988 Fal… 1988-10-14 1988-12-16    39      63    <span style="text-decoration: underline;">5</span>277     135    <span style="text-decoration: underline;">1</span>988    <span style="text-decoration: underline;">1</span>988</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 1993 Fal… 1993-08-16 1993-09-29    39      44   <span style="text-decoration: underline;">58</span>075    <span style="text-decoration: underline;">1</span>489    <span style="text-decoration: underline;">1</span>993    <span style="text-decoration: underline;">1</span>993</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 1991 Spr… 1991-05-01 1991-06-14    37      44   <span style="text-decoration: underline;">26</span>823     724    <span style="text-decoration: underline;">1</span>991    <span style="text-decoration: underline;">1</span>991</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 1989 Spr… 1989-04-05 1989-06-16    34      72   <span style="text-decoration: underline;">10</span>884     320    <span style="text-decoration: underline;">1</span>989    <span style="text-decoration: underline;">1</span>989</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 1991 Spr… 1991-05-01 1991-06-14    38      44   <span style="text-decoration: underline;">27</span>273     717    <span style="text-decoration: underline;">1</span>991    <span style="text-decoration: underline;">1</span>991</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 1989 Spr… 1989-04-05 1989-06-16    35      72   <span style="text-decoration: underline;">11</span>128     317    <span style="text-decoration: underline;">1</span>989    <span style="text-decoration: underline;">1</span>989</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># … with abbreviated variable names ¹​duration, ²​attendance, ³​meanattendance,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   ⁴​startyear</span></span></span></code></pre></div>
 <p>It looks like a tie between the 1990 Fall European Tour and the 1995
@@ -243,11 +244,11 @@ country on each of those tours.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Belgium                                2                                  2</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Denmark                                1                                  1</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> England                                9                                  7</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> France                                 5                                  9</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> France                                 6                                 10</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Germany                               11                                  9</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Ireland                                1                                  1</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Italy                                  6                                 10</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Netherlands                            7                                  4</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Netherlands                            8                                  4</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Norway                                 3                                  1</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> Poland                                 3                                  0</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> Scotland                               1                                  1</span></span>
@@ -437,7 +438,7 @@ of shows at each venue.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"\n \n There are "</span>, <span class="va">number_venues</span>, <span class="st">" venues in the Fugazi Live Series data. \n \n"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  </span></span>
-<span><span class="co">#&gt;  There are 734 venues in the Fugazi Live Series data. </span></span>
+<span><span class="co">#&gt;  There are 750 venues in the Fugazi Live Series data. </span></span>
 <span><span class="co">#&gt; </span></span>
 <span></span>
 <span><span class="va">overview_venuesdata</span> <span class="op">&lt;-</span> <span class="va">venuesdata</span> <span class="op">%&gt;%</span></span>
@@ -451,17 +452,17 @@ of shows at each venue.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 11 × 3</span></span></span>
 <span><span class="co">#&gt;    shows venues percentage</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>    12      1      0.136</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>    11      1      0.136</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     9      1      0.136</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     8      4      0.545</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     7      1      0.136</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     6      3      0.409</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     5      5      0.681</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     4     17      2.32 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     3     25      3.41 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>     2     93     12.7  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span>     1    583     79.4</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>    12      1      0.133</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>    11      1      0.133</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     9      1      0.133</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     8      4      0.533</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     7      1      0.133</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     6      3      0.4  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     5      5      0.667</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     4     17      2.27 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     3     25      3.33 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>     2     98     13.1  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span>     1    594     79.2</span></span></code></pre></div>
 <p>Fugazi played at 733 venues but played at 79.4% of them only once,
 twice at 12.7% of venues, 3 shows at 3.4% of venues, and 4 shows at 2.3%
 of venues. Only 2.2% of venues had 5 or more shows.</p>
