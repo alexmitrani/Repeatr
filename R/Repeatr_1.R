@@ -123,9 +123,22 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   othervariables <- othervariables %>%
     mutate(date = as.Date(date))
 
+  othervariables <- othervariables %>%
+    mutate(attendance = as.numeric(attendance))
+
   othervariables <- othervariables %>% left_join(geocodedatafile)
 
   # correct values where necessary
+
+  othervariables <- othervariables %>%
+    mutate(country = ifelse(flsid=="FLS0970", "USA", country),
+           city = ifelse(flsid=="FLS0970", "San Francisco", city),
+           x = ifelse(flsid=="FLS0970", -122.4272376, x),
+           y = ifelse(flsid=="FLS0970", 37.760407, y),
+           tour = ifelse(flsid=="FLS0970", "2000 Summer/Fall Regional Dates", tour),
+           year = ifelse(flsid=="FLS0970", 2000, year),
+           recorded_by = ifelse(flsid=="FLS0970", "Stephen Kozlowski", recorded_by))
+
 
   othervariables <- othervariables %>%
     mutate(x = ifelse(city=="Newcastle" & venue=="Riverside", -1.6069442, x)) %>%
@@ -138,9 +151,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     mutate(y = ifelse(country == "Japan" & city=="Osaka" & venue=="Sun Hall", 34.6709861, y))
 
 
-  othervariables <- othervariables %>%
-    mutate(country = ifelse(flsid=="FLS0970", "USA", country),
-           city = ifelse(flsid=="FLS0970", "San Francisco", city))
+
 
   # impute values where they are missing
   meanattendance <- othervariables %>%
