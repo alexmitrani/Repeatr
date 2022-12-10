@@ -326,10 +326,10 @@ server <- function(input, output) {
       addProviderTiles("Esri.WorldStreetMap") %>%
       addCircles(
         data = df,
-        radius = df$attendance,
+        radius = sqrt((df$attendance)/pi),
         color = "#F60D1D",
         fillColor = "#F60D1D",
-        fillOpacity = 0.25,
+        fillOpacity = 0.50,
         popup = paste0(
           "<strong>Date: </strong>", df$date, "<br>",
           "<strong>Venue: </strong>", df$venue, "<br>",
