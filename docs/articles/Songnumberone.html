@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9057</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9058</span>
       </span>
     </div>
 
@@ -129,14 +129,10 @@
     
 <div class="section level2">
 <h2 id="song-1">
-<a href="https://fugazi.bandcamp.com/track/song-1" class="external-link">“Song
-#1”</a><a class="anchor" aria-label="anchor" href="#song-1"></a>
+<a href="https://fugazi.bandcamp.com/track/song-1" class="external-link">“Song #1”</a><a class="anchor" aria-label="anchor" href="#song-1"></a>
 </h2>
-<p>A look into Fugazi’s choices of opening songs using metadata from the
-<a href="https://www.dischord.com/fugazi_live_series" class="external-link">Fugazi Live
-Series</a>.</p>
-<p>Let’s get preferences data from the song number one choice model
-results.</p>
+<p>A look into Fugazi’s choices of opening songs using metadata from the <a href="https://www.dischord.com/fugazi_live_series" class="external-link">Fugazi Live Series</a>.</p>
+<p>Let’s get preferences data from the song number one choice model results.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mydf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Repeatr_5.html">Repeatr_5</a></span><span class="op">(</span>mymodeldf <span class="op">=</span> <span class="va">results_ml_Repeatr4_fs</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Joining, by = "songid"</span></span>
@@ -149,8 +145,7 @@ results.</p>
 <span><span class="co">#&gt; Joining, by = "songid"</span></span>
 <span><span class="co">#&gt; Joining, by = c("songid", "song")</span></span>
 <span><span class="va">mypreferences</span> <span class="op">&lt;-</span> <span class="va">mydf</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
-<p>Now let’s convert the parameter estimates to a rating scale from 0 to
-1</p>
+<p>Now let’s convert the parameter estimates to a rating scale from 0 to 1</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">mymin</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">mypreferences</span><span class="op">$</span><span class="va">Estimate</span><span class="op">)</span></span>
@@ -194,15 +189,6 @@ results.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">songnumberonesummary</span>, <span class="st">"pipe"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
-<colgroup>
-<col width="8%">
-<col width="33%">
-<col width="12%">
-<col width="8%">
-<col width="14%">
-<col width="11%">
-<col width="11%">
-</colgroup>
 <thead><tr class="header">
 <th align="right">songid</th>
 <th align="left">song</th>

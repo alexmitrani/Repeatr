@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9057</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9058</span>
       </span>
     </div>
 
@@ -130,24 +130,18 @@
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>This article outlines the process by which song ratings were
-calculated using the <a href="https://www.dischord.com/fugazi_live_series" class="external-link">Fugazi Live
-Series</a> metadata.</p>
+<p>This article outlines the process by which song ratings were calculated using the <a href="https://www.dischord.com/fugazi_live_series" class="external-link">Fugazi Live Series</a> metadata.</p>
 </div>
 <div class="section level2">
 <h2 id="song-counts">Song counts<a class="anchor" aria-label="anchor" href="#song-counts"></a>
 </h2>
-<p>Performance counts were calculated for all the released Fugazi songs
-that were performed live, using data from … how many shows?</p>
+<p>Performance counts were calculated for all the released Fugazi songs that were performed live, using data from … how many shows?</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">one_row_per_show</span> <span class="op">&lt;-</span> <span class="va">Repeatr1</span> <span class="op">%&gt;%</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">gid</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">slice</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">one_row_per_show</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 895</span></span></code></pre></div>
-<p>These frequency counts do not necessarily measure the band’s
-preferences for the songs, as more recently released songs were
-available for fewer shows than older songs.</p>
-<p>The results of this analysis, in descending order of performance
-count, are as follows:</p>
+<p>These frequency counts do not necessarily measure the band’s preferences for the songs, as more recently released songs were available for fewer shows than older songs.</p>
+<p>The results of this analysis, in descending order of performance count, are as follows:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">fugazi_song_counts</span>, <span class="st">"pipe"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
@@ -716,24 +710,13 @@ count, are as follows:</p>
 <div class="section level2">
 <h2 id="performance-intensity">Performance intensity<a class="anchor" aria-label="anchor" href="#performance-intensity"></a>
 </h2>
-<p>A slightly more detailed analysis was undertaken by calculating the
-performance intensity of each song.</p>
-<p>Song performance intensity = number of times a song was played /
-number of shows at which it was available in the repertoire.</p>
-<p>A song was considered available in the repertoire from the first show
-it was performed.</p>
+<p>A slightly more detailed analysis was undertaken by calculating the performance intensity of each song.</p>
+<p>Song performance intensity = number of times a song was played / number of shows at which it was available in the repertoire.</p>
+<p>A song was considered available in the repertoire from the first show it was performed.</p>
 <p>The results of this analysis look like this:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">fugazi_song_performance_intensity</span>, <span class="st">"pipe"</span><span class="op">)</span></span></code></pre></div>
-<table style="width:100%;" class="table">
-<colgroup>
-<col width="9%">
-<col width="37%">
-<col width="14%">
-<col width="9%">
-<col width="16%">
-<col width="12%">
-</colgroup>
+<table class="table">
 <thead><tr class="header">
 <th align="right">songid</th>
 <th align="left">song</th>
@@ -1481,63 +1464,26 @@ it was performed.</p>
 </tr>
 </tbody>
 </table>
-<p>The “songid” variable indicates the raw frequency ranking of each
-song, allowing easy comparison between the intensity and frequency
-measures.</p>
+<p>The “songid” variable indicates the raw frequency ranking of each song, allowing easy comparison between the intensity and frequency measures.</p>
 </div>
 <div class="section level2">
 <h2 id="song-preferences">Song preferences<a class="anchor" aria-label="anchor" href="#song-preferences"></a>
 </h2>
 <blockquote>
-<p>“We played without a setlist from the first show to the last show,”
-Picciotto said. “We never had a program for the night before we hit the
-stage. Right before we went on stage we’d get together and decide on a
-song to start with. From then on, we were basically improvising the set
-as we went.” - <a href="https://www.abc.net.au/doublej/music-reads/features/fugazi-the-past-the-future-and-the-ethos-that-drove-them/10265848" class="external-link">Guy
-Picciotto 25/5/2018</a></p>
+<p>“We played without a setlist from the first show to the last show,” Picciotto said. “We never had a program for the night before we hit the stage. Right before we went on stage we’d get together and decide on a song to start with. From then on, we were basically improvising the set as we went.” - <a href="https://www.abc.net.au/doublej/music-reads/features/fugazi-the-past-the-future-and-the-ethos-that-drove-them/10265848" class="external-link">Guy Picciotto 25/5/2018</a></p>
 </blockquote>
-<p>It is only possible to estimate a choice model from the Fugazi Live
-Series data because of the way that the songs were chosen quite freely
-as each show was performed. If fixed set lists had been used for many
-shows this sort of analysis probably would not be possible.</p>
-<p>The Fugazi Live Series data includes … how many choices of songs made
-by the band during their live shows?</p>
+<p>It is only possible to estimate a choice model from the Fugazi Live Series data because of the way that the songs were chosen quite freely as each show was performed. If fixed set lists had been used for many shows this sort of analysis probably would not be possible.</p>
+<p>The Fugazi Live Series data includes … how many choices of songs made by the band during their live shows?</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">Repeatr1</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 17297</span></span></code></pre></div>
-<p>This data was used to estimate the strength of preference for each of
-the songs in their live music repertoire.</p>
-<p>Song availability was considered at both repertoire and gig level.
-Songs were only considered available from the time they were first
-played, but thereafter they were assumed to be always available. There
-is some evidence that certain songs were discontinued but this has not
-been represented here.</p>
+<p>This data was used to estimate the strength of preference for each of the songs in their live music repertoire.</p>
+<p>Song availability was considered at both repertoire and gig level. Songs were only considered available from the time they were first played, but thereafter they were assumed to be always available. There is some evidence that certain songs were discontinued but this has not been represented here.</p>
 <blockquote>
-<p>“To the guy who is yelling for Steady Diet, I got bad news for you.
-Every time before we go out for a tour, we take a week to go through
-every record that we’ve done, and we relearn every song and we make sure
-that we know everything, because we make up the sets as we go, and we
-relearn everything so we can play anything at anytime… but there’s three
-songs that we have not been able to remember how to play, one of them is
-Steady Diet, I am sorry to say, the other is Polish, and the other one,
-I can’t remember the name of, but basically, you can call out anything
-else, but if you call out Steady Diet, you are wasting your breath” - <a href="https://www.dischord.com/fugazi_live_series/minneapolis-mn-usa-62701" class="external-link">Guy
-Picciotto 27/6/2001</a></p>
+<p>“To the guy who is yelling for Steady Diet, I got bad news for you. Every time before we go out for a tour, we take a week to go through every record that we’ve done, and we relearn every song and we make sure that we know everything, because we make up the sets as we go, and we relearn everything so we can play anything at anytime… but there’s three songs that we have not been able to remember how to play, one of them is Steady Diet, I am sorry to say, the other is Polish, and the other one, I can’t remember the name of, but basically, you can call out anything else, but if you call out Steady Diet, you are wasting your breath” - <a href="https://www.dischord.com/fugazi_live_series/minneapolis-mn-usa-62701" class="external-link">Guy Picciotto 27/6/2001</a></p>
 </blockquote>
-<p>Within any given gig, the songs were sorted in the order that they
-were performed, and once a song had been played it was assumed to be
-unavailable for the rest of the gig. Interestingly, there were a few
-exceptions to this rule. One was <a href="https://www.dischord.com/fugazi_live_series/birmingham-al-usa-52191" class="external-link">a
-1991 gig in Birmingham, Alabama</a>, where the show notes comment
-“Featuring the one-time attempt of our ‘Two for Tuesday’ gag. No one
-appeared to notice, so we shelved the idea.” On that occasion, the song
-“Greed” was played twice. Another case was <a href="https://www.dischord.com/fugazi_live_series/richmond-va-usa-51198" class="external-link">a
-1998 gig in Richmond, Virginia</a> where “Great Cop” was played twice
-due to a specific situation.</p>
-<p>The age of the songs needs considering because bands generally
-prioritise new material when they play live and Fugazi was no exception
-to this. Dummy variables (on/off) were used to represent the age of the
-songs at the time of each gig, as follows:</p>
+<p>Within any given gig, the songs were sorted in the order that they were performed, and once a song had been played it was assumed to be unavailable for the rest of the gig. Interestingly, there were a few exceptions to this rule. One was <a href="https://www.dischord.com/fugazi_live_series/birmingham-al-usa-52191" class="external-link">a 1991 gig in Birmingham, Alabama</a>, where the show notes comment “Featuring the one-time attempt of our ‘Two for Tuesday’ gag. No one appeared to notice, so we shelved the idea.” On that occasion, the song “Greed” was played twice. Another case was <a href="https://www.dischord.com/fugazi_live_series/richmond-va-usa-51198" class="external-link">a 1998 gig in Richmond, Virginia</a> where “Great Cop” was played twice due to a specific situation.</p>
+<p>The age of the songs needs considering because bands generally prioritise new material when they play live and Fugazi was no exception to this. Dummy variables (on/off) were used to represent the age of the songs at the time of each gig, as follows:</p>
 <table class="table">
 <thead><tr class="header">
 <th>Age (years)</th>
@@ -1582,31 +1528,13 @@ songs at the time of each gig, as follows:</p>
 </tr>
 </tbody>
 </table>
-<p>The above categories were defined after some experimentation to
-establish which categories deserved separate representation and which
-could be grouped together. The “less than a year old” variable was
-omitted because it is always necessary to omit one of each set of dummy
-variables in this type of model. An omitted dummy variable has a
-parameter of zero by definition and provides a reference point for the
-parameters whose values are estimated.</p>
-<p>A dummy variable (on/off) was defined for each song, such that the
-corresponding parameters would represent the strength of preference for
-playing each song live. The dummy variable for “Waiting Room” was
-omitted and therefore the preference parameter for this song was zero by
-definition.<br>
+<p>The above categories were defined after some experimentation to establish which categories deserved separate representation and which could be grouped together. The “less than a year old” variable was omitted because it is always necessary to omit one of each set of dummy variables in this type of model. An omitted dummy variable has a parameter of zero by definition and provides a reference point for the parameters whose values are estimated.</p>
+<p>A dummy variable (on/off) was defined for each song, such that the corresponding parameters would represent the strength of preference for playing each song live. The dummy variable for “Waiting Room” was omitted and therefore the preference parameter for this song was zero by definition.<br>
 The formula used for the preferred model was this one:</p>
-<p>choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 +
-yearsold_5 + yearsold_6 + yearsold_7 + yearsold_8 + song2 + … +
-song92</p>
-<p>The model was fitted by an optimisation process which estimated a
-parameter for each of the independent variables, such that the
-likelihood of correctly predicting the observed choices would be
-maximised.</p>
-<p>The parameters related to the age of the songs support the hypothesis
-that recent material tended to be favoured in the band’s choices of
-songs to be performed.</p>
-<p>The implied preferences for each song are shown here in descending
-order of preference:</p>
+<p>choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5 + yearsold_6 + yearsold_7 + yearsold_8 + song2 + … + song92</p>
+<p>The model was fitted by an optimisation process which estimated a parameter for each of the independent variables, such that the likelihood of correctly predicting the observed choices would be maximised.</p>
+<p>The parameters related to the age of the songs support the hypothesis that recent material tended to be favoured in the band’s choices of songs to be performed.</p>
+<p>The implied preferences for each song are shown here in descending order of preference:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">Repeatr_5_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Repeatr_5.html">Repeatr_5</a></span><span class="op">(</span>mymodeldf <span class="op">=</span> <span class="va">results_ml_Repeatr4</span><span class="op">)</span></span>
@@ -1622,14 +1550,7 @@ order of preference:</p>
 <span><span class="va">myresults</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">Repeatr_5_results</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">Estimate</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">(</span><span class="va">myresults</span><span class="op">)</span>, <span class="st">"pipe"</span><span class="op">)</span></span></code></pre></div>
-<table style="width:100%;" class="table">
-<colgroup>
-<col width="39%">
-<col width="15%">
-<col width="15%">
-<col width="16%">
-<col width="13%">
-</colgroup>
+<table class="table">
 <thead><tr class="header">
 <th align="left">variable</th>
 <th align="right">Estimate</th>
@@ -2333,37 +2254,16 @@ order of preference:</p>
 </tr>
 </tbody>
 </table>
-<p>It is hard to say exactly whose preferences are represented by these
-results. It seems reasonable to assume that they mainly represent the
-band’s preferences, more often than not Ian MacKaye and Guy Picciotto,
-but the preferences of the audience may also have influenced the choice
-of the songs that were performed, directly or indirectly.</p>
+<p>It is hard to say exactly whose preferences are represented by these results. It seems reasonable to assume that they mainly represent the band’s preferences, more often than not Ian MacKaye and Guy Picciotto, but the preferences of the audience may also have influenced the choice of the songs that were performed, directly or indirectly.</p>
 <blockquote>
-<p>“We played without a setlist from the first show to the last show. We
-never had a program for the night before we hit the stage. Right before
-we went on stage we’d get together and decide on a song to start with.
-From then on, we were basically improvising the set as we went. That
-meant, before we went on tour, we had to have these insanely long
-rehearsals where we relearned very piece of music that we knew so that
-everyone was ready. So, every night was completely different show. You
-could pick from over 100 songs. The only methodology we had was that we
-alternated singing. Once Ian was wrapping up his song, I knew that I had
-to have a song ready to go for my thing.” - Guy Picciotto, 25/5/2018
-Source: <a href="https://web.archive.org/web/20201123023401/https://www.abc.net.au/doublej/music-reads/features/fugazi-the-past-the-future-and-the-ethos-that-drove-them/10265848" class="external-link uri">https://web.archive.org/web/20201123023401/https://www.abc.net.au/doublej/music-reads/features/fugazi-the-past-the-future-and-the-ethos-that-drove-them/10265848</a></p>
+<p>“We played without a setlist from the first show to the last show. We never had a program for the night before we hit the stage. Right before we went on stage we’d get together and decide on a song to start with. From then on, we were basically improvising the set as we went. That meant, before we went on tour, we had to have these insanely long rehearsals where we relearned very piece of music that we knew so that everyone was ready. So, every night was completely different show. You could pick from over 100 songs. The only methodology we had was that we alternated singing. Once Ian was wrapping up his song, I knew that I had to have a song ready to go for my thing.” - Guy Picciotto, 25/5/2018 Source: <a href="https://web.archive.org/web/20201123023401/https://www.abc.net.au/doublej/music-reads/features/fugazi-the-past-the-future-and-the-ethos-that-drove-them/10265848" class="external-link uri">https://web.archive.org/web/20201123023401/https://www.abc.net.au/doublej/music-reads/features/fugazi-the-past-the-future-and-the-ethos-that-drove-them/10265848</a></p>
 </blockquote>
 </div>
 <div class="section level2">
 <h2 id="do-you-like-me">
-<a href="https://fugazi.bandcamp.com/track/do-you-like-me" class="external-link">“Do you
-like me?”</a><a class="anchor" aria-label="anchor" href="#do-you-like-me"></a>
+<a href="https://fugazi.bandcamp.com/track/do-you-like-me" class="external-link">“Do you like me?”</a><a class="anchor" aria-label="anchor" href="#do-you-like-me"></a>
 </h2>
-<p>The following table shows ratings based on the preferences described
-in the section above, together with the indicators described in previous
-sections: performance counts and intensities. The ratings are simply the
-preferences normalised in such a way that the highest preference has a
-value of 1 and the lowest a value of 0. This way it will be easy to
-scale these values for comparison with ratings defined on other
-intervals.</p>
+<p>The following table shows ratings based on the preferences described in the section above, together with the indicators described in previous sections: performance counts and intensities. The ratings are simply the preferences normalised in such a way that the highest preference has a value of 1 and the lowest a value of 0. This way it will be easy to scale these values for comparison with ratings defined on other intervals.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Repeatr_5_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Repeatr_5.html">Repeatr_5</a></span><span class="op">(</span>mymodeldf <span class="op">=</span> <span class="va">results_ml_Repeatr4</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Joining, by = "songid"</span></span>
@@ -3888,13 +3788,7 @@ intervals.</p>
 <div class="section level2">
 <h2 id="breaking-ranks">Breaking ranks<a class="anchor" aria-label="anchor" href="#breaking-ranks"></a>
 </h2>
-<p>The rank order of songs derived from the ratings is not very strong.
-Some of the differences between the ratings are very small and the
-differences between the ratings of adjacent songs in the table turned
-out to be insignificant. The rankr function makes it easy to test which
-differences between song ratings are significant and which are not. For
-instance, do the results really indicate that “Bed for the Scraping” was
-preferred over “Reclamation”?</p>
+<p>The rank order of songs derived from the ratings is not very strong. Some of the differences between the ratings are very small and the differences between the ratings of adjacent songs in the table turned out to be insignificant. The rankr function makes it easy to test which differences between song ratings are significant and which are not. For instance, do the results really indicate that “Bed for the Scraping” was preferred over “Reclamation”?</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">songstobecompared</span> <span class="op">&lt;-</span> <span class="va">songstobecompared</span> <span class="op">&lt;-</span> <span class="va">summary</span> <span class="op">%&gt;%</span> <span class="fu">slice</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from<span class="op">=</span><span class="fl">1</span>, to<span class="op">=</span><span class="fl">2</span>, by<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">mycomparisons</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rankr.html">rankr</a></span><span class="op">(</span>coeftable <span class="op">=</span> <span class="va">results_ml_Repeatr4</span>, vcovmat <span class="op">=</span> <span class="va">vcovmat_ml_Repeatr4</span>, mysongidlist <span class="op">=</span> <span class="va">songstobecompared</span><span class="op">)</span></span>
@@ -3923,13 +3817,7 @@ preferred over “Reclamation”?</p>
 <td align="right">3.075</td>
 </tr></tbody>
 </table>
-<p>A z-statistic of 1.96 or greater indicates a difference that is
-statistically significant with 95% confidence. The difference between
-“Bed for the Scraping” and “Reclamation” is not statistically
-significant. In fact, none of the differences between adjacent songs are
-statistically significant. However, some of the differences between
-songs further apart on the table are significant, as can be seen
-below.</p>
+<p>A z-statistic of 1.96 or greater indicates a difference that is statistically significant with 95% confidence. The difference between “Bed for the Scraping” and “Reclamation” is not statistically significant. In fact, none of the differences between adjacent songs are statistically significant. However, some of the differences between songs further apart on the table are significant, as can be seen below.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">songstobecompared</span> <span class="op">&lt;-</span> <span class="va">songstobecompared</span> <span class="op">&lt;-</span> <span class="va">songstobecompared</span> <span class="op">&lt;-</span> <span class="va">summary</span> <span class="op">%&gt;%</span> <span class="fu">slice</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from<span class="op">=</span><span class="fl">1</span>, to<span class="op">=</span><span class="fl">92</span>, by<span class="op">=</span><span class="fl">8</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">mycomparisons</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rankr.html">rankr</a></span><span class="op">(</span>coeftable <span class="op">=</span> <span class="va">results_ml_Repeatr4</span>, vcovmat <span class="op">=</span> <span class="va">vcovmat_ml_Repeatr4</span>, mysongidlist <span class="op">=</span> <span class="va">songstobecompared</span><span class="op">)</span></span>
@@ -4040,19 +3928,12 @@ below.</p>
 </tr>
 </tbody>
 </table>
-<p>So, the ranks should not be interpreted rigidly. Any two of the
-adjacent songs in the table could be interchanged and the resulting
-ranking would be just as valid.</p>
+<p>So, the ranks should not be interpreted rigidly. Any two of the adjacent songs in the table could be interchanged and the resulting ranking would be just as valid.</p>
 </div>
 <div class="section level2">
 <h2 id="ratings-applied-to-studio-releases-and-compared-to-rym-ratings">Ratings applied to studio releases and compared to RYM ratings<a class="anchor" aria-label="anchor" href="#ratings-applied-to-studio-releases-and-compared-to-rym-ratings"></a>
 </h2>
-<p>The song ratings calculated using the Fugazi Live Series (FLS) data
-were used to calculate average ratings for the band’s studio releases.
-These were compared to the average ratings for the same releases at <a href="https://web.archive.org/web/20210211085323/https://rateyourmusic.com/artist/fugazi" class="external-link">https://rateyourmusic.com/artist/fugazi</a>,
-as at 11 February 2021. The original RYM ratings were on a scale from 0
-to 5 stars, so these were multiplied by 0.2 to convert them to the same
-scale as the FLS ratings. The results are shown below.</p>
+<p>The song ratings calculated using the Fugazi Live Series (FLS) data were used to calculate average ratings for the band’s studio releases. These were compared to the average ratings for the same releases at <a href="https://web.archive.org/web/20210211085323/https://rateyourmusic.com/artist/fugazi" class="external-link">https://rateyourmusic.com/artist/fugazi</a>, as at 11 February 2021. The original RYM ratings were on a scale from 0 to 5 stars, so these were multiplied by 0.2 to convert them to the same scale as the FLS ratings. The results are shown below.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Repeatr_5_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Repeatr_5.html">Repeatr_5</a></span><span class="op">(</span>mymodeldf <span class="op">=</span> <span class="va">results_ml_Repeatr4</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Joining, by = "songid"</span></span>
@@ -4066,14 +3947,6 @@ scale as the FLS ratings. The results are shown below.</p>
 <span><span class="co">#&gt; Joining, by = c("songid", "song")</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">Repeatr_5_results</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span>, <span class="st">"pipe"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
-<colgroup>
-<col width="29%">
-<col width="12%">
-<col width="15%">
-<col width="15%">
-<col width="12%">
-<col width="14%">
-</colgroup>
 <thead><tr class="header">
 <th align="left">release</th>
 <th align="right">releaseid</th>
@@ -4165,17 +4038,7 @@ scale as the FLS ratings. The results are shown below.</p>
 </tr>
 </tbody>
 </table>
-<p>Although many of the ratings are similar in magnitude, there are some
-differences. There is more variation in the ratings that have been
-calculated using the FLS data compared to the RYM ratings, and the
-lowest FLS ratings are considerably lower than the lowest RYM ratings.
-Differences such as these were to be expected. The FLS ratings were
-calculated in a consistent way, based largely on the real choices of the
-band regarding which songs to play at shows, and the band actually
-played the songs they chose to a live audience! The RYM ratings were
-from larger groups of people, not necessarily the same people in each
-case, who were simply expressing how much they liked or disliked the
-music, with no restrictions and no consequences.</p>
+<p>Although many of the ratings are similar in magnitude, there are some differences. There is more variation in the ratings that have been calculated using the FLS data compared to the RYM ratings, and the lowest FLS ratings are considerably lower than the lowest RYM ratings. Differences such as these were to be expected. The FLS ratings were calculated in a consistent way, based largely on the real choices of the band regarding which songs to play at shows, and the band actually played the songs they chose to a live audience! The RYM ratings were from larger groups of people, not necessarily the same people in each case, who were simply expressing how much they liked or disliked the music, with no restrictions and no consequences.</p>
 </div>
   </div>
 
