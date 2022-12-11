@@ -7,7 +7,6 @@ library(DT)
 library(lubridate)
 library(leaflet)
 
-
 # User Interface ----------------------------------------------------------
 
 
