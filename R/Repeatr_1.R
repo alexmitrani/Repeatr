@@ -145,7 +145,9 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   # Disambiguation
 
   othervariables <- othervariables %>%
-    mutate(city = ifelse(country=="England" & city=="Newcastle", "Newcastle-Upon-Tyne", city))
+    mutate(city = ifelse(country=="England" & city=="Newcastle", "Newcastle-Upon-Tyne", city),
+           city = ifelse(country=="USA" & city=="Oxford", "Oxford (USA)", city),
+           city = ifelse(country=="Australia" & city=="Croydon", "Croydon (Australia)", city))
 
   # correct values where necessary
 
@@ -182,7 +184,22 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
            checked = ifelse(country == "USA" & city=="San Francisco" & venue=="Trocadero Transfer", 1, checked),
            x = ifelse(country == "USA" & city=="San Francisco" & venue=="Maritime", -122.3936571, x),
            y = ifelse(country == "USA" & city=="San Francisco" & venue=="Maritime", 37.7864189, y),
-           checked = ifelse(country == "USA" & city=="San Francisco" & venue=="Maritime", 1, checked))
+           checked = ifelse(country == "USA" & city=="San Francisco" & venue=="Maritime", 1, checked),
+           x = ifelse(country == "Germany" & city=="Bremen" & venue=="Schlachthof", 8.8099035, x),
+           y = ifelse(country == "Germany" & city=="Bremen" & venue=="Schlachthof", 53.0884866, y),
+           checked = ifelse(country == "Germany" & city=="Bremen" & venue=="Schlachthof", 1, checked),
+           x = ifelse(country == "Canada" & city=="Ottawa" & venue=="Carleton University Porter Hall", -75.6978497, x),
+           y = ifelse(country == "Canada" & city=="Ottawa" & venue=="Carleton University Porter Hall", 45.3840001, y),
+           checked = ifelse(country == "Canada" & city=="Ottawa" & venue=="Carleton University Porter Hall", 1, checked),
+           x = ifelse(country == "Australia" & city=="Sydney" & venue=="Metro Theatre", 151.2066274, x),
+           y = ifelse(country == "Australia" & city=="Sydney" & venue=="Metro Theatre", -33.8756943, y),
+           checked = ifelse(country == "Australia" & city=="Sydney" & venue=="Metro Theatre", 1, checked),
+           x = ifelse(country == "USA" & city=="Watsonville" & venue=="Veteran's Memorial Hall", -121.7545246, x),
+           y = ifelse(country == "USA" & city=="Watsonville" & venue=="Veteran's Memorial Hall", 36.9126013, y),
+           checked = ifelse(country == "USA" & city=="Watsonville" & venue=="Veteran's Memorial Hall", 1, checked),
+           x = ifelse(country == "Australia" & city=="Wollongong" & venue=="Youth Centre", 150.8928958, x),
+           y = ifelse(country == "Australia" & city=="Wollongong" & venue=="Youth Centre", -34.4264333, y),
+           checked = ifelse(country == "Australia" & city=="Wollongong" & venue=="Youth Centre", 1, checked))
 
   # impute values where they are missing
   meanattendance <- othervariables %>%
