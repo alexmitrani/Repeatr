@@ -7,9 +7,13 @@ library(DT)
 library(lubridate)
 library(leaflet)
 
+
+# pre-processing ----------------------------------------------------------
+
+othervariables_checked <- othervariables %>%
+  filter(checked==1)
+
 # User Interface ----------------------------------------------------------
-
-
 
 ui <- fluidPage(
 
@@ -54,7 +58,7 @@ ui <- fluidPage(
                                       selectInput("cityInput_shows",
                                                   "city:",
                                                   c("All",
-                                                    sort(unique((othervariables$city)))))
+                                                    sort(unique((othervariables_checked$city)))))
                                ),
 
                                column(3,

@@ -18,7 +18,6 @@
 #' @param mycsvfile Optional name of CSV file containing Fugazi Live Series data to be used. If omitted, the default file provided with the package will be used.
 #' @param mysongdatafile Optional name of CSV file containing song data to be used. If omitted, the default file provided with the package will be used.
 #' @param releasesdatafile Optional name of CSV file containing releases data to be used. If omitted, the default file provided with the package will be used.
-#' @param geocodedatafile Optional name of CSV file containing coordinates for each gig and other data. If omitted, the default file provided with the package will be used.
 #'
 #' @return
 #' @export
@@ -29,7 +28,7 @@
 #' releasesdatafile <- system.file("extdata", "releases_rym.csv", package = "Repeatr")
 #' Repeatr_1_results <- Repeatr_1(mycsvfile = fugotcha, mysongdatafile = releases_songs_durations_wikipedia, releasesdatafile = releasesdatafile)
 #'
-Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile = NULL, geocodedatafile = NULL) {
+Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile = NULL) {
 
 
 # Devel setup -------------------------------------------------------------
@@ -90,26 +89,21 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   }
 
-  if (is.null(geocodedatafile)==FALSE) {
 
-    geocodedatafile <- read.csv(geocodedatafile)
+# Define othervariables data file which includes venue coordinates --------
 
-  } else {
-
-    geocodedatafilename <- system.file("extdata", "fugazi-small.csv", package = "Repeatr")
-    geocodedatafile <- read.csv(geocodedatafilename)
-    geocodedatafile$X <- NULL
-
-  }
+  geocodedatafilename <- system.file("extdata", "fugazi-small.csv", package = "Repeatr")
+  geocodedatafile <- read.csv(geocodedatafilename)
+  geocodedatafile$X <- NULL
 
   geocodedatafile <- geocodedatafile %>%
     mutate(date = as.Date(date))
 
   othervariables_patchfilename <- system.file("extdata", "othervariables_patch.csv", package = "Repeatr")
   othervariables_patchfile <- read.csv(othervariables_patchfilename) %>%
-    mutate(date = as.Date(date, "%m-%d-%Y"))
+    mutate(date = as.Date(date, "%m-%d-%Y"),
+           checked = 1)
 
-  # Define data file with other variables for possible later use
   othervariables <- Repeatr0 %>%
     select(V1, V2, V3, V4, V5, V6, V7, V8, V9)
 
@@ -125,7 +119,8 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     rename(original_source = V9)
 
   othervariables <- othervariables %>%
-    mutate(date = as.Date(date))
+    mutate(date = as.Date(date),
+           checked = 0)
 
   othervariables <- othervariables %>%
     mutate(attendance = as.numeric(attendance))
@@ -139,38 +134,55 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
            y = ifelse(flsid=="FLS0970", 37.760407, y),
            tour = ifelse(flsid=="FLS0970", "2000 Summer/Fall Regional Dates", tour),
            year = ifelse(flsid=="FLS0970", 2000, year),
-           recorded_by = ifelse(flsid=="FLS0970", "Stephen Kozlowski", recorded_by))
+           recorded_by = ifelse(flsid=="FLS0970", "Stephen Kozlowski", recorded_by),
+           checked = ifelse(flsid=="FLS0970", 1, checked))
 
   othervariables <- othervariables %>%
     filter(is.na(x)==FALSE)
 
   othervariables <- rbind.data.frame(othervariables, othervariables_patchfile)
 
+  # Disambiguation
+
+  othervariables <- othervariables %>%
+    mutate(city = ifelse(country=="England" & city=="Newcastle", "Newcastle-Upon-Tyne", city))
+
   # correct values where necessary
 
   othervariables <- othervariables %>%
-    mutate(x = ifelse(city=="Newcastle" & venue=="Riverside", -1.6069442, x),
-           y = ifelse(city=="Newcastle" & venue=="Riverside", 54.9718324, y),
+    mutate(x = ifelse(city=="Newcastle-Upon-Tyne" & venue=="Riverside", -1.6069442, x),
+           y = ifelse(city=="Newcastle-Upon-Tyne" & venue=="Riverside", 54.9718324, y),
+           checked = ifelse(city=="Newcastle" & venue=="Riverside", 1, checked),
            x = ifelse(city=="Lisbon" & venue=="Gartejo", -9.1755975, x),
            y = ifelse(city=="Lisbon" & venue=="Gartejo", 38.7042177, y),
+           checked = ifelse(city=="Lisbon" & venue=="Gartejo", 1, checked),
            x = ifelse(country == "Japan" & city=="Osaka" & venue=="AM Hall", 135.4995612, x),
            y = ifelse(country == "Japan" & city=="Osaka" & venue=="AM Hall", 34.7012144, y),
+           checked = ifelse(country == "Japan" & city=="Osaka" & venue=="AM Hall", 1, checked),
            x = ifelse(country == "Japan" & city=="Osaka" & venue=="Sun Hall", 135.4808578, x),
            y = ifelse(country == "Japan" & city=="Osaka" & venue=="Sun Hall", 34.6709861, y),
+           checked = ifelse(country == "Japan" & city=="Osaka" & venue=="Sun Hall", 1, checked),
            x = ifelse(country == "Japan" & city=="Nagoya" & venue=="Club Quattro", 136.9082324, x),
            y = ifelse(country == "Japan" & city=="Nagoya" & venue=="Club Quattro", 35.1637276, y),
+           checked = ifelse(country == "Japan" & city=="Nagoya" & venue=="Club Quattro", 1, checked),
            x = ifelse(country == "Japan" & city=="Nagoya" & venue=="Heartland", 136.9192034, x),
            y = ifelse(country == "Japan" & city=="Nagoya" & venue=="Heartland", 35.1693198, y),
+           checked = ifelse(country == "Japan" & city=="Nagoya" & venue=="Heartland", 1, checked),
            x = ifelse(country == "USA" & city=="San Francisco" & venue=="Women's Building", -122.4228365, x),
            y = ifelse(country == "USA" & city=="San Francisco" & venue=="Women's Building", 37.7614483, y),
+           checked = ifelse(country == "USA" & city=="San Francisco" & venue=="Women's Building", 1, checked),
            x = ifelse(country == "USA" & city=="San Francisco" & venue=="Russian Theater", -122.4413234, x),
            y = ifelse(country == "USA" & city=="San Francisco" & venue=="Russian Theater", 37.7854355, y),
+           checked = ifelse(country == "USA" & city=="San Francisco" & venue=="Russian Theater", 1, checked),
            x = ifelse(country == "USA" & city=="San Francisco" & venue=="Fort Mason Pier C", -122.4314681, x),
            y = ifelse(country == "USA" & city=="San Francisco" & venue=="Fort Mason Pier C", 37.8067481, y),
+           checked = ifelse(country == "USA" & city=="San Francisco" & venue=="Fort Mason Pier C", 1, checked),
            x = ifelse(country == "USA" & city=="San Francisco" & venue=="Trocadero Transfer", -122.3982015, x),
            y = ifelse(country == "USA" & city=="San Francisco" & venue=="Trocadero Transfer", 37.7790623, y),
+           checked = ifelse(country == "USA" & city=="San Francisco" & venue=="Trocadero Transfer", 1, checked),
            x = ifelse(country == "USA" & city=="San Francisco" & venue=="Maritime", -122.3936571, x),
-           y = ifelse(country == "USA" & city=="San Francisco" & venue=="Maritime", 37.7864189, y))
+           y = ifelse(country == "USA" & city=="San Francisco" & venue=="Maritime", 37.7864189, y),
+           checked = ifelse(country == "USA" & city=="San Francisco" & venue=="Maritime", 1, checked))
 
   # impute values where they are missing
   meanattendance <- othervariables %>%
@@ -188,6 +200,9 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   othervariables <- othervariables %>%
     select(-meanattendance)
+
+  othervariables <- othervariables %>%
+    relocate(checked, .after = year)
 
   save(othervariables, file="othervariables.rda")
 
