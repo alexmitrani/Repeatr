@@ -10,8 +10,12 @@ library(leaflet)
 
 # pre-processing ----------------------------------------------------------
 
+# data to define list of cities where the coordinates have been 100% checked
 othervariables_checked <- othervariables %>%
-  filter(checked==1)
+  group_by(country, city) %>%
+  summarize(checked_prop = mean(checked)) %>%
+  ungroup() %>%
+  filter(checked_prop==1)
 
 # User Interface ----------------------------------------------------------
 
