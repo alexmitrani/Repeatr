@@ -75,6 +75,7 @@ ui <- fluidPage(
                              ),
 
                              h4("Select a show on the map to get further details."),
+                             h6("The locations are approximate."),
 
                              fluidRow(
 
