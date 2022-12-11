@@ -154,7 +154,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   othervariables <- othervariables %>%
     mutate(x = ifelse(city=="Newcastle-Upon-Tyne" & venue=="Riverside", -1.6069442, x),
            y = ifelse(city=="Newcastle-Upon-Tyne" & venue=="Riverside", 54.9718324, y),
-           checked = ifelse(city=="Newcastle" & venue=="Riverside", 1, checked),
+           checked = ifelse(city=="Newcastle-Upon-Tyne" & venue=="Riverside", 1, checked),
            x = ifelse(city=="Lisbon" & venue=="Gartejo", -9.1755975, x),
            y = ifelse(city=="Lisbon" & venue=="Gartejo", 38.7042177, y),
            checked = ifelse(city=="Lisbon" & venue=="Gartejo", 1, checked),
