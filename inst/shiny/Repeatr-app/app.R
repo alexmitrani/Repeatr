@@ -37,21 +37,28 @@ ui <- fluidPage(
 
                              # Create a new Row in the UI for selectInputs
                              fluidRow(
-                               column(4,
+                               column(3,
                                       selectInput("yearInput_shows",
                                                   "year:",
                                                   c("All",
                                                     sort(unique((othervariables$year)))))
                                ),
 
-                               column(4,
+                               column(3,
                                       selectInput("countryInput_shows",
                                                   "country:",
                                                   c("All",
                                                     sort(unique((othervariables$country)))))
                                ),
 
-                               column(4,
+                               column(3,
+                                      selectInput("cityInput_shows",
+                                                  "city:",
+                                                  c("All",
+                                                    sort(unique((othervariables$city)))))
+                               ),
+
+                               column(3,
                                       selectInput("tourInput_shows",
                                                   "tour:",
                                                   c("All",
@@ -295,6 +302,9 @@ server <- function(input, output) {
     if (input$countryInput_shows != "All") {
       data <- data[data$country == input$countryInput_shows,]
     }
+    if (input$cityInput_shows != "All") {
+      data <- data[data$city == input$cityInput_shows,]
+    }
     if (input$tourInput_shows != "All") {
       data <- data[data$tour == input$tourInput_shows,]
     }
@@ -310,10 +320,20 @@ server <- function(input, output) {
   output$mymap <- renderLeaflet({
     df <- shows_data2()
 
-    margin_value <- 0.2
-
     ref_latitude <- mean(df$latitude)
     ref_longitude <- mean(df$longitude)
+
+    min_latitude_raw <- min(df$latitude)
+    min_longitude_raw <- min(df$longitude)
+
+    max_latitude_raw <- max(df$latitude)
+    max_longitude_raw <- max(df$longitude)
+
+    diff_longitude <- abs(max_longitude_raw-min_longitude_raw)
+    diff_latitude <- abs(max_latitude_raw-min_latitude_raw)
+
+    diff <- mean(diff_longitude, diff_latitude)
+    margin_value <- ifelse(diff==0, 0.1, 0.1*diff)
 
     min_latitude <- min(df$latitude)-margin_value
     min_longitude <- min(df$longitude)-margin_value
