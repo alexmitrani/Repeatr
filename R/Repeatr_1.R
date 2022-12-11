@@ -149,14 +149,17 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   # correct values where necessary
 
   othervariables <- othervariables %>%
-    mutate(x = ifelse(city=="Newcastle" & venue=="Riverside", -1.6069442, x)) %>%
-    mutate(y = ifelse(city=="Newcastle" & venue=="Riverside", 54.9718324, y)) %>%
-    mutate(x = ifelse(city=="Lisbon" & venue=="Gartejo", -9.1755975, x)) %>%
-    mutate(y = ifelse(city=="Lisbon" & venue=="Gartejo", 38.7042177, y)) %>%
-    mutate(x = ifelse(country == "Japan" & city=="Osaka" & venue=="AM Hall", 135.4995612, x)) %>%
-    mutate(y = ifelse(country == "Japan" & city=="Osaka" & venue=="AM Hall", 34.7012144, y)) %>%
-    mutate(x = ifelse(country == "Japan" & city=="Osaka" & venue=="Sun Hall", 135.4808578, x)) %>%
-    mutate(y = ifelse(country == "Japan" & city=="Osaka" & venue=="Sun Hall", 34.6709861, y))
+    mutate(x = ifelse(city=="Newcastle" & venue=="Riverside", -1.6069442, x),
+           y = ifelse(city=="Newcastle" & venue=="Riverside", 54.9718324, y),
+           x = ifelse(city=="Lisbon" & venue=="Gartejo", -9.1755975, x),
+           y = ifelse(city=="Lisbon" & venue=="Gartejo", 38.7042177, y),
+           x = ifelse(country == "Japan" & city=="Osaka" & venue=="AM Hall", 135.4995612, x),
+           y = ifelse(country == "Japan" & city=="Osaka" & venue=="AM Hall", 34.7012144, y),
+           x = ifelse(country == "Japan" & city=="Osaka" & venue=="Sun Hall", 135.4808578, x),
+           y = ifelse(country == "Japan" & city=="Osaka" & venue=="Sun Hall", 34.6709861, y),
+           x = ifelse(country == "Japan" & city=="Nagoya" & venue=="Club Quattro", 136.9082324, x),
+           y = ifelse(country == "Japan" & city=="Nagoya" & venue=="Club Quattro", 35.1637276, y))
+
 
   # impute values where they are missing
   meanattendance <- othervariables %>%
