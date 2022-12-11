@@ -209,6 +209,27 @@ head(overview_venuesdata, n = 11)
 
 Fugazi played at 733 venues but played at 79.4% of them only once, twice at 12.7% of venues, 3 shows at 3.4% of venues, and 4 shows at 2.3% of venues. Only 2.2% of venues had 5 or more shows.
 
+## In which city did Fugazi play at the most venues?
+
+```{r}
+mydf <- othervariables
+
+venues <- mydf %>% 
+  group_by(city, venue) %>% 
+  summarize(shows = n()) %>% 
+  ungroup()
+
+venues_per_city <- venues %>% 
+  group_by(city) %>% 
+  summarize(venues = n()) %>% 
+  arrange(desc(venues)) %>% 
+  ungroup()
+
+venues_per_city
+
+```
+The city where Fugazi played at the most venues was Washington DC, followed by New York, and Portland.
+
 ## Did Fugazi pick songs to perform randomly?
 
 If songs were picked at random from all available songs, the performance count for each song should build up in a similar way over time.  This can be checked by plotting the cumulative performance counts for a selection of songs.  First, let's get the data into a suitable format, so that it will be easy to count the number of times each song was played. 
