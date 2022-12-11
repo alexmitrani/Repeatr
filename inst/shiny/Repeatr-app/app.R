@@ -353,6 +353,7 @@ server <- function(input, output) {
     m <- leaflet(data = df) %>%
       fitBounds(lng1 = min_longitude, lat1 = min_latitude, lng2 = max_longitude, lat2 = max_latitude) %>%
       addProviderTiles("Esri.WorldStreetMap") %>%
+      addScaleBar() %>%
       addCircles(
         data = df,
         radius = sqrt((df$attendance)/pi),
