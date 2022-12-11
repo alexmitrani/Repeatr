@@ -159,6 +159,8 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
            y = ifelse(country == "Japan" & city=="Osaka" & venue=="Sun Hall", 34.6709861, y),
            x = ifelse(country == "Japan" & city=="Nagoya" & venue=="Club Quattro", 136.9082324, x),
            y = ifelse(country == "Japan" & city=="Nagoya" & venue=="Club Quattro", 35.1637276, y),
+           x = ifelse(country == "Japan" & city=="Nagoya" & venue=="Heartland", 136.9192034, x),
+           y = ifelse(country == "Japan" & city=="Nagoya" & venue=="Heartland", 35.1693198, y),
            x = ifelse(country == "USA" & city=="San Francisco" & venue=="Women's Building", -122.4228365, x),
            y = ifelse(country == "USA" & city=="San Francisco" & venue=="Women's Building", 37.7614483, y),
            x = ifelse(country == "USA" & city=="San Francisco" & venue=="Russian Theater", -122.4413234, x),
@@ -169,7 +171,6 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
            y = ifelse(country == "USA" & city=="San Francisco" & venue=="Trocadero Transfer", 37.7790623, y),
            x = ifelse(country == "USA" & city=="San Francisco" & venue=="Maritime", -122.3936571, x),
            y = ifelse(country == "USA" & city=="San Francisco" & venue=="Maritime", 37.7864189, y))
-
 
   # impute values where they are missing
   meanattendance <- othervariables %>%
