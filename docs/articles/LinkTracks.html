@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9056</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9057</span>
       </span>
     </div>
 
@@ -463,6 +463,43 @@ twice at 12.7% of venues, 3 shows at 3.4% of venues, and 4 shows at 2.3%
 of venues. Only 2.2% of venues had 5 or more shows.</p>
 </div>
 <div class="section level2">
+<h2 id="in-which-city-did-fugazi-play-at-the-most-venues">In which city did Fugazi play at the most venues?<a class="anchor" aria-label="anchor" href="#in-which-city-did-fugazi-play-at-the-most-venues"></a>
+</h2>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mydf</span> <span class="op">&lt;-</span> <span class="va">othervariables</span></span>
+<span></span>
+<span><span class="va">venues</span> <span class="op">&lt;-</span> <span class="va">mydf</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">city</span>, <span class="va">venue</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">summarize</span><span class="op">(</span>shows <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'city'. You can override using the</span></span>
+<span><span class="co">#&gt; `.groups` argument.</span></span>
+<span></span>
+<span><span class="va">venues_per_city</span> <span class="op">&lt;-</span> <span class="va">venues</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">city</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">summarize</span><span class="op">(</span>venues <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">venues</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">venues_per_city</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 401 × 2</span></span></span>
+<span><span class="co">#&gt;    city       venues</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Washington     21</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> New York       10</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Portland        9</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Sydney          8</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Chicago         7</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Houston         7</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Berlin          6</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Columbia        6</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> London          6</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Richmond        6</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 391 more rows</span></span></span></code></pre></div>
+<p>The city where Fugazi played at the most venues was Washington DC,
+followed by New York, and Portland.</p>
+</div>
+<div class="section level2">
 <h2 id="did-fugazi-pick-songs-to-perform-randomly">Did Fugazi pick songs to perform randomly?<a class="anchor" aria-label="anchor" href="#did-fugazi-pick-songs-to-perform-randomly"></a>
 </h2>
 <p>If songs were picked at random from all available songs, the
@@ -471,7 +508,7 @@ time. This can be checked by plotting the cumulative performance counts
 for a selection of songs. First, let’s get the data into a suitable
 format, so that it will be easy to count the number of times each song
 was played.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">mydf</span> <span class="op">&lt;-</span> <span class="va">Repeatr1</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">date</span>, <span class="va">song</span><span class="op">)</span></span>
 <span></span>
@@ -503,7 +540,7 @@ was played.</p>
 <span><span class="co">#&gt; <span style="color: #949494;">#   `long division` &lt;int&gt;, turnover &lt;int&gt;, `two beats off` &lt;int&gt;, …</span></span></span></code></pre></div>
 <p>Next, let’s transform the variable for each song into a cumulative
 count of the number of times the song was played.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">mydf_wide2</span> <span class="op">&lt;-</span> <span class="va">mydf_wide</span></span>
 <span></span>
@@ -533,7 +570,7 @@ count of the number of times the song was played.</p>
 <p>Now, we can reformat the data again to make it a long list of song
 counts that show how the number of times each song was performed built
 up over time.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">mydf_long</span> <span class="op">&lt;-</span> <span class="va">mydf_wide2</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">pivot_longer</span><span class="op">(</span><span class="op">!</span><span class="va">date</span>, names_to <span class="op">=</span> <span class="st">"song"</span>, values_to <span class="op">=</span> <span class="st">"count"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
@@ -553,15 +590,15 @@ up over time.</p>
 counts evolved over time.</p>
 <p>Here is a selection of interesting songs to look at. It would be too
 cluttered to plot all the songs at once!</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">mydf_long</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">song</span><span class="op">==</span><span class="st">"furniture"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"waiting room"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"shut the door"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"kyeo"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"polish"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"steady diet"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"smallpox champion"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"birthday pony"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"break"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"nightshop"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">date</span>, <span class="va">count</span>, color <span class="op">=</span> <span class="va">song</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="LinkTracks_files/figure-html/unnamed-chunk-16-1.png" width="672"></p>
+<p><img src="LinkTracks_files/figure-html/unnamed-chunk-17-1.png" width="672"></p>
 <p>Another approach is to group the songs by release.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">releases_lookup</span> <span class="op">&lt;-</span> <span class="va">Repeatr1</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">song</span>, <span class="va">release</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">summarize</span><span class="op">(</span>count <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
@@ -578,8 +615,8 @@ cluttered to plot all the songs at once!</p>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">release</span><span class="op">==</span><span class="st">"Steady Diet"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">date</span>, <span class="va">count</span>, color <span class="op">=</span> <span class="va">song</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="LinkTracks_files/figure-html/unnamed-chunk-17-1.png" width="672"></p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<p><img src="LinkTracks_files/figure-html/unnamed-chunk-18-1.png" width="672"></p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">cumulative_song_counts</span> <span class="op">&lt;-</span> <span class="va">mydf_long</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="va">date</span>, <span class="va">song</span>, <span class="va">release</span>, <span class="va">count</span><span class="op">)</span></span></code></pre></div>
