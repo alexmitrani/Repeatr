@@ -329,7 +329,7 @@ server <- function(input, output) {
         radius = sqrt((df$attendance)/pi),
         color = "#F60D1D",
         fillColor = "#F60D1D",
-        fillOpacity = 0.50,
+        fillOpacity = 0.5,
         popup = paste0(
           "<strong>Date: </strong>", df$date, "<br>",
           "<strong>Venue: </strong>", df$venue, "<br>",
