@@ -36,7 +36,8 @@ ui <- fluidPage(
                            fluidPage(
                              h3("Shows"),
 
-                             h4("Choose a year, a country, a tour, or a range of dates."),
+                             h4("Choose a year, a country, a city, a tour, or a range of dates."),
+                             h6("The list of cities is restricted to cases where the coordinates of the venues have been checked and updated."),
 
                              # Create a new Row in the UI for selectInputs
                              fluidRow(
@@ -292,7 +293,7 @@ server <- function(input, output) {
     mutate(year = lubridate::year(date)) %>%
     rename(latitude = y) %>%
     rename(longitude = x) %>%
-    select(flsid, tour, year, date, venue, city, country, attendance, doorprice, latitude, longitude) %>%
+    select(flsid, tour, year, date, venue, city, country, attendance, doorprice, latitude, longitude, checked) %>%
     rename(door_price = doorprice,
            fls_id = flsid)
 
