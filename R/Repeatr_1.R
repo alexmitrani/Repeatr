@@ -223,6 +223,46 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   save(othervariables, file="othervariables.rda")
 
+  # Create file for geocoding
+
+  gc_mydf <- othervariables
+
+  gc_mydf <- gc_mydf %>%
+    filter(checked==0)
+
+  gc_mydf <- gc_mydf %>%
+    group_by(country, city, venue) %>%
+    summarize(count = n()) %>%
+    ungroup()
+
+  gc_mydf <- gc_mydf %>%
+    arrange(country, city, venue)
+
+  gc_mydf2 <- gc_mydf %>%
+    group_by(country, city) %>%
+    summarize(n_venues=n()) %>%
+    ungroup()
+
+  gc_mydf2 <- gc_mydf2 %>%
+    arrange(desc(n_venues))
+
+  gc_mydf3 <- gc_mydf %>%
+    left_join(gc_mydf2)
+
+  gc_mydf3 <- gc_mydf3 %>%
+    arrange(desc(n_venues), country, city, venue)
+
+  gc_mydf3 <- gc_mydf3 %>%
+    select(country, city, venue) %>%
+    mutate(googlemaps_hyperlink="",
+           count1="",
+           count2="",
+           count3="",
+           link_x="",
+           link_y="")
+
+  write_csv(gc_mydf3, file="fls_venue_geocoding.csv")
+
   # Select the most relevant columns -------
 
   Repeatr1 <- subset(Repeatr0, select = -c(V2, V4, V5, V6, V7, V8, V9))
