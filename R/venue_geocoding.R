@@ -1,4 +1,3 @@
-library(Repeatr)
 
 mydf <- othervariables
 
