@@ -226,7 +226,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   # Update coordinates from geocoding file
   fls_venue_geocoding_update <- system.file("extdata", "fls_venue_geocoding.csv", package = "Repeatr")
   fls_venue_geocoding_update <- read.csv(fls_venue_geocoding_update, header=TRUE) %>%
-    select(country, city, venue, link_x, link_y, city_disambiguation) %>%
+    select(country, city, venue, link_x, link_y, city_disambiguation, guess, unknown) %>%
     filter(is.na(link_x)==FALSE) %>%
     mutate(geocoding_check=1)
 
@@ -240,10 +240,10 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     mutate(x = ifelse(is.na(link_x)==FALSE, link_x, x),
            y = ifelse(is.na(link_y)==FALSE, link_y, y),
            city = ifelse(is.na(city_disambiguation)==FALSE, city_disambiguation, city),
-           checked = ifelse(is.na(geocoding_check)==FALSE, geocoding_check, checked))
+           checked = ifelse(is.na(geocoding_check)==FALSE & guess==0 & unknown==0, geocoding_check, checked))
 
   othervariables <- othervariables %>%
-    select(-link_x, -link_y, -city_disambiguation, -geocoding_check)
+    select(-link_x, -link_y, -city_disambiguation, -geocoding_check, -guess, -unknown)
 
   save(othervariables, file="othervariables.rda")
 
