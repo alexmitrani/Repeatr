@@ -240,7 +240,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     mutate(x = ifelse(is.na(link_x)==FALSE, link_x, x),
            y = ifelse(is.na(link_y)==FALSE, link_y, y),
            city = ifelse(is.na(city_disambiguation)==FALSE, city_disambiguation, city),
-           checked = ifelse(is.na(geocoding_check)==FALSE & nchar(guess)==0 & nchar(unknown)==0, geocoding_check, checked))
+           checked = ifelse(is.na(geocoding_check)==FALSE & is.na(guess)==TRUE & is.na(unknown)==TRUE, geocoding_check, checked))
 
   othervariables <- othervariables %>%
     select(-link_x, -link_y, -city_disambiguation, -geocoding_check, -guess, -unknown)
