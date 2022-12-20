@@ -1,5 +1,5 @@
 
-# devtools::install_github("alexmitrani/Repeatr")
+# devtools::install_github("alexmitrani/Repeatr", build_opts = c("--no-resave-data", "--no-manual"))
 
 library(shiny)
 library(Repeatr)
