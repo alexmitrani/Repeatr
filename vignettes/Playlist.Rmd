@@ -123,5 +123,6 @@ This is a list of shows that I plan to listen to again in future, based on the s
 [FLS0598, Strand, Rehobeth Beach, DE, USA, 1993-09-29](https://www.dischord.com/fugazi_live_series/rehoboth-beach-de-usa-92993)<br>
 [FLS0603, Club Quattro, Tokyo, Japan, 1993-11-06](https://www.dischord.com/fugazi_live_series/tokyo-japan-110693)<br>
 [FLS0604, Bukit Batok Community Center, Singapore, Singapore, 1993-11-08](https://www.dischord.com/fugazi_live_series/singapore-singapore-110893)<br>
+[FLS0609, Collingwood Town Hall, Melbourne, VIC, Australia, 1993-11-14](https://www.dischord.com/fugazi_live_series/melbourne-vic-australia-111493)<br>
 
 
