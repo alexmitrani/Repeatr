@@ -4,12 +4,7 @@
 \alias{Repeatr_1}
 \title{imports raw data in CSV format, cleans the data, and reshapes it long so that the rows are identified by combinations of gid and song_number.}
 \usage{
-Repeatr_1(
-  mycsvfile = NULL,
-  mysongdatafile = NULL,
-  releasesdatafile = NULL,
-  geocodedatafile = NULL
-)
+Repeatr_1(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile = NULL)
 }
 \arguments{
 \item{mycsvfile}{Optional name of CSV file containing Fugazi Live Series data to be used. If omitted, the default file provided with the package will be used.}
@@ -17,8 +12,6 @@ Repeatr_1(
 \item{mysongdatafile}{Optional name of CSV file containing song data to be used. If omitted, the default file provided with the package will be used.}
 
 \item{releasesdatafile}{Optional name of CSV file containing releases data to be used. If omitted, the default file provided with the package will be used.}
-
-\item{geocodedatafile}{Optional name of CSV file containing coordinates for each gig and other data. If omitted, the default file provided with the package will be used.}
 }
 \description{
 This was originally developed with a file called "fugotcha.csv", the first line of which went like this:
