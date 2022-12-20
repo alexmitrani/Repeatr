@@ -33,7 +33,7 @@ This file contains the following variables: index	releaseid	release	track_number
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9059</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9064</span>
       </span>
     </div>
 
@@ -105,12 +105,7 @@ This file contains the following variables: index	releaseid	release	track_number
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">Repeatr_1</span><span class="op">(</span></span>
-<span>  mycsvfile <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  mysongdatafile <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  releasesdatafile <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  geocodedatafile <span class="op">=</span> <span class="cn">NULL</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">Repeatr_1</span><span class="op">(</span>mycsvfile <span class="op">=</span> <span class="cn">NULL</span>, mysongdatafile <span class="op">=</span> <span class="cn">NULL</span>, releasesdatafile <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -126,10 +121,6 @@ This file contains the following variables: index	releaseid	release	track_number
 <dt>releasesdatafile</dt>
 <dd><p>Optional name of CSV file containing releases data to be used. If omitted, the default file provided with the package will be used.</p></dd>
 
-
-<dt>geocodedatafile</dt>
-<dd><p>Optional name of CSV file containing coordinates for each gig and other data. If omitted, the default file provided with the package will be used.</p></dd>
-
 </dl></div>
 
     <div id="ref-examples">
@@ -141,8 +132,6 @@ This file contains the following variables: index	releaseid	release	track_number
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>NAs introduced by coercion</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Joining, by = c("date", "venue")</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Joining, by = "year"</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining, by = c("venue", "city", "country")</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining, by = c("country", "city")</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Joining, by = "song"</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Joining, by = "songid"</span>
 <span class="r-in"><span></span></span>
