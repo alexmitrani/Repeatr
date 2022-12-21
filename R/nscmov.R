@@ -11,11 +11,14 @@
 #' othervariables <- nscmov(fls_venue_geocoding_update_filename = fls_venue_geocoding_update)
 #'
 nscmov <- function(fls_venue_geocoding_update_filename=NULL) {
-  
+
+  mydir <- getwd()
+  mydatadir <- paste0(mydir, "/data")
+
   if(is.null(fls_venue_geocoding_update_filename)==TRUE) {
-    
+
     fls_venue_geocoding_update_filename <- system.file("extdata", "fls_venue_geocoding.csv", package = "Repeatr")
-    
+
   }
 
   # Update coordinates from geocoding file
@@ -39,7 +42,12 @@ nscmov <- function(fls_venue_geocoding_update_filename=NULL) {
   othervariables <- othervariables %>%
     select(-link_x, -link_y, -city_disambiguation, -geocoding_check, -guess, -unknown)
 
+
+  setwd(mydatadir)
+
   save(othervariables, file="othervariables.rda")
+
+  setwd(mydir)
 
   # Create file for geocoding
 
