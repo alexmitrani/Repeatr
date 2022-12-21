@@ -10,7 +10,13 @@
 #' fls_venue_geocoding_update <- system.file("extdata", "fls_venue_geocoding.csv", package = "Repeatr")
 #' othervariables <- nscmov(fls_venue_geocoding_update_filename = fls_venue_geocoding_update)
 #'
-nscmov <- function(fls_venue_geocoding_update_filename) {
+nscmov <- function(fls_venue_geocoding_update_filename=NULL) {
+  
+  if(is.null(fls_venue_geocoding_update_filename)==TRUE) {
+    
+    fls_venue_geocoding_update_filename <- system.file("extdata", "fls_venue_geocoding.csv", package = "Repeatr")
+    
+  }
 
   # Update coordinates from geocoding file
   fls_venue_geocoding_update <- read.csv(fls_venue_geocoding_update_filename, header=TRUE) %>%
