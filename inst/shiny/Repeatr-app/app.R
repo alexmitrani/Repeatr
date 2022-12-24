@@ -12,7 +12,7 @@ library(leaflet)
 
 # data to define list of cities where the coordinates have been 100% checked
 othervariables_checked <- othervariables %>%
-  group_by(country, city) %>%
+  group_by(year, tour, country, city) %>%
   summarize(checked_prop = mean(checked)) %>%
   ungroup() %>%
   filter(checked_prop==1)
@@ -40,38 +40,38 @@ ui <- fluidPage(
                            fluidPage(
                              h3("Shows"),
 
-                             h4("Choose a year, a country, a city, a tour, or a range of dates."),
+                             h4("Choose a year, a tour, a country, a city, or a range of dates."),
                              h6("The list of cities is restricted to cases where the coordinates of the venues have been checked and updated."),
 
                              # Create a new Row in the UI for selectInputs
                              fluidRow(
-                               column(3,
+                               column(4,
                                       selectInput("yearInput_shows",
                                                   "year:",
                                                   c("All",
                                                     sort(unique((othervariables$year)))))
-                               ),
-
-                               column(3,
-                                      selectInput("countryInput_shows",
-                                                  "country:",
-                                                  c("All",
-                                                    sort(unique((othervariables$country)))))
-                               ),
-
-                               column(3,
-                                      selectInput("cityInput_shows",
-                                                  "city:",
-                                                  c("All",
-                                                    sort(unique((othervariables_checked$city)))))
-                               ),
-
-                               column(3,
-                                      selectInput("tourInput_shows",
-                                                  "tour:",
-                                                  c("All",
-                                                    sort(unique((toursdata$tour)))))
                                )
+
+                             ),
+
+                             fluidRow(
+
+                               uiOutput("tour_menuOptions")
+
+                             ),
+
+                             # Create a new Row in the UI for selectInputs
+                             fluidRow(
+
+                               uiOutput("country_menuOptions")
+
+                             ),
+
+                             # Create a new Row in the UI for city menu
+                             fluidRow(
+
+                               uiOutput("city_menuOptions")
+
                              ),
 
                              # Slider control
@@ -288,6 +288,56 @@ server <- function(input, output) {
 
 
 # Shows -------------------------------------------------------------------
+
+  output$tour_menuOptions <- renderUI({
+
+    if (input$yearInput_shows!="All") {
+      tour_menudata <- othervariables_checked %>%
+        filter(year == input$yearInput_shows) %>%
+        arrange(tour)
+    } else {
+      tour_menudata <- othervariables_checked %>%
+        arrange(tour)
+    }
+
+    selectizeInput("tourInput_shows", "tour:",
+                   choices = c("All", sort(unique((tour_menudata$tour)))), multiple=FALSE)
+
+  })
+
+
+
+  output$country_menuOptions <- renderUI({
+
+    if (input$tourInput_shows!="All") {
+      country_menudata <- othervariables_checked %>%
+        filter(tour == input$tourInput_shows) %>%
+        arrange(country)
+    } else {
+      country_menudata <- othervariables_checked %>%
+        arrange(country)
+    }
+
+    selectizeInput("countryInput_shows", "country:",
+                   choices = c("All", sort(unique((country_menudata$country)))), multiple=FALSE)
+
+  })
+
+  output$city_menuOptions <- renderUI({
+
+    if (input$countryInput_shows!="All") {
+      city_menudata <- othervariables_checked %>%
+        filter(country == input$countryInput_shows) %>%
+        arrange(city)
+    } else {
+      city_menudata <- othervariables_checked %>%
+        arrange(city)
+    }
+
+    selectizeInput("cityInput_shows", "city:",
+                   choices = c("All", sort(unique((city_menudata$city)))), multiple=FALSE)
+
+  })
 
   shows_data <- othervariables %>%
     filter(is.na(attendance)==FALSE) %>%
