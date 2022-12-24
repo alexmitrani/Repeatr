@@ -3,16 +3,6 @@
 
 library(Repeatr)
 
-
-# pre-processing ----------------------------------------------------------
-
-# data to define list of cities where the coordinates have been 100% checked
-othervariables_checked <- othervariables %>%
-  group_by(year, tour, country, city) %>%
-  summarize(checked_prop = mean(checked)) %>%
-  ungroup() %>%
-  filter(checked_prop==1)
-
 ui <- fluidPage(
 
   selectInput("yearInput_shows", "year:", choices = c("All", sort(unique((othervariables$year))))),
