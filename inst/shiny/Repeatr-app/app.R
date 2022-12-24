@@ -1,13 +1,6 @@
 
 # devtools::install_github("alexmitrani/Repeatr", build_opts = c("--no-resave-data", "--no-manual"))
 
-library(shiny)
-library(Repeatr)
-library(DT)
-library(lubridate)
-library(leaflet)
-
-
 # pre-processing ----------------------------------------------------------
 
 # data to define list of cities where the coordinates have been 100% checked
@@ -43,36 +36,13 @@ ui <- fluidPage(
                              h4("Choose a year, a tour, a country, a city, or a range of dates."),
                              h6("The list of cities is restricted to cases where the coordinates of the venues have been checked and updated."),
 
-                             # Create a new Row in the UI for selectInputs
-                             fluidRow(
-                               column(4,
-                                      selectInput("yearInput_shows",
-                                                  "year:",
-                                                  c("All",
-                                                    sort(unique((othervariables$year)))))
-                               )
 
-                             ),
+                              selectInput("yearInput_shows", "year:", choices = sort(unique((othervariables$year)))),
+                              selectInput("tourInput_shows", "tour:", choices = NULL),
+                              selectInput("countryInput_shows", "country:", choices = NULL),
+                              selectInput("cityInput_shows", "city:", choices = NULL),
+                              tableOutput("citydata"),
 
-                             fluidRow(
-
-                               uiOutput("tour_menuOptions")
-
-                             ),
-
-                             # Create a new Row in the UI for selectInputs
-                             fluidRow(
-
-                               uiOutput("country_menuOptions")
-
-                             ),
-
-                             # Create a new Row in the UI for city menu
-                             fluidRow(
-
-                               uiOutput("city_menuOptions")
-
-                             ),
 
                              # Slider control
 
@@ -284,60 +254,43 @@ ui <- fluidPage(
 # Server -----------------------------------------------------
 
 
-server <- function(input, output) {
+server <- function(input, output, session) {
 
 
 # Shows -------------------------------------------------------------------
 
-  output$tour_menuOptions <- renderUI({
+    year_data <- reactive({
+      filter(othervariables_checked, year == input$yearInput_shows)
+    })
+    observeEvent(year_data(), {
+      tourInput_choices <- unique(year_data()$tour)
+      updateSelectInput(inputId = "tourInput_shows", choices = tourInput_choices)
+    })
 
-    if (input$yearInput_shows!="All") {
-      tour_menudata <- othervariables_checked %>%
-        filter(year == input$yearInput_shows) %>%
-        arrange(tour)
-    } else {
-      tour_menudata <- othervariables_checked %>%
-        arrange(tour)
-    }
+    tour_data <- reactive({
+      req(input$tourInput_shows)
+      filter(year_data(), tour == input$tourInput_shows)
+    })
+    observeEvent(tour_data(), {
+      countryInput_choices <- unique(tour_data()$country)
+      updateSelectInput(inputId = "countryInput_shows", choices = countryInput_choices)
+    })
 
-    selectizeInput("tourInput_shows", "tour:",
-                   choices = c("All", sort(unique((tour_menudata$tour)))), multiple=FALSE)
+    country_data <- reactive({
+      req(input$countryInput_shows)
+      filter(tour_data(), country == input$countryInput_shows)
+    })
+    observeEvent(country_data(), {
+      cityInput_choices <- unique(country_data()$city)
+      updateSelectInput(inputId = "cityInput_shows", choices = cityInput_choices)
+    })
 
-  })
+    output$citydata <- renderTable({
+      req(input$cityInput_shows)
+      country_data() %>%
+        filter(city == input$cityInput_shows)
+    })
 
-
-
-  output$country_menuOptions <- renderUI({
-
-    if (input$tourInput_shows!="All") {
-      country_menudata <- othervariables_checked %>%
-        filter(tour == input$tourInput_shows) %>%
-        arrange(country)
-    } else {
-      country_menudata <- othervariables_checked %>%
-        arrange(country)
-    }
-
-    selectizeInput("countryInput_shows", "country:",
-                   choices = c("All", sort(unique((country_menudata$country)))), multiple=FALSE)
-
-  })
-
-  output$city_menuOptions <- renderUI({
-
-    if (input$countryInput_shows!="All") {
-      city_menudata <- othervariables_checked %>%
-        filter(country == input$countryInput_shows) %>%
-        arrange(city)
-    } else {
-      city_menudata <- othervariables_checked %>%
-        arrange(city)
-    }
-
-    selectizeInput("cityInput_shows", "city:",
-                   choices = c("All", sort(unique((city_menudata$city)))), multiple=FALSE)
-
-  })
 
   shows_data <- othervariables %>%
     filter(is.na(attendance)==FALSE) %>%
