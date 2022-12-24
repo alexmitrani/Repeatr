@@ -3,13 +3,240 @@
 
 library(Repeatr)
 
+# User Interface ----------------------------------------------------------
+
 ui <- fluidPage(
 
-  selectInput("yearInput_shows", "year:", choices = c("All", sort(unique((othervariables$year))))),
-  selectInput("tourInput_shows", "tour:", choices = NULL),
-  selectInput("countryInput_shows", "country:", choices = NULL),
-  selectInput("cityInput_shows", "city:", choices = NULL),
-  tableOutput("data")
+
+  h1("Repeatr"),
+  tags$div(
+    "Exploring the ",
+    tags$a(href="https://www.dischord.com/fugazi_live_series", "Fugazi Live Series"),
+    tags$br(),
+    tags$br()
+  ),
+
+  mainPanel(
+
+    # Output
+    tabsetPanel(type = "tabs",
+
+                tabPanel("Shows",
+
+                         fluidPage(
+                           h3("Shows"),
+
+                           h4("Choose a year, a tour, a country, a city, or a range of dates."),
+                           h6("The list of cities is restricted to cases where the coordinates of the venues have been checked and updated."),
+
+
+                           selectInput("yearInput_shows", "year:", choices = c("All", sort(unique((othervariables$year))))),
+                           selectInput("tourInput_shows", "tour:", choices = NULL),
+                           selectInput("countryInput_shows", "country:", choices = NULL),
+                           selectInput("cityInput_shows", "city:", choices = NULL),
+
+
+                           # Slider control
+
+                           fluidRow(
+                             column(6,
+                                    sliderInput("dateInput_shows", "Range of dates:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                                                value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
+                           ),
+
+                           h4("Select a show on the map to get further details."),
+                           h6("The locations are approximate."),
+
+                           fluidRow(
+
+
+                             leafletOutput("mymap", height = 500, width = 500)
+
+
+                           ),
+
+                           tags$br(),
+                           h4("The table below gives details for the selected shows."),
+                           tags$br(),
+
+                           fluidRow(
+
+                             # Create a new row for the table.
+                             DT::dataTableOutput("data")
+
+                           )
+
+                         )
+
+                ),
+
+                tabPanel("Tours",
+
+                         fluidPage(
+                           h3("Tours"),
+
+
+                           # Create a new Row in the UI for selectInputs
+                           fluidRow(
+                             column(4,
+                                    selectInput("startyear",
+                                                "Start year:",
+                                                c("All",
+                                                  sort(unique((toursdata$startyear)))))
+                             )
+
+                           ),
+
+                           # Create a new row for the table.
+                           DT::dataTableOutput("toursdatatable")
+
+                         )
+
+                ),
+
+
+                tabPanel("Venues",
+
+                         fluidPage(
+                           h3("Venues"),
+
+
+                           # Create a new Row in the UI for selectInputs
+                           fluidRow(
+                             column(4,
+                                    selectInput("city",
+                                                "City:",
+                                                c("All",
+                                                  sort(unique((venuesdata$city)))))
+                             ),
+                             column(4,
+                                    selectInput("country",
+                                                "Country:",
+                                                c("All",
+                                                  sort(unique(venuesdata$country))))
+                             )
+
+                           ),
+
+                           # Create a new row for the table.
+                           DT::dataTableOutput("venuesdatatable")
+
+                         )
+
+                ),
+
+                tabPanel("Songs",
+
+                         fluidPage(
+                           h3("Songs"),
+
+                           h4("Choose one or more releases, a selection of songs, or a range of dates."),
+
+                           h6("The output will be limited to a maximum of 20 songs."),
+
+                           # Release and song selection controls
+
+                           fluidRow(
+                             column(12,
+                                    selectizeInput("releaseInput", "Release",
+                                                   choices = c(unique(cumulative_song_counts$release)),
+                                                   selected=NULL, multiple =TRUE),
+                                    uiOutput("menuOptions"))
+
+
+                           ),
+
+                           # Slider control
+
+                           fluidRow(
+                             column(12,
+                                    sliderInput("dateInput", "Range of dates:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                                                value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
+                           ),
+
+                           # Graph
+
+                           fluidRow(
+                             column(12,
+                                    plotlyOutput("performance_count_plot")
+                             )
+                           ),
+
+                           tags$br(),
+                           h4("The table below shows the number of times each song was performed in the specified period."),
+                           tags$br(),
+
+
+                           fluidRow(
+                             column(12,
+                                    DT::dataTableOutput("songsdatatable")
+                             )
+                           )
+
+                         )
+
+                ),
+
+
+                tabPanel("Transitions",
+
+                         fluidPage(
+                           h3("Transitions"),
+
+                           # Create a new Row in the UI for selectInputs
+                           fluidRow(
+                             column(4,
+                                    selectInput(inputId = "year_transitions",
+                                                label = "Year:",
+                                                choices = c("All",
+                                                            sort(unique((toursdata$startyear)))),
+                                                selected = "1987")
+                             )
+
+                           ),
+
+                           # Slider control
+
+                           fluidRow(
+                             column(12,
+                                    sliderInput("dateInput_transitions", "Range of dates:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                                                value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
+                           ),
+
+                           # Graph
+
+                           fluidRow(
+                             column(12,
+                                    plotlyOutput("transitions_heatmap")
+                             )
+                           ),
+
+                           h4("The table below shows the number of times each transition featured in the specified period."),
+
+
+                           fluidRow(
+                             column(12,
+                                    DT::dataTableOutput("transitionsdatatable")
+                             )
+                           ),
+
+                         )
+
+                )
+
+
+    ),
+
+    tags$div(
+      tags$br(),
+      "Visit the ",
+      tags$a(href="https://alexmitrani.github.io/Repeatr/", "Repeatr website"),
+      " for further information.",
+      tags$br(),
+      tags$br()
+    )
+
+  )
 
 )
 
@@ -23,6 +250,7 @@ server <- function(input, output, session) {
       filter(othervariables, year == input$yearInput_shows)
     }
   })
+
   observeEvent(year_data(), {
     tourInput_choices <- unique(year_data()$tour)
     updateSelectInput(inputId = "tourInput_shows", choices = c("All", tourInput_choices))
@@ -37,6 +265,7 @@ server <- function(input, output, session) {
     }
 
   })
+
   observeEvent(tour_data(), {
     countryInput_choices <- unique(tour_data()$country)
     updateSelectInput(inputId = "countryInput_shows", choices = c("All", countryInput_choices))
@@ -50,12 +279,13 @@ server <- function(input, output, session) {
       filter(tour_data(), country == input$countryInput_shows)
     }
   })
+
   observeEvent(country_data(), {
     cityInput_choices <- unique(country_data()$city)
     updateSelectInput(inputId = "cityInput_shows", choices = c("All", cityInput_choices))
   })
 
-  output$data <- renderTable({
+  city_data <- reactive({
     req(input$cityInput_shows)
     if(input$cityInput_shows=="All") {
       country_data()
@@ -64,6 +294,23 @@ server <- function(input, output, session) {
     }
   })
 
+  output$data <- DT::renderDataTable(DT::datatable({
+
+      city_data()%>%
+        filter(is.na(attendance)==FALSE) %>%
+        filter(is.na(tour)==FALSE) %>%
+        filter(date >= input$dateInput_shows[1] &
+                 date <= input$dateInput_shows[2]) %>%
+        mutate(attendance = as.integer(attendance)) %>%
+        mutate(date = as.Date(date, "%d-%m-%Y")) %>%
+        mutate(year = lubridate::year(date)) %>%
+        rename(latitude = y) %>%
+        rename(longitude = x) %>%
+        select(flsid, tour, year, date, venue, city, country, attendance, doorprice, latitude, longitude, checked) %>%
+        rename(door_price = doorprice,
+               fls_id = flsid)
+    }
+  ))
 
 }
 
