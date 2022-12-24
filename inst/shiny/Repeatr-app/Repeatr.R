@@ -1,6 +1,8 @@
 
 # devtools::install_github("alexmitrani/Repeatr", build_opts = c("--no-resave-data", "--no-manual"))
 
+library(Repeatr)
+
 
 # pre-processing ----------------------------------------------------------
 
