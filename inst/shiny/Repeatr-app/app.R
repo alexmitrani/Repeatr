@@ -46,7 +46,8 @@ ui <- fluidPage(
                                       selectizeInput("yearInput_shows", "year:",
                                                      sort(unique((othervariables$year))),
                                                      selected=NULL, multiple =TRUE),
-                                      uiOutput("menuOptions_tours"))
+                                      uiOutput("menuOptions_tours"),
+                                      uiOutput("menuOptions_countries"))
 
                              ),
 
@@ -274,12 +275,12 @@ server <- function(input, output, session) {
   output$menuOptions_tours <- renderUI({
 
     if (is.null(input$yearInput_shows)==FALSE) {
-      menudata <- othervariables %>%
+      menudata <- shows_data %>%
         filter(year %in% input$yearInput_shows) %>%
-        arrange(year)
+        arrange(tour)
     } else {
-      menudata <- othervariables %>%
-        arrange(year)
+      menudata <- shows_data %>%
+        arrange(tour)
     }
 
     selectizeInput("tourInput_shows", "tours:",
@@ -287,27 +288,85 @@ server <- function(input, output, session) {
 
   })
 
+  output$menuOptions_countries <- renderUI({
+
+    if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==FALSE) {
+      menudata <- shows_data %>%
+        filter(year %in% input$yearInput_shows &
+                 tour %in% input$tourInput_shows) %>%
+        arrange(country)
+
+    } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==TRUE) {
+      menudata <- shows_data %>%
+        filter(year %in% input$yearInput_shows) %>%
+        arrange(country)
+
+    } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==FALSE) {
+      menudata <- shows_data %>%
+        filter(tour %in% input$tourInput_shows) %>%
+        arrange(country)
+
+    } else {
+      menudata <- shows_data %>%
+        arrange(country)
+
+    }
+
+    selectizeInput("countryInput_shows", "countries:",
+                   choices = c(unique(menudata$country)), multiple =TRUE)
+
+  })
 
   shows_data2 <- reactive({
 
-    if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==FALSE) {
+    if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==FALSE & is.null(input$countryInput_shows)==FALSE) {
+      mydf <- shows_data %>%
+        filter(date >= input$dateInput_shows[1] &
+                 date <= input$dateInput_shows[2] &
+                 year %in% input$yearInput_shows &
+                 tour %in% input$tourInput_shows &
+                 country %in% input$countryInput_shows)
+
+    } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==FALSE & is.null(input$countryInput_shows)==TRUE) {
+
       mydf <- shows_data %>%
         filter(date >= input$dateInput_shows[1] &
                  date <= input$dateInput_shows[2] &
                  year %in% input$yearInput_shows &
                  tour %in% input$tourInput_shows)
 
-    } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==TRUE) {
+
+    } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==TRUE & is.null(input$countryInput_shows)==FALSE) {
+      mydf <- shows_data %>%
+        filter(date >= input$dateInput_shows[1] &
+                 date <= input$dateInput_shows[2] &
+                 year %in% input$yearInput_shows &
+                 country %in% input$countryInput_shows)
+
+    } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==TRUE & is.null(input$countryInput_shows)==TRUE) {
       mydf <- shows_data %>%
         filter(date >= input$dateInput_shows[1] &
                  date <= input$dateInput_shows[2] &
                  year %in% input$yearInput_shows)
 
-    } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==FALSE) {
+    } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==FALSE & is.null(input$countryInput_shows)==FALSE) {
+      mydf <- shows_data %>%
+        filter(date >= input$dateInput_shows[1] &
+                 date <= input$dateInput_shows[2] &
+                 tour %in% input$tourInput_shows &
+                 country %in% input$countryInput_shows)
+
+    } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==FALSE & is.null(input$countryInput_shows)==TRUE) {
       mydf <- shows_data %>%
         filter(date >= input$dateInput_shows[1] &
                  date <= input$dateInput_shows[2] &
                  tour %in% input$tourInput_shows)
+
+    } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==TRUE & is.null(input$countryInput_shows)==FALSE) {
+      mydf <- shows_data %>%
+        filter(date >= input$dateInput_shows[1] &
+                 date <= input$dateInput_shows[2] &
+                 country %in% input$countryInput_shows)
 
     } else {
       mydf <- shows_data %>%
