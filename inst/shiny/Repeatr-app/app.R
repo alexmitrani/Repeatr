@@ -38,8 +38,7 @@ ui <- fluidPage(
                            fluidPage(
                              h3("Shows"),
 
-                             h4("Choose a year, a tour, a country, a city, or a range of dates."),
-                             h6("The list of cities is restricted to cases where the coordinates of the venues have been checked and updated."),
+                             h4("Choose one or more years, tours, countries, cities, and / or a range of dates."),
 
                              fluidRow(
                                column(12,
@@ -47,7 +46,8 @@ ui <- fluidPage(
                                                      sort(unique((othervariables$year))),
                                                      selected=NULL, multiple =TRUE),
                                       uiOutput("menuOptions_tours"),
-                                      uiOutput("menuOptions_countries"))
+                                      uiOutput("menuOptions_countries"),
+                                      uiOutput("menuOptions_cities"))
 
                              ),
 
@@ -145,7 +145,7 @@ ui <- fluidPage(
                            fluidPage(
                              h3("Songs"),
 
-                             h4("Choose one or more releases, a selection of songs, or a range of dates."),
+                             h4("Choose one or more releases, a selection of songs, and / or a range of dates."),
 
                              h6("The output will be limited to a maximum of 20 songs."),
 
@@ -317,17 +317,92 @@ server <- function(input, output, session) {
 
   })
 
-  shows_data2 <- reactive({
+
+  output$menuOptions_cities <- renderUI({
 
     if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==FALSE & is.null(input$countryInput_shows)==FALSE) {
+      menudata <- shows_data %>%
+        filter(year %in% input$yearInput_shows &
+                 tour %in% input$tourInput_shows &
+                 country %in% input$countryInput_shows) %>%
+        arrange(city)
+
+    } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==FALSE & is.null(input$countryInput_shows)==TRUE) {
+
+      menudata <- shows_data %>%
+        filter(year %in% input$yearInput_shows &
+                 tour %in% input$tourInput_shows) %>%
+        arrange(city)
+
+
+    } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==TRUE & is.null(input$countryInput_shows)==FALSE) {
+      menudata <- shows_data %>%
+        filter(year %in% input$yearInput_shows &
+                 country %in% input$countryInput_shows) %>%
+        arrange(city)
+
+    } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==TRUE & is.null(input$countryInput_shows)==TRUE) {
+      menudata <- shows_data %>%
+        filter(year %in% input$yearInput_shows) %>%
+        arrange(city)
+
+    } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==FALSE & is.null(input$countryInput_shows)==FALSE) {
+      menudata <- shows_data %>%
+        filter(tour %in% input$tourInput_shows &
+                 country %in% input$countryInput_shows) %>%
+        arrange(city)
+
+    } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==FALSE & is.null(input$countryInput_shows)==TRUE) {
+      menudata <- shows_data %>%
+        filter(tour %in% input$tourInput_shows) %>%
+        arrange(city)
+
+    } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==TRUE & is.null(input$countryInput_shows)==FALSE) {
+      menudata <- shows_data %>%
+        filter(country %in% input$countryInput_shows) %>%
+        arrange(city)
+
+    } else {
+      menudata <- shows_data %>%
+        arrange(city)
+
+    }
+
+    selectizeInput("cityInput_shows", "cities:",
+                   choices = c(unique(menudata$city)), multiple =TRUE)
+
+  })
+
+
+  shows_data2 <- reactive({
+
+    if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==FALSE & is.null(input$countryInput_shows)==FALSE & is.null(input$cityInput_shows)==FALSE) {
       mydf <- shows_data %>%
         filter(date >= input$dateInput_shows[1] &
                  date <= input$dateInput_shows[2] &
                  year %in% input$yearInput_shows &
                  tour %in% input$tourInput_shows &
-                 country %in% input$countryInput_shows)
+                 country %in% input$countryInput_shows &
+                 city %in% input$cityInput_shows)
 
-    } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==FALSE & is.null(input$countryInput_shows)==TRUE) {
+    } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==FALSE & is.null(input$countryInput_shows)==FALSE & is.null(input$cityInput_shows)==TRUE) {
+        mydf <- shows_data %>%
+          filter(date >= input$dateInput_shows[1] &
+                   date <= input$dateInput_shows[2] &
+                   year %in% input$yearInput_shows &
+                   tour %in% input$tourInput_shows &
+                   country %in% input$countryInput_shows)
+
+    } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==FALSE & is.null(input$countryInput_shows)==TRUE & is.null(input$cityInput_shows)==FALSE) {
+
+      mydf <- shows_data %>%
+        filter(date >= input$dateInput_shows[1] &
+                 date <= input$dateInput_shows[2] &
+                 year %in% input$yearInput_shows &
+                 tour %in% input$tourInput_shows &
+                 city %in% input$cityInput_shows)
+
+    } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==FALSE & is.null(input$countryInput_shows)==TRUE & is.null(input$cityInput_shows)==TRUE) {
 
       mydf <- shows_data %>%
         filter(date >= input$dateInput_shows[1] &
@@ -336,37 +411,80 @@ server <- function(input, output, session) {
                  tour %in% input$tourInput_shows)
 
 
-    } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==TRUE & is.null(input$countryInput_shows)==FALSE) {
+    } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==TRUE & is.null(input$countryInput_shows)==FALSE & is.null(input$cityInput_shows)==FALSE) {
+      mydf <- shows_data %>%
+        filter(date >= input$dateInput_shows[1] &
+                 date <= input$dateInput_shows[2] &
+                 year %in% input$yearInput_shows &
+                 country %in% input$countryInput_shows &
+                 city %in% input$cityInput_shows)
+
+    } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==TRUE & is.null(input$countryInput_shows)==FALSE & is.null(input$cityInput_shows)==TRUE) {
       mydf <- shows_data %>%
         filter(date >= input$dateInput_shows[1] &
                  date <= input$dateInput_shows[2] &
                  year %in% input$yearInput_shows &
                  country %in% input$countryInput_shows)
 
-    } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==TRUE & is.null(input$countryInput_shows)==TRUE) {
+    } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==TRUE & is.null(input$countryInput_shows)==TRUE & is.null(input$cityInput_shows)==FALSE) {
+      mydf <- shows_data %>%
+        filter(date >= input$dateInput_shows[1] &
+                 date <= input$dateInput_shows[2] &
+                 year %in% input$yearInput_shows &
+                 city %in% input$cityInput_shows)
+
+    } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==TRUE & is.null(input$countryInput_shows)==TRUE & is.null(input$cityInput_shows)==TRUE) {
       mydf <- shows_data %>%
         filter(date >= input$dateInput_shows[1] &
                  date <= input$dateInput_shows[2] &
                  year %in% input$yearInput_shows)
 
-    } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==FALSE & is.null(input$countryInput_shows)==FALSE) {
+    } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==FALSE & is.null(input$countryInput_shows)==FALSE & is.null(input$cityInput_shows)==FALSE) {
+      mydf <- shows_data %>%
+        filter(date >= input$dateInput_shows[1] &
+                 date <= input$dateInput_shows[2] &
+                 tour %in% input$tourInput_shows &
+                 country %in% input$countryInput_shows &
+                 city %in% input$cityInput_shows)
+
+    } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==FALSE & is.null(input$countryInput_shows)==FALSE & is.null(input$cityInput_shows)==TRUE) {
       mydf <- shows_data %>%
         filter(date >= input$dateInput_shows[1] &
                  date <= input$dateInput_shows[2] &
                  tour %in% input$tourInput_shows &
                  country %in% input$countryInput_shows)
 
-    } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==FALSE & is.null(input$countryInput_shows)==TRUE) {
+    } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==FALSE & is.null(input$countryInput_shows)==TRUE & is.null(input$cityInput_shows)==FALSE) {
+      mydf <- shows_data %>%
+        filter(date >= input$dateInput_shows[1] &
+                 date <= input$dateInput_shows[2] &
+                 tour %in% input$tourInput_shows &
+                 city %in% input$cityInput_shows)
+
+    } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==FALSE & is.null(input$countryInput_shows)==TRUE & is.null(input$cityInput_shows)==TRUE) {
       mydf <- shows_data %>%
         filter(date >= input$dateInput_shows[1] &
                  date <= input$dateInput_shows[2] &
                  tour %in% input$tourInput_shows)
 
-    } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==TRUE & is.null(input$countryInput_shows)==FALSE) {
+    } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==TRUE & is.null(input$countryInput_shows)==FALSE & is.null(input$cityInput_shows)==FALSE) {
+      mydf <- shows_data %>%
+        filter(date >= input$dateInput_shows[1] &
+                 date <= input$dateInput_shows[2] &
+                 country %in% input$countryInput_shows &
+                 city %in% input$cityInput_shows)
+
+    } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==TRUE & is.null(input$countryInput_shows)==FALSE & is.null(input$cityInput_shows)==TRUE) {
       mydf <- shows_data %>%
         filter(date >= input$dateInput_shows[1] &
                  date <= input$dateInput_shows[2] &
                  country %in% input$countryInput_shows)
+
+    } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==TRUE & is.null(input$countryInput_shows)==TRUE & is.null(input$cityInput_shows)==FALSE){
+      mydf <- shows_data %>%
+        filter(date >= input$dateInput_shows[1] &
+                 date <= input$dateInput_shows[2] &
+                 city %in% input$cityInput_shows)
 
     } else {
       mydf <- shows_data %>%
