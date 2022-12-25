@@ -3,10 +3,11 @@
 
 library(Repeatr)
 
+yearInput_shows_choices <- c("All", sort(unique((othervariables$year))))
+
 # User Interface ----------------------------------------------------------
 
 ui <- fluidPage(
-
 
   h1("Repeatr"),
   tags$div(
@@ -30,7 +31,7 @@ ui <- fluidPage(
                            h6("The list of cities is restricted to cases where the coordinates of the venues have been checked and updated."),
 
 
-                           selectInput("yearInput_shows", "year:", choices = c("All", sort(unique((othervariables$year))))),
+                           selectInput("yearInput_shows", "year:", choices = yearInput_shows_choices),
                            selectInput("tourInput_shows", "tour:", choices = NULL),
                            selectInput("countryInput_shows", "country:", choices = NULL),
                            selectInput("cityInput_shows", "city:", choices = NULL),
@@ -247,14 +248,14 @@ server <- function(input, output, session) {
     if(input$yearInput_shows=="All") {
       othervariables
     } else {
-      othervariables %>%
-        filter(year == input$yearInput_shows)
+      othervariables
+      filter(othervariables, year == input$yearInput_shows)
     }
   })
 
   observeEvent(year_data(), {
-    tourInput_choices <- unique(year_data()$tour)
-    updateSelectInput(inputId = "tourInput_shows", choices = c("All", tourInput_choices))
+    tourInput_choices <- c("All", unique(year_data()$tour))
+    updateSelectInput(inputId = "tourInput_shows", choices = tourInput_choices)
   })
 
   tour_data <- reactive({
@@ -262,15 +263,14 @@ server <- function(input, output, session) {
     if(input$tourInput_shows=="All") {
       year_data()
     } else {
-      year_data() %>%
-        filter(tour == input$tourInput_shows)
+        filter(year_data(), tour == input$tourInput_shows)
     }
 
   })
 
   observeEvent(tour_data(), {
-    countryInput_choices <- unique(tour_data()$country)
-    updateSelectInput(inputId = "countryInput_shows", choices = c("All", countryInput_choices))
+    countryInput_choices <- c("All", unique(tour_data()$country))
+    updateSelectInput(inputId = "countryInput_shows", choices = countryInput_choices)
   })
 
   country_data <- reactive({
@@ -278,14 +278,13 @@ server <- function(input, output, session) {
     if(input$countryInput_shows=="All") {
       tour_data()
     } else {
-      tour_data() %>%
-      filter(country == input$countryInput_shows)
+      filter(tour_data(), country == input$countryInput_shows)
     }
   })
 
   observeEvent(country_data(), {
-    cityInput_choices <- unique(country_data()$city)
-    updateSelectInput(inputId = "cityInput_shows", choices = c("All", cityInput_choices))
+    cityInput_choices <- c("All", unique(country_data()$city))
+    updateSelectInput(inputId = "cityInput_shows", choices = cityInput_choices)
   })
 
   city_data <- reactive({
@@ -293,8 +292,7 @@ server <- function(input, output, session) {
     if(input$cityInput_shows=="All") {
       country_data()
     } else {
-      country_data() %>%
-      filter(city == input$cityInput_shows)
+      filter(country_data(), city == input$cityInput_shows)
     }
   })
 

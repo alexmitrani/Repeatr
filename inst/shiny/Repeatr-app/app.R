@@ -3,12 +3,17 @@
 
 # pre-processing ----------------------------------------------------------
 
-# data to define list of cities where the coordinates have been 100% checked
-othervariables_checked <- othervariables %>%
-  group_by(year, tour, country, city) %>%
-  summarize(checked_prop = mean(checked)) %>%
-  ungroup() %>%
-  filter(checked_prop==1)
+shows_data <- othervariables %>%
+  filter(is.na(attendance)==FALSE) %>%
+  filter(is.na(tour)==FALSE) %>%
+  mutate(attendance = as.integer(attendance)) %>%
+  mutate(date = as.Date(date, "%d-%m-%Y")) %>%
+  mutate(year = lubridate::year(date)) %>%
+  rename(latitude = y) %>%
+  rename(longitude = x) %>%
+  select(flsid, tour, year, date, venue, city, country, attendance, doorprice, latitude, longitude, checked) %>%
+  rename(door_price = doorprice,
+         fls_id = flsid)
 
 # User Interface ----------------------------------------------------------
 
@@ -36,13 +41,14 @@ ui <- fluidPage(
                              h4("Choose a year, a tour, a country, a city, or a range of dates."),
                              h6("The list of cities is restricted to cases where the coordinates of the venues have been checked and updated."),
 
+                             fluidRow(
+                               column(12,
+                                      selectizeInput("yearInput_shows", "year:",
+                                                     sort(unique((othervariables$year))),
+                                                     selected=NULL, multiple =TRUE),
+                                      uiOutput("menuOptions_tours"))
 
-                              selectInput("yearInput_shows", "year:", choices = sort(unique((othervariables$year)))),
-                              selectInput("tourInput_shows", "tour:", choices = NULL),
-                              selectInput("countryInput_shows", "country:", choices = NULL),
-                              selectInput("cityInput_shows", "city:", choices = NULL),
-                              tableOutput("citydata"),
-
+                             ),
 
                              # Slider control
 
@@ -259,73 +265,58 @@ server <- function(input, output, session) {
 
 # Shows -------------------------------------------------------------------
 
-    year_data <- reactive({
-      filter(othervariables_checked, year == input$yearInput_shows)
-    })
-    observeEvent(year_data(), {
-      tourInput_choices <- unique(year_data()$tour)
-      updateSelectInput(inputId = "tourInput_shows", choices = tourInput_choices)
-    })
+  # selectInput("yearInput_shows", "year:", choices = sort(unique((othervariables$year)))),
+  # selectInput("tourInput_shows", "tour:", choices = NULL),
+  # selectInput("countryInput_shows", "country:", choices = NULL),
+  # selectInput("cityInput_shows", "city:", choices = NULL),
+  # tableOutput("citydata"),
 
-    tour_data <- reactive({
-      req(input$tourInput_shows)
-      filter(year_data(), tour == input$tourInput_shows)
-    })
-    observeEvent(tour_data(), {
-      countryInput_choices <- unique(tour_data()$country)
-      updateSelectInput(inputId = "countryInput_shows", choices = countryInput_choices)
-    })
+  output$menuOptions_tours <- renderUI({
 
-    country_data <- reactive({
-      req(input$countryInput_shows)
-      filter(tour_data(), country == input$countryInput_shows)
-    })
-    observeEvent(country_data(), {
-      cityInput_choices <- unique(country_data()$city)
-      updateSelectInput(inputId = "cityInput_shows", choices = cityInput_choices)
-    })
+    if (is.null(input$yearInput_shows)==FALSE) {
+      menudata <- othervariables %>%
+        filter(year %in% input$yearInput_shows) %>%
+        arrange(year)
+    } else {
+      menudata <- othervariables %>%
+        arrange(year)
+    }
 
-    output$citydata <- renderTable({
-      req(input$cityInput_shows)
-      country_data() %>%
-        filter(city == input$cityInput_shows)
-    })
+    selectizeInput("tourInput_shows", "tours:",
+                   choices = c(unique(menudata$tour)), multiple =TRUE)
 
+  })
 
-  shows_data <- othervariables %>%
-    filter(is.na(attendance)==FALSE) %>%
-    filter(is.na(tour)==FALSE) %>%
-    mutate(attendance = as.integer(attendance)) %>%
-    mutate(date = as.Date(date, "%d-%m-%Y")) %>%
-    mutate(year = lubridate::year(date)) %>%
-    rename(latitude = y) %>%
-    rename(longitude = x) %>%
-    select(flsid, tour, year, date, venue, city, country, attendance, doorprice, latitude, longitude, checked) %>%
-    rename(door_price = doorprice,
-           fls_id = flsid)
 
   shows_data2 <- reactive({
 
-    data <- shows_data  %>%
-      arrange(date)
-    if (input$yearInput_shows != "All") {
-      data <- data[data$year == input$yearInput_shows,]
-    }
-    if (input$countryInput_shows != "All") {
-      data <- data[data$country == input$countryInput_shows,]
-    }
-    if (input$cityInput_shows != "All") {
-      data <- data[data$city == input$cityInput_shows,]
-    }
-    if (input$tourInput_shows != "All") {
-      data <- data[data$tour == input$tourInput_shows,]
+    if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==FALSE) {
+      mydf <- shows_data %>%
+        filter(date >= input$dateInput_shows[1] &
+                 date <= input$dateInput_shows[2] &
+                 year %in% input$yearInput_shows &
+                 tour %in% input$tourInput_shows)
+
+    } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==TRUE) {
+      mydf <- shows_data %>%
+        filter(date >= input$dateInput_shows[1] &
+                 date <= input$dateInput_shows[2] &
+                 year %in% input$yearInput_shows)
+
+    } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==FALSE) {
+      mydf <- shows_data %>%
+        filter(date >= input$dateInput_shows[1] &
+                 date <= input$dateInput_shows[2] &
+                 tour %in% input$tourInput_shows)
+
+    } else {
+      mydf <- shows_data %>%
+        filter(date >= input$dateInput_shows[1] &
+                 date <= input$dateInput_shows[2])
+
     }
 
-    data <- data %>%
-      filter(date >= input$dateInput_shows[1] &
-               date <= input$dateInput_shows[2])
-
-    data
+    mydf
 
   })
 
