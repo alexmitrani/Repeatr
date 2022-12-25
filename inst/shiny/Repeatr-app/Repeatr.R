@@ -30,7 +30,7 @@ ui <- fluidPage(
                            h6("The list of cities is restricted to cases where the coordinates of the venues have been checked and updated."),
 
 
-                           selectInput("yearInput_shows", "year:", choices = sort(unique((othervariables$year)))),
+                           selectInput("yearInput_shows", "year:", choices = c("All", sort(unique((othervariables$year))))),
                            selectInput("tourInput_shows", "tour:", choices = NULL),
                            selectInput("countryInput_shows", "country:", choices = NULL),
                            selectInput("cityInput_shows", "city:", choices = NULL),
@@ -241,7 +241,7 @@ ui <- fluidPage(
 )
 
 
-server <- function(input, output) {
+server <- function(input, output, session) {
 
   year_data <- reactive({
     if(input$yearInput_shows=="All") {
@@ -254,7 +254,7 @@ server <- function(input, output) {
 
   observeEvent(year_data(), {
     tourInput_choices <- unique(year_data()$tour)
-    updateSelectInput(inputId = "tourInput_shows", choices = tourInput_choices)
+    updateSelectInput(inputId = "tourInput_shows", choices = c("All", tourInput_choices))
   })
 
   tour_data <- reactive({
@@ -270,7 +270,7 @@ server <- function(input, output) {
 
   observeEvent(tour_data(), {
     countryInput_choices <- unique(tour_data()$country)
-    updateSelectInput(inputId = "countryInput_shows", choices = countryInput_choices)
+    updateSelectInput(inputId = "countryInput_shows", choices = c("All", countryInput_choices))
   })
 
   country_data <- reactive({
@@ -279,13 +279,13 @@ server <- function(input, output) {
       tour_data()
     } else {
       tour_data() %>%
-        filter(country == input$countryInput_shows)
+      filter(country == input$countryInput_shows)
     }
   })
 
   observeEvent(country_data(), {
     cityInput_choices <- unique(country_data()$city)
-    updateSelectInput(inputId = "cityInput_shows", choices = cityInput_choices)
+    updateSelectInput(inputId = "cityInput_shows", choices = c("All", cityInput_choices))
   })
 
   city_data <- reactive({
@@ -294,7 +294,7 @@ server <- function(input, output) {
       country_data()
     } else {
       country_data() %>%
-        filter(city == input$cityInput_shows)
+      filter(city == input$cityInput_shows)
     }
   })
 
