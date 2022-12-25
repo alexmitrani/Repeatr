@@ -129,6 +129,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   othervariables <- othervariables %>%
     mutate(country = ifelse(flsid=="FLS0970", "USA", country),
+           country = ifelse(city=="Ljubljana" & year>=1991, "Slovenia", country),
            city = ifelse(flsid=="FLS0970", "San Francisco", city),
            x = ifelse(flsid=="FLS0970", -122.4272376, x),
            y = ifelse(flsid=="FLS0970", 37.760407, y),
