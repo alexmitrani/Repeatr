@@ -1,5 +1,13 @@
 
-#' nscmov = No satellite could map our veins
+#' nscmov = No satellite could map our veins.
+#'
+#' Process for updating coordinates on Shiny app:
+#' 1) pull updated data from github
+#' 2) run nscmov()
+#' 3) push updates to github
+#' 4) reinstall Repeatr package from github
+#' 5) run shiny app from app.R
+#' 6) reinstall the Shiny app on shinyapps.io
 #'
 #' @param fls_venue_geocoding_update_filename filename of file with which to update coordinates data in othervariables.rda
 #'
