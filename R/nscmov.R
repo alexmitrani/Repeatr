@@ -13,11 +13,12 @@
 nscmov <- function(fls_venue_geocoding_update_filename=NULL) {
 
   mydir <- getwd()
+  myinputdir <- paste0(mydir, "/inst/extdata/")
   mydatadir <- paste0(mydir, "/data")
 
   if(is.null(fls_venue_geocoding_update_filename)==TRUE) {
 
-    fls_venue_geocoding_update_filename <- system.file("extdata", "fls_venue_geocoding.csv", package = "Repeatr")
+    fls_venue_geocoding_update_filename <- paste0(myinputdir, "fls_venue_geocoding.csv")
 
   }
 
