@@ -21,16 +21,7 @@ shows_data <- othervariables %>%
 
 ui <- fluidPage(
 
-  tags$style(type = "text/css", "html, body {width:100%; height:100%}",
-    HTML('
-         #buttons {
-         display: flex;
-         margin-bottom:20px; opacity:1; height:85px;
-         align-items: center;
-         justify-content: center;
-         }
-         ')
-  ),
+  tags$style(type = "text/css", "html, body {width:100%; height:100%}"),
 
   h1("Repeatr"),
   tags$div(
@@ -71,21 +62,7 @@ ui <- fluidPage(
                                       numericInput("days", "days:", 5542,
                                                    min = 7, max = 5542)),
 
-                               column(1,
-                                      align="center", id="buttons",
-                                      actionButton(
-                                        "step_b",
-                                        icon("backward")
-                                      )
-                               ),
 
-                               column(1,
-                                      align="center", id="buttons",
-                                      actionButton(
-                                        "step_f",
-                                        icon("forward")
-                                      )
-                               )
 
                              ),
 
@@ -95,6 +72,26 @@ ui <- fluidPage(
                                column(12,
                                       sliderInput("dateInput_shows", "Initial date:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                                                   value=c(as.Date("1987-09-03")), timeFormat = "%F"))
+                             ),
+
+                             fluidRow(
+
+                               column(1,
+                                      align="center",
+                                      actionButton(
+                                        "step_b",
+                                        icon("backward")
+                                      )
+                               ),
+
+                               column(1,
+                                      align="center",
+                                      actionButton(
+                                        "step_f",
+                                        icon("forward")
+                                      )
+                               )
+
                              ),
 
 
