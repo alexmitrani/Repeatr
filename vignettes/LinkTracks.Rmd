@@ -317,6 +317,27 @@ Returning to the initial question of whether Fugazi picked songs randomly, the s
 There is an interactive version of the above graph available [here](https://alexmitrani.shinyapps.io/Repeatr-app/) - have fun!
 
 
+## Mapping the Fugazi Live Series
+
+I have tried my best to locate all the shows of the Fugazi Live Series on an interactive, online map. I started with the information on the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) website, including any flyers and comments. Google Maps would find some places quickly but others would be more difficult - many of the venues are no longer there. The search was broadened using sites like [setlist.fm](https://www.setlist.fm/) which has addresses for some venues, image searches for the flyers of other concerts by other bands at the same venues, and also online publications - there are quite a few of these on defunct venues that have long gone but live on in people's memories.  
+
+To the best of my knowledge, about 98% of the shows have been located to a reasonable degree of accuracy. The remaining 2% should be located in the right city but may not be in the right place within the city. The results can be found [here](https://alexmitrani.shinyapps.io/Repeatr-app/).
+
+Let's have a quick look at the 2% of venues that I haven't been able to locate properly. It's only 12 shows. 
+
+```{r}
+mydf <- othervariables %>%
+  filter(checked==0) %>% 
+  mutate(flslink = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
+  select(flsid, date, venue, city, country, tour, flslink)
+
+mydf %>%
+  print(n=nrow(mydf), na.print=NULL)
+```
+
+If you know where any of these shows were located, or see an error that needs correcting anywhere else on the map, please let me know.  You can leave me a message by opening an issue on the [Repeatr GitHub](https://github.com/alexmitrani/Repeatr), or by contacting me on [Twitter](https://twitter.com/alex_mitrani_es) or on [Mastodon](https://mastodon.online/@alex_mitrani_es). Thanks.
+
+
 
 
 
