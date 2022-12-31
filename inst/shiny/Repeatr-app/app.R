@@ -60,19 +60,19 @@ ui <- fluidPage(
 
                                column(3,
                                       numericInput("days", "days:", 5542,
-                                                   min = 7, max = 5542)),
-
-
+                                                   min = 7, max = 5542))
 
                              ),
 
-                             # Slider control
-
                              fluidRow(
+
                                column(12,
                                       sliderInput("dateInput_shows", "Initial date:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                                                   value=c(as.Date("1987-09-03")), timeFormat = "%F"))
+
+
                              ),
+
 
                              fluidRow(
 
