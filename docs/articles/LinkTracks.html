@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9064</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9071</span>
       </span>
     </div>
 
@@ -232,7 +232,7 @@ country on each of those tours.</p>
 <span><span class="va">mydf2</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">mydf2</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
 <span></span>
 <span><span class="va">mydf2</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 20 × 3</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 21 × 3</span></span></span>
 <span><span class="co">#&gt;    country          `1990 Fall European Tour` `1995 Spring/Summer European Tour`</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>                              <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Austria                                  3                                  2</span></span>
@@ -245,16 +245,7 @@ country on each of those tours.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Italy                                    6                                 10</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Netherlands                              8                                  4</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Northern Ireland                         1                                  1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> Norway                                   3                                  1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> Poland                                   3                                  0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> Scotland                                 1                                  1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> Spain                                    1                                  6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> Sweden                                   2                                  0</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> Switzerland                              1                                  1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">17</span> Yugoslavia                               2                                  1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">18</span> Czech Republic                           0                                  1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">19</span> Finland                                  0                                  1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">20</span> Portugal                                 0                                  1</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 11 more rows</span></span></span></code></pre></div>
 <p>The 1995 tour included visits to 17 countries compared to only 16 in
 the 1990 tour. In 1995 Fugazi skipped Sweden and Poland but added visits
 to Finland, the Czech Republic and Portugal. The 1995 tour almost
@@ -636,6 +627,79 @@ different system for picking songs</a> once but it only lasted about one
 song!</p>
 <p>There is an interactive version of the above graph available <a href="https://alexmitrani.shinyapps.io/Repeatr-app/" class="external-link">here</a> - have
 fun!</p>
+</div>
+<div class="section level2">
+<h2 id="mapping-the-fugazi-live-series">Mapping the Fugazi Live Series<a class="anchor" aria-label="anchor" href="#mapping-the-fugazi-live-series"></a>
+</h2>
+<p>I have tried my best to locate all the shows of the Fugazi Live
+Series on an interactive, online map. I started with the information on
+the <a href="https://www.dischord.com/fugazi_live_series" class="external-link">Fugazi Live
+Series</a> website, including any flyers and comments. Google Maps would
+find some places quickly but others would be more difficult - many of
+the venues are no longer there. The search was broadened using sites
+like <a href="https://www.setlist.fm/" class="external-link">setlist.fm</a> which has
+addresses for some venues, image searches for the flyers of other
+concerts by other bands at the same venues, and also online publications
+- there are quite a few of these on defunct venues that have long gone
+but live on in people’s memories.</p>
+<p>To the best of my knowledge, about 98% of the shows have been located
+to a reasonable degree of accuracy. The remaining 2% should be located
+in the right city but may not be in the right place within the city. The
+results can be found <a href="https://alexmitrani.shinyapps.io/Repeatr-app/" class="external-link">here</a>.</p>
+<p>Let’s have a quick look at the 2% of venues that I haven’t been able
+to locate properly. It’s only 12 shows.</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mydf</span> <span class="op">&lt;-</span> <span class="va">othervariables</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">checked</span><span class="op">==</span><span class="fl">0</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>flslink <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"https://www.dischord.com/fugazi_live_series/"</span>, <span class="va">gid</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">flsid</span>, <span class="va">date</span>, <span class="va">venue</span>, <span class="va">city</span>, <span class="va">country</span>, <span class="va">tour</span>, <span class="va">flslink</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">mydf</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span>n<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">mydf</span><span class="op">)</span>, na.print<span class="op">=</span><span class="cn">NULL</span><span class="op">)</span></span>
+<span><span class="co">#&gt;      flsid       date               venue          city country</span></span>
+<span><span class="co">#&gt; 1  FLS0039 1988-05-29        Honest Place        Dallas     USA</span></span>
+<span><span class="co">#&gt; 2  FLS0070 1988-11-05             Bootleg      Augsburg Germany</span></span>
+<span><span class="co">#&gt; 3  FLS0104 1989-05-02      Dance Graphics Columbia (SC)     USA</span></span>
+<span><span class="co">#&gt; 4  FLS0227 1990-06-12          Studio 225  Fayetteville     USA</span></span>
+<span><span class="co">#&gt; 5  FLS0243 1990-06-30        Machine Shop    Morgantown     USA</span></span>
+<span><span class="co">#&gt; 6  FLS0274 1990-10-05 Karuzela University        Warsaw  Poland</span></span>
+<span><span class="co">#&gt; 7  FLS0339 1991-05-13                 Sun      Savannah     USA</span></span>
+<span><span class="co">#&gt; 8  FLS0354 1991-06-01          Studio 225  Fayetteville     USA</span></span>
+<span><span class="co">#&gt; 9  FLS0506 1993-02-20           Trim Shop    Greensboro     USA</span></span>
+<span><span class="co">#&gt; 10 FLS0680 1995-06-04        Zepplin Rock      Valencia   Spain</span></span>
+<span><span class="co">#&gt; 11 FLS0776 1996-03-30                 Zoo      Savannah     USA</span></span>
+<span><span class="co">#&gt; 12 FLS0964 2000-01-14          River Rock      Savannah     USA</span></span>
+<span><span class="co">#&gt;                                tour</span></span>
+<span><span class="co">#&gt; 1              1988 Spring USA Tour</span></span>
+<span><span class="co">#&gt; 2           1988 Fall European Tour</span></span>
+<span><span class="co">#&gt; 3              1989 Spring USA Tour</span></span>
+<span><span class="co">#&gt; 4       1990 Spring/Summer USA Tour</span></span>
+<span><span class="co">#&gt; 5       1990 Spring/Summer USA Tour</span></span>
+<span><span class="co">#&gt; 6           1990 Fall European Tour</span></span>
+<span><span class="co">#&gt; 7              1991 Spring USA Tour</span></span>
+<span><span class="co">#&gt; 8              1991 Spring USA Tour</span></span>
+<span><span class="co">#&gt; 9     1993 Winter Southern USA Tour</span></span>
+<span><span class="co">#&gt; 10 1995 Spring/Summer European Tour</span></span>
+<span><span class="co">#&gt; 11           1996 Southern USA Tour</span></span>
+<span><span class="co">#&gt; 12    2000 Winter Southern USA Tour</span></span>
+<span><span class="co">#&gt;                                                                  flslink</span></span>
+<span><span class="co">#&gt; 1        https://www.dischord.com/fugazi_live_series/dallas-tx-usa-52988</span></span>
+<span><span class="co">#&gt; 2    https://www.dischord.com/fugazi_live_series/augsburg-germany-110588</span></span>
+<span><span class="co">#&gt; 3      https://www.dischord.com/fugazi_live_series/columbia-sc-usa-50289</span></span>
+<span><span class="co">#&gt; 4  https://www.dischord.com/fugazi_live_series/fayetteville-ar-usa-61290</span></span>
+<span><span class="co">#&gt; 5    https://www.dischord.com/fugazi_live_series/morgantown-wv-usa-63090</span></span>
+<span><span class="co">#&gt; 6       https://www.dischord.com/fugazi_live_series/warsaw-poland-100590</span></span>
+<span><span class="co">#&gt; 7      https://www.dischord.com/fugazi_live_series/savannah-ga-usa-51391</span></span>
+<span><span class="co">#&gt; 8  https://www.dischord.com/fugazi_live_series/fayetteville-ar-usa-60191</span></span>
+<span><span class="co">#&gt; 9    https://www.dischord.com/fugazi_live_series/greensboro-nc-usa-22093</span></span>
+<span><span class="co">#&gt; 10      https://www.dischord.com/fugazi_live_series/valencia-spain-60495</span></span>
+<span><span class="co">#&gt; 11     https://www.dischord.com/fugazi_live_series/savannah-ga-usa-33096</span></span>
+<span><span class="co">#&gt; 12     https://www.dischord.com/fugazi_live_series/savannah-ga-usa-11400</span></span></code></pre></div>
+<p>If you know where any of these shows were located, or see an error
+that needs correcting anywhere else on the map, please let me know. You
+can leave me a message by opening an issue on the <a href="https://github.com/alexmitrani/Repeatr" class="external-link">Repeatr GitHub</a>, or by
+contacting me on <a href="https://twitter.com/alex_mitrani_es" class="external-link">Twitter</a> or on <a href="https://mastodon.online/@alex_mitrani_es" class="external-link">Mastodon</a>.
+Thanks.</p>
 </div>
   </div>
 
