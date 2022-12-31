@@ -68,22 +68,23 @@ ui <- fluidPage(
                              fluidRow(
 
                                column(3,
-                                      numericInput("days", "days:", 365,
+                                      numericInput("days", "days:", 5542,
                                                    min = 7, max = 5542)),
 
-                               column(2,
-                                 align="center", id="buttons",
-                                 actionButton(
-                                   "step_b",
-                                   icon("backward")
-                                 )),
+                               column(1,
+                                      align="center", id="buttons",
+                                      actionButton(
+                                        "step_b",
+                                        icon("backward")
+                                      )
+                               ),
 
-                                 column(2,
-                                   align="center", id="buttons",
-                                   actionButton(
-                                     "step_f",
-                                     icon("forward")
-                                   )
+                               column(1,
+                                      align="center", id="buttons",
+                                      actionButton(
+                                        "step_f",
+                                        icon("forward")
+                                      )
                                )
 
                              ),
@@ -91,10 +92,11 @@ ui <- fluidPage(
                              # Slider control
 
                              fluidRow(
-                               column(9,
+                               column(12,
                                       sliderInput("dateInput_shows", "Initial date:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                                                   value=c(as.Date("1987-09-03")), timeFormat = "%F"))
                              ),
+
 
                              h4("Select a show on the map to get further details."),
                              h6("The locations are approximate."),
