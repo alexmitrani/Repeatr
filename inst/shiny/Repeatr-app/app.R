@@ -29,7 +29,6 @@ ui <- fluidPage(
          align-items: center;
          justify-content: center;
          }
-
          ')
   ),
 
@@ -72,20 +71,18 @@ ui <- fluidPage(
                                       numericInput("days", "days:", 365,
                                                    min = 7, max = 5542)),
 
-                               column(
-                                 2,
+                               column(2,
                                  align="center", id="buttons",
                                  actionButton(
                                    "step_b",
-                                   "Back"
+                                   icon("backward")
                                  )),
 
-                                 column(
-                                   2,
+                                 column(2,
                                    align="center", id="buttons",
                                    actionButton(
                                      "step_f",
-                                     "Forward"
+                                     icon("forward")
                                    )
                                )
 
