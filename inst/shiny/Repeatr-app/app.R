@@ -21,7 +21,17 @@ shows_data <- othervariables %>%
 
 ui <- fluidPage(
 
-  tags$style(type = "text/css", "html, body {width:100%; height:100%}"),
+  tags$style(type = "text/css", "html, body {width:100%; height:100%}",
+    HTML('
+         #buttons {
+         display: flex;
+         margin-bottom:20px; opacity:1; height:85px;
+         align-items: center;
+         justify-content: center;
+         }
+
+         ')
+  ),
 
   h1("Repeatr"),
   tags$div(
@@ -54,12 +64,39 @@ ui <- fluidPage(
 
                              ),
 
+                             # Controls for slider
+
+                             fluidRow(
+
+                               column(3,
+                                      numericInput("days", "days:", 365,
+                                                   min = 7, max = 5542)),
+
+                               column(
+                                 2,
+                                 align="center", id="buttons",
+                                 actionButton(
+                                   "step_b",
+                                   "Back"
+                                 )),
+
+                                 column(
+                                   2,
+                                   align="center", id="buttons",
+                                   actionButton(
+                                     "step_f",
+                                     "Forward"
+                                   )
+                               )
+
+                             ),
+
                              # Slider control
 
                              fluidRow(
-                               column(6,
-                                      sliderInput("dateInput_shows", "Range of dates:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
-                                                  value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
+                               column(9,
+                                      sliderInput("dateInput_shows", "Initial date:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                                                  value=c(as.Date("1987-09-03")), timeFormat = "%F"))
                              ),
 
                              h4("Select a show on the map to get further details."),
@@ -236,7 +273,7 @@ ui <- fluidPage(
                                  column(12,
                                         DT::dataTableOutput("transitionsdatatable")
                                  )
-                               ),
+                               )
 
                              )
 
@@ -376,13 +413,27 @@ server <- function(input, output, session) {
 
   })
 
+  observeEvent(input$step_f, {
+    date1 <- input$dateInput_shows[1] + input$days
+    updateSliderInput(session,"dateInput_shows", "Initial date:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                value=c(date1), timeFormat = "%F")
+  })
+
+  observeEvent(input$step_b, {
+    date1 <- input$dateInput_shows[1] - input$days
+    updateSliderInput(session,"dateInput_shows", "Initial date:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                      value=c(date1), timeFormat = "%F")
+  })
 
   shows_data2 <- reactive({
 
+    date1 <- input$dateInput_shows[1]
+    date2 <- date1 + input$days
+
     if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==FALSE & is.null(input$countryInput_shows)==FALSE & is.null(input$cityInput_shows)==FALSE) {
       mydf <- shows_data %>%
-        filter(date >= input$dateInput_shows[1] &
-                 date <= input$dateInput_shows[2] &
+        filter(date >= date1 &
+                 date <= date2 &
                  year %in% input$yearInput_shows &
                  tour %in% input$tourInput_shows &
                  country %in% input$countryInput_shows &
@@ -390,8 +441,8 @@ server <- function(input, output, session) {
 
     } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==FALSE & is.null(input$countryInput_shows)==FALSE & is.null(input$cityInput_shows)==TRUE) {
         mydf <- shows_data %>%
-          filter(date >= input$dateInput_shows[1] &
-                   date <= input$dateInput_shows[2] &
+          filter(date >= date1 &
+                   date <= date2 &
                    year %in% input$yearInput_shows &
                    tour %in% input$tourInput_shows &
                    country %in% input$countryInput_shows)
@@ -399,8 +450,8 @@ server <- function(input, output, session) {
     } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==FALSE & is.null(input$countryInput_shows)==TRUE & is.null(input$cityInput_shows)==FALSE) {
 
       mydf <- shows_data %>%
-        filter(date >= input$dateInput_shows[1] &
-                 date <= input$dateInput_shows[2] &
+        filter(date >= date1 &
+                 date <= date2 &
                  year %in% input$yearInput_shows &
                  tour %in% input$tourInput_shows &
                  city %in% input$cityInput_shows)
@@ -408,91 +459,91 @@ server <- function(input, output, session) {
     } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==FALSE & is.null(input$countryInput_shows)==TRUE & is.null(input$cityInput_shows)==TRUE) {
 
       mydf <- shows_data %>%
-        filter(date >= input$dateInput_shows[1] &
-                 date <= input$dateInput_shows[2] &
+        filter(date >= date1 &
+                 date <= date2 &
                  year %in% input$yearInput_shows &
                  tour %in% input$tourInput_shows)
 
 
     } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==TRUE & is.null(input$countryInput_shows)==FALSE & is.null(input$cityInput_shows)==FALSE) {
       mydf <- shows_data %>%
-        filter(date >= input$dateInput_shows[1] &
-                 date <= input$dateInput_shows[2] &
+        filter(date >= date1 &
+                 date <= date2 &
                  year %in% input$yearInput_shows &
                  country %in% input$countryInput_shows &
                  city %in% input$cityInput_shows)
 
     } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==TRUE & is.null(input$countryInput_shows)==FALSE & is.null(input$cityInput_shows)==TRUE) {
       mydf <- shows_data %>%
-        filter(date >= input$dateInput_shows[1] &
-                 date <= input$dateInput_shows[2] &
+        filter(date >= date1 &
+                 date <= date2 &
                  year %in% input$yearInput_shows &
                  country %in% input$countryInput_shows)
 
     } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==TRUE & is.null(input$countryInput_shows)==TRUE & is.null(input$cityInput_shows)==FALSE) {
       mydf <- shows_data %>%
-        filter(date >= input$dateInput_shows[1] &
-                 date <= input$dateInput_shows[2] &
+        filter(date >= date1 &
+                 date <= date2 &
                  year %in% input$yearInput_shows &
                  city %in% input$cityInput_shows)
 
     } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==TRUE & is.null(input$countryInput_shows)==TRUE & is.null(input$cityInput_shows)==TRUE) {
       mydf <- shows_data %>%
-        filter(date >= input$dateInput_shows[1] &
-                 date <= input$dateInput_shows[2] &
+        filter(date >= date1 &
+                 date <= date2 &
                  year %in% input$yearInput_shows)
 
     } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==FALSE & is.null(input$countryInput_shows)==FALSE & is.null(input$cityInput_shows)==FALSE) {
       mydf <- shows_data %>%
-        filter(date >= input$dateInput_shows[1] &
-                 date <= input$dateInput_shows[2] &
+        filter(date >= date1 &
+                 date <= date2 &
                  tour %in% input$tourInput_shows &
                  country %in% input$countryInput_shows &
                  city %in% input$cityInput_shows)
 
     } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==FALSE & is.null(input$countryInput_shows)==FALSE & is.null(input$cityInput_shows)==TRUE) {
       mydf <- shows_data %>%
-        filter(date >= input$dateInput_shows[1] &
-                 date <= input$dateInput_shows[2] &
+        filter(date >= date1 &
+                 date <= date2 &
                  tour %in% input$tourInput_shows &
                  country %in% input$countryInput_shows)
 
     } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==FALSE & is.null(input$countryInput_shows)==TRUE & is.null(input$cityInput_shows)==FALSE) {
       mydf <- shows_data %>%
-        filter(date >= input$dateInput_shows[1] &
-                 date <= input$dateInput_shows[2] &
+        filter(date >= date1 &
+                 date <= date2 &
                  tour %in% input$tourInput_shows &
                  city %in% input$cityInput_shows)
 
     } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==FALSE & is.null(input$countryInput_shows)==TRUE & is.null(input$cityInput_shows)==TRUE) {
       mydf <- shows_data %>%
-        filter(date >= input$dateInput_shows[1] &
-                 date <= input$dateInput_shows[2] &
+        filter(date >= date1 &
+                 date <= date2 &
                  tour %in% input$tourInput_shows)
 
     } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==TRUE & is.null(input$countryInput_shows)==FALSE & is.null(input$cityInput_shows)==FALSE) {
       mydf <- shows_data %>%
-        filter(date >= input$dateInput_shows[1] &
-                 date <= input$dateInput_shows[2] &
+        filter(date >= date1 &
+                 date <= date2 &
                  country %in% input$countryInput_shows &
                  city %in% input$cityInput_shows)
 
     } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==TRUE & is.null(input$countryInput_shows)==FALSE & is.null(input$cityInput_shows)==TRUE) {
       mydf <- shows_data %>%
-        filter(date >= input$dateInput_shows[1] &
-                 date <= input$dateInput_shows[2] &
+        filter(date >= date1 &
+                 date <= date2 &
                  country %in% input$countryInput_shows)
 
     } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==TRUE & is.null(input$countryInput_shows)==TRUE & is.null(input$cityInput_shows)==FALSE){
       mydf <- shows_data %>%
-        filter(date >= input$dateInput_shows[1] &
-                 date <= input$dateInput_shows[2] &
+        filter(date >= date1 &
+                 date <= date2 &
                  city %in% input$cityInput_shows)
 
     } else {
       mydf <- shows_data %>%
-        filter(date >= input$dateInput_shows[1] &
-                 date <= input$dateInput_shows[2])
+        filter(date >= date1 &
+                 date <= date2)
 
     }
 
