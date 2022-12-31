@@ -410,13 +410,13 @@ server <- function(input, output, session) {
   })
 
   observeEvent(input$step_f, {
-    date1 <- input$dateInput_shows[1] + input$days
+    date1 <- input$dateInput_shows[1] + 1
     updateSliderInput(session,"dateInput_shows", "Initial date:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                 value=c(date1), timeFormat = "%F")
   })
 
   observeEvent(input$step_b, {
-    date1 <- input$dateInput_shows[1] - input$days
+    date1 <- input$dateInput_shows[1] - 1
     updateSliderInput(session,"dateInput_shows", "Initial date:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                       value=c(date1), timeFormat = "%F")
   })
