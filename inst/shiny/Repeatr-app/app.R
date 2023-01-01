@@ -41,7 +41,7 @@ ui <- fluidPage(
                            fluidPage(
                              h3("Shows"),
 
-                             h4("Choose one or more years, tours, countries, cities, and / or a range of dates."),
+                             h4("Choose one or more years, tours, countries or cities."),
 
                              fluidRow(
                                column(6,
@@ -61,14 +61,16 @@ ui <- fluidPage(
 
                              # Controls for slider
 
+                           h4("Use the timeline controls to move forward or backwards in time."),
+
                              fluidRow(
 
                                column(6,
-                                      numericInput("days", "days:", 5542,
+                                      numericInput("days", "period (days):", 5542,
                                                    min = 1, max = 5542)),
 
                                column(6,
-                                      numericInput("step_days", "increment:", 1,
+                                      numericInput("step_days", "step (days):", 1,
                                                    min = 1, max = 365))
 
                              ),
@@ -76,7 +78,7 @@ ui <- fluidPage(
                              fluidRow(
 
                                column(6,
-                                      sliderInput("dateInput_shows", "Timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                                      sliderInput("dateInput_shows", "timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                                                   value=c(as.Date("1987-09-03")), timeFormat = "%F")),
 
                                column(6,
@@ -441,8 +443,11 @@ server <- function(input, output, session) {
     updateSliderInput(session,"dateInput_shows", "Timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                       value=c(date1), timeFormat = "%F")
     freezeReactiveValue(input, "days")
-    updateNumericInput(session, "days", "days:", 7,
+    updateNumericInput(session, "days", "period (days):", 7,
                  min = 1, max = 5542)
+    freezeReactiveValue(input, "step_days")
+    updateNumericInput(session, "step_days", "step (days):", 1,
+                       min = 1, max = 5542)
   })
 
   observeEvent(input$step_f, {
@@ -458,7 +463,10 @@ server <- function(input, output, session) {
     updateSliderInput(session,"dateInput_shows", "Timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                       value=c(as.Date("1987-09-03")), timeFormat = "%F")
     freezeReactiveValue(input, "days")
-    updateNumericInput(session, "days", "days:", 5542,
+    updateNumericInput(session, "days", "period (days):", 5542,
+                       min = 1, max = 5542)
+    freezeReactiveValue(input, "step_days")
+    updateNumericInput(session, "step_days", "step (days):", 1,
                        min = 1, max = 5542)
   })
 
