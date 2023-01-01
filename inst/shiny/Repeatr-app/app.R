@@ -421,6 +421,22 @@ server <- function(input, output, session) {
 
   })
 
+  observeEvent(input$tourInput_shows, {
+
+    if (is.null(input$tourInput_shows)==FALSE) {
+
+      mydf <- shows_data %>%
+        filter(tour %in% input$tourInput_shows)
+
+    date1 <- as.Date(min(mydf$date))
+
+    updateSliderInput(session,"dateInput_shows", "Initial date:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                      value=c(date1), timeFormat = "%F")
+
+    }
+
+  })
+
   observeEvent(input$step_f, {
     date1 <- input$dateInput_shows[1] + input$step_days
     updateSliderInput(session,"dateInput_shows", "Initial date:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
