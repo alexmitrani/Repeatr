@@ -44,35 +44,43 @@ ui <- fluidPage(
                              h4("Choose one or more years, tours, countries, cities, and / or a range of dates."),
 
                              fluidRow(
-                               column(12,
-                                      selectizeInput("yearInput_shows", "year:",
+                               column(6,
+                                      selectizeInput("yearInput_shows", "years:",
                                                      sort(unique((othervariables$year))),
-                                                     selected=NULL, multiple =TRUE),
-                                      uiOutput("menuOptions_tours"),
-                                      uiOutput("menuOptions_countries"),
-                                      uiOutput("menuOptions_cities"))
+                                                     selected=NULL, multiple =TRUE)),
+                               column(6, uiOutput("menuOptions_tours"))
 
                              ),
+
+                           fluidRow(
+
+                             column(6, uiOutput("menuOptions_countries")),
+                             column(6, uiOutput("menuOptions_cities"))
+
+                            ),
 
                              # Controls for slider
 
                              fluidRow(
 
-                               column(3,
+                               column(6,
                                       numericInput("days", "days:", 5542,
                                                    min = 7, max = 5542)),
 
-                               column(9,
-                                      sliderInput("dateInput_shows", "Initial date:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
-                                                  value=c(as.Date("1987-09-03")), timeFormat = "%F"))
-
+                               column(6,
+                                      numericInput("step_days", "step:", 1,
+                                                   min = 1, max = 365))
 
                              ),
-
 
                              fluidRow(
 
                                column(6,
+                                      sliderInput("dateInput_shows", "Initial date:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                                                  value=c(as.Date("1987-09-03")), timeFormat = "%F")),
+
+
+                               column(3,
                                       align="center",
                                       actionButton(
                                         "step_b",
@@ -80,7 +88,7 @@ ui <- fluidPage(
                                       )
                                ),
 
-                               column(6,
+                               column(3,
                                       align="center",
                                       actionButton(
                                         "step_f",
@@ -96,8 +104,11 @@ ui <- fluidPage(
 
                              fluidRow(
 
+                               column(12,
 
-                               leafletOutput("mymap")
+                                leafletOutput("mymap")
+
+                               )
 
 
                              ),
@@ -108,8 +119,13 @@ ui <- fluidPage(
 
                              fluidRow(
 
-                               # Create a new row for the table.
-                               DT::dataTableOutput("showsdatatable")
+
+                               column(12,
+
+                                 # Create a new row for the table.
+                                 DT::dataTableOutput("showsdatatable")
+
+                               )
 
                              )
 
@@ -125,7 +141,7 @@ ui <- fluidPage(
 
                              # Create a new Row in the UI for selectInputs
                              fluidRow(
-                               column(4,
+                               column(12,
                                       selectInput("startyear",
                                                   "Start year:",
                                                   c("All",
@@ -150,13 +166,13 @@ ui <- fluidPage(
 
                              # Create a new Row in the UI for selectInputs
                              fluidRow(
-                               column(4,
+                               column(6,
                                       selectInput("city",
                                                   "City:",
                                                   c("All",
                                                     sort(unique((venuesdata$city)))))
                                ),
-                               column(4,
+                               column(6,
                                       selectInput("country",
                                                   "Country:",
                                                   c("All",
@@ -232,7 +248,7 @@ ui <- fluidPage(
 
                                # Create a new Row in the UI for selectInputs
                                fluidRow(
-                                 column(4,
+                                 column(12,
                                         selectInput(inputId = "year_transitions",
                                                     label = "Year:",
                                                     choices = c("All",
@@ -406,13 +422,13 @@ server <- function(input, output, session) {
   })
 
   observeEvent(input$step_f, {
-    date1 <- input$dateInput_shows[1] + 1
+    date1 <- input$dateInput_shows[1] + input$step_days
     updateSliderInput(session,"dateInput_shows", "Initial date:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                 value=c(date1), timeFormat = "%F")
   })
 
   observeEvent(input$step_b, {
-    date1 <- input$dateInput_shows[1] - 1
+    date1 <- input$dateInput_shows[1] - input$step_days
     updateSliderInput(session,"dateInput_shows", "Initial date:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                       value=c(date1), timeFormat = "%F")
   })
@@ -590,7 +606,8 @@ server <- function(input, output, session) {
 
   output$showsdatatable <- DT::renderDataTable(DT::datatable({
 
-    data <- shows_data2()
+    data <- shows_data2() %>%
+      select(date, venue, city, country, attendance)
 
   }))
 
@@ -601,7 +618,7 @@ server <- function(input, output, session) {
   output$toursdatatable <- DT::renderDataTable(DT::datatable({
     data <- toursdata  %>%
       filter(tour!="Unknown") %>%
-      rename(duration_days = duration) %>%
+      rename(days = duration) %>%
       arrange(start)
 
     if (input$startyear != "All") {
@@ -609,8 +626,7 @@ server <- function(input, output, session) {
     }
 
     data <- data %>%
-      select(-startyear, -endyear) %>%
-      rename(mean_attendance = meanattendance)
+      select(-startyear, -endyear, -meanattendance)
 
     data
   }))
