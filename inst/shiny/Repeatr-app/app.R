@@ -68,7 +68,7 @@ ui <- fluidPage(
                                                    min = 1, max = 5542)),
 
                                column(6,
-                                      numericInput("step_days", "step:", 1,
+                                      numericInput("step_days", "increment:", 1,
                                                    min = 1, max = 365))
 
                              ),
@@ -79,29 +79,37 @@ ui <- fluidPage(
                                       sliderInput("dateInput_shows", "Initial date:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                                                   value=c(as.Date("1987-09-03")), timeFormat = "%F")),
 
-                               column(2,
-                                      align="center",
-                                      actionButton(
-                                        "visit",
-                                        icon("person-walking")
-                                      )
-                               ),
+                               column(6,
+
+                                      fluidRow(
+                                        column(2, align="center", h6("Visit")),
+                                        column(2, align="center", h6("Step")),
+                                        column(2, align="center", h6("Home"))),
+
+                                      fluidRow(
+                                        column(2, align="center",
+                                         actionButton(
+                                           "visit",
+                                           icon("person-walking")
+                                         )
+                                      ),
+
+                                      column(2,
+                                             align="center",
+                                             actionButton(
+                                               "step_f",
+                                               icon("forward")
+                                             )
+                                      ),
+
+                                      column(2,
+                                             align="center",
+                                             actionButton(
+                                               "home",
+                                               icon("house")
+                                             ))),
 
 
-                               column(2,
-                                      align="center",
-                                      actionButton(
-                                        "step_f",
-                                        icon("forward")
-                                      )
-                               ),
-
-                               column(2,
-                                      align="center",
-                                      actionButton(
-                                        "home",
-                                        icon("house")
-                                      )
                                )
 
                              ),
