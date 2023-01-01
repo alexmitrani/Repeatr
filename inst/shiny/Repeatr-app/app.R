@@ -60,13 +60,9 @@ ui <- fluidPage(
 
                                column(3,
                                       numericInput("days", "days:", 5542,
-                                                   min = 7, max = 5542))
+                                                   min = 7, max = 5542)),
 
-                             ),
-
-                             fluidRow(
-
-                               column(12,
+                               column(9,
                                       sliderInput("dateInput_shows", "Initial date:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                                                   value=c(as.Date("1987-09-03")), timeFormat = "%F"))
 
@@ -76,7 +72,7 @@ ui <- fluidPage(
 
                              fluidRow(
 
-                               column(1,
+                               column(6,
                                       align="center",
                                       actionButton(
                                         "step_b",
@@ -84,7 +80,7 @@ ui <- fluidPage(
                                       )
                                ),
 
-                               column(1,
+                               column(6,
                                       align="center",
                                       actionButton(
                                         "step_f",
