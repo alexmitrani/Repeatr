@@ -79,20 +79,28 @@ ui <- fluidPage(
                                       sliderInput("dateInput_shows", "Initial date:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                                                   value=c(as.Date("1987-09-03")), timeFormat = "%F")),
 
-
-                               column(3,
+                               column(2,
                                       align="center",
                                       actionButton(
-                                        "step_b",
-                                        icon("backward")
+                                        "visit",
+                                        icon("person-walking")
                                       )
                                ),
 
-                               column(3,
+
+                               column(2,
                                       align="center",
                                       actionButton(
                                         "step_f",
                                         icon("forward")
+                                      )
+                               ),
+
+                               column(2,
+                                      align="center",
+                                      actionButton(
+                                        "home",
+                                        icon("house")
                                       )
                                )
 
@@ -314,11 +322,6 @@ server <- function(input, output, session) {
 
 # Shows -------------------------------------------------------------------
 
-  # selectInput("yearInput_shows", "year:", choices = sort(unique((othervariables$year)))),
-  # selectInput("tourInput_shows", "tour:", choices = NULL),
-  # selectInput("countryInput_shows", "country:", choices = NULL),
-  # selectInput("cityInput_shows", "city:", choices = NULL),
-  # tableOutput("citydata"),
 
   output$menuOptions_tours <- renderUI({
 
@@ -421,39 +424,31 @@ server <- function(input, output, session) {
 
   })
 
-  observeEvent(input$tourInput_shows, {
-
-    if (is.null(input$tourInput_shows)==FALSE) {
-
-      mydf <- shows_data %>%
-        filter(tour %in% input$tourInput_shows)
-
-    date1 <- as.Date(min(mydf$date))
-    date2 <- as.Date(max(mydf$date))
-    tour_days <- as.numeric(date2)-as.numeric(date1)
-
+  observeEvent(input$visit, {
+    date1 <- as.Date(min(shows_data2()$date))
+    freezeReactiveValue(input, "dateInput_shows")
     updateSliderInput(session,"dateInput_shows", "Initial date:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                       value=c(date1), timeFormat = "%F")
-
-    updateNumericInput(session, "days", "days:", tour_days,
+    freezeReactiveValue(input, "days")
+    updateNumericInput(session, "days", "days:", 7,
                  min = 1, max = 5542)
-
-    }
-
   })
-
-
 
   observeEvent(input$step_f, {
     date1 <- input$dateInput_shows[1] + input$step_days
-    updateSliderInput(session,"dateInput_shows", "Initial date:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
-                value=c(date1), timeFormat = "%F")
-  })
-
-  observeEvent(input$step_b, {
-    date1 <- input$dateInput_shows[1] - input$step_days
+    freezeReactiveValue(input, "dateInput_shows")
     updateSliderInput(session,"dateInput_shows", "Initial date:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                       value=c(date1), timeFormat = "%F")
+  })
+
+  observeEvent(input$home, {
+    date1 <- input$dateInput_shows[1] - input$step_days
+    freezeReactiveValue(input, "dateInput_shows")
+    updateSliderInput(session,"dateInput_shows", "Initial date:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                      value=c(as.Date("1987-09-03")), timeFormat = "%F")
+    freezeReactiveValue(input, "days")
+    updateNumericInput(session, "days", "days:", 5542,
+                       min = 1, max = 5542)
   })
 
   shows_data2 <- reactive({
@@ -494,7 +489,6 @@ server <- function(input, output, session) {
                  date <= date2 &
                  year %in% input$yearInput_shows &
                  tour %in% input$tourInput_shows)
-
 
     } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==TRUE & is.null(input$countryInput_shows)==FALSE & is.null(input$cityInput_shows)==FALSE) {
       mydf <- shows_data %>%
