@@ -65,7 +65,7 @@ ui <- fluidPage(
 
                                column(6,
                                       numericInput("days", "days:", 5542,
-                                                   min = 7, max = 5542)),
+                                                   min = 1, max = 5542)),
 
                                column(6,
                                       numericInput("step_days", "step:", 1,
@@ -429,13 +429,20 @@ server <- function(input, output, session) {
         filter(tour %in% input$tourInput_shows)
 
     date1 <- as.Date(min(mydf$date))
+    date2 <- as.Date(max(mydf$date))
+    tour_days <- as.numeric(date2)-as.numeric(date1)
 
     updateSliderInput(session,"dateInput_shows", "Initial date:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                       value=c(date1), timeFormat = "%F")
 
+    updateNumericInput(session, "days", "days:", tour_days,
+                 min = 1, max = 5542)
+
     }
 
   })
+
+
 
   observeEvent(input$step_f, {
     date1 <- input$dateInput_shows[1] + input$step_days
