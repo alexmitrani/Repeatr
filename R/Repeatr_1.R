@@ -134,6 +134,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
            x = ifelse(flsid=="FLS0970", -122.4272376, x),
            y = ifelse(flsid=="FLS0970", 37.760407, y),
            tour = ifelse(flsid=="FLS0970", "2000 Summer/Fall Regional Dates", tour),
+           tour = ifelse(tour=="1993 Fall USA/Canda Tour", "1993 Fall USA/Canada Tour", tour),
            year = ifelse(flsid=="FLS0970", 2000, year),
            recorded_by = ifelse(flsid=="FLS0970", "Stephen Kozlowski", recorded_by),
            checked = ifelse(flsid=="FLS0970", 1, checked))
