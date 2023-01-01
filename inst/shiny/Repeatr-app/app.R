@@ -76,15 +76,18 @@ ui <- fluidPage(
                              fluidRow(
 
                                column(6,
-                                      sliderInput("dateInput_shows", "Initial date:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                                      sliderInput("dateInput_shows", "Timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                                                   value=c(as.Date("1987-09-03")), timeFormat = "%F")),
 
                                column(6,
 
                                       fluidRow(
-                                        column(2, align="center", h6("Visit")),
-                                        column(2, align="center", h6("Step")),
-                                        column(2, align="center", h6("Home"))),
+                                        column(2, align="center", h6(HTML("<b>Visit</b>"),
+                                                                     style="text-align:center")),
+                                        column(2, align="center", h6(HTML("<b>Step</b>"),
+                                                                     style="text-align:center")),
+                                        column(2, align="center", h6(HTML("<b>Reset</b>"),
+                                                                     style="text-align:center"))),
 
                                       fluidRow(
                                         column(2, align="center",
@@ -229,7 +232,7 @@ ui <- fluidPage(
 
                              fluidRow(
                                column(12,
-                                      sliderInput("dateInput", "Range of dates:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                                      sliderInput("dateInput", "Timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                                                   value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
                              ),
 
@@ -278,7 +281,7 @@ ui <- fluidPage(
 
                                fluidRow(
                                  column(12,
-                                        sliderInput("dateInput_transitions", "Range of dates:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                                        sliderInput("dateInput_transitions", "Timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                                                     value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
                                ),
 
@@ -435,7 +438,7 @@ server <- function(input, output, session) {
   observeEvent(input$visit, {
     date1 <- as.Date(min(shows_data2()$date))
     freezeReactiveValue(input, "dateInput_shows")
-    updateSliderInput(session,"dateInput_shows", "Initial date:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+    updateSliderInput(session,"dateInput_shows", "Timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                       value=c(date1), timeFormat = "%F")
     freezeReactiveValue(input, "days")
     updateNumericInput(session, "days", "days:", 7,
@@ -445,14 +448,14 @@ server <- function(input, output, session) {
   observeEvent(input$step_f, {
     date1 <- input$dateInput_shows[1] + input$step_days
     freezeReactiveValue(input, "dateInput_shows")
-    updateSliderInput(session,"dateInput_shows", "Initial date:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+    updateSliderInput(session,"dateInput_shows", "Timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                       value=c(date1), timeFormat = "%F")
   })
 
   observeEvent(input$home, {
     date1 <- input$dateInput_shows[1] - input$step_days
     freezeReactiveValue(input, "dateInput_shows")
-    updateSliderInput(session,"dateInput_shows", "Initial date:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+    updateSliderInput(session,"dateInput_shows", "Timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                       value=c(as.Date("1987-09-03")), timeFormat = "%F")
     freezeReactiveValue(input, "days")
     updateNumericInput(session, "days", "days:", 5542,
