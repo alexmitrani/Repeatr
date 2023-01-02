@@ -65,7 +65,7 @@ ui <- fluidPage(
                                column(12,
 
                                 leafletOutput("mymap"),
-                                bsTooltip("mymap", "Select a show on the map to get further details. The locations are approximate.",
+                                bsTooltip("mymap", "Select a show on the map to get further details. The locations are approximate. If there is no map it will be because there were no shows in the selected period.",
                                           "top")
 
                                )
