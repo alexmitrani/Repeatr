@@ -81,29 +81,24 @@ ui <- fluidPage(
 
                            h4("Use the timeline controls to move forward or backward in time."),
 
+
                            fluidRow(
 
                              column(6,
+                                    sliderInput("dateInput_shows", "timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                                                value=c(as.Date("1987-09-03")), timeFormat = "%F"),
+                                    bsTooltip("dateInput_shows", "The timeline shows the available range of dates, with the initial date of the selected period highlighted.",
+                                              "bottom", options = list(container = "body"))),
+                             column(3,
                                     numericInput("days", "period (days):", 5542,
                                                  min = 1, max = 5542),
                                     bsTooltip("days", "The duration of the selected period of the timeline, starting with the initial date show below.",
                                               "bottom", options = list(container = "body"))),
 
-                             column(6,
+                             column(3,
                                     numericInput("step_days", "step (days):", 1,
                                                  min = 1, max = 365),
                                     bsTooltip("step_days", "The length of each step forward.",
-                                              "bottom", options = list(container = "body")))
-
-                           ),
-
-
-                           fluidRow(
-
-                             column(12,
-                                    sliderInput("dateInput_shows", "timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
-                                                value=c(as.Date("1987-09-03")), timeFormat = "%F"),
-                                    bsTooltip("dateInput_shows", "The timeline shows the available range of dates, with the initial date of the selected period highlighted.",
                                               "bottom", options = list(container = "body")))
 
                            ),
