@@ -61,7 +61,7 @@ ui <- fluidPage(
 
                              # Controls for slider
 
-                           h4("Use the timeline controls to move forward or backwards in time."),
+                           h4("Use the timeline controls to move forward or backward in time."),
 
                              fluidRow(
 
