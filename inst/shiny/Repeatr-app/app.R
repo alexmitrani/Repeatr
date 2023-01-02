@@ -101,36 +101,39 @@ ui <- fluidPage(
 
                            ),
 
+                              conditionalPanel(
+
+                                condition = "input.cityInput_shows=='' & input.countryInput_shows==''",
+
+                                 fluidRow(
 
 
+                                   div(style="display: inline-block;vertical-align:top;",column(1, actionButton(
+                                     "visit",
+                                     icon("location-dot")
+                                   ),
+                                   bsTooltip("visit", "Move the initial date to the start of the selection, set the period to 7 days and the step to 1 day.",
+                                             "bottom", options = list(container = "body")))),
+                                   div(style="display: inline-block;vertical-align:top;",column(1, actionButton(
+                                     "step_b",
+                                     icon("backward")
+                                   ),
+                                   bsTooltip("step_b", "Step backward.",
+                                             "bottom", options = list(container = "body")))),
+                                   div(style="display: inline-block;vertical-align:top;",column(1, actionButton(
+                                     "step_f",
+                                     icon("forward")
+                                   ),
+                                   bsTooltip("step_f", "Step forward.",
+                                             "bottom", options = list(container = "body")))),
+                                   div(style="display: inline-block;vertical-align:top;",column(1, actionButton(
+                                     "home",
+                                     icon("house")
+                                   ),
+                                   bsTooltip("home", "Reset the initial date and the period to cover the full timeline.",
+                                             "bottom", options = list(container = "body"))))
 
-                             fluidRow(
-
-
-                               div(style="display: inline-block;vertical-align:top;",column(1, actionButton(
-                                 "visit",
-                                 icon("location-dot")
-                               ),
-                               bsTooltip("visit", "Move the initial date to the start of the selection, set the period to 7 days and the step to 1 day.",
-                                         "bottom", options = list(container = "body")))),
-                               div(style="display: inline-block;vertical-align:top;",column(1, actionButton(
-                                 "step_b",
-                                 icon("backward")
-                               ),
-                               bsTooltip("step_b", "Step backward.",
-                                         "bottom", options = list(container = "body")))),
-                               div(style="display: inline-block;vertical-align:top;",column(1, actionButton(
-                                 "step_f",
-                                 icon("forward")
-                               ),
-                               bsTooltip("step_f", "Step forward.",
-                                         "bottom", options = list(container = "body")))),
-                               div(style="display: inline-block;vertical-align:top;",column(1, actionButton(
-                                 "home",
-                                 icon("house")
-                               ),
-                               bsTooltip("home", "Reset the initial date and the period to cover the full timeline.",
-                                         "bottom", options = list(container = "body"))))
+                                 )
 
                              ),
 
