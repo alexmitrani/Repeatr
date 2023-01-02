@@ -73,6 +73,8 @@ ui <- fluidPage(
 
                              ),
 
+                           tags$br(),
+
 
                            fluidRow(
 
@@ -171,10 +173,6 @@ ui <- fluidPage(
                            fluidPage(
                              h3("Songs"),
 
-                             h4("Choose one or more releases, a selection of songs, and / or a range of dates."),
-
-                             h6("The output will be limited to a maximum of 20 songs."),
-
                              # Release and song selection controls
 
                              fluidRow(
@@ -182,6 +180,8 @@ ui <- fluidPage(
                                       selectizeInput("releaseInput", "release",
                                                      choices = c(unique(cumulative_song_counts$release)),
                                                      selected=NULL, multiple =TRUE),
+                                      bsTooltip("releaseInput", "Choose one or more releases, a selection of songs, and / or a range of dates. The output will be limited to a maximum of 20 songs.",
+                                                "top"),
                                       uiOutput("menuOptions"))
 
 
