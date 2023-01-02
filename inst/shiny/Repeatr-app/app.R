@@ -39,7 +39,6 @@ ui <- fluidPage(
                   tabPanel("Shows",
 
                            fluidPage(
-                             h3("Shows"),
 
                              fluidRow(
                                column(6,
@@ -146,8 +145,6 @@ ui <- fluidPage(
                   tabPanel("Tours",
 
                            fluidPage(
-                             h3("Tours"),
-
 
                              # Create a new Row in the UI for selectInputs
                              fluidRow(
@@ -171,7 +168,6 @@ ui <- fluidPage(
                   tabPanel("Songs",
 
                            fluidPage(
-                             h3("Songs"),
 
                              # Release and song selection controls
 
@@ -222,7 +218,6 @@ ui <- fluidPage(
                   tabPanel("Transitions",
 
                              fluidPage(
-                               h3("Transitions"),
 
                                # Create a new Row in the UI for selectInputs
                                fluidRow(
