@@ -63,62 +63,6 @@ ui <- fluidPage(
 
                             ),
 
-                             # Controls for slider
-
-                           h4("Use the timeline controls to move forward or backward in time."),
-
-                             fluidRow(
-
-                               column(6,
-                                      numericInput("days", "period (days):", 5542,
-                                                   min = 1, max = 5542),
-                                      bsTooltip("days", "The duration of the selected period of the timeline, starting with the initial date show below.",
-                                                "bottom", options = list(container = "body"))),
-
-                               column(6,
-                                      numericInput("step_days", "step (days):", 1,
-                                                   min = 1, max = 365),
-                                      bsTooltip("step_days", "The length of each step forward.",
-                                                "bottom", options = list(container = "body")))
-
-                             ),
-
-
-                             fluidRow(
-
-                               column(12,
-                                      sliderInput("dateInput_shows", "timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
-                                                  value=c(as.Date("1987-09-03")), timeFormat = "%F"),
-                                      bsTooltip("dateInput_shows", "The timeline shows the available range of dates, with the initial date of the selected period highlighted.",
-                                                "bottom", options = list(container = "body")))
-
-                             ),
-
-                           fluidRow(
-
-                                                                          fluidRow(
-                                                                            div(style="display: inline-block;vertical-align:top;",column(1,                                                                                    actionButton(
-                                                                              "visit",
-                                                                              icon("person-walking")
-                                                                            ),
-                                                                            bsTooltip("visit", "Move the initial date to the start of the selection, set the period to 7 days and the step to 1 day.",
-                                                                                      "bottom", options = list(container = "body")))),
-                                                                            div(style="display: inline-block;vertical-align:top;",column(1, actionButton(
-                                                                              "step_f",
-                                                                              icon("forward")
-                                                                            ),
-                                                                            bsTooltip("step_f", "Step forward.",
-                                                                                      "bottom", options = list(container = "body")))),
-                                                                            div(style="display: inline-block;vertical-align:top;",column(1, actionButton(
-                                                                              "home",
-                                                                              icon("house")
-                                                                            ),
-                                                                            bsTooltip("home", "Reset the initial date and the period to cover the full timeline.",
-                                                                                      "bottom", options = list(container = "body"))))
-
-                                                                          )
-
-                           ),
 
                              h4("Select a show on the map to get further details."),
                              h6("The locations are approximate."),
@@ -131,6 +75,63 @@ ui <- fluidPage(
 
                                )
 
+
+                             ),
+
+
+                           h4("Use the timeline controls to move forward or backward in time."),
+
+                           fluidRow(
+
+                             column(6,
+                                    numericInput("days", "period (days):", 5542,
+                                                 min = 1, max = 5542),
+                                    bsTooltip("days", "The duration of the selected period of the timeline, starting with the initial date show below.",
+                                              "bottom", options = list(container = "body"))),
+
+                             column(6,
+                                    numericInput("step_days", "step (days):", 1,
+                                                 min = 1, max = 365),
+                                    bsTooltip("step_days", "The length of each step forward.",
+                                              "bottom", options = list(container = "body")))
+
+                           ),
+
+
+                           fluidRow(
+
+                             column(12,
+                                    sliderInput("dateInput_shows", "timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                                                value=c(as.Date("1987-09-03")), timeFormat = "%F"),
+                                    bsTooltip("dateInput_shows", "The timeline shows the available range of dates, with the initial date of the selected period highlighted.",
+                                              "bottom", options = list(container = "body")))
+
+                           ),
+
+
+
+
+                             fluidRow(
+
+
+                               div(style="display: inline-block;vertical-align:top;",column(1,                                                                                    actionButton(
+                                 "visit",
+                                 icon("person-walking")
+                               ),
+                               bsTooltip("visit", "Move the initial date to the start of the selection, set the period to 7 days and the step to 1 day.",
+                                         "bottom", options = list(container = "body")))),
+                               div(style="display: inline-block;vertical-align:top;",column(1, actionButton(
+                                 "step_f",
+                                 icon("forward")
+                               ),
+                               bsTooltip("step_f", "Step forward.",
+                                         "bottom", options = list(container = "body")))),
+                               div(style="display: inline-block;vertical-align:top;",column(1, actionButton(
+                                 "home",
+                                 icon("house")
+                               ),
+                               bsTooltip("home", "Reset the initial date and the period to cover the full timeline.",
+                                         "bottom", options = list(container = "body"))))
 
                              ),
 
