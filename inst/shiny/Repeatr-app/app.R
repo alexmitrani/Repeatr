@@ -240,13 +240,11 @@ ui <- fluidPage(
 
                                # Create a new Row in the UI for selectInputs
                                fluidRow(
-                                 column(12,
-                                        selectInput(inputId = "year_transitions",
-                                                    label = "year:",
-                                                    choices = c("All",
-                                                      sort(unique((toursdata$startyear)))),
-                                                    selected = "1987")
-                                 )
+                                 column(6,
+                                        selectizeInput("year_transitions", "years:",
+                                                       sort(unique((toursdata$startyear))),
+                                                       selected="1987", multiple =TRUE)),
+                                 column(6, uiOutput("menuOptions_tours_transitions"))
 
                                ),
 
@@ -747,11 +745,31 @@ server <- function(input, output, session) {
 # Transitions -------------------------------------------------------------
 
 
+  output$menuOptions_tours_transitions <- renderUI({
+
+    if (is.null(input$year_transitions)==FALSE) {
+      menudata <- shows_data %>%
+        filter(year %in% input$year_transitions) %>%
+        arrange(tour)
+    } else {
+      menudata <- shows_data %>%
+        arrange(tour)
+    }
+
+    selectizeInput("tourInput_transitions", "tours:",
+                   choices = c(unique(menudata$tour)), multiple =TRUE)
+
+  })
+
 
   transitions_data <- reactive({
 
+    tourdata <- othervariables %>%
+      select(gid, tour)
+
     mydf1 <- Repeatr1 %>%
-      select(gid,year,date,song_number,song) %>%
+      left_join(tourdata) %>%
+      select(gid,year,date,song_number,song, tour) %>%
       rename(song1 = song)
 
     mydf2 <- Repeatr1 %>%
@@ -766,8 +784,18 @@ server <- function(input, output, session) {
       filter(date >= input$dateInput_transitions[1] &
                date <= input$dateInput_transitions[2])
 
-    if (input$year_transitions != "All") {
-      mydf3 <- mydf3[mydf3$year == input$year_transitions,]
+    if (is.null(input$year_transitions)==FALSE & is.null(input$tourInput_transitions)==FALSE) {
+      mydf3 <- mydf3[mydf3$year %in% input$year_transitions,]
+      mydf3 <- mydf3[mydf3$tour %in% input$tourInput_transitions,]
+
+    } else if (is.null(input$year_transitions)==FALSE & is.null(input$tourInput_transitions)==TRUE) {
+      mydf3 <- mydf3[mydf3$year %in% input$year_transitions,]
+
+    } else if (is.null(input$year_transitions)==TRUE & is.null(input$tourInput_transitions)==FALSE) {
+      mydf3 <- mydf3[mydf3$tour %in% input$tourInput_transitions,]
+
+    } else {
+
     }
 
     mytransitions <- mydf3 %>%
