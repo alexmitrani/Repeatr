@@ -164,7 +164,7 @@ ui <- fluidPage(
                              fluidRow(
                                column(12,
                                       selectInput("startyear",
-                                                  "Start year:",
+                                                  "start year:",
                                                   c("All",
                                                     sort(unique((toursdata$startyear)))))
                                )
@@ -192,7 +192,7 @@ ui <- fluidPage(
 
                              fluidRow(
                                column(12,
-                                      selectizeInput("releaseInput", "Release",
+                                      selectizeInput("releaseInput", "release",
                                                      choices = c(unique(cumulative_song_counts$release)),
                                                      selected=NULL, multiple =TRUE),
                                       uiOutput("menuOptions"))
@@ -204,7 +204,7 @@ ui <- fluidPage(
 
                              fluidRow(
                                column(12,
-                                      sliderInput("dateInput", "Timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                                      sliderInput("dateInput", "timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                                                   value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
                              ),
 
@@ -241,7 +241,7 @@ ui <- fluidPage(
                                fluidRow(
                                  column(12,
                                         selectInput(inputId = "year_transitions",
-                                                    label = "Year:",
+                                                    label = "year:",
                                                     choices = c("All",
                                                       sort(unique((toursdata$startyear)))),
                                                     selected = "1987")
@@ -253,7 +253,7 @@ ui <- fluidPage(
 
                                fluidRow(
                                  column(12,
-                                        sliderInput("dateInput_transitions", "Timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                                        sliderInput("dateInput_transitions", "timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                                                     value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
                                ),
 
@@ -410,7 +410,7 @@ server <- function(input, output, session) {
   observeEvent(input$visit, {
     date1 <- as.Date(min(shows_data2()$date))
     freezeReactiveValue(input, "dateInput_shows")
-    updateSliderInput(session,"dateInput_shows", "Timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+    updateSliderInput(session,"dateInput_shows", "timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                       value=c(date1), timeFormat = "%F")
     freezeReactiveValue(input, "days")
     updateNumericInput(session, "days", "period (days):", 7,
@@ -423,14 +423,14 @@ server <- function(input, output, session) {
   observeEvent(input$step_f, {
     date1 <- input$dateInput_shows[1] + input$step_days
     freezeReactiveValue(input, "dateInput_shows")
-    updateSliderInput(session,"dateInput_shows", "Timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+    updateSliderInput(session,"dateInput_shows", "timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                       value=c(date1), timeFormat = "%F")
   })
 
   observeEvent(input$home, {
     date1 <- input$dateInput_shows[1] - input$step_days
     freezeReactiveValue(input, "dateInput_shows")
-    updateSliderInput(session,"dateInput_shows", "Timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+    updateSliderInput(session,"dateInput_shows", "timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                       value=c(as.Date("1987-09-03")), timeFormat = "%F")
     freezeReactiveValue(input, "days")
     updateNumericInput(session, "days", "period (days):", 5542,
@@ -655,7 +655,7 @@ server <- function(input, output, session) {
         arrange(song)
     }
 
-    selectizeInput("songInput", "Songs",
+    selectizeInput("songInput", "songs",
                    choices = c(unique(menudata$song)), multiple =TRUE)
 
   })
