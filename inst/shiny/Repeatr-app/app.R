@@ -186,26 +186,30 @@ ui <- fluidPage(
 
                              tags$br(),
 
-                             # Release and song selection controls
-
                              fluidRow(
-                               column(12,
-                                      selectizeInput("releaseInput", "release",
-                                                     choices = c(unique(cumulative_song_counts$release)),
+                               column(6,
+                                      selectizeInput("yearInput_songs", "years:",
+                                                     sort(unique((othervariables$year))),
                                                      selected=NULL, multiple =TRUE),
-                                      bsTooltip("releaseInput", "Choose one or more releases, a selection of songs, and / or a range of dates. The output will be limited to a maximum of 20 songs.",
-                                                "top"),
-                                      uiOutput("menuOptions"))
-
+                                      bsTooltip("yearInput_songs", "Select one or more years or tours.",
+                                                "top")),
+                               column(6, uiOutput("menuOptions_tours_songs"))
 
                              ),
 
-                             # Slider control
+                             # Release and song selection controls
 
                              fluidRow(
-                               column(12,
-                                      sliderInput("dateInput", "timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
-                                                  value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
+                               column(6,
+                                      selectizeInput("releaseInput", "release",
+                                                     choices = c(unique(cumulative_song_counts$release)),
+                                                     selected=NULL, multiple =TRUE),
+                                      bsTooltip("releaseInput", "Choose one or more releases and/or a selection of songs. The output will be limited to a maximum of 20 songs.",
+                                                "top")),
+                              column(6,
+                                      uiOutput("menuOptions")
+                                     )
+
                              ),
 
                              # Graph
@@ -243,17 +247,11 @@ ui <- fluidPage(
                                  column(6,
                                         selectizeInput("year_transitions", "years:",
                                                        sort(unique((toursdata$startyear))),
-                                                       selected="1987", multiple =TRUE)),
+                                                       selected="1987", multiple =TRUE),
+                                        bsTooltip("year_transitions", "Select one or more years or tours.",
+                                                  "top")),
                                  column(6, uiOutput("menuOptions_tours_transitions"))
 
-                               ),
-
-                               # Slider control
-
-                               fluidRow(
-                                 column(12,
-                                        sliderInput("dateInput_transitions", "timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
-                                                    value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F"))
                                ),
 
                                # Graph
@@ -623,7 +621,8 @@ server <- function(input, output, session) {
   output$showsdatatable <- DT::renderDataTable(DT::datatable({
 
     data <- shows_data2() %>%
-      select(date, venue, city, country, attendance)
+      mutate(coordinates = paste0(latitude, ", ", longitude)) %>%
+      select(date, venue, city, country, attendance, coordinates)
 
   }))
 
@@ -650,9 +649,23 @@ server <- function(input, output, session) {
 
 # Songs -------------------------------------------------------------------
 
-
-
   max_songs <- 20
+
+  output$menuOptions_tours_songs <- renderUI({
+
+    if (is.null(input$yearInput_songs)==FALSE) {
+      menudata <- shows_data %>%
+        filter(year %in% input$yearInput_songs) %>%
+        arrange(tour)
+    } else {
+      menudata <- shows_data %>%
+        arrange(tour)
+    }
+
+    selectizeInput("tourInput_songs", "tours:",
+                   choices = c(unique(menudata$tour)), multiple =TRUE)
+
+  })
 
   output$menuOptions <- renderUI({
 
@@ -672,29 +685,50 @@ server <- function(input, output, session) {
 
   songs_data <- reactive({
 
+    if (is.null(input$yearInput_songs)==FALSE & is.null(input$tourInput_songs)==FALSE) {
+      datedata <- shows_data %>%
+        filter(year %in% input$yearInput_songs &
+                 tour %in% input$tourInput_songs)
+
+    } else if (is.null(input$yearInput_songs)==FALSE & is.null(input$tourInput_songs)==TRUE) {
+      datedata <- shows_data %>%
+        filter(year %in% input$yearInput_songs)
+
+    } else if (is.null(input$yearInput_songs)==TRUE & is.null(input$tourInput_songs)==FALSE) {
+      datedata <- shows_data %>%
+        filter(tour %in% input$tourInput_songs)
+
+    } else {
+      datedata <- shows_data
+
+    }
+
+    date1 <- as.Date(min(datedata$date))
+    date2 <- as.Date(max(datedata$date))
+
     if (is.null(input$releaseInput)==FALSE & is.null(input$songInput)==FALSE) {
       mydf <- cumulative_song_counts %>%
-        filter(date >= input$dateInput[1] &
-                 date <= input$dateInput[2] &
+        filter(date >= date1 &
+                 date <= date2 &
                  release %in% input$releaseInput &
                  song %in% input$songInput)
 
     } else if (is.null(input$releaseInput)==FALSE & is.null(input$songInput)==TRUE) {
       mydf <- cumulative_song_counts %>%
-        filter(date >= input$dateInput[1] &
-                 date <= input$dateInput[2] &
+        filter(date >= date1 &
+                 date <= date2 &
                  release %in% input$releaseInput)
 
     } else if (is.null(input$releaseInput)==TRUE & is.null(input$songInput)==FALSE) {
       mydf <- cumulative_song_counts %>%
-        filter(date >= input$dateInput[1] &
-                 date <= input$dateInput[2] &
+        filter(date >= date1 &
+                 date <= date2 &
                  song %in% input$songInput)
 
     } else {
       mydf <- cumulative_song_counts %>%
-        filter(date >= input$dateInput[1] &
-                 date <= input$dateInput[2])
+        filter(date >= date1 &
+                 date <= date2)
 
     }
 
@@ -764,6 +798,27 @@ server <- function(input, output, session) {
 
   transitions_data <- reactive({
 
+    if (is.null(input$year_transitions)==FALSE & is.null(input$tourInput_transitions)==FALSE) {
+      datedata <- shows_data %>%
+        filter(year %in% input$year_transitions &
+                 tour %in% input$tourInput_transitions)
+
+    } else if (is.null(input$year_transitions)==FALSE & is.null(input$tourInput_transitions)==TRUE) {
+      datedata <- shows_data %>%
+        filter(year %in% input$year_transitions)
+
+    } else if (is.null(input$year_transitions)==TRUE & is.null(input$tourInput_transitions)==FALSE) {
+      datedata <- shows_data %>%
+        filter(tour %in% input$tourInput_transitions)
+
+    } else {
+      datedata <- shows_data
+
+    }
+
+    date1 <- as.Date(min(datedata$date))
+    date2 <- as.Date(max(datedata$date))
+
     tourdata <- othervariables %>%
       select(gid, tour)
 
@@ -781,22 +836,9 @@ server <- function(input, output, session) {
       left_join(mydf2) %>%
       filter(is.na(song2)==FALSE) %>%
       rename(transition_number = song_number) %>%
-      filter(date >= input$dateInput_transitions[1] &
-               date <= input$dateInput_transitions[2])
+      filter(date >= date1 &
+               date <= date2)
 
-    if (is.null(input$year_transitions)==FALSE & is.null(input$tourInput_transitions)==FALSE) {
-      mydf3 <- mydf3[mydf3$year %in% input$year_transitions,]
-      mydf3 <- mydf3[mydf3$tour %in% input$tourInput_transitions,]
-
-    } else if (is.null(input$year_transitions)==FALSE & is.null(input$tourInput_transitions)==TRUE) {
-      mydf3 <- mydf3[mydf3$year %in% input$year_transitions,]
-
-    } else if (is.null(input$year_transitions)==TRUE & is.null(input$tourInput_transitions)==FALSE) {
-      mydf3 <- mydf3[mydf3$tour %in% input$tourInput_transitions,]
-
-    } else {
-
-    }
 
     mytransitions <- mydf3 %>%
       select(song1, song2) %>%
