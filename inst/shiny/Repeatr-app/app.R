@@ -111,6 +111,12 @@ ui <- fluidPage(
                                bsTooltip("visit", "Move the initial date to the start of the selection, set the period to 7 days and the step to 1 day.",
                                          "bottom", options = list(container = "body")))),
                                div(style="display: inline-block;vertical-align:top;",column(1, actionButton(
+                                 "step_b",
+                                 icon("backward")
+                               ),
+                               bsTooltip("step_b", "Step backward.",
+                                         "bottom", options = list(container = "body")))),
+                               div(style="display: inline-block;vertical-align:top;",column(1, actionButton(
                                  "step_f",
                                  icon("forward")
                                ),
@@ -408,6 +414,13 @@ server <- function(input, output, session) {
     freezeReactiveValue(input, "step_days")
     updateNumericInput(session, "step_days", "step (days):", 1,
                        min = 1, max = 5542)
+  })
+
+  observeEvent(input$step_b, {
+    date1 <- input$dateInput_shows[1] - input$step_days
+    freezeReactiveValue(input, "dateInput_shows")
+    updateSliderInput(session,"dateInput_shows", "timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                      value=c(date1), timeFormat = "%F")
   })
 
   observeEvent(input$step_f, {
