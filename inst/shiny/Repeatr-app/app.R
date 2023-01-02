@@ -41,45 +41,37 @@ ui <- fluidPage(
                            fluidPage(
                              h3("Shows"),
 
-                             h4("Select one or more years, tours, countries or cities."),
-
                              fluidRow(
                                column(6,
                                       selectizeInput("yearInput_shows", "years:",
                                                      sort(unique((othervariables$year))),
-                                                     selected=NULL, multiple =TRUE)),
+                                                     selected=NULL, multiple =TRUE),
+                                      bsTooltip("yearInput_shows", "Select one or more years, tours, countries or cities.",
+                                                "top")),
                                column(6, uiOutput("menuOptions_tours"))
 
                              ),
 
                            fluidRow(
 
-                             column(6, uiOutput("menuOptions_countries"),
-                                    bsTooltip("countryInput_shows", "Select one or more countries.",
-                                              "top")),
-                             column(6, uiOutput("menuOptions_cities"),
-                                    bsTooltip("cityInput_shows", "Select one or more cities.",
-                                              "top"))
+                             column(6, uiOutput("menuOptions_countries")),
+                             column(6, uiOutput("menuOptions_cities"))
 
                             ),
 
-
-                             h4("Select a show on the map to get further details."),
-                             h6("The locations are approximate."),
 
                              fluidRow(
 
                                column(12,
 
-                                leafletOutput("mymap")
+                                leafletOutput("mymap"),
+                                bsTooltip("mymap", "Select a show on the map to get further details. The locations are approximate.",
+                                          "top")
 
                                )
 
 
                              ),
-
-
-                           h4("Use the timeline controls to move forward or backward in time."),
 
 
                            fluidRow(
@@ -130,17 +122,16 @@ ui <- fluidPage(
 
                              ),
 
-                             tags$br(),
-                             h4("The table below gives details for the selected shows."),
-                             tags$br(),
-
                              fluidRow(
 
+                               tags$br(),
 
                                column(12,
 
                                  # Create a new row for the table.
-                                 DT::dataTableOutput("showsdatatable")
+                                 DT::dataTableOutput("showsdatatable"),
+                                 bsTooltip("showsdatatable", "The table gives details for the selected shows.",
+                                           "top", options = list(container = "body"))
 
                                )
 
