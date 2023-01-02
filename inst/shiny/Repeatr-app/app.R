@@ -50,16 +50,22 @@ ui <- fluidPage(
                                       selectizeInput("yearInput_shows", "years:",
                                                      sort(unique((othervariables$year))),
                                                      selected=NULL, multiple =TRUE),
-                                      bsTooltip("yearInput_shows", "Select one or more years, tours, countries or cities.",
+                                      bsTooltip("yearInput_shows", "Select one or more years, or leave blank for all.",
                                                 "top")),
-                               column(6, uiOutput("menuOptions_tours"))
+                               column(6, uiOutput("menuOptions_tours"),
+                                      bsTooltip("menuOptions_tours", "Select one or more tours. This will activate the tour controls beneath the timeline. Leave blank for all.",
+                                                "top"))
 
                              ),
 
                            fluidRow(
 
-                             column(6, uiOutput("menuOptions_countries")),
-                             column(6, uiOutput("menuOptions_cities"))
+                             column(6, uiOutput("menuOptions_countries"),
+                                    bsTooltip("menuOptions_countries", "Select one or more countries. This will deactivate the tour controls beneath the timeline. Leave blank for all.",
+                                              "top")),
+                             column(6, uiOutput("menuOptions_cities"),
+                                    bsTooltip("menuOptions_cities", "Select one or more cities. This will deactivate the tour controls beneath the timeline. Leave blank for all.",
+                                              "top"))
 
                             ),
 
@@ -103,7 +109,7 @@ ui <- fluidPage(
 
                               conditionalPanel(
 
-                                condition = "input.cityInput_shows=='' & input.countryInput_shows==''",
+                                condition = "input.tourInput_shows!='' & input.cityInput_shows=='' & input.countryInput_shows==''",
 
                                  fluidRow(
 
@@ -118,13 +124,13 @@ ui <- fluidPage(
                                      "step_b",
                                      icon("backward")
                                    ),
-                                   bsTooltip("step_b", "Step backward.",
+                                   bsTooltip("step_b", "Step backward. When you finish please press the home button to reset the timeline.",
                                              "bottom", options = list(container = "body")))),
                                    div(style="display: inline-block;vertical-align:top;",column(1, actionButton(
                                      "step_f",
                                      icon("forward")
                                    ),
-                                   bsTooltip("step_f", "Step forward.",
+                                   bsTooltip("step_f", "Step forward. When you finish please press the home button to reset the timeline.",
                                              "bottom", options = list(container = "body")))),
                                    div(style="display: inline-block;vertical-align:top;",column(1, actionButton(
                                      "home",
@@ -173,7 +179,7 @@ ui <- fluidPage(
                                       selectizeInput("yearInput_tours", "years:",
                                                      sort(unique((toursdata$startyear))),
                                                      selected=NULL, multiple =TRUE),
-                                      bsTooltip("yearInput_tours", "Select one or more years.",
+                                      bsTooltip("yearInput_tours", "Select one or more years, or leave blank for all.",
                                                 "top")
                                )
 
@@ -207,9 +213,11 @@ ui <- fluidPage(
                                       selectizeInput("yearInput_songs", "years:",
                                                      sort(unique((othervariables$year))),
                                                      selected=NULL, multiple =TRUE),
-                                      bsTooltip("yearInput_songs", "Select one or more years or tours.",
+                                      bsTooltip("yearInput_songs", "Select one or more years, or leave blank for all.",
                                                 "top")),
-                               column(6, uiOutput("menuOptions_tours_songs"))
+                               column(6, uiOutput("menuOptions_tours_songs"),
+                                      bsTooltip("menuOptions_tours_songs", "Select one or more tours, or leave blank for all.",
+                                                "top"))
 
                              ),
 
@@ -220,10 +228,12 @@ ui <- fluidPage(
                                       selectizeInput("releaseInput", "release",
                                                      choices = c(unique(cumulative_song_counts$release)),
                                                      selected="Fugazi", multiple =TRUE),
-                                      bsTooltip("releaseInput", "Choose one or more releases and/or a selection of songs.",
+                                      bsTooltip("releaseInput", "Choose one or more releases, or leave blank for all.",
                                                 "top")),
                               column(6,
-                                      uiOutput("menuOptions")
+                                      uiOutput("menuOptions"),
+                                     bsTooltip("menuOptions", "Select one or more songs, or leave blank for all.",
+                                               "top")
                                      )
 
                              ),
@@ -266,9 +276,11 @@ ui <- fluidPage(
                                         selectizeInput("year_transitions", "years:",
                                                        sort(unique((toursdata$startyear))),
                                                        selected="1987", multiple =TRUE),
-                                        bsTooltip("year_transitions", "Select one or more years or tours.",
+                                        bsTooltip("year_transitions", "Select one or more years, or leave blank for all.",
                                                   "top")),
-                                 column(6, uiOutput("menuOptions_tours_transitions"))
+                                 column(6, uiOutput("menuOptions_tours_transitions"),
+                                        bsTooltip("menuOptions_tours_transitions", "Select one or more tours, or leave blank for all.",
+                                                  "top"))
 
                                ),
 
