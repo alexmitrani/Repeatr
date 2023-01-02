@@ -179,36 +179,6 @@ ui <- fluidPage(
                   ),
 
 
-                  tabPanel("Venues",
-
-                           fluidPage(
-                             h3("Venues"),
-
-
-                             # Create a new Row in the UI for selectInputs
-                             fluidRow(
-                               column(6,
-                                      selectInput("city",
-                                                  "City:",
-                                                  c("All",
-                                                    sort(unique((venuesdata$city)))))
-                               ),
-                               column(6,
-                                      selectInput("country",
-                                                  "Country:",
-                                                  c("All",
-                                                    sort(unique(venuesdata$country))))
-                               )
-
-                             ),
-
-                             # Create a new row for the table.
-                             DT::dataTableOutput("venuesdatatable")
-
-                           )
-
-                  ),
-
                   tabPanel("Songs",
 
                            fluidPage(
@@ -664,23 +634,6 @@ server <- function(input, output, session) {
     data <- data %>%
       select(-startyear, -endyear, -meanattendance)
 
-    data
-  }))
-
-
-# Venues ------------------------------------------------------------------
-
-
-
-  output$venuesdatatable <- DT::renderDataTable(DT::datatable({
-    data <- venuesdata  %>%
-      arrange(desc(shows))
-    if (input$country != "All") {
-      data <- data[data$country == input$country,]
-    }
-    if (input$city != "All") {
-      data <- data[data$city == input$city,]
-    }
     data
   }))
 
