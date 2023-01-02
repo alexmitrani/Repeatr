@@ -104,9 +104,9 @@ ui <- fluidPage(
                              fluidRow(
 
 
-                               div(style="display: inline-block;vertical-align:top;",column(1,                                                                                    actionButton(
+                               div(style="display: inline-block;vertical-align:top;",column(1, actionButton(
                                  "visit",
-                                 icon("person-walking")
+                                 icon("location-dot")
                                ),
                                bsTooltip("visit", "Move the initial date to the start of the selection, set the period to 7 days and the step to 1 day.",
                                          "bottom", options = list(container = "body")))),
@@ -309,10 +309,10 @@ server <- function(input, output, session) {
     if (is.null(input$yearInput_shows)==FALSE) {
       menudata <- shows_data %>%
         filter(year %in% input$yearInput_shows) %>%
-        arrange(tour)
+        arrange(date)
     } else {
       menudata <- shows_data %>%
-        arrange(tour)
+        arrange(date)
     }
 
     selectizeInput("tourInput_shows", "tours:",
@@ -656,10 +656,10 @@ server <- function(input, output, session) {
     if (is.null(input$yearInput_songs)==FALSE) {
       menudata <- shows_data %>%
         filter(year %in% input$yearInput_songs) %>%
-        arrange(tour)
+        arrange(date)
     } else {
       menudata <- shows_data %>%
-        arrange(tour)
+        arrange(date)
     }
 
     selectizeInput("tourInput_songs", "tours:",
@@ -784,10 +784,10 @@ server <- function(input, output, session) {
     if (is.null(input$year_transitions)==FALSE) {
       menudata <- shows_data %>%
         filter(year %in% input$year_transitions) %>%
-        arrange(tour)
+        arrange(date)
     } else {
       menudata <- shows_data %>%
-        arrange(tour)
+        arrange(date)
     }
 
     selectizeInput("tourInput_transitions", "tours:",
