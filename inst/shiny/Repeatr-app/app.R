@@ -36,6 +36,9 @@ ui <- fluidPage(
       # Output
       tabsetPanel(type = "tabs",
 
+
+# Shows -------------------------------------------------------------------
+
                   tabPanel("Shows",
 
                            fluidPage(
@@ -150,6 +153,11 @@ ui <- fluidPage(
 
                   ),
 
+
+# Tours -------------------------------------------------------------------
+
+
+
                   tabPanel("Tours",
 
                            fluidPage(
@@ -180,6 +188,11 @@ ui <- fluidPage(
                   ),
 
 
+# Songs -------------------------------------------------------------------
+
+
+
+
                   tabPanel("Songs",
 
                            fluidPage(
@@ -203,8 +216,8 @@ ui <- fluidPage(
                                column(6,
                                       selectizeInput("releaseInput", "release",
                                                      choices = c(unique(cumulative_song_counts$release)),
-                                                     selected=NULL, multiple =TRUE),
-                                      bsTooltip("releaseInput", "Choose one or more releases and/or a selection of songs. The output will be limited to a maximum of 20 songs.",
+                                                     selected="Fugazi", multiple =TRUE),
+                                      bsTooltip("releaseInput", "Choose one or more releases and/or a selection of songs.",
                                                 "top")),
                               column(6,
                                       uiOutput("menuOptions")
@@ -234,6 +247,8 @@ ui <- fluidPage(
                           )
 
                   ),
+
+# Transitions -------------------------------------------------------------
 
 
                   tabPanel("Transitions",
@@ -649,7 +664,7 @@ server <- function(input, output, session) {
 
 # Songs -------------------------------------------------------------------
 
-  max_songs <- 20
+  max_songs <- 100
 
   output$menuOptions_tours_songs <- renderUI({
 
@@ -732,6 +747,8 @@ server <- function(input, output, session) {
 
     }
 
+    mydf
+
   })
 
   songs_data2 <- reactive({
@@ -744,6 +761,8 @@ server <- function(input, output, session) {
       mutate(index = row_number()) %>%
       select(song, index)
 
+    mysongs
+
   })
 
   songs_data3 <- reactive({
@@ -751,6 +770,8 @@ server <- function(input, output, session) {
     mydf <- songs_data() %>%
       left_join(songs_data2()) %>%
       filter(index<=max_songs)
+
+    mydf
 
   })
 
