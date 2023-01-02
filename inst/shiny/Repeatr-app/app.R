@@ -584,7 +584,7 @@ server <- function(input, output, session) {
     diff_latitude <- abs(max_latitude_raw-min_latitude_raw)
 
     diff <- mean(diff_longitude, diff_latitude)
-    margin_value <- ifelse(diff==0, 0.1, 0.1*diff)
+    margin_value <- ifelse(diff==0, 0.15, min(0.15*diff, 10))
 
     min_latitude <- min(df$latitude)-margin_value
     min_longitude <- min(df$longitude)-margin_value
@@ -592,7 +592,10 @@ server <- function(input, output, session) {
     max_latitude <- max(df$latitude)+margin_value
     max_longitude <- max(df$longitude)+margin_value
 
-    m <- leaflet(data = df) %>%
+    m <- leaflet(data = df, options = leafletOptions(zoomControl = FALSE)) %>%
+      htmlwidgets::onRender("function(el, x) {
+        L.control.zoom({ position: 'bottomleft' }).addTo(this)
+      }") %>%
       fitBounds(lng1 = min_longitude, lat1 = min_latitude, lng2 = max_longitude, lat2 = max_latitude) %>%
       addProviderTiles("Esri.WorldStreetMap") %>%
       addScaleBar() %>%
