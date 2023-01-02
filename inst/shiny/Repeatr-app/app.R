@@ -139,7 +139,7 @@ ui <- fluidPage(
 
                                  # Create a new row for the table.
                                  DT::dataTableOutput("showsdatatable"),
-                                 bsTooltip("showsdatatable", "The table gives details for the selected shows.",
+                                 bsTooltip("showsdatatable", "The table gives details of the selected shows.",
                                            "top", options = list(container = "body"))
 
                                )
@@ -159,16 +159,21 @@ ui <- fluidPage(
                              # Create a new Row in the UI for selectInputs
                              fluidRow(
                                column(12,
-                                      selectInput("startyear",
-                                                  "start year:",
-                                                  c("All",
-                                                    sort(unique((toursdata$startyear)))))
+                                      selectizeInput("yearInput_tours", "years:",
+                                                     sort(unique((toursdata$startyear))),
+                                                     selected=NULL, multiple =TRUE),
+                                      bsTooltip("yearInput_tours", "Select one or more years.",
+                                                "top")
                                )
 
                              ),
 
+                             tags$br(),
+
                              # Create a new row for the table.
-                             DT::dataTableOutput("toursdatatable")
+                             DT::dataTableOutput("toursdatatable"),
+                             bsTooltip("toursdatatable", "The table gives a summary of the selected tours.",
+                                       "top", options = list(container = "body"))
 
                            )
 
@@ -212,13 +217,13 @@ ui <- fluidPage(
                                ),
 
                             tags$br(),
-                            h4("The table below shows the number of times each song was performed in the specified period."),
-                            tags$br(),
 
 
                             fluidRow(
                               column(12,
-                                     DT::dataTableOutput("songsdatatable")
+                                     DT::dataTableOutput("songsdatatable"),
+                                     bsTooltip("songsdatatable", "The table shows the number of times each song was performed in the specified period.",
+                                               "top", options = list(container = "body"))
                                      )
                             )
 
@@ -261,12 +266,13 @@ ui <- fluidPage(
                                  )
                                ),
 
-                               h4("The table below shows the number of times each transition featured in the specified period."),
-
+                               tags$br(),
 
                                fluidRow(
                                  column(12,
-                                        DT::dataTableOutput("transitionsdatatable")
+                                        DT::dataTableOutput("transitionsdatatable"),
+                                        bsTooltip("transitionsdatatable", "The table shows the number of times each transition featured in the specified period.",
+                                                  "top", options = list(container = "body"))
                                  )
                                )
 
@@ -633,8 +639,8 @@ server <- function(input, output, session) {
       rename(days = duration) %>%
       arrange(start)
 
-    if (input$startyear != "All") {
-      data <- data[data$startyear == input$startyear,]
+    if (is.null(input$yearInput_tours)==FALSE) {
+      data <- data[data$startyear %in% input$yearInput_tours,]
     }
 
     data <- data %>%
