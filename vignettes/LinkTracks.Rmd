@@ -328,8 +328,7 @@ Let's have a quick look at the 2% of venues that I haven't been able to locate p
 ```{r}
 mydf <- othervariables %>%
   filter(checked==0) %>% 
-  mutate(flslink = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
-  select(flsid, date, venue, city, country, tour, flslink)
+  select(flsid, date, venue, city, country)
 
 mydf %>%
   print(n=nrow(mydf), na.print=NULL)
