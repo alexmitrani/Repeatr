@@ -40,6 +40,8 @@ ui <- fluidPage(
 
                            fluidPage(
 
+                             tags$br(),
+
                              fluidRow(
                                column(6,
                                       selectizeInput("yearInput_shows", "years:",
@@ -146,6 +148,8 @@ ui <- fluidPage(
 
                            fluidPage(
 
+                             tags$br(),
+
                              # Create a new Row in the UI for selectInputs
                              fluidRow(
                                column(12,
@@ -168,6 +172,8 @@ ui <- fluidPage(
                   tabPanel("Songs",
 
                            fluidPage(
+
+                             tags$br(),
 
                              # Release and song selection controls
 
@@ -218,6 +224,8 @@ ui <- fluidPage(
                   tabPanel("Transitions",
 
                              fluidPage(
+
+                               tags$br(),
 
                                # Create a new Row in the UI for selectInputs
                                fluidRow(
