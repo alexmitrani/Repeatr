@@ -94,42 +94,31 @@ ui <- fluidPage(
 
                              ),
 
-                           fluidRow(                               column(12,
+                           fluidRow(
 
                                                                           fluidRow(
-                                                                            column(2, align="center",
-                                                                                   actionButton(
-                                                                                     "visit",
-                                                                                     icon("person-walking")
-                                                                                   ),
-                                                                                   bsTooltip("visit", "Move the initial date to the start of the selection, set the period to 7 days and the step to 1 day.",
-                                                                                             "bottom", options = list(container = "body"))
-
+                                                                            div(style="display: inline-block;vertical-align:top;",column(1,                                                                                    actionButton(
+                                                                              "visit",
+                                                                              icon("person-walking")
                                                                             ),
-
-                                                                            column(2,
-                                                                                   align="center",
-                                                                                   actionButton(
-                                                                                     "step_f",
-                                                                                     icon("forward")
-                                                                                   ),
-                                                                                   bsTooltip("step_f", "Step forward.",
-                                                                                             "bottom", options = list(container = "body"))
+                                                                            bsTooltip("visit", "Move the initial date to the start of the selection, set the period to 7 days and the step to 1 day.",
+                                                                                      "bottom", options = list(container = "body")))),
+                                                                            div(style="display: inline-block;vertical-align:top;",column(1, actionButton(
+                                                                              "step_f",
+                                                                              icon("forward")
                                                                             ),
-
-                                                                            column(2,
-                                                                                   align="center",
-                                                                                   actionButton(
-                                                                                     "home",
-                                                                                     icon("house")
-                                                                                   ),
-                                                                                   bsTooltip("home", "Reset the initial date and the period to cover the full timeline.",
-                                                                                             "bottom", options = list(container = "body"))),
-                                                                            column(6)
+                                                                            bsTooltip("step_f", "Step forward.",
+                                                                                      "bottom", options = list(container = "body")))),
+                                                                            div(style="display: inline-block;vertical-align:top;",column(1, actionButton(
+                                                                              "home",
+                                                                              icon("house")
+                                                                            ),
+                                                                            bsTooltip("home", "Reset the initial date and the period to cover the full timeline.",
+                                                                                      "bottom", options = list(container = "body"))))
 
                                                                           )
 
-                           )),
+                           ),
 
                              h4("Select a show on the map to get further details."),
                              h6("The locations are approximate."),
