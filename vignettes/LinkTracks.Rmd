@@ -319,11 +319,11 @@ There is an interactive version of the above graph available [here](https://alex
 
 ## Mapping the Fugazi Live Series
 
-I have tried my best to locate all the shows of the Fugazi Live Series on an interactive, online map. I started with the information on the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) website, including any flyers and comments. Google Maps would find some places quickly but others would be more difficult - many of the venues are no longer there. The search was broadened using sites like [setlist.fm](https://www.setlist.fm/) which has addresses for some venues, image searches for the flyers of other concerts by other bands at the same venues, and also online publications - there are quite a few of these on defunct venues that have long gone but live on in people's memories.  
+I have tried my best to locate all the shows on an interactive, online map. I started with the information on the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) website, including any flyers and comments. Google Maps would find some places quickly but others would be more difficult - many of the venues are no longer there. The search was broadened using sites like [setlist.fm](https://www.setlist.fm/), which sometimes have addresses for old venues, reading online publications, and reaching out to people who might remember where the venues were located.  
 
 To the best of my knowledge, about 98% of the shows have been located to a reasonable degree of accuracy. The remaining 2% should be located in the right city but may not be in the right place within the city. The results can be found [here](https://alexmitrani.shinyapps.io/Repeatr-app/).
 
-Let's have a quick look at the 2% of venues that I haven't been able to locate properly. It's only 12 shows. 
+Let's have a quick look at the list of venues that I haven't been able to locate properly. It's only 10 shows. 
 
 ```{r}
 mydf <- othervariables %>%
