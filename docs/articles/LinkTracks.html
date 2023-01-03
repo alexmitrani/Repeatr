@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9075</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9076</span>
       </span>
     </div>
 
@@ -644,7 +644,7 @@ to a reasonable degree of accuracy. The remaining 2% should be located
 in the right city but may not be in the right place within the city. The
 results can be found <a href="https://alexmitrani.shinyapps.io/Repeatr-app/" class="external-link">here</a>.</p>
 <p>Let’s have a quick look at the list of venues that I haven’t been
-able to locate properly. It’s only 10 shows.</p>
+able to locate properly.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mydf</span> <span class="op">&lt;-</span> <span class="va">othervariables</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">checked</span><span class="op">==</span><span class="fl">0</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
@@ -652,17 +652,16 @@ able to locate properly. It’s only 10 shows.</p>
 <span></span>
 <span><span class="va">mydf</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span>n<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">mydf</span><span class="op">)</span>, na.print<span class="op">=</span><span class="cn">NULL</span><span class="op">)</span></span>
-<span><span class="co">#&gt;      flsid       date          venue          city country</span></span>
-<span><span class="co">#&gt; 1  FLS0039 1988-05-29   Honest Place        Dallas     USA</span></span>
-<span><span class="co">#&gt; 2  FLS0070 1988-11-05        Bootleg      Augsburg Germany</span></span>
-<span><span class="co">#&gt; 3  FLS0104 1989-05-02 Dance Graphics Columbia (SC)     USA</span></span>
-<span><span class="co">#&gt; 4  FLS0227 1990-06-12     Studio 225  Fayetteville     USA</span></span>
-<span><span class="co">#&gt; 5  FLS0243 1990-06-30   Machine Shop    Morgantown     USA</span></span>
-<span><span class="co">#&gt; 6  FLS0339 1991-05-13            Sun      Savannah     USA</span></span>
-<span><span class="co">#&gt; 7  FLS0354 1991-06-01     Studio 225  Fayetteville     USA</span></span>
-<span><span class="co">#&gt; 8  FLS0506 1993-02-20      Trim Shop    Greensboro     USA</span></span>
-<span><span class="co">#&gt; 9  FLS0776 1996-03-30            Zoo      Savannah     USA</span></span>
-<span><span class="co">#&gt; 10 FLS0964 2000-01-14     River Rock      Savannah     USA</span></span></code></pre></div>
+<span><span class="co">#&gt;     flsid       date                  venue          city country</span></span>
+<span><span class="co">#&gt; 1 FLS0039 1988-05-29           Honest Place        Dallas     USA</span></span>
+<span><span class="co">#&gt; 2 FLS0070 1988-11-05                Bootleg      Augsburg Germany</span></span>
+<span><span class="co">#&gt; 3 FLS0104 1989-05-02         Dance Graphics Columbia (SC)     USA</span></span>
+<span><span class="co">#&gt; 4 FLS0243 1990-06-30           Machine Shop    Morgantown     USA</span></span>
+<span><span class="co">#&gt; 5 FLS0339 1991-05-13                    Sun      Savannah     USA</span></span>
+<span><span class="co">#&gt; 6 FLS0506 1993-02-20              Trim Shop    Greensboro     USA</span></span>
+<span><span class="co">#&gt; 7 FLS0515 1993-04-09 New Orleans Music Hall   New Orleans     USA</span></span>
+<span><span class="co">#&gt; 8 FLS0776 1996-03-30                    Zoo      Savannah     USA</span></span>
+<span><span class="co">#&gt; 9 FLS0964 2000-01-14             River Rock      Savannah     USA</span></span></code></pre></div>
 <p>If you know where any of these shows were located, or see an error
 that needs correcting anywhere else on the map, please let me know. You
 can leave me a message by opening an issue on the <a href="https://github.com/alexmitrani/Repeatr" class="external-link">Repeatr GitHub</a>, or by
