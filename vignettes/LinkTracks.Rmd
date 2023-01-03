@@ -323,7 +323,7 @@ I have tried my best to locate all the shows on an interactive, online map. I st
 
 To the best of my knowledge, about 98% of the shows have been located to a reasonable degree of accuracy. The remaining 2% should be located in the right city but may not be in the right place within the city. The results can be found [here](https://alexmitrani.shinyapps.io/Repeatr-app/).
 
-Let's have a quick look at the list of venues that I haven't been able to locate properly. It's only 10 shows. 
+Let's have a quick look at the list of venues that I haven't been able to locate properly. 
 
 ```{r}
 mydf <- othervariables %>%
