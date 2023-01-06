@@ -17,9 +17,6 @@ shows_data <- othervariables %>%
   rename(door_price = doorprice,
          fls_id = flsid)
 
-showdelay <- 1000
-hidedelay <- 3000
-
 # User Interface ----------------------------------------------------------
 
 ui <- fluidPage(
@@ -301,6 +298,9 @@ server <- function(input, output, session) {
 
 
 # Tooltips ----------------------------------------------------------------
+
+  showdelay <- 1000
+  hidedelay <- 1000
 
 # Shows
 
