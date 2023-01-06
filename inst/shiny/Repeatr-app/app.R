@@ -17,6 +17,9 @@ shows_data <- othervariables %>%
   rename(door_price = doorprice,
          fls_id = flsid)
 
+showdelay <- 1000
+hidedelay <- 3000
+
 # User Interface ----------------------------------------------------------
 
 ui <- fluidPage(
@@ -41,6 +44,7 @@ ui <- fluidPage(
 
                   tabPanel("Shows",
 
+
                            fluidPage(
 
                              tags$br(),
@@ -48,34 +52,30 @@ ui <- fluidPage(
                              fluidRow(
                                column(6,
                                       selectizeInput("yearInput_shows", "years:",
-                                                     sort(unique((othervariables$year))),
+                                                     sort(unique(othervariables$year)),
                                                      selected=NULL, multiple =TRUE)),
-                               column(6, uiOutput("menuOptions_tours"))
+                               column(6, uiOutput("menuOptions_tours"),
+                                      bsTooltip("menuOptions_tours", "Select one or more tours. This will activate the tour controls beneath the timeline. Leave blank for all.",
+                                                "top"))
 
                              ),
 
                            fluidRow(
 
-                             column(6, uiOutput("menuOptions_countries"),
-                                    bsTooltip("menuOptions_countries", "Select one or more countries. This will deactivate the tour controls beneath the timeline. Leave blank for all.",
-                                              "top")),
-                             column(6, uiOutput("menuOptions_cities"),
-                                    bsTooltip("menuOptions_cities", "Select one or more cities. This will deactivate the tour controls beneath the timeline. Leave blank for all.",
-                                              "top"))
+                             column(6, uiOutput("menuOptions_countries")),
+                             column(6, uiOutput("menuOptions_cities"))
 
                             ),
+
 
 
                              fluidRow(
 
                                column(12,
 
-                                leafletOutput("mymap"),
-                                bsTooltip("mymap", "Select a show on the map to get further details. The locations are approximate. If there is no map it will be because there were no shows in the selected period.",
-                                          "top")
+                                leafletOutput("mymap")
 
                                )
-
 
                              ),
 
@@ -86,22 +86,20 @@ ui <- fluidPage(
 
                              column(6,
                                     sliderInput("dateInput_shows", "timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
-                                                value=c(as.Date("1987-09-03")), timeFormat = "%F"),
-                                    bsTooltip("dateInput_shows", "The timeline shows the available range of dates, with the initial date of the selected period highlighted.",
-                                              "bottom", options = list(container = "body"))),
+                                                value=c(as.Date("1987-09-03")), timeFormat = "%F")),
                              column(3,
                                     numericInput("days", "period (days):", 5542,
-                                                 min = 1, max = 5542),
-                                    bsTooltip("days", "The duration of the selected period of the timeline, starting with the initial date show below.",
-                                              "bottom", options = list(container = "body"))),
+                                                 min = 1, max = 5542)),
 
                              column(3,
                                     numericInput("step_days", "step (days):", 1,
-                                                 min = 1, max = 365),
-                                    bsTooltip("step_days", "The length of each step forward.",
-                                              "bottom", options = list(container = "body")))
+                                                 min = 1, max = 365))
 
                            ),
+
+
+
+
 
                               conditionalPanel(
 
@@ -113,31 +111,24 @@ ui <- fluidPage(
                                    div(style="display: inline-block;vertical-align:top;",column(1, actionButton(
                                      "visit",
                                      icon("location-dot")
-                                   ),
-                                   bsTooltip("visit", "Move the initial date to the start of the selection, set the period to 7 days and the step to 1 day.",
-                                             "bottom", options = list(container = "body")))),
+                                   ))),
                                    div(style="display: inline-block;vertical-align:top;",column(1, actionButton(
                                      "step_b",
                                      icon("backward")
-                                   ),
-                                   bsTooltip("step_b", "Step backward. When you finish please press the home button to reset the timeline.",
-                                             "bottom", options = list(container = "body")))),
+                                   ))),
                                    div(style="display: inline-block;vertical-align:top;",column(1, actionButton(
                                      "step_f",
                                      icon("forward")
-                                   ),
-                                   bsTooltip("step_f", "Step forward. When you finish please press the home button to reset the timeline.",
-                                             "bottom", options = list(container = "body")))),
+                                   ))),
                                    div(style="display: inline-block;vertical-align:top;",column(1, actionButton(
                                      "home",
                                      icon("house")
-                                   ),
-                                   bsTooltip("home", "Reset the initial date and the period to cover the full timeline.",
-                                             "bottom", options = list(container = "body"))))
+                                   )))
 
                                  )
 
                              ),
+
 
                              fluidRow(
 
@@ -146,9 +137,7 @@ ui <- fluidPage(
                                column(12,
 
                                  # Create a new row for the table.
-                                 DT::dataTableOutput("showsdatatable"),
-                                 bsTooltip("showsdatatable", "The table gives details of the selected shows.",
-                                           "top", options = list(container = "body"))
+                                 DT::dataTableOutput("showsdatatable")
 
                                )
 
@@ -174,9 +163,7 @@ ui <- fluidPage(
                                column(12,
                                       selectizeInput("yearInput_tours", "years:",
                                                      sort(unique((toursdata$startyear))),
-                                                     selected=NULL, multiple =TRUE),
-                                      bsTooltip("yearInput_tours", "Select one or more years, or leave blank for all.",
-                                                "top")
+                                                     selected=NULL, multiple =TRUE)
                                )
 
                              ),
@@ -184,18 +171,13 @@ ui <- fluidPage(
                              tags$br(),
 
                              # Create a new row for the table.
-                             DT::dataTableOutput("toursdatatable"),
-                             bsTooltip("toursdatatable", "The table gives a summary of the selected tours.",
-                                       "top", options = list(container = "body"))
+                             DT::dataTableOutput("toursdatatable")
 
                            )
 
                   ),
 
-
 # Songs -------------------------------------------------------------------
-
-
 
 
                   tabPanel("Songs",
@@ -208,12 +190,10 @@ ui <- fluidPage(
                                column(6,
                                       selectizeInput("yearInput_songs", "years:",
                                                      sort(unique((othervariables$year))),
-                                                     selected=NULL, multiple =TRUE),
-                                      bsTooltip("yearInput_songs", "Select one or more years, or leave blank for all.",
-                                                "top")),
-                               column(6, uiOutput("menuOptions_tours_songs"),
-                                      bsTooltip("menuOptions_tours_songs", "Select one or more tours, or leave blank for all.",
-                                                "top"))
+                                                     selected=NULL, multiple =TRUE)),
+                               column(6, uiOutput("menuOptions_tours_songs")
+
+                                      )
 
                              ),
 
@@ -223,13 +203,9 @@ ui <- fluidPage(
                                column(6,
                                       selectizeInput("releaseInput", "release",
                                                      choices = c(unique(cumulative_song_counts$release)),
-                                                     selected="Fugazi", multiple =TRUE),
-                                      bsTooltip("releaseInput", "Choose one or more releases, or leave blank for all.",
-                                                "top")),
+                                                     selected="Fugazi", multiple =TRUE)),
                               column(6,
-                                      uiOutput("menuOptions"),
-                                     bsTooltip("menuOptions", "Select one or more songs, or leave blank for all.",
-                                               "top")
+                                      uiOutput("menuOptions")
                                      )
 
                              ),
@@ -247,9 +223,7 @@ ui <- fluidPage(
 
                             fluidRow(
                               column(12,
-                                     DT::dataTableOutput("songsdatatable"),
-                                     bsTooltip("songsdatatable", "The table shows the number of times each song was performed in the specified period.",
-                                               "top", options = list(container = "body"))
+                                     DT::dataTableOutput("songsdatatable")
                                      )
                             )
 
@@ -271,12 +245,9 @@ ui <- fluidPage(
                                  column(6,
                                         selectizeInput("year_transitions", "years:",
                                                        sort(unique((toursdata$startyear))),
-                                                       selected="1987", multiple =TRUE),
-                                        bsTooltip("year_transitions", "Select one or more years, or leave blank for all.",
-                                                  "top")),
-                                 column(6, uiOutput("menuOptions_tours_transitions"),
-                                        bsTooltip("menuOptions_tours_transitions", "Select one or more tours, or leave blank for all.",
-                                                  "top"))
+                                                       selected="1987", multiple =TRUE))),
+                                 column(6, uiOutput("menuOptions_tours_transitions")
+                                        )
 
                                ),
 
@@ -292,31 +263,33 @@ ui <- fluidPage(
 
                                fluidRow(
                                  column(12,
-                                        DT::dataTableOutput("transitionsdatatable"),
-                                        bsTooltip("transitionsdatatable", "The table shows the number of times each transition featured in the specified period.",
-                                                  "top", options = list(container = "body"))
+                                        DT::dataTableOutput("transitionsdatatable")
                                  )
                                )
 
                              )
 
-                  )
 
+
+
+# End section -------------------------------------------------------------
 
       ),
 
-      tags$div(
-        tags$br(),
-        "Visit the ",
-        tags$a(href="https://alexmitrani.github.io/Repeatr/", "Repeatr website"),
-        " for further information.",
-        tags$br(),
-        tags$br()
+
+        tags$div(
+          tags$br(),
+          "Visit the ",
+          tags$a(href="https://alexmitrani.github.io/Repeatr/", "Repeatr website"),
+          " for further information.",
+          tags$br(),
+          tags$br()
+        )
+
       )
 
     )
 
-    )
 
 
 
@@ -329,15 +302,77 @@ server <- function(input, output, session) {
 
 # Tooltips ----------------------------------------------------------------
 
-  showdelay <- 1000
-  hidedelay <- 3000
+# Shows
 
   addTooltip(session, id = 'yearInput_shows', title = "Select one or more years, or leave blank for all.",
              placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
 
-  addTooltip(session, id = 'menuOptions_tours', title = "Select one or more tours. This will activate the tour controls beneath the timeline. Leave blank for all.",
+  addTooltip(session, id = 'menuOptions_countries', title = "Select one or more countries. This will deactivate the tour controls beneath the timeline. Leave blank for all.",
              placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
 
+  addTooltip(session, id = 'menuOptions_cities', title = "Select one or more cities. This will deactivate the tour controls beneath the timeline. Leave blank for all.",
+             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
+
+  addTooltip(session, id = 'mymap', title = "Select a show on the map to get further details. The locations are approximate. If there is no map it will be because there were no shows in the selected period.",
+             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
+
+  addTooltip(session, id = 'dateInput_shows', title = "The timeline shows the available range of dates, with the initial date of the selected period highlighted.",
+             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay, container = "body")))
+
+  addTooltip(session, id = 'days', title = "The duration of the selected period of the timeline, starting with the initial date show below.",
+             placement = "bottom", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay, container = "body")))
+
+  addTooltip(session, id = 'step_days', title = "The length of each step forward.",
+             placement = "bottom", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay, container = "body")))
+
+  addTooltip(session, id = 'visit', title = "Move the initial date to the start of the selection, set the period to 7 days and the step to 1 day.",
+             placement = "bottom", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay, container = "body")))
+
+  addTooltip(session, id = 'step_b', title = "Step backward. When you finish please press the home button to reset the timeline.",
+             placement = "bottom", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay, container = "body")))
+
+  addTooltip(session, id = 'step_f', title = "Step forward. When you finish please press the home button to reset the timeline.",
+             placement = "bottom", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay, container = "body")))
+
+  addTooltip(session, id = 'home', title = "Reset the initial date and the period to cover the full timeline.",
+             placement = "bottom", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay, container = "body")))
+
+  addTooltip(session, id = 'showsdatatable', title = "The table gives details of the selected shows.",
+             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay, container = "body")))
+
+  # Tours
+
+  addTooltip(session, id = 'yearInput_tours', title = "Select one or more years, or leave blank for all.",
+             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay, container = "body")))
+
+
+  addTooltip(session, id = 'toursdatatable', title = "The table gives a summary of the selected tours.",
+             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay, container = "body")))
+
+  # Transitions
+
+  addTooltip(session, id = 'transitionsdatatable', title = "The table shows the number of times each transition featured in the specified period.",
+             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay, container = "body")))
+
+  addTooltip(session, id = 'year_transitions', title = "Select one or more years, or leave blank for all.",
+             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
+
+  addTooltip(session, id = 'menuOptions_tours_transitions', title = "Select one or more tours, or leave blank for all.",
+             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
+
+  # Songs
+
+  addTooltip(session, id = 'yearInput_songs', title = "Select one or more years, or leave blank for all.",
+             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
+
+  addTooltip(session, id = 'menuOptions_tours_songs', title = "Select one or more tours, or leave blank for all.",
+             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
+
+  addTooltip(session, id = 'releaseInput', title = "Select one or more releases, or leave blank for all.",
+             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
+
+  addTooltip(session, id = 'menuOptions', title = "Select one or more songs, or leave blank for all.",
+             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
 
 # Shows -------------------------------------------------------------------
 
