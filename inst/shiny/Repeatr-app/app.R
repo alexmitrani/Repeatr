@@ -49,12 +49,8 @@ ui <- fluidPage(
                                column(6,
                                       selectizeInput("yearInput_shows", "years:",
                                                      sort(unique((othervariables$year))),
-                                                     selected=NULL, multiple =TRUE),
-                                      bsTooltip("yearInput_shows", "Select one or more years, or leave blank for all.",
-                                                "top")),
-                               column(6, uiOutput("menuOptions_tours"),
-                                      bsTooltip("menuOptions_tours", "Select one or more tours. This will activate the tour controls beneath the timeline. Leave blank for all.",
-                                                "top"))
+                                                     selected=NULL, multiple =TRUE)),
+                               column(6, uiOutput("menuOptions_tours"))
 
                              ),
 
@@ -329,6 +325,18 @@ ui <- fluidPage(
 
 
 server <- function(input, output, session) {
+
+
+# Tooltips ----------------------------------------------------------------
+
+  showdelay <- 1000
+  hidedelay <- 3000
+
+  addTooltip(session, id = 'yearInput_shows', title = "Select one or more years, or leave blank for all.",
+             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
+
+  addTooltip(session, id = 'menuOptions_tours', title = "Select one or more tours. This will activate the tour controls beneath the timeline. Leave blank for all.",
+             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
 
 
 # Shows -------------------------------------------------------------------
