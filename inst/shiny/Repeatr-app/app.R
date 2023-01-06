@@ -395,6 +395,8 @@ server <- function(input, output, session) {
 
       removeTooltip(session, id = 'yearInput_shows')
 
+      removeTooltip(session, id = 'menuOptions_tours')
+
       removeTooltip(session, id = 'menuOptions_countries')
 
       removeTooltip(session, id = 'menuOptions_cities')
