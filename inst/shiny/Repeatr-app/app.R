@@ -24,14 +24,24 @@ ui <- fluidPage(
   tags$style(type = "text/css", "html, body {width:100%; height:100%}"),
 
   h1("Repeatr"),
-  tags$div(
-    "Exploring the ",
-    tags$a(href="https://www.dischord.com/fugazi_live_series", "Fugazi Live Series"),
-    tags$br(),
-    tags$br()
-  ),
+
+    tags$div(
+      "Exploring the ",
+      tags$a(href="https://www.dischord.com/fugazi_live_series", "Fugazi Live Series"),
+      tags$br(),
+      tags$br()
+    ),
+
+    checkboxInput("show_help", "Help?", FALSE),
+    bsTooltip("show_help", "Switch help bubbles on or off.",
+              "top"),
+
 
     mainPanel(
+
+      fluidRow(
+
+        ),
 
       # Output
       tabsetPanel(type = "tabs",
@@ -51,9 +61,7 @@ ui <- fluidPage(
                                       selectizeInput("yearInput_shows", "years:",
                                                      sort(unique(othervariables$year)),
                                                      selected=NULL, multiple =TRUE)),
-                               column(6, uiOutput("menuOptions_tours"),
-                                      bsTooltip("menuOptions_tours", "Select one or more tours. This will activate the tour controls beneath the timeline. Leave blank for all.",
-                                                "top"))
+                               column(6, uiOutput("menuOptions_tours"))
 
                              ),
 
@@ -302,79 +310,145 @@ server <- function(input, output, session) {
   showdelay <- 1000
   hidedelay <- 1000
 
-# Shows
+  observeEvent(input$show_help, {
 
-  addTooltip(session, id = 'yearInput_shows', title = "Select one or more years, or leave blank for all.",
-             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
+    if(input$show_help == TRUE) {
 
-  addTooltip(session, id = 'menuOptions_countries', title = "Select one or more countries. This will deactivate the tour controls beneath the timeline. Leave blank for all.",
-             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
+      # Shows
 
-  addTooltip(session, id = 'menuOptions_cities', title = "Select one or more cities. This will deactivate the tour controls beneath the timeline. Leave blank for all.",
-             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
+      addTooltip(session, id = 'yearInput_shows', title = "Select one or more years, or leave blank for all.",
+                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
 
-  addTooltip(session, id = 'mymap', title = "Select a show on the map to get further details. The locations are approximate. If there is no map it will be because there were no shows in the selected period.",
-             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
+      addTooltip(session, id = 'menuOptions_tours', title = "Select one or more tours. This will activate the tour controls beneath the timeline. Leave blank for all.",
+                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
 
-  addTooltip(session, id = 'dateInput_shows', title = "The timeline shows the available range of dates, with the initial date of the selected period highlighted.",
-             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay, container = "body")))
+      addTooltip(session, id = 'menuOptions_countries', title = "Select one or more countries. This will deactivate the tour controls beneath the timeline. Leave blank for all.",
+                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
 
-  addTooltip(session, id = 'days', title = "The duration of the selected period of the timeline, starting with the initial date show below.",
-             placement = "bottom", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay, container = "body")))
+      addTooltip(session, id = 'menuOptions_cities', title = "Select one or more cities. This will deactivate the tour controls beneath the timeline. Leave blank for all.",
+                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
 
-  addTooltip(session, id = 'step_days', title = "The length of each step forward.",
-             placement = "bottom", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay, container = "body")))
+      addTooltip(session, id = 'mymap', title = "Select a show on the map to get further details. The locations are approximate. If there is no map it will be because there were no shows in the selected period.",
+                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
 
-  addTooltip(session, id = 'visit', title = "Move the initial date to the start of the selection, set the period to 7 days and the step to 1 day.",
-             placement = "bottom", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay, container = "body")))
+      addTooltip(session, id = 'dateInput_shows', title = "The timeline shows the available range of dates, with the initial date of the selected period highlighted.",
+                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
 
-  addTooltip(session, id = 'step_b', title = "Step backward. When you finish please press the home button to reset the timeline.",
-             placement = "bottom", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay, container = "body")))
+      addTooltip(session, id = 'days', title = "The duration of the selected period of the timeline, starting with the initial date show below.",
+                 placement = "bottom", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
 
-  addTooltip(session, id = 'step_f', title = "Step forward. When you finish please press the home button to reset the timeline.",
-             placement = "bottom", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay, container = "body")))
+      addTooltip(session, id = 'step_days', title = "The length of each step forward.",
+                 placement = "bottom", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
 
-  addTooltip(session, id = 'home', title = "Reset the initial date and the period to cover the full timeline.",
-             placement = "bottom", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay, container = "body")))
+      addTooltip(session, id = 'visit', title = "Move the initial date to the start of the selection, set the period to 7 days and the step to 1 day.",
+                 placement = "bottom", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
 
-  addTooltip(session, id = 'showsdatatable', title = "The table gives details of the selected shows.",
-             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay, container = "body")))
+      addTooltip(session, id = 'step_b', title = "Step backward. When you finish please press the home button to reset the timeline.",
+                 placement = "bottom", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
 
-  # Tours
+      addTooltip(session, id = 'step_f', title = "Step forward. When you finish please press the home button to reset the timeline.",
+                 placement = "bottom", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
 
-  addTooltip(session, id = 'yearInput_tours', title = "Select one or more years, or leave blank for all.",
-             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay, container = "body")))
+      addTooltip(session, id = 'home', title = "Reset the initial date and the period to cover the full timeline.",
+                 placement = "bottom", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
+
+      addTooltip(session, id = 'showsdatatable', title = "The table gives details of the selected shows.",
+                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
+
+      # Tours
+
+      addTooltip(session, id = 'yearInput_tours', title = "Select one or more years, or leave blank for all.",
+                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
 
 
-  addTooltip(session, id = 'toursdatatable', title = "The table gives a summary of the selected tours.",
-             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay, container = "body")))
+      addTooltip(session, id = 'toursdatatable', title = "The table gives a summary of the selected tours.",
+                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
 
-  # Transitions
+      # Transitions
 
-  addTooltip(session, id = 'transitionsdatatable', title = "The table shows the number of times each transition featured in the specified period.",
-             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay, container = "body")))
+      addTooltip(session, id = 'transitionsdatatable', title = "The table shows the number of times each transition featured in the specified period.",
+                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
 
-  addTooltip(session, id = 'year_transitions', title = "Select one or more years, or leave blank for all.",
-             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
+      addTooltip(session, id = 'year_transitions', title = "Select one or more years, or leave blank for all.",
+                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
 
-  addTooltip(session, id = 'menuOptions_tours_transitions', title = "Select one or more tours, or leave blank for all.",
-             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
+      addTooltip(session, id = 'menuOptions_tours_transitions', title = "Select one or more tours, or leave blank for all.",
+                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
 
-  # Songs
+      # Songs
 
-  addTooltip(session, id = 'yearInput_songs', title = "Select one or more years, or leave blank for all.",
-             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
+      addTooltip(session, id = 'yearInput_songs', title = "Select one or more years, or leave blank for all.",
+                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
 
-  addTooltip(session, id = 'menuOptions_tours_songs', title = "Select one or more tours, or leave blank for all.",
-             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
+      addTooltip(session, id = 'menuOptions_tours_songs', title = "Select one or more tours, or leave blank for all.",
+                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
 
-  addTooltip(session, id = 'releaseInput', title = "Select one or more releases, or leave blank for all.",
-             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
+      addTooltip(session, id = 'releaseInput', title = "Select one or more releases, or leave blank for all.",
+                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
 
-  addTooltip(session, id = 'menuOptions', title = "Select one or more songs, or leave blank for all.",
-             placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
+      addTooltip(session, id = 'menuOptions', title = "Select one or more songs, or leave blank for all.",
+                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
+
+    } else {
+
+      # Shows
+
+      removeTooltip(session, id = 'yearInput_shows')
+
+      removeTooltip(session, id = 'menuOptions_countries')
+
+      removeTooltip(session, id = 'menuOptions_cities')
+
+      removeTooltip(session, id = 'mymap')
+
+      removeTooltip(session, id = 'dateInput_shows')
+
+      removeTooltip(session, id = 'days')
+
+      removeTooltip(session, id = 'step_days')
+
+      removeTooltip(session, id = 'visit')
+
+      removeTooltip(session, id = 'step_b')
+
+      removeTooltip(session, id = 'step_f')
+
+      removeTooltip(session, id = 'home')
+
+      removeTooltip(session, id = 'showsdatatable')
+
+      # Tours
+
+      removeTooltip(session, id = 'yearInput_tours')
+
+
+      removeTooltip(session, id = 'toursdatatable')
+
+      # Transitions
+
+      removeTooltip(session, id = 'transitionsdatatable')
+
+      removeTooltip(session, id = 'year_transitions')
+
+      removeTooltip(session, id = 'menuOptions_tours_transitions')
+
+      # Songs
+
+      removeTooltip(session, id = 'yearInput_songs')
+
+      removeTooltip(session, id = 'menuOptions_tours_songs')
+
+      removeTooltip(session, id = 'releaseInput')
+
+      removeTooltip(session, id = 'menuOptions')
+
+    }
+
+  })
+
 
 # Shows -------------------------------------------------------------------
+
 
 
   output$menuOptions_tours <- renderUI({
