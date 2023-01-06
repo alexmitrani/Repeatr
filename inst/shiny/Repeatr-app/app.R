@@ -32,7 +32,7 @@ ui <- fluidPage(
       tags$br()
     ),
 
-    checkboxInput("show_help", "Help?", FALSE),
+    checkboxInput("show_help", "Help", FALSE),
     bsTooltip("show_help", "Switch help bubbles on or off.",
               "top"),
 
