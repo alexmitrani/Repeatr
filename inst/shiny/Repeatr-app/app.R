@@ -92,41 +92,41 @@ ui <- fluidPage(
 
                                   fluidRow(
 
-                                    column(6,
+                                    column(12,
                                            sliderInput("dateInput_shows", "timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
-                                                       value=c(as.Date("1987-09-03")), timeFormat = "%F")),
+                                                       value=c(as.Date("1987-09-03")), timeFormat = "%F", width = "100%"))
+
+                                  ),
+
+                                  fluidRow(
+
                                     column(3,
                                            numericInput("days", "period (days):", 5542,
                                                         min = 1, max = 5542)),
 
                                     column(3,
                                            numericInput("step_days", "step (days):", 1,
-                                                        min = 1, max = 365))
+                                                        min = 1, max = 365)),
+
+                                    column(6,
+
+                                             div(style="display: inline-block;vertical-align:top;",column(2, actionButton(
+                                               "step_b",
+                                               icon("backward")
+                                             ))),
+                                             div(style="display: inline-block;vertical-align:top;",column(2, actionButton(
+                                               "step_f",
+                                               icon("forward")
+                                             ))),
+                                             div(style="display: inline-block;vertical-align:top;",column(2, actionButton(
+                                               "home",
+                                               icon("house")
+                                             )))
+
+                                           )
 
                                   ),
 
-
-                                 fluidRow(
-
-
-                                   div(style="display: inline-block;vertical-align:top;",column(1, actionButton(
-                                     "visit",
-                                     icon("location-dot")
-                                   ))),
-                                   div(style="display: inline-block;vertical-align:top;",column(1, actionButton(
-                                     "step_b",
-                                     icon("backward")
-                                   ))),
-                                   div(style="display: inline-block;vertical-align:top;",column(1, actionButton(
-                                     "step_f",
-                                     icon("forward")
-                                   ))),
-                                   div(style="display: inline-block;vertical-align:top;",column(1, actionButton(
-                                     "home",
-                                     icon("house")
-                                   )))
-
-                                 )
 
                              ),
 
@@ -548,19 +548,6 @@ server <- function(input, output, session) {
     selectizeInput("cityInput_shows", "cities:",
                    choices = c(unique(menudata$city)), multiple =TRUE)
 
-  })
-
-  observeEvent(input$visit, {
-    date1 <- as.Date(min(shows_data2()$date))
-    freezeReactiveValue(input, "dateInput_shows")
-    updateSliderInput(session,"dateInput_shows", "timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
-                      value=c(date1), timeFormat = "%F")
-    freezeReactiveValue(input, "days")
-    updateNumericInput(session, "days", "period (days):", 7,
-                 min = 1, max = 5542)
-    freezeReactiveValue(input, "step_days")
-    updateNumericInput(session, "step_days", "step (days):", 1,
-                       min = 1, max = 5542)
   })
 
   observeEvent(input$step_b, {
