@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9082</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9084</span>
       </span>
     </div>
 
@@ -639,25 +639,12 @@ the venues are no longer there. The search was broadened using sites
 like <a href="https://www.setlist.fm/" class="external-link">setlist.fm</a>, which sometimes
 have addresses for old venues, reading online publications, and reaching
 out to people who might remember where the venues were located.</p>
-<p>To the best of my knowledge, about 98% of the shows have been located
-to a reasonable degree of accuracy. The remaining 2% should be located
-in the right city but may not be in the right place within the city. The
-results can be found <a href="https://alexmitrani.shinyapps.io/Repeatr-app/" class="external-link">here</a>.</p>
-<p>Let’s have a quick look at the list of venues that I haven’t been
-able to locate properly.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mydf</span> <span class="op">&lt;-</span> <span class="va">othervariables</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">checked</span><span class="op">==</span><span class="fl">0</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="va">flsid</span>, <span class="va">date</span>, <span class="va">venue</span>, <span class="va">city</span>, <span class="va">country</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">mydf</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span>n<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">mydf</span><span class="op">)</span>, na.print<span class="op">=</span><span class="cn">NULL</span><span class="op">)</span></span>
-<span><span class="co">#&gt;     flsid       date          venue          city country</span></span>
-<span><span class="co">#&gt; 1 FLS0104 1989-05-02 Dance Graphics Columbia (SC)     USA</span></span></code></pre></div>
-<p>If you know where any of these shows were located, or see an error
-that needs correcting anywhere else on the map, please let me know. You
-can leave me a message by opening an issue on the <a href="https://github.com/alexmitrani/Repeatr" class="external-link">Repeatr GitHub</a>, or by
-contacting me on <a href="https://twitter.com/alex_mitrani_es" class="external-link">Twitter</a> or on <a href="https://mastodon.online/@alex_mitrani_es" class="external-link">Mastodon</a>.
+<p>To the best of my knowledge, all of the shows have been located to a
+reasonable degree of accuracy. The results can be found <a href="https://alexmitrani.shinyapps.io/Repeatr-app/" class="external-link">here</a>.</p>
+<p>If you see an error that needs correcting on the map, please let me
+know. You can leave me a message by opening an issue on the <a href="https://github.com/alexmitrani/Repeatr" class="external-link">Repeatr GitHub</a>, by
+contacting me on <a href="https://twitter.com/alex_mitrani_es" class="external-link">Twitter</a> or by contacting
+me on on <a href="https://mastodon.online/@alex_mitrani_es" class="external-link">Mastodon</a>.
 Thanks.</p>
 </div>
   </div>
