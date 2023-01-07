@@ -73,42 +73,38 @@ ui <- fluidPage(
                             ),
 
 
-
-                             fluidRow(
-
-                               column(12,
-
-                                leafletOutput("mymap")
-
-                               )
-
-                             ),
-
-                           tags$br(),
-
-
                            fluidRow(
 
-                             column(6,
-                                    sliderInput("dateInput_shows", "timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
-                                                value=c(as.Date("1987-09-03")), timeFormat = "%F")),
-                             column(3,
-                                    numericInput("days", "period (days):", 5542,
-                                                 min = 1, max = 5542)),
+                             column(12,
 
-                             column(3,
-                                    numericInput("step_days", "step (days):", 1,
-                                                 min = 1, max = 365))
+                              leafletOutput("mymap")
+
+                             )
 
                            ),
 
 
-
+                           tags$br(),
 
 
                               conditionalPanel(
+                                condition = "input.cityInput_shows=='' & input.countryInput_shows==''",
 
-                                condition = "input.tourInput_shows!='' & input.cityInput_shows=='' & input.countryInput_shows==''",
+                                  fluidRow(
+
+                                    column(6,
+                                           sliderInput("dateInput_shows", "timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                                                       value=c(as.Date("1987-09-03")), timeFormat = "%F")),
+                                    column(3,
+                                           numericInput("days", "period (days):", 5542,
+                                                        min = 1, max = 5542)),
+
+                                    column(3,
+                                           numericInput("step_days", "step (days):", 1,
+                                                        min = 1, max = 365))
+
+                                  ),
+
 
                                  fluidRow(
 
@@ -319,13 +315,13 @@ server <- function(input, output, session) {
       addTooltip(session, id = 'yearInput_shows', title = "Select one or more years, or leave blank for all.",
                  placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
 
-      addTooltip(session, id = 'menuOptions_tours', title = "Select one or more tours. This will activate the tour controls beneath the timeline. Leave blank for all.",
+      addTooltip(session, id = 'menuOptions_tours', title = "Select one or more tours, or leave blank for all.",
                  placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
 
-      addTooltip(session, id = 'menuOptions_countries', title = "Select one or more countries. This will deactivate the tour controls beneath the timeline. Leave blank for all.",
+      addTooltip(session, id = 'menuOptions_countries', title = "Select one or more countries. This will deactivate the time controls beneath the map. Leave blank for all.",
                  placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
 
-      addTooltip(session, id = 'menuOptions_cities', title = "Select one or more cities. This will deactivate the tour controls beneath the timeline. Leave blank for all.",
+      addTooltip(session, id = 'menuOptions_cities', title = "Select one or more cities. This will deactivate the time controls beneath the map. Leave blank for all.",
                  placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
 
       addTooltip(session, id = 'mymap', title = "Select a show on the map to get further details. The locations are approximate. If there is no map it will be because there were no shows in the selected period.",
@@ -718,6 +714,8 @@ server <- function(input, output, session) {
     mydf
 
   })
+
+  # map
 
   output$mymap <- renderLeaflet({
     df <- shows_data2()
