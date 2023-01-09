@@ -22,6 +22,7 @@ shows_data <- othervariables %>%
 ui <- fluidPage(
 
   tags$style(type = "text/css", "html, body {width:100%; height:100%}"),
+  tags$style("#weeks {font-size:10px;}"),
 
   h1("Repeatr"),
 
@@ -100,16 +101,20 @@ ui <- fluidPage(
 
                                   fluidRow(
 
-                                    column(3,
-                                           numericInput("days", "period (days):", 5542,
-                                                        min = 1, max = 5542)),
+                                    column(2,
+                                           numericInput("weeks", "period (weeks):", 792,
+                                                        min = 1, max = 792)),
 
-                                    column(3,
+                                    column(2,
                                            numericInput("step_days", "step (days):", 1,
                                                         min = 1, max = 365)),
 
-                                    column(6,
+                                    column(8,
 
+                                             div(style="display: inline-block;vertical-align:top;",column(2, actionButton(
+                                               "visit",
+                                               icon("location-dot")
+                                             ))),
                                              div(style="display: inline-block;vertical-align:top;",column(2, actionButton(
                                                "step_b",
                                                icon("backward")
@@ -330,7 +335,7 @@ server <- function(input, output, session) {
       addTooltip(session, id = 'dateInput_shows', title = "The timeline shows the available range of dates, with the initial date of the selected period highlighted.",
                  placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
 
-      addTooltip(session, id = 'days', title = "The duration of the selected period of the timeline, starting with the initial date show below.",
+      addTooltip(session, id = 'weeks', title = "The duration of the selected period of the timeline, starting with the initial date show below.",
                  placement = "bottom", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
 
       addTooltip(session, id = 'step_days', title = "The length of each step forward.",
@@ -401,7 +406,7 @@ server <- function(input, output, session) {
 
       removeTooltip(session, id = 'dateInput_shows')
 
-      removeTooltip(session, id = 'days')
+      removeTooltip(session, id = 'weeks')
 
       removeTooltip(session, id = 'step_days')
 
@@ -550,6 +555,19 @@ server <- function(input, output, session) {
 
   })
 
+  observeEvent(input$visit, {
+    date1 <- as.Date(min(shows_data2()$date))
+    freezeReactiveValue(input, "dateInput_shows")
+    updateSliderInput(session,"dateInput_shows", "timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                      value=c(date1), timeFormat = "%F")
+    freezeReactiveValue(input, "weeks")
+    updateNumericInput(session, "weeks", "period (weeks):", 1,
+                       min = 1, max = 792)
+    freezeReactiveValue(input, "step_days")
+    updateNumericInput(session, "step_days", "step (days):", 1,
+                       min = 1, max = 5542)
+  })
+
   observeEvent(input$step_b, {
     date1 <- input$dateInput_shows[1] - input$step_days
     freezeReactiveValue(input, "dateInput_shows")
@@ -569,9 +587,9 @@ server <- function(input, output, session) {
     freezeReactiveValue(input, "dateInput_shows")
     updateSliderInput(session,"dateInput_shows", "timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                       value=c(as.Date("1987-09-03")), timeFormat = "%F")
-    freezeReactiveValue(input, "days")
-    updateNumericInput(session, "days", "period (days):", 5542,
-                       min = 1, max = 5542)
+    freezeReactiveValue(input, "weeks")
+    updateNumericInput(session, "weeks", "period (weeks):", 792,
+                       min = 1, max = 792)
     freezeReactiveValue(input, "step_days")
     updateNumericInput(session, "step_days", "step (days):", 1,
                        min = 1, max = 5542)
@@ -580,7 +598,7 @@ server <- function(input, output, session) {
   shows_data2 <- reactive({
 
     date1 <- input$dateInput_shows[1]
-    date2 <- date1 + input$days
+    date2 <- date1 + 7*input$weeks
 
     if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==FALSE & is.null(input$countryInput_shows)==FALSE & is.null(input$cityInput_shows)==FALSE) {
       mydf <- shows_data %>%
