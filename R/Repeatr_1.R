@@ -154,8 +154,8 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   # correct values where necessary
 
   othervariables <- othervariables %>%
-    mutate(x = ifelse(city=="Newcastle-Upon-Tyne" & venue=="Riverside", -1.6058814, x),
-           y = ifelse(city=="Newcastle-Upon-Tyne" & venue=="Riverside", 54.9715426, y),
+    mutate(x = ifelse(city=="Newcastle-Upon-Tyne" & venue=="Riverside", -1.6051, x),
+           y = ifelse(city=="Newcastle-Upon-Tyne" & venue=="Riverside", 54.9717, y),
            checked = ifelse(city=="Newcastle-Upon-Tyne" & venue=="Riverside", 1, checked),
            x = ifelse(city=="Lisbon" & venue=="Gartejo", -9.1755975, x),
            y = ifelse(city=="Lisbon" & venue=="Gartejo", 38.7042177, y),
@@ -193,9 +193,9 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
            x = ifelse(country == "Canada" & city=="Ottawa" & venue=="Carleton University Porter Hall", -75.6978497, x),
            y = ifelse(country == "Canada" & city=="Ottawa" & venue=="Carleton University Porter Hall", 45.3840001, y),
            checked = ifelse(country == "Canada" & city=="Ottawa" & venue=="Carleton University Porter Hall", 1, checked),
-           x = ifelse(country == "Australia" & city=="Sydney" & venue=="Metro Theatre", 151.2066274, x),
-           y = ifelse(country == "Australia" & city=="Sydney" & venue=="Metro Theatre", -33.8756943, y),
-           checked = ifelse(country == "Australia" & city=="Sydney" & venue=="Metro Theatre", 1, checked),
+           x = ifelse(country == "Australia" & city=="Sydney" & (venue=="Metro Theatre" | venue=="Metro"), 151.2066274, x),
+           y = ifelse(country == "Australia" & city=="Sydney" & (venue=="Metro Theatre" | venue=="Metro"), -33.8756943, y),
+           checked = ifelse(country == "Australia" & city=="Sydney" & (venue=="Metro Theatre" | venue=="Metro"), 1, checked),
            x = ifelse(country == "USA" & city=="Watsonville" & venue=="Veteran's Memorial Hall", -121.7545246, x),
            y = ifelse(country == "USA" & city=="Watsonville" & venue=="Veteran's Memorial Hall", 36.9126013, y),
            checked = ifelse(country == "USA" & city=="Watsonville" & venue=="Veteran's Memorial Hall", 1, checked),

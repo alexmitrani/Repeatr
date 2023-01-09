@@ -733,7 +733,7 @@ server <- function(input, output, session) {
         L.control.zoom({ position: 'bottomleft' }).addTo(this)
       }") %>%
       fitBounds(lng1 = min_longitude, lat1 = min_latitude, lng2 = max_longitude, lat2 = max_latitude) %>%
-      addProviderTiles("Esri.WorldStreetMap") %>%
+      addProviderTiles("OpenStreetMap.Mapnik") %>%
       addScaleBar() %>%
       addCircles(
         data = df,
