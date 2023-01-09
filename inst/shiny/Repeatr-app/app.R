@@ -340,7 +340,7 @@ server <- function(input, output, session) {
       addTooltip(session, id = 'step_days', title = "The length of each step forward.",
                  placement = "bottom", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
 
-      addTooltip(session, id = 'visit', title = "Move the initial date to the start of the selection, set the period to 7 days and the step to 1 day.",
+      addTooltip(session, id = 'visit', title = "Move the initial date to the start of the selection, set the period to 1 week and the step to 1 day.",
                  placement = "bottom", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
 
       addTooltip(session, id = 'step_b', title = "Step backward. When you finish please press the home button to reset the timeline.",
