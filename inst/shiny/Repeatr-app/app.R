@@ -891,11 +891,11 @@ server <- function(input, output, session) {
 
     mysongs <- songs_data() %>%
       group_by(song) %>%
-      summarize(count = max(count) - min(count)) %>%
+      summarize(count = max(count) - min(count), from = min(date), to=max(date)) %>%
       ungroup() %>%
       arrange(desc(count)) %>%
       mutate(index = row_number()) %>%
-      select(song, index)
+      select(song, index, from, to)
 
     mysongs
 
@@ -926,7 +926,7 @@ server <- function(input, output, session) {
 
   output$songsdatatable <- DT::renderDataTable(DT::datatable({
     data <- songs_data3() %>%
-      group_by(release, song) %>%
+      group_by(release, song, from, to) %>%
       summarize(count = max(count) - min(count)) %>%
       ungroup() %>%
       arrange(desc(count))
