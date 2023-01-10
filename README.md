@@ -22,7 +22,7 @@ Exploring the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series).
 
 The Repeatr package can be installed from RStudio using the following command:
 
-devtools::install_github("alexmitrani/Repeatr")
+devtools::install_github("alexmitrani/Repeatr", build_opts = c("--no-resave-data", "--no-manual"))
 
 The package gives easy access to the functions, dataframes, and related documentation.
 
