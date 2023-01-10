@@ -130,3 +130,4 @@ This is a list of shows that I plan to listen to again in future, based on what 
 [FLS0624, Powerstation, Auckland, New Zealand, 1993-12-12](https://www.dischord.com/fugazi_live_series/auckland-new-zealand-121293)<br>
 [FLS0628, Belo Horizonte Independent Music Festival, Belo Horizonte, Brazil, 1994-08-15](https://www.dischord.com/fugazi_live_series/belo-horizonte-brazil-81594)<br>
 [FLS0630, Colegio Leao XIII Hall, Itaborai, Brazil, 1994-08-19](https://www.dischord.com/fugazi_live_series/itaborai-brazil-81994)<br>
+[FLS0632, Aeroanta, Sao Paulo, Brazil, 1994-08-21](https://www.dischord.com/fugazi_live_series/sao-paulo-brazil-82194)<br>
