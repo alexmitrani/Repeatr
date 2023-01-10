@@ -833,6 +833,7 @@ server <- function(input, output, session) {
       theme(legend.position="none") +
       xlab("Date") +
       ylab("Cumulative attendance") +
+      scale_y_continuous(labels = comma) +
       ggtitle("Cumulative attendance over time")
 
     plotly::ggplotly(attendance_plot)
