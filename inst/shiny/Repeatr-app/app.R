@@ -17,61 +17,6 @@ shows_data <- othervariables %>%
   rename(door_price = doorprice,
          fls_id = flsid)
 
-geocodedatafilename <- system.file("extdata", "fugazi-small.csv", package = "Repeatr")
-geocodedatafile <- read.csv(geocodedatafilename)
-geocodedatafile$X <- NULL
-
-geocodedatafile <- geocodedatafile %>%
-  mutate(date = as.Date(date))
-
-td_othervariables_patchfilename <- system.file("extdata", "othervariables_patch.csv", package = "Repeatr")
-td_othervariables_patchfile <- read.csv(td_othervariables_patchfilename) %>%
-  mutate(date = as.Date(date, "%m-%d-%Y"),
-         checked = 1)
-
-td_othervariables <- Repeatr0 %>%
-  select(V1, V2, V3, V4, V5, V6, V7, V8, V9)
-
-td_othervariables <- td_othervariables %>%
-  rename(gid = V1) %>%
-  rename(flsid = V2) %>%
-  rename(date = V3) %>%
-  rename(venue = V4) %>%
-  rename(doorprice = V5) %>%
-  rename(attendance = V6) %>%
-  rename(recorded_by = V7) %>%
-  rename(mastered_by = V8) %>%
-  rename(original_source = V9)
-
-td_othervariables <- td_othervariables %>%
-  mutate(date = as.Date(date),
-         checked = 0)
-
-td_othervariables <- td_othervariables %>%
-  mutate(attendance = as.numeric(attendance))
-
-td_othervariables <- td_othervariables %>% left_join(geocodedatafile)
-
-td_othervariables <- td_othervariables %>%
-  mutate(country = ifelse(flsid=="FLS0970", "USA", country),
-         country = ifelse(city=="Ljubljana" & year>=1991, "Slovenia", country),
-         city = ifelse(flsid=="FLS0970", "San Francisco", city),
-         x = ifelse(flsid=="FLS0970", -122.4272376, x),
-         y = ifelse(flsid=="FLS0970", 37.760407, y),
-         tour = ifelse(flsid=="FLS0970", "2000 Summer/Fall Regional Dates", tour),
-         tour = ifelse(tour=="1993 Fall USA/Canda Tour", "1993 Fall USA/Canada Tour", tour),
-         year = ifelse(flsid=="FLS0970", 2000, year),
-         recorded_by = ifelse(flsid=="FLS0970", "Stephen Kozlowski", recorded_by),
-         checked = ifelse(flsid=="FLS0970", 1, checked))
-
-td_othervariables <- td_othervariables %>%
-  filter(is.na(x)==FALSE)
-
-td_othervariables <- rbind.data.frame(td_othervariables, td_othervariables_patchfile)
-
-td_othervariables <- td_othervariables %>%
-  filter(is.na(tour)==FALSE)
-
 # User Interface ----------------------------------------------------------
 
 ui <- fluidPage(
@@ -843,13 +788,13 @@ server <- function(input, output, session) {
 
   attendance_data <- reactive({
 
-    meanattendance <- td_othervariables %>%
+    meanattendance <- othervariables %>%
       filter(is.na(attendance)==FALSE) %>%
       group_by(year) %>%
       summarise(meanattendance = mean(attendance)) %>%
       ungroup()
 
-    attendancedata <- td_othervariables %>%
+    attendancedata <- othervariables %>%
       filter(is.na(tour)==FALSE) %>%
       left_join(meanattendance) %>%
       mutate(attendance = round(ifelse(is.na(attendance)==TRUE,meanattendance,attendance))) %>%

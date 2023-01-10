@@ -214,19 +214,19 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   # Correct country
   othervariables <- othervariables %>%
-    mutate(country = ifelse(city=="Belfast" | city=="Derry", "Northern Ireland", country))
+    mutate(country = ifelse(city=="Belfast" | city=="Derry", "Northern Ireland", country),
+           country = ifelse(flsid=="FLS0970", "USA", country))
 
   # impute values where they are missing
   meanattendance <- othervariables %>%
     filter(is.na(tour)==FALSE) %>%
-    mutate(attendance = ifelse(is.na(attendance)==TRUE, 100, attendance)) %>%
+    filter(is.na(attendance)==FALSE) %>%
     group_by(year) %>%
     summarise(meanattendance = mean(attendance)) %>%
     ungroup()
 
   othervariables <- othervariables %>%
     filter(is.na(tour)==FALSE) %>%
-    mutate(attendance = ifelse(flsid=="FLS0677", 500, attendance)) %>%
     left_join(meanattendance) %>%
     mutate(attendance = ifelse(is.na(attendance)==TRUE,meanattendance,attendance))
 
@@ -235,6 +235,40 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   othervariables <- othervariables %>%
     relocate(checked, .after = year)
+
+  mydir <- getwd()
+  myinputdir <- paste0(mydir, "/inst/extdata/")
+  mydatadir <- paste0(mydir, "/data")
+
+  fls_venue_geocoding_update_filename <- paste0(myinputdir, "fls_venue_geocoding.csv")
+
+  # Update coordinates from geocoding file
+  fls_venue_geocoding_update <- read.csv(fls_venue_geocoding_update_filename, header=TRUE) %>%
+    select(country, city, venue, link_x, link_y, city_disambiguation, guess, unknown) %>%
+    filter(is.na(link_x)==FALSE) %>%
+    mutate(geocoding_check=1)
+
+  fls_venue_geocoding_update <- fls_venue_geocoding_update %>%
+    mutate(city_disambiguation = ifelse(nchar(city_disambiguation)>0,city_disambiguation,NA))
+
+  othervariables <- othervariables %>%
+    left_join(fls_venue_geocoding_update)
+
+  othervariables <- othervariables %>%
+    mutate(x = ifelse(is.na(link_x)==FALSE, link_x, x),
+           y = ifelse(is.na(link_y)==FALSE, link_y, y),
+           city = ifelse(is.na(city_disambiguation)==FALSE, city_disambiguation, city),
+           checked = ifelse(is.na(geocoding_check)==FALSE & is.na(guess)==TRUE & is.na(unknown)==TRUE, geocoding_check, checked))
+
+  othervariables <- othervariables %>%
+    select(-link_x, -link_y, -city_disambiguation, -geocoding_check, -guess, -unknown)
+
+
+  setwd(mydatadir)
+
+  save(othervariables, file="othervariables.rda")
+
+  setwd(mydir)
 
   save(othervariables, file="othervariables.rda")
 
