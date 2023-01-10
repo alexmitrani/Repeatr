@@ -258,7 +258,7 @@ ui <- fluidPage(
                                  column(6,
                                         selectizeInput("year_transitions", "years:",
                                                        sort(unique((toursdata$startyear))),
-                                                       selected="1987", multiple =TRUE))),
+                                                       selected="1989", multiple =TRUE))),
                                  column(6, uiOutput("menuOptions_tours_transitions")
                                         )
 
