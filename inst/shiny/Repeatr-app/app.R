@@ -17,6 +17,61 @@ shows_data <- othervariables %>%
   rename(door_price = doorprice,
          fls_id = flsid)
 
+geocodedatafilename <- system.file("extdata", "fugazi-small.csv", package = "Repeatr")
+geocodedatafile <- read.csv(geocodedatafilename)
+geocodedatafile$X <- NULL
+
+geocodedatafile <- geocodedatafile %>%
+  mutate(date = as.Date(date))
+
+td_othervariables_patchfilename <- system.file("extdata", "othervariables_patch.csv", package = "Repeatr")
+td_othervariables_patchfile <- read.csv(td_othervariables_patchfilename) %>%
+  mutate(date = as.Date(date, "%m-%d-%Y"),
+         checked = 1)
+
+td_othervariables <- Repeatr0 %>%
+  select(V1, V2, V3, V4, V5, V6, V7, V8, V9)
+
+td_othervariables <- td_othervariables %>%
+  rename(gid = V1) %>%
+  rename(flsid = V2) %>%
+  rename(date = V3) %>%
+  rename(venue = V4) %>%
+  rename(doorprice = V5) %>%
+  rename(attendance = V6) %>%
+  rename(recorded_by = V7) %>%
+  rename(mastered_by = V8) %>%
+  rename(original_source = V9)
+
+td_othervariables <- td_othervariables %>%
+  mutate(date = as.Date(date),
+         checked = 0)
+
+td_othervariables <- td_othervariables %>%
+  mutate(attendance = as.numeric(attendance))
+
+td_othervariables <- td_othervariables %>% left_join(geocodedatafile)
+
+td_othervariables <- td_othervariables %>%
+  mutate(country = ifelse(flsid=="FLS0970", "USA", country),
+         country = ifelse(city=="Ljubljana" & year>=1991, "Slovenia", country),
+         city = ifelse(flsid=="FLS0970", "San Francisco", city),
+         x = ifelse(flsid=="FLS0970", -122.4272376, x),
+         y = ifelse(flsid=="FLS0970", 37.760407, y),
+         tour = ifelse(flsid=="FLS0970", "2000 Summer/Fall Regional Dates", tour),
+         tour = ifelse(tour=="1993 Fall USA/Canda Tour", "1993 Fall USA/Canada Tour", tour),
+         year = ifelse(flsid=="FLS0970", 2000, year),
+         recorded_by = ifelse(flsid=="FLS0970", "Stephen Kozlowski", recorded_by),
+         checked = ifelse(flsid=="FLS0970", 1, checked))
+
+td_othervariables <- td_othervariables %>%
+  filter(is.na(x)==FALSE)
+
+td_othervariables <- rbind.data.frame(td_othervariables, td_othervariables_patchfile)
+
+td_othervariables <- td_othervariables %>%
+  filter(is.na(tour)==FALSE)
+
 # User Interface ----------------------------------------------------------
 
 ui <- fluidPage(
@@ -171,6 +226,14 @@ ui <- fluidPage(
                                                      selected=NULL, multiple =TRUE)
                                )
 
+                             ),
+
+                             # Graph
+
+                             fluidRow(
+                               column(12,
+                                      plotlyOutput("attendance_count_plot")
+                               )
                              ),
 
                              tags$br(),
@@ -360,8 +423,7 @@ server <- function(input, output, session) {
       addTooltip(session, id = 'yearInput_tours', title = "Select one or more years, or leave blank for all.",
                  placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
 
-
-      addTooltip(session, id = 'toursdatatable', title = "The table gives a summary of the selected tours.",
+      addTooltip(session, id = 'toursdatatable', title = "The table gives a summary of the selected tours. The attendance of shows with missing attendance data was imputed using the average show attendance for the given year.",
                  placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
 
       # Transitions
@@ -422,7 +484,6 @@ server <- function(input, output, session) {
       # Tours
 
       removeTooltip(session, id = 'yearInput_tours')
-
 
       removeTooltip(session, id = 'toursdatatable')
 
@@ -780,21 +841,67 @@ server <- function(input, output, session) {
 
 # Tours -------------------------------------------------------------------
 
+  attendance_data <- reactive({
+
+    meanattendance <- td_othervariables %>%
+      filter(is.na(attendance)==FALSE) %>%
+      group_by(year) %>%
+      summarise(meanattendance = mean(attendance)) %>%
+      ungroup()
+
+    attendancedata <- td_othervariables %>%
+      filter(is.na(tour)==FALSE) %>%
+      left_join(meanattendance) %>%
+      mutate(attendance = round(ifelse(is.na(attendance)==TRUE,meanattendance,attendance))) %>%
+      select(year, tour, date, attendance) %>%
+      arrange(date) %>%
+      mutate(cumulative_attendance = cumsum(attendance))
+
+    if (is.null(input$yearInput_tours)==FALSE) {
+
+      attendancedata <- attendancedata[attendancedata$year %in% input$yearInput_tours,]
+
+    }
+
+    attendancedata
+
+  })
+
+  attendance_data2 <- reactive({
+
+    attendancedata2 <- attendance_data() %>%
+      group_by(tour) %>%
+      filter(is.na(date)==FALSE) %>%
+      summarise(start = min(date), end = max(date), shows = n(), duration = as.numeric((end - start)), attendance=sum(attendance), cumulative_attendance = max(cumulative_attendance)) %>%
+      ungroup() %>%
+      arrange(start)
+
+    attendancedata2
+
+  })
+
+  output$attendance_count_plot <- renderPlotly({
+
+    attendance_plot <- ggplot(attendance_data(), aes(date, cumulative_attendance, color = tour)) +
+      geom_point() +
+      theme_bw() +
+      theme(legend.position="none") +
+      xlab("Date") +
+      ylab("Cumulative attendance") +
+      ggtitle("Cumulative attendance over time")
+
+    plotly::ggplotly(attendance_plot)
+
+  })
 
   output$toursdatatable <- DT::renderDataTable(DT::datatable({
-    data <- toursdata  %>%
+    data <- attendance_data2()  %>%
       filter(tour!="Unknown") %>%
       rename(days = duration) %>%
       arrange(start)
 
-    if (is.null(input$yearInput_tours)==FALSE) {
-      data <- data[data$startyear %in% input$yearInput_tours,]
-    }
-
-    data <- data %>%
-      select(-startyear, -endyear, -meanattendance)
-
     data
+
   }))
 
 
