@@ -17,6 +17,14 @@ shows_data <- othervariables %>%
   rename(door_price = doorprice,
          fls_id = flsid)
 
+last_performance_data <- Repeatr1 %>%
+  select(date, song)%>%
+  group_by(song) %>%
+  summarize(last_performance=max(date)) %>%
+  ungroup()
+
+timestamptext <- paste0("Made with Repeatr version ", packageVersion("Repeatr"), ", updated ", packageDate("Repeatr"), ".")
+
 # User Interface ----------------------------------------------------------
 
 ui <- fluidPage(
@@ -292,7 +300,9 @@ ui <- fluidPage(
 
         tags$div(
           tags$br(),
-          "Visit the ",
+          print(timestamptext),
+          tags$br(),
+          " Visit the ",
           tags$a(href="https://alexmitrani.github.io/Repeatr/", "Repeatr website"),
           " for further information.",
           tags$br(),
@@ -958,7 +968,9 @@ server <- function(input, output, session) {
 
     mydf <- songs_data() %>%
       left_join(songs_data2()) %>%
-      filter(index<=max_songs)
+      filter(index<=max_songs) %>%
+      left_join(last_performance_data) %>%
+      mutate(to = as.Date(ifelse(last_performance<to, last_performance, to), origin = "1970-01-01"))
 
     mydf
 
