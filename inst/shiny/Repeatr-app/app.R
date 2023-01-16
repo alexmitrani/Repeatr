@@ -29,6 +29,8 @@ timestamptext <- paste0("Made with Repeatr version ", packageVersion("Repeatr"),
 
 ui <- fluidPage(
 
+  tags$head(includeHTML(("google-analytics.html"))),
+
   tags$style(type = "text/css", "html, body {width:100%; height:100%}"),
 
   h1("Repeatr"),
