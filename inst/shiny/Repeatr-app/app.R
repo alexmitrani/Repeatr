@@ -35,7 +35,13 @@ transitions_data_da2 <- Repeatr1 %>%
 transitions_data_da <- transitions_data_da1 %>%
   left_join(transitions_data_da2) %>%
   filter(is.na(song2)==FALSE) %>%
-  rename(transition_number = song_number)
+  rename(transition = song_number) %>%
+  mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
+  mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>")) %>%
+  select(fls_link, date, transition, song1, song2) %>%
+  mutate(transition = as.integer(transition))
+
+transitions_data_da$date <- format(transitions_data_da$date,'%Y-%m-%d')
 
 timestamptext <- paste0("Made with Repeatr version ", packageVersion("Repeatr"), ", updated ", packageDate("Repeatr"), ".")
 
@@ -330,7 +336,7 @@ ui <- fluidPage(
 
                            fluidRow(
                              column(12,
-                                    DT::dataTableOutput("transitions_shows_datatable")
+                                    tableOutput("transitions_shows_datatable")
                              )
                            )
 
@@ -1219,13 +1225,13 @@ server <- function(input, output, session) {
   })
 
 
-  output$transitions_shows_datatable <- DT::renderDataTable(DT::datatable({
+  output$transitions_shows_datatable <- renderTable({
 
     data <- transitions_shows_data()
 
     data
 
-  }))
+  }, sanitize.text.function = function(x) x)
 
 
 }
