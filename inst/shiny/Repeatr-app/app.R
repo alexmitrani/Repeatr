@@ -336,7 +336,7 @@ ui <- fluidPage(
 
                            fluidRow(
                              column(12,
-                                    tableOutput("transitions_shows_datatable")
+                                    DT::dataTableOutput("transitions_shows_datatable")
                              )
                            )
 
@@ -1225,13 +1225,13 @@ server <- function(input, output, session) {
   })
 
 
-  output$transitions_shows_datatable <- renderTable({
+  output$transitions_shows_datatable <- DT::renderDataTable(DT::datatable({
 
     data <- transitions_shows_data()
 
     data
 
-  }, sanitize.text.function = function(x) x)
+  }, escape = c(TRUE, FALSE, TRUE, TRUE, TRUE, TRUE)))
 
 
 }
