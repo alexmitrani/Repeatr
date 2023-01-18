@@ -452,6 +452,19 @@ server <- function(input, output, session) {
       addTooltip(session, id = 'menuOptions', title = "Select one or more songs, or leave blank for all.",
                  placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
 
+      # Search
+
+      addTooltip(session, id = 'search_from_song', title = "Select one or more origin songs, or leave blank for all.",
+                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
+
+      addTooltip(session, id = 'menuOptions_search', title = "Select one or more destination songs, or leave blank for all. If you selected one or more origin songs, this list will be limited to the available destination songs given the specified origin songs.",
+                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
+
+      addTooltip(session, id = 'transitions_shows_datatable', title = "The table gives details of the shows featuring the selected transitions.",
+                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
+
+
+
     } else {
 
       # Shows
@@ -505,6 +518,14 @@ server <- function(input, output, session) {
       removeTooltip(session, id = 'releaseInput')
 
       removeTooltip(session, id = 'menuOptions')
+
+      # Search
+
+      removeTooltip(session, id = 'search_from_song')
+
+      removeTooltip(session, id = 'menuOptions_search')
+
+      removeTooltip(session, id = 'transitions_shows_datatable')
 
     }
 
