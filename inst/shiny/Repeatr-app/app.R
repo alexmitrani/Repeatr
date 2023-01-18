@@ -23,6 +23,20 @@ last_performance_data <- Repeatr1 %>%
   summarize(last_performance=max(date)) %>%
   ungroup()
 
+transitions_data_da1 <- Repeatr1 %>%
+  select(gid,date,song_number,song) %>%
+  rename(song1 = song)
+
+transitions_data_da2 <- Repeatr1 %>%
+  select(gid,date,song_number,song) %>%
+  mutate(song_number = song_number-1) %>%
+  rename(song2 = song)
+
+transitions_data_da <- transitions_data_da1 %>%
+  left_join(transitions_data_da2) %>%
+  filter(is.na(song2)==FALSE) %>%
+  rename(transition_number = song_number)
+
 timestamptext <- paste0("Made with Repeatr version ", packageVersion("Repeatr"), ", updated ", packageDate("Repeatr"), ".")
 
 # User Interface ----------------------------------------------------------
@@ -268,7 +282,7 @@ ui <- fluidPage(
                                  column(6,
                                         selectizeInput("year_transitions", "years:",
                                                        sort(unique((toursdata$startyear))),
-                                                       selected="1989", multiple =TRUE))),
+                                                       selected="1989", multiple =TRUE)),
                                  column(6, uiOutput("menuOptions_tours_transitions")
                                         )
 
@@ -292,7 +306,37 @@ ui <- fluidPage(
 
                              )
 
+                           ),
 
+# Search -------------------------------------------------------------
+
+                  tabPanel("Search",
+
+                           fluidPage(
+
+                             tags$br(),
+
+                             # Create a new Row in the UI for selectInputs
+                             fluidRow(
+                               column(6,
+                                      selectizeInput("search_from_song", "from:",
+                                                     sort(unique((songidlookup$song))),
+                                                     selected=NULL, multiple =TRUE)),
+                               column(6, uiOutput("menuOptions_search"))
+                               ),
+
+
+                           tags$br(),
+
+                           fluidRow(
+                             column(12,
+                                    DT::dataTableOutput("transitions_shows_datatable")
+                             )
+                           )
+
+                          )
+
+                  )
 
 
 # End section -------------------------------------------------------------
@@ -1109,6 +1153,59 @@ server <- function(input, output, session) {
     )
 
   })
+
+  # Search -------------------------------------------------------------
+
+  output$menuOptions_search <- renderUI({
+
+    if (is.null(input$search_from_song)==FALSE) {
+      searchmenudata <- transitions_data_da %>%
+        filter(song1 %in% input$search_from_song) %>%
+        arrange(date)
+    } else {
+      searchmenudata <- transitions_data_da %>%
+        arrange(date)
+    }
+
+    selectizeInput("searchInput_to_song", "to:",
+                   choices = c(unique(searchmenudata$song2)), multiple =TRUE)
+
+  })
+
+  transitions_shows_data <- reactive({
+
+    if (is.null(input$search_from_song)==FALSE & is.null(input$searchInput_to_song)==FALSE) {
+      transitions_data_da_results <- transitions_data_da %>%
+        filter(song1 %in% input$search_from_song &
+                 song2 %in% input$searchInput_to_song)
+
+    } else if (is.null(input$search_from_song)==FALSE & is.null(input$searchInput_to_song)==TRUE) {
+      transitions_data_da_results <- transitions_data_da %>%
+        filter(song1 %in% input$search_from_song)
+
+    } else if (is.null(input$search_from_song)==TRUE & is.null(input$searchInput_to_song)==FALSE) {
+      transitions_data_da_results <- transitions_data_da %>%
+        filter(song2 %in% input$searchInput_to_song)
+
+    } else {
+
+      transitions_data_da_results <- transitions_data_da
+
+    }
+
+    transitions_data_da_results
+
+  })
+
+
+  output$transitions_shows_datatable <- DT::renderDataTable(DT::datatable({
+
+    data <- transitions_shows_data()
+
+    data
+
+  }))
+
 
 }
 
