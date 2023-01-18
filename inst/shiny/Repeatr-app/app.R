@@ -1188,10 +1188,10 @@ server <- function(input, output, session) {
     if (is.null(input$search_from_song)==FALSE) {
       searchmenudata <- transitions_data_da %>%
         filter(song1 %in% input$search_from_song) %>%
-        arrange(date)
+        arrange(song2)
     } else {
       searchmenudata <- transitions_data_da %>%
-        arrange(date)
+        arrange(song2)
     }
 
     selectizeInput("searchInput_to_song", "to:",
