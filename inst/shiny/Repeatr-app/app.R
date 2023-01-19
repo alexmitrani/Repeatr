@@ -13,9 +13,11 @@ shows_data <- othervariables %>%
   mutate(year = lubridate::year(date)) %>%
   rename(latitude = y) %>%
   rename(longitude = x) %>%
-  select(flsid, tour, year, date, venue, city, country, attendance, doorprice, latitude, longitude, checked) %>%
-  rename(door_price = doorprice,
-         fls_id = flsid)
+  select(gid, tour, year, date, venue, city, country, attendance, doorprice, latitude, longitude, checked) %>%
+  rename(door_price = doorprice) %>%
+  mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
+  mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>"))
+
 
 last_performance_data <- Repeatr1 %>%
   select(date, song)%>%
@@ -862,9 +864,9 @@ server <- function(input, output, session) {
 
     data <- shows_data2() %>%
       mutate(coordinates = paste0(latitude, ", ", longitude)) %>%
-      select(date, venue, city, country, attendance, coordinates)
+      select(fls_link, date, venue, city, country, attendance, coordinates)
 
-  }))
+  }, escape = c(TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE)))
 
 
 # Tours -------------------------------------------------------------------
