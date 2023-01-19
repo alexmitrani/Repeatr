@@ -424,7 +424,7 @@ server <- function(input, output, session) {
       addTooltip(session, id = 'home', title = "Reset the initial date and the period to cover the full timeline.",
                  placement = "bottom", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
 
-      addTooltip(session, id = 'showsdatatable', title = "The table gives details of the selected shows.",
+      addTooltip(session, id = 'showsdatatable', title = "The table gives details of the selected shows. The fls_link column contains links to the corresponding pages on the Fugazi Live Series site.",
                  placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
 
       # Tours
@@ -468,7 +468,7 @@ server <- function(input, output, session) {
       addTooltip(session, id = 'menuOptions_search', title = "Select one or more destination songs, or leave blank for all. If you selected one or more origin songs, this list will be limited to the available destination songs given the specified origin songs.",
                  placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
 
-      addTooltip(session, id = 'transitions_shows_datatable', title = "The table gives details of the shows featuring the selected transitions.",
+      addTooltip(session, id = 'transitions_shows_datatable', title = "The table gives details of the shows featuring the selected transitions. The fls_link column contains links to the corresponding pages on the Fugazi Live Series site.",
                  placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
 
 
