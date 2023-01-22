@@ -2,6 +2,11 @@
 # devtools::install_github("alexmitrani/Repeatr", build_opts = c("--no-resave-data", "--no-manual"))
 
 library(Repeatr)
+library(shinythemes)
+
+# theme -------------------------------------------------------------------
+
+
 
 # pre-processing ----------------------------------------------------------
 
@@ -50,6 +55,8 @@ timestamptext <- paste0("Made with Repeatr version ", packageVersion("Repeatr"),
 # User Interface ----------------------------------------------------------
 
 ui <- fluidPage(
+
+  theme = shinytheme("cyborg"),
 
   tags$head(includeHTML(("google-analytics.html"))),
 
@@ -866,7 +873,8 @@ server <- function(input, output, session) {
       mutate(coordinates = paste0(latitude, ", ", longitude)) %>%
       select(fls_link, date, venue, city, country, attendance, coordinates)
 
-  }, escape = c(TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE)))
+  }, escape = c(TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE),
+  style = "bootstrap"))
 
 
 # Tours -------------------------------------------------------------------
@@ -933,7 +941,8 @@ server <- function(input, output, session) {
 
     data
 
-  }))
+  },
+  style = "bootstrap"))
 
 
 # Songs -------------------------------------------------------------------
@@ -1070,7 +1079,8 @@ server <- function(input, output, session) {
       summarize(count = max(count) - min(count)) %>%
       ungroup() %>%
       arrange(desc(count))
-  }))
+  },
+  style = "bootstrap"))
 
 
 # Transitions -------------------------------------------------------------
@@ -1158,7 +1168,8 @@ server <- function(input, output, session) {
 
     data
 
-  }))
+  },
+  style = "bootstrap"))
 
   output$transitions_heatmap <- renderPlotly({
 
@@ -1233,13 +1244,20 @@ server <- function(input, output, session) {
 
     data
 
-  }, escape = c(TRUE, FALSE, TRUE, TRUE, TRUE, TRUE)))
+  }, escape = c(TRUE, FALSE, TRUE, TRUE, TRUE, TRUE),
+  style = "bootstrap"))
 
 
 }
 
 
+# shinyapp ----------------------------------------------------------------
+
+
+
 shinyApp(ui = ui, server = server)
+
+
 
 
 #
