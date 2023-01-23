@@ -55,11 +55,11 @@ ui <- fluidPage(
 
   tags$head(includeHTML(("google-analytics.html"))),
 
-  tags$head(tags$style(HTML('* {font-family: "Courier"};'))),
+  tags$head(tags$style(HTML('* {font-family: Courier, monospace};'))),
 
   tags$style(type = "text/css", "html, body {width:100%; height:100%}"),
 
-  h1("Repeatr", style = "font-family: 'Courier'"),
+  h1("Repeatr", style = "font-family:  Courier, monospace"),
 
     tags$div(
       "Exploring the ",
