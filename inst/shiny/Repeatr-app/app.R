@@ -2,9 +2,6 @@
 # devtools::install_github("alexmitrani/Repeatr", build_opts = c("--no-resave-data", "--no-manual"))
 
 library(Repeatr)
-library(shinythemes)
-library(ggdark)
-library(viridis)
 
 # pre-processing ----------------------------------------------------------
 
