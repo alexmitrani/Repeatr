@@ -3,6 +3,9 @@
 
 library(Repeatr)
 library(shinythemes)
+library(ggdark)
+library(viridis)
+library(hrbrthemes)
 
 # theme -------------------------------------------------------------------
 
@@ -59,6 +62,8 @@ ui <- fluidPage(
   theme = shinytheme("cyborg"),
 
   tags$head(includeHTML(("google-analytics.html"))),
+
+  tags$head(tags$style(HTML('* {font-family: "Courier"};'))),
 
   tags$style(type = "text/css", "html, body {width:100%; height:100%}"),
 
@@ -922,7 +927,7 @@ server <- function(input, output, session) {
 
     attendance_plot <- ggplot(attendance_data(), aes(date, cumulative_attendance, color = tour)) +
       geom_point() +
-      theme_bw() +
+      dark_theme_gray() +
       theme(legend.position="none") +
       xlab("Date") +
       ylab("Cumulative attendance") +
@@ -1064,7 +1069,7 @@ server <- function(input, output, session) {
 
     p <- ggplot(songs_data3(), aes(date, count, color = song)) +
       geom_line() +
-      theme_bw() +
+      dark_theme_gray() +
       xlab("Date") +
       ylab("Performances") +
       ggtitle("Cumulative number of performances over time")
@@ -1173,24 +1178,29 @@ server <- function(input, output, session) {
 
   output$transitions_heatmap <- renderPlotly({
 
-    heatmapdata <- pivot_wider(transitions_data(), names_from = to, values_from = count, names_sort=TRUE)
+    # heatmapdata <- pivot_wider(transitions_data(), names_from = to, values_from = count, names_sort=TRUE)
+    #
+    # heatmapdata[is.na(heatmapdata)] <- 0
+    #
+    # heatmapdata <- heatmapdata %>%
+    #   arrange(desc(from))
+    # heatmapdata <- data.frame(heatmapdata, row.names = 1)
+    # heatmapdata <- heatmapdata[ , order(names(heatmapdata))]
+    # heatmapdata <- as.matrix(heatmapdata)
+    #
+    # heatmaply(
+    #   as.matrix(heatmapdata),
+    #   seriate="none",
+    #   Rowv=FALSE,
+    #   Colv=FALSE,
+    #   show_dendrogram=FALSE,
+    #   plot_method = "plotly"
+    # )
 
-    heatmapdata[is.na(heatmapdata)] <- 0
-
-    heatmapdata <- heatmapdata %>%
-      arrange(desc(from))
-    heatmapdata <- data.frame(heatmapdata, row.names = 1)
-    heatmapdata <- heatmapdata[ , order(names(heatmapdata))]
-    heatmapdata <- as.matrix(heatmapdata)
-
-    heatmaply(
-      as.matrix(heatmapdata),
-      seriate="none",
-      Rowv=FALSE,
-      Colv=FALSE,
-      show_dendrogram=FALSE,
-      plot_method = "plotly"
-    )
+    ggplot(transitions_data(), aes(from, to, fill= count)) +
+      geom_tile() +
+      dark_theme_gray() +
+      scale_fill_viridis(discrete=FALSE)
 
   })
 
