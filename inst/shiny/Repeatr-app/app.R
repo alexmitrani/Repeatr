@@ -922,11 +922,10 @@ server <- function(input, output, session) {
     attendance_plot <- ggplot(attendance_data(), aes(date, cumulative_attendance, color = tour)) +
       geom_point() +
       dark_theme_gray() +
-      theme(legend.position="none") +
-      xlab("Date") +
-      ylab("Cumulative attendance") +
-      scale_y_continuous(labels = comma) +
-      ggtitle("Cumulative attendance over time")
+      theme(legend.position="none", text=element_text(family="courier")) +
+      xlab("date") +
+      ylab("cumulative attendance") +
+      scale_y_continuous(labels = comma)
 
     plotly::ggplotly(attendance_plot)
 
@@ -1064,9 +1063,9 @@ server <- function(input, output, session) {
     p <- ggplot(songs_data3(), aes(date, count, color = song)) +
       geom_line() +
       dark_theme_gray() +
-      xlab("Date") +
-      ylab("Performances") +
-      ggtitle("Cumulative number of performances over time")
+      theme(text=element_text(family="courier")) +
+      xlab("date") +
+      ylab("cumulative performances")
 
     plotly::ggplotly(p)
 
@@ -1172,28 +1171,10 @@ server <- function(input, output, session) {
 
   output$transitions_heatmap <- renderPlotly({
 
-    # heatmapdata <- pivot_wider(transitions_data(), names_from = to, values_from = count, names_sort=TRUE)
-    #
-    # heatmapdata[is.na(heatmapdata)] <- 0
-    #
-    # heatmapdata <- heatmapdata %>%
-    #   arrange(desc(from))
-    # heatmapdata <- data.frame(heatmapdata, row.names = 1)
-    # heatmapdata <- heatmapdata[ , order(names(heatmapdata))]
-    # heatmapdata <- as.matrix(heatmapdata)
-    #
-    # heatmaply(
-    #   as.matrix(heatmapdata),
-    #   seriate="none",
-    #   Rowv=FALSE,
-    #   Colv=FALSE,
-    #   show_dendrogram=FALSE,
-    #   plot_method = "plotly"
-    # )
-
-    ggplot(transitions_data(), aes(from, to, fill= count)) +
+    ggplot(transitions_data(), aes(to, from, fill= count)) +
       geom_tile() +
       dark_theme_gray() +
+      theme(text=element_text(family="courier")) +
       scale_fill_viridis(discrete=FALSE)
 
   })
