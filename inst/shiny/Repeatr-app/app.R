@@ -5,11 +5,6 @@ library(Repeatr)
 library(shinythemes)
 library(ggdark)
 library(viridis)
-library(hrbrthemes)
-
-# theme -------------------------------------------------------------------
-
-
 
 # pre-processing ----------------------------------------------------------
 
@@ -67,7 +62,7 @@ ui <- fluidPage(
 
   tags$style(type = "text/css", "html, body {width:100%; height:100%}"),
 
-  h1("Repeatr"),
+  h1("Repeatr", style = "font-family: 'Courier'"),
 
     tags$div(
       "Exploring the ",
@@ -76,16 +71,18 @@ ui <- fluidPage(
       tags$br()
     ),
 
-    checkboxInput("show_help", "Help", FALSE),
-    bsTooltip("show_help", "Switch help bubbles on or off.",
-              "top"),
+    fluidRow(
+
+      column(6,
+             checkboxInput("show_help", "help", FALSE),
+             bsTooltip("show_help", "Switch help bubbles on or off.",
+                       "top")),
+      column(6, uiOutput("style_checkbox"))
+
+    ),
 
 
     mainPanel(
-
-      fluidRow(
-
-        ),
 
       # Output
       tabsetPanel(type = "tabs",
@@ -93,7 +90,7 @@ ui <- fluidPage(
 
 # Shows -------------------------------------------------------------------
 
-                  tabPanel("Shows",
+                  tabPanel("shows",
 
 
                            fluidPage(
@@ -201,7 +198,7 @@ ui <- fluidPage(
 
 
 
-                  tabPanel("Tours",
+                  tabPanel("tours",
 
                            fluidPage(
 
@@ -237,7 +234,7 @@ ui <- fluidPage(
 # Songs -------------------------------------------------------------------
 
 
-                  tabPanel("Songs",
+                  tabPanel("songs",
 
                            fluidPage(
 
@@ -291,7 +288,7 @@ ui <- fluidPage(
 # Transitions -------------------------------------------------------------
 
 
-                  tabPanel("Transitions",
+                  tabPanel("transitions",
 
                              fluidPage(
 
@@ -330,7 +327,7 @@ ui <- fluidPage(
 
 # Search -------------------------------------------------------------
 
-                  tabPanel("Search",
+                  tabPanel("search",
 
                            fluidPage(
 
