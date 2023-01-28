@@ -51,15 +51,11 @@ timestamptext <- paste0("Made with Repeatr version ", packageVersion("Repeatr"),
 
 ui <- fluidPage(
 
-  theme = shinytheme("cyborg"),
-
   tags$head(includeHTML(("google-analytics.html"))),
-
-  tags$head(tags$style(HTML('* {font-family: Courier, monospace};'))),
 
   tags$style(type = "text/css", "html, body {width:100%; height:100%}"),
 
-  h1("Repeatr", style = "font-family:  Courier, monospace"),
+  h1("Repeatr"),
 
     tags$div(
       "Exploring the ",
@@ -921,8 +917,7 @@ server <- function(input, output, session) {
 
     attendance_plot <- ggplot(attendance_data(), aes(date, cumulative_attendance, color = tour)) +
       geom_point() +
-      dark_theme_gray() +
-      theme(legend.position="none", text=element_text(family="Courier, monospace")) +
+      theme(legend.position="none") +
       xlab("date") +
       ylab("cumulative attendance") +
       scale_y_continuous(labels = comma)
@@ -1062,8 +1057,6 @@ server <- function(input, output, session) {
 
     p <- ggplot(songs_data3(), aes(date, count, color = song)) +
       geom_line() +
-      dark_theme_gray() +
-      theme(text=element_text(family="Courier, monospace")) +
       xlab("date") +
       ylab("cumulative performances")
 
@@ -1173,8 +1166,6 @@ server <- function(input, output, session) {
 
     ggplot(transitions_data(), aes(to, from, fill= count)) +
       geom_tile() +
-      dark_theme_gray() +
-      theme(text=element_text(family="Courier, monospace")) +
       scale_fill_viridis(discrete=FALSE)
 
   })
