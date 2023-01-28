@@ -7,7 +7,7 @@ library(Repeatr)
 
 my_theme <- bs_theme(bootswatch = "darkly",
                      base_font = font_google("Inconsolata"),
-                     version = 3)
+                     version = 5)
 
 thematic_shiny(font = "auto")
 
@@ -72,16 +72,6 @@ ui <- fluidPage(
       tags$a(href="https://www.dischord.com/fugazi_live_series", "Fugazi Live Series"),
       tags$br(),
       tags$br()
-    ),
-
-    fluidRow(
-
-      column(6,
-             checkboxInput("show_help", "help", FALSE),
-             bsTooltip("show_help", "Switch help bubbles on or off.",
-                       "top")),
-      column(6, uiOutput("style_checkbox"))
-
     ),
 
 
@@ -387,169 +377,6 @@ ui <- fluidPage(
 
 
 server <- function(input, output, session) {
-
-
-# Tooltips ----------------------------------------------------------------
-
-  showdelay <- 1000
-  hidedelay <- 1000
-
-  observeEvent(input$show_help, {
-
-    if(input$show_help == TRUE) {
-
-      # Shows
-
-      addTooltip(session, id = 'yearInput_shows', title = "Select one or more years, or leave blank for all.",
-                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
-
-      addTooltip(session, id = 'menuOptions_tours', title = "Select one or more tours, or leave blank for all.",
-                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
-
-      addTooltip(session, id = 'menuOptions_countries', title = "Select one or more countries. This will deactivate the time controls beneath the map. Leave blank for all.",
-                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
-
-      addTooltip(session, id = 'menuOptions_cities', title = "Select one or more cities. This will deactivate the time controls beneath the map. Leave blank for all.",
-                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
-
-      addTooltip(session, id = 'mymap', title = "Select a show on the map to get further details. The locations are approximate. If there is no map it will be because there were no shows in the selected period.",
-                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
-
-      addTooltip(session, id = 'dateInput_shows', title = "The timeline shows the available range of dates, with the initial date of the selected period highlighted.",
-                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
-
-      addTooltip(session, id = 'weeks', title = "The duration of the selected period of the timeline, starting with the initial date show below.",
-                 placement = "bottom", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
-
-      addTooltip(session, id = 'step_days', title = "The length of each step forward.",
-                 placement = "bottom", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
-
-      addTooltip(session, id = 'visit', title = "Move the initial date to the start of the selection, set the period to 1 week and the step to 1 day.",
-                 placement = "bottom", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
-
-      addTooltip(session, id = 'step_b', title = "Step backward. When you finish please press the home button to reset the timeline.",
-                 placement = "bottom", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
-
-      addTooltip(session, id = 'step_f', title = "Step forward. When you finish please press the home button to reset the timeline.",
-                 placement = "bottom", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
-
-      addTooltip(session, id = 'home', title = "Reset the initial date and the period to cover the full timeline.",
-                 placement = "bottom", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
-
-      addTooltip(session, id = 'showsdatatable', title = "The table gives details of the selected shows. The fls_link column contains links to the corresponding pages on the Fugazi Live Series site.",
-                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
-
-      # Tours
-
-      addTooltip(session, id = 'yearInput_tours', title = "Select one or more years, or leave blank for all.",
-                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
-
-      addTooltip(session, id = 'toursdatatable', title = "The table gives a summary of the selected tours. The attendance of shows with missing attendance data was imputed using the average show attendance for the given year.",
-                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
-
-      # Transitions
-
-      addTooltip(session, id = 'transitionsdatatable', title = "The table shows the number of times each transition featured in the specified period.",
-                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
-
-      addTooltip(session, id = 'year_transitions', title = "Select one or more years, or leave blank for all.",
-                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
-
-      addTooltip(session, id = 'menuOptions_tours_transitions', title = "Select one or more tours, or leave blank for all.",
-                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
-
-      # Songs
-
-      addTooltip(session, id = 'yearInput_songs', title = "Select one or more years, or leave blank for all.",
-                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
-
-      addTooltip(session, id = 'menuOptions_tours_songs', title = "Select one or more tours, or leave blank for all.",
-                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
-
-      addTooltip(session, id = 'releaseInput', title = "Select one or more releases, or leave blank for all.",
-                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
-
-      addTooltip(session, id = 'menuOptions', title = "Select one or more songs, or leave blank for all.",
-                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
-
-      # Search
-
-      addTooltip(session, id = 'search_from_song', title = "Select one or more origin songs, or leave blank for all.",
-                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
-
-      addTooltip(session, id = 'menuOptions_search', title = "Select one or more destination songs, or leave blank for all. If you selected one or more origin songs, this list will be limited to the available destination songs given the specified origin songs.",
-                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay)))
-
-      addTooltip(session, id = 'transitions_shows_datatable', title = "The table gives details of the shows featuring the selected transitions. The fls_link column contains links to the corresponding pages on the Fugazi Live Series site.",
-                 placement = "top", trigger = "hover", options = list(delay = list(show=showdelay, hide=hidedelay), container = "body"))
-
-
-
-    } else {
-
-      # Shows
-
-      removeTooltip(session, id = 'yearInput_shows')
-
-      removeTooltip(session, id = 'menuOptions_tours')
-
-      removeTooltip(session, id = 'menuOptions_countries')
-
-      removeTooltip(session, id = 'menuOptions_cities')
-
-      removeTooltip(session, id = 'mymap')
-
-      removeTooltip(session, id = 'dateInput_shows')
-
-      removeTooltip(session, id = 'weeks')
-
-      removeTooltip(session, id = 'step_days')
-
-      removeTooltip(session, id = 'visit')
-
-      removeTooltip(session, id = 'step_b')
-
-      removeTooltip(session, id = 'step_f')
-
-      removeTooltip(session, id = 'home')
-
-      removeTooltip(session, id = 'showsdatatable')
-
-      # Tours
-
-      removeTooltip(session, id = 'yearInput_tours')
-
-      removeTooltip(session, id = 'toursdatatable')
-
-      # Transitions
-
-      removeTooltip(session, id = 'transitionsdatatable')
-
-      removeTooltip(session, id = 'year_transitions')
-
-      removeTooltip(session, id = 'menuOptions_tours_transitions')
-
-      # Songs
-
-      removeTooltip(session, id = 'yearInput_songs')
-
-      removeTooltip(session, id = 'menuOptions_tours_songs')
-
-      removeTooltip(session, id = 'releaseInput')
-
-      removeTooltip(session, id = 'menuOptions')
-
-      # Search
-
-      removeTooltip(session, id = 'search_from_song')
-
-      removeTooltip(session, id = 'menuOptions_search')
-
-      removeTooltip(session, id = 'transitions_shows_datatable')
-
-    }
-
-  })
 
 
 # Shows -------------------------------------------------------------------
