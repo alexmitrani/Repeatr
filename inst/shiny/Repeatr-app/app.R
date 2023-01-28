@@ -3,6 +3,14 @@
 
 library(Repeatr)
 
+# Theme -------------------------------------------------------------------
+
+my_theme <- bs_theme(bootswatch = "darkly",
+                     base_font = font_google("Inconsolata"),
+                     version = 3)
+
+thematic_shiny(font = "auto")
+
 # pre-processing ----------------------------------------------------------
 
 shows_data <- othervariables %>%
@@ -50,6 +58,8 @@ timestamptext <- paste0("Made with Repeatr version ", packageVersion("Repeatr"),
 # User Interface ----------------------------------------------------------
 
 ui <- fluidPage(
+
+  theme = my_theme,
 
   tags$head(includeHTML(("google-analytics.html"))),
 
