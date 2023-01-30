@@ -33,6 +33,12 @@ last_performance_data <- Repeatr1 %>%
   summarize(last_performance=max(date)) %>%
   ungroup()
 
+cumulative_song_counts <- cumulative_song_counts %>%
+  mutate(release = ifelse(release=="Steady Diet", "steady diet of nothing", release)) %>%
+  mutate(release = tolower(release)) %>%
+  left_join(releasesdatalookup) %>%
+  select(date, song, release, count, releasedate)
+
 xray <- Repeatr1
 xray <- xray %>% select(-release)
 xray <- xray %>% left_join(releasesdatalookup)
@@ -1069,12 +1075,12 @@ server <- function(input, output, session) {
   songs_data2 <- reactive({
 
     mysongs <- songs_data() %>%
-      group_by(song) %>%
+      group_by(song, releasedate) %>%
       summarize(count = max(count) - min(count), from = min(date), to=max(date)) %>%
       ungroup() %>%
       arrange(desc(count)) %>%
       mutate(index = row_number()) %>%
-      select(song, index, from, to)
+      select(song, index, from, to, releasedate)
 
     mysongs
 
@@ -1086,7 +1092,8 @@ server <- function(input, output, session) {
       left_join(songs_data2()) %>%
       filter(index<=max_songs) %>%
       left_join(last_performance_data) %>%
-      mutate(to = as.Date(ifelse(last_performance<to, last_performance, to), origin = "1970-01-01"))
+      mutate(to = as.Date(ifelse(last_performance<to, last_performance, to), origin = "1970-01-01")) %>%
+      mutate(released = as.Date(releasedate, format = "%d/%m/%Y"))
 
     mydf
 
@@ -1094,7 +1101,7 @@ server <- function(input, output, session) {
 
   output$performance_count_plot <- renderPlotly({
 
-    p <- ggplot(songs_data3(), aes(date, count, color = song)) +
+    p <- ggplot(songs_data3(), aes(x = date, y = count, color = song)) +
       geom_line() +
       xlab("date") +
       ylab("cumulative performances")
@@ -1105,7 +1112,7 @@ server <- function(input, output, session) {
 
   output$songsdatatable <- DT::renderDataTable(DT::datatable({
     data <- songs_data3() %>%
-      group_by(release, song, from, to) %>%
+      group_by(release, song, from, to, released) %>%
       summarize(count = max(count) - min(count)) %>%
       ungroup() %>%
       arrange(desc(count))
