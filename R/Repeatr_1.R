@@ -47,6 +47,9 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
 # Import data -------------------------------------------------------------
 
+  mydir <- getwd()
+  myinputdir <- paste0(mydir, "/inst/extdata/")
+  mydatadir <- paste0(mydir, "/data")
 
   if (is.null(mycsvfile)==FALSE) {
 
@@ -504,6 +507,16 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   Repeatr1 <- Repeatr1 %>%
     select(gid, date, year, month, day, song_number, songid, song, number_songs, first_song, last_song, releaseid,	release, track_number, instrumental,	vocals_picciotto,	vocals_mackaye,	vocals_lally,	duration_seconds) %>%
     arrange(date, song_number)
+
+  # get rid of duplicated song records
+  Repeatr1 <- Repeatr1 %>%
+    filter(gid!="perth-australia-111096" | song_number<20)
+
+  setwd(mydatadir)
+
+  save(Repeatr1, file = "Repeatr1.rda")
+
+  setwd(mydir)
 
   myreturnlist <- list(Repeatr0, Repeatr1, mysongidlookup, mycount, mysongvarslookup, releasesdatalookup, othervariables)
 

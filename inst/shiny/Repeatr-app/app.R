@@ -271,6 +271,14 @@ tabPanel("xray",
 
            tags$br(),
 
+           fluidRow(
+             column(12,
+                    selectizeInput("variableInput_xray", "variables:",
+                                   sort(unique((xray_long$variable))),
+                                   selected=c("songs", "unreleased"), multiple =TRUE))
+
+             ),
+
            # Graph
 
            fluidRow(
@@ -841,9 +849,21 @@ server <- function(input, output, session) {
     date1 <- input$dateInput_xray[1]
     date2 <- input$dateInput_xray[2]
 
-    xray_data_long <- xray_long %>%
-      filter(date >= date1 &
-               date <= date2)
+    if(is.null(input$variableInput_xray)==FALSE) {
+
+      xray_data_long <- xray_long %>%
+        filter(date >= date1 &
+                 date <= date2) %>%
+        filter(variable %in% input$variableInput_xray)
+
+    } else {
+
+      xray_data_long <- xray_long %>%
+        filter(date >= date1 &
+                 date <= date2) %>%
+        filter(variable =="songs")
+
+    }
 
     xray_data_long
 
