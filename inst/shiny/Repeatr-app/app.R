@@ -3,7 +3,7 @@
 
 library(Repeatr)
 
-# Theme -------------------------------------------------------------------
+# theme -------------------------------------------------------------------
 
 my_theme <- bs_theme(bootswatch = "darkly",
                      base_font = font_google("Inconsolata"),
@@ -131,7 +131,7 @@ transitions_data_da$date <- format(transitions_data_da$date,'%Y-%m-%d')
 
 timestamptext <- paste0("Made with Repeatr version ", packageVersion("Repeatr"), ", updated ", packageDate("Repeatr"), ".")
 
-# User Interface ----------------------------------------------------------
+# user interface ----------------------------------------------------------
 
 ui <- fluidPage(
 
@@ -157,7 +157,7 @@ ui <- fluidPage(
       tabsetPanel(type = "tabs",
 
 
-# Shows -------------------------------------------------------------------
+# shows -------------------------------------------------------------------
 
                   tabPanel("shows",
 
@@ -262,7 +262,7 @@ ui <- fluidPage(
 
                   ),
 
-# X-ray -------------------------------------------------------------------
+# xray -------------------------------------------------------------------
 
 
 tabPanel("xray",
@@ -275,7 +275,7 @@ tabPanel("xray",
              column(12,
                     selectizeInput("variableInput_xray", "variables:",
                                    sort(unique((xray_long$variable))),
-                                   selected=c("songs", "unreleased"), multiple =TRUE))
+                                   selected=c("songs", "first_demo", "furniture", "fugazi", "margin_walker", "three_songs", "repeater", "steady_diet_of_nothing"), multiple =TRUE))
 
              ),
 
@@ -291,7 +291,7 @@ tabPanel("xray",
            fluidRow(
              column(12,
                     sliderInput("dateInput_xray", "timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
-                                value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F", width = "100%")
+                                value=c(as.Date("1987-09-03"), as.Date("1988-10-02")), timeFormat = "%F", width = "100%")
              )
 
            ),
@@ -306,7 +306,7 @@ tabPanel("xray",
 ),
 
 
-# Tours -------------------------------------------------------------------
+# tours -------------------------------------------------------------------
 
 
 
@@ -343,7 +343,7 @@ tabPanel("xray",
 
                   ),
 
-# Songs -------------------------------------------------------------------
+# songs -------------------------------------------------------------------
 
 
                   tabPanel("songs",
@@ -397,7 +397,7 @@ tabPanel("xray",
 
                   ),
 
-# Transitions -------------------------------------------------------------
+# transitions -------------------------------------------------------------
 
 
                   tabPanel("transitions",
@@ -437,7 +437,7 @@ tabPanel("xray",
 
                            ),
 
-# Search -------------------------------------------------------------
+# search -------------------------------------------------------------
 
                   tabPanel("search",
 
@@ -468,7 +468,7 @@ tabPanel("xray",
                   )
 
 
-# End section -------------------------------------------------------------
+# end -------------------------------------------------------------
 
       ),
 
@@ -492,13 +492,13 @@ tabPanel("xray",
 
 
 
-# Server -----------------------------------------------------
+# server -----------------------------------------------------
 
 
 server <- function(input, output, session) {
 
 
-# Shows -------------------------------------------------------------------
+# shows -------------------------------------------------------------------
 
 
 
@@ -828,7 +828,7 @@ server <- function(input, output, session) {
   style = "bootstrap"))
 
 
-# X-ray -------------------------------------------------------------------
+# xray -------------------------------------------------------------------
 
 
   xray_data <- reactive({
@@ -896,7 +896,7 @@ server <- function(input, output, session) {
   style = "bootstrap"))
 
 
-# Tours -------------------------------------------------------------------
+# tours -------------------------------------------------------------------
 
   attendance_data <- reactive({
 
@@ -964,7 +964,7 @@ server <- function(input, output, session) {
 
 
 
-# Songs -------------------------------------------------------------------
+# songs -------------------------------------------------------------------
 
   max_songs <- 100
 
@@ -1100,7 +1100,7 @@ server <- function(input, output, session) {
   style = "bootstrap"))
 
 
-# Transitions -------------------------------------------------------------
+# transitions -------------------------------------------------------------
 
 
   output$menuOptions_tours_transitions <- renderUI({
@@ -1196,7 +1196,7 @@ server <- function(input, output, session) {
 
   })
 
-  # Search -------------------------------------------------------------
+  # search -------------------------------------------------------------
 
   output$menuOptions_search <- renderUI({
 
