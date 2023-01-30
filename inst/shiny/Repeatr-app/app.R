@@ -827,7 +827,7 @@ server <- function(input, output, session) {
       mutate(coordinates = paste0(latitude, ", ", longitude)) %>%
       select(fls_link, date, venue, city, country, attendance, coordinates)
 
-  }, escape = c(TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE),
+  }, escape = c(-2),
   style = "bootstrap"))
 
 
@@ -908,7 +908,6 @@ server <- function(input, output, session) {
   },
   escape = c(-2),
   style = "bootstrap"))
-# escape = c(TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE),
 
 # tours -------------------------------------------------------------------
 
@@ -1260,7 +1259,7 @@ server <- function(input, output, session) {
 
     data
 
-  }, escape = c(TRUE, FALSE, TRUE, TRUE, TRUE, TRUE),
+  }, escape = c(-2),
   style = "bootstrap"))
 
 
