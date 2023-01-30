@@ -33,6 +33,77 @@ last_performance_data <- Repeatr1 %>%
   summarize(last_performance=max(date)) %>%
   ungroup()
 
+
+xray <- Repeatr1
+xray <- xray %>% select(-release)
+xray <- xray %>% left_join(releasesdatalookup)
+
+xray <- xray %>%
+  mutate(releasedate = as.Date(releasedate, "%d/%m/%Y", origin = "1970-01-01"))
+
+xray <- xray %>%
+  mutate(unreleased = ifelse(date<releasedate,1,0))
+
+xray2 <- summary %>%
+  select(songid, launchdate)
+
+xray <- xray %>%
+  left_join(xray2)
+
+xray <- xray %>%
+  mutate(debut = ifelse(date==launchdate,1,0))
+
+xray <- xray %>%
+  left_join(last_performance_data)
+
+xray <- xray %>%
+  mutate(last_performance=ifelse(date==last_performance,1,0))
+
+xray <- xray %>%
+  mutate(song = 1)
+
+xray <- xray %>%
+  mutate(fugazi = ifelse(release=="fugazi",1,0),
+         margin_walker = ifelse(release=="margin walker",1,0),
+         three_songs = ifelse(release=="3 songs",1,0),
+         repeater = ifelse(release=="repeater",1,0),
+         steady_diet_of_nothing = ifelse(release=="steady diet of nothing",1,0),
+         in_on_the_killtaker = ifelse(release=="in on the killtaker",1,0),
+         red_medicine = ifelse(release=="red medicine",1,0),
+         end_hits = ifelse(release=="end hits",1,0),
+         the_argument = ifelse(release=="the argument",1,0),
+         furniture = ifelse(release=="furniture",1,0),
+         first_demo = ifelse(release=="first demo",1,0))
+
+
+xray <- xray %>%
+  group_by(gid, date) %>%
+  summarize(unreleased = sum(unreleased),
+            debut = sum(debut),
+            farewell = sum(last_performance),
+            fugazi = sum(fugazi),
+            margin_walker = sum(margin_walker),
+            three_songs = sum(three_songs),
+            repeater = sum(repeater),
+            steady_diet_of_nothing = sum(steady_diet_of_nothing),
+            in_on_the_killtaker = sum(in_on_the_killtaker),
+            red_medicine = sum(red_medicine),
+            end_hits = sum(end_hits),
+            the_argument = sum(the_argument),
+            furniture = sum(furniture),
+            first_demo = sum(first_demo),
+            songs = sum(song)) %>%
+  arrange(date) %>%
+  ungroup()
+
+xray <- xray %>%
+  mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
+  mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>")) %>%
+  select(-gid, -urls)
+
+xray <- xray %>%
+  relocate(fls_link, date, songs, unreleased, debut, farewell)
+
 transitions_data_da1 <- Repeatr1 %>%
   select(gid,date,song_number,song) %>%
   rename(song1 = song)
@@ -773,6 +844,11 @@ server <- function(input, output, session) {
 
   },
   style = "bootstrap"))
+
+
+# X-Ray -------------------------------------------------------------------
+
+
 
 
 # Songs -------------------------------------------------------------------
