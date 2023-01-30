@@ -275,7 +275,7 @@ tabPanel("xray",
              column(12,
                     selectizeInput("variableInput_xray", "variables:",
                                    sort(unique((xray_long$variable))),
-                                   selected=c("songs", "first_demo", "furniture", "fugazi", "margin_walker", "three_songs", "repeater", "steady_diet_of_nothing"), multiple =TRUE))
+                                   selected=c("first_demo", "furniture", "fugazi", "margin_walker", "three_songs", "repeater", "steady_diet_of_nothing"), multiple =TRUE))
 
              ),
 
@@ -298,8 +298,11 @@ tabPanel("xray",
 
            tags$br(),
 
-           # Create a new row for the table.
-           DT::dataTableOutput("xraydatatable")
+           fluidRow(
+             column(12,
+                    # Create a new row for the table.
+                    DT::dataTableOutput("xraydatatable"))
+             )
 
          )
 
@@ -869,6 +872,16 @@ server <- function(input, output, session) {
 
   })
 
+
+  xray_data_wide <- reactive({
+
+    xray_data_wide <- xray_data_long() %>%
+      pivot_wider(id_cols = c(fls_link, date), names_from = variable, values_from = value)
+
+    xray_data_wide
+
+  })
+
   output$xray_plot <- renderPlotly({
 
     xray_plot <- ggplot(xray_data_long(), aes(x = date,
@@ -887,14 +900,15 @@ server <- function(input, output, session) {
   })
 
   output$xraydatatable <- DT::renderDataTable(DT::datatable({
-    data <- xray_data()  %>%
+    data <- xray_data_wide()  %>%
       arrange(date)
 
     data
 
-  }, escape = c(TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE),
+  },
+  escape = c(-2),
   style = "bootstrap"))
-
+# escape = c(TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE),
 
 # tours -------------------------------------------------------------------
 
