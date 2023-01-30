@@ -33,7 +33,6 @@ last_performance_data <- Repeatr1 %>%
   summarize(last_performance=max(date)) %>%
   ungroup()
 
-
 xray <- Repeatr1
 xray <- xray %>% select(-release)
 xray <- xray %>% left_join(releasesdatalookup)
@@ -256,6 +255,41 @@ ui <- fluidPage(
                            )
 
                   ),
+
+# X-ray -------------------------------------------------------------------
+
+
+tabPanel("xray",
+
+         fluidPage(
+
+           tags$br(),
+
+           # Graph
+
+           fluidRow(
+             column(12,
+                    plotlyOutput("xray_plot")
+             )
+           ),
+
+           # Create a new Row in the UI for selectInputs
+           fluidRow(
+             column(12,
+                    sliderInput("dateInput_xray", "timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                                value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F", width = "100%")
+             )
+
+           ),
+
+           tags$br(),
+
+           # Create a new row for the table.
+           DT::dataTableOutput("xraydatatable")
+
+         )
+
+),
 
 
 # Tours -------------------------------------------------------------------
@@ -780,6 +814,48 @@ server <- function(input, output, session) {
   style = "bootstrap"))
 
 
+# X-ray -------------------------------------------------------------------
+
+
+  xray_data <- reactive({
+
+    date1 <- input$dateInput_xray[1]
+    date2 <- input$dateInput_xray[2]
+
+    xray_data <- xray %>%
+      filter(date >= date1 &
+               date <= date2)
+
+    xray_data
+
+  })
+
+  output$xray_plot <- renderPlotly({
+
+    xray_plot <- ggplot(xray_data(), aes(date)) +
+      geom_line(aes(y = songs), color = "white") +
+      geom_line(aes(y = unreleased), color = "red") +
+      geom_line(aes(y = debut), color = "green") +
+      geom_line(aes(y = farewell), color = "blue") +
+      theme(legend.position="none") +
+      xlab("date") +
+      ylab("songs") +
+      scale_y_continuous(labels = comma)
+
+    plotly::ggplotly(xray_plot)
+
+  })
+
+  output$xraydatatable <- DT::renderDataTable(DT::datatable({
+    data <- xray_data()  %>%
+      arrange(date)
+
+    data
+
+  }, escape = c(TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE),
+  style = "bootstrap"))
+
+
 # Tours -------------------------------------------------------------------
 
   attendance_data <- reactive({
@@ -844,9 +920,6 @@ server <- function(input, output, session) {
 
   },
   style = "bootstrap"))
-
-
-# X-Ray -------------------------------------------------------------------
 
 
 
