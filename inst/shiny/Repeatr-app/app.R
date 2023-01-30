@@ -874,10 +874,13 @@ server <- function(input, output, session) {
     xray_plot <- ggplot(xray_data_long(), aes(x = date,
                                               y = value,
                                               color = variable)) +
+      geom_point() +
       geom_line() +
       xlab("date") +
       ylab("songs") +
-      scale_y_continuous(labels = comma)
+      scale_y_continuous(expand = expansion(mult = c(0, 0.1)),
+                         limits = c(-1, NA),
+                         labels = comma)
 
     plotly::ggplotly(xray_plot)
 
