@@ -103,6 +103,12 @@ xray <- xray %>%
 xray <- xray %>%
   relocate(fls_link, date, songs, unreleased, debut, farewell)
 
+xray_long <- xray %>%
+  pivot_longer(cols=c(songs, unreleased, debut, farewell,
+                      fugazi, margin_walker, three_songs, repeater, steady_diet_of_nothing,
+                      in_on_the_killtaker, red_medicine, end_hits,
+                      the_argument, furniture, first_demo), names_to="variable", values_to="value")
+
 transitions_data_da1 <- Repeatr1 %>%
   select(gid,date,song_number,song) %>%
   rename(song1 = song)
@@ -830,14 +836,25 @@ server <- function(input, output, session) {
 
   })
 
+  xray_data_long <- reactive({
+
+    date1 <- input$dateInput_xray[1]
+    date2 <- input$dateInput_xray[2]
+
+    xray_data_long <- xray_long %>%
+      filter(date >= date1 &
+               date <= date2)
+
+    xray_data_long
+
+  })
+
   output$xray_plot <- renderPlotly({
 
-    xray_plot <- ggplot(xray_data(), aes(date)) +
-      geom_line(aes(y = songs), color = "white") +
-      geom_line(aes(y = unreleased), color = "red") +
-      geom_line(aes(y = debut), color = "green") +
-      geom_line(aes(y = farewell), color = "blue") +
-      theme(legend.position="none") +
+    xray_plot <- ggplot(xray_data_long(), aes(x = date,
+                                              y = value,
+                                              color = variable)) +
+      geom_line() +
       xlab("date") +
       ylab("songs") +
       scale_y_continuous(labels = comma)
