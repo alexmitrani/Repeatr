@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9102</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9103</span>
       </span>
     </div>
 
@@ -297,16 +297,16 @@ dates.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 4</span></span></span>
 <span><span class="co">#&gt;    song                   launchdate releasedate lead    </span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;drtn&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> styrofoam              1990-05-17 1990-03-20  -58 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> foreman's dog          1998-05-01 1998-04-27   -4 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> steady diet            1991-04-12 1991-07-15   94 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> life and limb          2001-06-21 2001-10-11  112 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> blueprint              1989-11-25 1990-03-20  115 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> polish                 1991-03-06 1991-07-15  131 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> nice new outfit        1991-02-20 1991-07-15  145 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> public witness program 1993-02-05 1993-06-30  145 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> stacks                 1991-02-15 1991-07-15  150 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> bulldog front          1988-06-15 1988-11-19  157 days</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> styrofoam              1990-05-17 1990-03-01  -77 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> foreman's dog          1998-05-01 1998-04-24   -7 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> blueprint              1989-11-25 1990-03-01   96 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> steady diet            1991-04-12 1991-08-01  111 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> life and limb          2001-06-21 2001-10-16  117 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> public witness program 1993-02-05 1993-06-18  133 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> polish                 1991-03-06 1991-08-01  148 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> bulldog front          1988-06-15 1988-11-19  157 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> nice new outfit        1991-02-20 1991-08-01  162 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> long distance runner   1994-11-27 1995-05-12  166 days</span></span></code></pre></div>
 <p>Surprisingly, there seem to be only 2 songs whose live debuts lagged
 behind the corresponding release dates: Styrofoam which was first played
 live 58 days after the launch of Repeater, and Foreman’s Dog which was
@@ -314,7 +314,7 @@ first played live 4 days after the launch of End Hits. What was the
 average lead time for all Fugazi songs with a corresponding release?</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">mysummary</span><span class="op">$</span><span class="va">lead</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Time difference of 792.5761 days</span></span></code></pre></div>
+<span><span class="co">#&gt; Time difference of 776.4022 days</span></span></code></pre></div>
 <p>That is over 2 years, but perhaps the mean is biased upwards by a few
 extreme values…</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
@@ -326,22 +326,22 @@ extreme values…</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 4</span></span></span>
 <span><span class="co">#&gt;    song                 launchdate releasedate lead     </span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;drtn&gt;</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> the word             1987-09-03 2014-11-11  9931 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> in defense of humans 1987-09-03 2014-11-11  9931 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> turn off your guns   1987-09-03 2014-11-11  9931 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> furniture            1987-09-03 2001-10-15  5156 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> kyeo                 1987-10-07 1991-07-15  1377 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> number 5             1998-11-21 2001-10-15  1059 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> oh                   1998-11-29 2001-10-11  1047 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> merchandise          1987-09-03 1990-03-20   929 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> song #1              1987-09-03 1990-01-15   865 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> joe #1               1987-09-03 1990-01-15   865 days</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> the word             1987-09-03 2014-11-18  9938 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> in defense of humans 1987-09-03 2014-11-18  9938 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> turn off your guns   1987-09-03 2014-11-18  9938 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> furniture            1987-09-03 2001-10-16  5157 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> kyeo                 1987-10-07 1991-08-01  1394 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> number 5             1998-11-21 2001-10-16  1060 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> oh                   1998-11-29 2001-10-16  1052 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> merchandise          1987-09-03 1990-03-01   910 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> long division        1989-04-09 1991-08-01   844 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> song #1              1987-09-03 1989-12-01   820 days</span></span></code></pre></div>
 <p>The median lead time is probably a more reliable indicator for how
 long Fugazi would tend to play a song live before it featuring on a
 discographical release.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">mysummary</span><span class="op">$</span><span class="va">lead</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Time difference of 360 days</span></span></code></pre></div>
+<span><span class="co">#&gt; Time difference of 341 days</span></span></code></pre></div>
 <p>We have discovered several interesting things:</p>
 <ol style="list-style-type: decimal">
 <li><p>Styrofoam was the only Fugazi song whose live debut significantly
