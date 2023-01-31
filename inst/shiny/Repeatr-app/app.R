@@ -281,7 +281,7 @@ tabPanel("xray",
              column(12,
                     selectizeInput("variableInput_xray", "variables:",
                                    sort(unique((xray_long$variable))),
-                                   selected=c("first_demo", "furniture", "fugazi", "margin_walker", "three_songs", "repeater", "steady_diet_of_nothing"), multiple =TRUE))
+                                   selected=c("songs", "unreleased"), multiple =TRUE))
 
              ),
 
@@ -297,7 +297,7 @@ tabPanel("xray",
            fluidRow(
              column(12,
                     sliderInput("dateInput_xray", "timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
-                                value=c(as.Date("1987-09-03"), as.Date("1988-10-02")), timeFormat = "%F", width = "100%")
+                                value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F", width = "100%")
              )
 
            ),
