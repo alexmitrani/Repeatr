@@ -278,6 +278,44 @@ ui <- fluidPage(
 
                   ),
 
+
+# tours -------------------------------------------------------------------
+
+
+tabPanel("tours",
+
+         fluidPage(
+
+           tags$br(),
+
+           # Create a new Row in the UI for selectInputs
+           fluidRow(
+             column(12,
+                    selectizeInput("yearInput_tours", "years:",
+                                   sort(unique((toursdata$startyear))),
+                                   selected=NULL, multiple =TRUE)
+             )
+
+           ),
+
+           # Graph
+
+           fluidRow(
+             column(12,
+                    plotlyOutput("attendance_count_plot")
+             )
+           ),
+
+           tags$br(),
+
+           # Create a new row for the table.
+           DT::dataTableOutput("toursdatatable")
+
+         )
+
+),
+
+
 # xray -------------------------------------------------------------------
 
 
@@ -325,44 +363,6 @@ tabPanel("xray",
          )
 
 ),
-
-
-# tours -------------------------------------------------------------------
-
-
-
-                  tabPanel("tours",
-
-                           fluidPage(
-
-                             tags$br(),
-
-                             # Create a new Row in the UI for selectInputs
-                             fluidRow(
-                               column(12,
-                                      selectizeInput("yearInput_tours", "years:",
-                                                     sort(unique((toursdata$startyear))),
-                                                     selected=NULL, multiple =TRUE)
-                               )
-
-                             ),
-
-                             # Graph
-
-                             fluidRow(
-                               column(12,
-                                      plotlyOutput("attendance_count_plot")
-                               )
-                             ),
-
-                             tags$br(),
-
-                             # Create a new row for the table.
-                             DT::dataTableOutput("toursdatatable")
-
-                           )
-
-                  ),
 
 # songs -------------------------------------------------------------------
 
@@ -848,6 +848,71 @@ server <- function(input, output, session) {
   }, escape = c(-2),
   style = "bootstrap"))
 
+# tours -------------------------------------------------------------------
+
+  attendance_data <- reactive({
+
+    meanattendance <- othervariables %>%
+      filter(is.na(attendance)==FALSE) %>%
+      group_by(year) %>%
+      summarise(meanattendance = mean(attendance)) %>%
+      ungroup()
+
+    attendancedata <- othervariables %>%
+      filter(is.na(tour)==FALSE) %>%
+      left_join(meanattendance) %>%
+      mutate(attendance = round(ifelse(is.na(attendance)==TRUE,meanattendance,attendance))) %>%
+      select(year, tour, date, attendance) %>%
+      arrange(date) %>%
+      mutate(cumulative_attendance = cumsum(attendance))
+
+    if (is.null(input$yearInput_tours)==FALSE) {
+
+      attendancedata <- attendancedata[attendancedata$year %in% input$yearInput_tours,]
+
+    }
+
+    attendancedata
+
+  })
+
+  attendance_data2 <- reactive({
+
+    attendancedata2 <- attendance_data() %>%
+      group_by(tour) %>%
+      filter(is.na(date)==FALSE) %>%
+      summarise(start = min(date), end = max(date), shows = n(), duration = as.numeric((end - start)), attendance=sum(attendance), cumulative_attendance = max(cumulative_attendance)) %>%
+      ungroup() %>%
+      arrange(start)
+
+    attendancedata2
+
+  })
+
+  output$attendance_count_plot <- renderPlotly({
+
+    attendance_plot <- ggplot(attendance_data(), aes(date, cumulative_attendance, color = tour)) +
+      geom_point() +
+      theme(legend.position="none") +
+      xlab("date") +
+      ylab("cumulative attendance") +
+      scale_y_continuous(labels = comma)
+
+    plotly::ggplotly(attendance_plot)
+
+  })
+
+  output$toursdatatable <- DT::renderDataTable(DT::datatable({
+    data <- attendance_data2()  %>%
+      filter(tour!="Unknown") %>%
+      rename(days = duration) %>%
+      arrange(start)
+
+    data
+
+  },
+  style = "bootstrap"))
+
 
 # xray -------------------------------------------------------------------
 
@@ -915,73 +980,6 @@ server <- function(input, output, session) {
   },
   escape = c(-2),
   style = "bootstrap"))
-
-# tours -------------------------------------------------------------------
-
-  attendance_data <- reactive({
-
-    meanattendance <- othervariables %>%
-      filter(is.na(attendance)==FALSE) %>%
-      group_by(year) %>%
-      summarise(meanattendance = mean(attendance)) %>%
-      ungroup()
-
-    attendancedata <- othervariables %>%
-      filter(is.na(tour)==FALSE) %>%
-      left_join(meanattendance) %>%
-      mutate(attendance = round(ifelse(is.na(attendance)==TRUE,meanattendance,attendance))) %>%
-      select(year, tour, date, attendance) %>%
-      arrange(date) %>%
-      mutate(cumulative_attendance = cumsum(attendance))
-
-    if (is.null(input$yearInput_tours)==FALSE) {
-
-      attendancedata <- attendancedata[attendancedata$year %in% input$yearInput_tours,]
-
-    }
-
-    attendancedata
-
-  })
-
-  attendance_data2 <- reactive({
-
-    attendancedata2 <- attendance_data() %>%
-      group_by(tour) %>%
-      filter(is.na(date)==FALSE) %>%
-      summarise(start = min(date), end = max(date), shows = n(), duration = as.numeric((end - start)), attendance=sum(attendance), cumulative_attendance = max(cumulative_attendance)) %>%
-      ungroup() %>%
-      arrange(start)
-
-    attendancedata2
-
-  })
-
-  output$attendance_count_plot <- renderPlotly({
-
-    attendance_plot <- ggplot(attendance_data(), aes(date, cumulative_attendance, color = tour)) +
-      geom_point() +
-      theme(legend.position="none") +
-      xlab("date") +
-      ylab("cumulative attendance") +
-      scale_y_continuous(labels = comma)
-
-    plotly::ggplotly(attendance_plot)
-
-  })
-
-  output$toursdatatable <- DT::renderDataTable(DT::datatable({
-    data <- attendance_data2()  %>%
-      filter(tour!="Unknown") %>%
-      rename(days = duration) %>%
-      arrange(start)
-
-    data
-
-  },
-  style = "bootstrap"))
-
-
 
 
 # songs -------------------------------------------------------------------
