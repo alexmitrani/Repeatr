@@ -102,6 +102,10 @@ xray <- xray %>%
   ungroup()
 
 xray <- xray %>%
+  mutate(released = songs - unreleased,
+         incumbent = songs - debut - farewell)
+
+xray <- xray %>%
   mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
   mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>")) %>%
   select(-gid, -urls)
@@ -110,10 +114,16 @@ xray <- xray %>%
   relocate(fls_link, date, songs, unreleased, debut, farewell)
 
 xray_long <- xray %>%
-  pivot_longer(cols=c(songs, unreleased, debut, farewell,
+  pivot_longer(cols=c(songs, released, unreleased, debut, farewell, incumbent,
                       fugazi, margin_walker, three_songs, repeater, steady_diet_of_nothing,
                       in_on_the_killtaker, red_medicine, end_hits,
                       the_argument, furniture, first_demo), names_to="variable", values_to="value")
+
+xray_long1 <- xray_long %>%
+  filter(variable!="songs" & variable!="released" & variable!="unreleased" & variable!="debut" & variable!="farewell" & variable!="incumbent")
+
+xray_long2 <- xray_long %>%
+  filter(variable=="released" | variable=="unreleased")
 
 transitions_data_da1 <- Repeatr1 %>%
   select(gid,date,song_number,song) %>%
@@ -279,11 +289,13 @@ tabPanel("xray",
 
            fluidRow(
              column(12,
-                    selectizeInput("variableInput_xray", "variables:",
-                                   sort(unique((xray_long$variable))),
-                                   selected=c("songs", "unreleased"), multiple =TRUE))
+                    selectizeInput("xrayGraph_choice", "graph:",
+                                   c("releases", "unreleased"),
+                                   selected="releases", multiple =FALSE))
 
-             ),
+           ),
+
+           tags$br(),
 
            # Graph
 
@@ -847,7 +859,8 @@ server <- function(input, output, session) {
 
     xray_data <- xray %>%
       filter(date >= date1 &
-               date <= date2)
+               date <= date2) %>%
+      select(-released, -incumbent)
 
     xray_data
 
@@ -858,33 +871,22 @@ server <- function(input, output, session) {
     date1 <- input$dateInput_xray[1]
     date2 <- input$dateInput_xray[2]
 
-    if(is.null(input$variableInput_xray)==FALSE) {
+    if(input$xrayGraph_choice=="releases") {
 
-      xray_data_long <- xray_long %>%
+      xray_data_long <- xray_long1 %>%
         filter(date >= date1 &
-                 date <= date2) %>%
-        filter(variable %in% input$variableInput_xray)
+                 date <= date2)
 
     } else {
 
-      xray_data_long <- xray_long %>%
+      xray_data_long <- xray_long2 %>%
         filter(date >= date1 &
-                 date <= date2) %>%
-        filter(variable =="songs")
+                 date <= date2)
 
     }
 
+
     xray_data_long
-
-  })
-
-
-  xray_data_wide <- reactive({
-
-    xray_data_wide <- xray_data_long() %>%
-      pivot_wider(id_cols = c(fls_link, date), names_from = variable, values_from = value)
-
-    xray_data_wide
 
   })
 
@@ -892,9 +894,8 @@ server <- function(input, output, session) {
 
     xray_plot <- ggplot(xray_data_long(), aes(x = date,
                                               y = value,
-                                              color = variable)) +
-      geom_point() +
-      geom_line() +
+                                              fill = variable)) +
+      geom_bar(position="stack", stat="identity") +
       xlab("date") +
       ylab("songs") +
       scale_y_continuous(expand = expansion(mult = c(0, 0.1)),
@@ -906,7 +907,7 @@ server <- function(input, output, session) {
   })
 
   output$xraydatatable <- DT::renderDataTable(DT::datatable({
-    data <- xray_data_wide()  %>%
+    data <- xray_data()  %>%
       arrange(date)
 
     data
