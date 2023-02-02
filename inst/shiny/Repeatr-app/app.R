@@ -39,7 +39,10 @@ cumulative_song_counts <- cumulative_song_counts %>%
   left_join(releasesdatalookup) %>%
   select(date, song, release, count, releasedate)
 
-tour_lookup <- othervariables %>% select(gid, tour)
+tour_lookup <- othervariables %>% select(gid, tour) %>%
+  group_by(gid) %>%
+  slice(1) %>%
+  ungroup()
 
 xray <- Repeatr1 %>% left_join(tour_lookup)
 xray <- xray %>% select(-release)
@@ -951,7 +954,7 @@ server <- function(input, output, session) {
 
   })
 
-  xray_data_long <- reactive({
+  xray_data_long1 <- reactive({
 
     xray_long <- xray_data() %>%
       pivot_longer(cols=c(songs, released, unreleased, debut, farewell, incumbent,
@@ -959,15 +962,21 @@ server <- function(input, output, session) {
                           in_on_the_killtaker, red_medicine, end_hits,
                           the_argument, furniture, first_demo), names_to="variable", values_to="value")
 
+    xray_long
+
+  })
+
+  xray_data_long2 <- reactive({
+
     if(input$xrayGraph_choice=="releases") {
 
-      xray_data_long <- xray_long %>%
+      xray_data_long <- xray_data_long1() %>%
         filter(variable!="songs" & variable!="released" & variable!="unreleased" & variable!="debut" & variable!="farewell" & variable!="incumbent") %>%
         filter(value>0)
 
     } else {
 
-      xray_data_long <- xray_long %>%
+      xray_data_long <- xray_data_long1() %>%
         filter(variable=="released" | variable=="unreleased") %>%
         filter(value>0)
 
@@ -979,7 +988,7 @@ server <- function(input, output, session) {
 
   output$xray_plot <- renderPlotly({
 
-    xray_plot <- ggplot(xray_data_long(), aes(x = date,
+    xray_plot <- ggplot(xray_data_long2(), aes(x = date,
                                               y = value,
                                               fill = variable)) +
       geom_bar(position="stack", stat="identity") +
@@ -994,9 +1003,9 @@ server <- function(input, output, session) {
   })
 
   output$xraydatatable <- DT::renderDataTable(DT::datatable({
-    data <- xray_data()  %>%
-      select(-released, -incumbent) %>%
-      arrange(date)
+    data <- xray_data_long2()  %>%
+      pivot_wider(names_from = variable, values_from = value) %>%
+      select(-year, -tour)
 
     data
 

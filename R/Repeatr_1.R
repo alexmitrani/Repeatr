@@ -274,6 +274,11 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   setwd(mydatadir)
 
+  othervariables <- othervariables %>%
+    group_by(gid) %>%
+    slice(1) %>%
+    ungroup()
+
   save(othervariables, file="othervariables.rda")
 
   setwd(mydir)
