@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9104</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9106</span>
       </span>
     </div>
 
@@ -150,8 +150,10 @@
 <span></span>
 <span><span class="va">attendancedata</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">attendance</span> <span class="op">==</span> <span class="va">maxattendance</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   year       date                venue attendance</span></span>
-<span><span class="co">#&gt; 1 2000 2000-06-04 Mission Dolores Park      15000</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 4</span></span></span>
+<span><span class="co">#&gt;    year date       venue                attendance</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">2</span>000 2000-06-04 Mission Dolores Park      <span style="text-decoration: underline;">15</span>000</span></span></code></pre></div>
 <p>The biggest show was the <a href="https://www.dischord.com/fugazi_live_series/san-francisco-ca-usa-60400" class="external-link">Food
 Not Bombs 20th Anniversary</a> on the 4th of June 2000 at Mission
 Dolores Park in San Francisco, with an estimated attendance of 15000
@@ -376,16 +378,16 @@ at the venues with the largest numbers of Fugazi shows.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 6</span></span></span>
 <span><span class="co">#&gt;    venue                 city        country shows  from    to</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 9:30 Club             Washington  USA        12  <span style="text-decoration: underline;">1</span>996  <span style="text-decoration: underline;">2</span>001</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Fort Reno             Washington  USA        12  <span style="text-decoration: underline;">1</span>988  <span style="text-decoration: underline;">2</span>002</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Liberty Lunch         Austin      USA         9  <span style="text-decoration: underline;">1</span>988  <span style="text-decoration: underline;">1</span>998</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 40 Watt               Athens      USA         8  <span style="text-decoration: underline;">1</span>988  <span style="text-decoration: underline;">1</span>999</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 9:30 Club (1980-1995) Washington  USA         8  <span style="text-decoration: underline;">1</span>988  <span style="text-decoration: underline;">1</span>994</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> First Avenue          Minneapolis USA         8  <span style="text-decoration: underline;">1</span>991  <span style="text-decoration: underline;">2</span>001</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Maxwell's             Hoboken     USA         8  <span style="text-decoration: underline;">1</span>988  <span style="text-decoration: underline;">1</span>998</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Wilson Center         Washington  USA         8  <span style="text-decoration: underline;">1</span>987  <span style="text-decoration: underline;">1</span>997</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Masquerade            Atlanta     USA         7  <span style="text-decoration: underline;">1</span>990  <span style="text-decoration: underline;">1</span>999</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Cat's Cradle          Chapel Hill USA         6  <span style="text-decoration: underline;">1</span>987  <span style="text-decoration: underline;">1</span>993</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Fort Reno             Washington  USA        12  <span style="text-decoration: underline;">1</span>988  <span style="text-decoration: underline;">2</span>002</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Liberty Lunch         Austin      USA         9  <span style="text-decoration: underline;">1</span>988  <span style="text-decoration: underline;">1</span>998</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 40 Watt               Athens      USA         8  <span style="text-decoration: underline;">1</span>988  <span style="text-decoration: underline;">1</span>999</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 9:30 Club (1980-1995) Washington  USA         8  <span style="text-decoration: underline;">1</span>988  <span style="text-decoration: underline;">1</span>994</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> First Avenue          Minneapolis USA         8  <span style="text-decoration: underline;">1</span>991  <span style="text-decoration: underline;">2</span>001</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Maxwell's             Hoboken     USA         8  <span style="text-decoration: underline;">1</span>988  <span style="text-decoration: underline;">1</span>998</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Wilson Center         Washington  USA         8  <span style="text-decoration: underline;">1</span>987  <span style="text-decoration: underline;">1</span>997</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Masquerade            Atlanta     USA         7  <span style="text-decoration: underline;">1</span>990  <span style="text-decoration: underline;">1</span>999</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Cat's Cradle          Chapel Hill USA         6  <span style="text-decoration: underline;">1</span>987  <span style="text-decoration: underline;">1</span>993</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> dc space              Washington  USA         6  <span style="text-decoration: underline;">1</span>987  <span style="text-decoration: underline;">1</span>991</span></span></code></pre></div>
 <p>The top 10 venues are all in the USA, with the top two both in
 Washington DC - Fort Reno and the 9:30 club are the only 2 venues with
 more than 10 shows. In the case of Fort Reno, Fugazi played shows there
@@ -439,14 +441,14 @@ of shows at each venue.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 3</span></span></span>
 <span><span class="co">#&gt;    shows venues percentage</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>    12      2      0.266</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>    12      1      0.133</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     9      1      0.133</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     8      5      0.665</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     7      1      0.133</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     6      3      0.399</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     5      5      0.665</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     4     17      2.26 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     3     25      3.32 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     3     26      3.46 </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     2     98     13.0  </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>     1    595     79.1</span></span></code></pre></div>
 <p>Fugazi played at 733 venues but played at 79.4% of them only once,
