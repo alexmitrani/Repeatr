@@ -39,7 +39,9 @@ cumulative_song_counts <- cumulative_song_counts %>%
   left_join(releasesdatalookup) %>%
   select(date, song, release, count, releasedate)
 
-xray <- Repeatr1
+tour_lookup <- othervariables %>% select(gid, tour)
+
+xray <- Repeatr1 %>% left_join(tour_lookup)
 xray <- xray %>% select(-release)
 xray <- xray %>% left_join(releasesdatalookup)
 
@@ -68,6 +70,7 @@ xray <- xray %>%
   mutate(song = 1)
 
 xray <- xray %>%
+  mutate(year = lubridate::year(date)) %>%
   mutate(fugazi = ifelse(release=="fugazi",1,0),
          margin_walker = ifelse(release=="margin walker",1,0),
          three_songs = ifelse(release=="3 songs",1,0),
@@ -82,7 +85,7 @@ xray <- xray %>%
 
 
 xray <- xray %>%
-  group_by(gid, date) %>%
+  group_by(gid, date, year, tour) %>%
   summarize(unreleased = sum(unreleased),
             debut = sum(debut),
             farewell = sum(last_performance),
@@ -111,19 +114,7 @@ xray <- xray %>%
   select(-gid, -urls)
 
 xray <- xray %>%
-  relocate(fls_link, date, songs, unreleased, debut, farewell)
-
-xray_long <- xray %>%
-  pivot_longer(cols=c(songs, released, unreleased, debut, farewell, incumbent,
-                      fugazi, margin_walker, three_songs, repeater, steady_diet_of_nothing,
-                      in_on_the_killtaker, red_medicine, end_hits,
-                      the_argument, furniture, first_demo), names_to="variable", values_to="value")
-
-xray_long1 <- xray_long %>%
-  filter(variable!="songs" & variable!="released" & variable!="unreleased" & variable!="debut" & variable!="farewell" & variable!="incumbent")
-
-xray_long2 <- xray_long %>%
-  filter(variable=="released" | variable=="unreleased")
+  relocate(fls_link, year, tour, date, songs, unreleased, debut, farewell)
 
 transitions_data_da1 <- Repeatr1 %>%
   select(gid,date,song_number,song) %>%
@@ -326,6 +317,15 @@ tabPanel("xray",
            tags$br(),
 
            fluidRow(
+             column(6,
+                    selectizeInput("yearInput_xray", "years:",
+                                   sort(unique(othervariables$year)),
+                                   selected=1987, multiple =TRUE)),
+             column(6, uiOutput("menuTours_xray"))
+
+           ),
+
+           fluidRow(
              column(12,
                     selectizeInput("xrayGraph_choice", "graph:",
                                    c("releases", "unreleased"),
@@ -341,15 +341,6 @@ tabPanel("xray",
              column(12,
                     plotlyOutput("xray_plot")
              )
-           ),
-
-           # Create a new Row in the UI for selectInputs
-           fluidRow(
-             column(12,
-                    sliderInput("dateInput_xray", "timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
-                                value=c(as.Date("1987-09-03"), as.Date("2002-11-04")), timeFormat = "%F", width = "100%")
-             )
-
            ),
 
            tags$br(),
@@ -502,6 +493,8 @@ tabPanel("xray",
           tags$a(href="https://alexmitrani.github.io/Repeatr/", "Repeatr website"),
           " for further information.",
           tags$br(),
+          "Contact the developer on ",
+          tags$a(rel="me", href="https://mastodon.online/@alex_mitrani_es", "Mastodon"),
           tags$br()
         )
 
@@ -917,15 +910,42 @@ server <- function(input, output, session) {
 # xray -------------------------------------------------------------------
 
 
+  output$menuTours_xray <- renderUI({
+
+    if (is.null(input$yearInput_xray)==FALSE) {
+      menudata <- shows_data %>%
+        filter(year %in% input$yearInput_xray) %>%
+        arrange(date)
+    } else {
+      menudata <- shows_data %>%
+        arrange(date)
+    }
+
+    selectizeInput("tourInput_xray", "tours:",
+                   choices = c(unique(menudata$tour)), multiple =TRUE)
+
+  })
+
+
   xray_data <- reactive({
 
-    date1 <- input$dateInput_xray[1]
-    date2 <- input$dateInput_xray[2]
+    if (is.null(input$yearInput_xray)==FALSE & is.null(input$tourInput_xray)==FALSE) {
+      xray_data <- xray %>%
+        filter(year %in% input$yearInput_xray &
+                 tour %in% input$tourInput_xray)
 
-    xray_data <- xray %>%
-      filter(date >= date1 &
-               date <= date2) %>%
-      select(-released, -incumbent)
+    } else if (is.null(input$yearInput_xray)==FALSE & is.null(input$tourInput_xray)==TRUE) {
+      xray_data <- xray %>%
+        filter(year %in% input$yearInput_xray)
+
+    } else if (is.null(input$yearInput_xray)==TRUE & is.null(input$tourInput_xray)==FALSE) {
+      xray_data <- xray %>%
+        filter(tour %in% input$tourInput_xray)
+
+    } else {
+      xray_data <- xray
+
+    }
 
     xray_data
 
@@ -933,23 +953,25 @@ server <- function(input, output, session) {
 
   xray_data_long <- reactive({
 
-    date1 <- input$dateInput_xray[1]
-    date2 <- input$dateInput_xray[2]
+    xray_long <- xray_data() %>%
+      pivot_longer(cols=c(songs, released, unreleased, debut, farewell, incumbent,
+                          fugazi, margin_walker, three_songs, repeater, steady_diet_of_nothing,
+                          in_on_the_killtaker, red_medicine, end_hits,
+                          the_argument, furniture, first_demo), names_to="variable", values_to="value")
 
     if(input$xrayGraph_choice=="releases") {
 
-      xray_data_long <- xray_long1 %>%
-        filter(date >= date1 &
-                 date <= date2)
+      xray_data_long <- xray_long %>%
+        filter(variable!="songs" & variable!="released" & variable!="unreleased" & variable!="debut" & variable!="farewell" & variable!="incumbent") %>%
+        filter(value>0)
 
     } else {
 
-      xray_data_long <- xray_long2 %>%
-        filter(date >= date1 &
-                 date <= date2)
+      xray_data_long <- xray_long %>%
+        filter(variable=="released" | variable=="unreleased") %>%
+        filter(value>0)
 
     }
-
 
     xray_data_long
 
@@ -973,6 +995,7 @@ server <- function(input, output, session) {
 
   output$xraydatatable <- DT::renderDataTable(DT::datatable({
     data <- xray_data()  %>%
+      select(-released, -incumbent) %>%
       arrange(date)
 
     data
