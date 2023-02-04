@@ -40,7 +40,3 @@ I hope you have found this interesting. If you have any comments or suggestions 
 
 Thanks. 
 
-## Social media links
-
-<a rel="me" href="https://mastodon.online/@alex_mitrani_es">Mastodon</a>
-
