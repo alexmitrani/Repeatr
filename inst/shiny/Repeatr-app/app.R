@@ -162,18 +162,20 @@ releases_summary <- releases_data %>%
   group_by(releaseid, release, last_show) %>%
   summarize(performances = sum(performances),
             songs=n(),
-            debut=min(date),
-            first_show = min(show_num)) %>%
+            first_debut=min(date),
+            last_debut=max(date),
+            first_show = max(show_num)) %>%
   ungroup()
 
 releasesdatalookup <- releasesdatalookup %>%
-  select(releaseid, releasedate)
+  select(releaseid, releasedate) %>%
+  mutate(releasedate = as.Date(releasedate, "%d/%m/%Y", origin = "1970-01-01"))
 
 releases_summary <- releases_summary %>%
   left_join(releasesdatalookup) %>%
   mutate(shows = last_show-first_show,
          play_rate = round(performances/(songs*shows), digits=2)) %>%
-  select(releaseid, release, debut, releasedate, songs, performances, shows, play_rate) %>%
+  select(releaseid, release, first_debut, last_debut, releasedate, songs, performances, shows, play_rate) %>%
   filter(releaseid>0)
 
 rm(releasesdatalookup, show_sequence)
