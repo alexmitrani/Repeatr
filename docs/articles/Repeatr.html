@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9106</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9115</span>
       </span>
     </div>
 
@@ -1504,7 +1504,7 @@ shows this sort of analysis probably would not be possible.</p>
 by the band during their live shows?</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">Repeatr1</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 17278</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 17283</span></span></code></pre></div>
 <p>This data was used to estimate the strength of preference for each of
 the songs in their live music repertoire.</p>
 <p>Song availability was considered at both repertoire and gig level.
@@ -1613,11 +1613,11 @@ order of preference:</p>
 <span><span class="co">#&gt; Joining, by = "songid"</span></span>
 <span><span class="co">#&gt; Joining, by = "songid"</span></span>
 <span><span class="co">#&gt; Joining, by = "songid"</span></span>
-<span><span class="co">#&gt; Joining, by = "songid"</span></span>
-<span><span class="co">#&gt; Joining, by = "songid"</span></span>
+<span><span class="co">#&gt; Joining, by = c("songid", "song")</span></span>
+<span><span class="co">#&gt; Joining, by = c("songid", "song")</span></span>
 <span><span class="co">#&gt; Joining, by = "releaseid"</span></span>
 <span><span class="co">#&gt; Joining, by = "releaseid"</span></span>
-<span><span class="co">#&gt; Joining, by = "songid"</span></span>
+<span><span class="co">#&gt; Joining, by = c("songid", "song")</span></span>
 <span><span class="co">#&gt; Joining, by = c("songid", "song")</span></span>
 <span><span class="va">myresults</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">Repeatr_5_results</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">Estimate</span><span class="op">)</span><span class="op">)</span></span>
@@ -2297,7 +2297,7 @@ order of preference:</p>
 <td align="right">0.0000000</td>
 </tr>
 <tr class="odd">
-<td align="left">hello morning</td>
+<td align="left">preprovisional</td>
 <td align="right">-3.4122526</td>
 <td align="right">0.7267980</td>
 <td align="right">-4.6949122</td>
@@ -2369,11 +2369,11 @@ intervals.</p>
 <span><span class="co">#&gt; Joining, by = "songid"</span></span>
 <span><span class="co">#&gt; Joining, by = "songid"</span></span>
 <span><span class="co">#&gt; Joining, by = "songid"</span></span>
-<span><span class="co">#&gt; Joining, by = "songid"</span></span>
-<span><span class="co">#&gt; Joining, by = "songid"</span></span>
+<span><span class="co">#&gt; Joining, by = c("songid", "song")</span></span>
+<span><span class="co">#&gt; Joining, by = c("songid", "song")</span></span>
 <span><span class="co">#&gt; Joining, by = "releaseid"</span></span>
 <span><span class="co">#&gt; Joining, by = "releaseid"</span></span>
-<span><span class="co">#&gt; Joining, by = "songid"</span></span>
+<span><span class="co">#&gt; Joining, by = c("songid", "song")</span></span>
 <span><span class="co">#&gt; Joining, by = c("songid", "song")</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">Repeatr_5_results</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span>, <span class="st">"pipe"</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
@@ -3855,16 +3855,16 @@ intervals.</p>
 <td align="right">92</td>
 <td align="left">hello morning</td>
 <td align="left">2001-04-27</td>
-<td align="right">126</td>
+<td align="right">NA</td>
 <td align="right">2</td>
 <td align="right">44</td>
 <td align="right">0.0454545</td>
 <td align="right">0.2828972</td>
-<td align="right">10</td>
-<td align="left">2001-10-16</td>
-<td align="right">172</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
 <td align="right">2001</td>
-<td align="right">2001</td>
+<td align="right">NA</td>
 </tr>
 <tr class="even">
 <td align="right">39</td>
@@ -4058,11 +4058,11 @@ scale as the FLS ratings. The results are shown below.</p>
 <span><span class="co">#&gt; Joining, by = "songid"</span></span>
 <span><span class="co">#&gt; Joining, by = "songid"</span></span>
 <span><span class="co">#&gt; Joining, by = "songid"</span></span>
-<span><span class="co">#&gt; Joining, by = "songid"</span></span>
-<span><span class="co">#&gt; Joining, by = "songid"</span></span>
+<span><span class="co">#&gt; Joining, by = c("songid", "song")</span></span>
+<span><span class="co">#&gt; Joining, by = c("songid", "song")</span></span>
 <span><span class="co">#&gt; Joining, by = "releaseid"</span></span>
 <span><span class="co">#&gt; Joining, by = "releaseid"</span></span>
-<span><span class="co">#&gt; Joining, by = "songid"</span></span>
+<span><span class="co">#&gt; Joining, by = c("songid", "song")</span></span>
 <span><span class="co">#&gt; Joining, by = c("songid", "song")</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">Repeatr_5_results</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span>, <span class="st">"pipe"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
@@ -4132,6 +4132,14 @@ scale as the FLS ratings. The results are shown below.</p>
 <td align="right">0.756</td>
 </tr>
 <tr class="odd">
+<td align="left">furniture</td>
+<td align="right">10</td>
+<td align="left">16/10/2001</td>
+<td align="right">2</td>
+<td align="right">0.6909023</td>
+<td align="right">0.734</td>
+</tr>
+<tr class="even">
 <td align="left">margin walker</td>
 <td align="right">2</td>
 <td align="left">15/06/1989</td>
@@ -4139,7 +4147,7 @@ scale as the FLS ratings. The results are shown below.</p>
 <td align="right">0.6847847</td>
 <td align="right">0.744</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">3 songs</td>
 <td align="right">3</td>
 <td align="left">01/12/1989</td>
@@ -4147,21 +4155,13 @@ scale as the FLS ratings. The results are shown below.</p>
 <td align="right">0.6269765</td>
 <td align="right">0.656</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">steady diet of nothing</td>
 <td align="right">5</td>
 <td align="left">01/08/1991</td>
 <td align="right">11</td>
 <td align="right">0.6127255</td>
 <td align="right">0.708</td>
-</tr>
-<tr class="even">
-<td align="left">furniture</td>
-<td align="right">10</td>
-<td align="left">16/10/2001</td>
-<td align="right">3</td>
-<td align="right">0.5549006</td>
-<td align="right">0.734</td>
 </tr>
 </tbody>
 </table>

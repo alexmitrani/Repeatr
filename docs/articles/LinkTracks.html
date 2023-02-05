@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9106</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9115</span>
       </span>
     </div>
 
@@ -272,7 +272,7 @@ the corresponding release dates.</p>
 <span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">releasedates</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">songidlookup</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Joining, by = "releaseid"</span></span>
-<span><span class="co">#&gt; Joining, by = "songid"</span></span>
+<span><span class="co">#&gt; Joining, by = c("songid", "song")</span></span>
 <span><span class="va">mydf</span> <span class="op">&lt;-</span> <span class="va">mydf</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="va">songid</span>, <span class="va">song</span>, <span class="va">releaseid</span>, <span class="va">releasedate</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">arrange</span><span class="op">(</span><span class="va">songid</span><span class="op">)</span></span>
@@ -515,7 +515,7 @@ was played.</p>
 <span>  <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">song</span>, values_from <span class="op">=</span> <span class="va">count</span>, values_fill <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mydf_wide</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 93</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 94</span></span></span>
 <span><span class="co">#&gt;   date       furniture in defe…¹ joe #…² merch…³ song …⁴ the w…⁵ turn …⁶ waiti…⁷</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 1987-09-03         1         1       1       1       1       1       1       1</span></span>
@@ -524,27 +524,27 @@ was played.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 1987-10-16         1         0       1       1       1       1       0       1</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 1987-11-25         1         0       1       1       1       1       1       1</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 1987-12-03         1         1       0       1       1       1       1       1</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 84 more variables: `and the same` &lt;int&gt;, kyeo &lt;int&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 85 more variables: `and the same` &lt;int&gt;, kyeo &lt;int&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   `bad mouth` &lt;int&gt;, `break-in` &lt;int&gt;, lockdown &lt;int&gt;, suggestion &lt;int&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   burning &lt;int&gt;, `give me the cure` &lt;int&gt;, glueman &lt;int&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   `bulldog front` &lt;int&gt;, `burning too` &lt;int&gt;, `margin walker` &lt;int&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   promises &lt;int&gt;, provisional &lt;int&gt;, reprovisional &lt;int&gt;, `brendan #1` &lt;int&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   greed &lt;int&gt;, `shut the door` &lt;int&gt;, `sieve-fisted find` &lt;int&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   `long division` &lt;int&gt;, turnover &lt;int&gt;, `two beats off` &lt;int&gt;, …</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;">#   promises &lt;int&gt;, preprovisional &lt;int&gt;, provisional &lt;int&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   reprovisional &lt;int&gt;, `brendan #1` &lt;int&gt;, greed &lt;int&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   `shut the door` &lt;int&gt;, `sieve-fisted find` &lt;int&gt;, `long division` &lt;int&gt;, …</span></span></span></code></pre></div>
 <p>Next, let’s transform the variable for each song into a cumulative
 count of the number of times the song was played.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">mydf_wide2</span> <span class="op">&lt;-</span> <span class="va">mydf_wide</span></span>
 <span></span>
-<span><span class="kw">for</span><span class="op">(</span><span class="va">colindex</span> <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span><span class="fl">93</span><span class="op">)</span> <span class="op">{</span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">colindex</span> <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span><span class="fl">94</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  </span>
 <span>  <span class="va">mydf_wide2</span><span class="op">[</span>,<span class="va">colindex</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html" class="external-link">cumsum</a></span><span class="op">(</span><span class="va">mydf_wide2</span><span class="op">[</span>,<span class="va">colindex</span><span class="op">]</span><span class="op">)</span>     </span>
 <span>  </span>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mydf_wide2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 93</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 94</span></span></span>
 <span><span class="co">#&gt;   date       furniture in defe…¹ joe #…² merch…³ song …⁴ the w…⁵ turn …⁶ waiti…⁷</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 1987-09-03         1         1       1       1       1       1       1       1</span></span>
@@ -553,13 +553,13 @@ count of the number of times the song was played.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 1987-10-16         4         3       3       4       4       4       3       4</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 1987-11-25         5         3       4       5       5       5       4       5</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 1987-12-03         6         4       4       6       6       6       5       6</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 84 more variables: `and the same` &lt;int&gt;, kyeo &lt;int&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 85 more variables: `and the same` &lt;int&gt;, kyeo &lt;int&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   `bad mouth` &lt;int&gt;, `break-in` &lt;int&gt;, lockdown &lt;int&gt;, suggestion &lt;int&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   burning &lt;int&gt;, `give me the cure` &lt;int&gt;, glueman &lt;int&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   `bulldog front` &lt;int&gt;, `burning too` &lt;int&gt;, `margin walker` &lt;int&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   promises &lt;int&gt;, provisional &lt;int&gt;, reprovisional &lt;int&gt;, `brendan #1` &lt;int&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   greed &lt;int&gt;, `shut the door` &lt;int&gt;, `sieve-fisted find` &lt;int&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   `long division` &lt;int&gt;, turnover &lt;int&gt;, `two beats off` &lt;int&gt;, …</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;">#   promises &lt;int&gt;, preprovisional &lt;int&gt;, provisional &lt;int&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   reprovisional &lt;int&gt;, `brendan #1` &lt;int&gt;, greed &lt;int&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   `shut the door` &lt;int&gt;, `sieve-fisted find` &lt;int&gt;, `long division` &lt;int&gt;, …</span></span></span></code></pre></div>
 <p>Now, we can reformat the data again to make it a long list of song
 counts that show how the number of times each song was performed built
 up over time.</p>
