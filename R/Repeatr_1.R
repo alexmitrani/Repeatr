@@ -71,12 +71,12 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   if (is.null(mysongdatafile)==FALSE) {
 
-    mysongvarslookup <- read.csv(mysongdatafile)
+    songvarslookup <- read.csv(mysongdatafile)
 
   } else {
 
     mysongdatafile <- system.file("extdata", "releases_songs_durations_wikipedia.csv", package = "Repeatr")
-    mysongvarslookup <- read.csv(mysongdatafile)
+    songvarslookup <- read.csv(mysongdatafile)
 
   }
 
@@ -287,6 +287,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   save(othervariables, file="othervariables.rda")
   save(releasesdatalookup, file="releasesdatalookup.rda")
+  save(songvarslookup, file="songvarslookup.rda")
 
   setwd(mydir)
 
@@ -501,10 +502,10 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   Repeatr1 <- Repeatr1 %>% left_join(songidlookup)
 
   # add additional variables for potential use in the choice modelling
-  mysongvarslookup <- mysongvarslookup %>% select(songid, releaseid, release, track_number, instrumental, vocals_picciotto, vocals_mackaye, vocals_lally, duration_seconds)
+  songvarslookup <- songvarslookup %>% select(songid, releaseid, release, track_number, instrumental, vocals_picciotto, vocals_mackaye, vocals_lally, duration_seconds)
 
   Repeatr1 <- Repeatr1 %>%
-    left_join(mysongvarslookup)
+    left_join(songvarslookup)
 
   # Save disaggregate data -----------------------------------
 
@@ -561,7 +562,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   setwd(mydir)
 
-  myreturnlist <- list(Repeatr0, Repeatr1, songidlookup, mycount, mysongvarslookup, releasesdatalookup, othervariables, cumulative_song_counts)
+  myreturnlist <- list(Repeatr0, Repeatr1, songidlookup, mycount, songvarslookup, releasesdatalookup, othervariables, cumulative_song_counts)
 
   return(myreturnlist)
 
