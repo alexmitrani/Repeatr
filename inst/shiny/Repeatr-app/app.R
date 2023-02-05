@@ -166,15 +166,17 @@ releases_summary <- releases_data %>%
             first_show = min(show_num)) %>%
   ungroup()
 
-releasesdatalookup2 <- releasesdatalookup %>%
+releasesdatalookup <- releasesdatalookup %>%
   select(releaseid, releasedate)
 
 releases_summary <- releases_summary %>%
-  left_join(releasesdatalookup2) %>%
+  left_join(releasesdatalookup) %>%
   mutate(shows = last_show-first_show,
          play_rate = round(performances/(songs*shows), digits=2)) %>%
   select(releaseid, release, debut, releasedate, songs, performances, shows, play_rate) %>%
   filter(releaseid>0)
+
+rm(releasesdatalookup, show_sequence)
 
 timestamptext <- paste0("Made with Repeatr version ", packageVersion("Repeatr"), ", updated ", packageDate("Repeatr"), ".")
 
