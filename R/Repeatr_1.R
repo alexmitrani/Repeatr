@@ -500,6 +500,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     ungroup()
 
   Repeatr1 <- Repeatr1 %>% left_join(songidlookup)
+  Repeatr1 <- Repeatr1 %>% left_join(releasesdatalookup)
 
   # add additional variables for potential use in the choice modelling
   songvarslookup <- songvarslookup %>% select(songid, releaseid, release, track_number, instrumental, vocals_picciotto, vocals_mackaye, vocals_lally, duration_seconds)
