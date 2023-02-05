@@ -491,7 +491,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     mutate(last_song = ifelse(song_number==number_songs, 1, 0)) %>%
     ungroup()
 
-  Repeatr1 <- Repeatr1 %>% left_join(mysongidlookup)
+  Repeatr1 <- Repeatr1 %>% left_join(songidlookup)
 
   # add additional variables for potential use in the choice modelling
   mysongvarslookup <- mysongvarslookup %>% select(songid, releaseid, release, track_number, instrumental, vocals_picciotto, vocals_mackaye, vocals_lally, duration_seconds)
@@ -517,7 +517,46 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   setwd(mydir)
 
-  myreturnlist <- list(Repeatr0, Repeatr1, songidlookup, mycount, mysongvarslookup, releasesdatalookup, othervariables)
+  mydf <- Repeatr1 %>% select(date, song)
+
+  mydf <- mydf %>%
+    group_by(date, song) %>%
+    summarize(count=n()) %>% ungroup()
+
+  mydf_wide <- mydf %>%
+    pivot_wider(names_from = song, values_from = count, values_fill = 0)
+
+  mydf_wide2 <- mydf_wide
+
+  for(colindex in 2:94) {
+
+    mydf_wide2[,colindex] <- cumsum(mydf_wide2[,colindex])
+
+  }
+
+  mydf_long <- mydf_wide2 %>%
+    pivot_longer(!date, names_to = "song", values_to = "count") %>%
+    filter(count>0)
+
+  releases_lookup <- Repeatr1 %>%
+    group_by(song, release) %>%
+    summarize(count = n()) %>%
+    ungroup() %>%
+    select(song, release)
+
+  mydf_long <- mydf_long %>%
+    left_join(releases_lookup)
+
+  cumulative_song_counts <- mydf_long %>%
+    select(date, song, release, count)
+
+  setwd(mydatadir)
+
+  save(cumulative_song_counts, file = "cumulative_song_counts.rda")
+
+  setwd(mydir)
+
+  myreturnlist <- list(Repeatr0, Repeatr1, songidlookup, mycount, mysongvarslookup, releasesdatalookup, othervariables, cumulative_song_counts)
 
   return(myreturnlist)
 

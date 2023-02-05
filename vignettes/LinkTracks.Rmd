@@ -255,7 +255,7 @@ Next, let's transform the variable for each song into a cumulative count of the 
 
 mydf_wide2 <- mydf_wide
 
-for(colindex in 2:93) {
+for(colindex in 2:94) {
   
   mydf_wide2[,colindex] <- cumsum(mydf_wide2[,colindex])     
   
