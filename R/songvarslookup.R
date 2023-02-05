@@ -7,7 +7,6 @@
 #' \describe{
 #' \item{songid}{numeric id for each song}
 #' \item{releaseid}{numeric id in ascending chronological order}
-#' \item{release}{name of album or EP}
 #' \item{track_number}{The track number for the song on the release}
 #' \item{instrumental}{Indicates whether or not the piece is an instrumental}
 #' \item{vocals_picciotto}{indicates whether or not Guy Picciotto sang lead vocals on this track}
