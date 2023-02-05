@@ -57,7 +57,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   } else {
 
-    Repeatr0 <- system.file("extdata", "fugotcha.csv", package = "Repeatr")
+    fugotcha <- system.file("extdata", "fugotcha.csv", package = "Repeatr")
     Repeatr0 <- read.csv(fugotcha, header=FALSE)
 
     rawdata <- Repeatr0 %>%
@@ -453,9 +453,6 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   Repeatr1 <- Repeatr1 %>%
     filter(song!=("surf tune"))
-
-  Repeatr1 <- Repeatr1 %>%
-    filter(song!=("preprovisional"))
 
   # Summarise the data to check frequency counts for all songs --------------
 
