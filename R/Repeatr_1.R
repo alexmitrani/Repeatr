@@ -471,7 +471,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   mysongidlookup <- mycount
   mysongidlookup$count <- NULL
-  saveRDS(mysongidlookup, "mysongidlookup.rds")
+  save(mysongidlookup, "mysongidlookup.rda")
 
   write.csv(mysongidlookup, "mysongidlookup.csv")
 
