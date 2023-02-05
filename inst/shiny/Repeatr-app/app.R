@@ -839,7 +839,8 @@ server <- function(input, output, session) {
 
     data <- shows_data2() %>%
       mutate(coordinates = paste0(latitude, ", ", longitude)) %>%
-      select(fls_link, date, venue, city, country, attendance, coordinates)
+      select(fls_link, date, venue, city, country, attendance, coordinates) %>%
+      arrange(date)
 
   }, escape = c(-2),
   style = "bootstrap"))
