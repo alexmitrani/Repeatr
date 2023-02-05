@@ -34,7 +34,6 @@ last_performance_data <- Repeatr1 %>%
   ungroup()
 
 cumulative_song_counts <- cumulative_song_counts %>%
-  mutate(release = ifelse(release=="Steady Diet", "steady diet of nothing", release)) %>%
   mutate(release = tolower(release)) %>%
   left_join(releasesdatalookup) %>%
   select(date, song, release, count, releasedate)
@@ -147,24 +146,32 @@ show_sequence <- Repeatr1 %>%
   mutate(show_num = row_number(),
          last_show = max(show_num))
 
-releases_data <- Repeatr1 %>%
+releases_menu_list <- releasesdatalookup %>%
+  arrange(releaseid) %>%
+  filter(releaseid>0)
+
+releases_data_input <- Repeatr1 %>%
   left_join(show_sequence) %>%
   group_by(releaseid, release, track_number, song, last_show) %>%
-  summarize(performances = n(),
+  summarize(count = n(),
             date=min(date),
             show_num = min(show_num)) %>%
   ungroup()
 
-releases_data <- releases_data %>%
-  arrange(releaseid, track_number)
+releases_data_input <- releases_data_input %>%
+  arrange(desc(releaseid), desc(track_number)) %>%
+  mutate(song = factor(song, levels=unique(song))) %>%
+  mutate(shows = last_show-show_num+1,
+         rate = round(count / shows, digits=2)) %>%
+  filter(releaseid>0)
 
-releases_summary <- releases_data %>%
+releases_summary <- releases_data_input %>%
   group_by(releaseid, release, last_show) %>%
-  summarize(performances = sum(performances),
+  summarize(count = sum(count),
             songs=n(),
             first_debut=min(date),
             last_debut=max(date),
-            first_show = max(show_num)) %>%
+            first_show = min(show_num)) %>%
   ungroup()
 
 releasesdatalookup <- releasesdatalookup %>%
@@ -174,8 +181,9 @@ releasesdatalookup <- releasesdatalookup %>%
 releases_summary <- releases_summary %>%
   left_join(releasesdatalookup) %>%
   mutate(shows = last_show-first_show,
-         play_rate = round(performances/(songs*shows), digits=2)) %>%
-  select(releaseid, release, first_debut, last_debut, releasedate, songs, performances, shows, play_rate) %>%
+         rate = round(count/(songs*shows), digits=2)) %>%
+  select(releaseid, release, first_debut, last_debut, releasedate, songs, count, shows, rate) %>%
+  rename(release_date = releasedate) %>%
   filter(releaseid>0)
 
 rm(releasesdatalookup, show_sequence)
@@ -394,6 +402,53 @@ tabPanel("xray",
                     # Create a new row for the table.
                     DT::dataTableOutput("xraydatatable"))
              )
+
+         )
+
+),
+
+# releases -------------------------------------------------------------------
+
+
+
+tabPanel("releases",
+
+         fluidPage(
+
+           tags$br(),
+
+           fluidRow(
+             column(6,
+                    selectizeInput("Input_releases", "release:",
+                                   releases_menu_list$release,
+                                   selected=c("fugazi", "the argument"), multiple =TRUE)
+                    ),
+             column(6,
+                    selectizeInput("Input_releases_var", "variable:",
+                                   c("count", "rate"),
+                                   selected="count", multiple =FALSE)
+                    )
+
+           ),
+
+           tags$br(),
+
+           # Graph
+
+           fluidRow(
+             column(12,
+                    plotlyOutput("releases_plot")
+             )
+           ),
+
+           tags$br(),
+
+
+           fluidRow(
+             column(12,
+                    DT::dataTableOutput("releasesdatatable")
+             )
+           )
 
          )
 
@@ -1055,6 +1110,70 @@ server <- function(input, output, session) {
   escape = c(-2),
   style = "bootstrap"))
 
+# releases -------------------------------------------------------------------
+
+  # Input_releases, Input_releases_var
+
+  releases_data <- reactive({
+
+    if (is.null(input$Input_releases)==FALSE) {
+      releases_data <- releases_data_input %>%
+        filter(release %in% input$Input_releases) %>%
+        arrange(releaseid, track_number)
+
+    } else {
+
+      releases_data <- releases_data_input %>%
+        arrange(releaseid, track_number)
+
+    }
+
+    releases_data
+
+  })
+
+  output$releases_plot <- renderPlotly({
+
+    if(input$Input_releases_var == "rate") {
+
+        releases_plot <- ggplot(releases_data(), aes(x = song,
+                                                   y = rate,
+                                                   fill = release)) +
+          geom_bar(stat="identity") +
+          xlab("track") +
+          ylab("rate") +
+          scale_y_continuous(expand = expansion(mult = c(0, 0.1)),
+                             limits = c(0, NA),
+                             labels = comma) +
+          coord_flip()
+
+      } else {
+
+        releases_plot <- ggplot(releases_data(), aes(x = song,
+                                                     y = count,
+                                                     fill = release)) +
+          geom_bar(stat="identity") +
+          xlab("track") +
+          ylab("count") +
+          scale_y_continuous(expand = expansion(mult = c(0, 0.1)),
+                             limits = c(0, NA),
+                             labels = comma) +
+          coord_flip()
+
+      }
+
+      plotly::ggplotly(releases_plot)
+
+  })
+
+  output$releasesdatatable <- DT::renderDataTable(DT::datatable({
+    data <- releases_summary %>%
+      select(-releaseid)
+
+    data
+
+  },
+  style = "bootstrap"))
 
 # songs -------------------------------------------------------------------
 
