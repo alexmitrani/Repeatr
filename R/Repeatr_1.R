@@ -286,6 +286,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     ungroup()
 
   save(othervariables, file="othervariables.rda")
+  save(releasesdatalookup, file="releasesdatalookup.rda")
 
   setwd(mydir)
 
