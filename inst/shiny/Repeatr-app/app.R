@@ -139,6 +139,43 @@ transitions_data_da <- transitions_data_da1 %>%
 
 transitions_data_da$date <- format(transitions_data_da$date,'%Y-%m-%d')
 
+show_sequence <- Repeatr1 %>%
+  group_by(date) %>%
+  summarize(songs = n()) %>%
+  ungroup() %>%
+  arrange(date) %>%
+  mutate(show_num = row_number(),
+         last_show = max(show_num))
+
+releases_data <- Repeatr1 %>%
+  left_join(show_sequence) %>%
+  group_by(releaseid, release, track_number, song, last_show) %>%
+  summarize(performances = n(),
+            date=min(date),
+            show_num = min(show_num)) %>%
+  ungroup()
+
+releases_data <- releases_data %>%
+  arrange(releaseid, track_number)
+
+releases_summary <- releases_data %>%
+  group_by(releaseid, release, last_show) %>%
+  summarize(performances = sum(performances),
+            songs=n(),
+            debut=min(date),
+            first_show = min(show_num)) %>%
+  ungroup()
+
+releasesdatalookup2 <- releasesdatalookup %>%
+  select(releaseid, releasedate)
+
+releases_summary <- releases_summary %>%
+  left_join(releasesdatalookup2) %>%
+  mutate(shows = last_show-first_show,
+         play_rate = round(performances/(songs*shows), digits=2)) %>%
+  select(releaseid, release, debut, releasedate, songs, performances, shows, play_rate) %>%
+  filter(releaseid>0)
+
 timestamptext <- paste0("Made with Repeatr version ", packageVersion("Repeatr"), ", updated ", packageDate("Repeatr"), ".")
 
 # user interface ----------------------------------------------------------
