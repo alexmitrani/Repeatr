@@ -283,8 +283,6 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   setwd(mydir)
 
-  save(othervariables, file="othervariables.rda")
-
   # Select the most relevant columns -------
 
   Repeatr1 <- subset(Repeatr0, select = -c(V2, V4, V5, V6, V7, V8, V9))
@@ -469,12 +467,11 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   # Create lookup table to go from song id to song title --------------
 
-  mysongidlookup <- mycount
-  mysongidlookup$count <- NULL
-  save(mysongidlookup, "mysongidlookup.rda")
-
-  write.csv(mysongidlookup, "mysongidlookup.csv")
-
+  songidlookup <- mycount
+  songidlookup$count <- NULL
+  setwd(mydatadir)
+  save(songidlookup, file="songidlookup.rda")
+  setwd(mydir)
 
   # Redefine song index in terms of the included songs ----------------------
 
@@ -520,7 +517,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   setwd(mydir)
 
-  myreturnlist <- list(Repeatr0, Repeatr1, mysongidlookup, mycount, mysongvarslookup, releasesdatalookup, othervariables)
+  myreturnlist <- list(Repeatr0, Repeatr1, songidlookup, mycount, mysongvarslookup, releasesdatalookup, othervariables)
 
   return(myreturnlist)
 
