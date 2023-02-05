@@ -222,15 +222,14 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   # Correct country
   othervariables <- othervariables %>%
-    mutate(country = ifelse(city=="Belfast" | city=="Derry", "Northern Ireland", country),
+    mutate(country = ifelse((city=="Belfast" | city=="Derry"), "Northern Ireland", country),
            country = ifelse(flsid=="FLS0970", "USA", country))
-
 
   # Correct location of Queen's Hall, Belfast
   othervariables <- othervariables %>%
-    mutate(x = ifelse(country == "Northern Ireland" & city=="Belfast" & venue=="Queen's Hall", -5.9396578, x),
-           y = ifelse(country == "Northern Ireland" & city=="Belfast" & venue=="Queen's Hall", 54.5848401, y),
-           checked = ifelse(country == "Northern Ireland" & city=="Belfast" & venue=="Queen's Hall", 1, checked))
+    mutate(x = ifelse(country == "Northern Ireland" & city=="Belfast" & (venue=="Queen's Hall" | venue=="Queen's University Mandela Hall"), -5.9374134, x),
+           y = ifelse(country == "Northern Ireland" & city=="Belfast" & (venue=="Queen's Hall" | venue=="Queen's University Mandela Hall"), 54.5846991, y),
+           checked = ifelse(country == "Northern Ireland" & city=="Belfast" & (venue=="Queen's Hall" | venue=="Queen's University Mandela Hall"), 1, checked))
 
   # impute values where they are missing
   meanattendance <- othervariables %>%
@@ -505,8 +504,6 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   Repeatr1 <- Repeatr1 %>%
     left_join(mysongvarslookup)
-
-  write.csv(mysongvarslookup, "mysongvarslookup.csv")
 
   # Save disaggregate data -----------------------------------
 
