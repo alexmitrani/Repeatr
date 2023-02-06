@@ -171,7 +171,9 @@ releases_summary <- releases_data_input %>%
             songs=n(),
             first_debut=min(date),
             last_debut=max(date),
-            first_show = min(show_num)) %>%
+            first_show = min(show_num),
+            shows = mean(shows),
+            rate = mean(rate)) %>%
   ungroup()
 
 releasesdatalookup <- releasesdatalookup %>%
@@ -180,8 +182,6 @@ releasesdatalookup <- releasesdatalookup %>%
 
 releases_summary <- releases_summary %>%
   left_join(releasesdatalookup) %>%
-  mutate(shows = last_show-first_show,
-         rate = round(count/(songs*shows), digits=2)) %>%
   select(releaseid, release, first_debut, last_debut, releasedate, songs, count, shows, rate) %>%
   rename(release_date = releasedate) %>%
   filter(releaseid>0)
