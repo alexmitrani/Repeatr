@@ -161,6 +161,7 @@ releases_data_input <- Repeatr1 %>%
 releases_data_input <- releases_data_input %>%
   arrange(desc(releaseid), desc(track_number)) %>%
   mutate(song = factor(song, levels=unique(song))) %>%
+  mutate(release = factor(release, levels=rev(unique(release)))) %>%
   mutate(shows = last_show-show_num+1,
          rate = round(count / shows, digits=2)) %>%
   filter(releaseid>0)
@@ -172,8 +173,8 @@ releases_summary <- releases_data_input %>%
             first_debut=min(date),
             last_debut=max(date),
             first_show = min(show_num),
-            shows = mean(shows),
-            rate = mean(rate)) %>%
+            shows = round(mean(shows), digits=0),
+            rate = round(mean(rate), digits = 2)) %>%
   ungroup()
 
 releasesdatalookup <- releasesdatalookup %>%
@@ -421,12 +422,12 @@ tabPanel("releases",
              column(6,
                     selectizeInput("Input_releases", "release:",
                                    releases_menu_list$release,
-                                   selected=c("fugazi", "the argument"), multiple =TRUE)
+                                   selected=NULL, multiple =TRUE)
                     ),
              column(6,
                     selectizeInput("Input_releases_var", "variable:",
                                    c("count", "rate"),
-                                   selected="count", multiple =FALSE)
+                                   selected="rate", multiple =FALSE)
                     )
 
            ),
@@ -437,7 +438,9 @@ tabPanel("releases",
 
            fluidRow(
              column(12,
-                    plotlyOutput("releases_plot")
+                    plotlyOutput("releases_plot",
+                                 width = "100%",
+                                 height = "700px")
              )
            ),
 
