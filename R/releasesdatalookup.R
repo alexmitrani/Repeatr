@@ -11,6 +11,7 @@
 #' \item{releasedate}{release date}
 #' \item{rym_rating}{RYM rating scaled to the interval between 0 and 1}
 #' \item{release_date_source}{source of the release date}
+#' \item{colour_code}{hex colour code to be used for the release in graphs}
 #' }
 #' @examples
 #'   releasesdatalookup
