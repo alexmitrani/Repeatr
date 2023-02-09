@@ -150,9 +150,15 @@ releases_menu_list <- releasesdatalookup %>%
   arrange(releaseid) %>%
   filter(releaseid>0)
 
+colour_code <- releasesdatalookup %>%
+  arrange(releaseid) %>%
+  filter(releaseid>0) %>%
+  select(releaseid, colour_code)
+
 releases_data_input <- Repeatr1 %>%
   left_join(show_sequence) %>%
-  group_by(releaseid, release, track_number, song, last_show) %>%
+  left_join(colour_code) %>%
+  group_by(releaseid, release, track_number, song, last_show, colour_code) %>%
   summarize(count = n(),
             date=min(date),
             show_num = min(show_num)) %>%
@@ -1137,6 +1143,8 @@ server <- function(input, output, session) {
 
   output$releases_plot <- renderPlotly({
 
+    colours <- unique(releases_data()$colour_code)
+
     if(input$Input_releases_var == "rate") {
 
         releases_plot <- ggplot(releases_data(), aes(x = song,
@@ -1145,6 +1153,7 @@ server <- function(input, output, session) {
           geom_bar(stat="identity") +
           xlab("track") +
           ylab("rate") +
+          scale_fill_manual(values=colours) +
           scale_y_continuous(expand = expansion(mult = c(0, 0.1)),
                              limits = c(0, NA),
                              labels = comma) +
@@ -1158,6 +1167,7 @@ server <- function(input, output, session) {
           geom_bar(stat="identity") +
           xlab("track") +
           ylab("count") +
+          scale_fill_manual(values=colours) +
           scale_y_continuous(expand = expansion(mult = c(0, 0.1)),
                              limits = c(0, NA),
                              labels = comma) +
