@@ -137,3 +137,4 @@ This is a list of shows that I plan to listen to again in future, based on what 
 [FLS0645, Irving Plaza, New York, NY, USA, 1995-04-05](https://www.dischord.com/fugazi_live_series/new-york-city-ny-usa-40595)<br>
 [FLS0653, University of Delaware Carpenter Hall, Newark, DE, USA, 1995-04-14](https://www.dischord.com/fugazi_live_series/newark-de-usa-41495)<br>
 [FLS0659, Queen's Hall, Belfast, Northern Ireland, 1995-05-09](https://www.dischord.com/fugazi_live_series/belfast-northern-ireland-50995)<br>
+[FLS0668, Le Pharos, Arras, France, 1995-05-20](https://www.dischord.com/fugazi_live_series/arras-france-52095)<br>
