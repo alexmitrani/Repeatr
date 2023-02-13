@@ -1066,7 +1066,34 @@ server <- function(input, output, session) {
       pivot_longer(cols=c(songs, released, unreleased, debut, farewell, incumbent,
                           fugazi, margin_walker, three_songs, repeater, steady_diet_of_nothing,
                           in_on_the_killtaker, red_medicine, end_hits,
-                          the_argument, furniture, first_demo), names_to="variable", values_to="value")
+                          the_argument, furniture, first_demo), names_to="variable", values_to="value") %>%
+      mutate(colour_code = case_when(variable=="fugazi" ~ "#80110e",
+                                     variable=="margin_walker" ~ "#f1bd98",
+                                     variable=="three_songs" ~ "#6a5662",
+                                     variable=="repeater" ~ "#546084",
+                                     variable=="steady_diet_of_nothing" ~ "#9a5715",
+                                     variable=="in_on_the_killtaker" ~ "#e6ca6f",
+                                     variable=="red_medicine" ~ "#c02118",
+                                     variable=="end_hits" ~ "#5b734d",
+                                     variable=="the_argument" ~ "#99c3cb",
+                                     variable=="furniture" ~ "#d15743",
+                                     variable=="first_demo" ~ "#adb56a",
+                                     variable=="released" ~ "#009e73",
+                                     variable=="unreleased" ~ "#e69f00")) %>%
+      mutate(releaseid = case_when(variable=="fugazi" ~ 1,
+                                     variable=="margin_walker" ~ 2,
+                                     variable=="three_songs" ~ 3,
+                                     variable=="repeater" ~ 4,
+                                     variable=="steady_diet_of_nothing" ~ 5,
+                                     variable=="in_on_the_killtaker" ~ 6,
+                                     variable=="red_medicine" ~ 7,
+                                     variable=="end_hits" ~ 8,
+                                     variable=="the_argument" ~ 9,
+                                     variable=="furniture" ~ 10,
+                                     variable=="first_demo" ~ 11,
+                                     variable=="released" ~ 12,
+                                     variable=="unreleased" ~ 13)) %>%
+      mutate(variable = factor(variable, levels=(unique(variable))))
 
     xray_long
 
@@ -1078,13 +1105,15 @@ server <- function(input, output, session) {
 
       xray_data_long <- xray_data_long1() %>%
         filter(variable!="songs" & variable!="released" & variable!="unreleased" & variable!="debut" & variable!="farewell" & variable!="incumbent") %>%
-        filter(value>0)
+        filter(value>0) %>%
+        arrange(releaseid)
 
     } else {
 
       xray_data_long <- xray_data_long1() %>%
         filter(variable=="released" | variable=="unreleased") %>%
-        filter(value>0)
+        filter(value>0) %>%
+        arrange(releaseid)
 
     }
 
@@ -1094,12 +1123,15 @@ server <- function(input, output, session) {
 
   output$xray_plot <- renderPlotly({
 
+    colours <- unique(xray_data_long2()$colour_code)
+
     xray_plot <- ggplot(xray_data_long2(), aes(x = date,
                                               y = value,
                                               fill = variable)) +
       geom_bar(position="stack", stat="identity") +
       xlab("date") +
       ylab("songs") +
+      scale_fill_manual(values=colours) +
       scale_y_continuous(expand = expansion(mult = c(0, 0.1)),
                          limits = c(-1, NA),
                          labels = comma)
@@ -1111,7 +1143,7 @@ server <- function(input, output, session) {
   output$xraydatatable <- DT::renderDataTable(DT::datatable({
     data <- xray_data_long2()  %>%
       pivot_wider(names_from = variable, values_from = value) %>%
-      select(-year, -tour)
+      select(-year, -tour, -colour_code, -releaseid)
 
     data
 
