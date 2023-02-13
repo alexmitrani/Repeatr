@@ -1093,7 +1093,7 @@ server <- function(input, output, session) {
                                      variable=="first_demo" ~ 11,
                                      variable=="released" ~ 12,
                                      variable=="unreleased" ~ 13)) %>%
-      mutate(variable = factor(variable, levels=(unique(variable))))
+      mutate(variable2 = factor(variable, levels=(unique(variable))))
 
     xray_long
 
@@ -1127,7 +1127,7 @@ server <- function(input, output, session) {
 
     xray_plot <- ggplot(xray_data_long2(), aes(x = date,
                                               y = value,
-                                              fill = variable)) +
+                                              fill = variable2)) +
       geom_bar(position="stack", stat="identity") +
       xlab("date") +
       ylab("songs") +
@@ -1142,8 +1142,9 @@ server <- function(input, output, session) {
 
   output$xraydatatable <- DT::renderDataTable(DT::datatable({
     data <- xray_data_long2()  %>%
+      select(-variable2, -colour_code, -releaseid)  %>%
       pivot_wider(names_from = variable, values_from = value) %>%
-      select(-year, -tour, -colour_code, -releaseid)
+      select(-year, -tour)
 
     data
 
