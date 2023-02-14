@@ -43,6 +43,9 @@ tour_lookup <- othervariables %>% select(gid, tour) %>%
   slice(1) %>%
   ungroup()
 
+releaseid_variable_colour_code <- releasesdatalookup %>%
+  select(releaseid, variable, colour_code)
+
 xray <- Repeatr1 %>% left_join(tour_lookup)
 xray <- xray %>% select(-release)
 xray <- xray %>% left_join(releasesdatalookup)
@@ -1067,32 +1070,7 @@ server <- function(input, output, session) {
                           fugazi, margin_walker, three_songs, repeater, steady_diet_of_nothing,
                           in_on_the_killtaker, red_medicine, end_hits,
                           the_argument, furniture, first_demo), names_to="variable", values_to="value") %>%
-      mutate(colour_code = case_when(variable=="fugazi" ~ "#80110e",
-                                     variable=="margin_walker" ~ "#f1bd98",
-                                     variable=="three_songs" ~ "#6a5662",
-                                     variable=="repeater" ~ "#546084",
-                                     variable=="steady_diet_of_nothing" ~ "#9a5715",
-                                     variable=="in_on_the_killtaker" ~ "#e6ca6f",
-                                     variable=="red_medicine" ~ "#c02118",
-                                     variable=="end_hits" ~ "#5b734d",
-                                     variable=="the_argument" ~ "#99c3cb",
-                                     variable=="furniture" ~ "#d15743",
-                                     variable=="first_demo" ~ "#adb56a",
-                                     variable=="released" ~ "#009e73",
-                                     variable=="unreleased" ~ "#e69f00")) %>%
-      mutate(releaseid = case_when(variable=="fugazi" ~ 1,
-                                     variable=="margin_walker" ~ 2,
-                                     variable=="three_songs" ~ 3,
-                                     variable=="repeater" ~ 4,
-                                     variable=="steady_diet_of_nothing" ~ 5,
-                                     variable=="in_on_the_killtaker" ~ 6,
-                                     variable=="red_medicine" ~ 7,
-                                     variable=="end_hits" ~ 8,
-                                     variable=="the_argument" ~ 9,
-                                     variable=="furniture" ~ 10,
-                                     variable=="first_demo" ~ 11,
-                                     variable=="released" ~ 12,
-                                     variable=="unreleased" ~ 13)) %>%
+      left_join(releaseid_variable_colour_code) %>%
       mutate(release = factor(variable, levels=(unique(variable))))
 
     xray_long
@@ -1153,8 +1131,6 @@ server <- function(input, output, session) {
   style = "bootstrap"))
 
 # releases -------------------------------------------------------------------
-
-  # Input_releases, Input_releases_var
 
   releases_data <- reactive({
 
