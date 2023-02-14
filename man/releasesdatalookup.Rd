@@ -7,21 +7,21 @@
 \format{
 dataframe with one row for each release.
 \describe{
-\item{release}{release name}
 \item{releaseid}{numeric id in ascending chronological order}
+\item{release}{release name}
+\item{variable}{release names for use as variable names}
 \item{releasedate}{release date}
+\item{release_date_source}{source of the release date}
+\item{colour_code}{hex colour code to be used for the release in graphs}
 \item{rym_rating}{RYM rating scaled to the interval between 0 and 1}
+
 }
-}
-\source{
-https://web.archive.org/web/20210211085323/https://rateyourmusic.com/artist/fugazi
 }
 \usage{
 releasesdatalookup
 }
 \description{
-Data on Fugazi releases from rateyourmusic.com.
-First Demo was excluded because only 3 of the songs on this release appear in the Fugazi Live Series data, so it was not possible to compare the RYM ratings with ratings based on the choice modelling results in this case.
+Fugazi releases data
 }
 \examples{
   releasesdatalookup

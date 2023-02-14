@@ -2,15 +2,23 @@
 % Please edit documentation in R/nscmov.R
 \name{nscmov}
 \alias{nscmov}
-\title{nscmov = No satellite could map our veins}
+\title{nscmov = No satellite could map our veins.}
 \usage{
-nscmov(fls_venue_geocoding_update_filename)
+nscmov(fls_venue_geocoding_update_filename = NULL)
 }
 \arguments{
 \item{fls_venue_geocoding_update_filename}{filename of file with which to update coordinates data in othervariables.rda}
 }
 \description{
-nscmov = No satellite could map our veins
+Process for updating coordinates on Shiny app:
+\enumerate{
+\item pull updated data from github
+\item run nscmov()
+\item push updates to github
+\item reinstall Repeatr package from github
+\item run shiny app from app.R
+\item reinstall the Shiny app on shinyapps.io
+}
 }
 \examples{
 fls_venue_geocoding_update <- system.file("extdata", "fls_venue_geocoding.csv", package = "Repeatr")
