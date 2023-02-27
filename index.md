@@ -6,6 +6,8 @@ Exploring the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) 
 
 ## Articles
 
+[Repeatr-app](articles/Repeatr-app.html) provides documentation for the [Repeatr web app](https://alexmitrani.shinyapps.io/Repeatr-app/). 
+
 [Repeatr](articles/Repeatr.html) outlines the process by which song ratings were calculated using the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) metadata. 
 
 [Songnumberone](articles/Songnumberone.html) presents analysis of the choice of opening songs.  
@@ -26,9 +28,9 @@ devtools::install_github("alexmitrani/Repeatr", build_opts = c("--no-resave-data
 
 The package gives easy access to the functions, dataframes, and related documentation.
 
-## Shiny web app
+## Repeatr web app
 
-A Shiny web app that presents some of the data from the Repeatr package with interactive controls can be found [here](https://alexmitrani.shinyapps.io/Repeatr-app/).
+A web app that presents some of the data from the Repeatr package with interactive controls can be found [here](https://alexmitrani.shinyapps.io/Repeatr-app/).
 
 ## Acknowledgements
 
