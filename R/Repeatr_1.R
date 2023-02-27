@@ -522,6 +522,13 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   Repeatr1 <- Repeatr1 %>%
     filter(gid!="perth-australia-111096" | song_number<20)
 
+  # get rid of non-existent songs
+  Repeatr1 <- Repeatr1 %>%
+    filter(gid!="washington-dc-usa-41291" | song_number<=10 | song_number>=13)
+
+  Repeatr1 <- Repeatr1 %>%
+    mutate(song_number = ifelse(gid=="washington-dc-usa-41291" & song_number>=13, song_number-2, song_number))
+
   setwd(mydatadir)
 
   save(Repeatr1, file = "Repeatr1.rda")
