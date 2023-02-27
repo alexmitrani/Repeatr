@@ -30,7 +30,7 @@ The variables song_number, first_song and last_song were defined after data clea
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9125</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9128</span>
       </span>
     </div>
 
@@ -58,6 +58,9 @@ The variables song_number, first_song and last_song were defined after data clea
     </li>
     <li>
       <a href="../articles/Playlist.html">Playlist</a>
+    </li>
+    <li>
+      <a href="../articles/Repeatr-app.html">Repeatr-app</a>
     </li>
     <li>
       <a href="../articles/Songnumberone.html">Songnumberone</a>
@@ -172,9 +175,9 @@ The variables song_number, first_song and last_song were defined after data clea
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="va">Repeatr1</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 17,283 × 19</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 17,281 × 19</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    gid         date        year month   day song_…¹ songid song  numbe…² first…³</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> washington… 1987-09-03  <span style="text-decoration: underline;">1</span>987     9     3       1     58 joe …       8       1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> washington… 1987-09-03  <span style="text-decoration: underline;">1</span>987     9     3       2     17 song…       8       0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> washington… 1987-09-03  <span style="text-decoration: underline;">1</span>987     9     3       3     66 furn…       8       0</span>
@@ -185,7 +188,7 @@ The variables song_number, first_song and last_song were defined after data clea
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> washington… 1987-09-03  <span style="text-decoration: underline;">1</span>987     9     3       8     81 the …       8       0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> washington… 1987-09-26  <span style="text-decoration: underline;">1</span>987     9    26       1     89 turn…       8       1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> washington… 1987-09-26  <span style="text-decoration: underline;">1</span>987     9    26       2     17 song…       8       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 17,273 more rows, 9 more variables: last_song &lt;dbl&gt;, releaseid &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 17,271 more rows, 9 more variables: last_song &lt;dbl&gt;, releaseid &lt;int&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   release &lt;chr&gt;, track_number &lt;int&gt;, instrumental &lt;int&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   vocals_picciotto &lt;int&gt;, vocals_mackaye &lt;int&gt;, vocals_lally &lt;int&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   duration_seconds &lt;int&gt;, and abbreviated variable names ¹​song_number,</span></span>
