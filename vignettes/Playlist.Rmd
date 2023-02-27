@@ -142,4 +142,5 @@ This is a list of shows that I plan to listen to again in future, based on what 
 [FLS0671, Le Confort Moderne, Poitiers, France, 1995-05-24](https://www.dischord.com/fugazi_live_series/poitiers-france-52495)<br>
 [FLS0677, Gartejo, Lisbon, Portugal, 1995-05-31](https://www.dischord.com/fugazi_live_series/lisbon-portugal-53195)<br>
 [FLS0679, Zeleste, Barcelona, Spain, 1995-06-03](https://www.dischord.com/fugazi_live_series/barcelona-spain-60395)<br>
+[FLS0685, Salle Des Fetes, Kingersheim, France, 1995-06-10](https://www.dischord.com/fugazi_live_series/kingersheim-france-61095)<br>
 
