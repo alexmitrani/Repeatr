@@ -1124,6 +1124,11 @@ server <- function(input, output, session) {
       pivot_wider(names_from = variable, values_from = value) %>%
       select(-year, -tour)
 
+    data$songs <- rowSums(data[sapply(data, is.numeric)], na.rm = TRUE)
+
+    data <- data %>%
+      relocate(c(fls_link, date, songs))
+
     data
 
   },
