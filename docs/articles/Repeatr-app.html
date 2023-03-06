@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9128</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9129</span>
       </span>
     </div>
 
@@ -139,12 +139,24 @@ Live Series. It also provides several new ways of finding shows to
 listen to. The app has 7 pages which will be described in the following
 sections. Each page shows a visualisation (map or graph) and a data
 table, with the exception of ‘search’ which only has a data table.</p>
+<div class="figure">
+<img src="images/paste-DA56A51F.png" alt=""><p class="caption">The header and the 7 pages of the Repeatr-app.</p>
+</div>
 <p>Most of the input boxes are ‘selectize’ controls - when you select
 the control a menu will appear, and if you start typing the menu will be
 filtered by what you type. You can select any number of items or none at
-all. A few of the input boxes are menus where you can only select one
+all.</p>
+<div class="figure">
+<img src="images/paste-ECE7F969.png" alt=""><p class="caption">‘Selectize’ control for tours on the ‘shows’
+page.</p>
+</div>
+<p>A few of the input boxes are menus where you can only select one
 option - these have a little down arrow to the right side of the input
 box.</p>
+<div class="figure">
+<img src="images/paste-1F7CA3DC.png" alt=""><p class="caption">Selectize control for variable on the ‘releases’
+page.</p>
+</div>
 <p>The data for songs is limited to songs that were played live at least
 twice in the Fugazi Live Series. That is 92 songs which feature in the
 Fugazi discography and one unreleased song - ‘Preprovisional’.</p>
@@ -157,10 +169,15 @@ Maps would find some places quickly but others would be more difficult -
 many of the venues are no longer there. The search was broadened using
 sites like setlist.fm, which sometimes had addresses for old venues,
 reading online publications, and reaching out to people who might
-remember where the venues were located. There may still be “false
-positives” - cases where an address was found but the address might be
-wrong. Please let me know if you find anything that needs
-correcting.</p>
+remember where the venues were located.</p>
+<p><a href="http://subkultur-ost.de/Howl%2002-89%20%28Muenchen%29%20Fanzine%20%6089OCRkl.pdf" class="external-link"><img src="images/paste-784A0D87.png" alt="Ad with the address of the Bootleg, Augsburg, Germany, in Howl fanzine #2 (1989)."></a></p>
+<div class="figure">
+<img src="images/paste-5C2D1B16.png" alt=""><p class="caption">Extract of Mudhoney poster by Ward Sutton that
+contains the address of the Twilight Terrace, Yakima, USA.</p>
+</div>
+<p>There may still be “false positives” - cases where an address was
+found but the address might be wrong. Please let me know if you find
+anything that needs correcting.</p>
 </div>
 <div class="section level2">
 <h2 id="shows">shows<a class="anchor" aria-label="anchor" href="#shows"></a>
@@ -169,44 +186,90 @@ correcting.</p>
 the map has some details of each show and a link to the corresponding
 page on the <a href="https://www.dischord.com/fugazi_live_series" class="external-link">Fugazi
 Live Series</a> site.</p>
+<div class="figure">
+<img src="images/paste-EAB43A58.png" alt=""><p class="caption">World map of Fugazi Live Series on the ‘shows’
+page.</p>
+</div>
 <p>The data can be filtered by typing in the selection boxes for years,
-tours, countries and cities. When a box is blank it means there is no
-filter applied to the data for that variable. The selections apply
-sequentially from left to right and from top to bottom. For instance, if
-you select a year the remaining menus will be filtered to show only data
-for the selected year.</p>
+tours, countries and cities.</p>
+<div class="figure">
+<img src="images/paste-F0D57FE6.png" alt=""><p class="caption">Select controls on ‘shows’ page.</p>
+</div>
+<p>When a box is blank it means there is no filter applied to the data
+for that variable. The selections apply sequentially from left to right
+and from top to bottom. For instance, if you select a year the remaining
+menus will be filtered to show only data for the selected year.</p>
+<div class="figure">
+<img src="images/paste-7DE9CAC0.png" alt=""><p class="caption">Select controls on ‘shows’ page showing sequential
+selection functionality.</p>
+</div>
 <p>The map has zoom controls and by clicking and dragging you can pan
 the map view. The area of the red circle for each show is proportional
 to the attendance of the show. If you click on the red circle for a show
 a pop-up will appear with the date, the venue, the city and the
 attendance.</p>
+<div class="figure">
+<img src="images/paste-BCA5EF2C.png" alt=""><p class="caption">Map example showing pop-up box with show details, and
+shows of different sizes.</p>
+</div>
 <p>The timeline slider below the map allows filtering the data by date.
 The position of the slider control corresponds to the oldest date of the
 selection, so if you move the slider forward from left to right you will
-progressively filter out older shows. There are some additional controls
-for use together with the timeline slider:</p>
+progressively filter out older shows.</p>
+<div class="figure">
+<img src="images/paste-2BB28F5D.png" alt=""><p class="caption">Example showing use of the timeline slider to filter
+out older shows.</p>
+</div>
+<p>There are some specific controls for use with the timeline
+slider:</p>
+<div class="figure">
+<img src="images/paste-F6EA8FE0.png" alt=""><p class="caption">Controls for use with the timeline slider</p>
+</div>
 <ul>
 <li><p>period (weeks) indicates the duration of the selected period in
-weeks. It is initially 792 weeks which covers the full duration of the
-Fugazi Live Series.</p></li>
+weeks. It is initially set to 792 weeks which covers the full duration
+of the Fugazi Live Series.</p></li>
 <li><p>step (days) indicates the size of each step in days, this is for
 use with the fast forward and reverse buttons.</p></li>
-<li><p>the ‘map marker’ button will change the period to 1 week and the
+<li>
+<p>the ‘map marker’ button will change the period to 1 week and the
 step to 1 day, starting at the date selected with the timeline slider.
 The idea is that you can then step forward through a tour one day at a
-time.</p></li>
-<li><p>‘fast-forward’ will move the selection forward in time by one
-step</p></li>
-<li><p>‘rewind’ will move the selection back in time by one
-step</p></li>
-<li><p>‘home’ will move the timeline slider back to the beginning and
+time.</p>
+<div class="figure">
+<img src="images/paste-525EE2F4.png" alt=""><p class="caption">Example of using the ‘map marker’ button.</p>
+</div>
+</li>
+<li>
+<p>‘fast-forward’ will move the selection forward in time by one
+step</p>
+<div class="figure">
+<img src="images/paste-71F7CEFC.png" alt=""><p class="caption">Example of using the ‘fast forward’ button.</p>
+</div>
+</li>
+<li>
+<p>‘rewind’ will move the selection back in time by one step</p>
+<div class="figure">
+<img src="images/paste-BE26E476.png" alt=""><p class="caption">Example of using the ‘rewind’ button.</p>
+</div>
+</li>
+<li>
+<p>‘home’ will move the timeline slider back to the beginning and
 set the period to 792 weeks again, to select the entire series. It is
 recommended to use the home button before changing the selections in the
-selection boxes above the map.</p></li>
+selection boxes above the map.</p>
+<div class="figure">
+<img src="images/paste-A4ECEEBA.png" alt=""><p class="caption">Example of using the ‘home’ button.</p>
+</div>
+</li>
 </ul>
 <p>The data table below the map and the timeline controls shows summary
-data for the selected shows. Each of the following columns can be sorted
-using the sort controls to the right of the variable name:</p>
+data for the selected shows.</p>
+<div class="figure">
+<img src="images/paste-1C08B31D.png" alt=""><p class="caption">Example of the ‘shows’ data table.</p>
+</div>
+<p>Each of the following columns can be sorted using the sort controls
+to the right of the variable name:</p>
 <ul>
 <li><p>fls_link - a link to the corresponding page of the <a href="https://www.dischord.com/fugazi_live_series" class="external-link">Fugazi Live
 Series</a> site</p></li>
@@ -222,14 +285,26 @@ location of a show in an online map of your choice.</p></li>
 <div class="section level2">
 <h2 id="tours">tours<a class="anchor" aria-label="anchor" href="#tours"></a>
 </h2>
-<p>The graph shows the cumulative attendance across the Fugazi Live
-Series. The ‘years’ selection box can be used to filter the data to show
-only specific years. The colours identify specific tours. The graph is
-interactive - if you hover over a point it will display details of the
-date, the cumulative attendance and the tour.</p>
-<p>The data table shows summary data for the tours. Each of the
-following columns can be sorted using the sort controls to the right of
-the variable name:</p>
+<p><img src="images/paste-797BE5ED.png"></p>
+<p>The ‘years’ selection box can be used to filter the data to show only
+specific years.</p>
+<p>The graph on the tours page shows the cumulative attendance across
+the shows in the Fugazi Live Series.</p>
+<div class="figure">
+<img src="images/paste-2103F36F.png" alt=""><p class="caption">Graph on ‘tours’ page.</p>
+</div>
+<p>The colours identify specific tours. The graph is interactive - if
+you hover over a point it will display details of the date, the
+cumulative attendance and the tour.</p>
+<div class="figure">
+<img src="images/paste-D25AFDB7.png" alt=""><p class="caption">Example of interactive features of tours graph.</p>
+</div>
+<p>The data table shows summary data for the tours.</p>
+<div class="figure">
+<img src="images/paste-3C6573F9.png" alt=""><p class="caption">Extract from tours data table.</p>
+</div>
+<p>Each of the following columns can be sorted using the sort controls
+to the right of the variable name:</p>
 <ul>
 <li><p>tour</p></li>
 <li><p>start - start date of the tour</p></li>
@@ -247,6 +322,14 @@ the Fugazi Live Series.</p></li>
 <p>The stacked bar graph on this page shows the composition of each show
 in terms of the releases on which the songs feature, or whether the
 songs were released or not at the time of the show.</p>
+<div class="figure">
+<img src="images/paste-F8CA214C.png" alt=""><p class="caption">Graph of 1987 shows showing songs by release on the
+‘xray’ page.</p>
+</div>
+<div class="figure">
+<img src="images/paste-EB15E1C8.png" alt=""><p class="caption">Graph of 1988 shows with released and unreleased
+songs.</p>
+</div>
 <p>The data can be filtered by:</p>
 <ul>
 <li><p>years</p></li>
@@ -262,6 +345,9 @@ time</p></li>
 </ul>
 <p>The data table below the graph provides summary data for each
 show:</p>
+<div class="figure">
+<img src="images/paste-BDFA11A0.png" alt=""><p class="caption">Example of the data table on the ‘xray’ page.</p>
+</div>
 <ul>
 <li><p>fls_link - a link to the corresponding page of the <a href="https://www.dischord.com/fugazi_live_series" class="external-link">Fugazi Live
 Series</a> site</p></li>
@@ -280,6 +366,9 @@ particular release.</p>
 <p>The bar chart shows summary data for each song of each Fugazi
 release, sorted in ascending order of release date and track number from
 top to bottom.</p>
+<div class="figure">
+<img src="images/paste-F86F76C7.png" alt=""><p class="caption">Bar chart on the ‘releases’ page.</p>
+</div>
 <p>The data can be filtered for one or more specific releases using the
 ‘release’ selection box.</p>
 <p>The ‘variable’ menu has two options:</p>
@@ -295,6 +384,9 @@ treatment to newer songs.</p></li>
 </ul>
 <p>The data table includes the following columns, all of which can be
 sorted:</p>
+<div class="figure">
+<img src="images/paste-4E114C21.png" alt=""><p class="caption">Data table on the ‘releases’ page.</p>
+</div>
 <ul>
 <li><p>release</p></li>
 <li><p>first_debut - the date of the first debut from this
@@ -321,8 +413,9 @@ these songs were available.</p>
 <div class="section level2">
 <h2 id="songs">songs<a class="anchor" aria-label="anchor" href="#songs"></a>
 </h2>
-<p>The graph shows the cumulative performance counts for each song. The
-data can be filtered by the following variables:</p>
+<p>The graph shows the cumulative performance counts for each song.</p>
+<p><img src="images/paste-866A35F0.png"></p>
+<p>The data can be filtered by the following variables:</p>
 <ul>
 <li><p>years</p></li>
 <li><p>tours</p></li>
@@ -336,6 +429,9 @@ live series, including ‘flatline’ periods where songs were not played at
 all, and periods of steep growth where songs were played night after
 night for significant periods.</p>
 <p>The data table offers the following columns:</p>
+<div class="figure">
+<img src="images/paste-E0865875.png" alt=""><p class="caption">Data table on ‘songs’ page.</p>
+</div>
 <ul>
 <li><p>release</p></li>
 <li><p>song</p></li>
@@ -358,6 +454,10 @@ tours.</p>
 The graph is interactive - if you hover over a point, a pop-up will
 appear showing ‘to’ (song), ‘from’ (song) and ‘count’ - the number of
 times the transition was performed.</p>
+<div class="figure">
+<img src="images/paste-3938D75C.png" alt=""><p class="caption">Heatmap showing transitions between songs in
+1989.</p>
+</div>
 <p>The data can be filtered by:</p>
 <ul>
 <li><p>years</p></li>
@@ -366,7 +466,13 @@ times the transition was performed.</p>
 <p>These filters are applied sequentially from left to right. For
 instance, if you select 1995 for ‘years’, the ‘tours’ menu will only
 show the 1995 tours.</p>
+<div class="figure">
+<img src="images/paste-A3344876.png" alt=""><p class="caption">Sequential filtering on the ‘transitions’ page.</p>
+</div>
 <p>The data table includes:</p>
+<div class="figure">
+<img src="images/paste-DA36FF42.png" alt=""><p class="caption">Data table on the ‘transitions’ page.</p>
+</div>
 <ul>
 <li><p>from - the first song in the transition</p></li>
 <li><p>to - the second song in the transition</p></li>
@@ -387,10 +493,22 @@ transitions between songs.</p>
 <p>The filters are applied sequentially from left to right, so for
 instance if you specify ‘life and limb’ in ‘from’, the menu for ‘to’
 will only show songs which followed ‘life and limb’.</p>
+<div class="figure">
+<img src="images/paste-6B7BF9E7.png" alt=""><p class="caption">Sequential filtering on the ‘search’ page.</p>
+</div>
 <p>Both filters are optional. If only one song is specified shows
 containing that song will be listed. If no song is specified all the
-shows will be listed.</p>
+shows will be listed. There is a subtle difference between searching for
+shows containing a single song using the ‘from’ box and the ‘to’ box:
+the ‘from’ box will omit shows where the song was the final one of the
+set, and the ‘to’ box will omit shows where the song was the first one
+of the set. This is why searching for ‘glueman’ with ‘from’ yields only
+25 shows but searching for ‘glueman’ with ‘to’ yields 131 results -
+‘glueman’ was a hard song to follow!</p>
 <p>The data table includes:</p>
+<div class="figure">
+<img src="images/paste-C2994CAE.png" alt=""><p class="caption">Extract from data table on ‘search’ page.</p>
+</div>
 <ul>
 <li><p>fls_link provides a link to the corresponding page of the <a href="https://www.dischord.com/fugazi_live_series" class="external-link">Fugazi Live
 Series</a> site</p></li>
