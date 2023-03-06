@@ -235,6 +235,9 @@ ui <- fluidPage(
 
                              tags$br(),
 
+                             h4("Selection"),
+                             tags$br(),
+
                              fluidRow(
                                column(6,
                                       selectizeInput("yearInput_shows", "years:",
@@ -251,6 +254,8 @@ ui <- fluidPage(
 
                             ),
 
+                           h4("Map"),
+                           tags$br(),
 
                            fluidRow(
 
@@ -313,6 +318,9 @@ ui <- fluidPage(
 
                              ),
 
+                          h4("Data table"),
+                           tags$br(),
+
 
                              fluidRow(
 
@@ -341,6 +349,9 @@ tabPanel("tours",
 
            tags$br(),
 
+           h4("Selection"),
+           tags$br(),
+
            # Create a new Row in the UI for selectInputs
            fluidRow(
              column(12,
@@ -353,12 +364,18 @@ tabPanel("tours",
 
            # Graph
 
+           h4("Graph"),
+           tags$br(),
+
            fluidRow(
              column(12,
                     plotlyOutput("attendance_count_plot")
              )
            ),
 
+           tags$br(),
+
+           h4("Data table"),
            tags$br(),
 
            # Create a new row for the table.
@@ -376,6 +393,9 @@ tabPanel("xray",
 
          fluidPage(
 
+           tags$br(),
+
+           h4("Selection"),
            tags$br(),
 
            fluidRow(
@@ -399,12 +419,18 @@ tabPanel("xray",
 
            # Graph
 
+           h4("Graph"),
+           tags$br(),
+
            fluidRow(
              column(12,
                     plotlyOutput("xray_plot")
              )
            ),
 
+           tags$br(),
+
+           h4("Data table"),
            tags$br(),
 
            fluidRow(
@@ -427,6 +453,9 @@ tabPanel("releases",
 
            tags$br(),
 
+           h4("Selection"),
+           tags$br(),
+
            fluidRow(
              column(6,
                     selectizeInput("Input_releases", "release:",
@@ -445,6 +474,9 @@ tabPanel("releases",
 
            # Graph
 
+           h4("Graph"),
+           tags$br(),
+
            fluidRow(
              column(12,
                     plotlyOutput("releases_plot",
@@ -455,6 +487,8 @@ tabPanel("releases",
 
            tags$br(),
 
+           h4("Data table"),
+           tags$br(),
 
            fluidRow(
              column(12,
@@ -473,6 +507,9 @@ tabPanel("releases",
 
                            fluidPage(
 
+                             tags$br(),
+
+                             h4("Selection"),
                              tags$br(),
 
                              fluidRow(
@@ -501,6 +538,9 @@ tabPanel("releases",
 
                              # Graph
 
+                             h4("Graph"),
+                             tags$br(),
+
                              fluidRow(
                                column(12,
                                         plotlyOutput("performance_count_plot")
@@ -509,6 +549,8 @@ tabPanel("releases",
 
                             tags$br(),
 
+                            h4("Data table"),
+                            tags$br(),
 
                             fluidRow(
                               column(12,
@@ -528,6 +570,8 @@ tabPanel("releases",
                              fluidPage(
 
                                tags$br(),
+                               h4("Selection"),
+                               tags$br(),
 
                                # Create a new Row in the UI for selectInputs
                                fluidRow(
@@ -542,12 +586,18 @@ tabPanel("releases",
 
                                # Graph
 
+                               h4("Graph"),
+                               tags$br(),
+
                                fluidRow(
                                  column(12,
                                         plotlyOutput("transitions_heatmap")
                                  )
                                ),
 
+                               tags$br(),
+
+                               h4("Data table"),
                                tags$br(),
 
                                fluidRow(
@@ -568,6 +618,9 @@ tabPanel("releases",
 
                              tags$br(),
 
+                             h4("Selection"),
+                             tags$br(),
+
                              # Create a new Row in the UI for selectInputs
                              fluidRow(
                                column(6,
@@ -578,6 +631,9 @@ tabPanel("releases",
                                ),
 
 
+                           tags$br(),
+
+                           h4("Data table"),
                            tags$br(),
 
                            fluidRow(
@@ -600,9 +656,7 @@ tabPanel("releases",
           tags$br(),
           print(timestamptext),
           tags$br(),
-          " Visit the ",
-          tags$a(href="https://alexmitrani.github.io/Repeatr/", "Repeatr website"),
-          " for further information.",
+          tags$a(href="https://alexmitrani.github.io/Repeatr/articles/Repeatr-app.html", "Repeatr-app documentation."),
           tags$br(),
           "Contact the developer on ",
           tags$a(rel="me", href="https://mastodon.online/@alex_mitrani_es", "Mastodon"),
