@@ -233,6 +233,10 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
            y = ifelse(country == "Northern Ireland" & city=="Belfast" & (venue=="Queen's Hall" | venue=="Queen's University Mandela Hall"), 54.5846991, y),
            checked = ifelse(country == "Northern Ireland" & city=="Belfast" & (venue=="Queen's Hall" | venue=="Queen's University Mandela Hall"), 1, checked))
 
+  # Correct location of Rototom
+  othervariables <- othervariables %>%
+    mutate(city = ifelse(venue=="Rototom", "Gaio di Spilimbergo", city))
+
   # impute values where they are missing
   meanattendance <- othervariables %>%
     filter(is.na(tour)==FALSE) %>%
