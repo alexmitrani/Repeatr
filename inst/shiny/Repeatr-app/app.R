@@ -278,7 +278,7 @@ ui <- fluidPage(
 
                                     column(12,
                                            sliderInput("dateInput_shows", "timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
-                                                       value=c(as.Date("1987-09-03")), timeFormat = "%F", width = "100%"))
+                                                       value=c(as.Date("1987-09-03")), timeFormat = "%F", width = "100%", animate = TRUE))
 
                                   ),
 
@@ -950,7 +950,7 @@ server <- function(input, output, session) {
   # map
 
   output$mymap <- renderLeaflet({
-    df <- shows_data2()
+    df <- shows_data
 
     ref_latitude <- mean(df$latitude)
     ref_longitude <- mean(df$longitude)
@@ -979,7 +979,44 @@ server <- function(input, output, session) {
       }") %>%
       fitBounds(lng1 = min_longitude, lat1 = min_latitude, lng2 = max_longitude, lat2 = max_latitude) %>%
       addProviderTiles("OpenStreetMap.Mapnik") %>%
-      addScaleBar() %>%
+      addScaleBar()
+
+    m
+
+  })
+
+  observe({
+
+    df <- shows_data2()
+
+    ref_latitude <- mean(df$latitude)
+    ref_longitude <- mean(df$longitude)
+
+    min_latitude_raw <- min(df$latitude)
+    min_longitude_raw <- min(df$longitude)
+
+    max_latitude_raw <- max(df$latitude)
+    max_longitude_raw <- max(df$longitude)
+
+    diff_longitude <- abs(max_longitude_raw-min_longitude_raw)
+    diff_latitude <- abs(max_latitude_raw-min_latitude_raw)
+
+    diff <- mean(diff_longitude, diff_latitude)
+    margin_value <- ifelse(diff==0, 0.15, min(0.15*diff, 10))
+
+    min_latitude <- min(df$latitude)-margin_value
+    min_longitude <- min(df$longitude)-margin_value
+
+    max_latitude <- max(df$latitude)+margin_value
+    max_longitude <- max(df$longitude)+margin_value
+
+
+    leafletProxy("mymap", data = df) %>%
+      fitBounds(lng1 = min_longitude, lat1 = min_latitude, lng2 = max_longitude, lat2 = max_latitude) %>%
+      clearShapes() %>%
+      htmlwidgets::onRender("function(el, x) {
+        L.control.zoom({ position: 'bottomleft' }).addTo(this)
+      }") %>%
       addCircles(
         data = df,
         radius = sqrt((df$attendance)/pi),
@@ -993,8 +1030,6 @@ server <- function(input, output, session) {
           "<strong>Attendance: </strong>", df$attendance, "<br>"
         )
       )
-    m
-
   })
 
   output$showsdatatable <- DT::renderDataTable(DT::datatable({
