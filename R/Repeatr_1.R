@@ -237,6 +237,17 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   othervariables <- othervariables %>%
     mutate(city = ifelse(venue=="Rototom", "Gaio di Spilimbergo", city))
 
+  # Correct venue of 1995 Copenhagen show
+  othervariables <- othervariables %>%
+    mutate(venue = ifelse(gid=="copenhagen-denmark-71095", "Rockmaskinen", venue),
+           x = ifelse(gid=="copenhagen-denmark-71095", 12.5994855, x),
+           y = ifelse(gid=="copenhagen-denmark-71095", 55.6737142, y))
+
+  # Correct venue of Loppen
+  othervariables <- othervariables %>%
+    mutate(x = ifelse(gid=="copenhagen-denmark-100700", 12.5973313, x),
+           y = ifelse(gid=="copenhagen-denmark-100700", 55.6740572, y))
+
   # impute values where they are missing
   meanattendance <- othervariables %>%
     filter(is.na(tour)==FALSE) %>%
