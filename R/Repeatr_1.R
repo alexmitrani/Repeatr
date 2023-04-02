@@ -253,6 +253,14 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     mutate(x = ifelse(gid=="nottingham-england-112788", -1.1349991, x),
            y = ifelse(gid=="nottingham-england-112788", 52.9558396, y))
 
+  # Correct venue name and location for 1995 quebec city show
+  othervariables <- othervariables %>%
+    mutate(venue = ifelse(gid=="quebec-city-qc-canada-92495", "Cégep Limoilou", venue))
+
+  othervariables <- othervariables %>%
+    mutate(x = ifelse(gid=="quebec-city-qc-canada-92495", -71.2283038, x),
+           y = ifelse(gid=="quebec-city-qc-canada-92495", 46.8305332, y))
+
   # impute values where they are missing
   meanattendance <- othervariables %>%
     filter(is.na(tour)==FALSE) %>%
