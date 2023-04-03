@@ -987,7 +987,14 @@ server <- function(input, output, session) {
 
   observe({
 
-    df <- shows_data2()
+    myx <- nrow(shows_data2())
+
+    df <- shows_data2() %>%
+      mutate(daten = as.numeric(date)) %>%
+      mutate(mycolour = myx - (daten - max(daten)))
+
+    colorData <- factor(df$mycolour)
+    pal <- colorFactor(palette = "YlOrRd", levels = levels(colorData), reverse = TRUE)
 
     ref_latitude <- mean(df$latitude)
     ref_longitude <- mean(df$longitude)
@@ -1020,8 +1027,8 @@ server <- function(input, output, session) {
       addCircles(
         data = df,
         radius = sqrt((df$attendance)/pi),
-        color = "#F60D1D",
-        fillColor = "#F60D1D",
+        color = ~pal(colorData),
+        fillColor = ~pal(colorData),
         fillOpacity = 0.5,
         popup = paste0(
           "<strong>Date: </strong>", df$date, "<br>",
@@ -1030,6 +1037,7 @@ server <- function(input, output, session) {
           "<strong>Attendance: </strong>", df$attendance, "<br>"
         )
       )
+
   })
 
   output$showsdatatable <- DT::renderDataTable(DT::datatable({
