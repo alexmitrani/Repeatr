@@ -44,13 +44,15 @@ The show locations have been determined as closely as possible using the availab
 
 ![Extract of Mudhoney poster by Ward Sutton that contains the address of the Twilight Terrace, Yakima, USA.](images/paste-5C2D1B16.png)
 
+![Flyer for 1998 show at the Underground (Hic) Club in Nottingham, England.](images/338674851_239261641803666_8564529975319957728_n.jpg)
+
 There may still be "false positives" - cases where an address was found but the address might be wrong. Please let me know if you find anything that needs correcting.
 
 ## shows
 
 The map shows the locations of the Fugazi shows and the table below the map has some details of each show and a link to the corresponding page on the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) site.
 
-![World map of Fugazi Live Series on the 'shows' page.](images/paste-EAB43A58.png)
+![](images/paste-F915CE32.png)
 
 The data can be filtered by typing in the selection boxes for years, tours, countries and cities.
 
@@ -62,11 +64,11 @@ When a box is blank it means there is no filter applied to the data for that var
 
 The map has zoom controls and by clicking and dragging you can pan the map view. The area of the red circle for each show is proportional to the attendance of the show. If you click on the red circle for a show a pop-up will appear with the date, the venue, the city and the attendance.
 
-![Map example showing pop-up box with show details, and shows of different sizes.](images/paste-BCA5EF2C.png)
+![](images/paste-A03A4403.png)
 
 The timeline slider below the map allows filtering the data by date. The position of the slider control corresponds to the oldest date of the selection, so if you move the slider forward from left to right you will progressively filter out older shows.
 
-![Example showing use of the timeline slider to filter out older shows.](images/paste-2BB28F5D.png)
+![](images/paste-22D0138F.png)
 
 There are some specific controls for use with the timeline slider:
 
@@ -78,19 +80,19 @@ There are some specific controls for use with the timeline slider:
 
 -   the 'map marker' button will change the period to 1 week and the step to 1 day, starting at the date selected with the timeline slider. The idea is that you can then step forward through a tour one day at a time.
 
-    ![Example of using the 'map marker' button.](images/paste-525EE2F4.png)
+    ![](images/paste-9082EDD7.png)
 
 -   'fast-forward' will move the selection forward in time by one step
 
-    ![Example of using the 'fast forward' button.](images/paste-71F7CEFC.png)
+    ![](images/paste-CF19AC25.png)
 
 -   'rewind' will move the selection back in time by one step
 
-    ![Example of using the 'rewind' button.](images/paste-BE26E476.png)
+    ![](images/paste-1FD3D37F.png)
 
 -   'home' will move the timeline slider back to the beginning and set the period to 792 weeks again, to select the entire series. It is recommended to use the home button before changing the selections in the selection boxes above the map.
 
-    ![Example of using the 'home' button.](images/paste-A4ECEEBA.png)
+    ![](images/paste-C08AC310.png)
 
 The data table below the map and the timeline controls shows summary data for the selected shows.
 
