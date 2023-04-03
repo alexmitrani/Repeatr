@@ -52,7 +52,15 @@ There may still be "false positives" - cases where an address was found but the 
 
 The map shows the locations of the Fugazi shows and the table below the map has some details of each show and a link to the corresponding page on the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) site.
 
-![](images/paste-F915CE32.png)
+![](images/paste-1D915FB5.png)
+
+The marker colours go from dark red to light red in chronological order, with the most recent shows having the lightest colour.
+
+|                   |     |     |     |              |
+|-------------------|-----|-----|-----|--------------|
+| Most recent shows |     |     |     | Oldest shows |
+
+![](images/paste-E1EA4F10.png)
 
 The data can be filtered by typing in the selection boxes for years, tours, countries and cities.
 
@@ -64,11 +72,11 @@ When a box is blank it means there is no filter applied to the data for that var
 
 The map has zoom controls and by clicking and dragging you can pan the map view. The area of the red circle for each show is proportional to the attendance of the show. If you click on the red circle for a show a pop-up will appear with the date, the venue, the city and the attendance.
 
-![](images/paste-A03A4403.png)
+![](images/paste-6E4EBA88.png)
 
 The timeline slider below the map allows filtering the data by date. The position of the slider control corresponds to the oldest date of the selection, so if you move the slider forward from left to right you will progressively filter out older shows.
 
-![](images/paste-22D0138F.png)
+![](images/paste-04B569C8.png)
 
 There are some specific controls for use with the timeline slider:
 
@@ -80,19 +88,19 @@ There are some specific controls for use with the timeline slider:
 
 -   the 'map marker' button will change the period to 1 week and the step to 1 day, starting at the date selected with the timeline slider. The idea is that you can then step forward through a tour one day at a time.
 
-    ![](images/paste-9082EDD7.png)
+    ![](images/paste-5F36F2C1.png)
 
 -   'fast-forward' will move the selection forward in time by one step
 
-    ![](images/paste-CF19AC25.png)
+    ![](images/paste-6FC02A87.png)
 
 -   'rewind' will move the selection back in time by one step
 
-    ![](images/paste-1FD3D37F.png)
+    ![](images/paste-66BEF1C0.png)
 
 -   'home' will move the timeline slider back to the beginning and set the period to 792 weeks again, to select the entire series. It is recommended to use the home button before changing the selections in the selection boxes above the map.
 
-    ![](images/paste-C08AC310.png)
+    ![](images/paste-D7BE1E64.png)
 
 The data table below the map and the timeline controls shows summary data for the selected shows.
 
