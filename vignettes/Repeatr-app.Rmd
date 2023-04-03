@@ -54,10 +54,6 @@ The map shows the locations of the Fugazi shows and the table below the map has 
 
 The marker colours go from dark red to light red in chronological order, with the most recent shows having the lightest colour.
 
-|                   |     |     |     |              |
-|-------------------|-----|-----|-----|--------------|
-| Most recent shows |     |     |     | Oldest shows |
-
 ![](images/paste-E1EA4F10.png)
 
 The data can be filtered by typing in the selection boxes for years, tours, countries and cities.
