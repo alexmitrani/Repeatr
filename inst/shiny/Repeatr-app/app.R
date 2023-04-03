@@ -993,8 +993,10 @@ server <- function(input, output, session) {
       mutate(daten = as.numeric(date)) %>%
       mutate(mycolour = myx - (daten - max(daten)))
 
+    mypalette <- get_brewer_pal("Reds", contrast=c(0.5, 1.0))
+
     colorData <- factor(df$mycolour)
-    pal <- colorFactor(palette = "YlOrRd", levels = levels(colorData), reverse = TRUE)
+    pal <- colorFactor(palette = mypalette, levels = levels(colorData), reverse = FALSE)
 
     ref_latitude <- mean(df$latitude)
     ref_longitude <- mean(df$longitude)
