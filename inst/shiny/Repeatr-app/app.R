@@ -773,7 +773,7 @@ server <- function(input, output, session) {
   })
 
   observeEvent(input$step_b, {
-    date1 <- as.Date(min(shows_data3()$date))
+    date1 <- as.Date(min(shows_data3()$date)-7)
     date2 <- as.Date(max(shows_data3()$date))
     date3 <- as.Date(input$dateInput_shows[1] - input$step_days)
     freezeReactiveValue(input, "dateInput_shows")
@@ -782,7 +782,7 @@ server <- function(input, output, session) {
   })
 
   observeEvent(input$step_f, {
-    date1 <- as.Date(min(shows_data3()$date))
+    date1 <- as.Date(min(shows_data3()$date)-7)
     date2 <- as.Date(max(shows_data3()$date))
     date3 <- as.Date(input$dateInput_shows[1] + input$step_days)
     freezeReactiveValue(input, "dateInput_shows")

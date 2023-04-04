@@ -80,17 +80,17 @@ There are some specific controls for use with the timeline slider:
 
 -   step (days) indicates the size of each step in days, this is for use with the fast forward and reverse buttons.
 
--   the 'map marker' button will change the period to 1 week and the step to 1 day, starting at the date selected with the timeline slider. The idea is that you can then step forward through a tour one day at a time.
+-   the 'map marker' button will change the period to 1 week and the step to 1 day, starting at the date selected with the timeline slider. It will also change the start and end dates of the timeline slider to match the start and end dates of the tour. You can then step forward through the tour one day at a time, or use the 'play' button to the bottom-right of the timeline to animate the tour.
 
-    ![](images/paste-5F36F2C1.png)
+    ![](images/paste-E9A55D86.png)
 
 -   'fast-forward' will move the selection forward in time by one step
 
-    ![](images/paste-6FC02A87.png)
+    ![](images/paste-CE110AAD.png)
 
 -   'rewind' will move the selection back in time by one step
 
-    ![](images/paste-66BEF1C0.png)
+    ![](images/paste-4AAD33F8.png)
 
 -   'home' will move the timeline slider back to the beginning and set the period to 792 weeks again, to select the entire series. It is recommended to use the home button before changing the selections in the selection boxes above the map.
 
