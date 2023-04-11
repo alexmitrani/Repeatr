@@ -14,8 +14,6 @@ fls_tags_importer is used to import a CSV file of duration data generated with k
 }
 \details{
 fls_tags_importer
-
-fls_tags_importer is used internally by the Repeatr package.
 }
 \examples{
 fls_tags_importer(myfilename = "C:/Users/alexm/Music/fls_tags.csv")
