@@ -5,7 +5,7 @@
 #' @name compressr
 #' @title changes the type of specified variables to integer
 #' @description compressr is used to reduce the size of data files with double-precision storage of integer variables, by changing the storage type of these variables to integer.
-#' @details compressr is used internally by the fsm package.
+#' @details compressr is used internally by the Repeatr package.
 #'
 #' @import dplyr
 #' @import crayon
