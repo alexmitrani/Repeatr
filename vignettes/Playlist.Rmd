@@ -158,3 +158,4 @@ This is a list of shows that I plan to listen to again in future, based on what 
 [FLS0731, Expo Gardens, Peoria, IL, USA, 1995-10-09](https://www.dischord.com/fugazi_live_series/peoria-il-usa-100995)<br>
 [FLS0732, Rainbo Roller Rink, Chicago, IL, USA, 1995-10-10](https://www.dischord.com/fugazi_live_series/chicago-il-usa-101095)<br>
 [FLS0736, First Avenue, Minneapolis, MN, USA, 1995-10-15](https://www.dischord.com/fugazi_live_series/minneapolis-mn-usa-101595)<br>
+[FLS0746, Capitol Theater, Olympia, WA, USA, 1995-10-29](https://www.dischord.com/fugazi_live_series/olympia-wa-usa-102995)<br>
