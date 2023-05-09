@@ -261,6 +261,16 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     mutate(x = ifelse(gid=="quebec-city-qc-canada-92495", -71.2283038, x),
            y = ifelse(gid=="quebec-city-qc-canada-92495", 46.8305332, y))
 
+  # Correct venue name https://www.dischord.com/fugazi_live_series/campinas-brazil-81997
+  # Assampi = Associação de amigos do Parque Industrial
+  othervariables <- othervariables %>%
+    mutate(venue = ifelse(gid=="campinas-brazil-81997", "Assampi", venue))
+
+  # Correct venue name https://www.dischord.com/fugazi_live_series/joinville-brazil-81597
+  # Liga da Sociedade Joinvilense
+  othervariables <- othervariables %>%
+    mutate(venue = ifelse(gid=="joinville-brazil-81597", "Liga da Sociedade Joinvilense", venue))
+
   # impute values where they are missing
   meanattendance <- othervariables %>%
     filter(is.na(tour)==FALSE) %>%
