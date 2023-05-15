@@ -17,8 +17,8 @@
 fls_tags_importer <- function(myfilename = NULL) {
 
   fls_tags <- read_delim(myfilename, delim = ";", escape_double = FALSE, trim_ws = TRUE)
-  fls_tags <- fls_tags %>% mutate(duration = as.numeric(duration)/60)
-  fls_tags <- fls_tags %>% mutate(duration = hms::as_hms(duration))
+  fls_tags$duration <- gsub(',','',fls_tags$duration)
+  fls_tags <- fls_tags %>% mutate(duration = lubridate::ms(duration))
 
   save(fls_tags, file = "fls_tags.rda")
 
