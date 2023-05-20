@@ -6,7 +6,8 @@
 #' \item{track}{track number}
 #' \item{album}{album name, which includes the date, venue, city, state, and country}
 #' \item{name}{track name}
-#' \item{duration}{duration in hh:mm:ss (hms) format}
+#' \item{duration}{duration in period format (lubridate)}
+#' \item{seconds}{duration in seconds}
 #'
 #' }
 #' @examples
