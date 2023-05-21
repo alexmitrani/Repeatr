@@ -1,6 +1,6 @@
 Package: Repeatr
 Title: Exploring the Fugazi Live Series
-Version: 0.0.0.9142
+Version: 0.0.0.9143
 Authors@R: 
     person("Alex", "Mitrani", , "27974470+alexmitrani@users.noreply.github.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-1091-7413"))

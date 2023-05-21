@@ -121,7 +121,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     rename(original_source = V9)
 
   othervariables <- othervariables %>%
-    mutate(date = as.Date(date),
+    mutate(date = as.Date(date, "%d/%m/%Y"),
            checked = 0)
 
   othervariables <- othervariables %>%
