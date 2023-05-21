@@ -30,7 +30,6 @@
 #'
 Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile = NULL) {
 
-
 # Devel setup -------------------------------------------------------------
 
   # Uncomment and run the following lines to test the code outside the package
@@ -328,6 +327,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   save(othervariables, file="othervariables.rda")
   save(releasesdatalookup, file="releasesdatalookup.rda")
   save(songvarslookup, file="songvarslookup.rda")
+  save(Repeatr0, file="Repeatr0.rda")
 
   setwd(mydir)
 
@@ -347,7 +347,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   names(Repeatr1)[names(Repeatr1) == "V3"] <- "date"
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(date = as.Date(date))
+    mutate(date = as.Date(date, "%d/%m/%Y"))
 
   Repeatr1 <- Repeatr1 %>%
     mutate(year = year(date)) %>%
