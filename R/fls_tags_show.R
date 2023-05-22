@@ -3,7 +3,7 @@
 #' @source https://www.dischord.com/fugazi_live_series
 #' @format dataframe with one row for each show in the Fugazi Live Series data, including data from the audio file tags.
 #' \describe{
-#' \item{date}{duration in seconds}
+#' \item{date}{date}
 #' \item{venue}{venue}
 #' \item{city}{city}
 #' \item{state}{state for USA shows}
