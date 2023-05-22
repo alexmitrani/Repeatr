@@ -1,7 +1,7 @@
-#' Tags data
+#' Tags data, one record per show
 #'
 #' @source https://www.dischord.com/fugazi_live_series
-#' @format dataframe with one row for each track in the Fugazi Live Series data, including data from the audio file tags.
+#' @format dataframe with one row for each show in the Fugazi Live Series data, including data from the audio file tags.
 #' \describe{
 #' \item{date}{duration in seconds}
 #' \item{venue}{venue}

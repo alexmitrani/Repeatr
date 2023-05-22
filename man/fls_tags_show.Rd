@@ -3,9 +3,9 @@
 \docType{data}
 \name{fls_tags_show}
 \alias{fls_tags_show}
-\title{Tags data}
+\title{Tags data, one record per show}
 \format{
-dataframe with one row for each track in the Fugazi Live Series data, including data from the audio file tags.
+dataframe with one row for each show in the Fugazi Live Series data, including data from the audio file tags.
 \describe{
 \item{date}{duration in seconds}
 \item{venue}{venue}
@@ -26,7 +26,7 @@ https://www.dischord.com/fugazi_live_series
 fls_tags_show
 }
 \description{
-Tags data
+Tags data, one record per show
 }
 \examples{
   fls_tags_show
