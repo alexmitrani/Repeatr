@@ -5680,7 +5680,6 @@ track; artist; album; name; duration
 18; Fugazi; 19910522 Antennae Club, Memphis, TN, USA; Encore 1; 2:53
 19; Fugazi; 19910522 Antennae Club, Memphis, TN, USA; Styrofoam; 2:54
 20; Fugazi; 19910522 Antennae Club, Memphis, TN, USA; Two Beats Off; 0:24
-10; Fugazi; 19910523 Vino's, Little Rock, AR, USA; Give Me The Cure; 3:29
 01; Fugazi; 19910524 Deep Ellum Live, Dallas, TX, USA; Intro; 1:29
 02; Fugazi; 19910524 Deep Ellum Live, Dallas, TX, USA; Steady Diet; 2:18
 03; Fugazi; 19910524 Deep Ellum Live, Dallas, TX, USA; Sieve-Fisted Find; 3:23
@@ -5990,7 +5989,6 @@ track; artist; album; name; duration
 22; Fugazi; 19910610 Bogart's, Cincinnati, OH, USA; Repeater; 3:38
 23; Fugazi; 19910610 Bogart's, Cincinnati, OH, USA; Reprovisional; 4:34
 24; Fugazi; 19910610 Bogart's, Cincinnati, OH, USA; Outro; 3:03
-13; Fugazi; 19910611 Electrician's Hall, Dayton, OH, USA; Bad Mouth; 2:48
 01; Fugazi; 19910612 Newport Music Hall, Columbus, OH, USA; Intro; 1:30
 02; Fugazi; 19910612 Newport Music Hall, Columbus, OH, USA; Turnover; 4:01
 03; Fugazi; 19910612 Newport Music Hall, Columbus, OH, USA; Merchandise; 2:53
@@ -23167,3 +23165,52 @@ track; artist; album; name; duration
 26; Fugazi; 20021104 Forum, London, UK; Long Distance Runner; 5:14,
 27; Fugazi; 20021104 Forum, London, UK; Version; 3:42,
 28; Fugazi; 20021104 Forum, London, UK; Glueman; 7:36,
+01; Fugazi; 19910523 Vino's, Little Rock, AR, USA; Brendan #1; 3:56
+02; Fugazi; 19910523 Vino's, Little Rock, AR, USA; Greed; 1:48
+03; Fugazi; 19910523 Vino's, Little Rock, AR, USA; Turnover; 4:07
+04; Fugazi; 19910523 Vino's, Little Rock, AR, USA; Interlude 1; 2:03
+05; Fugazi; 19910523 Vino's, Little Rock, AR, USA; KYEO; 3:26
+06; Fugazi; 19910523 Vino's, Little Rock, AR, USA; Latin Roots; 3:23
+07; Fugazi; 19910523 Vino's, Little Rock, AR, USA; And The Same; 4:24
+08; Fugazi; 19910523 Vino's, Little Rock, AR, USA; Sieve-Fisted Find; 3:21
+09; Fugazi; 19910523 Vino's, Little Rock, AR, USA; Reclamation; 4:12
+10; Fugazi; 19910523 Vino's, Little Rock, AR, USA; Give Me The Cure; 3:29
+11; Fugazi; 19910523 Vino's, Little Rock, AR, USA; Burning Too; 2:45
+12; Fugazi; 19910523 Vino's, Little Rock, AR, USA; Margin Walker; 2:47
+13; Fugazi; 19910523 Vino's, Little Rock, AR, USA; Waiting Room; 3:13
+14; Fugazi; 19910523 Vino's, Little Rock, AR, USA; Styrofoam; 3:04
+15; Fugazi; 19910523 Vino's, Little Rock, AR, USA; Runaway Return; 4:16
+16; Fugazi; 19910523 Vino's, Little Rock, AR, USA; Interlude 2; 1:18
+17; Fugazi; 19910523 Vino's, Little Rock, AR, USA; Shut the Door; 5:51
+18; Fugazi; 19910523 Vino's, Little Rock, AR, USA; Exit Only; 3:15
+19; Fugazi; 19910523 Vino's, Little Rock, AR, USA; Encore 1; 3:50
+20; Fugazi; 19910523 Vino's, Little Rock, AR, USA; Long Division; 2:16
+21; Fugazi; 19910523 Vino's, Little Rock, AR, USA; Blueprint; 3:50
+22; Fugazi; 19910523 Vino's, Little Rock, AR, USA; Interlude 3; 1:19
+23; Fugazi; 19910523 Vino's, Little Rock, AR, USA; Reprovisional; 4:34
+24; Fugazi; 19910523 Vino's, Little Rock, AR, USA; Outro; 0:41
+01; Fugazi; 19910611 Electrician's Hall, Dayton, OH, USA; Intro; 0:51
+02; Fugazi; 19910611 Electrician's Hall, Dayton, OH, USA; Brendan #1; 3:20
+03; Fugazi; 19910611 Electrician's Hall, Dayton, OH, USA; Greed; 1:46
+04; Fugazi; 19910611 Electrician's Hall, Dayton, OH, USA; Latin Roots; 3:42
+05; Fugazi; 19910611 Electrician's Hall, Dayton, OH, USA; And The Same; 4:24
+06; Fugazi; 19910611 Electrician's Hall, Dayton, OH, USA; Two Beats Off; 4:58
+07; Fugazi; 19910611 Electrician's Hall, Dayton, OH, USA; Reclamation; 3:24
+08; Fugazi; 19910611 Electrician's Hall, Dayton, OH, USA; Interlude 1; 0:40
+09; Fugazi; 19910611 Electrician's Hall, Dayton, OH, USA; Sieve-Fisted Find; 3:25
+10; Fugazi; 19910611 Electrician's Hall, Dayton, OH, USA; Styrofoam; 3:05
+11; Fugazi; 19910611 Electrician's Hall, Dayton, OH, USA; Interlude 2; 1:08
+12; Fugazi; 19910611 Electrician's Hall, Dayton, OH, USA; Lockdown; 2:07
+13; Fugazi; 19910611 Electrician's Hall, Dayton, OH, USA; Bad Mouth; 2:48
+14; Fugazi; 19910611 Electrician's Hall, Dayton, OH, USA; Give Me The Cure; 3:00
+15; Fugazi; 19910611 Electrician's Hall, Dayton, OH, USA; Waiting Room; 2:55
+16; Fugazi; 19910611 Electrician's Hall, Dayton, OH, USA; Blueprint; 3:16
+17; Fugazi; 19910611 Electrician's Hall, Dayton, OH, USA; Interlude 3; 1:01
+18; Fugazi; 19910611 Electrician's Hall, Dayton, OH, USA; Runaway Return; 4:05
+19; Fugazi; 19910611 Electrician's Hall, Dayton, OH, USA; Interlude 4; 1:22
+20; Fugazi; 19910611 Electrician's Hall, Dayton, OH, USA; Shut the Door; 5:42
+21; Fugazi; 19910611 Electrician's Hall, Dayton, OH, USA; Encore 1; 3:19
+22; Fugazi; 19910611 Electrician's Hall, Dayton, OH, USA; Exit Only; 3:23
+23; Fugazi; 19910611 Electrician's Hall, Dayton, OH, USA; Song #1; 3:08
+24; Fugazi; 19910611 Electrician's Hall, Dayton, OH, USA; Glue Man; 6:28
+25; Fugazi; 19910611 Electrician's Hall, Dayton, OH, USA; Outro; 1:31
