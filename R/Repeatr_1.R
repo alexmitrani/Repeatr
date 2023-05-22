@@ -620,6 +620,12 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   fls_tags <- fls_tags_importer(myfilename = "fls_tags.csv")
 
   fls_tags <- fls_tags %>%
+    mutate(album = ifelse(album == "20220218 40 Watt, Athens, GA, USA", "19930218 40 Watt, Athens, GA, USA", album))
+
+  fls_tags <- fls_tags %>%
+    mutate(album = ifelse(album == "20010607 Archie Browning Centre, Victoria, BC, Canada", "20010706 Archie Browning Centre, Victoria, BC, Canada", album))
+
+  fls_tags <- fls_tags %>%
     mutate(year = str_sub(album, 1, 4),
            month = str_sub(album, 5, 6),
            day = str_sub(album, 7, 8),
@@ -652,7 +658,6 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   fls_tags <- fls_tags %>%
     mutate(album = ifelse(datestring == "25/04/2001" , "20010425 9:30 Club, Washington, DC, USA", album))
 
-
   fls_tags <- fls_tags %>%
     mutate(date = as.Date(datestring, "%d/%m/%Y"))
 
@@ -675,6 +680,9 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     mutate(venue = str_sub(album, 10, firstcomma-1))
 
   fls_tags <- fls_tags %>%
+    filter(venue!="Mayfaur")
+
+  fls_tags <- fls_tags %>%
     mutate(city = str_sub(album, firstcomma + 2, secondcomma-1))
 
   fls_tags <- fls_tags %>%
@@ -686,9 +694,32 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   fls_tags <- fls_tags %>%
     select(track, album, name, duration, seconds, date, venue, city, state, country)
 
+  date_gid <- othervariables %>%
+    select(date, gid)
+
+  fls_tags <- fls_tags %>%
+    left_join(date_gid)
+
+  fls_tags <- fls_tags %>%
+    filter(venue!="Van Hall" | gid!="gent-belgium-101688")
+
+  fls_tags <- fls_tags %>%
+    filter(venue!="Democrazy" | gid!="amsterdam-netherlands-101688")
+
+  fls_tags_show <- fls_tags %>%
+    group_by(date, venue, city, state, country, album, gid) %>%
+    summarize(seconds = sum(seconds)) %>%
+    mutate(duration = seconds_to_period(seconds)) %>%
+    ungroup()
+
+  fls_tags_show <- fls_tags_show %>%
+    select(date, venue, city, state, country, album, gid, duration, seconds)
+
   setwd(mydatadir)
 
   save(fls_tags, file = "fls_tags.rda")
+
+  save(fls_tags_show, file = "fls_tags_show.rda")
 
   setwd(mydir)
 
