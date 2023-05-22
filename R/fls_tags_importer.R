@@ -21,10 +21,6 @@ fls_tags_importer <- function(myfilename = NULL) {
   fls_tags <- fls_tags %>% mutate(duration = lubridate::ms(duration),
                                   seconds = period_to_seconds(duration))
 
-  save(fls_tags, file = "fls_tags.rda")
-
-  cat(paste0("\n \n The imported data has been written to fls_tags.rda in the working directory. \n \n"))
-
   return(fls_tags)
 
 }

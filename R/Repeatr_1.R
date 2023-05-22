@@ -612,7 +612,87 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   setwd(mydir)
 
-  myreturnlist <- list(Repeatr0, Repeatr1, songidlookup, mycount, songvarslookup, releasesdatalookup, othervariables, cumulative_song_counts)
+
+# process tags data -------------------------------------------------------
+
+  setwd(myinputdir)
+
+  fls_tags <- fls_tags_importer(myfilename = "fls_tags.csv")
+
+  fls_tags <- fls_tags %>%
+    mutate(year = str_sub(album, 1, 4),
+           month = str_sub(album, 5, 6),
+           day = str_sub(album, 7, 8),
+           datestring = paste0(day, "/", month, "/", year))
+
+  fls_tags <- fls_tags %>%
+    mutate(album = ifelse(datestring == "20/02/1988" , "19880220 Merrifield Community Center, Merrifield, VA, USA", album))
+
+  fls_tags <- fls_tags %>%
+    mutate(album = ifelse(datestring == "20/08/1994" , "19940820 Aeroanta, Sao Paulo, Brazil", album))
+
+  fls_tags <- fls_tags %>%
+    mutate(album = ifelse(datestring == "24/09/1995" , "19950924 Cegep Limoilou, Quebec City, Quebec, Canada", album))
+
+  fls_tags <- fls_tags %>%
+    mutate(album = ifelse(datestring == "22/07/1998" , "19980722 Centre de Loisirs, Quebec City, QC, Canada", album))
+
+  fls_tags <- fls_tags %>%
+    mutate(album = ifelse(datestring == "11/02/1990" , "19900211 Studio 10, Baltimore, MD, USA", album))
+
+  fls_tags <- fls_tags %>%
+    mutate(album = ifelse(datestring == "06/09/1991" , "19910906 Desert Fest, Jawbone Canyon, CA, USA", album))
+
+  fls_tags <- fls_tags %>%
+    mutate(album = ifelse(datestring == "14/11/1998" , "19981114 University of Wisconsin, Fire Room, Eau Claire, WI, USA", album))
+
+  fls_tags <- fls_tags %>%
+    mutate(album = ifelse(datestring == "03/03/1999" , "19990303 Cal State University Shurmer Gym, Chico, CA, USA", album))
+
+  fls_tags <- fls_tags %>%
+    mutate(album = ifelse(datestring == "25/04/2001" , "20010425 9:30 Club, Washington, DC, USA", album))
+
+
+  fls_tags <- fls_tags %>%
+    mutate(date = as.Date(datestring, "%d/%m/%Y"))
+
+  fls_tags <- fls_tags %>%
+    rowwise() %>%
+    mutate(firstcomma = unlist(gregexpr(',', album))[1])
+
+  fls_tags <- fls_tags %>%
+    rowwise() %>%
+    mutate(secondcomma = unlist(gregexpr(',', album))[2])
+
+  fls_tags <- fls_tags %>%
+    rowwise() %>%
+    mutate(lastcomma = tail(unlist(gregexpr(',', album)), n=1))
+
+  fls_tags <- fls_tags %>%
+    mutate(stringlength = nchar(album))
+
+  fls_tags <- fls_tags %>%
+    mutate(venue = str_sub(album, 10, firstcomma-1))
+
+  fls_tags <- fls_tags %>%
+    mutate(city = str_sub(album, firstcomma + 2, secondcomma-1))
+
+  fls_tags <- fls_tags %>%
+    mutate(country = str_sub(album, lastcomma + 2, stringlength))
+
+  fls_tags <- fls_tags %>%
+    mutate(state = ifelse(country=="USA", str_sub(album, lastcomma-2, lastcomma-1),""))
+
+  fls_tags <- fls_tags %>%
+    select(track, album, name, duration, seconds, date, venue, city, state, country)
+
+  setwd(mydatadir)
+
+  save(fls_tags, file = "fls_tags.rda")
+
+  setwd(mydir)
+
+  myreturnlist <- list(Repeatr0, Repeatr1, songidlookup, mycount, songvarslookup, releasesdatalookup, othervariables, cumulative_song_counts, fls_tags)
 
   return(myreturnlist)
 

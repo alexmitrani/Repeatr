@@ -23,6 +23,22 @@ fls_tags <- fls_tags %>%
   mutate(album = ifelse(datestring == "22/07/1998" , "19980722 Centre de Loisirs, Quebec City, QC, Canada", album))
 
 fls_tags <- fls_tags %>%
+  mutate(album = ifelse(datestring == "11/02/1990" , "19900211 Studio 10, Baltimore, MD, USA", album))
+
+fls_tags <- fls_tags %>%
+  mutate(album = ifelse(datestring == "06/09/1991" , "19910906 Desert Fest, Jawbone Canyon, CA, USA", album))
+
+fls_tags <- fls_tags %>%
+  mutate(album = ifelse(datestring == "14/11/1998" , "19981114 University of Wisconsin, Fire Room, Eau Claire, WI, USA", album))
+
+fls_tags <- fls_tags %>%
+  mutate(album = ifelse(datestring == "03/03/1999" , "19990303 Cal State University Shurmer Gym, Chico, CA, USA", album))
+
+fls_tags <- fls_tags %>%
+  mutate(album = ifelse(datestring == "25/04/2001" , "20010425 9:30 Club, Washington, DC, USA", album))
+
+
+fls_tags <- fls_tags %>%
   mutate(date = as.Date(datestring, "%d/%m/%Y"))
 
 fls_tags <- fls_tags %>%
@@ -48,4 +64,16 @@ fls_tags <- fls_tags %>%
 
 fls_tags <- fls_tags %>%
   mutate(country = str_sub(album, lastcomma + 2, stringlength))
+
+fls_tags <- fls_tags %>%
+  mutate(state = ifelse(country=="USA", str_sub(album, lastcomma-2, lastcomma-1),""))
+
+fls_tags <- fls_tags %>%
+  select(track, album, name, duration, seconds, date, venue, city, state, country)
+
+save(fls_tags, file = "fls_tags.rda")
+
+
+
+
 

@@ -8,6 +8,11 @@
 #' \item{name}{track name}
 #' \item{duration}{duration in period format (lubridate)}
 #' \item{seconds}{duration in seconds}
+#' \item{date}{duration in seconds}
+#' \item{venue}{venue}
+#' \item{city}{city}
+#' \item{state}{state for USA shows}
+#' \item{country}{country}
 #'
 #' }
 #' @examples
