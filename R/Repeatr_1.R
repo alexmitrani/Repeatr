@@ -617,7 +617,20 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   setwd(myinputdir)
 
+  fls_tags_name_recoded <- system.file("extdata", "fls_tags_name_recoded.csv", package = "Repeatr")
+
+  fls_tags_name_recoded <- read.csv(fls_tags_name_recoded)
+
   fls_tags <- fls_tags_importer(myfilename = "fls_tags.csv")
+
+  fls_tags <- fls_tags %>%
+    left_join(fls_tags_name_recoded)
+
+  fls_tags <- fls_tags %>%
+    mutate(name = name_corrected)
+
+  fls_tags <- fls_tags %>%
+    select(-name_corrected)
 
   fls_tags <- fls_tags %>%
     mutate(album = ifelse(album == "20220218 40 Watt, Athens, GA, USA", "19930218 40 Watt, Athens, GA, USA", album))
@@ -705,6 +718,11 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   fls_tags <- fls_tags %>%
     filter(venue!="Democrazy" | gid!="amsterdam-netherlands-101688")
+
+  fls_tags <- fls_tags %>%
+    mutate(name = str_to_lower(name))
+
+
 
   fls_tags_show <- fls_tags %>%
     group_by(date, venue, city, state, country, album, gid) %>%
