@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9146</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9148</span>
       </span>
     </div>
 
@@ -111,7 +111,7 @@
 <dt>album</dt>
 <dd><p>album name, which includes the date, venue, city, state, and country</p></dd>
 
-<dt>name</dt>
+<dt>song</dt>
 <dd><p>track name</p></dd>
 
 <dt>duration</dt>
@@ -151,18 +151,18 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="va">fls_tags</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 23,193 × 11</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Rowwise: </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    track album  name  durat…¹ seconds date       venue city  state country gid  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    track album  song  durat…¹ seconds date       venue city  state country gid  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;Perio&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 01    19870… Joe … 1M 22S       82 1987-09-03 Wils… Wash… DC    USA     wash…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 02    19870… Intro 56S          56 1987-09-03 Wils… Wash… DC    USA     wash…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 03    19870… Song… 2M 46S      166 1987-09-03 Wils… Wash… DC    USA     wash…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 04    19870… Furn… 6M 32S      392 1987-09-03 Wils… Wash… DC    USA     wash…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 05    19870… Merc… 3M 10S      190 1987-09-03 Wils… Wash… DC    USA     wash…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 06    19870… Turn… 4M 56S      296 1987-09-03 Wils… Wash… DC    USA     wash…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 07    19870… In D… 3M 25S      205 1987-09-03 Wils… Wash… DC    USA     wash…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 08    19870… Wait… 3M 52S      232 1987-09-03 Wils… Wash… DC    USA     wash…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 09    19870… Word  4M 59S      299 1987-09-03 Wils… Wash… DC    USA     wash…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 01    19870… Intro 2M 37S      157 1987-09-26 St. … Wash… DC    USA     wash…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 01    19870… joe … 1M 22S       82 1987-09-03 Wils… Wash… DC    USA     wash…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 02    19870… intro 56S          56 1987-09-03 Wils… Wash… DC    USA     wash…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 03    19870… song… 2M 46S      166 1987-09-03 Wils… Wash… DC    USA     wash…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 04    19870… furn… 6M 32S      392 1987-09-03 Wils… Wash… DC    USA     wash…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 05    19870… merc… 3M 10S      190 1987-09-03 Wils… Wash… DC    USA     wash…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 06    19870… turn… 4M 56S      296 1987-09-03 Wils… Wash… DC    USA     wash…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 07    19870… in d… 3M 25S      205 1987-09-03 Wils… Wash… DC    USA     wash…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 08    19870… wait… 3M 52S      232 1987-09-03 Wils… Wash… DC    USA     wash…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 09    19870… the … 4M 59S      299 1987-09-03 Wils… Wash… DC    USA     wash…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 01    19870… intro 2M 37S      157 1987-09-26 St. … Wash… DC    USA     wash…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 23,183 more rows, and abbreviated variable name ¹​duration</span></span>
 </code></pre></div>
     </div>
