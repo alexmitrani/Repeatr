@@ -9,7 +9,7 @@ dataframe with one row for each track in the Fugazi Live Series data, including 
 \describe{
 \item{track}{track number}
 \item{album}{album name, which includes the date, venue, city, state, and country}
-\item{name}{track name}
+\item{song}{track name}
 \item{duration}{duration in period format (lubridate)}
 \item{seconds}{duration in seconds}
 \item{date}{duration in seconds}
