@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9148</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9149</span>
       </span>
     </div>
 
@@ -136,11 +136,11 @@
 <p>The <a href="https://alexmitrani.shinyapps.io/Repeatr-app/" class="external-link">Repeatr-app</a>
 makes it easy to get some insights and answer questions about the Fugazi
 Live Series. It also provides several new ways of finding shows to
-listen to. The app has 7 pages which will be described in the following
+listen to. The app has 8 pages which will be described in the following
 sections. Each page shows a visualisation (map or graph) and a data
 table, with the exception of ‘search’ which only has a data table.</p>
 <div class="figure">
-<img src="images/paste-DA56A51F.png" alt=""><p class="caption">The header and the 7 pages of the Repeatr-app.</p>
+<img src="images/paste-2E713B37.png" alt=""><p class="caption">The header and the 8 pages of the Repeatr-app.</p>
 </div>
 <p>Most of the input boxes are ‘selectize’ controls - when you select
 the control a menu will appear, and if you start typing the menu will be
@@ -206,9 +206,10 @@ selection functionality.</p>
 <p>The map has zoom controls and by clicking and dragging you can pan
 the map view. The area of the red circle for each show is proportional
 to the attendance of the show. If you click on the red circle for a show
-a pop-up will appear with the date, the venue, the city and the
-attendance.</p>
-<p><img src="images/paste-6E4EBA88.png"></p>
+a pop-up will appear with the date, the venue, the city, the attendance,
+and the coordinates - in case you should want to look for a place using
+a different mapping application.</p>
+<p><img src="images/paste-709B80CA.png"></p>
 <p>The timeline slider below the map allows filtering the data by date.
 The position of the slider control corresponds to the oldest date of the
 selection, so if you move the slider forward from left to right you will
@@ -254,7 +255,7 @@ selection boxes above the map.</p>
 <p>The data table below the map and the timeline controls shows summary
 data for the selected shows.</p>
 <div class="figure">
-<img src="images/paste-1C08B31D.png" alt=""><p class="caption">Example of the ‘shows’ data table.</p>
+<img src="images/paste-49A7F38D.png" alt=""><p class="caption">Example of the ‘shows’ data table.</p>
 </div>
 <p>Each of the following columns can be sorted using the sort controls
 to the right of the variable name:</p>
@@ -266,8 +267,8 @@ Series</a> site</p></li>
 <li><p>city</p></li>
 <li><p>country</p></li>
 <li><p>attendance</p></li>
-<li><p>coordinates - if you copy the coordinates you can display the
-location of a show in an online map of your choice.</p></li>
+<li><p>minutes - duration of the show in minutes if a recording is
+available.</p></li>
 </ul>
 </div>
 <div class="section level2">
@@ -436,7 +437,7 @@ these values will change whenever you change the filters for years or
 tours.</p>
 </div>
 <div class="section level2">
-<h2 id="transitions">transitions<a class="anchor" aria-label="anchor" href="#transitions"></a>
+<h2 id="matrix">matrix<a class="anchor" aria-label="anchor" href="#matrix"></a>
 </h2>
 <p>The heatmap shows the number of times each transition was performed.
 The graph is interactive - if you hover over a point, a pop-up will
@@ -469,10 +470,10 @@ the selected time period)</p></li>
 </ul>
 </div>
 <div class="section level2">
-<h2 id="search">search<a class="anchor" aria-label="anchor" href="#search"></a>
+<h2 id="transition">transition<a class="anchor" aria-label="anchor" href="#transition"></a>
 </h2>
-<p>Here you can find shows that contain specific songs or specific
-transitions between songs.</p>
+<p>Here you can find shows that contain a specific transition between
+songs.</p>
 <p>There are two filters:</p>
 <ul>
 <li><p>from - the first song in the transition</p></li>
@@ -495,7 +496,7 @@ of the set. This is why searching for ‘glueman’ with ‘from’ yields only
 ‘glueman’ was a hard song to follow!</p>
 <p>The data table includes:</p>
 <div class="figure">
-<img src="images/paste-C2994CAE.png" alt=""><p class="caption">Extract from data table on ‘search’ page.</p>
+<img src="images/paste-C2994CAE.png" alt=""><p class="caption">Extract from data table on ‘transition’ page.</p>
 </div>
 <ul>
 <li><p>fls_link provides a link to the corresponding page of the <a href="https://www.dischord.com/fugazi_live_series" class="external-link">Fugazi Live
@@ -506,6 +507,30 @@ where 1 is the first transition in that show. Larger numbers will
 indicate that the transition was played later in the set.</p></li>
 <li><p>song1 - the first song in the transition</p></li>
 <li><p>song2 - the second song in the transition</p></li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="duration">duration<a class="anchor" aria-label="anchor" href="#duration"></a>
+</h2>
+<p>On this page you can select a song and get a table listing all the
+shows containing the specified song and the duration of each specific
+rendition (in minutes). You can also select more than one song. The
+table headers can be used to sort the data, so for instance you can find
+the shows with the longest (or shortest) renditions of a particular
+song. The search box can be used to filter for a particular show so you
+can see the durations of all the songs played in that show.</p>
+<div class="figure">
+<img src="images/paste-3B619926.png" alt=""><p class="caption">Extract from data table on ‘duration’ page.</p>
+</div>
+<ul>
+<li><p>fls_link provides a link to the corresponding page of the <a href="https://www.dischord.com/fugazi_live_series" class="external-link">Fugazi Live
+Series</a> site</p></li>
+<li><p>date - date of the show</p></li>
+<li><p>song_number- this is the number of the song in the set, where 1
+is the first song in that show. Larger numbers will indicate that the
+song was played later in the set.</p></li>
+<li><p>song - the name of the song</p></li>
+<li><p>duration - the duration of the song in minutes.</p></li>
 </ul>
 <p>Thanks.</p>
 </div>
