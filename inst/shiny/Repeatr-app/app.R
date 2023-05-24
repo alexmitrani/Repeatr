@@ -13,6 +13,13 @@ thematic_shiny(font = "auto")
 
 # pre-processing ----------------------------------------------------------
 
+
+gid_data <- fls_tags_show %>%
+  select(gid, seconds) %>%
+  mutate(minutes = seconds/60) %>%
+  select(-seconds) %>%
+  mutate(across(c('minutes'), round, 0))
+
 shows_data <- othervariables %>%
   filter(is.na(attendance)==FALSE) %>%
   filter(is.na(tour)==FALSE) %>%
@@ -24,7 +31,8 @@ shows_data <- othervariables %>%
   select(gid, tour, year, date, venue, city, country, attendance, doorprice, latitude, longitude, checked) %>%
   rename(door_price = doorprice) %>%
   mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
-  mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>"))
+  mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>")) %>%
+  left_join(gid_data)
 
 
 last_performance_data <- Repeatr1 %>%
@@ -915,7 +923,8 @@ server <- function(input, output, session) {
 
     df <- shows_data2() %>%
       mutate(daten = as.numeric(date)) %>%
-      mutate(mycolour = myx - (daten - max(daten)))
+             mutate(mycolour = myx - (daten - max(daten)))
+
 
     mypalette <- get_brewer_pal("Reds", contrast=c(0.5, 1.0))
 
@@ -960,7 +969,8 @@ server <- function(input, output, session) {
           "<strong>Date: </strong>", df$date, "<br>",
           "<strong>Venue: </strong>", df$venue, "<br>",
           "<strong>City: </strong>", df$city, "<br>",
-          "<strong>Attendance: </strong>", df$attendance, "<br>"
+          "<strong>Attendance: </strong>", df$attendance, "<br>",
+          "<strong>Coordinates: </strong>", paste0(df$latitude, ", ", df$longitude)
         )
       )
 
@@ -969,12 +979,10 @@ server <- function(input, output, session) {
   output$showsdatatable <- DT::renderDataTable(DT::datatable({
 
     data <- shows_data2() %>%
-      mutate(coordinates = paste0(latitude, ", ", longitude)) %>%
-      select(fls_link, date, venue, city, country, attendance, coordinates) %>%
-      arrange(date)
-
-  }, escape = c(-2),
-  style = "bootstrap"))
+      select(fls_link, date, venue, city, country, attendance, minutes) %>%
+      arrange(date)},
+    escape = c(-2),
+    style = "bootstrap"))
 
 # tours -------------------------------------------------------------------
 
