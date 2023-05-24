@@ -14,11 +14,15 @@ thematic_shiny(font = "auto")
 # pre-processing ----------------------------------------------------------
 
 
-gid_data <- fls_tags_show %>%
+gid_minutes <- fls_tags_show %>%
   select(gid, seconds) %>%
-  mutate(minutes = seconds/60) %>%
-  select(-seconds) %>%
-  mutate(across(c('minutes'), round, 0))
+  mutate(minutes = round(seconds/60, digits = 2)) %>%
+  select(-seconds)
+
+gid_song_minutes <- fls_tags %>%
+  select(gid, song, seconds) %>%
+  mutate(minutes = round(seconds/60, digits = 2)) %>%
+  select(-seconds)
 
 shows_data <- othervariables %>%
   filter(is.na(attendance)==FALSE) %>%
@@ -32,7 +36,7 @@ shows_data <- othervariables %>%
   rename(door_price = doorprice) %>%
   mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
   mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>")) %>%
-  left_join(gid_data)
+  left_join(gid_minutes)
 
 
 last_performance_data <- Repeatr1 %>%
@@ -203,6 +207,12 @@ releases_summary <- releases_summary %>%
   select(releaseid, release, first_debut, last_debut, releasedate, songs, count, shows, rate) %>%
   rename(release_date = releasedate) %>%
   filter(releaseid>0)
+
+durations_data_da <- Repeatr1 %>%
+  select(gid,date,song_number,song) %>%
+  mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
+  mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>")) %>%
+  left_join(gid_song_minutes)
 
 rm(releasesdatalookup, show_sequence)
 
@@ -570,10 +580,10 @@ tabPanel("releases",
 
                   ),
 
-# transitions -------------------------------------------------------------
+# matrix -------------------------------------------------------------
 
 
-                  tabPanel("transitions",
+                  tabPanel("matrix",
 
                              fluidPage(
 
@@ -618,15 +628,15 @@ tabPanel("releases",
 
                            ),
 
-# search -------------------------------------------------------------
+# transition -------------------------------------------------------------
 
-                  tabPanel("search",
+                  tabPanel("transition",
 
                            fluidPage(
 
                              tags$br(),
 
-                             h4("Selection"),
+                             h4("Transition"),
                              tags$br(),
 
                              # Create a new Row in the UI for selectInputs
@@ -652,7 +662,43 @@ tabPanel("releases",
 
                           )
 
-                  )
+                  ),
+
+
+# duration -------------------------------------------------------------
+
+tabPanel("duration",
+
+         fluidPage(
+
+           tags$br(),
+
+           h4("Selection"),
+           tags$br(),
+
+           # Create a new Row in the UI for selectInputs
+           fluidRow(
+             column(12,
+                    selectizeInput("search_song", "songs:",
+                                   sort(unique((songidlookup$song))),
+                                   selected=NULL, multiple =TRUE))
+           ),
+
+
+           tags$br(),
+
+           h4("Data table"),
+           tags$br(),
+
+           fluidRow(
+             column(12,
+                    DT::dataTableOutput("durations_shows_datatable")
+             )
+           )
+
+         )
+
+)
 
 
 # end -------------------------------------------------------------
@@ -1370,7 +1416,7 @@ server <- function(input, output, session) {
   style = "bootstrap"))
 
 
-# transitions -------------------------------------------------------------
+# matrix -------------------------------------------------------------
 
 
   output$menuOptions_tours_transitions <- renderUI({
@@ -1466,7 +1512,7 @@ server <- function(input, output, session) {
 
   })
 
-  # search -------------------------------------------------------------
+  # transition -------------------------------------------------------------
 
   output$menuOptions_search <- renderUI({
 
@@ -1518,6 +1564,40 @@ server <- function(input, output, session) {
 
   }, escape = c(-2),
   style = "bootstrap"))
+
+  # duration -------------------------------------------------------------
+
+
+  durations_shows_data <- reactive({
+
+    if (is.null(input$search_song)==FALSE) {
+      durations_data_da_results <- durations_data_da %>%
+        filter(song %in% input$search_song)
+
+    } else {
+
+      durations_data_da_results <- durations_data_da
+
+    }
+
+    durations_data_da_results
+
+  })
+
+
+  output$durations_shows_datatable <- DT::renderDataTable(DT::datatable({
+
+    data <- durations_shows_data() %>%
+      select(fls_link, date, song_number, song, minutes)
+
+    data
+
+  }, escape = c(-2),
+  style = "bootstrap"))
+
+
+
+# end of server -----------------------------------------------------------
 
 
 }

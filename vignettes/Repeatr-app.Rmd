@@ -22,9 +22,9 @@ library(Repeatr)
 
 ## introduction
 
-The [Repeatr-app](https://alexmitrani.shinyapps.io/Repeatr-app/) makes it easy to get some insights and answer questions about the Fugazi Live Series. It also provides several new ways of finding shows to listen to. The app has 7 pages which will be described in the following sections. Each page shows a visualisation (map or graph) and a data table, with the exception of 'search' which only has a data table.
+The [Repeatr-app](https://alexmitrani.shinyapps.io/Repeatr-app/) makes it easy to get some insights and answer questions about the Fugazi Live Series. It also provides several new ways of finding shows to listen to. The app has 8 pages which will be described in the following sections. Each page shows a visualisation (map or graph) and a data table, with the exception of 'search' which only has a data table.
 
-![The header and the 7 pages of the Repeatr-app.](images/paste-DA56A51F.png)
+![The header and the 8 pages of the Repeatr-app.](images/paste-2E713B37.png)
 
 Most of the input boxes are 'selectize' controls - when you select the control a menu will appear, and if you start typing the menu will be filtered by what you type. You can select any number of items or none at all.
 
@@ -64,9 +64,9 @@ When a box is blank it means there is no filter applied to the data for that var
 
 ![Select controls on 'shows' page showing sequential selection functionality.](images/paste-7DE9CAC0.png)
 
-The map has zoom controls and by clicking and dragging you can pan the map view. The area of the red circle for each show is proportional to the attendance of the show. If you click on the red circle for a show a pop-up will appear with the date, the venue, the city and the attendance.
+The map has zoom controls and by clicking and dragging you can pan the map view. The area of the red circle for each show is proportional to the attendance of the show. If you click on the red circle for a show a pop-up will appear with the date, the venue, the city, the attendance, and the coordinates - in case you should want to look for a place using a different mapping application.
 
-![](images/paste-6E4EBA88.png)
+![](images/paste-709B80CA.png)
 
 The timeline slider below the map allows filtering the data by date. The position of the slider control corresponds to the oldest date of the selection, so if you move the slider forward from left to right you will progressively filter out older shows.
 
@@ -98,7 +98,7 @@ There are some specific controls for use with the timeline slider:
 
 The data table below the map and the timeline controls shows summary data for the selected shows.
 
-![Example of the 'shows' data table.](images/paste-1C08B31D.png)
+![Example of the 'shows' data table.](images/paste-49A7F38D.png)
 
 Each of the following columns can be sorted using the sort controls to the right of the variable name:
 
@@ -114,7 +114,7 @@ Each of the following columns can be sorted using the sort controls to the right
 
 -   attendance
 
--   coordinates - if you copy the coordinates you can display the location of a show in an online map of your choice.
+-   minutes - duration of the show in minutes if a recording is available.
 
 ## tours
 
@@ -258,7 +258,7 @@ The data table offers the following columns:
 
 The dates and performance counts correspond to the selected data, so these values will change whenever you change the filters for years or tours.
 
-## transitions
+## matrix
 
 The heatmap shows the number of times each transition was performed. The graph is interactive - if you hover over a point, a pop-up will appear showing 'to' (song), 'from' (song) and 'count' - the number of times the transition was performed.
 
@@ -284,9 +284,9 @@ The data table includes:
 
 -   count - the number of times the transition was performed (within the selected time period)
 
-## search
+## transition
 
-Here you can find shows that contain specific songs or specific transitions between songs.
+Here you can find shows that contain a specific transition between songs.
 
 There are two filters:
 
@@ -302,7 +302,7 @@ Both filters are optional. If only one song is specified shows containing that s
 
 The data table includes:
 
-![Extract from data table on 'search' page.](images/paste-C2994CAE.png)
+![Extract from data table on 'transition' page.](images/paste-C2994CAE.png)
 
 -   fls_link provides a link to the corresponding page of the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) site
 
@@ -313,5 +313,21 @@ The data table includes:
 -   song1 - the first song in the transition
 
 -   song2 - the second song in the transition
+
+## duration
+
+On this page you can select a song and get a table listing all the shows containing the specified song and the duration of each specific rendition (in minutes). You can also select more than one song. The table headers can be used to sort the data, so for instance you can find the shows with the longest (or shortest) renditions of a particular song. The search box can be used to filter for a particular show so you can see the durations of all the songs played in that show.
+
+![Extract from data table on 'duration' page.](images/paste-3B619926.png)
+
+-   fls_link provides a link to the corresponding page of the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) site
+
+-   date - date of the show
+
+-   song_number- this is the number of the song in the set, where 1 is the first song in that show. Larger numbers will indicate that the song was played later in the set.
+
+-   song - the name of the song
+
+-   duration - the duration of the song in minutes.
 
 Thanks.
