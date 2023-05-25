@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9149</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9150</span>
       </span>
     </div>
 
@@ -145,11 +145,11 @@ results.</p>
 <span><span class="co">#&gt; Joining, by = "songid"</span></span>
 <span><span class="co">#&gt; Joining, by = "songid"</span></span>
 <span><span class="co">#&gt; Joining, by = "songid"</span></span>
-<span><span class="co">#&gt; Joining, by = "songid"</span></span>
-<span><span class="co">#&gt; Joining, by = "songid"</span></span>
+<span><span class="co">#&gt; Joining, by = c("songid", "song")</span></span>
+<span><span class="co">#&gt; Joining, by = c("songid", "song")</span></span>
 <span><span class="co">#&gt; Joining, by = "releaseid"</span></span>
 <span><span class="co">#&gt; Joining, by = "releaseid"</span></span>
-<span><span class="co">#&gt; Joining, by = "songid"</span></span>
+<span><span class="co">#&gt; Joining, by = c("song", "songid")</span></span>
 <span><span class="co">#&gt; Joining, by = c("songid", "song")</span></span>
 <span><span class="va">mypreferences</span> <span class="op">&lt;-</span> <span class="va">mydf</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
 <p>Now let’s convert the parameter estimates to a rating scale from 0 to
@@ -218,7 +218,7 @@ results.</p>
 <tbody>
 <tr class="odd">
 <td align="right">73</td>
-<td align="left">ex-spectator</td>
+<td align="left">returning the screw</td>
 <td align="left">1999-08-26</td>
 <td align="right">28</td>
 <td align="right">100</td>
@@ -227,7 +227,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">42</td>
-<td align="left">cassavetes</td>
+<td align="left">hello morning</td>
 <td align="left">1996-08-15</td>
 <td align="right">60</td>
 <td align="right">228</td>
@@ -236,7 +236,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">64</td>
-<td align="left">number 5</td>
+<td align="left">preprovisional</td>
 <td align="left">1998-11-21</td>
 <td align="right">15</td>
 <td align="right">144</td>
@@ -245,7 +245,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">71</td>
-<td align="left">cashout</td>
+<td align="left">repeater</td>
 <td align="left">2000-09-30</td>
 <td align="right">4</td>
 <td align="right">65</td>
@@ -254,7 +254,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">37</td>
-<td align="left">birthday pony</td>
+<td align="left">give me the cure</td>
 <td align="left">1994-08-15</td>
 <td align="right">36</td>
 <td align="right">384</td>
@@ -263,7 +263,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">45</td>
-<td align="left">brendan #1</td>
+<td align="left">joe #1</td>
 <td align="left">1989-04-05</td>
 <td align="right">96</td>
 <td align="right">849</td>
@@ -272,7 +272,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">80</td>
-<td align="left">guilford fall</td>
+<td align="left">steady diet</td>
 <td align="left">1996-08-15</td>
 <td align="right">8</td>
 <td align="right">228</td>
@@ -281,7 +281,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">58</td>
-<td align="left">joe #1</td>
+<td align="left">no surprise</td>
 <td align="left">1987-09-03</td>
 <td align="right">98</td>
 <td align="right">895</td>
@@ -290,7 +290,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">30</td>
-<td align="left">smallpox champion</td>
+<td align="left">fell, destroyed</td>
 <td align="left">1992-10-23</td>
 <td align="right">31</td>
 <td align="right">515</td>
@@ -299,7 +299,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">46</td>
-<td align="left">arpeggiator</td>
+<td align="left">kyeo</td>
 <td align="left">1997-05-02</td>
 <td align="right">6</td>
 <td align="right">207</td>
@@ -308,7 +308,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">74</td>
-<td align="left">steady diet</td>
+<td align="left">runaway return</td>
 <td align="left">1991-04-12</td>
 <td align="right">42</td>
 <td align="right">671</td>
@@ -317,7 +317,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="left">reclamation</td>
+<td align="left">and the same</td>
 <td align="left">1990-05-05</td>
 <td align="right">58</td>
 <td align="right">793</td>
@@ -326,7 +326,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">19</td>
-<td align="left">facet squared</td>
+<td align="left">caustic acrostic</td>
 <td align="left">1991-08-12</td>
 <td align="right">35</td>
 <td align="right">619</td>
@@ -335,7 +335,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">9</td>
-<td align="left">turnover</td>
+<td align="left">blueprint</td>
 <td align="left">1989-04-09</td>
 <td align="right">50</td>
 <td align="right">845</td>
@@ -344,7 +344,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">86</td>
-<td align="left">combination lock</td>
+<td align="left">the kill</td>
 <td align="left">1994-11-27</td>
 <td align="right">12</td>
 <td align="right">375</td>
@@ -353,7 +353,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">85</td>
-<td align="left">full disclosure</td>
+<td align="left">target</td>
 <td align="left">2001-04-05</td>
 <td align="right">1</td>
 <td align="right">57</td>
@@ -362,7 +362,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="left">merchandise</td>
+<td align="left">back to base</td>
 <td align="left">1987-09-03</td>
 <td align="right">47</td>
 <td align="right">895</td>
@@ -371,7 +371,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">24</td>
-<td align="left">do you like me</td>
+<td align="left">downed city</td>
 <td align="left">1994-11-20</td>
 <td align="right">8</td>
 <td align="right">376</td>
@@ -380,7 +380,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">41</td>
-<td align="left">break</td>
+<td align="left">guilford fall</td>
 <td align="left">1991-07-28</td>
 <td align="right">19</td>
 <td align="right">630</td>
@@ -389,7 +389,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">70</td>
-<td align="left">argument</td>
+<td align="left">rend it</td>
 <td align="left">1999-08-26</td>
 <td align="right">1</td>
 <td align="right">100</td>
@@ -398,7 +398,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">75</td>
-<td align="left">nightshop</td>
+<td align="left">shut the door</td>
 <td align="left">1999-08-26</td>
 <td align="right">1</td>
 <td align="right">100</td>
@@ -407,7 +407,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">3</td>
-<td align="left">blueprint</td>
+<td align="left">argument</td>
 <td align="left">1989-11-25</td>
 <td align="right">30</td>
 <td align="right">823</td>
@@ -416,7 +416,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">22</td>
-<td align="left">exit only</td>
+<td align="left">dear justice letter</td>
 <td align="left">1990-07-06</td>
 <td align="right">25</td>
 <td align="right">753</td>
@@ -425,7 +425,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">18</td>
-<td align="left">bed for the scraping</td>
+<td align="left">cassavetes</td>
 <td align="left">1994-11-20</td>
 <td align="right">7</td>
 <td align="right">376</td>
@@ -434,7 +434,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">68</td>
-<td align="left">oh</td>
+<td align="left">recap modotti</td>
 <td align="left">1998-11-29</td>
 <td align="right">1</td>
 <td align="right">136</td>
@@ -443,7 +443,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">32</td>
-<td align="left">by you</td>
+<td align="left">floating boy</td>
 <td align="left">1993-04-24</td>
 <td align="right">6</td>
 <td align="right">476</td>
@@ -452,7 +452,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">20</td>
-<td align="left">styrofoam</td>
+<td align="left">closed captioned</td>
 <td align="left">1990-05-17</td>
 <td align="right">13</td>
 <td align="right">786</td>
@@ -461,7 +461,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">78</td>
-<td align="left">version</td>
+<td align="left">song #1</td>
 <td align="left">1994-08-27</td>
 <td align="right">3</td>
 <td align="right">377</td>
@@ -470,7 +470,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">29</td>
-<td align="left">target</td>
+<td align="left">fd</td>
 <td align="left">1994-08-15</td>
 <td align="right">3</td>
 <td align="right">384</td>
@@ -479,7 +479,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">23</td>
-<td align="left">reprovisional</td>
+<td align="left">do you like me</td>
 <td align="left">1988-12-29</td>
 <td align="right">12</td>
 <td align="right">850</td>
@@ -488,7 +488,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">7</td>
-<td align="left">sieve-fisted find</td>
+<td align="left">bed for the scraping</td>
 <td align="left">1989-04-05</td>
 <td align="right">12</td>
 <td align="right">849</td>
@@ -497,7 +497,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">61</td>
-<td align="left">long distance runner</td>
+<td align="left">pink frosty</td>
 <td align="left">1994-11-27</td>
 <td align="right">3</td>
 <td align="right">375</td>
@@ -506,7 +506,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">52</td>
-<td align="left">back to base</td>
+<td align="left">long distance runner</td>
 <td align="left">1994-11-20</td>
 <td align="right">3</td>
 <td align="right">376</td>
@@ -515,7 +515,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">17</td>
-<td align="left">song #1</td>
+<td align="left">cashout</td>
 <td align="left">1987-09-03</td>
 <td align="right">14</td>
 <td align="right">895</td>
@@ -524,7 +524,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">56</td>
-<td align="left">place position</td>
+<td align="left">nice new outfit</td>
 <td align="left">1996-08-15</td>
 <td align="right">1</td>
 <td align="right">228</td>
@@ -533,7 +533,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">31</td>
-<td align="left">sweet and low</td>
+<td align="left">five corporations</td>
 <td align="left">1992-05-15</td>
 <td align="right">5</td>
 <td align="right">562</td>
@@ -542,7 +542,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">28</td>
-<td align="left">runaway return</td>
+<td align="left">facet squared</td>
 <td align="left">1993-02-05</td>
 <td align="right">4</td>
 <td align="right">512</td>
@@ -551,7 +551,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">12</td>
-<td align="left">two beats off</td>
+<td align="left">brendan #1</td>
 <td align="left">1989-05-03</td>
 <td align="right">9</td>
 <td align="right">843</td>
@@ -560,7 +560,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">11</td>
-<td align="left">and the same</td>
+<td align="left">break-in</td>
 <td align="left">1987-09-26</td>
 <td align="right">11</td>
 <td align="right">894</td>
@@ -569,7 +569,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">69</td>
-<td align="left">pink frosty</td>
+<td align="left">reclamation</td>
 <td align="left">1996-03-20</td>
 <td align="right">1</td>
 <td align="right">250</td>
@@ -578,7 +578,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">72</td>
-<td align="left">caustic acrostic</td>
+<td align="left">reprovisional</td>
 <td align="left">1996-01-30</td>
 <td align="right">1</td>
 <td align="right">253</td>
@@ -587,7 +587,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="left">long division</td>
+<td align="left">arpeggiator</td>
 <td align="left">1989-04-09</td>
 <td align="right">8</td>
 <td align="right">845</td>
@@ -596,7 +596,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">62</td>
-<td align="left">downed city</td>
+<td align="left">place position</td>
 <td align="left">1994-11-20</td>
 <td align="right">2</td>
 <td align="right">376</td>
@@ -605,7 +605,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">38</td>
-<td align="left">greed</td>
+<td align="left">glueman</td>
 <td align="left">1989-04-05</td>
 <td align="right">6</td>
 <td align="right">849</td>
@@ -614,7 +614,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">40</td>
-<td align="left">kyeo</td>
+<td align="left">greed</td>
 <td align="left">1987-10-07</td>
 <td align="right">6</td>
 <td align="right">893</td>
@@ -623,7 +623,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">50</td>
-<td align="left">walken’s syndrome</td>
+<td align="left">life and limb</td>
 <td align="left">1992-10-23</td>
 <td align="right">2</td>
 <td align="right">515</td>
@@ -632,7 +632,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">25</td>
-<td align="left">instrument</td>
+<td align="left">epic problem</td>
 <td align="left">1992-01-25</td>
 <td align="right">2</td>
 <td align="right">581</td>
@@ -641,7 +641,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">14</td>
-<td align="left">rend it</td>
+<td align="left">burning</td>
 <td align="left">1991-12-08</td>
 <td align="right">2</td>
 <td align="right">583</td>
@@ -650,7 +650,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">26</td>
-<td align="left">great cop</td>
+<td align="left">ex-spectator</td>
 <td align="left">1991-12-08</td>
 <td align="right">2</td>
 <td align="right">583</td>
@@ -659,7 +659,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">21</td>
-<td align="left">bad mouth</td>
+<td align="left">combination lock</td>
 <td align="left">1987-10-16</td>
 <td align="right">4</td>
 <td align="right">892</td>
@@ -668,7 +668,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">54</td>
-<td align="left">break-in</td>
+<td align="left">margin walker</td>
 <td align="left">1993-08-16</td>
 <td align="right">1</td>
 <td align="right">448</td>
@@ -677,7 +677,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">8</td>
-<td align="left">repeater</td>
+<td align="left">birthday pony</td>
 <td align="left">1989-07-20</td>
 <td align="right">3</td>
 <td align="right">835</td>
@@ -686,7 +686,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">60</td>
-<td align="left">nice new outfit</td>
+<td align="left">oh</td>
 <td align="left">1991-02-20</td>
 <td align="right">2</td>
 <td align="right">688</td>
@@ -695,7 +695,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">47</td>
-<td align="left">stacks</td>
+<td align="left">last chance for a slow dance</td>
 <td align="left">1991-02-15</td>
 <td align="right">2</td>
 <td align="right">689</td>
@@ -704,7 +704,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">48</td>
-<td align="left">dear justice letter</td>
+<td align="left">latest disgrace</td>
 <td align="left">1991-01-02</td>
 <td align="right">2</td>
 <td align="right">692</td>
@@ -713,7 +713,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">33</td>
-<td align="left">bulldog front</td>
+<td align="left">foreman’s dog</td>
 <td align="left">1988-06-15</td>
 <td align="right">3</td>
 <td align="right">871</td>
@@ -722,7 +722,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">66</td>
-<td align="left">furniture</td>
+<td align="left">provisional</td>
 <td align="left">1987-09-03</td>
 <td align="right">3</td>
 <td align="right">895</td>
@@ -731,7 +731,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">1</td>
-<td align="left">waiting room</td>
+<td align="left">23 beats off</td>
 <td align="left">1987-09-03</td>
 <td align="right">3</td>
 <td align="right">895</td>
@@ -740,7 +740,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">55</td>
-<td align="left">returning the screw</td>
+<td align="left">merchandise</td>
 <td align="left">1992-10-23</td>
 <td align="right">1</td>
 <td align="right">515</td>
@@ -749,7 +749,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">27</td>
-<td align="left">public witness program</td>
+<td align="left">exit only</td>
 <td align="left">1990-02-11</td>
 <td align="right">2</td>
 <td align="right">815</td>
@@ -758,7 +758,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">10</td>
-<td align="left">promises</td>
+<td align="left">break</td>
 <td align="left">1988-10-15</td>
 <td align="right">2</td>
 <td align="right">864</td>
@@ -767,7 +767,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">35</td>
-<td align="left">burning too</td>
+<td align="left">full disclosure</td>
 <td align="left">1988-08-01</td>
 <td align="right">2</td>
 <td align="right">868</td>
@@ -776,7 +776,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">51</td>
-<td align="left">last chance for a slow dance</td>
+<td align="left">lockdown</td>
 <td align="left">1991-07-28</td>
 <td align="right">1</td>
 <td align="right">630</td>
@@ -785,7 +785,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">13</td>
-<td align="left">give me the cure</td>
+<td align="left">bulldog front</td>
 <td align="left">1988-03-30</td>
 <td align="right">2</td>
 <td align="right">882</td>
@@ -794,7 +794,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">34</td>
-<td align="left">burning</td>
+<td align="left">forensic scene</td>
 <td align="left">1988-02-06</td>
 <td align="right">2</td>
 <td align="right">885</td>
@@ -803,7 +803,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">15</td>
-<td align="left">suggestion</td>
+<td align="left">burning too</td>
 <td align="left">1987-12-03</td>
 <td align="right">2</td>
 <td align="right">890</td>
@@ -812,7 +812,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">43</td>
-<td align="left">lockdown</td>
+<td align="left">in defense of humans</td>
 <td align="left">1987-12-03</td>
 <td align="right">2</td>
 <td align="right">890</td>
@@ -821,7 +821,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">91</td>
-<td align="left">polish</td>
+<td align="left">version</td>
 <td align="left">1991-03-06</td>
 <td align="right">1</td>
 <td align="right">683</td>
@@ -830,7 +830,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">57</td>
-<td align="left">glueman</td>
+<td align="left">nightshop</td>
 <td align="left">1988-05-12</td>
 <td align="right">1</td>
 <td align="right">879</td>
@@ -839,7 +839,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">53</td>
-<td align="left">fell, destroyed</td>
+<td align="left">long division</td>
 <td align="left">1987-10-16</td>
 <td align="right">1</td>
 <td align="right">892</td>
@@ -848,7 +848,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">81</td>
-<td align="left">the word</td>
+<td align="left">strangelight</td>
 <td align="left">1987-09-03</td>
 <td align="right">1</td>
 <td align="right">895</td>
@@ -857,7 +857,7 @@ results.</p>
 </tr>
 <tr class="even">
 <td align="right">84</td>
-<td align="left">in defense of humans</td>
+<td align="left">sweet and low</td>
 <td align="left">1987-09-03</td>
 <td align="right">1</td>
 <td align="right">895</td>
@@ -866,7 +866,7 @@ results.</p>
 </tr>
 <tr class="odd">
 <td align="right">89</td>
-<td align="left">turn off your guns</td>
+<td align="left">turnover</td>
 <td align="left">1987-09-03</td>
 <td align="right">1</td>
 <td align="right">895</td>
