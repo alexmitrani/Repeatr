@@ -799,7 +799,8 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     left_join(releases_lookup)
 
   cumulative_duration_counts <- mydf_long %>%
-    select(minutes, song, release, count)
+    select(minutes, song, release, count) %>%
+    mutate(release = ifelse(is.na(release)==TRUE, "unreleased", release))
 
   setwd(mydatadir)
 
