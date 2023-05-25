@@ -22,9 +22,9 @@ library(Repeatr)
 
 ## introduction
 
-The [Repeatr-app](https://alexmitrani.shinyapps.io/Repeatr-app/) makes it easy to get some insights and answer questions about the Fugazi Live Series. It also provides several new ways of finding shows to listen to. The app has 8 pages which will be described in the following sections. Each page shows a visualisation (map or graph) and a data table, with the exception of 'search' which only has a data table.
+The [Repeatr-app](https://alexmitrani.shinyapps.io/Repeatr-app/) makes it easy to get some insights and answer questions about the Fugazi Live Series. It also provides several new ways of finding shows to listen to. The app has 9 pages which will be described in the following sections. Each page shows a visualisation (map or graph) and a data table, with the exception of 'search' which only has a data table.
 
-![The header and the 8 pages of the Repeatr-app.](images/paste-2E713B37.png)
+![The header and the 9 pages of the Repeatr-app.](images/paste-631E4C03.png)
 
 Most of the input boxes are 'selectize' controls - when you select the control a menu will appear, and if you start typing the menu will be filtered by what you type. You can select any number of items or none at all.
 
@@ -220,11 +220,11 @@ The data table includes the following columns, all of which can be sorted:
 
 The counts and the rates give different results if they are used to rank the releases. Repeater was the album that yielded more live performances than any other in Fugazi's catalogue, but The Argument had the highest performance rate in relation to the number of shows at which these songs were available.
 
-## songs
+## renditions
 
-The graph shows the cumulative performance counts for each song.
+The graph shows the cumulative rendition counts for each song.
 
-![](images/paste-866A35F0.png)
+![](images/paste-E8EF7F50.png)
 
 The data can be filtered by the following variables:
 
@@ -240,9 +240,9 @@ These filters are applied sequentially from left to right and from top to bottom
 
 The graph shows a lot of detail on how each song fared across the live series, including 'flatline' periods where songs were not played at all, and periods of steep growth where songs were played night after night for significant periods.
 
-The data table offers the following columns:
+![](images/paste-B958E028.png)
 
-![Data table on 'songs' page.](images/paste-E0865875.png)
+The data table offers the following columns:
 
 -   release
 
@@ -257,6 +257,36 @@ The data table offers the following columns:
 -   count - number of times performed (within the selected time period)
 
 The dates and performance counts correspond to the selected data, so these values will change whenever you change the filters for years or tours.
+
+## transition
+
+Here you can find shows that contain a specific transition between songs.
+
+There are two filters:
+
+-   from - the first song in the transition
+
+-   to - the second song in the transition
+
+The filters are applied sequentially from left to right, so for instance if you specify 'life and limb' in 'from', the menu for 'to' will only show songs which followed 'life and limb'.
+
+![Sequential filtering on the 'search' page.](images/paste-6B7BF9E7.png){alt="Sequential filtering on the 'search' page."}
+
+Both filters are optional. If only one song is specified shows containing that song will be listed. If no song is specified all the shows will be listed. There is a subtle difference between searching for shows containing a single song using the 'from' box and the 'to' box: the 'from' box will omit shows where the song was the final one of the set, and the 'to' box will omit shows where the song was the first one of the set. This is why searching for 'glueman' with 'from' yields only 25 shows but searching for 'glueman' with 'to' yields 131 results - 'glueman' was a hard song to follow!
+
+The data table includes:
+
+![Extract from data table on 'transition' page.](images/paste-C2994CAE.png){alt="Extract from data table on 'transition' page."}
+
+-   fls_link provides a link to the corresponding page of the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) site
+
+-   date - date of the show
+
+-   transition - this is the number of the transition in the set, where 1 is the first transition in that show. Larger numbers will indicate that the transition was played later in the set.
+
+-   song1 - the first song in the transition
+
+-   song2 - the second song in the transition
 
 ## matrix
 
@@ -274,9 +304,9 @@ These filters are applied sequentially from left to right. For instance, if you 
 
 ![Sequential filtering on the 'transitions' page.](images/paste-A3344876.png)
 
-The data table includes:
-
 ![Data table on the 'transitions' page.](images/paste-DA36FF42.png)
+
+The data table includes:
 
 -   from - the first song in the transition
 
@@ -284,37 +314,7 @@ The data table includes:
 
 -   count - the number of times the transition was performed (within the selected time period)
 
-## transition
-
-Here you can find shows that contain a specific transition between songs.
-
-There are two filters:
-
--   from - the first song in the transition
-
--   to - the second song in the transition
-
-The filters are applied sequentially from left to right, so for instance if you specify 'life and limb' in 'from', the menu for 'to' will only show songs which followed 'life and limb'.
-
-![Sequential filtering on the 'search' page.](images/paste-6B7BF9E7.png)
-
-Both filters are optional. If only one song is specified shows containing that song will be listed. If no song is specified all the shows will be listed. There is a subtle difference between searching for shows containing a single song using the 'from' box and the 'to' box: the 'from' box will omit shows where the song was the final one of the set, and the 'to' box will omit shows where the song was the first one of the set. This is why searching for 'glueman' with 'from' yields only 25 shows but searching for 'glueman' with 'to' yields 131 results - 'glueman' was a hard song to follow!
-
-The data table includes:
-
-![Extract from data table on 'transition' page.](images/paste-C2994CAE.png)
-
--   fls_link provides a link to the corresponding page of the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) site
-
--   date - date of the show
-
--   transition - this is the number of the transition in the set, where 1 is the first transition in that show. Larger numbers will indicate that the transition was played later in the set.
-
--   song1 - the first song in the transition
-
--   song2 - the second song in the transition
-
-## duration
+## stopwatch
 
 On this page you can select a song and get a table listing all the shows containing the specified song and the duration of each specific rendition (in minutes). You can also select more than one song. The table headers can be used to sort the data, so for instance you can find the shows with the longest (or shortest) renditions of a particular song. The search box can be used to filter for a particular show so you can see the durations of all the songs played in that show.
 
@@ -329,5 +329,29 @@ On this page you can select a song and get a table listing all the shows contain
 -   song - the name of the song
 
 -   duration - the duration of the song in minutes.
+
+## durations
+
+This page shows cumulative distributions of song durations and summary data for the renditions of each song. You can filter the contents to be displayed on the graph by release or by song, and in both cases several can be chosen.
+
+![](images/paste-8ED969BA.png)
+
+The data table below the graph shows summary data for renditions of the selected songs.
+
+![](images/paste-BA72DA16.png)
+
+The data table includes:
+
+-   renditions - the number of times the song was played
+
+-   minutes_min - the minimum duration. In many cases this will be as short as it is because the recording was cut off, not because the band played the song really fast.
+
+-   minutes_median - the median duration: if all the renditions were lined up in order from shortest to longest this would be the middle one.
+
+-   minutes_max - the maximum duration.
+
+-   minutes_mean - the average duration.
+
+-   minutes_sd - the standard deviation of the duration - this is a measure of spread, it indicates how much variation there is across all of the renditions.
 
 Thanks.

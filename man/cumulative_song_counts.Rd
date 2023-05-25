@@ -5,7 +5,7 @@
 \alias{cumulative_song_counts}
 \title{Cumulative Song Counts}
 \format{
-dataframe with one row for song performance in the Fugazi Live Series data.
+dataframe with one row for each combination of song and date in the Fugazi Live Series data.
 \describe{
 \item{date}{Date of the show}
 \item{song}{Name of the song}
