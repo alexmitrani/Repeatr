@@ -208,11 +208,15 @@ releases_summary <- releases_summary %>%
   rename(release_date = releasedate) %>%
   filter(releaseid>0)
 
-durations_data_da <- Repeatr1 %>%
+stopwatch_data_da <- Repeatr1 %>%
   select(gid,date,song_number,song) %>%
   mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
   mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>")) %>%
   left_join(gid_song_minutes)
+
+cumulative_duration_counts <- cumulative_duration_counts
+
+duration_summary <- duration_summary
 
 rm(releasesdatalookup, show_sequence)
 
@@ -361,167 +365,167 @@ ui <- fluidPage(
 # tours -------------------------------------------------------------------
 
 
-tabPanel("tours",
+                  tabPanel("tours",
 
-         fluidPage(
+                           fluidPage(
 
-           tags$br(),
+                             tags$br(),
 
-           h4("Selection"),
-           tags$br(),
+                             h4("Selection"),
+                             tags$br(),
 
-           # Create a new Row in the UI for selectInputs
-           fluidRow(
-             column(12,
-                    selectizeInput("yearInput_tours", "years:",
-                                   sort(unique((toursdata$startyear))),
-                                   selected=NULL, multiple =TRUE)
-             )
+                             # Create a new Row in the UI for selectInputs
+                             fluidRow(
+                               column(12,
+                                      selectizeInput("yearInput_tours", "years:",
+                                                     sort(unique((toursdata$startyear))),
+                                                     selected=NULL, multiple =TRUE)
+                               )
 
-           ),
+                             ),
 
-           # Graph
+                             # Graph
 
-           h4("Graph"),
-           tags$br(),
+                             h4("Graph"),
+                             tags$br(),
 
-           fluidRow(
-             column(12,
-                    plotlyOutput("attendance_count_plot")
-             )
-           ),
+                             fluidRow(
+                               column(12,
+                                      plotlyOutput("attendance_count_plot")
+                               )
+                             ),
 
-           tags$br(),
+                             tags$br(),
 
-           h4("Data table"),
-           tags$br(),
+                             h4("Data table"),
+                             tags$br(),
 
-           # Create a new row for the table.
-           DT::dataTableOutput("toursdatatable")
+                             # Create a new row for the table.
+                             DT::dataTableOutput("toursdatatable")
 
-         )
+                           )
 
-),
+                  ),
 
 
 # xray -------------------------------------------------------------------
 
 
-tabPanel("xray",
+                  tabPanel("xray",
 
-         fluidPage(
+                           fluidPage(
 
-           tags$br(),
+                             tags$br(),
 
-           h4("Selection"),
-           tags$br(),
+                             h4("Selection"),
+                             tags$br(),
 
-           fluidRow(
-             column(6,
-                    selectizeInput("yearInput_xray", "years:",
-                                   sort(unique(othervariables$year)),
-                                   selected=1987, multiple =TRUE)),
-             column(6, uiOutput("menuTours_xray"))
+                             fluidRow(
+                               column(6,
+                                      selectizeInput("yearInput_xray", "years:",
+                                                     sort(unique(othervariables$year)),
+                                                     selected=1987, multiple =TRUE)),
+                               column(6, uiOutput("menuTours_xray"))
 
-           ),
+                             ),
 
-           fluidRow(
-             column(12,
-                    selectizeInput("xrayGraph_choice", "graph:",
-                                   c("releases", "unreleased"),
-                                   selected="releases", multiple =FALSE))
+                             fluidRow(
+                               column(12,
+                                      selectizeInput("xrayGraph_choice", "graph:",
+                                                     c("releases", "unreleased"),
+                                                     selected="releases", multiple =FALSE))
 
-           ),
+                             ),
 
-           tags$br(),
+                             tags$br(),
 
-           # Graph
+                             # Graph
 
-           h4("Graph"),
-           tags$br(),
+                             h4("Graph"),
+                             tags$br(),
 
-           fluidRow(
-             column(12,
-                    plotlyOutput("xray_plot")
-             )
-           ),
+                             fluidRow(
+                               column(12,
+                                      plotlyOutput("xray_plot")
+                               )
+                             ),
 
-           tags$br(),
+                             tags$br(),
 
-           h4("Data table"),
-           tags$br(),
+                             h4("Data table"),
+                             tags$br(),
 
-           fluidRow(
-             column(12,
-                    # Create a new row for the table.
-                    DT::dataTableOutput("xraydatatable"))
-             )
+                             fluidRow(
+                               column(12,
+                                      # Create a new row for the table.
+                                      DT::dataTableOutput("xraydatatable"))
+                               )
 
-         )
+                           )
 
-),
+                  ),
 
 # releases -------------------------------------------------------------------
 
 
 
-tabPanel("releases",
+                  tabPanel("releases",
 
-         fluidPage(
+                           fluidPage(
 
-           tags$br(),
+                             tags$br(),
 
-           h4("Selection"),
-           tags$br(),
+                             h4("Selection"),
+                             tags$br(),
 
-           fluidRow(
-             column(6,
-                    selectizeInput("Input_releases", "release:",
-                                   releases_menu_list$release,
-                                   selected=NULL, multiple =TRUE)
-                    ),
-             column(6,
-                    selectizeInput("Input_releases_var", "variable:",
-                                   c("count", "rate"),
-                                   selected="rate", multiple =FALSE)
-                    )
+                             fluidRow(
+                               column(6,
+                                      selectizeInput("Input_releases", "release:",
+                                                     releases_menu_list$release,
+                                                     selected=NULL, multiple =TRUE)
+                                      ),
+                               column(6,
+                                      selectizeInput("Input_releases_var", "variable:",
+                                                     c("count", "rate"),
+                                                     selected="rate", multiple =FALSE)
+                                      )
 
-           ),
+                             ),
 
-           tags$br(),
+                             tags$br(),
 
-           # Graph
+                             # Graph
 
-           h4("Graph"),
-           tags$br(),
+                             h4("Graph"),
+                             tags$br(),
 
-           fluidRow(
-             column(12,
-                    plotlyOutput("releases_plot",
-                                 width = "100%",
-                                 height = "700px")
-             )
-           ),
+                             fluidRow(
+                               column(12,
+                                      plotlyOutput("releases_plot",
+                                                   width = "100%",
+                                                   height = "700px")
+                               )
+                             ),
 
-           tags$br(),
+                             tags$br(),
 
-           h4("Data table"),
-           tags$br(),
+                             h4("Data table"),
+                             tags$br(),
 
-           fluidRow(
-             column(12,
-                    DT::dataTableOutput("releasesdatatable")
-             )
-           )
+                             fluidRow(
+                               column(12,
+                                      DT::dataTableOutput("releasesdatatable")
+                               )
+                             )
 
-         )
+                           )
 
-),
+                  ),
 
-# songs -------------------------------------------------------------------
+# renditions -------------------------------------------------------------------
 
 
-                  tabPanel("songs",
+                  tabPanel("renditions",
 
                            fluidPage(
 
@@ -580,6 +584,43 @@ tabPanel("releases",
 
                   ),
 
+# transition -------------------------------------------------------------
+
+                  tabPanel("transition",
+
+                           fluidPage(
+
+                             tags$br(),
+
+                             h4("Transition"),
+                             tags$br(),
+
+                             # Create a new Row in the UI for selectInputs
+                             fluidRow(
+                               column(6,
+                                      selectizeInput("search_from_song", "from:",
+                                                     sort(unique((songidlookup$song))),
+                                                     selected=NULL, multiple =TRUE)),
+                               column(6, uiOutput("menuOptions_search"))
+                             ),
+
+
+                             tags$br(),
+
+                             h4("Data table"),
+                             tags$br(),
+
+                             fluidRow(
+                               column(12,
+                                      DT::dataTableOutput("transitions_shows_datatable")
+                               )
+                             )
+
+                           )
+
+                  ),
+
+
 # matrix -------------------------------------------------------------
 
 
@@ -626,79 +667,93 @@ tabPanel("releases",
 
                              )
 
-                           ),
+                  ),
 
-# transition -------------------------------------------------------------
 
-                  tabPanel("transition",
+
+# stopwatch -------------------------------------------------------------
+
+                  tabPanel("stopwatch",
 
                            fluidPage(
 
                              tags$br(),
 
-                             h4("Transition"),
+                             h4("Selection"),
                              tags$br(),
 
                              # Create a new Row in the UI for selectInputs
                              fluidRow(
-                               column(6,
-                                      selectizeInput("search_from_song", "from:",
+                               column(12,
+                                      selectizeInput("stopwatch_song", "songs:",
                                                      sort(unique((songidlookup$song))),
-                                                     selected=NULL, multiple =TRUE)),
-                               column(6, uiOutput("menuOptions_search"))
-                               ),
+                                                     selected=NULL, multiple =TRUE))
+                             ),
 
 
-                           tags$br(),
+                             tags$br(),
 
-                           h4("Data table"),
-                           tags$br(),
+                             h4("Data table"),
+                             tags$br(),
 
-                           fluidRow(
-                             column(12,
-                                    DT::dataTableOutput("transitions_shows_datatable")
+                             fluidRow(
+                               column(12,
+                                      DT::dataTableOutput("stopwatch_shows_datatable")
+                               )
                              )
-                           )
 
-                          )
+                           )
 
                   ),
 
-
-# duration -------------------------------------------------------------
-
-tabPanel("duration",
-
-         fluidPage(
-
-           tags$br(),
-
-           h4("Selection"),
-           tags$br(),
-
-           # Create a new Row in the UI for selectInputs
-           fluidRow(
-             column(12,
-                    selectizeInput("search_song", "songs:",
-                                   sort(unique((songidlookup$song))),
-                                   selected=NULL, multiple =TRUE))
-           ),
+# durations -------------------------------------------------------------------
 
 
-           tags$br(),
+                  tabPanel("durations",
 
-           h4("Data table"),
-           tags$br(),
+                           fluidPage(
 
-           fluidRow(
-             column(12,
-                    DT::dataTableOutput("durations_shows_datatable")
-             )
-           )
+                             tags$br(),
 
-         )
+                             h4("Selection"),
+                             tags$br(),
 
-)
+                             fluidRow(
+                               column(6,
+                                      selectizeInput("durations_releaseInput", "release",
+                                                     choices = c(unique(cumulative_duration_counts$release)),
+                                                     selected="Fugazi", multiple =TRUE)),
+                               column(6,
+                                      uiOutput("durations_menuOptions")
+                               )
+
+                             ),
+
+                             # Graph
+
+                             h4("Graph"),
+                             tags$br(),
+
+                             fluidRow(
+                               column(12,
+                                      plotlyOutput("durations_count_plot")
+                               )
+                             ),
+
+                             tags$br(),
+
+                             h4("Data table"),
+                             tags$br(),
+
+                             fluidRow(
+                               column(12,
+                                      DT::dataTableOutput("durationsdatatable")
+                               )
+                             )
+
+                           )
+
+                  )
 
 
 # end -------------------------------------------------------------
@@ -1279,7 +1334,7 @@ server <- function(input, output, session) {
   },
   style = "bootstrap"))
 
-# songs -------------------------------------------------------------------
+# renditions -------------------------------------------------------------------
 
   max_songs <- 100
 
@@ -1400,7 +1455,7 @@ server <- function(input, output, session) {
     p <- ggplot(songs_data3(), aes(x = date, y = count, color = song)) +
       geom_line() +
       xlab("date") +
-      ylab("cumulative performances")
+      ylab("cumulative renditions")
 
     plotly::ggplotly(p)
 
@@ -1409,11 +1464,65 @@ server <- function(input, output, session) {
   output$songsdatatable <- DT::renderDataTable(DT::datatable({
     data <- songs_data3() %>%
       group_by(release, song, from, to, released) %>%
-      summarize(count = max(count) - min(count)) %>%
+      summarize(renditions = max(count) - min(count)) %>%
       ungroup() %>%
-      arrange(desc(count))
+      arrange(desc(renditions))
   },
   style = "bootstrap"))
+
+# transition -------------------------------------------------------------
+
+  output$menuOptions_search <- renderUI({
+
+    if (is.null(input$search_from_song)==FALSE) {
+      searchmenudata <- transitions_data_da %>%
+        filter(song1 %in% input$search_from_song) %>%
+        arrange(song2)
+    } else {
+      searchmenudata <- transitions_data_da %>%
+        arrange(song2)
+    }
+
+    selectizeInput("searchInput_to_song", "to:",
+                   choices = c(unique(searchmenudata$song2)), multiple =TRUE)
+
+  })
+
+  transitions_shows_data <- reactive({
+
+    if (is.null(input$search_from_song)==FALSE & is.null(input$searchInput_to_song)==FALSE) {
+      transitions_data_da_results <- transitions_data_da %>%
+        filter(song1 %in% input$search_from_song &
+                 song2 %in% input$searchInput_to_song)
+
+    } else if (is.null(input$search_from_song)==FALSE & is.null(input$searchInput_to_song)==TRUE) {
+      transitions_data_da_results <- transitions_data_da %>%
+        filter(song1 %in% input$search_from_song)
+
+    } else if (is.null(input$search_from_song)==TRUE & is.null(input$searchInput_to_song)==FALSE) {
+      transitions_data_da_results <- transitions_data_da %>%
+        filter(song2 %in% input$searchInput_to_song)
+
+    } else {
+
+      transitions_data_da_results <- transitions_data_da
+
+    }
+
+    transitions_data_da_results
+
+  })
+
+
+  output$transitions_shows_datatable <- DT::renderDataTable(DT::datatable({
+
+    data <- transitions_shows_data()
+
+    data
+
+  }, escape = c(-2),
+  style = "bootstrap"))
+
 
 
 # matrix -------------------------------------------------------------
@@ -1512,88 +1621,105 @@ server <- function(input, output, session) {
 
   })
 
-  # transition -------------------------------------------------------------
 
-  output$menuOptions_search <- renderUI({
+# stopwatch -------------------------------------------------------------
 
-    if (is.null(input$search_from_song)==FALSE) {
-      searchmenudata <- transitions_data_da %>%
-        filter(song1 %in% input$search_from_song) %>%
-        arrange(song2)
-    } else {
-      searchmenudata <- transitions_data_da %>%
-        arrange(song2)
-    }
 
-    selectizeInput("searchInput_to_song", "to:",
-                   choices = c(unique(searchmenudata$song2)), multiple =TRUE)
+  stopwatch_shows_data <- reactive({
 
-  })
-
-  transitions_shows_data <- reactive({
-
-    if (is.null(input$search_from_song)==FALSE & is.null(input$searchInput_to_song)==FALSE) {
-      transitions_data_da_results <- transitions_data_da %>%
-        filter(song1 %in% input$search_from_song &
-                 song2 %in% input$searchInput_to_song)
-
-    } else if (is.null(input$search_from_song)==FALSE & is.null(input$searchInput_to_song)==TRUE) {
-      transitions_data_da_results <- transitions_data_da %>%
-        filter(song1 %in% input$search_from_song)
-
-    } else if (is.null(input$search_from_song)==TRUE & is.null(input$searchInput_to_song)==FALSE) {
-      transitions_data_da_results <- transitions_data_da %>%
-        filter(song2 %in% input$searchInput_to_song)
+    if (is.null(input$stopwatch_song)==FALSE) {
+      stopwatch_data_da_results <- stopwatch_data_da %>%
+        filter(song %in% input$stopwatch_song)
 
     } else {
 
-      transitions_data_da_results <- transitions_data_da
+      stopwatch_data_da_results <- stopwatch_data_da
 
     }
 
-    transitions_data_da_results
+    stopwatch_data_da_results
 
   })
 
 
-  output$transitions_shows_datatable <- DT::renderDataTable(DT::datatable({
+  output$stopwatch_shows_datatable <- DT::renderDataTable(DT::datatable({
 
-    data <- transitions_shows_data()
-
-    data
-
-  }, escape = c(-2),
-  style = "bootstrap"))
-
-  # duration -------------------------------------------------------------
-
-
-  durations_shows_data <- reactive({
-
-    if (is.null(input$search_song)==FALSE) {
-      durations_data_da_results <- durations_data_da %>%
-        filter(song %in% input$search_song)
-
-    } else {
-
-      durations_data_da_results <- durations_data_da
-
-    }
-
-    durations_data_da_results
-
-  })
-
-
-  output$durations_shows_datatable <- DT::renderDataTable(DT::datatable({
-
-    data <- durations_shows_data() %>%
+    data <- stopwatch_shows_data() %>%
       select(fls_link, date, song_number, song, minutes)
 
     data
 
   }, escape = c(-2),
   style = "bootstrap"))
+
+# durations -------------------------------------------------------------------
+
+  output$durations_menuOptions <- renderUI({
+
+    if (is.null(input$durations_releaseInput)==FALSE) {
+      menudata <- cumulative_duration_counts %>%
+        filter(release %in% input$durations_releaseInput) %>%
+        arrange(song)
+    } else {
+      menudata <- cumulative_duration_counts %>%
+        arrange(song)
+    }
+
+    selectizeInput("durations_songInput", "songs",
+                   choices = c(unique(menudata$song)), multiple =TRUE)
+
+  })
+
+  durations_data <- reactive({
+
+    if (is.null(input$durations_releaseInput)==FALSE) {
+
+      mydf <- cumulative_duration_counts %>%
+        filter(release %in% input$durations_releaseInput)
+
+    } else {
+
+      mydf <- cumulative_duration_counts
+
+    }
+
+    if (is.null(input$durations_songs_input)==FALSE) {
+
+      mydf <- mydf %>%
+        filter(song %in% input$durations_songs_input)
+
+    } else {
+
+      mydf <- mydf
+
+    }
+
+    mydf
+
+  })
+
+
+  output$durations_count_plot <- renderPlotly({
+
+    p <- ggplot(durations_data(), aes(x = minutes, y = count, color = song)) +
+      geom_line() +
+      xlab("minutes") +
+      ylab("cumulative renditions")
+
+    plotly::ggplotly(p)
+
+  })
+
+  output$durationsdatatable <- DT::renderDataTable(DT::datatable({
+    data <- durations_data() %>%
+      group_by(song) %>%
+      summarize(renditions = max(count)) %>%
+      ungroup() %>%
+      arrange(desc(renditions)) %>%
+      left_join(duration_summary)
+  },
+  style = "bootstrap"))
+
 
 
 

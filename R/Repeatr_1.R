@@ -471,6 +471,12 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   Repeatr1 <- Repeatr1 %>%
     filter(!grepl("soundcheck",song))
 
+  Repeatr1 <- Repeatr1 %>%
+    filter(!grepl("crowd",song))
+
+  Repeatr1 <- Repeatr1 %>%
+    filter(!grepl("outro",song))
+
   # Filter to remove unreleased songs or improvised one-offs ---------------------------------------
 
   Repeatr1 <- Repeatr1 %>%
@@ -572,6 +578,10 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   save(Repeatr1, file = "Repeatr1.rda")
 
   setwd(mydir)
+
+
+# calculate cumulative rendition counts -----------------------------------
+
 
   mydf <- Repeatr1 %>% select(date, song)
 
@@ -742,8 +752,93 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   setwd(mydir)
 
-  myreturnlist <- list(Repeatr0, Repeatr1, songidlookup, mycount, songvarslookup, releasesdatalookup, othervariables, cumulative_song_counts, fls_tags)
+  # calculate cumulative duration counts -----------------------------------
+
+  song_songid <- Repeatr1 %>%
+    group_by(song, songid) %>%
+    slice(1) %>%
+    select(song, songid) %>%
+    ungroup() %>%
+    filter(song!="crowd")
+
+  mydf <- fls_tags %>%
+    select(song, seconds) %>%
+    mutate(minutes = round(seconds/60, digits = 2)) %>%
+    select(-seconds) %>%
+    left_join(song_songid) %>%
+    filter(is.na(songid)==FALSE) %>%
+    select(-songid)
+
+  mydf <- mydf %>%
+    group_by(minutes, song) %>%
+    summarize(count=n()) %>% ungroup()
+
+  mydf_wide <- mydf %>%
+    pivot_wider(names_from = song, values_from = count, values_fill = 0)
+
+  mydf_wide2 <- mydf_wide
+
+  for(colindex in 2:94) {
+
+    mydf_wide2[,colindex] <- cumsum(mydf_wide2[,colindex])
+
+  }
+
+  mydf_long <- mydf_wide2 %>%
+    pivot_longer(!minutes, names_to = "song", values_to = "count") %>%
+    filter(count>0)
+
+  releases_lookup <- Repeatr1 %>%
+    group_by(song, release) %>%
+    summarize(count = n()) %>%
+    ungroup() %>%
+    select(song, release) %>%
+    filter(song!="crowd")
+
+  mydf_long <- mydf_long %>%
+    left_join(releases_lookup)
+
+  cumulative_duration_counts <- mydf_long %>%
+    select(minutes, song, release, count)
+
+  setwd(mydatadir)
+
+  save(cumulative_duration_counts, file = "cumulative_duration_counts.rda")
+
+  setwd(mydir)
+
+  # calculate duration summary -----------------------------------
+
+  song_songid <- Repeatr1 %>%
+    group_by(song, songid) %>%
+    slice(1) %>%
+    select(song, songid) %>%
+    ungroup() %>%
+    filter(song!="crowd")
+
+  duration_summary <- fls_tags %>%
+    group_by(song) %>%
+    summarize(renditions = n(),
+              minutes_min = round(min(seconds)/60, digits = 2),
+              minutes_median = round(median(seconds)/60, digits = 2),
+              minutes_max = round(max(seconds)/60, digits = 2),
+              minutes_mean = round(mean(seconds)/60, digits = 2),
+              minutes_sd = round(sd(seconds)/60, digits = 2))  %>%
+    ungroup() %>%
+    left_join(song_songid) %>%
+    filter(is.na(songid)==FALSE) %>%
+    select(-songid)
+
+    setwd(mydatadir)
+
+    save(duration_summary, file = "duration_summary.rda")
+
+    setwd(mydir)
+
+  myreturnlist <- list(Repeatr0, Repeatr1, songidlookup, mycount, songvarslookup, releasesdatalookup, othervariables, cumulative_song_counts, fls_tags, fls_tags_show, cumulative_duration_counts)
 
   return(myreturnlist)
 
 }
+
+
