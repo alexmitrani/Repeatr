@@ -514,7 +514,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     ungroup()
 
   mycount <- mycount %>%
-    arrange(desc(count))
+    arrange((song))
 
   mycount <- mycount %>% mutate(songid = row_number())
   mycount <- mycount %>% relocate(songid)

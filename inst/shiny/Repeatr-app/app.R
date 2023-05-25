@@ -551,7 +551,7 @@ ui <- fluidPage(
                                column(6,
                                       selectizeInput("releaseInput", "release",
                                                      choices = c(unique(cumulative_song_counts$release)),
-                                                     selected="Fugazi", multiple =TRUE)),
+                                                     selected="fugazi", multiple =TRUE)),
                               column(6,
                                       uiOutput("menuOptions")
                                      )
@@ -722,7 +722,7 @@ ui <- fluidPage(
                                column(6,
                                       selectizeInput("durations_releaseInput", "release",
                                                      choices = c(unique(cumulative_duration_counts$release)),
-                                                     selected="Fugazi", multiple =TRUE)),
+                                                     selected="fugazi", multiple =TRUE)),
                                column(6,
                                       uiOutput("durations_menuOptions")
                                )
