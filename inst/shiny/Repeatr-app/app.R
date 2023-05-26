@@ -724,7 +724,7 @@ ui <- fluidPage(
                                                      choices = c(unique(cumulative_duration_counts$release)),
                                                      selected="fugazi", multiple =TRUE)),
                                column(6,
-                                      uiOutput("durations_menuOptions")
+                                      uiOutput("durations_songInput")
                                )
 
                              ),
@@ -1654,7 +1654,7 @@ server <- function(input, output, session) {
 
 # durations -------------------------------------------------------------------
 
-  output$durations_menuOptions <- renderUI({
+  output$durations_songInput <- renderUI({
 
     if (is.null(input$durations_releaseInput)==FALSE) {
       menudata <- cumulative_duration_counts %>%
@@ -1683,10 +1683,10 @@ server <- function(input, output, session) {
 
     }
 
-    if (is.null(input$durations_songs_input)==FALSE) {
+    if (is.null(input$durations_songInput)==FALSE) {
 
       mydf <- mydf %>%
-        filter(song %in% input$durations_songs_input)
+        filter(song %in% input$durations_songInput)
 
     } else {
 
