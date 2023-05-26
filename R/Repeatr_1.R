@@ -824,11 +824,14 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
               minutes_median = round(median(seconds)/60, digits = 2),
               minutes_max = round(max(seconds)/60, digits = 2),
               minutes_mean = round(mean(seconds)/60, digits = 2),
-              minutes_sd = round(sd(seconds)/60, digits = 2))  %>%
+              minutes_sd = round(sd(seconds)/60, digits = 2)) %>%
     ungroup() %>%
     left_join(song_songid) %>%
     filter(is.na(songid)==FALSE) %>%
     select(-songid)
+
+    duration_summary <- duration_summary %>%
+      mutate(minutes_total = round(renditions*minutes_mean, digits = 2))
 
     setwd(mydatadir)
 

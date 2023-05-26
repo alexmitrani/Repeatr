@@ -24,7 +24,7 @@ library(Repeatr)
 
 The [Repeatr-app](https://alexmitrani.shinyapps.io/Repeatr-app/) makes it easy to get some insights and answer questions about the Fugazi Live Series. It also provides several new ways of finding shows to listen to. The app has 9 pages which will be described in the following sections. Each page shows a visualisation (map or graph) and a data table, with the exception of 'search' which only has a data table.
 
-![The header and the 9 pages of the Repeatr-app.](images/paste-631E4C03.png)
+![The header and the 9 pages of the Repeatr-app.](images/paste-D301CE24.png)
 
 Most of the input boxes are 'selectize' controls - when you select the control a menu will appear, and if you start typing the menu will be filtered by what you type. You can select any number of items or none at all.
 
@@ -314,7 +314,7 @@ The data table includes:
 
 -   count - the number of times the transition was performed (within the selected time period)
 
-## stopwatch
+## duration
 
 On this page you can select a song and get a table listing all the shows containing the specified song and the duration of each specific rendition (in minutes). You can also select more than one song. The table headers can be used to sort the data, so for instance you can find the shows with the longest (or shortest) renditions of a particular song. The search box can be used to filter for a particular show so you can see the durations of all the songs played in that show.
 
@@ -330,7 +330,7 @@ On this page you can select a song and get a table listing all the shows contain
 
 -   duration - the duration of the song in minutes.
 
-## durations
+## variation
 
 This page shows cumulative distributions of song durations and summary data for the renditions of each song. You can filter the contents to be displayed on the graph by release or by song, and in both cases several can be chosen.
 
@@ -338,7 +338,7 @@ This page shows cumulative distributions of song durations and summary data for 
 
 The data table below the graph shows summary data for renditions of the selected songs.
 
-![](images/paste-BA72DA16.png)
+![](images/paste-3E43EFF1.png)
 
 The data table includes:
 
@@ -353,5 +353,7 @@ The data table includes:
 -   minutes_mean - the average duration.
 
 -   minutes_sd - the standard deviation of the duration - this is a measure of spread, it indicates how much variation there is across all of the renditions.
+
+-   minutes_total - the total duration of all the times the song was played.
 
 Thanks.

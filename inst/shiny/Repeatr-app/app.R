@@ -208,7 +208,7 @@ releases_summary <- releases_summary %>%
   rename(release_date = releasedate) %>%
   filter(releaseid>0)
 
-stopwatch_data_da <- Repeatr1 %>%
+duration_data_da <- Repeatr1 %>%
   select(gid,date,song_number,song) %>%
   mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
   mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>")) %>%
@@ -671,9 +671,9 @@ ui <- fluidPage(
 
 
 
-# stopwatch -------------------------------------------------------------
+# duration -------------------------------------------------------------
 
-                  tabPanel("stopwatch",
+                  tabPanel("duration",
 
                            fluidPage(
 
@@ -685,7 +685,7 @@ ui <- fluidPage(
                              # Create a new Row in the UI for selectInputs
                              fluidRow(
                                column(12,
-                                      selectizeInput("stopwatch_song", "songs:",
+                                      selectizeInput("duration_song", "songs:",
                                                      sort(unique((songidlookup$song))),
                                                      selected=NULL, multiple =TRUE))
                              ),
@@ -698,7 +698,7 @@ ui <- fluidPage(
 
                              fluidRow(
                                column(12,
-                                      DT::dataTableOutput("stopwatch_shows_datatable")
+                                      DT::dataTableOutput("duration_shows_datatable")
                                )
                              )
 
@@ -706,10 +706,10 @@ ui <- fluidPage(
 
                   ),
 
-# durations -------------------------------------------------------------------
+# variation -------------------------------------------------------------------
 
 
-                  tabPanel("durations",
+                  tabPanel("variation",
 
                            fluidPage(
 
@@ -720,11 +720,11 @@ ui <- fluidPage(
 
                              fluidRow(
                                column(6,
-                                      selectizeInput("durations_releaseInput", "release",
+                                      selectizeInput("variation_releaseInput", "release",
                                                      choices = c(unique(cumulative_duration_counts$release)),
                                                      selected="fugazi", multiple =TRUE)),
                                column(6,
-                                      uiOutput("durations_songInput")
+                                      uiOutput("variation_songInput")
                                )
 
                              ),
@@ -736,7 +736,7 @@ ui <- fluidPage(
 
                              fluidRow(
                                column(12,
-                                      plotlyOutput("durations_count_plot")
+                                      plotlyOutput("variation_count_plot")
                                )
                              ),
 
@@ -747,7 +747,7 @@ ui <- fluidPage(
 
                              fluidRow(
                                column(12,
-                                      DT::dataTableOutput("durationsdatatable")
+                                      DT::dataTableOutput("variationdatatable")
                                )
                              )
 
@@ -1622,29 +1622,29 @@ server <- function(input, output, session) {
   })
 
 
-# stopwatch -------------------------------------------------------------
+# duration -------------------------------------------------------------
 
 
-  stopwatch_shows_data <- reactive({
+  duration_shows_data <- reactive({
 
-    if (is.null(input$stopwatch_song)==FALSE) {
-      stopwatch_data_da_results <- stopwatch_data_da %>%
-        filter(song %in% input$stopwatch_song)
+    if (is.null(input$duration_song)==FALSE) {
+      duration_data_da_results <- duration_data_da %>%
+        filter(song %in% input$duration_song)
 
     } else {
 
-      stopwatch_data_da_results <- stopwatch_data_da
+      duration_data_da_results <- duration_data_da
 
     }
 
-    stopwatch_data_da_results
+    duration_data_da_results
 
   })
 
 
-  output$stopwatch_shows_datatable <- DT::renderDataTable(DT::datatable({
+  output$duration_shows_datatable <- DT::renderDataTable(DT::datatable({
 
-    data <- stopwatch_shows_data() %>%
+    data <- duration_shows_data() %>%
       select(fls_link, date, song_number, song, minutes)
 
     data
@@ -1652,30 +1652,30 @@ server <- function(input, output, session) {
   }, escape = c(-2),
   style = "bootstrap"))
 
-# durations -------------------------------------------------------------------
+# variation -------------------------------------------------------------------
 
-  output$durations_songInput <- renderUI({
+  output$variation_songInput <- renderUI({
 
-    if (is.null(input$durations_releaseInput)==FALSE) {
+    if (is.null(input$variation_releaseInput)==FALSE) {
       menudata <- cumulative_duration_counts %>%
-        filter(release %in% input$durations_releaseInput) %>%
+        filter(release %in% input$variation_releaseInput) %>%
         arrange(song)
     } else {
       menudata <- cumulative_duration_counts %>%
         arrange(song)
     }
 
-    selectizeInput("durations_songInput", "songs",
+    selectizeInput("variation_songInput", "songs",
                    choices = c(unique(menudata$song)), multiple =TRUE)
 
   })
 
-  durations_data <- reactive({
+  variation_data <- reactive({
 
-    if (is.null(input$durations_releaseInput)==FALSE) {
+    if (is.null(input$variation_releaseInput)==FALSE) {
 
       mydf <- cumulative_duration_counts %>%
-        filter(release %in% input$durations_releaseInput)
+        filter(release %in% input$variation_releaseInput)
 
     } else {
 
@@ -1683,10 +1683,10 @@ server <- function(input, output, session) {
 
     }
 
-    if (is.null(input$durations_songInput)==FALSE) {
+    if (is.null(input$variation_songInput)==FALSE) {
 
       mydf <- mydf %>%
-        filter(song %in% input$durations_songInput)
+        filter(song %in% input$variation_songInput)
 
     } else {
 
@@ -1699,9 +1699,9 @@ server <- function(input, output, session) {
   })
 
 
-  output$durations_count_plot <- renderPlotly({
+  output$variation_count_plot <- renderPlotly({
 
-    p <- ggplot(durations_data(), aes(x = minutes, y = count, color = song)) +
+    p <- ggplot(variation_data(), aes(x = minutes, y = count, color = song)) +
       geom_line() +
       xlab("minutes") +
       ylab("cumulative renditions")
@@ -1710,8 +1710,8 @@ server <- function(input, output, session) {
 
   })
 
-  output$durationsdatatable <- DT::renderDataTable(DT::datatable({
-    data <- durations_data() %>%
+  output$variationdatatable <- DT::renderDataTable(DT::datatable({
+    data <- variation_data() %>%
       group_by(song) %>%
       summarize(renditions = max(count)) %>%
       ungroup() %>%
