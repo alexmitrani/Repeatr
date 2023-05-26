@@ -24,7 +24,7 @@ library(Repeatr)
 
 The [Repeatr-app](https://alexmitrani.shinyapps.io/Repeatr-app/) makes it easy to get some insights and answer questions about the Fugazi Live Series. It also provides several new ways of finding shows to listen to. The app has 9 pages which will be described in the following sections. Each page shows a visualisation (map or graph) and a data table, with the exception of 'search' which only has a data table.
 
-![The header and the 9 pages of the Repeatr-app.](images/paste-D301CE24.png)
+![The header and the 9 pages of the Repeatr-app.](images/paste-869D2098.png)
 
 Most of the input boxes are 'selectize' controls - when you select the control a menu will appear, and if you start typing the menu will be filtered by what you type. You can select any number of items or none at all.
 

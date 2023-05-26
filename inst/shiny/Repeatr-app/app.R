@@ -232,17 +232,24 @@ ui <- fluidPage(
 
   tags$style(type = "text/css", "html, body {width:100%; height:100%}"),
 
-  h1("Repeatr"),
+  h1("Repeatr-app"),
 
     tags$div(
       "Exploring the ",
       tags$a(href="https://www.dischord.com/fugazi_live_series", "Fugazi Live Series"),
-      tags$br(),
       tags$br()
     ),
 
 
     mainPanel(
+
+      tags$div(
+        tags$a(href="https://alexmitrani.github.io/Repeatr/articles/Repeatr-app.html", "Repeatr-app documentation"),
+        tags$br(),
+        print(timestamptext),
+        tags$br(),
+        tags$br()
+      ),
 
       # Output
       tabsetPanel(type = "tabs",
@@ -758,21 +765,16 @@ ui <- fluidPage(
 
 # end -------------------------------------------------------------
 
+      )
+
       ),
 
-
         tags$div(
-          tags$br(),
-          print(timestamptext),
-          tags$br(),
-          tags$a(href="https://alexmitrani.github.io/Repeatr/articles/Repeatr-app.html", "Repeatr-app documentation."),
           tags$br(),
           "Contact the developer on ",
           tags$a(rel="me", href="https://mastodon.online/@alex_mitrani_es", "Mastodon"),
           tags$br()
         )
-
-      )
 
     )
 
