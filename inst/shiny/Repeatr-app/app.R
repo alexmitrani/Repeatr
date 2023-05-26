@@ -244,11 +244,11 @@ ui <- fluidPage(
     mainPanel(
 
       tags$div(
-        tags$a(href="https://alexmitrani.github.io/Repeatr/articles/Repeatr-app.html", "Repeatr-app documentation"),
-        tags$br(),
         print(timestamptext),
         tags$br(),
-        tags$br()
+        tags$a(href="https://alexmitrani.github.io/Repeatr/articles/Repeatr-app.html", "Repeatr-app documentation"),
+        tags$br(),
+        tags$br(),
       ),
 
       # Output
