@@ -12,3 +12,4 @@ releaseid,release,variable,releasedate,release_date_source,colour_code,rym_ratin
 11,first demo,first_demo,18/11/2014,https://musicbrainz.org/release-group/753fb03e-65f5-4805-afe9-373ed573cf87,#adb56a,0.726
 12,released,released,,,#009e73,
 13,unreleased,unreleased,,,#e69f00,
+14,other,other,,,#8a8784,

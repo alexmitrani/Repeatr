@@ -503,7 +503,7 @@ ui <- fluidPage(
                              fluidRow(
                                column(6,
                                       selectizeInput("xrayGraph_choice", "graph:",
-                                                     c("releases", "unreleased"),
+                                                     c("releases", "unreleased", "other"),
                                                      selected="releases", multiple =FALSE)),
                                column(6,
                                       selectizeInput("xrayGraph_units", "units:",
@@ -1297,10 +1297,17 @@ server <- function(input, output, session) {
         filter(value>0) %>%
         arrange(releaseid)
 
-    } else {
+    } else if(input$xrayGraph_choice=="unreleased") {
 
       xray_data2 <- xray_data() %>%
         filter(variable=="released" | variable=="unreleased") %>%
+        filter(value>0) %>%
+        arrange(releaseid)
+
+    } else {
+
+      xray_data2 <- xray_data() %>%
+        filter(variable=="songs" | variable=="other") %>%
         filter(value>0) %>%
         arrange(releaseid)
 
