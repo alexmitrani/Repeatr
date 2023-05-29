@@ -1338,7 +1338,7 @@ server <- function(input, output, session) {
 
   output$xraydatatable <- DT::renderDataTable(DT::datatable({
     data <- xray_data2()  %>%
-      select(-release, -colour_code, -releaseid)  %>%
+      select(-release, -colour_code, -releaseid, -units)  %>%
       pivot_wider(names_from = variable, values_from = value) %>%
       select(-year, -tour)
 
