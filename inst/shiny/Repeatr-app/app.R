@@ -32,13 +32,14 @@ shows_data <- othervariables %>%
   mutate(year = lubridate::year(date)) %>%
   rename(latitude = y) %>%
   rename(longitude = x) %>%
-  select(gid, tour, year, date, venue, city, country, attendance, doorprice, latitude, longitude, checked) %>%
+  select(gid, tour, year, date, venue, city, country, attendance, doorprice, latitude, longitude) %>%
   rename(door_price = doorprice) %>%
   mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
   mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>")) %>%
   left_join(gid_minutes)
 
 last_performance_data <- Repeatr1 %>%
+  filter(tracktype==1) %>%
   select(date, song)%>%
   group_by(song) %>%
   summarize(last_performance=max(date)) %>%
@@ -58,7 +59,6 @@ releaseid_variable_colour_code <- releasesdatalookup %>%
   select(releaseid, variable, colour_code)
 
 xray <- Repeatr1 %>%
-  filter(tracktype==1) %>%
   left_join(tour_lookup)
 
 xray <- xray %>%
@@ -71,7 +71,7 @@ xray <- xray %>%
   mutate(releasedate = as.Date(releasedate, "%d/%m/%Y", origin = "1970-01-01"))
 
 xray <- xray %>%
-  mutate(unreleased = ifelse(date<releasedate,1,0))
+  mutate(unreleased = ifelse(tracktype==2 | (tracktype==1 & date<releasedate),1,0))
 
 xray2 <- summary %>%
   select(songid, launchdate)
@@ -89,9 +89,17 @@ xray <- xray %>%
   mutate(last_performance=ifelse(date==last_performance,1,0))
 
 xray <- xray %>%
-  mutate(song = 1)
+  left_join(gid_song_minutes)
 
 xray <- xray %>%
+  mutate(track = 1,
+         songtrack = ifelse(tracktype==1, 1, 0))
+
+xray <- xray %>%
+  mutate(release = ifelse(is.na(release)==TRUE, "other", release))
+
+xray_tracks <- xray %>%
+  mutate(units = "tracks") %>%
   mutate(year = lubridate::year(date)) %>%
   mutate(fugazi = ifelse(release=="fugazi",1,0),
          margin_walker = ifelse(release=="margin walker",1,0),
@@ -103,11 +111,14 @@ xray <- xray %>%
          end_hits = ifelse(release=="end hits",1,0),
          the_argument = ifelse(release=="the argument",1,0),
          furniture = ifelse(release=="furniture",1,0),
-         first_demo = ifelse(release=="first demo",1,0))
+         first_demo = ifelse(release=="first demo",1,0),
+         other = ifelse(release=="other",1,0),
+         unreleased = ifelse(unreleased==1,1,0),
+         songs = ifelse(songtrack==1,1,0))
 
 
-xray <- xray %>%
-  group_by(gid, date, year, tour) %>%
+xray_tracks <- xray_tracks %>%
+  group_by(gid, date, year, tour, units) %>%
   summarize(unreleased = sum(unreleased),
             debut = sum(debut),
             farewell = sum(last_performance),
@@ -122,9 +133,54 @@ xray <- xray %>%
             the_argument = sum(the_argument),
             furniture = sum(furniture),
             first_demo = sum(first_demo),
-            songs = sum(song)) %>%
+            other = sum(other),
+            unreleased = sum(unreleased),
+            songs = sum(songs)) %>%
   arrange(date) %>%
   ungroup()
+
+xray_minutes <- xray %>%
+  mutate(units = "minutes") %>%
+  mutate(year = lubridate::year(date)) %>%
+  mutate(fugazi = ifelse(release=="fugazi",minutes,0),
+         margin_walker = ifelse(release=="margin walker",minutes,0),
+         three_songs = ifelse(release=="3 songs",minutes,0),
+         repeater = ifelse(release=="repeater",minutes,0),
+         steady_diet_of_nothing = ifelse(release=="steady diet of nothing",minutes,0),
+         in_on_the_killtaker = ifelse(release=="in on the killtaker",minutes,0),
+         red_medicine = ifelse(release=="red medicine",minutes,0),
+         end_hits = ifelse(release=="end hits",minutes,0),
+         the_argument = ifelse(release=="the argument",minutes,0),
+         furniture = ifelse(release=="furniture",minutes,0),
+         first_demo = ifelse(release=="first demo",minutes,0),
+         other = ifelse(release=="other",minutes,0),
+         unreleased = ifelse(unreleased==1,minutes,0),
+         songs = ifelse(songtrack==1,minutes,0))
+
+
+xray_minutes <- xray_minutes %>%
+  group_by(gid, date, year, tour, units) %>%
+  summarize(unreleased = sum(unreleased),
+            debut = sum(debut),
+            farewell = sum(last_performance),
+            fugazi = sum(fugazi),
+            margin_walker = sum(margin_walker),
+            three_songs = sum(three_songs),
+            repeater = sum(repeater),
+            steady_diet_of_nothing = sum(steady_diet_of_nothing),
+            in_on_the_killtaker = sum(in_on_the_killtaker),
+            red_medicine = sum(red_medicine),
+            end_hits = sum(end_hits),
+            the_argument = sum(the_argument),
+            furniture = sum(furniture),
+            first_demo = sum(first_demo),
+            other = sum(other),
+            unreleased = sum(unreleased),
+            songs = sum(songs)) %>%
+  arrange(date) %>%
+  ungroup()
+
+xray <- rbind.data.frame(xray_tracks, xray_minutes)
 
 xray <- xray %>%
   mutate(released = songs - unreleased,
@@ -445,10 +501,14 @@ ui <- fluidPage(
                              ),
 
                              fluidRow(
-                               column(12,
+                               column(6,
                                       selectizeInput("xrayGraph_choice", "graph:",
                                                      c("releases", "unreleased"),
-                                                     selected="releases", multiple =FALSE))
+                                                     selected="releases", multiple =FALSE)),
+                               column(6,
+                                      selectizeInput("xrayGraph_units", "units:",
+                                                     c("tracks", "minutes"),
+                                                     selected="minutes", multiple =FALSE))
 
                              ),
 
@@ -1183,74 +1243,83 @@ server <- function(input, output, session) {
 
   xray_data <- reactive({
 
-    if (is.null(input$yearInput_xray)==FALSE & is.null(input$tourInput_xray)==FALSE) {
-      xray_data <- xray %>%
-        filter(year %in% input$yearInput_xray &
-                 tour %in% input$tourInput_xray)
 
-    } else if (is.null(input$yearInput_xray)==FALSE & is.null(input$tourInput_xray)==TRUE) {
+    if (is.null(input$yearInput_xray)==FALSE) {
+
       xray_data <- xray %>%
         filter(year %in% input$yearInput_xray)
 
-    } else if (is.null(input$yearInput_xray)==TRUE & is.null(input$tourInput_xray)==FALSE) {
-      xray_data <- xray %>%
-        filter(tour %in% input$tourInput_xray)
-
     } else {
+
       xray_data <- xray
 
     }
 
-    xray_data
+    if (is.null(input$tourInput_xray)==FALSE) {
 
-  })
+      xray_data <- xray_data %>%
+        filter(tour %in% input$tourInput_xray)
 
-  xray_data_long1 <- reactive({
+    } else {
 
-    xray_long <- xray_data() %>%
+      xray_data <- xray_data
+
+    }
+
+    if(input$xrayGraph_units =="minutes") {
+
+      xray_data <- xray_data %>%
+        filter(units=="minutes")
+
+    } else {
+
+      xray_data <- xray_data %>%
+        filter(units=="tracks")
+
+    }
+
+    xray_data <- xray_data %>%
       pivot_longer(cols=c(songs, released, unreleased, debut, farewell, incumbent,
                           fugazi, margin_walker, three_songs, repeater, steady_diet_of_nothing,
                           in_on_the_killtaker, red_medicine, end_hits,
-                          the_argument, furniture, first_demo), names_to="variable", values_to="value") %>%
+                          the_argument, furniture, first_demo, other), names_to="variable", values_to="value") %>%
       left_join(releaseid_variable_colour_code) %>%
       mutate(release = factor(variable, levels=(unique(variable))))
 
-    xray_long
-
   })
 
-  xray_data_long2 <- reactive({
+  xray_data2 <- reactive({
 
     if(input$xrayGraph_choice=="releases") {
 
-      xray_data_long <- xray_data_long1() %>%
-        filter(variable!="songs" & variable!="released" & variable!="unreleased" & variable!="debut" & variable!="farewell" & variable!="incumbent") %>%
+      xray_data2 <- xray_data() %>%
+        filter(variable!="songs" & variable!="released" & variable!="unreleased" & variable!="debut" & variable!="farewell" & variable!="incumbent" & variable!="other") %>%
         filter(value>0) %>%
         arrange(releaseid)
 
     } else {
 
-      xray_data_long <- xray_data_long1() %>%
+      xray_data2 <- xray_data() %>%
         filter(variable=="released" | variable=="unreleased") %>%
         filter(value>0) %>%
         arrange(releaseid)
 
     }
 
-    xray_data_long
+    xray_data2
 
   })
 
   output$xray_plot <- renderPlotly({
 
-    colours <- unique(xray_data_long2()$colour_code)
+    colours <- unique(xray_data2()$colour_code)
 
-    xray_plot <- ggplot(xray_data_long2(), aes(x = date,
+    xray_plot <- ggplot(xray_data2(), aes(x = date,
                                               y = value,
                                               fill = release)) +
       geom_bar(position="stack", stat="identity") +
       xlab("date") +
-      ylab("songs") +
+      ylab(input$xrayGraph_units) +
       scale_fill_manual(values=colours) +
       scale_y_continuous(expand = expansion(mult = c(0, 0.1)),
                          limits = c(-1, NA),
@@ -1261,7 +1330,7 @@ server <- function(input, output, session) {
   })
 
   output$xraydatatable <- DT::renderDataTable(DT::datatable({
-    data <- xray_data_long2()  %>%
+    data <- xray_data2()  %>%
       select(-release, -colour_code, -releaseid)  %>%
       pivot_wider(names_from = variable, values_from = value) %>%
       select(-year, -tour)
