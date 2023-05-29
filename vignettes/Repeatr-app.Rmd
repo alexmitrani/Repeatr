@@ -152,11 +152,7 @@ Each of the following columns can be sorted using the sort controls to the right
 
 ## xray
 
-The stacked bar graph on this page shows the composition of each show in terms of the releases on which the songs feature, or whether the songs were released or not at the time of the show.
-
-![Graph of 1987 shows showing songs by release on the 'xray' page.](images/paste-F8CA214C.png)
-
-![Graph of 1988 shows with released and unreleased songs.](images/paste-EB15E1C8.png)
+This page offers a stacked bar chart designed to show the composition of each show in a variety of ways.
 
 The data can be filtered by:
 
@@ -166,23 +162,39 @@ The data can be filtered by:
 
 The filters are applied sequentially from left to right.
 
-The 'variable' control offers two options:
+![](images/paste-BDE423C1.png)
 
--   releases - show how many songs were drawn from each release
+The 'graph' menu offers three options:
 
--   unreleased - show how many songs were unreleased at the time
+-   releases - show how many songs were drawn from each release. This option includes only songs.
+
+-   unreleased - show how many songs were unreleased at the time. This option includes only songs.
+
+-   other - show how much of each show is songs and how much is other stuff (intros, interludes, encores, one-offs and outros). This option includes all the tracks of each show.
+
+The 'units' menu offers two options:
+
+-   tracks - y-axis of the graph in units of tracks
+
+-   minutes - y-axis of the graph in units of minutes
+
+![1996 Southern USA Tour: minutes by release](images/plot1.png)
+
+![1996 Southern USA Tour: minutes by released / unreleased](images/plot2.png)
+
+![1996 Southern USA Tour: minutes by songs / other](images/plot3.png)
 
 The data table below the graph provides summary data for each show:
 
-![Example of the data table on the 'xray' page.](images/paste-BDFA11A0.png)
+![](images/paste-3419E207.png)
 
 -   fls_link - a link to the corresponding page of the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) site
 
 -   date - the date of the show
 
--   songs - the total number of songs
+-   songs - the total number of songs, or number of minutes of songs, depending on the selected units.
 
-The remaining columns will vary depending on whether the option selected for 'variable' is 'releases' or 'unreleased'. All columns can be sorted, which makes it easy to find the shows with the most songs, the most unreleased songs, or the shows with the most songs from a particular release.
+The remaining columns will vary depending on whether the option selected for 'variable' is 'releases', 'unreleased', or 'other'. All columns can be sorted, which makes it easy to find the shows with the most songs, the most unreleased songs, the shows with the most songs from a particular release, and so on.
 
 ## releases
 

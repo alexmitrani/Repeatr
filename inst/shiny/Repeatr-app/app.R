@@ -1330,7 +1330,8 @@ server <- function(input, output, session) {
       scale_fill_manual(values=colours) +
       scale_y_continuous(expand = expansion(mult = c(0, 0.1)),
                          limits = c(-1, NA),
-                         labels = comma)
+                         labels = comma) +
+      labs(fill='category')
 
     plotly::ggplotly(xray_plot)
 
