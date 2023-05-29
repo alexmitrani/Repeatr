@@ -385,7 +385,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   Repeatr1 <- reshape(data = Repeatr1
                               , direction = "long"
-                              , varying = 6:49
+                              , varying = 6:44
                               , idvar = "gid"
   )
 
@@ -596,12 +596,14 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 # calculate cumulative rendition counts -----------------------------------
 
 
-  mydf <- Repeatr1 %>% select(date, song)
+  mydf <- Repeatr1 %>%
+    filter(tracktype==1) %>%
+    select(date, song)
 
   mydf <- mydf %>%
-    filter(tracktype==1) %>%
     group_by(date, song) %>%
-    summarize(count=n()) %>% ungroup()
+    summarize(count=n()) %>%
+    ungroup()
 
   mydf_wide <- mydf %>%
     pivot_wider(names_from = song, values_from = count, values_fill = 0)
