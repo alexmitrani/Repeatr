@@ -443,72 +443,75 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     filter(nchar>0)
 
   Repeatr1$nchar <- NULL
+  Repeatr1$tracktype <- 1
+
 
   Repeatr1 <- Repeatr1 %>%
-    filter(!grepl("interlude",song))
+    mutate(tracktype=ifelse(grepl("interlude", song)==TRUE, 0, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    filter(!grepl("encore",song))
+    mutate(tracktype=ifelse(grepl("encore", song)==TRUE, 0, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    filter(!grepl("intro",song))
+    mutate(tracktype=ifelse(grepl("intro", song)==TRUE, 0, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    filter(!grepl("track",song))
+    mutate(tracktype=ifelse(grepl("track", song)==TRUE, 0, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    filter(!grepl("remarks",song))
+    mutate(tracktype=ifelse(grepl("remarks", song)==TRUE, 0, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    filter(!grepl("ice cream",song))
+    mutate(tracktype=ifelse(grepl("ice cream", song)==TRUE, 0, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    filter(!grepl("outside",song))
+    mutate(tracktype=ifelse(grepl("outside", song)==TRUE, 0, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    filter(!grepl("sound check",song))
+    mutate(tracktype=ifelse(grepl("sound check", song)==TRUE, 0, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    filter(!grepl("soundcheck",song))
+    mutate(tracktype=ifelse(grepl("soundcheck", song)==TRUE, 0, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    filter(!grepl("crowd",song))
+    mutate(tracktype=ifelse(grepl("crowd", song)==TRUE, 0, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    filter(!grepl("outro",song))
+    mutate(tracktype=ifelse(grepl("outro", song)==TRUE, 0, tracktype))
 
   # Filter to remove unreleased songs or improvised one-offs ---------------------------------------
 
   Repeatr1 <- Repeatr1 %>%
-    filter(song!=("heart on my chest"))
+    mutate(tracktype=ifelse(grepl("heart on my chest", song)==TRUE, 2, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    filter(song!=("lock dug"))
+    mutate(tracktype=ifelse(grepl("lock dug", song)==TRUE, 2, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    filter(song!=("nedcars"))
+    mutate(tracktype=ifelse(grepl("nedcars", song)==TRUE, 2, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    filter(song!=("noisy dub"))
+    mutate(tracktype=ifelse(grepl("noisy dub", song)==TRUE, 2, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    filter(song!=("nsa"))
+    mutate(tracktype=ifelse(grepl("nsa", song)==TRUE, 2, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    filter(song!=("set the charges"))
+    mutate(tracktype=ifelse(grepl("set the charges", song)==TRUE, 2, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    filter(song!=("she is blind"))
+    mutate(tracktype=ifelse(grepl("she is blind", song)==TRUE, 2, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    filter(song!=("world beat"))
+    mutate(tracktype=ifelse(grepl("world beat", song)==TRUE, 2, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    filter(song!=("surf tune"))
+    mutate(tracktype=ifelse(grepl("surf tune", song)==TRUE, 2, tracktype))
 
   # Summarise the data to check frequency counts for all songs --------------
 
   mycount <- Repeatr1 %>%
+    filter(tracktype==1) %>%
     group_by(song) %>%
     summarise(count= n()) %>%
     ungroup()
@@ -532,20 +535,41 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   Repeatr1 <- Repeatr1 %>%
     arrange(gid, song_number)
 
-  Repeatr1 <- Repeatr1 %>%
+  Repeatr1a <- Repeatr1 %>%
+    filter(tracktype==1) %>%
     group_by(gid) %>%
-    mutate(song_number = row_number())
+    mutate(song_number = row_number()) %>%
+    ungroup()
 
-  Repeatr1 <- Repeatr1 %>%
+  Repeatr1a <- Repeatr1a %>%
     mutate(first_song = ifelse(song_number==1, 1, 0))
 
-  Repeatr1 <- Repeatr1 %>%
+  Repeatr1a <- Repeatr1a %>%
     group_by(gid) %>%
     mutate(number_songs = n()) %>%
     mutate(last_song = ifelse(song_number==number_songs, 1, 0)) %>%
     ungroup()
 
-  Repeatr1 <- Repeatr1 %>% left_join(songidlookup)
+  Repeatr1a <- Repeatr1a %>%
+    select(gid, song, number_songs, first_song, last_song)
+
+  Repeatr1b <- Repeatr1a %>%
+    group_by(gid) %>%
+    slice(1) %>%
+    select(gid, number_songs) %>%
+    ungroup()
+
+  Repeatr1a <- Repeatr1a %>%
+    select(-number_songs)
+
+  Repeatr1 <- Repeatr1 %>%
+    left_join(Repeatr1b)
+
+  Repeatr1 <- Repeatr1 %>%
+    left_join(Repeatr1a)
+
+  Repeatr1 <- Repeatr1 %>%
+    left_join(songidlookup)
 
 
   # add additional variables for potential use in the choice modelling
@@ -559,19 +583,8 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   # Save disaggregate data -----------------------------------
 
   Repeatr1 <- Repeatr1 %>%
-    select(gid, date, year, month, day, song_number, songid, song, number_songs, first_song, last_song, releaseid,	release, track_number, instrumental,	vocals_picciotto,	vocals_mackaye,	vocals_lally,	duration_seconds) %>%
+    select(gid, date, year, month, day, tracktype, song_number, songid, song, number_songs, first_song, last_song, releaseid,	release, track_number, instrumental,	vocals_picciotto,	vocals_mackaye,	vocals_lally,	duration_seconds) %>%
     arrange(date, song_number)
-
-  # get rid of duplicated song records
-  Repeatr1 <- Repeatr1 %>%
-    filter(gid!="perth-australia-111096" | song_number<20)
-
-  # get rid of non-existent songs
-  Repeatr1 <- Repeatr1 %>%
-    filter(gid!="washington-dc-usa-41291" | song_number<=10 | song_number>=13)
-
-  Repeatr1 <- Repeatr1 %>%
-    mutate(song_number = ifelse(gid=="washington-dc-usa-41291" & song_number>=13, song_number-2, song_number))
 
   setwd(mydatadir)
 
@@ -586,6 +599,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   mydf <- Repeatr1 %>% select(date, song)
 
   mydf <- mydf %>%
+    filter(tracktype==1) %>%
     group_by(date, song) %>%
     summarize(count=n()) %>% ungroup()
 
@@ -755,11 +769,11 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   # calculate cumulative duration counts -----------------------------------
 
   song_songid <- Repeatr1 %>%
+    filter(tracktype==1) %>%
     group_by(song, songid) %>%
     slice(1) %>%
     select(song, songid) %>%
-    ungroup() %>%
-    filter(song!="crowd")
+    ungroup()
 
   mydf <- fls_tags %>%
     select(song, seconds) %>%
@@ -811,6 +825,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   # calculate duration summary -----------------------------------
 
   song_songid <- Repeatr1 %>%
+    filter(tracktype==1) %>%
     group_by(song, songid) %>%
     slice(1) %>%
     select(song, songid) %>%

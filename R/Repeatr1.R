@@ -12,6 +12,7 @@
 #' \item{year}{Year}
 #' \item{month}{Month, as a number}
 #' \item{day}{Day, as a number}
+#' \item{tracktype}{0 = interlude, 1 = song, 2 = other music}
 #' \item{song_number}{The number of the song in the sequence of songs that were performed as part of that show}
 #' \item{songid}{numeric id for each song}
 #' \item{song}{The name of the song}
