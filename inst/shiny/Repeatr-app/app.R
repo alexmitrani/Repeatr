@@ -38,7 +38,6 @@ shows_data <- othervariables %>%
   mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>")) %>%
   left_join(gid_minutes)
 
-
 last_performance_data <- Repeatr1 %>%
   select(date, song)%>%
   group_by(song) %>%
@@ -58,9 +57,15 @@ tour_lookup <- othervariables %>% select(gid, tour) %>%
 releaseid_variable_colour_code <- releasesdatalookup %>%
   select(releaseid, variable, colour_code)
 
-xray <- Repeatr1 %>% left_join(tour_lookup)
-xray <- xray %>% select(-release)
-xray <- xray %>% left_join(releasesdatalookup)
+xray <- Repeatr1 %>%
+  filter(tracktype==1) %>%
+  left_join(tour_lookup)
+
+xray <- xray %>%
+  select(-release)
+
+xray <- xray %>%
+  left_join(releasesdatalookup)
 
 xray <- xray %>%
   mutate(releasedate = as.Date(releasedate, "%d/%m/%Y", origin = "1970-01-01"))
@@ -134,10 +139,12 @@ xray <- xray %>%
   relocate(fls_link, year, tour, date, songs, unreleased, debut, farewell)
 
 transitions_data_da1 <- Repeatr1 %>%
+  filter(tracktype==1) %>%
   select(gid,date,song_number,song) %>%
   rename(song1 = song)
 
 transitions_data_da2 <- Repeatr1 %>%
+  filter(tracktype==1) %>%
   select(gid,date,song_number,song) %>%
   mutate(song_number = song_number-1) %>%
   rename(song2 = song)
@@ -209,7 +216,8 @@ releases_summary <- releases_summary %>%
   filter(releaseid>0)
 
 duration_data_da <- Repeatr1 %>%
-  select(gid,date,song_number,song) %>%
+  filter(tracktype==1) %>%
+  select(gid,date, song_number, song) %>%
   mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
   mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>")) %>%
   left_join(gid_song_minutes)
@@ -1574,6 +1582,7 @@ server <- function(input, output, session) {
       select(gid, tour)
 
     mydf1 <- Repeatr1 %>%
+      filter(tracktype==1) %>%
       left_join(tourdata) %>%
       select(gid,year,date,song_number,song, tour) %>%
       rename(song1 = song)
