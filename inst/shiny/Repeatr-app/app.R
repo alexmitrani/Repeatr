@@ -71,7 +71,7 @@ xray <- xray %>%
   mutate(releasedate = as.Date(releasedate, "%d/%m/%Y", origin = "1970-01-01"))
 
 xray <- xray %>%
-  mutate(unreleased = ifelse(tracktype==2 | (tracktype==1 & date<releasedate),1,0))
+  mutate(unreleased = ifelse(tracktype==2 | (tracktype==1 & date<releasedate) | song=="preprovisional" | song=="world beat",1,0))
 
 xray2 <- summary %>%
   select(songid, launchdate)
@@ -80,13 +80,15 @@ xray <- xray %>%
   left_join(xray2)
 
 xray <- xray %>%
-  mutate(debut = ifelse(date==launchdate,1,0))
+  mutate(debut = ifelse(date==launchdate,1,0)) %>%
+  mutate(debut = ifelse(is.na(debut)==TRUE,0,debut))
 
 xray <- xray %>%
   left_join(last_performance_data)
 
 xray <- xray %>%
-  mutate(last_performance=ifelse(date==last_performance,1,0))
+  mutate(last_performance=ifelse(date==last_performance,1,0)) %>%
+  mutate(last_performance = ifelse(is.na(last_performance)==TRUE,0,last_performance))
 
 xray <- xray %>%
   left_join(gid_song_minutes)
@@ -157,6 +159,8 @@ xray_minutes <- xray %>%
          unreleased = ifelse(unreleased==1,minutes,0),
          songs = ifelse(songtrack==1,minutes,0))
 
+xray_minutes <- xray_minutes %>%
+  mutate(other = ifelse(is.na(other)==TRUE,0,other))
 
 xray_minutes <- xray_minutes %>%
   group_by(gid, date, year, tour, units) %>%
