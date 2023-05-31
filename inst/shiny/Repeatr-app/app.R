@@ -180,7 +180,8 @@ xray_minutes <- xray_minutes %>%
   arrange(date) %>%
   ungroup()
 
-xray <- rbind.data.frame(xray_tracks, xray_minutes)
+xray <- rbind.data.frame(xray_tracks, xray_minutes) %>%
+  arrange(units, date)
 
 xray <- xray %>%
   mutate(released = songs - unreleased,
@@ -1341,7 +1342,8 @@ server <- function(input, output, session) {
     data <- xray_data2()  %>%
       select(-release, -colour_code, -releaseid, -units)  %>%
       pivot_wider(names_from = variable, values_from = value) %>%
-      select(-year, -tour)
+      select(-year, -tour) %>%
+      arrange(date)
 
     data$songs <- rowSums(data[sapply(data, is.numeric)], na.rm = TRUE)
 
