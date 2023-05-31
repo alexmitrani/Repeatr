@@ -607,7 +607,9 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   mydf_wide2 <- mydf_wide
 
-  for(colindex in 2:95) {
+  number_columns <- ncols(mydf_wide2)
+
+  for(colindex in 2:number_columns) {
 
     mydf_wide2[,colindex] <- cumsum(mydf_wide2[,colindex])
 
