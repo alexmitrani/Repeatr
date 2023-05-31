@@ -503,9 +503,6 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     mutate(tracktype=ifelse(grepl("she is blind", song)==TRUE, 2, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("world beat", song)==TRUE, 2, tracktype))
-
-  Repeatr1 <- Repeatr1 %>%
     mutate(tracktype=ifelse(grepl("surf tune", song)==TRUE, 2, tracktype))
 
   # Summarise the data to check frequency counts for all songs --------------

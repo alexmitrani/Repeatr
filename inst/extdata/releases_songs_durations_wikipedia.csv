@@ -1,94 +1,95 @@
 rank_length,releaseid,track_number,song,songid,instrumental,vocals_picciotto,vocals_mackaye,vocals_lally,duration_seconds
-93,0,1,preprovisional,64,0,1,0,0,130
-66,1,1,waiting room,92,0,0,1,0,173
-67,1,2,bulldog front,13,0,1,0,0,173
-75,1,3,bad mouth,6,0,0,1,0,155
-74,1,4,burning,14,0,1,0,0,159
-62,1,5,give me the cure,37,0,1,0,0,178
-8,1,6,suggestion,83,0,0,1,0,284
-15,1,7,glueman,38,0,1,0,0,263
-78,2,1,margin walker,54,0,1,0,0,150
-42,2,2,and the same,2,0,0,1,0,207
-69,2,3,burning too,15,0,0,1,0,170
-82,2,4,provisional,66,0,1,0,0,137
-85,2,5,lockdown,51,0,1,0,0,130
-22,2,6,promises,65,0,0,1,0,242
-65,3,1,song #1,78,0,0,1,0,174
-59,3,2,joe #1,45,1,0,0,0,181
-92,3,3,break-in,11,0,1,0,0,92
-19,4,1,turnover,89,0,1,0,0,256
-60,4,2,repeater,71,0,0,1,0,181
-77,4,3,brendan #1,12,1,0,0,0,152
-61,4,4,merchandise,55,0,0,1,0,179
-28,4,5,blueprint,9,0,1,0,0,232
-45,4,6,sieve-fisted find,76,0,1,0,0,204
-90,4,7,greed,40,0,0,1,0,107
-41,4,8,two beats off,90,0,1,0,0,208
-76,4,9,styrofoam,82,0,0,1,0,154
-81,4,10,reprovisional,72,0,1,0,0,138
-7,4,11,shut the door,75,0,0,1,0,289
-52,5,1,exit only,27,0,1,0,0,191
-46,5,2,reclamation,69,0,0,1,0,201
-44,5,3,nice new outfit,56,0,1,0,0,206
-55,5,4,stacks,79,0,0,1,0,188
-50,5,5,latin roots,49,0,1,0,0,193
-34,5,6,steady diet,80,1,0,0,0,222
-83,5,7,long division,53,0,0,1,0,132
-26,5,8,runaway return,74,0,1,0,0,238
-36,5,9,polish,63,0,0,1,0,218
-43,5,10,dear justice letter,22,0,1,0,0,207
-63,5,11,kyeo,46,0,0,1,0,178
-73,6,1,facet squared,28,0,0,1,0,162
-87,6,2,public witness program,67,0,1,0,0,124
-51,6,3,returning the screw,73,0,0,1,0,193
-24,6,4,smallpox champion,77,0,1,0,0,241
-30,6,5,rend it,70,0,1,0,0,228
 1,6,6,23 beats off,1,0,0,1,0,401
-37,6,7,sweet and low,84,1,0,0,0,216
-79,6,8,cassavetes,18,0,1,0,0,150
-89,6,9,great cop,39,0,0,1,0,112
-48,6,10,walken's syndrome,93,0,1,0,0,198
-32,6,11,instrument,44,0,0,1,0,223
-9,6,12,last chance for a slow dance,47,0,1,0,0,278
-49,7,1,do you like me,23,0,1,0,0,196
+43,2,2,and the same,2,0,0,1,0,207
+13,9,11,argument,3,0,0,1,0,267
+12,8,10,arpeggiator,4,1,0,0,0,268
+93,7,11,back to base,5,0,0,1,0,105
+76,1,3,bad mouth,6,0,0,1,0,155
 70,7,2,bed for the scraping,7,0,0,1,0,170
-39,7,3,latest disgrace,48,0,1,0,0,214
 56,7,4,birthday pony,8,0,0,1,0,188
-58,7,5,forensic scene,34,0,1,0,0,185
-57,7,6,combination lock,21,1,0,0,0,186
-31,7,7,"fell, destroyed",30,0,1,0,0,226
-5,7,8,by you,16,0,0,0,1,311
-47,7,9,version,91,1,0,0,0,200
-40,7,10,target,85,0,1,0,0,212
-91,7,11,back to base,5,0,0,1,0,105
-68,7,12,downed city,24,0,1,0,0,173
-18,7,13,long distance runner,52,0,0,1,0,257
+28,4,5,blueprint,9,0,1,0,0,232
 84,8,1,break,10,0,0,1,0,132
-72,8,2,place position,62,0,1,0,0,165
-29,8,3,recap modotti,68,0,0,0,1,230
-20,8,4,no surprise,58,0,1,0,0,252
-80,8,5,five corporations,31,0,0,1,0,149
-88,8,6,caustic acrostic,19,0,1,0,0,121
+94,3,3,break-in,11,0,1,0,0,92
+78,4,3,brendan #1,12,1,0,0,0,152
+67,1,2,bulldog front,13,0,1,0,0,173
+75,1,4,burning,14,0,1,0,0,159
+71,2,3,burning too,15,0,0,1,0,170
+5,7,8,by you,16,0,0,0,1,311
+14,9,2,cashout,17,0,0,1,0,264
+79,6,8,cassavetes,18,0,1,0,0,150
+90,8,6,caustic acrostic,19,0,1,0,0,121
 6,8,7,closed captioned,20,0,0,1,0,292
+58,7,6,combination lock,21,1,0,0,0,186
+44,5,10,dear justice letter,22,0,1,0,0,207
+50,7,1,do you like me,23,0,1,0,0,196
+68,7,12,downed city,24,0,1,0,0,173
+25,9,4,epic problem,25,0,0,1,0,239
+53,5,1,exit only,27,0,1,0,0,191
+17,9,9,ex-spectator,26,0,0,1,0,258
+74,6,1,facet squared,28,0,0,1,0,162
+35,8,13,fd,29,0,0,1,0,222
+31,7,7,"fell, destroyed",30,0,1,0,0,226
+81,8,5,five corporations,31,0,0,1,0,149
 3,8,8,floating boy,32,0,1,0,0,345
 16,8,9,foreman's dog,33,0,1,0,0,261
-12,8,10,arpeggiator,4,1,0,0,0,268
-64,8,11,guilford fall,41,0,1,0,0,177
-21,8,12,pink frosty,61,0,0,1,0,249
-35,8,13,fd,29,0,0,1,0,222
-14,9,2,cashout,17,0,0,1,0,264
+59,7,5,forensic scene,34,0,1,0,0,185
 27,9,3,full disclosure,35,0,1,0,0,233
-25,9,4,epic problem,25,0,0,1,0,239
-53,9,5,life and limb,50,0,1,0,0,189
-4,9,6,the kill,86,0,0,0,1,327
-2,9,7,strangelight,81,0,1,0,0,353
+39,10,1,furniture,36,0,0,1,0,215
+63,1,5,give me the cure,37,0,1,0,0,178
+15,1,7,glueman,38,0,1,0,0,263
+91,6,9,great cop,39,0,0,1,0,112
+92,4,7,greed,40,0,0,1,0,107
+65,8,11,guilford fall,41,0,1,0,0,177
+88,10,3,hello morning,42,0,1,0,0,126
+72,11,10,in defense of humans,43,0,0,1,0,167
+33,6,11,instrument,44,0,0,1,0,223
+60,3,2,joe #1,45,1,0,0,0,181
+64,5,11,kyeo,46,0,0,1,0,178
+9,6,12,last chance for a slow dance,47,0,1,0,0,278
+40,7,3,latest disgrace,48,0,1,0,0,214
+51,5,5,latin roots,49,0,1,0,0,193
+54,9,5,life and limb,50,0,1,0,0,189
+86,2,5,lockdown,51,0,1,0,0,130
+18,7,13,long distance runner,52,0,0,1,0,257
+85,5,7,long division,53,0,0,1,0,132
+80,2,1,margin walker,54,0,1,0,0,150
+62,4,4,merchandise,55,0,0,1,0,179
+45,5,3,nice new outfit,56,0,1,0,0,206
+22,9,10,nightshop,57,0,1,0,0,242
+20,8,4,no surprise,58,0,1,0,0,252
+55,10,2,number 5,59,1,0,0,0,189
 11,9,8,oh,60,0,1,0,0,269
-17,9,9,ex-spectator,26,0,0,1,0,258
-23,9,10,nightshop,57,0,1,0,0,242
-13,9,11,argument,3,0,0,1,0,267
-38,10,1,furniture,36,0,0,1,0,215
-54,10,2,number 5,59,1,0,0,0,189
-86,10,3,hello morning,42,0,1,0,0,126
+21,8,12,pink frosty,61,0,0,1,0,249
+73,8,2,place position,62,0,1,0,0,165
+37,5,9,polish,63,0,0,1,0,218
+87,0,1,preprovisional,64,0,1,0,0,130
+23,2,6,promises,65,0,0,1,0,242
+83,2,4,provisional,66,0,1,0,0,137
+89,6,2,public witness program,67,0,1,0,0,124
+29,8,3,recap modotti,68,0,0,0,1,230
+47,5,2,reclamation,69,0,0,1,0,201
+30,6,5,rend it,70,0,1,0,0,228
+61,4,2,repeater,71,0,0,1,0,181
+82,4,10,reprovisional,72,0,1,0,0,138
+52,6,3,returning the screw,73,0,0,1,0,193
+26,5,8,runaway return,74,0,1,0,0,238
+7,4,11,shut the door,75,0,0,1,0,289
+46,4,6,sieve-fisted find,76,0,1,0,0,204
+24,6,4,smallpox champion,77,0,1,0,0,241
+66,3,1,song #1,78,0,0,1,0,174
+57,5,4,stacks,79,0,0,1,0,188
+36,5,6,steady diet,80,1,0,0,0,222
+2,9,7,strangelight,81,0,1,0,0,353
+77,4,9,styrofoam,82,0,0,1,0,154
+8,1,6,suggestion,83,0,0,1,0,284
+38,6,7,sweet and low,84,1,0,0,0,216
+41,7,10,target,85,0,1,0,0,212
+4,9,6,the kill,86,0,0,0,1,327
 10,11,5,the word,87,0,0,1,0,278
-33,11,8,turn off your guns,88,0,0,1,0,223
-71,11,10,in defense of humans,43,0,0,1,0,167
+34,11,8,turn off your guns,88,0,0,1,0,223
+19,4,1,turnover,89,0,1,0,0,256
+42,4,8,two beats off,90,0,1,0,0,208
+48,7,9,version,91,1,0,0,0,200
+69,1,1,waiting room,92,0,0,1,0,173
+49,6,10,walken's syndrome,93,0,1,0,0,198
+32,0,2,world beat,94,1,0,0,0,226
