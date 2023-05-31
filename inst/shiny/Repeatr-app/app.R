@@ -226,7 +226,7 @@ show_sequence <- Repeatr1 %>%
 
 releases_menu_list <- releasesdatalookup %>%
   arrange(releaseid) %>%
-  filter(releaseid>0)
+  filter(releaseid!=12 & releaseid!=14 & releaseid!=15)
 
 colour_code <- releasesdatalookup %>%
   arrange(releaseid) %>%
