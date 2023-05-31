@@ -607,7 +607,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   mydf_wide2 <- mydf_wide
 
-  number_columns <- ncols(mydf_wide2)
+  number_columns <- ncol(mydf_wide2)
 
   for(colindex in 2:number_columns) {
 
