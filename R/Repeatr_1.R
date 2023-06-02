@@ -871,6 +871,8 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     releaseid_variable_colour_code <- releasesdatalookup %>%
       select(releaseid, variable, colour_code)
 
+    save(releaseid_variable_colour_code, file = "releaseid_variable_colour_code.rda")
+
     transitions_data_da1 <- Repeatr1 %>%
       filter(tracktype==1) %>%
       select(gid,date,song_number,song) %>%
@@ -932,6 +934,8 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
       mutate(shows = last_show-show_num+1,
              rate = round(count / shows, digits=2)) %>%
       filter(releaseid>0)
+
+    save(releases_data_input, file = "releases_data_input.rda")
 
     releases_summary <- releases_data_input %>%
       group_by(releaseid, release, last_show) %>%
