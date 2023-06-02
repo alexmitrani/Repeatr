@@ -55,6 +55,9 @@
     <loc>/reference/diffr.html</loc>
   </url>
   <url>
+    <loc>/reference/duration_data_da.html</loc>
+  </url>
+  <url>
     <loc>/reference/duration_summary.html</loc>
   </url>
   <url>
@@ -76,6 +79,9 @@
     <loc>/reference/index.html</loc>
   </url>
   <url>
+    <loc>/reference/last_performance_data.html</loc>
+  </url>
+  <url>
     <loc>/reference/nscmov.html</loc>
   </url>
   <url>
@@ -88,7 +94,19 @@
     <loc>/reference/rawdata.html</loc>
   </url>
   <url>
+    <loc>/reference/releaseid_variable_colour_code.html</loc>
+  </url>
+  <url>
     <loc>/reference/releasesdatalookup.html</loc>
+  </url>
+  <url>
+    <loc>/reference/releases_data_input.html</loc>
+  </url>
+  <url>
+    <loc>/reference/releases_menu_list.html</loc>
+  </url>
+  <url>
+    <loc>/reference/releases_summary.html</loc>
   </url>
   <url>
     <loc>/reference/Repeatr0.html</loc>
@@ -127,6 +145,9 @@
     <loc>/reference/results_ml_Repeatr4_os.html</loc>
   </url>
   <url>
+    <loc>/reference/shows_data.html</loc>
+  </url>
+  <url>
     <loc>/reference/songidlookup.html</loc>
   </url>
   <url>
@@ -142,6 +163,12 @@
     <loc>/reference/transitions.html</loc>
   </url>
   <url>
+    <loc>/reference/transitions_data_da.html</loc>
+  </url>
+  <url>
     <loc>/reference/venuesdata.html</loc>
+  </url>
+  <url>
+    <loc>/reference/xray.html</loc>
   </url>
 </urlset>
