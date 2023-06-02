@@ -909,6 +909,8 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
       arrange(releaseid) %>%
       filter(releaseid!=12 & releaseid!=14 & releaseid!=15)
 
+    save(releases_menu_list, file = "releases_menu_list.rda")
+
     colour_code <- releasesdatalookup %>%
       arrange(releaseid) %>%
       filter(releaseid>0) %>%
@@ -1144,6 +1146,8 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
       left_join(gid_song_minutes)
 
     save(duration_data_da, file = "duration_data_da.rda")
+
+    setwd(mydir)
 
 
 # finishing up ------------------------------------------------------------
