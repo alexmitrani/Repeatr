@@ -746,6 +746,9 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   fls_tags <- fls_tags %>%
     filter(venue!="Democrazy" | gid!="amsterdam-netherlands-101688")
 
+  fls_tags <- fls_tags %>%
+    mutate(song = ifelse(gid=="peoria-il-usa-100995" & song=="dance rap", "interlude 4", song))
+
   fls_tags_show <- fls_tags %>%
     group_by(date, venue, city, state, country, album, gid) %>%
     summarize(seconds = sum(seconds)) %>%
@@ -960,6 +963,11 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
       select(gid, song, seconds) %>%
       mutate(minutes = round(seconds/60, digits = 2)) %>%
       select(-seconds)
+
+    checkmatch <- Repeatr1 %>%
+      full_join(gid_song_minutes) %>%
+      filter(is.na(minutes)==TRUE | is.na(year)==TRUE) %>%
+      arrange(date, song_number)
 
     tour_lookup <- othervariables %>% select(gid, tour) %>%
       group_by(gid) %>%
