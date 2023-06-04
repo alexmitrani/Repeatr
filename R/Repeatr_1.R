@@ -804,7 +804,6 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   mydf <- fls_tags %>%
     select(song, seconds) %>%
-    mutate(minutes = round(seconds/60, digits = 2)) %>%
     select(-seconds) %>%
     left_join(song_songid) %>%
     filter(is.na(songid)==FALSE) %>%
@@ -987,8 +986,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
       select(-seconds)
 
     gid_song_minutes <- fls_tags %>%
-      select(gid, song, seconds) %>%
-      mutate(minutes = round(seconds/60, digits = 2)) %>%
+      select(gid, song, minutes) %>%
       select(-seconds)
 
     checkmatch <- Repeatr1 %>%
