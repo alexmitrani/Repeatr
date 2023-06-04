@@ -636,8 +636,6 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
 # process tags data -------------------------------------------------------
 
-  browser()
-
   setwd(myinputdir)
 
   fls_tags_name_recoded <- system.file("extdata", "fls_tags_name_recoded.csv", package = "Repeatr")
