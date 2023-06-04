@@ -340,7 +340,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   fls_tags_name_recoded <- read.csv(fls_tags_name_recoded)
 
-  fls_tags <- fls_tags_importer(myfilename = "fls_tags.csv")
+  fls_tags <- fls_tags_importer(myfilename = "fls_tags.txt")
 
   fls_tags <- fls_tags %>%
     mutate(name = str_to_lower(name))
@@ -804,6 +804,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   mydf <- fls_tags %>%
     select(song, seconds) %>%
+    mutate(minutes = round(seconds/60, digits = 2)) %>%
     select(-seconds) %>%
     left_join(song_songid) %>%
     filter(is.na(songid)==FALSE) %>%
@@ -886,7 +887,6 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 # prepare input data for Repeatr-app --------------------------------------
 
     setwd(mydatadir)
-
 
     releaseid_variable_colour_code <- releasesdatalookup %>%
       select(releaseid, variable, colour_code)
@@ -986,8 +986,8 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
       select(-seconds)
 
     gid_song_minutes <- fls_tags %>%
-      select(gid, song, minutes) %>%
-      select(-seconds)
+      mutate(minutes = round(seconds/60, digits = 2)) %>%
+      select(gid, song, minutes)
 
     checkmatch <- Repeatr1 %>%
       full_join(gid_song_minutes) %>%
