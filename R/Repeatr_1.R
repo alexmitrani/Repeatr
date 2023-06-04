@@ -416,15 +416,6 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     mutate(song = ifelse(song=="bed for the scraping (continued)", "bed for the scraping", song))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(song = ifelse(song=="surf tune 1", "surf tune", song))
-
-  Repeatr1 <- Repeatr1 %>%
-    mutate(song = ifelse(song=="surf tune 2", "surf tune", song))
-
-  Repeatr1 <- Repeatr1 %>%
-    mutate(song = ifelse(song=="surf tune 3", "surf tune", song))
-
-  Repeatr1 <- Repeatr1 %>%
     mutate(song = ifelse(song=="promises bit soundcheck", "promises", song))
 
   Repeatr1 <- Repeatr1 %>%
@@ -644,6 +635,8 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
 
 # process tags data -------------------------------------------------------
+
+  browser()
 
   setwd(myinputdir)
 
