@@ -10712,7 +10712,7 @@ track; artist; album; name; duration
 18; Fugazi; 19930809 Fort Reno	 Washington	 DC	 USA; Last Chance for a Slow Dance; 4:11		
 19; Fugazi; 19930809 Fort Reno	 Washington	 DC	 USA; Sweet And Low; 6:54		
 01; Fugazi; 19930816 Maxwell's	 Hoboken	 NJ	 USA; Intro; 1:40		
-02; Fugazi; 19930816 Maxwell's	 Hoboken	 NJ	 USA; Fell	 Destroyed Instrumental; 2:31	
+02; Fugazi; 19930816 Maxwell's	 Hoboken	 NJ	 USA; Fell, Destroyed Instrumental; 2:31	
 03; Fugazi; 19930816 Maxwell's	 Hoboken	 NJ	 USA; Facet Squared; 2:17		
 04; Fugazi; 19930816 Maxwell's	 Hoboken	 NJ	 USA; Public Witness Program; 1:57		
 05; Fugazi; 19930816 Maxwell's	 Hoboken	 NJ	 USA; Interlude 1; 1:00		
@@ -11194,7 +11194,7 @@ track; artist; album; name; duration
 18; Fugazi; 19930906 Blind Mellons	 Buffalo	 NY	 USA; Interlude 6; 1:24		
 19; Fugazi; 19930906 Blind Mellons	 Buffalo	 NY	 USA; Long Division; 2:15		
 20; Fugazi; 19930906 Blind Mellons	 Buffalo	 NY	 USA; Two Beats Off; 4:18		
-21; Fugazi; 19930906 Blind Mellons	 Buffalo	 NY	 USA; Fell	 Destroyed Instrumental; 2:16	
+21; Fugazi; 19930906 Blind Mellons	 Buffalo	 NY	 USA; Fell, Destroyed Instrumental; 2:16	
 22; Fugazi; 19930906 Blind Mellons	 Buffalo	 NY	 USA; Promises; 6:29		
 23; Fugazi; 19930906 Blind Mellons	 Buffalo	 NY	 USA; Exit Only; 2:45		
 24; Fugazi; 19930906 Blind Mellons	 Buffalo	 NY	 USA; Encore; 3:14		
@@ -11285,7 +11285,7 @@ track; artist; album; name; duration
 23; Fugazi; 19930910 RPM Warehouse	 Toronto	 Ontario	 Canada; Great Cop; 1:52		
 24; Fugazi; 19930910 RPM Warehouse	 Toronto	 Ontario	 Canada; Public Witness Program; 1:53		
 25; Fugazi; 19930910 RPM Warehouse	 Toronto	 Ontario	 Canada; Shut the Door; 8:20		
-26; Fugazi; 19930910 RPM Warehouse	 Toronto	 Ontario	 Canada; Fell	 Destroyed Instrumental; 3:02	
+26; Fugazi; 19930910 RPM Warehouse	 Toronto	 Ontario	 Canada; Fell, Destroyed Instrumental; 3:02	
 27; Fugazi; 19930910 RPM Warehouse	 Toronto	 Ontario	 Canada; Outro; 0:59		
 01; Fugazi; 19930911 Carleton University Porter Hall	 Ottawa	 Ontario	 Canada; Intro; 1:53		
 02; Fugazi; 19930911 Carleton University Porter Hall	 Ottawa	 Ontario	 Canada; Styrofoam; 4:18		
@@ -11357,7 +11357,7 @@ track; artist; album; name; duration
 17; Fugazi; 19930913 Cook Commons	 Burlington	 Vermont	 USA; Interlude 2; 0:35		
 18; Fugazi; 19930913 Cook Commons	 Burlington	 Vermont	 USA; Promises; 7:43		
 19; Fugazi; 19930913 Cook Commons	 Burlington	 Vermont	 USA; Encore 1; 2:56		
-20; Fugazi; 19930913 Cook Commons	 Burlington	 Vermont	 USA; Fell	 Destroyed; 3:02	
+20; Fugazi; 19930913 Cook Commons	 Burlington	 Vermont	 USA; Fell, Destroyed; 3:02	
 21; Fugazi; 19930913 Cook Commons	 Burlington	 Vermont	 USA; Smallpox Champion; 3:56		
 22; Fugazi; 19930913 Cook Commons	 Burlington	 Vermont	 USA; Interlude 3; 0:53		
 23; Fugazi; 19930913 Cook Commons	 Burlington	 Vermont	 USA; Returning the Screw; 3:18		
@@ -11416,7 +11416,7 @@ track; artist; album; name; duration
 22; Fugazi; 19930916 Bennington College	 Bennington	 VT	 USA; Runaway Return; 3:47		
 23; Fugazi; 19930916 Bennington College	 Bennington	 VT	 USA; Interlude 5; 0:21		
 24; Fugazi; 19930916 Bennington College	 Bennington	 VT	 USA; KYEO; 3:05		
-25; Fugazi; 19930916 Bennington College	 Bennington	 VT	 USA; Fell	 Destroyed Instrumental; 3:00	
+25; Fugazi; 19930916 Bennington College	 Bennington	 VT	 USA; Fell, Destroyed Instrumental; 3:00	
 26; Fugazi; 19930916 Bennington College	 Bennington	 VT	 USA; Outro; 1:13		
 01; Fugazi; 19930917 Wallace Civic Center	 Fitchburg	 MA	 USA; Opening Remarks; 2:41		
 02; Fugazi; 19930917 Wallace Civic Center	 Fitchburg	 MA	 USA; Reclamation; 3:51		
@@ -11442,7 +11442,7 @@ track; artist; album; name; duration
 22; Fugazi; 19930917 Wallace Civic Center	 Fitchburg	 MA	 USA; Encore; 2:40		
 23; Fugazi; 19930917 Wallace Civic Center	 Fitchburg	 MA	 USA; Cassavetes; 2:42		
 24; Fugazi; 19930917 Wallace Civic Center	 Fitchburg	 MA	 USA; Merchandise; 2:39		
-25; Fugazi; 19930917 Wallace Civic Center	 Fitchburg	 MA	 USA; Fell	 Destroyed Instrumental; 4:49	
+25; Fugazi; 19930917 Wallace Civic Center	 Fitchburg	 MA	 USA; Fell, Destroyed Instrumental; 4:49	
 26; Fugazi; 19930917 Wallace Civic Center	 Fitchburg	 MA	 USA; Glue Man; 8:22		
 01; Fugazi; 19930918 University of Connecticut Fieldhouse	 Storrs	 CT	 USA; Intro; 2:16		
 02; Fugazi; 19930918 University of Connecticut Fieldhouse	 Storrs	 CT	 USA; Joe #1; 2:59		
@@ -11490,7 +11490,7 @@ track; artist; album; name; duration
 21; Fugazi; 19930919 Lupo's Heartbreak Hotel	 Providence	 RI	 USA; Shut The Door; 8:29		
 22; Fugazi; 19930919 Lupo's Heartbreak Hotel	 Providence	 RI	 USA; Two Beats Off; 4:45		
 23; Fugazi; 19930919 Lupo's Heartbreak Hotel	 Providence	 RI	 USA; Encore; 3:08		
-24; Fugazi; 19930919 Lupo's Heartbreak Hotel	 Providence	 RI	 USA; Fell	 Destroyed Instrumental; 3:04	
+24; Fugazi; 19930919 Lupo's Heartbreak Hotel	 Providence	 RI	 USA; Fell, Destroyed Instrumental; 3:04	
 25; Fugazi; 19930919 Lupo's Heartbreak Hotel	 Providence	 RI	 USA; Facet Squared; 2:18		
 26; Fugazi; 19930919 Lupo's Heartbreak Hotel	 Providence	 RI	 USA; Exit Only; 2:57		
 27; Fugazi; 19930919 Lupo's Heartbreak Hotel	 Providence	 RI	 USA; Repeater; 3:07		
@@ -11667,7 +11667,7 @@ track; artist; album; name; duration
 27; Fugazi; 19930927 Trocadero	 Philadelphia	 PA	 USA; Encore; 2:41		
 28; Fugazi; 19930927 Trocadero	 Philadelphia	 PA	 USA; Reclamation; 3:50		
 29; Fugazi; 19930927 Trocadero	 Philadelphia	 PA	 USA; Exit Only; 3:48		
-30; Fugazi; 19930927 Trocadero	 Philadelphia	 PA	 USA; Fell	 Destroyed Instrumental; 3:19	
+30; Fugazi; 19930927 Trocadero	 Philadelphia	 PA	 USA; Fell, Destroyed Instrumental; 3:19	
 31; Fugazi; 19930927 Trocadero	 Philadelphia	 PA	 USA; Instrument; 3:32		
 32; Fugazi; 19930927 Trocadero	 Philadelphia	 PA	 USA; Outro; 1:28		
 01; Fugazi; 19930928 Trocadero	 Philadelphia	 PA	 USA; Intro; 2:40		
@@ -11718,7 +11718,7 @@ track; artist; album; name; duration
 20; Fugazi; 19930929 Strand	 Rehobeth Beach	 DE	 USA; Public Witness Program; 2:01		
 21; Fugazi; 19930929 Strand	 Rehobeth Beach	 DE	 USA; Promises; 8:37		
 22; Fugazi; 19930929 Strand	 Rehobeth Beach	 DE	 USA; Encore; 2:40		
-23; Fugazi; 19930929 Strand	 Rehobeth Beach	 DE	 USA; Fell	 Destroyed Instrumental; 3:18	
+23; Fugazi; 19930929 Strand	 Rehobeth Beach	 DE	 USA; Fell, Destroyed Instrumental; 3:18	
 24; Fugazi; 19930929 Strand	 Rehobeth Beach	 DE	 USA; Surf Tune 3; 1:31		
 25; Fugazi; 19930929 Strand	 Rehobeth Beach	 DE	 USA; Two Beats Off; 4:49		
 26; Fugazi; 19930929 Strand	 Rehobeth Beach	 DE	 USA; Long Division; 2:23		
@@ -11968,7 +11968,7 @@ track; artist; album; name; duration
 22; Fugazi; 19931113 Wall St.	 Melbourne	 VIC	 Australia; Blueprint; 3:31		
 23; Fugazi; 19931113 Wall St.	 Melbourne	 VIC	 Australia; Interlude 7; 0:18		
 24; Fugazi; 19931113 Wall St.	 Melbourne	 VIC	 Australia; Repeater; 2:59		
-25; Fugazi; 19931113 Wall St.	 Melbourne	 VIC	 Australia; Fell	 Destroyed Instrumental; 3:05	
+25; Fugazi; 19931113 Wall St.	 Melbourne	 VIC	 Australia; Fell, Destroyed Instrumental; 3:05	
 26; Fugazi; 19931113 Wall St.	 Melbourne	 VIC	 Australia; Facet Squared; 2:29		
 27; Fugazi; 19931113 Wall St.	 Melbourne	 VIC	 Australia; Interlude 8; 0:18		
 28; Fugazi; 19931113 Wall St.	 Melbourne	 VIC	 Australia; Public Witness Program; 2:00		
@@ -12221,7 +12221,7 @@ track; artist; album; name; duration
 30; Fugazi; 19931201 Uni Manning Bar	 Sydney	 NSW	 Australia; Reclamation; 3:55		
 31; Fugazi; 19931201 Uni Manning Bar	 Sydney	 NSW	 Australia; Interlude 10; 1:24		
 32; Fugazi; 19931201 Uni Manning Bar	 Sydney	 NSW	 Australia; Last Chance for a Slow Dance; 4:13		
-33; Fugazi; 19931201 Uni Manning Bar	 Sydney	 NSW	 Australia; Fell	 Destroyed Instrumental; 3:09	
+33; Fugazi; 19931201 Uni Manning Bar	 Sydney	 NSW	 Australia; Fell, Destroyed Instrumental; 3:09	
 34; Fugazi; 19931201 Uni Manning Bar	 Sydney	 NSW	 Australia; Outro; 0:41		
 01; Fugazi; 19931204 Windmill Hill War Memorial	 Launceston	 TAS	 Australia; Intro; 1:57		
 02; Fugazi; 19931204 Windmill Hill War Memorial	 Launceston	 TAS	 Australia; Merchandise; 2:59		
@@ -12254,7 +12254,7 @@ track; artist; album; name; duration
 29; Fugazi; 19931204 Windmill Hill War Memorial	 Launceston	 TAS	 Australia; Rend It; 3:58		
 30; Fugazi; 19931204 Windmill Hill War Memorial	 Launceston	 TAS	 Australia; Interlude 9; 0:52		
 31; Fugazi; 19931204 Windmill Hill War Memorial	 Launceston	 TAS	 Australia; Shut the Door; 9:01		
-32; Fugazi; 19931204 Windmill Hill War Memorial	 Launceston	 TAS	 Australia; Fell	 Destroyed Instrumental; 1:55	
+32; Fugazi; 19931204 Windmill Hill War Memorial	 Launceston	 TAS	 Australia; Fell, Destroyed Instrumental; 1:55	
 01; Fugazi; 19931208 Caledonian Hall	 Christchurch	 New Zealand; Intro; 2:25			
 02; Fugazi; 19931208 Caledonian Hall	 Christchurch	 New Zealand; Reclamation; 3:59			
 03; Fugazi; 19931208 Caledonian Hall	 Christchurch	 New Zealand; Turnover; 4:05			
@@ -12313,7 +12313,7 @@ track; artist; album; name; duration
 26; Fugazi; 19931209 Sammy's	 Dunedin	 New Zealand; Interlude 8; 0:15			
 27; Fugazi; 19931209 Sammy's	 Dunedin	 New Zealand; Great Cop; 1:50			
 28; Fugazi; 19931209 Sammy's	 Dunedin	 New Zealand; Public Witness Program; 1:56			
-29; Fugazi; 19931209 Sammy's	 Dunedin	 New Zealand; Fell	 Destroyed Instrumental; 3:08		
+29; Fugazi; 19931209 Sammy's	 Dunedin	 New Zealand; Fell, Destroyed Instrumental; 3:08		
 30; Fugazi; 19931209 Sammy's	 Dunedin	 New Zealand; Sweet and Low; 4:48			
 31; Fugazi; 19931209 Sammy's	 Dunedin	 New Zealand; Encore 2; 3:43			
 32; Fugazi; 19931209 Sammy's	 Dunedin	 New Zealand; Promises; 7:37			
@@ -12412,7 +12412,7 @@ track; artist; album; name; duration
 27; Fugazi; 19931212 Powerstation	 Auckland	 New Zealand; Rend It; 4:24			
 28; Fugazi; 19931212 Powerstation	 Auckland	 New Zealand; Encore 2; 0:20			
 29; Fugazi; 19931212 Powerstation	 Auckland	 New Zealand; Reclamation; 4:05			
-30; Fugazi; 19931212 Powerstation	 Auckland	 New Zealand; Fell	 Destroyed Instrumental; 3:18		
+30; Fugazi; 19931212 Powerstation	 Auckland	 New Zealand; Fell, Destroyed Instrumental; 3:18		
 31; Fugazi; 19931212 Powerstation	 Auckland	 New Zealand; Outro; 0:51			
 01; Fugazi; 19931214 After Dark	 Honolulu	 HI	 USA; Intro; 2:17		
 02; Fugazi; 19931214 After Dark	 Honolulu	 HI	 USA; Facet Squared; 2:20		
@@ -12452,7 +12452,7 @@ track; artist; album; name; duration
 08; Fugazi; 19940804 Fort Reno	 Washington	 DC	 USA; Shut the Door; 7:08		
 09; Fugazi; 19940804 Fort Reno	 Washington	 DC	 USA; Interlude 4; 1:18		
 10; Fugazi; 19940804 Fort Reno	 Washington	 DC	 USA; Smallpox Champion; 3:41		
-11; Fugazi; 19940804 Fort Reno	 Washington	 DC	 USA; Fell	 Destroyed Instrumental; 3:50	
+11; Fugazi; 19940804 Fort Reno	 Washington	 DC	 USA; Fell, Destroyed Instrumental; 3:50	
 12; Fugazi; 19940804 Fort Reno	 Washington	 DC	 USA; Outro; 1:20		
 01; Fugazi; 19940815 Belo Horizonte Independent Music Festival	 Belo Horizonte	 Brazil; Intro; 0:16			
 02; Fugazi; 19940815 Belo Horizonte Independent Music Festival	 Belo Horizonte	 Brazil; Brendan #1; 3:00			
@@ -12555,7 +12555,7 @@ track; artist; album; name; duration
 23; Fugazi; 19940820 Aeroanta	 São Paulo	 Brazil; Target; 3:49			
 24; Fugazi; 19940820 Aeroanta	 São Paulo	 Brazil; Repeater; 2:58			
 25; Fugazi; 19940820 Aeroanta	 São Paulo	 Brazil; Encore; 3:19			
-26; Fugazi; 19940820 Aeroanta	 São Paulo	 Brazil; Fell	 Destroyed Instrumental; 3:38		
+26; Fugazi; 19940820 Aeroanta	 São Paulo	 Brazil; Fell, Destroyed Instrumental; 3:38		
 27; Fugazi; 19940820 Aeroanta	 São Paulo	 Brazil; Promises; 5:32			
 28; Fugazi; 19940820 Aeroanta	 São Paulo	 Brazil; Reprovisional; 5:22			
 01; Fugazi; 19940821 Aeroanta	 Sao Paulo	 Brazil; Intro; 0:19			
@@ -12773,7 +12773,7 @@ track; artist; album; name; duration
 20; Fugazi; 19950302 University of Maryland Baltimore	 Baltimore	 MD	 USA; Repeater; 3:19		
 21; Fugazi; 19950302 University of Maryland Baltimore	 Baltimore	 MD	 USA; Blueprint; 3:27		
 22; Fugazi; 19950302 University of Maryland Baltimore	 Baltimore	 MD	 USA; Encore; 2:38		
-23; Fugazi; 19950302 University of Maryland Baltimore	 Baltimore	 MD	 USA; Fell	 Destroyed; 3:47	
+23; Fugazi; 19950302 University of Maryland Baltimore	 Baltimore	 MD	 USA; Fell, Destroyed; 3:47	
 24; Fugazi; 19950302 University of Maryland Baltimore	 Baltimore	 MD	 USA; Long Distance Runner; 5:28		
 25; Fugazi; 19950302 University of Maryland Baltimore	 Baltimore	 MD	 USA; Glue Man; 6:36		
 26; Fugazi; 19950302 University of Maryland Baltimore	 Baltimore	 MD	 USA; Outro; 0:41		
@@ -12824,7 +12824,7 @@ track; artist; album; name; duration
 13; Fugazi; 19950402 Trocadero	 Philadelphia	 PA	 USA; Suggestion; 6:59		
 14; Fugazi; 19950402 Trocadero	 Philadelphia	 PA	 USA; Give Me The Cure; 2:45		
 15; Fugazi; 19950402 Trocadero	 Philadelphia	 PA	 USA; Bad Mouth; 2:44		
-16; Fugazi; 19950402 Trocadero	 Philadelphia	 PA	 USA; Fell	 Destroyed; 3:29	
+16; Fugazi; 19950402 Trocadero	 Philadelphia	 PA	 USA; Fell, Destroyed; 3:29	
 17; Fugazi; 19950402 Trocadero	 Philadelphia	 PA	 USA; Bed For The Scraping; 3:11		
 18; Fugazi; 19950402 Trocadero	 Philadelphia	 PA	 USA; Blueprint; 3:23		
 19; Fugazi; 19950402 Trocadero	 Philadelphia	 PA	 USA; Repeater; 3:14		
@@ -12869,7 +12869,7 @@ track; artist; album; name; duration
 09; Fugazi; 19950404 Irving Plaza	 New York	 NY	 USA; Interlude 1; 0:23		
 10; Fugazi; 19950404 Irving Plaza	 New York	 NY	 USA; By You; 4:09		
 11; Fugazi; 19950404 Irving Plaza	 New York	 NY	 USA; Long Division; 2:32		
-12; Fugazi; 19950404 Irving Plaza	 New York	 NY	 USA; Fell	 Destroyed; 3:24	
+12; Fugazi; 19950404 Irving Plaza	 New York	 NY	 USA; Fell, Destroyed; 3:24	
 13; Fugazi; 19950404 Irving Plaza	 New York	 NY	 USA; Interlude 2; 1:11		
 14; Fugazi; 19950404 Irving Plaza	 New York	 NY	 USA; Suggestion; 7:28		
 15; Fugazi; 19950404 Irving Plaza	 New York	 NY	 USA; Burning; 2:48		
@@ -12926,7 +12926,7 @@ track; artist; album; name; duration
 09; Fugazi; 19950406 Vassar College Walker Fieldhouse	 Poughkeepsie	 NY	 USA; Interlude 2; 0:18		
 10; Fugazi; 19950406 Vassar College Walker Fieldhouse	 Poughkeepsie	 NY	 USA; Reclamation; 3:31		
 11; Fugazi; 19950406 Vassar College Walker Fieldhouse	 Poughkeepsie	 NY	 USA; Interlude 3; 0:57		
-12; Fugazi; 19950406 Vassar College Walker Fieldhouse	 Poughkeepsie	 NY	 USA; Fell	 Destroyed; 3:34	
+12; Fugazi; 19950406 Vassar College Walker Fieldhouse	 Poughkeepsie	 NY	 USA; Fell, Destroyed; 3:34	
 13; Fugazi; 19950406 Vassar College Walker Fieldhouse	 Poughkeepsie	 NY	 USA; Long Division; 2:04		
 14; Fugazi; 19950406 Vassar College Walker Fieldhouse	 Poughkeepsie	 NY	 USA; Blueprint; 3:28		
 15; Fugazi; 19950406 Vassar College Walker Fieldhouse	 Poughkeepsie	 NY	 USA; Birthday Pony; 2:16		
@@ -13002,7 +13002,7 @@ track; artist; album; name; duration
 05; Fugazi; 19950409 Memorial Hall	 Burlington	 VT	 USA; Styrofoam; 2:50		
 06; Fugazi; 19950409 Memorial Hall	 Burlington	 VT	 USA; Walken's Syndrome; 2:36		
 07; Fugazi; 19950409 Memorial Hall	 Burlington	 VT	 USA; Reclamations; 3:54		
-08; Fugazi; 19950409 Memorial Hall	 Burlington	 VT	 USA; Fell	 Destroyed; 3:23	
+08; Fugazi; 19950409 Memorial Hall	 Burlington	 VT	 USA; Fell, Destroyed; 3:23	
 09; Fugazi; 19950409 Memorial Hall	 Burlington	 VT	 USA; Facet Squared; 2:12		
 10; Fugazi; 19950409 Memorial Hall	 Burlington	 VT	 USA; Public Witness Program; 2:00		
 11; Fugazi; 19950409 Memorial Hall	 Burlington	 VT	 USA; Interlude 1; 0:32		
@@ -13038,7 +13038,7 @@ track; artist; album; name; duration
 12; Fugazi; 19950411 Lupo's Heartbreak Hotel	 Providence	 RI	 USA; Target; 3:31		
 13; Fugazi; 19950411 Lupo's Heartbreak Hotel	 Providence	 RI	 USA; Interlude 4; 0:45		
 14; Fugazi; 19950411 Lupo's Heartbreak Hotel	 Providence	 RI	 USA; Shut the Door; 7:14		
-15; Fugazi; 19950411 Lupo's Heartbreak Hotel	 Providence	 RI	 USA; Fell	 Destroyed; 4:03	
+15; Fugazi; 19950411 Lupo's Heartbreak Hotel	 Providence	 RI	 USA; Fell, Destroyed; 4:03	
 16; Fugazi; 19950411 Lupo's Heartbreak Hotel	 Providence	 RI	 USA; By You; 4:39		
 17; Fugazi; 19950411 Lupo's Heartbreak Hotel	 Providence	 RI	 USA; Public Witness Program; 1:57		
 18; Fugazi; 19950411 Lupo's Heartbreak Hotel	 Providence	 RI	 USA; Interlude 5; 0:27		
@@ -13071,7 +13071,7 @@ track; artist; album; name; duration
 09; Fugazi; 19950412 Lupo's Heartbreak Hotel	 Providence	 RI	 USA; Nice New Outfit; 3:31		
 10; Fugazi; 19950412 Lupo's Heartbreak Hotel	 Providence	 RI	 USA; Interlude 2; 0:33		
 11; Fugazi; 19950412 Lupo's Heartbreak Hotel	 Providence	 RI	 USA; Reclamation; 4:13		
-12; Fugazi; 19950412 Lupo's Heartbreak Hotel	 Providence	 RI	 USA; Fell	 Destroyed; 3:32	
+12; Fugazi; 19950412 Lupo's Heartbreak Hotel	 Providence	 RI	 USA; Fell, Destroyed; 3:32	
 13; Fugazi; 19950412 Lupo's Heartbreak Hotel	 Providence	 RI	 USA; Interlude 3; 0:42		
 14; Fugazi; 19950412 Lupo's Heartbreak Hotel	 Providence	 RI	 USA; Birthday Pony; 2:38		
 15; Fugazi; 19950412 Lupo's Heartbreak Hotel	 Providence	 RI	 USA; By You; 4:34		
@@ -13101,7 +13101,7 @@ track; artist; album; name; duration
 07; Fugazi; 19950413 Maxwell's	 Hoboken	 NJ	 USA; Rend It; 3:56		
 08; Fugazi; 19950413 Maxwell's	 Hoboken	 NJ	 USA; Interlude 1; 1:07		
 09; Fugazi; 19950413 Maxwell's	 Hoboken	 NJ	 USA; Reclamation; 3:33		
-10; Fugazi; 19950413 Maxwell's	 Hoboken	 NJ	 USA; Fell	 Destroyed; 3:34	
+10; Fugazi; 19950413 Maxwell's	 Hoboken	 NJ	 USA; Fell, Destroyed; 3:34	
 11; Fugazi; 19950413 Maxwell's	 Hoboken	 NJ	 USA; By You; 4:36		
 12; Fugazi; 19950413 Maxwell's	 Hoboken	 NJ	 USA; Two Beats Off; 4:51		
 13; Fugazi; 19950413 Maxwell's	 Hoboken	 NJ	 USA; Interlude 2; 0:23		
@@ -13130,7 +13130,7 @@ track; artist; album; name; duration
 10; Fugazi; 19950414 University of Delaware Carpenter Hall	 Newark	 DE	 USA; Rend It; 3:46		
 11; Fugazi; 19950414 University of Delaware Carpenter Hall	 Newark	 DE	 USA; Reclamation; 5:06		
 12; Fugazi; 19950414 University of Delaware Carpenter Hall	 Newark	 DE	 USA; Interlude 5; 0:36		
-13; Fugazi; 19950414 University of Delaware Carpenter Hall	 Newark	 DE	 USA; Fell	 Destroyed; 3:35	
+13; Fugazi; 19950414 University of Delaware Carpenter Hall	 Newark	 DE	 USA; Fell, Destroyed; 3:35	
 14; Fugazi; 19950414 University of Delaware Carpenter Hall	 Newark	 DE	 USA; Long Division; 2:19		
 15; Fugazi; 19950414 University of Delaware Carpenter Hall	 Newark	 DE	 USA; Runaway Return; 3:46		
 16; Fugazi; 19950414 University of Delaware Carpenter Hall	 Newark	 DE	 USA; Interlude 6; 0:28		
@@ -13150,7 +13150,7 @@ track; artist; album; name; duration
 08; Fugazi; 19950504 Effenaar	 Eindhoven	 Netherlands; Bed For The Scraping; 3:11			
 09; Fugazi; 19950504 Effenaar	 Eindhoven	 Netherlands; Runaway Return; 4:05			
 10; Fugazi; 19950504 Effenaar	 Eindhoven	 Netherlands; Long Division; 2:16			
-11; Fugazi; 19950504 Effenaar	 Eindhoven	 Netherlands; Fell	 Destroyed; 3:30		
+11; Fugazi; 19950504 Effenaar	 Eindhoven	 Netherlands; Fell, Destroyed; 3:30		
 12; Fugazi; 19950504 Effenaar	 Eindhoven	 Netherlands; Birthday Pony; 2:24			
 13; Fugazi; 19950504 Effenaar	 Eindhoven	 Netherlands; Cassavetes; 2:18			
 14; Fugazi; 19950504 Effenaar	 Eindhoven	 Netherlands; Interlude 2; 0:34			
@@ -13203,7 +13203,7 @@ track; artist; album; name; duration
 09; Fugazi; 19950507 Academy	 Manchester	 England; Rend It; 3:50			
 10; Fugazi; 19950507 Academy	 Manchester	 England; Interlude 2; 0:39			
 11; Fugazi; 19950507 Academy	 Manchester	 England; Long Division; 2:19			
-12; Fugazi; 19950507 Academy	 Manchester	 England; Fell	 Destroyed; 3:23		
+12; Fugazi; 19950507 Academy	 Manchester	 England; Fell, Destroyed; 3:23		
 13; Fugazi; 19950507 Academy	 Manchester	 England; By You; 4:17			
 14; Fugazi; 19950507 Academy	 Manchester	 England; Interlude 3; 0:14			
 15; Fugazi; 19950507 Academy	 Manchester	 England; Suggestion; 7:09			
@@ -13245,7 +13245,7 @@ track; artist; album; name; duration
 24; Fugazi; 19950508 Barrowland Ballroom	 Glasgow	 Scotland; Back To Base; 1:42			
 25; Fugazi; 19950508 Barrowland Ballroom	 Glasgow	 Scotland; Downed City; 2:06			
 26; Fugazi; 19950508 Barrowland Ballroom	 Glasgow	 Scotland; Encore; 1:47			
-27; Fugazi; 19950508 Barrowland Ballroom	 Glasgow	 Scotland; Fell	 Destroyed; 3:44		
+27; Fugazi; 19950508 Barrowland Ballroom	 Glasgow	 Scotland; Fell, Destroyed; 3:44		
 28; Fugazi; 19950508 Barrowland Ballroom	 Glasgow	 Scotland; Long Distance Runner; 3:42			
 29; Fugazi; 19950508 Barrowland Ballroom	 Glasgow	 Scotland; Turnover; 3:52			
 30; Fugazi; 19950508 Barrowland Ballroom	 Glasgow	 Scotland; Outro; 1:06			
@@ -13268,7 +13268,7 @@ track; artist; album; name; duration
 17; Fugazi; 19950509 Queen's Hall	 Belfast	 Northern Ireland; Interlude 5; 0:54			
 18; Fugazi; 19950509 Queen's Hall	 Belfast	 Northern Ireland; Exit Only; 2:31			
 19; Fugazi; 19950509 Queen's Hall	 Belfast	 Northern Ireland; Promises; 7:17			
-20; Fugazi; 19950509 Queen's Hall	 Belfast	 Northern Ireland; Fell	 Destroyed; 3:35		
+20; Fugazi; 19950509 Queen's Hall	 Belfast	 Northern Ireland; Fell, Destroyed; 3:35		
 21; Fugazi; 19950509 Queen's Hall	 Belfast	 Northern Ireland; Interlude 6; 0:20			
 22; Fugazi; 19950509 Queen's Hall	 Belfast	 Northern Ireland; Song #1; 2:54			
 23; Fugazi; 19950509 Queen's Hall	 Belfast	 Northern Ireland; Break-In; 1:29			
@@ -13312,7 +13312,7 @@ track; artist; album; name; duration
 25; Fugazi; 19950510 Ormond Center	 Dublin	 Ireland; Long Distance Runner; 3:46			
 26; Fugazi; 19950510 Ormond Center	 Dublin	 Ireland; Turnover; 3:54			
 27; Fugazi; 19950510 Ormond Center	 Dublin	 Ireland; Reclamation; 3:35			
-28; Fugazi; 19950510 Ormond Center	 Dublin	 Ireland; Fell	 Destroyed; 3:50		
+28; Fugazi; 19950510 Ormond Center	 Dublin	 Ireland; Fell, Destroyed; 3:50		
 29; Fugazi; 19950510 Ormond Center	 Dublin	 Ireland; Outro; 2:38			
 01; Fugazi; 19950512 Trent University	 Nottingham	 England; Intro; 1:52			
 02; Fugazi; 19950512 Trent University	 Nottingham	 England; Merchandise; 2:39			
@@ -13333,7 +13333,7 @@ track; artist; album; name; duration
 17; Fugazi; 19950512 Trent University	 Nottingham	 England; Give Me The Cure; 2:43			
 18; Fugazi; 19950512 Trent University	 Nottingham	 England; Suggestion; 4:09			
 19; Fugazi; 19950512 Trent University	 Nottingham	 England; By You; 4:01			
-20; Fugazi; 19950512 Trent University	 Nottingham	 England; Fell	 Destroyed; 3:36		
+20; Fugazi; 19950512 Trent University	 Nottingham	 England; Fell, Destroyed; 3:36		
 21; Fugazi; 19950512 Trent University	 Nottingham	 England; Bed For The Scraping; 2:57			
 22; Fugazi; 19950512 Trent University	 Nottingham	 England; Downed City; 2:06			
 23; Fugazi; 19950512 Trent University	 Nottingham	 England; Repeater; 3:28			
@@ -13357,7 +13357,7 @@ track; artist; album; name; duration
 13; Fugazi; 19950513 Brixton Academy	 London	 England; Smallpox Champion; 3:28			
 14; Fugazi; 19950513 Brixton Academy	 London	 England; Styrofoam; 2:34			
 15; Fugazi; 19950513 Brixton Academy	 London	 England; Interlude 3; 0:22			
-16; Fugazi; 19950513 Brixton Academy	 London	 England; Fell	 Destroyed; 3:47		
+16; Fugazi; 19950513 Brixton Academy	 London	 England; Fell, Destroyed; 3:47		
 17; Fugazi; 19950513 Brixton Academy	 London	 England; By You; 4:09			
 18; Fugazi; 19950513 Brixton Academy	 London	 England; Interlude 4; 0:21			
 19; Fugazi; 19950513 Brixton Academy	 London	 England; Waiting Room; 2:48			
@@ -13432,7 +13432,7 @@ track; artist; album; name; duration
 29; Fugazi; 19950515 Metropolitan University	 Leeds	 England; Smallpox Champion; 4:30			
 30; Fugazi; 19950515 Metropolitan University	 Leeds	 England; Interlude 9; 0:38			
 31; Fugazi; 19950515 Metropolitan University	 Leeds	 England; Long Distance Runner; 3:58			
-32; Fugazi; 19950515 Metropolitan University	 Leeds	 England; Fell	 Destroyed; 3:46		
+32; Fugazi; 19950515 Metropolitan University	 Leeds	 England; Fell, Destroyed; 3:46		
 33; Fugazi; 19950515 Metropolitan University	 Leeds	 England; Sweet and Low; 4:19			
 34; Fugazi; 19950515 Metropolitan University	 Leeds	 England; Encore 2; 1:58			
 35; Fugazi; 19950515 Metropolitan University	 Leeds	 England; Combination Lock; 2:19			
@@ -13466,7 +13466,7 @@ track; artist; album; name; duration
 26; Fugazi; 19950517 Paradiso	 Amsterdam	 Netherlands; Public Witness Program; 1:57			
 27; Fugazi; 19950517 Paradiso	 Amsterdam	 Netherlands; Promises; 7:14			
 28; Fugazi; 19950517 Paradiso	 Amsterdam	 Netherlands; Encore 1; 1:43			
-29; Fugazi; 19950517 Paradiso	 Amsterdam	 Netherlands; Fell	 Destroyed; 3:56		
+29; Fugazi; 19950517 Paradiso	 Amsterdam	 Netherlands; Fell, Destroyed; 3:56		
 30; Fugazi; 19950517 Paradiso	 Amsterdam	 Netherlands; Instrument; 3:18			
 31; Fugazi; 19950517 Paradiso	 Amsterdam	 Netherlands; Two Beats Off; 4:22			
 32; Fugazi; 19950517 Paradiso	 Amsterdam	 Netherlands; Interlude 8; 0:50			
@@ -13492,7 +13492,7 @@ track; artist; album; name; duration
 17; Fugazi; 19950518 Lido	 Leuven	 Belgium; Give Me The Cure; 2:52			
 18; Fugazi; 19950518 Lido	 Leuven	 Belgium; By You; 4:15			
 19; Fugazi; 19950518 Lido	 Leuven	 Belgium; Facet Squared; 2:53			
-20; Fugazi; 19950518 Lido	 Leuven	 Belgium; Fell	 Destroyed; 3:58		
+20; Fugazi; 19950518 Lido	 Leuven	 Belgium; Fell, Destroyed; 3:58		
 21; Fugazi; 19950518 Lido	 Leuven	 Belgium; Long Distance Runner; 4:33			
 22; Fugazi; 19950518 Lido	 Leuven	 Belgium; Encore 1; 2:20			
 23; Fugazi; 19950518 Lido	 Leuven	 Belgium; Forensic Scene; 2:57			
@@ -13536,7 +13536,7 @@ track; artist; album; name; duration
 27; Fugazi; 19950519 Zaal Vooruit	 Gent	 Belgium; Encore 2; 2:14			
 28; Fugazi; 19950519 Zaal Vooruit	 Gent	 Belgium; Last Chance for a Slow Dance; 4:51			
 29; Fugazi; 19950519 Zaal Vooruit	 Gent	 Belgium; Reclamation; 3:37			
-30; Fugazi; 19950519 Zaal Vooruit	 Gent	 Belgium; Fell	 Destroyed; 4:33		
+30; Fugazi; 19950519 Zaal Vooruit	 Gent	 Belgium; Fell, Destroyed; 4:33		
 31; Fugazi; 19950519 Zaal Vooruit	 Gent	 Belgium; Outro; 2:10			
 01; Fugazi; 19950520 Le Pharos	 Arras	 France; Brendan #1; 2:31			
 02; Fugazi; 19950520 Le Pharos	 Arras	 France; Reclamation; 3:38			
@@ -13560,7 +13560,7 @@ track; artist; album; name; duration
 20; Fugazi; 19950520 Le Pharos	 Arras	 France; Great Cop; 1:42			
 21; Fugazi; 19950520 Le Pharos	 Arras	 France; Public Witness Program; 1:57			
 22; Fugazi; 19950520 Le Pharos	 Arras	 France; Long Division; 2:12			
-23; Fugazi; 19950520 Le Pharos	 Arras	 France; Fell	 Destroyed; 3:37		
+23; Fugazi; 19950520 Le Pharos	 Arras	 France; Fell, Destroyed; 3:37		
 24; Fugazi; 19950520 Le Pharos	 Arras	 France; Back To Base; 2:04			
 25; Fugazi; 19950520 Le Pharos	 Arras	 France; Encore; 1:43			
 26; Fugazi; 19950520 Le Pharos	 Arras	 France; Turnover; 4:08			
@@ -13593,7 +13593,7 @@ track; artist; album; name; duration
 22; Fugazi; 19950521 Terminal Export	 Nancy	 France; Bed For The Scraping; 2:50			
 23; Fugazi; 19950521 Terminal Export	 Nancy	 France; Downed City; 2:09			
 24; Fugazi; 19950521 Terminal Export	 Nancy	 France; Encore; 2:20			
-25; Fugazi; 19950521 Terminal Export	 Nancy	 France; Fell	 Destroyed; 3:30		
+25; Fugazi; 19950521 Terminal Export	 Nancy	 France; Fell, Destroyed; 3:30		
 26; Fugazi; 19950521 Terminal Export	 Nancy	 France; Long Distance Runner; 4:05			
 27; Fugazi; 19950521 Terminal Export	 Nancy	 France; Reprovisional; 5:31			
 28; Fugazi; 19950521 Terminal Export	 Nancy	 France; Outro; 1:17			
@@ -13608,7 +13608,7 @@ track; artist; album; name; duration
 09; Fugazi; 19950522 Elysee Montmarte	 Paris	 France; Turnover; 4:04			
 10; Fugazi; 19950522 Elysee Montmarte	 Paris	 France; Interlude 2; 0:25			
 11; Fugazi; 19950522 Elysee Montmarte	 Paris	 France; Bed For The Scraping; 3:05			
-12; Fugazi; 19950522 Elysee Montmarte	 Paris	 France; Fell	 Destroyed; 4:13		
+12; Fugazi; 19950522 Elysee Montmarte	 Paris	 France; Fell, Destroyed; 4:13		
 13; Fugazi; 19950522 Elysee Montmarte	 Paris	 France; By You; 4:33			
 14; Fugazi; 19950522 Elysee Montmarte	 Paris	 France; Margin Walker; 2:29			
 15; Fugazi; 19950522 Elysee Montmarte	 Paris	 France; Suggestion; 6:29			
@@ -13644,7 +13644,7 @@ track; artist; album; name; duration
 14; Fugazi; 19950524 Le Confort Moderne	 Poitiers	 France; Latest Disgrace; 3:32			
 15; Fugazi; 19950524 Le Confort Moderne	 Poitiers	 France; Interlude 5; 0:38			
 16; Fugazi; 19950524 Le Confort Moderne	 Poitiers	 France; Reclamation; 3:31			
-17; Fugazi; 19950524 Le Confort Moderne	 Poitiers	 France; Fell	 Destroyed; 3:53		
+17; Fugazi; 19950524 Le Confort Moderne	 Poitiers	 France; Fell, Destroyed; 3:53		
 18; Fugazi; 19950524 Le Confort Moderne	 Poitiers	 France; By You; 4:43			
 19; Fugazi; 19950524 Le Confort Moderne	 Poitiers	 France; Waiting Room; 2:49			
 20; Fugazi; 19950524 Le Confort Moderne	 Poitiers	 France; Bulldog Front; 2:56			
@@ -13687,7 +13687,7 @@ track; artist; album; name; duration
 24; Fugazi; 19950525 Chabada	 Angers	  France; By You; 4:22			
 25; Fugazi; 19950525 Chabada	 Angers	  France; Repeater; 3:42			
 26; Fugazi; 19950525 Chabada	 Angers	  France; Encore 1; 1:57			
-27; Fugazi; 19950525 Chabada	 Angers	  France; Fell	 Destroyed; 3:56		
+27; Fugazi; 19950525 Chabada	 Angers	  France; Fell, Destroyed; 3:56		
 28; Fugazi; 19950525 Chabada	 Angers	  France; Long Distance Runner; 3:47			
 29; Fugazi; 19950525 Chabada	 Angers	  France; Turnover; 3:56			
 30; Fugazi; 19950525 Chabada	 Angers	  France; Sweet and Low; 4:35			
@@ -13726,7 +13726,7 @@ track; artist; album; name; duration
 28; Fugazi; 19950526 Theatre Barbey	 Bordeaux	 France; Encore 2; 2:51			
 29; Fugazi; 19950526 Theatre Barbey	 Bordeaux	 France; Sieve-Fisted Find; 3:10			
 30; Fugazi; 19950526 Theatre Barbey	 Bordeaux	 France; Facet Squared; 2:36			
-31; Fugazi; 19950526 Theatre Barbey	 Bordeaux	 France; Fell	 Destroyed; 3:31		
+31; Fugazi; 19950526 Theatre Barbey	 Bordeaux	 France; Fell, Destroyed; 3:31		
 32; Fugazi; 19950526 Theatre Barbey	 Bordeaux	 France; Sweet and Low; 4:18			
 33; Fugazi; 19950526 Theatre Barbey	 Bordeaux	 France; Outro; 0:56			
 01; Fugazi; 19950527 Sala Matraka	 La Kunza	 Spain; Intro; 1:59			
@@ -13757,7 +13757,7 @@ track; artist; album; name; duration
 26; Fugazi; 19950527 Sala Matraka	 La Kunza	 Spain; Public Witness Program; 2:11			
 27; Fugazi; 19950527 Sala Matraka	 La Kunza	 Spain; Encore 2; 1:44			
 28; Fugazi; 19950527 Sala Matraka	 La Kunza	 Spain; Long Division; 2:19			
-29; Fugazi; 19950527 Sala Matraka	 La Kunza	 Spain; Fell	 Destroyed; 3:53		
+29; Fugazi; 19950527 Sala Matraka	 La Kunza	 Spain; Fell, Destroyed; 3:53		
 30; Fugazi; 19950527 Sala Matraka	 La Kunza	 Spain; Sweet and Low; 4:26			
 31; Fugazi; 19950527 Sala Matraka	 La Kunza	 Spain; Repeater; 3:25			
 32; Fugazi; 19950527 Sala Matraka	 La Kunza	 Spain; Encore 3; 1:51			
@@ -13788,7 +13788,7 @@ track; artist; album; name; duration
 22; Fugazi; 19950528 Sala Antiquo	 Oviedo	 Spain; Walken's Syndrome; 2:37			
 23; Fugazi; 19950528 Sala Antiquo	 Oviedo	 Spain; Promises; 7:19			
 24; Fugazi; 19950528 Sala Antiquo	 Oviedo	 Spain; Encore; 3:22			
-25; Fugazi; 19950528 Sala Antiquo	 Oviedo	 Spain; Fell	 Destroyed; 3:47		
+25; Fugazi; 19950528 Sala Antiquo	 Oviedo	 Spain; Fell, Destroyed; 3:47		
 26; Fugazi; 19950528 Sala Antiquo	 Oviedo	 Spain; KYEO; 3:48			
 27; Fugazi; 19950528 Sala Antiquo	 Oviedo	 Spain; Sweet and Low; 4:53			
 28; Fugazi; 19950528 Sala Antiquo	 Oviedo	 Spain; Outro; 0:43			
@@ -13803,7 +13803,7 @@ track; artist; album; name; duration
 09; Fugazi; 19950529 Sala Numero K	 Santiago de Compostela	 Spain; Styrofoam; 2:30			
 10; Fugazi; 19950529 Sala Numero K	 Santiago de Compostela	 Spain; Rend It; 3:42			
 11; Fugazi; 19950529 Sala Numero K	 Santiago de Compostela	 Spain; Facet Squared; 2:34			
-12; Fugazi; 19950529 Sala Numero K	 Santiago de Compostela	 Spain; Fell	 Destroyed; 3:33		
+12; Fugazi; 19950529 Sala Numero K	 Santiago de Compostela	 Spain; Fell, Destroyed; 3:33		
 13; Fugazi; 19950529 Sala Numero K	 Santiago de Compostela	 Spain; Long Distance Runner; 4:30			
 14; Fugazi; 19950529 Sala Numero K	 Santiago de Compostela	 Spain; By You; 4:22			
 15; Fugazi; 19950529 Sala Numero K	 Santiago de Compostela	 Spain; Waiting Room; 3:23			
@@ -13868,7 +13868,7 @@ track; artist; album; name; duration
 10; Fugazi; 19950602 Revolver	 Madrid	 Spain; Back To Base; 1:39			
 11; Fugazi; 19950602 Revolver	 Madrid	 Spain; Target; 3:43			
 12; Fugazi; 19950602 Revolver	 Madrid	 Spain; Long Division; 2:27			
-13; Fugazi; 19950602 Revolver	 Madrid	 Spain; Fell	 Destroyed; 3:38		
+13; Fugazi; 19950602 Revolver	 Madrid	 Spain; Fell, Destroyed; 3:38		
 14; Fugazi; 19950602 Revolver	 Madrid	 Spain; By You; 4:11			
 15; Fugazi; 19950602 Revolver	 Madrid	 Spain; Suggestion; 6:51			
 16; Fugazi; 19950602 Revolver	 Madrid	 Spain; Margin Walker; 2:50			
@@ -13894,7 +13894,7 @@ track; artist; album; name; duration
 09; Fugazi; 19950603 Zeleste	 Barcelona	 Spain; Interlude 2; 0:45			
 10; Fugazi; 19950603 Zeleste	 Barcelona	 Spain; Turnover; 4:07			
 11; Fugazi; 19950603 Zeleste	 Barcelona	 Spain; Instrument; 3:32			
-12; Fugazi; 19950603 Zeleste	 Barcelona	 Spain; Fell	 Destroyed; 3:46		
+12; Fugazi; 19950603 Zeleste	 Barcelona	 Spain; Fell, Destroyed; 3:46		
 13; Fugazi; 19950603 Zeleste	 Barcelona	 Spain; Birthday Pony; 2:42			
 14; Fugazi; 19950603 Zeleste	 Barcelona	 Spain; Lockdown; 2:02			
 15; Fugazi; 19950603 Zeleste	 Barcelona	 Spain; Bad Mouth; 2:27			
@@ -13940,7 +13940,7 @@ track; artist; album; name; duration
 25; Fugazi; 19950604 Zeppelin Rock	 Valencia	 Spain; Encore 2; 2:01			
 26; Fugazi; 19950604 Zeppelin Rock	 Valencia	 Spain; Exit Only; 3:08			
 27; Fugazi; 19950604 Zeppelin Rock	 Valencia	 Spain; KYEO; 3:23			
-28; Fugazi; 19950604 Zeppelin Rock	 Valencia	 Spain; Fell	 Destroyed; 4:06		
+28; Fugazi; 19950604 Zeppelin Rock	 Valencia	 Spain; Fell, Destroyed; 4:06		
 29; Fugazi; 19950604 Zeppelin Rock	 Valencia	 Spain; Outro; 0:45			
 01; Fugazi; 19950606 Le Bikini	 Toulouse	 France; Combination Lock; 1:51			
 02; Fugazi; 19950606 Le Bikini	 Toulouse	 France; And The Same; 4:14			
@@ -13966,7 +13966,7 @@ track; artist; album; name; duration
 22; Fugazi; 19950606 Le Bikini	 Toulouse	 France; Encore 1; 1:24			
 23; Fugazi; 19950606 Le Bikini	 Toulouse	 France; Smallpox Champion; 3:45			
 24; Fugazi; 19950606 Le Bikini	 Toulouse	 France; Merchandise; 3:18			
-25; Fugazi; 19950606 Le Bikini	 Toulouse	 France; Fell	 Destroyed; 3:41		
+25; Fugazi; 19950606 Le Bikini	 Toulouse	 France; Fell, Destroyed; 3:41		
 26; Fugazi; 19950606 Le Bikini	 Toulouse	 France; Sweet and Low; 5:24			
 27; Fugazi; 19950606 Le Bikini	 Toulouse	 France; Repeater; 3:06			
 28; Fugazi; 19950606 Le Bikini	 Toulouse	 France; Encore 2; 0:49			
@@ -13986,7 +13986,7 @@ track; artist; album; name; duration
 11; Fugazi; 19950608 Espace Jean Bargoin	 Lyon	 France; Public Witness Program; 2:01			
 12; Fugazi; 19950608 Espace Jean Bargoin	 Lyon	 France; Interlude 2; 0:54			
 13; Fugazi; 19950608 Espace Jean Bargoin	 Lyon	 France; Long Distance Runner; 4:05			
-14; Fugazi; 19950608 Espace Jean Bargoin	 Lyon	 France; Fell	 Destroyed; 4:03		
+14; Fugazi; 19950608 Espace Jean Bargoin	 Lyon	 France; Fell, Destroyed; 4:03		
 15; Fugazi; 19950608 Espace Jean Bargoin	 Lyon	 France; Suggestion; 5:42			
 16; Fugazi; 19950608 Espace Jean Bargoin	 Lyon	 France; Burning; 2:25			
 17; Fugazi; 19950608 Espace Jean Bargoin	 Lyon	 France; Interlude 3; 0:25			
@@ -14032,7 +14032,7 @@ track; artist; album; name; duration
 26; Fugazi; 19950610 Salle Des Fetes	 Kingersheim	 France; Interlude 6; 0:43			
 27; Fugazi; 19950610 Salle Des Fetes	 Kingersheim	 France; Long Distance Runner; 4:36			
 28; Fugazi; 19950610 Salle Des Fetes	 Kingersheim	 France; Encore 1; 2:35			
-29; Fugazi; 19950610 Salle Des Fetes	 Kingersheim	 France; Fell	 Destroyed; 3:46		
+29; Fugazi; 19950610 Salle Des Fetes	 Kingersheim	 France; Fell, Destroyed; 3:46		
 30; Fugazi; 19950610 Salle Des Fetes	 Kingersheim	 France; Great Cop; 1:55			
 31; Fugazi; 19950610 Salle Des Fetes	 Kingersheim	 France; Blueprint; 3:16			
 32; Fugazi; 19950610 Salle Des Fetes	 Kingersheim	 France; Encore 2; 2:52			
@@ -14063,7 +14063,7 @@ track; artist; album; name; duration
 19; Fugazi; 19950612 Cascina Monlue	 Milan	 Italy; Song #1; 3:43			
 20; Fugazi; 19950612 Cascina Monlue	 Milan	 Italy; Rend It; 1:37			
 21; Fugazi; 19950612 Cascina Monlue	 Milan	 Italy; Long Division; 2:17			
-22; Fugazi; 19950612 Cascina Monlue	 Milan	 Italy; Fell	 Destroyed; 3:28		
+22; Fugazi; 19950612 Cascina Monlue	 Milan	 Italy; Fell, Destroyed; 3:28		
 23; Fugazi; 19950612 Cascina Monlue	 Milan	 Italy; Promises; 2:41			
 24; Fugazi; 19950612 Cascina Monlue	 Milan	 Italy; Encore; 0:59			
 25; Fugazi; 19950612 Cascina Monlue	 Milan	 Italy; Two Beats Off; 5:01			
@@ -14117,7 +14117,7 @@ track; artist; album; name; duration
 14; Fugazi; 19950614 CPA	 Florence	 Italy; Interlude 4; 0:20			
 15; Fugazi; 19950614 CPA	 Florence	 Italy; Bed For The Scraping; 2:56			
 16; Fugazi; 19950614 CPA	 Florence	 Italy; Interlude 5; 0:15			
-17; Fugazi; 19950614 CPA	 Florence	 Italy; Fell	 Destroyed; 5:33		
+17; Fugazi; 19950614 CPA	 Florence	 Italy; Fell, Destroyed; 5:33		
 18; Fugazi; 19950614 CPA	 Florence	 Italy; By You; 4:09			
 19; Fugazi; 19950614 CPA	 Florence	 Italy; Interlude 6; 0:39			
 20; Fugazi; 19950614 CPA	 Florence	 Italy; Bad Mouth; 2:17			
@@ -14271,7 +14271,7 @@ track; artist; album; name; duration
 23; Fugazi; 19950620 Forte Prenestino	 Rome	 Italy; Blueprint; 3:23			
 24; Fugazi; 19950620 Forte Prenestino	 Rome	 Italy; Encore 1; 3:06			
 25; Fugazi; 19950620 Forte Prenestino	 Rome	 Italy; Promises; 6:39			
-26; Fugazi; 19950620 Forte Prenestino	 Rome	 Italy; Fell	 Destroyed; 3:52		
+26; Fugazi; 19950620 Forte Prenestino	 Rome	 Italy; Fell, Destroyed; 3:52		
 27; Fugazi; 19950620 Forte Prenestino	 Rome	 Italy; Long Distance Runner; 5:14			
 28; Fugazi; 19950620 Forte Prenestino	 Rome	 Italy; Glueman; 6:14			
 29; Fugazi; 19950620 Forte Prenestino	 Rome	 Italy; Outro; 0:33			
@@ -14323,7 +14323,7 @@ track; artist; album; name; duration
 17; Fugazi; 19950622 Rototom	 Gaio di Spilimbergo	 Italy; Interlude 5; 0:29			
 18; Fugazi; 19950622 Rototom	 Gaio di Spilimbergo	 Italy; Waiting Room; 2:45			
 19; Fugazi; 19950622 Rototom	 Gaio di Spilimbergo	 Italy; Interlude 6; 0:23			
-20; Fugazi; 19950622 Rototom	 Gaio di Spilimbergo	 Italy; Fell	 Destroyed; 4:47		
+20; Fugazi; 19950622 Rototom	 Gaio di Spilimbergo	 Italy; Fell, Destroyed; 4:47		
 21; Fugazi; 19950622 Rototom	 Gaio di Spilimbergo	 Italy; Promises; 5:21			
 22; Fugazi; 19950622 Rototom	 Gaio di Spilimbergo	 Italy; Forensic Scene; 3:20			
 23; Fugazi; 19950622 Rototom	 Gaio di Spilimbergo	 Italy; Encore 1; 2:58			
@@ -14350,7 +14350,7 @@ track; artist; album; name; duration
 13; Fugazi; 19950623 Sports Hall	 Ljubljana	 Slovenia; By You; 4:05			
 14; Fugazi; 19950623 Sports Hall	 Ljubljana	 Slovenia; Interlude 3; 0:31			
 15; Fugazi; 19950623 Sports Hall	 Ljubljana	 Slovenia; Long Distance Runner; 4:16			
-16; Fugazi; 19950623 Sports Hall	 Ljubljana	 Slovenia; Fell	 Destroyed; 3:37		
+16; Fugazi; 19950623 Sports Hall	 Ljubljana	 Slovenia; Fell, Destroyed; 3:37		
 17; Fugazi; 19950623 Sports Hall	 Ljubljana	 Slovenia; Returning The Screw; 3:59			
 18; Fugazi; 19950623 Sports Hall	 Ljubljana	 Slovenia; Smallpox Champion; 2:59			
 19; Fugazi; 19950623 Sports Hall	 Ljubljana	 Slovenia; Styrofoam; 2:43			
@@ -14410,7 +14410,7 @@ track; artist; album; name; duration
 15; Fugazi; 19950625 Schlachthof	 Wels	 Austria; Give Me The Cure; 2:47			
 16; Fugazi; 19950625 Schlachthof	 Wels	 Austria; Interlude 3; 1:05			
 17; Fugazi; 19950625 Schlachthof	 Wels	 Austria; 23 Beats Off; 3:24			
-18; Fugazi; 19950625 Schlachthof	 Wels	 Austria; Fell	 Destroyed; 3:48		
+18; Fugazi; 19950625 Schlachthof	 Wels	 Austria; Fell, Destroyed; 3:48		
 19; Fugazi; 19950625 Schlachthof	 Wels	 Austria; Reclamation; 3:22			
 20; Fugazi; 19950625 Schlachthof	 Wels	 Austria; Interlude 4; 0:27			
 21; Fugazi; 19950625 Schlachthof	 Wels	 Austria; Reprovisional; 5:24			
@@ -14450,7 +14450,7 @@ track; artist; album; name; duration
 20; Fugazi; 19950626 Nachtwerk	 Munich	 Germany; Blueprint; 3:21			
 21; Fugazi; 19950626 Nachtwerk	 Munich	 Germany; Interlude 5; 0:27			
 22; Fugazi; 19950626 Nachtwerk	 Munich	 Germany; Birthday Pony; 2:12			
-23; Fugazi; 19950626 Nachtwerk	 Munich	 Germany; Fell	 Destroyed; 3:55		
+23; Fugazi; 19950626 Nachtwerk	 Munich	 Germany; Fell, Destroyed; 3:55		
 24; Fugazi; 19950626 Nachtwerk	 Munich	 Germany; Promises; 6:48			
 25; Fugazi; 19950626 Nachtwerk	 Munich	 Germany; Encore; 2:00			
 26; Fugazi; 19950626 Nachtwerk	 Munich	 Germany; Do You Like Me; 3:06			
@@ -14477,7 +14477,7 @@ track; artist; album; name; duration
 16; Fugazi; 19950627 Roxy	 Ulm	 Germany; Instrument; 3:21			
 17; Fugazi; 19950627 Roxy	 Ulm	 Germany; Turnover; 3:58			
 18; Fugazi; 19950627 Roxy	 Ulm	 Germany; Bed For The Scraping; 2:43			
-19; Fugazi; 19950627 Roxy	 Ulm	 Germany; Fell	 Destroyed; 3:56		
+19; Fugazi; 19950627 Roxy	 Ulm	 Germany; Fell, Destroyed; 3:56		
 20; Fugazi; 19950627 Roxy	 Ulm	 Germany; Encore; 2:29			
 21; Fugazi; 19950627 Roxy	 Ulm	 Germany; Great Cop; 1:49			
 22; Fugazi; 19950627 Roxy	 Ulm	 Germany; Blueprint; 3:49			
@@ -14493,7 +14493,7 @@ track; artist; album; name; duration
 05; Fugazi; 19950629 Roxy	 Prague	 Czech Republic; Reclamation; 3:40			
 06; Fugazi; 19950629 Roxy	 Prague	 Czech Republic; Rend It; 4:04			
 07; Fugazi; 19950629 Roxy	 Prague	 Czech Republic; Bed For The Scraping; 3:09			
-08; Fugazi; 19950629 Roxy	 Prague	 Czech Republic; Fell	 Destroyed; 3:57		
+08; Fugazi; 19950629 Roxy	 Prague	 Czech Republic; Fell, Destroyed; 3:57		
 09; Fugazi; 19950629 Roxy	 Prague	 Czech Republic; Waiting Room; 2:43			
 10; Fugazi; 19950629 Roxy	 Prague	 Czech Republic; Lockdown; 2:10			
 11; Fugazi; 19950629 Roxy	 Prague	 Czech Republic; Interlude 1; 0:37			
@@ -14533,7 +14533,7 @@ track; artist; album; name; duration
 22; Fugazi; 19950630 Hallschlag JZ	 Stuttgart	 Germany; Birthday Pony; 2:43			
 23; Fugazi; 19950630 Hallschlag JZ	 Stuttgart	 Germany; Rend It; 4:00			
 24; Fugazi; 19950630 Hallschlag JZ	 Stuttgart	 Germany; Sweet and Low; 4:17			
-25; Fugazi; 19950630 Hallschlag JZ	 Stuttgart	 Germany; Fell	 Destroyed; 4:04		
+25; Fugazi; 19950630 Hallschlag JZ	 Stuttgart	 Germany; Fell, Destroyed; 4:04		
 26; Fugazi; 19950630 Hallschlag JZ	 Stuttgart	 Germany; Encore 2; 2:28			
 27; Fugazi; 19950630 Hallschlag JZ	 Stuttgart	 Germany; Blueprint; 3:32			
 28; Fugazi; 19950630 Hallschlag JZ	 Stuttgart	 Germany; Bad Mouth; 2:41			
@@ -14589,7 +14589,7 @@ track; artist; album; name; duration
 21; Fugazi; 19950702 TU Mensa	 Berlin	 Germany; Blueprint; 3:21			
 22; Fugazi; 19950702 TU Mensa	 Berlin	 Germany; Encore 1; 3:44			
 23; Fugazi; 19950702 TU Mensa	 Berlin	 Germany; Great Cop; 1:50			
-24; Fugazi; 19950702 TU Mensa	 Berlin	 Germany; Fell	 Destroyed; 3:56		
+24; Fugazi; 19950702 TU Mensa	 Berlin	 Germany; Fell, Destroyed; 3:56		
 25; Fugazi; 19950702 TU Mensa	 Berlin	 Germany; Shut the Door; 8:09			
 26; Fugazi; 19950702 TU Mensa	 Berlin	 Germany; Sweet and Low; 4:42			
 27; Fugazi; 19950702 TU Mensa	 Berlin	 Germany; Encore 2; 4:32			
@@ -14656,7 +14656,7 @@ track; artist; album; name; duration
 29; Fugazi; 19950704 Fabrik	 Hamburg	 Germany; Interlude 5; 1:12			
 30; Fugazi; 19950704 Fabrik	 Hamburg	 Germany; Shut the Door; 8:14			
 31; Fugazi; 19950704 Fabrik	 Hamburg	 Germany; Sweet and Low; 4:40			
-32; Fugazi; 19950704 Fabrik	 Hamburg	 Germany; Fell	 Destroyed; 4:19		
+32; Fugazi; 19950704 Fabrik	 Hamburg	 Germany; Fell, Destroyed; 4:19		
 33; Fugazi; 19950704 Fabrik	 Hamburg	 Germany; Outro; 0:49			
 01; Fugazi; 19950705 Doornroosje	 Nijmegen	 Netherlands; Sweet and Low; 4:56			
 02; Fugazi; 19950705 Doornroosje	 Nijmegen	 Netherlands; Facet Squared; 2:16			
@@ -14665,7 +14665,7 @@ track; artist; album; name; duration
 05; Fugazi; 19950705 Doornroosje	 Nijmegen	 Netherlands; Bed For The Scraping; 2:52			
 06; Fugazi; 19950705 Doornroosje	 Nijmegen	 Netherlands; Do You Like Me; 2:13			
 07; Fugazi; 19950705 Doornroosje	 Nijmegen	 Netherlands; Song #1; 3:40			
-08; Fugazi; 19950705 Doornroosje	 Nijmegen	 Netherlands; Fell	 Destroyed; 4:03		
+08; Fugazi; 19950705 Doornroosje	 Nijmegen	 Netherlands; Fell, Destroyed; 4:03		
 09; Fugazi; 19950705 Doornroosje	 Nijmegen	 Netherlands; Instrument; 3:26			
 10; Fugazi; 19950705 Doornroosje	 Nijmegen	 Netherlands; Rend It; 4:04			
 11; Fugazi; 19950705 Doornroosje	 Nijmegen	 Netherlands; Interlude 1; 1:05			
@@ -14704,7 +14704,7 @@ track; artist; album; name; duration
 17; Fugazi; 19950707 Vera	 Groningen	 Netherlands; Latest Disgrace; 5:30			
 18; Fugazi; 19950707 Vera	 Groningen	 Netherlands; Interlude 5; 2:26			
 19; Fugazi; 19950707 Vera	 Groningen	 Netherlands; Bed For The Scraping; 2:49			
-20; Fugazi; 19950707 Vera	 Groningen	 Netherlands; Fell	 Destroyed; 3:29		
+20; Fugazi; 19950707 Vera	 Groningen	 Netherlands; Fell, Destroyed; 3:29		
 21; Fugazi; 19950707 Vera	 Groningen	 Netherlands; Promises; 8:05			
 22; Fugazi; 19950707 Vera	 Groningen	 Netherlands; Encore; 3:43			
 23; Fugazi; 19950707 Vera	 Groningen	 Netherlands; Turnover; 4:16			
@@ -14744,7 +14744,7 @@ track; artist; album; name; duration
 29; Fugazi; 19950708 JZ Kamp	 Bielefeld	 Germany; Blueprint; 3:38			
 30; Fugazi; 19950708 JZ Kamp	 Bielefeld	 Germany; Interlude 8; 0:41			
 31; Fugazi; 19950708 JZ Kamp	 Bielefeld	 Germany; Long Division; 2:17			
-32; Fugazi; 19950708 JZ Kamp	 Bielefeld	 Germany; Fell	 Destroyed; 5:02		
+32; Fugazi; 19950708 JZ Kamp	 Bielefeld	 Germany; Fell, Destroyed; 5:02		
 33; Fugazi; 19950708 JZ Kamp	 Bielefeld	 Germany; Outro; 0:39			
 01; Fugazi; 19950709 Schlachthof	 Bremen	 Germany; Intro; 3:12			
 02; Fugazi; 19950709 Schlachthof	 Bremen	 Germany; Combination Lock; 2:36			
@@ -14773,7 +14773,7 @@ track; artist; album; name; duration
 25; Fugazi; 19950709 Schlachthof	 Bremen	 Germany; Long Distance Runner; 4:04			
 26; Fugazi; 19950709 Schlachthof	 Bremen	 Germany; Do You Like Me; 2:13			
 27; Fugazi; 19950709 Schlachthof	 Bremen	 Germany; Sweet and Low; 4:08			
-28; Fugazi; 19950709 Schlachthof	 Bremen	 Germany; Fell	 Destroyed; 4:23		
+28; Fugazi; 19950709 Schlachthof	 Bremen	 Germany; Fell, Destroyed; 4:23		
 29; Fugazi; 19950709 Schlachthof	 Bremen	 Germany; Outro; 1:07			
 01; Fugazi; 19950710 Rockmaskinen	 Copenhagen	 Denmark; Intro; 2:56			
 02; Fugazi; 19950710 Rockmaskinen	 Copenhagen	 Denmark; Joe #1; 3:20			
@@ -14810,7 +14810,7 @@ track; artist; album; name; duration
 33; Fugazi; 19950710 Rockmaskinen	 Copenhagen	 Denmark; Long Distance Runner; 4:12			
 34; Fugazi; 19950710 Rockmaskinen	 Copenhagen	 Denmark; Do You Like Me; 2:32			
 35; Fugazi; 19950710 Rockmaskinen	 Copenhagen	 Denmark; Encore 2; 1:59			
-36; Fugazi; 19950710 Rockmaskinen	 Copenhagen	 Denmark; Fell	 Destroyed; 3:36		
+36; Fugazi; 19950710 Rockmaskinen	 Copenhagen	 Denmark; Fell, Destroyed; 3:36		
 37; Fugazi; 19950710 Rockmaskinen	 Copenhagen	 Denmark; Sweet and Low; 4:40			
 38; Fugazi; 19950710 Rockmaskinen	 Copenhagen	 Denmark; Repeater; 2:59			
 39; Fugazi; 19950710 Rockmaskinen	 Copenhagen	 Denmark; Outro; 0:30			
@@ -14871,7 +14871,7 @@ track; artist; album; name; duration
 23; Fugazi; 19950714 Sentrum Scene	 Oslo	 Norway; Turnover; 4:11			
 24; Fugazi; 19950714 Sentrum Scene	 Oslo	 Norway; Instrument; 3:29			
 25; Fugazi; 19950714 Sentrum Scene	 Oslo	 Norway; Interlude 6; 0:24			
-26; Fugazi; 19950714 Sentrum Scene	 Oslo	 Norway; Fell	 Destroyed; 3:32		
+26; Fugazi; 19950714 Sentrum Scene	 Oslo	 Norway; Fell, Destroyed; 3:32		
 27; Fugazi; 19950714 Sentrum Scene	 Oslo	 Norway; Sweet and Low; 5:19			
 28; Fugazi; 19950714 Sentrum Scene	 Oslo	 Norway; Outro; 2:25			
 01; Fugazi; 19950916 Sylvan Theater	 Washington	 DC	 USA; Intro; 1:52		
@@ -14888,7 +14888,7 @@ track; artist; album; name; duration
 12; Fugazi; 19950916 Sylvan Theater	 Washington	 DC	 USA; Smallpox Champion; 3:49		
 13; Fugazi; 19950916 Sylvan Theater	 Washington	 DC	 USA; Interlude 2; 0:46		
 14; Fugazi; 19950916 Sylvan Theater	 Washington	 DC	 USA; Long Distance Runner; 3:57		
-15; Fugazi; 19950916 Sylvan Theater	 Washington	 DC	 USA; Fell	 Destroyed; 3:47	
+15; Fugazi; 19950916 Sylvan Theater	 Washington	 DC	 USA; Fell, Destroyed; 3:47	
 16; Fugazi; 19950916 Sylvan Theater	 Washington	 DC	 USA; Sweet and Low; 3:52		
 17; Fugazi; 19950916 Sylvan Theater	 Washington	 DC	 USA; Downed City; 1:48		
 18; Fugazi; 19950916 Sylvan Theater	 Washington	 DC	 USA; Outro; 0:39		
@@ -14910,7 +14910,7 @@ track; artist; album; name; duration
 16; Fugazi; 19950921 PWAC	 Lindenhurst	 NY	 USA; Back to Base; 1:35		
 17; Fugazi; 19950921 PWAC	 Lindenhurst	 NY	 USA; Downed City; 1:57		
 18; Fugazi; 19950921 PWAC	 Lindenhurst	 NY	 USA; Reclamation; 3:32		
-19; Fugazi; 19950921 PWAC	 Lindenhurst	 NY	 USA; Fell	 Destroyed; 4:23	
+19; Fugazi; 19950921 PWAC	 Lindenhurst	 NY	 USA; Fell, Destroyed; 4:23	
 20; Fugazi; 19950921 PWAC	 Lindenhurst	 NY	 USA; Encore 1; 3:05		
 21; Fugazi; 19950921 PWAC	 Lindenhurst	 NY	 USA; Birthday Pony; 2:24		
 22; Fugazi; 19950921 PWAC	 Lindenhurst	 NY	 USA; Turnover; 4:08		
@@ -14939,7 +14939,7 @@ track; artist; album; name; duration
 18; Fugazi; 19950922 Pearl Street Ballroom	 Northampton	 MA	 USA; Interlude 3; 0:33		
 19; Fugazi; 19950922 Pearl Street Ballroom	 Northampton	 MA	 USA; Back to Base; 1:52		
 20; Fugazi; 19950922 Pearl Street Ballroom	 Northampton	 MA	 USA; Encore 1; 2:09		
-21; Fugazi; 19950922 Pearl Street Ballroom	 Northampton	 MA	 USA; Fell	 Destroyed; 4:16	
+21; Fugazi; 19950922 Pearl Street Ballroom	 Northampton	 MA	 USA; Fell, Destroyed; 4:16	
 22; Fugazi; 19950922 Pearl Street Ballroom	 Northampton	 MA	 USA; Promises; 6:26		
 23; Fugazi; 19950922 Pearl Street Ballroom	 Northampton	 MA	 USA; Blueprint; 3:29		
 24; Fugazi; 19950922 Pearl Street Ballroom	 Northampton	 MA	 USA; Outro; 0:38		
@@ -14961,7 +14961,7 @@ track; artist; album; name; duration
 16; Fugazi; 19950923 Metropolis	 Montreal	 QC	 Canada; Smallpox Champion; 3:18		
 17; Fugazi; 19950923 Metropolis	 Montreal	 QC	 Canada; Interlude 3; 1:47		
 18; Fugazi; 19950923 Metropolis	 Montreal	 QC	 Canada; Birthday Pony; 2:20		
-19; Fugazi; 19950923 Metropolis	 Montreal	 QC	 Canada; Fell	 Destroyed; 3:46	
+19; Fugazi; 19950923 Metropolis	 Montreal	 QC	 Canada; Fell, Destroyed; 3:46	
 20; Fugazi; 19950923 Metropolis	 Montreal	 QC	 Canada; Great Cop; 2:12		
 21; Fugazi; 19950923 Metropolis	 Montreal	 QC	 Canada; Encore; 2:38		
 22; Fugazi; 19950923 Metropolis	 Montreal	 QC	 Canada; By You; 4:08		
@@ -14997,7 +14997,7 @@ track; artist; album; name; duration
 23; Fugazi; 19950924 Cégep Limoilou	 Quebec City	 Quebec	 Canada; Instrument; 3:21		
 24; Fugazi; 19950924 Cégep Limoilou	 Quebec City	 Quebec	 Canada; Downed City; 2:01		
 25; Fugazi; 19950924 Cégep Limoilou	 Quebec City	 Quebec	 Canada; Long Division; 2:20		
-26; Fugazi; 19950924 Cégep Limoilou	 Quebec City	 Quebec	 Canada; Fell	 Destroyed; 3:42	
+26; Fugazi; 19950924 Cégep Limoilou	 Quebec City	 Quebec	 Canada; Fell, Destroyed; 3:42	
 27; Fugazi; 19950924 Cégep Limoilou	 Quebec City	 Quebec	 Canada; Sweet and Low; 4:45		
 28; Fugazi; 19950924 Cégep Limoilou	 Quebec City	 Quebec	 Canada; Outro; 0:58		
 01; Fugazi; 19950926 Carleton University Porter Hall	 Ottawa	 Ontario	 Canada; Intro; 2:22		
@@ -15007,7 +15007,7 @@ track; artist; album; name; duration
 05; Fugazi; 19950926 Carleton University Porter Hall	 Ottawa	 Ontario	 Canada; Stacks; 2:59		
 06; Fugazi; 19950926 Carleton University Porter Hall	 Ottawa	 Ontario	 Canada; Cassavetes; 2:21		
 07; Fugazi; 19950926 Carleton University Porter Hall	 Ottawa	 Ontario	 Canada; Styrofoam; 2:32		
-08; Fugazi; 19950926 Carleton University Porter Hall	 Ottawa	 Ontario	 Canada; Fell	 Destroyed; 3:45	
+08; Fugazi; 19950926 Carleton University Porter Hall	 Ottawa	 Ontario	 Canada; Fell, Destroyed; 3:45	
 09; Fugazi; 19950926 Carleton University Porter Hall	 Ottawa	 Ontario	 Canada; Interlude 2; 3:09		
 10; Fugazi; 19950926 Carleton University Porter Hall	 Ottawa	 Ontario	 Canada; Promises; 7:00		
 11; Fugazi; 19950926 Carleton University Porter Hall	 Ottawa	 Ontario	 Canada; Interlude 3; 0:56		
@@ -15039,7 +15039,7 @@ track; artist; album; name; duration
 09; Fugazi; 19950927 RPM Warehouse	 Toronto	 Ontario	 Canada; Target; 3:31		
 10; Fugazi; 19950927 RPM Warehouse	 Toronto	 Ontario	 Canada; Waiting Room; 2:56		
 11; Fugazi; 19950927 RPM Warehouse	 Toronto	 Ontario	 Canada; Interlude 1; 0:55		
-12; Fugazi; 19950927 RPM Warehouse	 Toronto	 Ontario	 Canada; Fell	 Destroyed; 4:09	
+12; Fugazi; 19950927 RPM Warehouse	 Toronto	 Ontario	 Canada; Fell, Destroyed; 4:09	
 13; Fugazi; 19950927 RPM Warehouse	 Toronto	 Ontario	 Canada; Birthday Pony; 2:34		
 14; Fugazi; 19950927 RPM Warehouse	 Toronto	 Ontario	 Canada; Blueprint; 3:28		
 15; Fugazi; 19950927 RPM Warehouse	 Toronto	 Ontario	 Canada; Interlude 2; 1:08		
@@ -15065,7 +15065,7 @@ track; artist; album; name; duration
 08; Fugazi; 19950928 Harro East Ballroom	 Rochester	 NY	 USA; Interlude 2; 0:14		
 09; Fugazi; 19950928 Harro East Ballroom	 Rochester	 NY	 USA; Target; 3:34		
 10; Fugazi; 19950928 Harro East Ballroom	 Rochester	 NY	 USA; Suggestion; 8:34		
-11; Fugazi; 19950928 Harro East Ballroom	 Rochester	 NY	 USA; Fell	 Destroyed; 4:00	
+11; Fugazi; 19950928 Harro East Ballroom	 Rochester	 NY	 USA; Fell, Destroyed; 4:00	
 12; Fugazi; 19950928 Harro East Ballroom	 Rochester	 NY	 USA; By You; 4:19		
 13; Fugazi; 19950928 Harro East Ballroom	 Rochester	 NY	 USA; Interlude 3; 0:48		
 14; Fugazi; 19950928 Harro East Ballroom	 Rochester	 NY	 USA; Birthday Pony; 2:33		
@@ -15103,7 +15103,7 @@ track; artist; album; name; duration
 17; Fugazi; 19950929 Metropol	 Pittsburgh	 PA	 USA; Long Distance Runner; 4:43		
 18; Fugazi; 19950929 Metropol	 Pittsburgh	 PA	 USA; Interlude 4; 2:33		
 19; Fugazi; 19950929 Metropol	 Pittsburgh	 PA	 USA; Long Division; 2:05		
-20; Fugazi; 19950929 Metropol	 Pittsburgh	 PA	 USA; Fell	 Destroyed; 3:43	
+20; Fugazi; 19950929 Metropol	 Pittsburgh	 PA	 USA; Fell, Destroyed; 3:43	
 21; Fugazi; 19950929 Metropol	 Pittsburgh	 PA	 USA; Returning The Screw; 3:37		
 22; Fugazi; 19950929 Metropol	 Pittsburgh	 PA	 USA; Interlude 5; 0:43		
 23; Fugazi; 19950929 Metropol	 Pittsburgh	 PA	 USA; Two Beats Off; 5:16		
@@ -15118,7 +15118,7 @@ track; artist; album; name; duration
 06; Fugazi; 19951001 State Theater	 Detroit	 MI	 USA; Facet Squared; 2:20		
 07; Fugazi; 19951001 State Theater	 Detroit	 MI	 USA; Margin Walker; 2:33		
 08; Fugazi; 19951001 State Theater	 Detroit	 MI	 USA; Bed For The Scraping; 3:24		
-09; Fugazi; 19951001 State Theater	 Detroit	 MI	 USA; Fell	 Destroyed; 4:04	
+09; Fugazi; 19951001 State Theater	 Detroit	 MI	 USA; Fell, Destroyed; 4:04	
 10; Fugazi; 19951001 State Theater	 Detroit	 MI	 USA; Promises; 7:00		
 11; Fugazi; 19951001 State Theater	 Detroit	 MI	 USA; Smallpox Champion; 3:47		
 12; Fugazi; 19951001 State Theater	 Detroit	 MI	 USA; Interlude 2; 0:50		
@@ -15154,7 +15154,7 @@ track; artist; album; name; duration
 16; Fugazi; 19951002 Agora Theater	 Cleveland	 OH	 USA; By You; 4:03		
 17; Fugazi; 19951002 Agora Theater	 Cleveland	 OH	 USA; Interlude 3; 1:07		
 18; Fugazi; 19951002 Agora Theater	 Cleveland	 OH	 USA; Great Cop; 1:44		
-19; Fugazi; 19951002 Agora Theater	 Cleveland	 OH	 USA; Fell	 Destroyed; 4:28	
+19; Fugazi; 19951002 Agora Theater	 Cleveland	 OH	 USA; Fell, Destroyed; 4:28	
 20; Fugazi; 19951002 Agora Theater	 Cleveland	 OH	 USA; Shut The Door; 7:34		
 21; Fugazi; 19951002 Agora Theater	 Cleveland	 OH	 USA; Encore; 2:36		
 22; Fugazi; 19951002 Agora Theater	 Cleveland	 OH	 USA; Forensic Scene; 3:12		
@@ -15181,7 +15181,7 @@ track; artist; album; name; duration
 15; Fugazi; 19951003 Newport Music Hall	 Columbus	 OH	 USA; Reclamation; 3:42		
 16; Fugazi; 19951003 Newport Music Hall	 Columbus	 OH	 USA; Reprovisional; 5:13		
 17; Fugazi; 19951003 Newport Music Hall	 Columbus	 OH	 USA; Encore 1; 3:31		
-18; Fugazi; 19951003 Newport Music Hall	 Columbus	 OH	 USA; Fell	 Destroyed; 4:53	
+18; Fugazi; 19951003 Newport Music Hall	 Columbus	 OH	 USA; Fell, Destroyed; 4:53	
 19; Fugazi; 19951003 Newport Music Hall	 Columbus	 OH	 USA; Merchandise; 2:28		
 20; Fugazi; 19951003 Newport Music Hall	 Columbus	 OH	 USA; Smallpox Champion; 3:27		
 21; Fugazi; 19951003 Newport Music Hall	 Columbus	 OH	 USA; Long Division; 2:18		
@@ -15213,7 +15213,7 @@ track; artist; album; name; duration
 24; Fugazi; 19951004 1470 West	 Dayton	 OH	 USA; Birthday Pony; 2:12		
 25; Fugazi; 19951004 1470 West	 Dayton	 OH	 USA; Target; 3:44		
 26; Fugazi; 19951004 1470 West	 Dayton	 OH	 USA; Instrument; 3:21		
-27; Fugazi; 19951004 1470 West	 Dayton	 OH	 USA; Fell	 Destroyed; 3:39	
+27; Fugazi; 19951004 1470 West	 Dayton	 OH	 USA; Fell, Destroyed; 3:39	
 28; Fugazi; 19951004 1470 West	 Dayton	 OH	 USA; Sweet and Low; 3:36		
 29; Fugazi; 19951004 1470 West	 Dayton	 OH	 USA; Blueprint; 3:39		
 30; Fugazi; 19951004 1470 West	 Dayton	 OH	 USA; Outro; 1:40		
@@ -15230,7 +15230,7 @@ track; artist; album; name; duration
 11; Fugazi; 19951005 Bogart's	 Cincinnati	 OH	 USA; Margin Walker; 2:51		
 12; Fugazi; 19951005 Bogart's	 Cincinnati	 OH	 USA; Returning The Screw; 3:47		
 13; Fugazi; 19951005 Bogart's	 Cincinnati	 OH	 USA; Interlude 2; 0:45		
-14; Fugazi; 19951005 Bogart's	 Cincinnati	 OH	 USA; Fell	 Destroyed; 4:16	
+14; Fugazi; 19951005 Bogart's	 Cincinnati	 OH	 USA; Fell, Destroyed; 4:16	
 15; Fugazi; 19951005 Bogart's	 Cincinnati	 OH	 USA; Waiting Room; 2:51		
 16; Fugazi; 19951005 Bogart's	 Cincinnati	 OH	 USA; Interlude 3; 0:46		
 17; Fugazi; 19951005 Bogart's	 Cincinnati	 OH	 USA; Do You Like Me; 2:14		
@@ -15292,7 +15292,7 @@ track; artist; album; name; duration
 22; Fugazi; 19951007 Brewery	 Louisville	 KY	 USA; Latest Disgrace; 3:25		
 23; Fugazi; 19951007 Brewery	 Louisville	 KY	 USA; Interlude 6; 1:06		
 24; Fugazi; 19951007 Brewery	 Louisville	 KY	 USA; Long Distance Runner; 4:27		
-25; Fugazi; 19951007 Brewery	 Louisville	 KY	 USA; Fell	 Destroyed; 4:15	
+25; Fugazi; 19951007 Brewery	 Louisville	 KY	 USA; Fell, Destroyed; 4:15	
 26; Fugazi; 19951007 Brewery	 Louisville	 KY	 USA; Joe #1; 2:25		
 27; Fugazi; 19951007 Brewery	 Louisville	 KY	 USA; KYEO; 3:05		
 28; Fugazi; 19951007 Brewery	 Louisville	 KY	 USA; Outro; 0:54		
@@ -15315,7 +15315,7 @@ track; artist; album; name; duration
 17; Fugazi; 19951008 Mississippi Nights	 St. Louis	 MO	 USA; Reclamation; 4:28		
 18; Fugazi; 19951008 Mississippi Nights	 St. Louis	 MO	 USA; Margin Walker; 2:37		
 19; Fugazi; 19951008 Mississippi Nights	 St. Louis	 MO	 USA; Facet Squared; 3:09		
-20; Fugazi; 19951008 Mississippi Nights	 St. Louis	 MO	 USA; Fell	 Destroyed; 3:50	
+20; Fugazi; 19951008 Mississippi Nights	 St. Louis	 MO	 USA; Fell, Destroyed; 3:50	
 21; Fugazi; 19951008 Mississippi Nights	 St. Louis	 MO	 USA; Sweet and Low; 4:15		
 22; Fugazi; 19951008 Mississippi Nights	 St. Louis	 MO	 USA; Rend It; 4:31		
 23; Fugazi; 19951008 Mississippi Nights	 St. Louis	 MO	 USA; Encore; 1:55		
@@ -15347,7 +15347,7 @@ track; artist; album; name; duration
 21; Fugazi; 19951009 Expo Gardens	 Peoria	 IL	 USA; Waiting Room; 2:40		
 22; Fugazi; 19951009 Expo Gardens	 Peoria	 IL	 USA; Margin Walker; 2:26		
 23; Fugazi; 19951009 Expo Gardens	 Peoria	 IL	 USA; Song #1; 3:19		
-24; Fugazi; 19951009 Expo Gardens	 Peoria	 IL	 USA; Fell	 Destroyed; 4:10	
+24; Fugazi; 19951009 Expo Gardens	 Peoria	 IL	 USA; Fell, Destroyed; 4:10	
 25; Fugazi; 19951009 Expo Gardens	 Peoria	 IL	 USA; Long Distance Runner; 4:33		
 26; Fugazi; 19951009 Expo Gardens	 Peoria	 IL	 USA; Version; 4:01		
 01; Fugazi; 19951010 Rainbo Roller Rink	 Chicago	 IL	 USA; Intro; 3:01		
@@ -15364,7 +15364,7 @@ track; artist; album; name; duration
 12; Fugazi; 19951010 Rainbo Roller Rink	 Chicago	 IL	 USA; Rend It; 4:03		
 13; Fugazi; 19951010 Rainbo Roller Rink	 Chicago	 IL	 USA; Suggestion; 5:21		
 14; Fugazi; 19951010 Rainbo Roller Rink	 Chicago	 IL	 USA; Facet Squared; 2:28		
-15; Fugazi; 19951010 Rainbo Roller Rink	 Chicago	 IL	 USA; Fell	 Destroyed; 3:37	
+15; Fugazi; 19951010 Rainbo Roller Rink	 Chicago	 IL	 USA; Fell, Destroyed; 3:37	
 16; Fugazi; 19951010 Rainbo Roller Rink	 Chicago	 IL	 USA; Public Witness Program; 1:52		
 17; Fugazi; 19951010 Rainbo Roller Rink	 Chicago	 IL	 USA; Interlude 2; 0:49		
 18; Fugazi; 19951010 Rainbo Roller Rink	 Chicago	 IL	 USA; Birthday Pony; 2:26		
@@ -15382,7 +15382,7 @@ track; artist; album; name; duration
 07; Fugazi; 19951012 Riverside Ballroom	 Green Bay	 WI	 USA; Interlude 1; 0:37		
 08; Fugazi; 19951012 Riverside Ballroom	 Green Bay	 WI	 USA; Bulldog Front; 2:44		
 09; Fugazi; 19951012 Riverside Ballroom	 Green Bay	 WI	 USA; Long Division; 2:33		
-10; Fugazi; 19951012 Riverside Ballroom	 Green Bay	 WI	 USA; Fell	 Destroyed; 4:10	
+10; Fugazi; 19951012 Riverside Ballroom	 Green Bay	 WI	 USA; Fell, Destroyed; 4:10	
 11; Fugazi; 19951012 Riverside Ballroom	 Green Bay	 WI	 USA; By You; 4:38		
 12; Fugazi; 19951012 Riverside Ballroom	 Green Bay	 WI	 USA; Song #1; 3:19		
 13; Fugazi; 19951012 Riverside Ballroom	 Green Bay	 WI	 USA; Cassavetes; 2:21		
@@ -15408,7 +15408,7 @@ track; artist; album; name; duration
 08; Fugazi; 19951013 Rave	 Milwaukee	 WI	 USA; Reclamation; 3:31		
 09; Fugazi; 19951013 Rave	 Milwaukee	 WI	 USA; Nice New Outfit; 3:09		
 10; Fugazi; 19951013 Rave	 Milwaukee	 WI	 USA; Shut the Door; 7:31		
-11; Fugazi; 19951013 Rave	 Milwaukee	 WI	 USA; Fell	 Destroyed; 4:19	
+11; Fugazi; 19951013 Rave	 Milwaukee	 WI	 USA; Fell, Destroyed; 4:19	
 12; Fugazi; 19951013 Rave	 Milwaukee	 WI	 USA; Bed For The Scraping; 3:00		
 13; Fugazi; 19951013 Rave	 Milwaukee	 WI	 USA; Interlude 2; 1:08		
 14; Fugazi; 19951013 Rave	 Milwaukee	 WI	 USA; Margin Walker; 2:36		
@@ -15458,7 +15458,7 @@ track; artist; album; name; duration
 08; Fugazi; 19951015 First Avenue	 Minneapolis	 MN	 USA; Reclamation; 5:08		
 09; Fugazi; 19951015 First Avenue	 Minneapolis	 MN	 USA; Rend It; 4:19		
 10; Fugazi; 19951015 First Avenue	 Minneapolis	 MN	 USA; Bed For The Scraping; 2:58		
-11; Fugazi; 19951015 First Avenue	 Minneapolis	 MN	 USA; Fell	 Destroyed; 3:56	
+11; Fugazi; 19951015 First Avenue	 Minneapolis	 MN	 USA; Fell, Destroyed; 3:56	
 12; Fugazi; 19951015 First Avenue	 Minneapolis	 MN	 USA; Returning The Screw; 3:55		
 13; Fugazi; 19951015 First Avenue	 Minneapolis	 MN	 USA; Smallpox Champion; 3:26		
 14; Fugazi; 19951015 First Avenue	 Minneapolis	 MN	 USA; Song #1; 3:32		
@@ -15491,7 +15491,7 @@ track; artist; album; name; duration
 13; Fugazi; 19951017 Hunky Dory's	 Ames	 IA	 USA; By You; 4:18		
 14; Fugazi; 19951017 Hunky Dory's	 Ames	 IA	 USA; Interlude 5; 0:28		
 15; Fugazi; 19951017 Hunky Dory's	 Ames	 IA	 USA; Back To Base; 1:39		
-16; Fugazi; 19951017 Hunky Dory's	 Ames	 IA	 USA; Fell	 Destroyed; 4:00	
+16; Fugazi; 19951017 Hunky Dory's	 Ames	 IA	 USA; Fell, Destroyed; 4:00	
 17; Fugazi; 19951017 Hunky Dory's	 Ames	 IA	 USA; Suggestion; 6:54		
 18; Fugazi; 19951017 Hunky Dory's	 Ames	 IA	 USA; Interlude 6; 0:34		
 19; Fugazi; 19951017 Hunky Dory's	 Ames	 IA	 USA; Two Beats Off; 5:37		
@@ -15517,7 +15517,7 @@ track; artist; album; name; duration
 08; Fugazi; 19951018 State Fairgrounds Agricultural Hall	 Lincoln	 NE	 USA; Interlude 1; 0:26		
 09; Fugazi; 19951018 State Fairgrounds Agricultural Hall	 Lincoln	 NE	 USA; Target; 3:23		
 10; Fugazi; 19951018 State Fairgrounds Agricultural Hall	 Lincoln	 NE	 USA; Shut the Door; 7:41		
-11; Fugazi; 19951018 State Fairgrounds Agricultural Hall	 Lincoln	 NE	 USA; Fell	 Destroyed; 4:19	
+11; Fugazi; 19951018 State Fairgrounds Agricultural Hall	 Lincoln	 NE	 USA; Fell, Destroyed; 4:19	
 12; Fugazi; 19951018 State Fairgrounds Agricultural Hall	 Lincoln	 NE	 USA; By You; 4:50		
 13; Fugazi; 19951018 State Fairgrounds Agricultural Hall	 Lincoln	 NE	 USA; Bed For The Scraping; 3:26		
 14; Fugazi; 19951018 State Fairgrounds Agricultural Hall	 Lincoln	 NE	 USA; Exit Only; 2:46		
@@ -15553,7 +15553,7 @@ track; artist; album; name; duration
 20; Fugazi; 19951019 Pomp Room	 Sioux Falls	 SD	 USA; Waiting Room; 2:45		
 21; Fugazi; 19951019 Pomp Room	 Sioux Falls	 SD	 USA; Margin Walker; 2:46		
 22; Fugazi; 19951019 Pomp Room	 Sioux Falls	 SD	 USA; Long Distance Runner; 4:09		
-23; Fugazi; 19951019 Pomp Room	 Sioux Falls	 SD	 USA; Fell	 Destroyed; 4:00	
+23; Fugazi; 19951019 Pomp Room	 Sioux Falls	 SD	 USA; Fell, Destroyed; 4:00	
 24; Fugazi; 19951019 Pomp Room	 Sioux Falls	 SD	 USA; Sweet And Low; 4:20		
 25; Fugazi; 19951019 Pomp Room	 Sioux Falls	 SD	 USA; Outro; 0:31		
 01; Fugazi; 19951020 Surbeck City School of Mines and Technology	 Rapid City	 SD	 USA; Intro; 3:11		
@@ -15591,7 +15591,7 @@ track; artist; album; name; duration
 10; Fugazi; 19951022 Mammoth Events Center	 Denver	 CO	 USA; Margin Walker; 2:43		
 11; Fugazi; 19951022 Mammoth Events Center	 Denver	 CO	 USA; Waiting Room; 3:37		
 12; Fugazi; 19951022 Mammoth Events Center	 Denver	 CO	 USA; By You; 4:16		
-13; Fugazi; 19951022 Mammoth Events Center	 Denver	 CO	 USA; Fell	 Destroyed; 3:57	
+13; Fugazi; 19951022 Mammoth Events Center	 Denver	 CO	 USA; Fell, Destroyed; 3:57	
 14; Fugazi; 19951022 Mammoth Events Center	 Denver	 CO	 USA; Returning The Screw; 4:15		
 15; Fugazi; 19951022 Mammoth Events Center	 Denver	 CO	 USA; Target; 3:46		
 16; Fugazi; 19951022 Mammoth Events Center	 Denver	 CO	 USA; Promises; 7:18		
@@ -15625,7 +15625,7 @@ track; artist; album; name; duration
 21; Fugazi; 19951024 Fairgrounds Coliseum	 Salt Lake City	 UT	 USA; Encore 1; 2:28		
 22; Fugazi; 19951024 Fairgrounds Coliseum	 Salt Lake City	 UT	 USA; Walken's Syndrome; 2:34		
 23; Fugazi; 19951024 Fairgrounds Coliseum	 Salt Lake City	 UT	 USA; Reclamation; 3:37		
-24; Fugazi; 19951024 Fairgrounds Coliseum	 Salt Lake City	 UT	 USA; Fell	 Destroyed; 4:26	
+24; Fugazi; 19951024 Fairgrounds Coliseum	 Salt Lake City	 UT	 USA; Fell, Destroyed; 4:26	
 25; Fugazi; 19951024 Fairgrounds Coliseum	 Salt Lake City	 UT	 USA; Long Distance Runner; 7:10		
 26; Fugazi; 19951024 Fairgrounds Coliseum	 Salt Lake City	 UT	 USA; Cassavetes; 2:21		
 27; Fugazi; 19951024 Fairgrounds Coliseum	 Salt Lake City	 UT	 USA; Sweet and Low; 5:35		
@@ -15649,7 +15649,7 @@ track; artist; album; name; duration
 18; Fugazi; 19951025 Bogie's	 Boise	 ID	 USA; Smallpox Champion; 3:44		
 19; Fugazi; 19951025 Bogie's	 Boise	 ID	 USA; Encore; 2:34		
 20; Fugazi; 19951025 Bogie's	 Boise	 ID	 USA; Back To Base; 1:39		
-21; Fugazi; 19951025 Bogie's	 Boise	 ID	 USA; Fell	 Destroyed; 3:46	
+21; Fugazi; 19951025 Bogie's	 Boise	 ID	 USA; Fell, Destroyed; 3:46	
 22; Fugazi; 19951025 Bogie's	 Boise	 ID	 USA; Long Division; 2:44		
 23; Fugazi; 19951025 Bogie's	 Boise	 ID	 USA; Reprovisional; 4:20		
 24; Fugazi; 19951025 Bogie's	 Boise	 ID	 USA; Sweet and Low; 4:45		
@@ -15677,7 +15677,7 @@ track; artist; album; name; duration
 21; Fugazi; 19951026 Twilight Terrace	 Yakima	 WA	 USA; Smallpox Champion; 3:28		
 22; Fugazi; 19951026 Twilight Terrace	 Yakima	 WA	 USA; Interlude 5; 0:31		
 23; Fugazi; 19951026 Twilight Terrace	 Yakima	 WA	 USA; Long Distance Runner; 4:10		
-24; Fugazi; 19951026 Twilight Terrace	 Yakima	 WA	 USA; Fell	 Destroyed; 3:47	
+24; Fugazi; 19951026 Twilight Terrace	 Yakima	 WA	 USA; Fell, Destroyed; 3:47	
 25; Fugazi; 19951026 Twilight Terrace	 Yakima	 WA	 USA; Sweet and Low; 4:01		
 26; Fugazi; 19951026 Twilight Terrace	 Yakima	 WA	 USA; Instrument; 3:58		
 27; Fugazi; 19951026 Twilight Terrace	 Yakima	 WA	 USA; Rend It; 3:55		
@@ -15701,7 +15701,7 @@ track; artist; album; name; duration
 17; Fugazi; 19951027 DV8	 Seattle	 WA	 USA; Interlude 2; 1:00		
 18; Fugazi; 19951027 DV8	 Seattle	 WA	 USA; Public Witness Program; 2:01		
 19; Fugazi; 19951027 DV8	 Seattle	 WA	 USA; Back to Base; 1:51		
-20; Fugazi; 19951027 DV8	 Seattle	 WA	 USA; Fell	 Destroyed; 3:51	
+20; Fugazi; 19951027 DV8	 Seattle	 WA	 USA; Fell, Destroyed; 3:51	
 21; Fugazi; 19951027 DV8	 Seattle	 WA	 USA; Promises; 8:55		
 01; Fugazi; 19951029 Capitol Theater	 Olympia	 WA	 USA; Version; 3:25		
 02; Fugazi; 19951029 Capitol Theater	 Olympia	 WA	 USA; Intro; 1:25		
@@ -15712,7 +15712,7 @@ track; artist; album; name; duration
 07; Fugazi; 19951029 Capitol Theater	 Olympia	 WA	 USA; Bed For The Scraping; 1:25		
 08; Fugazi; 19951029 Capitol Theater	 Olympia	 WA	 USA; Target; 3:34		
 09; Fugazi; 19951029 Capitol Theater	 Olympia	 WA	 USA; Long Division; 2:26		
-10; Fugazi; 19951029 Capitol Theater	 Olympia	 WA	 USA; Fell	 Destroyed; 4:16	
+10; Fugazi; 19951029 Capitol Theater	 Olympia	 WA	 USA; Fell, Destroyed; 4:16	
 11; Fugazi; 19951029 Capitol Theater	 Olympia	 WA	 USA; By You; 4:11		
 12; Fugazi; 19951029 Capitol Theater	 Olympia	 WA	 USA; Interlude 1; 0:39		
 13; Fugazi; 19951029 Capitol Theater	 Olympia	 WA	 USA; Two Beats Off; 5:42		
@@ -15745,7 +15745,7 @@ track; artist; album; name; duration
 11; Fugazi; 19951102 La Luna	 Portland	 OR	 USA; Smallpox Champion; 3:21		
 12; Fugazi; 19951102 La Luna	 Portland	 OR	 USA; Bad Mouth; 2:16		
 13; Fugazi; 19951102 La Luna	 Portland	 OR	 USA; Interlude 4; 2:33		
-14; Fugazi; 19951102 La Luna	 Portland	 OR	 USA; Fell	 Destroyed; 4:25	
+14; Fugazi; 19951102 La Luna	 Portland	 OR	 USA; Fell, Destroyed; 4:25	
 15; Fugazi; 19951102 La Luna	 Portland	 OR	 USA; Long Division; 2:02		
 16; Fugazi; 19951102 La Luna	 Portland	 OR	 USA; Target; 3:37		
 17; Fugazi; 19951102 La Luna	 Portland	 OR	 USA; By You; 4:05		
@@ -15783,7 +15783,7 @@ track; artist; album; name; duration
 21; Fugazi; 19951104 The Grind	 Sacramento	 CA	 USA; Two Beats Off; 5:17		
 22; Fugazi; 19951104 The Grind	 Sacramento	 CA	 USA; Interlude 4; 1:07		
 23; Fugazi; 19951104 The Grind	 Sacramento	 CA	 USA; Long Distance Runner; 4:36		
-24; Fugazi; 19951104 The Grind	 Sacramento	 CA	 USA; Fell	 Destroyed; 4:00	
+24; Fugazi; 19951104 The Grind	 Sacramento	 CA	 USA; Fell, Destroyed; 4:00	
 25; Fugazi; 19951104 The Grind	 Sacramento	 CA	 USA; Sweet and Low; 3:53		
 26; Fugazi; 19951104 The Grind	 Sacramento	 CA	 USA; Instrument; 4:18		
 27; Fugazi; 19951104 The Grind	 Sacramento	 CA	 USA; Outro; 0:36		
@@ -15799,7 +15799,7 @@ track; artist; album; name; duration
 10; Fugazi; 19951105 Trocadero Transfer	 San Francisco	 CA	 USA; Target; 3:43		
 11; Fugazi; 19951105 Trocadero Transfer	 San Francisco	 CA	 USA; Suggestion; 7:17		
 12; Fugazi; 19951105 Trocadero Transfer	 San Francisco	 CA	 USA; Interlude 3; 0:43		
-13; Fugazi; 19951105 Trocadero Transfer	 San Francisco	 CA	 USA; Fell	 Destroyed; 3:18	
+13; Fugazi; 19951105 Trocadero Transfer	 San Francisco	 CA	 USA; Fell, Destroyed; 3:18	
 14; Fugazi; 19951105 Trocadero Transfer	 San Francisco	 CA	 USA; By You; 4:52		
 15; Fugazi; 19951105 Trocadero Transfer	 San Francisco	 CA	 USA; Instrument; 3:22		
 16; Fugazi; 19951105 Trocadero Transfer	 San Francisco	 CA	 USA; Blueprint; 3:17		
@@ -15808,7 +15808,7 @@ track; artist; album; name; duration
 19; Fugazi; 19951105 Trocadero Transfer	 San Francisco	 CA	 USA; Back to Base; 1:40		
 20; Fugazi; 19951105 Trocadero Transfer	 San Francisco	 CA	 USA; Cassavetes; 2:14		
 21; Fugazi; 19951105 Trocadero Transfer	 San Francisco	 CA	 USA; Shut the Door; 7:49		
-22; Fugazi; 19951105 Trocadero Transfer	 San Francisco	 CA	 USA; Fell	 Destroyed; 4:53	
+22; Fugazi; 19951105 Trocadero Transfer	 San Francisco	 CA	 USA; Fell, Destroyed; 4:53	
 23; Fugazi; 19951105 Trocadero Transfer	 San Francisco	 CA	 USA; Sweet and Low; 4:51		
 24; Fugazi; 19951105 Trocadero Transfer	 San Francisco	 CA	 USA; Outro; 0:40		
 01; Fugazi; 19951106 Trocadero Transfer	 San Francisco	 CA	 USA; Intro; 4:19		
@@ -15848,7 +15848,7 @@ track; artist; album; name; duration
 14; Fugazi; 19951107 Tejon Theater	 Bakersfield	 CA	 USA; Stacks; 2:55		
 15; Fugazi; 19951107 Tejon Theater	 Bakersfield	 CA	 USA; Target; 3:52		
 16; Fugazi; 19951107 Tejon Theater	 Bakersfield	 CA	 USA; Shut The Door; 7:53		
-17; Fugazi; 19951107 Tejon Theater	 Bakersfield	 CA	 USA; Fell	 Destroyed; 4:32	
+17; Fugazi; 19951107 Tejon Theater	 Bakersfield	 CA	 USA; Fell, Destroyed; 4:32	
 18; Fugazi; 19951107 Tejon Theater	 Bakersfield	 CA	 USA; Interlude 6; 0:47		
 19; Fugazi; 19951107 Tejon Theater	 Bakersfield	 CA	 USA; Birthday Pony; 2:18		
 20; Fugazi; 19951107 Tejon Theater	 Bakersfield	 CA	 USA; Interlude 7; 0:22		
@@ -15879,7 +15879,7 @@ track; artist; album; name; duration
 17; Fugazi; 19951108 Shrine Auditorium	 Los Angeles	 CA	 USA; By You; 4:24		
 18; Fugazi; 19951108 Shrine Auditorium	 Los Angeles	 CA	 USA; Suggestion; 6:30		
 19; Fugazi; 19951108 Shrine Auditorium	 Los Angeles	 CA	 USA; Interlude 6; 0:14		
-20; Fugazi; 19951108 Shrine Auditorium	 Los Angeles	 CA	 USA; Fell	 Destroyed; 3:42	
+20; Fugazi; 19951108 Shrine Auditorium	 Los Angeles	 CA	 USA; Fell, Destroyed; 3:42	
 21; Fugazi; 19951108 Shrine Auditorium	 Los Angeles	 CA	 USA; Sweet and Low; 3:48		
 22; Fugazi; 19951108 Shrine Auditorium	 Los Angeles	 CA	 USA; Instrument; 3:33		
 23; Fugazi; 19951108 Shrine Auditorium	 Los Angeles	 CA	 USA; Encore 1; 2:10		
@@ -15900,7 +15900,7 @@ track; artist; album; name; duration
 09; Fugazi; 19951109 Shrine Auditorium	 Los Angeles	 CA	 USA; Do You Like Me; 2:14		
 10; Fugazi; 19951109 Shrine Auditorium	 Los Angeles	 CA	 USA; Interlude 2; 0:40		
 11; Fugazi; 19951109 Shrine Auditorium	 Los Angeles	 CA	 USA; Birthday Pony; 2:25		
-12; Fugazi; 19951109 Shrine Auditorium	 Los Angeles	 CA	 USA; Fell	 Destroyed; 3:49	
+12; Fugazi; 19951109 Shrine Auditorium	 Los Angeles	 CA	 USA; Fell, Destroyed; 3:49	
 13; Fugazi; 19951109 Shrine Auditorium	 Los Angeles	 CA	 USA; Promises; 7:21		
 14; Fugazi; 19951109 Shrine Auditorium	 Los Angeles	 CA	 USA; Turnover; 3:50		
 15; Fugazi; 19951109 Shrine Auditorium	 Los Angeles	 CA	 USA; Waiting Room; 2:52		
@@ -15935,7 +15935,7 @@ track; artist; album; name; duration
 18; Fugazi; 19951110 Soma	 San Diego	 CA	 USA; Bad Mouth; 2:21		
 19; Fugazi; 19951110 Soma	 San Diego	 CA	 USA; Blueprint; 3:24		
 20; Fugazi; 19951110 Soma	 San Diego	 CA	 USA; Encore; 2:25		
-21; Fugazi; 19951110 Soma	 San Diego	 CA	 USA; Fell	 Destroyed; 4:12	
+21; Fugazi; 19951110 Soma	 San Diego	 CA	 USA; Fell, Destroyed; 4:12	
 22; Fugazi; 19951110 Soma	 San Diego	 CA	 USA; Repeater; 3:22		
 23; Fugazi; 19951110 Soma	 San Diego	 CA	 USA; Rend It; 3:53		
 24; Fugazi; 19951110 Soma	 San Diego	 CA	 USA; Interlude 4; 0:45		
@@ -15961,7 +15961,7 @@ track; artist; album; name; duration
 18; Fugazi; 19951111 Party Gardens	 Phoenix	 AZ	 USA; Interlude 6; 0:30		
 19; Fugazi; 19951111 Party Gardens	 Phoenix	 AZ	 USA; Bed For The Scraping; 3:02		
 20; Fugazi; 19951111 Party Gardens	 Phoenix	 AZ	 USA; Interlude 7; 1:00		
-21; Fugazi; 19951111 Party Gardens	 Phoenix	 AZ	 USA; Fell	 Destroyed; 3:46	
+21; Fugazi; 19951111 Party Gardens	 Phoenix	 AZ	 USA; Fell, Destroyed; 3:46	
 22; Fugazi; 19951111 Party Gardens	 Phoenix	 AZ	 USA; Promises; 6:54		
 23; Fugazi; 19951111 Party Gardens	 Phoenix	 AZ	 USA; Encore 1; 1:44		
 24; Fugazi; 19951111 Party Gardens	 Phoenix	 AZ	 USA; Rend It; 4:07		
@@ -15996,7 +15996,7 @@ track; artist; album; name; duration
 23; Fugazi; 19951113 Five Points Hall	 Albuquerque	 NM	 USA; Two Beats Off; 4:58		
 24; Fugazi; 19951113 Five Points Hall	 Albuquerque	 NM	 USA; Interlude 6; 0:23		
 25; Fugazi; 19951113 Five Points Hall	 Albuquerque	 NM	 USA; Back To Base; 1:34		
-26; Fugazi; 19951113 Five Points Hall	 Albuquerque	 NM	 USA; Fell	 Destroyed; 5:06	
+26; Fugazi; 19951113 Five Points Hall	 Albuquerque	 NM	 USA; Fell, Destroyed; 5:06	
 01; Fugazi; 19951114 Metropolis	 El Paso	 TX	 USA; Intro; 3:14		
 02; Fugazi; 19951114 Metropolis	 El Paso	 TX	 USA; Facet Squared; 2:26		
 03; Fugazi; 19951114 Metropolis	 El Paso	 TX	 USA; Do You Like Me; 2:08		
@@ -16048,7 +16048,7 @@ track; artist; album; name; duration
 19; Fugazi; 19951116 Liberty Lunch	 Austin	 TX	 USA; Back To Base; 1:54		
 20; Fugazi; 19951116 Liberty Lunch	 Austin	 TX	 USA; Sieve-Fisted Find; 3:05		
 21; Fugazi; 19951116 Liberty Lunch	 Austin	 TX	 USA; Song #1; 3:48		
-22; Fugazi; 19951116 Liberty Lunch	 Austin	 TX	 USA; Fell	 Destroyed; 4:17	
+22; Fugazi; 19951116 Liberty Lunch	 Austin	 TX	 USA; Fell, Destroyed; 4:17	
 23; Fugazi; 19951116 Liberty Lunch	 Austin	 TX	 USA; Instrument; 3:33		
 24; Fugazi; 19951116 Liberty Lunch	 Austin	 TX	 USA; Outro; 0:35		
 01; Fugazi; 19951117 Liberty Lunch	 Austin	 TX	 USA; Intro; 3:14		
@@ -16074,7 +16074,7 @@ track; artist; album; name; duration
 21; Fugazi; 19951117 Liberty Lunch	 Austin	 TX	 USA; Back To Base; 1:38		
 22; Fugazi; 19951117 Liberty Lunch	 Austin	 TX	 USA; Nice New Outfit; 3:05		
 23; Fugazi; 19951117 Liberty Lunch	 Austin	 TX	 USA; Promises; 8:08		
-24; Fugazi; 19951117 Liberty Lunch	 Austin	 TX	 USA; Fell	 Destroyed; 5:00	
+24; Fugazi; 19951117 Liberty Lunch	 Austin	 TX	 USA; Fell, Destroyed; 5:00	
 01; Fugazi; 19951118 Showcase Special Events	 San Antonio	 TX	 USA; Intro; 4:19		
 02; Fugazi; 19951118 Showcase Special Events	 San Antonio	 TX	 USA; Cassavetes; 2:23		
 03; Fugazi; 19951118 Showcase Special Events	 San Antonio	 TX	 USA; Interlude 1; 1:02		
@@ -16110,7 +16110,7 @@ track; artist; album; name; duration
 08; Fugazi; 19951119 Bomb Factory	 Dallas	 TX	 USA; Bed For The Scraping; 2:59		
 09; Fugazi; 19951119 Bomb Factory	 Dallas	 TX	 USA; Give Me The Cure; 2:59		
 10; Fugazi; 19951119 Bomb Factory	 Dallas	 TX	 USA; Reclamation; 3:52		
-11; Fugazi; 19951119 Bomb Factory	 Dallas	 TX	 USA; Fell	 Destroyed; 4:28	
+11; Fugazi; 19951119 Bomb Factory	 Dallas	 TX	 USA; Fell, Destroyed; 4:28	
 12; Fugazi; 19951119 Bomb Factory	 Dallas	 TX	 USA; By You; 4:31		
 13; Fugazi; 19951119 Bomb Factory	 Dallas	 TX	 USA; Song #1; 3:53		
 14; Fugazi; 19951119 Bomb Factory	 Dallas	 TX	 USA; Interlude 2; 0:53		
@@ -16139,7 +16139,7 @@ track; artist; album; name; duration
 14; Fugazi; 19951120 Diamond Ballroom	 Oklahoma City	 OK	 USA; Promises; 6:54		
 15; Fugazi; 19951120 Diamond Ballroom	 Oklahoma City	 OK	 USA; Interlude 3; 1:23		
 16; Fugazi; 19951120 Diamond Ballroom	 Oklahoma City	 OK	 USA; By You; 4:50		
-17; Fugazi; 19951120 Diamond Ballroom	 Oklahoma City	 OK	 USA; Fell	 Destroyed; 4:42	
+17; Fugazi; 19951120 Diamond Ballroom	 Oklahoma City	 OK	 USA; Fell, Destroyed; 4:42	
 18; Fugazi; 19951120 Diamond Ballroom	 Oklahoma City	 OK	 USA; Repeater; 2:57		
 19; Fugazi; 19951120 Diamond Ballroom	 Oklahoma City	 OK	 USA; Encore; 2:20		
 20; Fugazi; 19951120 Diamond Ballroom	 Oklahoma City	 OK	 USA; Birthday Party; 2:25		
@@ -16161,7 +16161,7 @@ track; artist; album; name; duration
 13; Fugazi; 19960130 Black Cat	 Washington	 DC	 USA; By You; 4:09		
 14; Fugazi; 19960130 Black Cat	 Washington	 DC	 USA; Interlude 2; 0:57		
 15; Fugazi; 19960130 Black Cat	 Washington	 DC	 USA; Merchandise; 2:53		
-16; Fugazi; 19960130 Black Cat	 Washington	 DC	 USA; Fell	 Destroyed; 4:45	
+16; Fugazi; 19960130 Black Cat	 Washington	 DC	 USA; Fell, Destroyed; 4:45	
 17; Fugazi; 19960130 Black Cat	 Washington	 DC	 USA; Birthday Pony; 2:22		
 18; Fugazi; 19960130 Black Cat	 Washington	 DC	 USA; Downed City; 1:57		
 19; Fugazi; 19960130 Black Cat	 Washington	 DC	 USA; Interlude 3; 0:58		
@@ -16192,7 +16192,7 @@ track; artist; album; name; duration
 17; Fugazi; 19960131 9:30 Club	 Washington	 DC	 USA; Encore 1; 3:49		
 18; Fugazi; 19960131 9:30 Club	 Washington	 DC	 USA; Public Witness Program; 1:52		
 19; Fugazi; 19960131 9:30 Club	 Washington	 DC	 USA; Back to Base; 1:52		
-20; Fugazi; 19960131 9:30 Club	 Washington	 DC	 USA; Fell	 Destroyed; 4:31	
+20; Fugazi; 19960131 9:30 Club	 Washington	 DC	 USA; Fell, Destroyed; 4:31	
 21; Fugazi; 19960131 9:30 Club	 Washington	 DC	 USA; Long Division; 2:37		
 22; Fugazi; 19960131 9:30 Club	 Washington	 DC	 USA; Version; 5:49		
 23; Fugazi; 19960131 9:30 Club	 Washington	 DC	 USA; Two Beats Off; 8:19		
@@ -16370,7 +16370,7 @@ track; artist; album; name; duration
 06; Fugazi; 19960328 Masquerade	 Atlanta	 GA	 USA; Interlude 1; 0:44		
 07; Fugazi; 19960328 Masquerade	 Atlanta	 GA	 USA; Bulldog Front; 2:44		
 08; Fugazi; 19960328 Masquerade	 Atlanta	 GA	 USA; Bed For The Scraping; 2:48		
-09; Fugazi; 19960328 Masquerade	 Atlanta	 GA	 USA; Fell	 Destroyed; 4:19	
+09; Fugazi; 19960328 Masquerade	 Atlanta	 GA	 USA; Fell, Destroyed; 4:19	
 10; Fugazi; 19960328 Masquerade	 Atlanta	 GA	 USA; Instrument; 3:27		
 11; Fugazi; 19960328 Masquerade	 Atlanta	 GA	 USA; Turnover; 4:59		
 12; Fugazi; 19960328 Masquerade	 Atlanta	 GA	 USA; By You; 4:19		
@@ -16406,7 +16406,7 @@ track; artist; album; name; duration
 19; Fugazi; 19960329 Masquerade	 Atlanta	 GA	 USA; Version; 5:58		
 20; Fugazi; 19960329 Masquerade	 Atlanta	 GA	 USA; By You; 4:59		
 21; Fugazi; 19960329 Masquerade	 Atlanta	 GA	 USA; Waiting Room; 3:23		
-22; Fugazi; 19960329 Masquerade	 Atlanta	 GA	 USA; Fell	 Destroyed; 4:08	
+22; Fugazi; 19960329 Masquerade	 Atlanta	 GA	 USA; Fell, Destroyed; 4:08	
 23; Fugazi; 19960329 Masquerade	 Atlanta	 GA	 USA; Sweet And Low; 5:37		
 24; Fugazi; 19960329 Masquerade	 Atlanta	 GA	 USA; Glue Man; 7:49		
 01; Fugazi; 19960330 Zoo	 Savannah	 GA	 USA; Intro; 1:06		
@@ -16446,7 +16446,7 @@ track; artist; album; name; duration
 13; Fugazi; 19960331 Milk Bar	 Jacksonville	 FL	 USA; Birthday Pony; 2:14		
 14; Fugazi; 19960331 Milk Bar	 Jacksonville	 FL	 USA; Target; 3:31		
 15; Fugazi; 19960331 Milk Bar	 Jacksonville	 FL	 USA; Shut the Door; 7:53		
-16; Fugazi; 19960331 Milk Bar	 Jacksonville	 FL	 USA; Fell	 Destroyed; 4:27	
+16; Fugazi; 19960331 Milk Bar	 Jacksonville	 FL	 USA; Fell, Destroyed; 4:27	
 17; Fugazi; 19960331 Milk Bar	 Jacksonville	 FL	 USA; Encore 1; 3:16		
 18; Fugazi; 19960331 Milk Bar	 Jacksonville	 FL	 USA; KYEO; 3:57		
 19; Fugazi; 19960331 Milk Bar	 Jacksonville	 FL	 USA; Blueprint; 4:13		
@@ -16493,7 +16493,7 @@ track; artist; album; name; duration
 13; Fugazi; 19960402 Edge	 Fort Lauderdale	 FL	 USA; By You; 4:18		
 14; Fugazi; 19960402 Edge	 Fort Lauderdale	 FL	 USA; Interlude 3; 0:31		
 15; Fugazi; 19960402 Edge	 Fort Lauderdale	 FL	 USA; Promises; 7:29		
-16; Fugazi; 19960402 Edge	 Fort Lauderdale	 FL	 USA; Fell	 Destroyed; 4:53	
+16; Fugazi; 19960402 Edge	 Fort Lauderdale	 FL	 USA; Fell, Destroyed; 4:53	
 17; Fugazi; 19960402 Edge	 Fort Lauderdale	 FL	 USA; Rend It; 3:10		
 18; Fugazi; 19960402 Edge	 Fort Lauderdale	 FL	 USA; Facet Squared; 2:40		
 19; Fugazi; 19960402 Edge	 Fort Lauderdale	 FL	 USA; Forensic Scene; 3:41		
@@ -16521,7 +16521,7 @@ track; artist; album; name; duration
 12; Fugazi; 19960405 Tipitina's	 New Orleans	 LA	 USA; Bed For The Scraping; 2:59		
 13; Fugazi; 19960405 Tipitina's	 New Orleans	 LA	 USA; Margin Walker; 2:43		
 14; Fugazi; 19960405 Tipitina's	 New Orleans	 LA	 USA; Long Division; 2:41		
-15; Fugazi; 19960405 Tipitina's	 New Orleans	 LA	 USA; Fell	 Destroyed; 4:30	
+15; Fugazi; 19960405 Tipitina's	 New Orleans	 LA	 USA; Fell, Destroyed; 4:30	
 16; Fugazi; 19960405 Tipitina's	 New Orleans	 LA	 USA; Suggestion; 6:59		
 17; Fugazi; 19960405 Tipitina's	 New Orleans	 LA	 USA; Interlude 3; 0:49		
 18; Fugazi; 19960405 Tipitina's	 New Orleans	 LA	 USA; Forensic Scene; 3:35		
@@ -16552,7 +16552,7 @@ track; artist; album; name; duration
 19; Fugazi; 19960407 Heymann Performance Arts Center	 Lafayette	 LA	 USA; Styrofoam; 2:36		
 20; Fugazi; 19960407 Heymann Performance Arts Center	 Lafayette	 LA	 USA; Rend It; 3:57		
 21; Fugazi; 19960407 Heymann Performance Arts Center	 Lafayette	 LA	 USA; Long Division; 2:44		
-22; Fugazi; 19960407 Heymann Performance Arts Center	 Lafayette	 LA	 USA; Fell	 Destroyed; 4:40	
+22; Fugazi; 19960407 Heymann Performance Arts Center	 Lafayette	 LA	 USA; Fell, Destroyed; 4:40	
 23; Fugazi; 19960407 Heymann Performance Arts Center	 Lafayette	 LA	 USA; Encore; 2:30		
 24; Fugazi; 19960407 Heymann Performance Arts Center	 Lafayette	 LA	 USA; Birthday Pony; 2:19		
 25; Fugazi; 19960407 Heymann Performance Arts Center	 Lafayette	 LA	 USA; Two Beats Off; 5:13		
@@ -16608,7 +16608,7 @@ track; artist; album; name; duration
 22; Fugazi; 19960410 Lafayettes	 Oxford	 MS	 USA; Instrument; 3:45		
 23; Fugazi; 19960410 Lafayettes	 Oxford	 MS	 USA; Smallpox Champion; 4:03		
 24; Fugazi; 19960410 Lafayettes	 Oxford	 MS	 USA; Merchandise; 2:46		
-25; Fugazi; 19960410 Lafayettes	 Oxford	 MS	 USA; Fell	 Destroyed; 4:27	
+25; Fugazi; 19960410 Lafayettes	 Oxford	 MS	 USA; Fell, Destroyed; 4:27	
 26; Fugazi; 19960410 Lafayettes	 Oxford	 MS	 USA; Long Distance Runner; 5:12		
 27; Fugazi; 19960410 Lafayettes	 Oxford	 MS	 USA; Outro; 0:18		
 01; Fugazi; 19960411 328 Performance	 Nashville	 TN	 USA; Intro; 0:47		
@@ -16629,7 +16629,7 @@ track; artist; album; name; duration
 16; Fugazi; 19960411 328 Performance	 Nashville	 TN	 USA; Interlude 4; 0:30		
 17; Fugazi; 19960411 328 Performance	 Nashville	 TN	 USA; By You; 4:21		
 18; Fugazi; 19960411 328 Performance	 Nashville	 TN	 USA; Bed For The Scraping; 2:57		
-19; Fugazi; 19960411 328 Performance	 Nashville	 TN	 USA; Fell	 Destroyed; 4:52	
+19; Fugazi; 19960411 328 Performance	 Nashville	 TN	 USA; Fell, Destroyed; 4:52	
 20; Fugazi; 19960411 328 Performance	 Nashville	 TN	 USA; Encore 1; 0:47		
 21; Fugazi; 19960411 328 Performance	 Nashville	 TN	 USA; Instrument; 3:34		
 22; Fugazi; 19960411 328 Performance	 Nashville	 TN	 USA; Caustic Acrostic; 2:03		
@@ -16655,7 +16655,7 @@ track; artist; album; name; duration
 15; Fugazi; 19960412 Electric Ballroom	 Knoxville	 TN	 USA; Bed For The Scraping; 2:48		
 16; Fugazi; 19960412 Electric Ballroom	 Knoxville	 TN	 USA; Interlude 5; 0:34		
 17; Fugazi; 19960412 Electric Ballroom	 Knoxville	 TN	 USA; By You; 4:23		
-18; Fugazi; 19960412 Electric Ballroom	 Knoxville	 TN	 USA; Fell	 Destroyed; 4:08	
+18; Fugazi; 19960412 Electric Ballroom	 Knoxville	 TN	 USA; Fell, Destroyed; 4:08	
 19; Fugazi; 19960412 Electric Ballroom	 Knoxville	 TN	 USA; Interlude 6; 1:32		
 20; Fugazi; 19960412 Electric Ballroom	 Knoxville	 TN	 USA; Pink Frosty Instrumental; 3:19		
 21; Fugazi; 19960412 Electric Ballroom	 Knoxville	 TN	 USA; Long Division; 2:21		
@@ -16675,7 +16675,7 @@ track; artist; album; name; duration
 13; Fugazi; 19960413 The Alternative	 Roanoke	 VA	 USA; Turnover; 4:08		
 14; Fugazi; 19960413 The Alternative	 Roanoke	 VA	 USA; Repeater; 3:01		
 15; Fugazi; 19960413 The Alternative	 Roanoke	 VA	 USA; Interlude 2; 1:01		
-16; Fugazi; 19960413 The Alternative	 Roanoke	 VA	 USA; Fell	 Destroyed; 3:59	
+16; Fugazi; 19960413 The Alternative	 Roanoke	 VA	 USA; Fell, Destroyed; 3:59	
 17; Fugazi; 19960413 The Alternative	 Roanoke	 VA	 USA; Sweet and Low; 3:53		
 18; Fugazi; 19960413 The Alternative	 Roanoke	 VA	 USA; Reclamation; 3:57		
 19; Fugazi; 19960413 The Alternative	 Roanoke	 VA	 USA; Target; 3:49		
@@ -16959,7 +16959,7 @@ track; artist; album; name; duration
 13; Fugazi; 19961028 Guilty	 Tokyo	 Japan; Interlude 2; 0:30			
 14; Fugazi; 19961028 Guilty	 Tokyo	 Japan; By You; 5:22			
 15; Fugazi; 19961028 Guilty	 Tokyo	 Japan; Long Division; 2:03			
-16; Fugazi; 19961028 Guilty	 Tokyo	 Japan; Fell	 Destroyed; 4:58		
+16; Fugazi; 19961028 Guilty	 Tokyo	 Japan; Fell, Destroyed; 4:58		
 17; Fugazi; 19961028 Guilty	 Tokyo	 Japan; Five Corporations; 2:21			
 18; Fugazi; 19961028 Guilty	 Tokyo	 Japan; Target; 4:00			
 19; Fugazi; 19961028 Guilty	 Tokyo	 Japan; Promises; 8:05			
@@ -17011,7 +17011,7 @@ track; artist; album; name; duration
 22; Fugazi; 19961031 Bessie	 Sapporo	 Japan; Interlude 4; 0:28			
 23; Fugazi; 19961031 Bessie	 Sapporo	 Japan; By You; 5:06			
 24; Fugazi; 19961031 Bessie	 Sapporo	 Japan; Interlude 5; 0:36			
-25; Fugazi; 19961031 Bessie	 Sapporo	 Japan; Fell	 Destroyed; 4:24		
+25; Fugazi; 19961031 Bessie	 Sapporo	 Japan; Fell, Destroyed; 4:24		
 26; Fugazi; 19961031 Bessie	 Sapporo	 Japan; Sweet and Low; 4:41			
 27; Fugazi; 19961031 Bessie	 Sapporo	 Japan; Outro; 1:04			
 01; Fugazi; 19961102 South Island School Hall	 Hong Kong; Place Position; 2:18				
@@ -17218,7 +17218,7 @@ track; artist; album; name; duration
 18; Fugazi; 19961117 Metro Theatre	 Sydney	 Australia; Shut the Door; 8:23			
 19; Fugazi; 19961117 Metro Theatre	 Sydney	 Australia; Rend It; 4:26			
 20; Fugazi; 19961117 Metro Theatre	 Sydney	 Australia; Back To Base; 1:36			
-21; Fugazi; 19961117 Metro Theatre	 Sydney	 Australia; Fell	 Destroyed; 4:11		
+21; Fugazi; 19961117 Metro Theatre	 Sydney	 Australia; Fell, Destroyed; 4:11		
 22; Fugazi; 19961117 Metro Theatre	 Sydney	 Australia; Sweet and Low; 4:20			
 23; Fugazi; 19961117 Metro Theatre	 Sydney	 Australia; Encore 2; 2:53			
 24; Fugazi; 19961117 Metro Theatre	 Sydney	 Australia; Glueman; 6:32			
@@ -17301,7 +17301,7 @@ track; artist; album; name; duration
 19; Fugazi; 19970504 University of New Hampshire M.U.B.	 Durham	 NH	 USA; No Surprise; 4:42		
 20; Fugazi; 19970504 University of New Hampshire M.U.B.	 Durham	 NH	 USA; Recap Modotti; 2:36		
 21; Fugazi; 19970504 University of New Hampshire M.U.B.	 Durham	 NH	 USA; Promises; 7:10		
-22; Fugazi; 19970504 University of New Hampshire M.U.B.	 Durham	 NH	 USA; Fell	 Destroyed; 4:59	
+22; Fugazi; 19970504 University of New Hampshire M.U.B.	 Durham	 NH	 USA; Fell, Destroyed; 4:59	
 23; Fugazi; 19970504 University of New Hampshire M.U.B.	 Durham	 NH	 USA; Long Division; 2:29		
 24; Fugazi; 19970504 University of New Hampshire M.U.B.	 Durham	 NH	 USA; Target; 3:48		
 25; Fugazi; 19970504 University of New Hampshire M.U.B.	 Durham	 NH	 USA; Great Cop; 2:05		
@@ -17474,7 +17474,7 @@ track; artist; album; name; duration
 24; Fugazi; 19970617 Lava Lounge	 Melbourne	 Australia; Interlude 4; 0:26			
 25; Fugazi; 19970617 Lava Lounge	 Melbourne	 Australia; By You; 4:31			
 26; Fugazi; 19970617 Lava Lounge	 Melbourne	 Australia; Encore 2; 2:09			
-27; Fugazi; 19970617 Lava Lounge	 Melbourne	 Australia; Fell	 Destroyed; 4:21		
+27; Fugazi; 19970617 Lava Lounge	 Melbourne	 Australia; Fell, Destroyed; 4:21		
 28; Fugazi; 19970617 Lava Lounge	 Melbourne	 Australia; KYEO; 3:44			
 29; Fugazi; 19970617 Lava Lounge	 Melbourne	 Australia; Sweet and Low; 5:06			
 30; Fugazi; 19970617 Lava Lounge	 Melbourne	 Australia; Outro; 0:22			
@@ -17891,7 +17891,7 @@ track; artist; album; name; duration
 07; Fugazi; 19970815 Liga da Sociedade Joinvilense	 Joinville	 Brazil; Reclamation; 3:45			
 08; Fugazi; 19970815 Liga da Sociedade Joinvilense	 Joinville	 Brazil; Target; 3:56			
 09; Fugazi; 19970815 Liga da Sociedade Joinvilense	 Joinville	 Brazil; Promises; 8:08			
-10; Fugazi; 19970815 Liga da Sociedade Joinvilense	 Joinville	 Brazil; Fell	 Destroyed; 4:07		
+10; Fugazi; 19970815 Liga da Sociedade Joinvilense	 Joinville	 Brazil; Fell, Destroyed; 4:07		
 11; Fugazi; 19970815 Liga da Sociedade Joinvilense	 Joinville	 Brazil; Bed For The Scraping; 2:55			
 12; Fugazi; 19970815 Liga da Sociedade Joinvilense	 Joinville	 Brazil; Margin Walker; 2:38			
 13; Fugazi; 19970815 Liga da Sociedade Joinvilense	 Joinville	 Brazil; Bad Mouth; 2:23			
@@ -18034,7 +18034,7 @@ track; artist; album; name; duration
 20; Fugazi; 19970903 Wilson Center	 Washington	 DC	 USA; Floating Boy; 7:35		
 21; Fugazi; 19970903 Wilson Center	 Washington	 DC	 USA; Arpeggiator; 4:27		
 22; Fugazi; 19970903 Wilson Center	 Washington	 DC	 USA; Bed For The Scraping; 3:07		
-23; Fugazi; 19970903 Wilson Center	 Washington	 DC	 USA; Fell	 Destroyed; 3:13	
+23; Fugazi; 19970903 Wilson Center	 Washington	 DC	 USA; Fell, Destroyed; 3:13	
 01; Fugazi; 19980501 180 Club	 Hagerstown	 MD	 USA; Intro; 1:54		
 02; Fugazi; 19980501 180 Club	 Hagerstown	 MD	 USA; Break; 2:14		
 03; Fugazi; 19980501 180 Club	 Hagerstown	 MD	 USA; Place Position; 2:41		
@@ -19571,7 +19571,7 @@ track; artist; album; name; duration
 33; Fugazi; 19990305 Huntridge Theater	 Las Vegas	 NV	 USA; Interlude 7; 0:58		
 34; Fugazi; 19990305 Huntridge Theater	 Las Vegas	 NV	 USA; Number 5; 2:59		
 35; Fugazi; 19990305 Huntridge Theater	 Las Vegas	 NV	 USA; Five Corporations; 2:24		
-36; Fugazi; 19990305 Huntridge Theater	 Las Vegas	 NV	 USA; Fell	 Destroyed; 4:14	
+36; Fugazi; 19990305 Huntridge Theater	 Las Vegas	 NV	 USA; Fell, Destroyed; 4:14	
 37; Fugazi; 19990305 Huntridge Theater	 Las Vegas	 NV	 USA; Instrument; 3:42		
 01; Fugazi; 19990306 Fly Theater	 Victorville	 CA	 USA; Intro; 1:53		
 02; Fugazi; 19990306 Fly Theater	 Victorville	 CA	 USA; Break; 3:16		
@@ -19885,7 +19885,7 @@ track; artist; album; name; duration
 22; Fugazi; 19990504 Lemon Tree	 Aberdeen	 Scotland; Public Witness Program; 1:58			
 23; Fugazi; 19990504 Lemon Tree	 Aberdeen	 Scotland; Back to Base; 1:56			
 24; Fugazi; 19990504 Lemon Tree	 Aberdeen	 Scotland; Arpeggiator; 3:55			
-25; Fugazi; 19990504 Lemon Tree	 Aberdeen	 Scotland; Fell	 Destroyed; 4:33		
+25; Fugazi; 19990504 Lemon Tree	 Aberdeen	 Scotland; Fell, Destroyed; 4:33		
 26; Fugazi; 19990504 Lemon Tree	 Aberdeen	 Scotland; Styrofoam; 2:37			
 27; Fugazi; 19990504 Lemon Tree	 Aberdeen	 Scotland; Outro; 0:30			
 01; Fugazi; 19990505 Glasgow School of Art	 Glasgow	 Scotland; Intro; 1:11			
@@ -20150,7 +20150,7 @@ track; artist; album; name; duration
 25; Fugazi; 19990916 Paradiso	 Amsterdam	 Netherlands; Great Cop; 1:48			
 26; Fugazi; 19990916 Paradiso	 Amsterdam	 Netherlands; Public Witness Program; 1:56			
 27; Fugazi; 19990916 Paradiso	 Amsterdam	 Netherlands; Facet Squared; 2:33			
-28; Fugazi; 19990916 Paradiso	 Amsterdam	 Netherlands; Fell	 Destroyed; 4:22		
+28; Fugazi; 19990916 Paradiso	 Amsterdam	 Netherlands; Fell, Destroyed; 4:22		
 29; Fugazi; 19990916 Paradiso	 Amsterdam	 Netherlands; Encore 2; 1:20			
 30; Fugazi; 19990916 Paradiso	 Amsterdam	 Netherlands; Long Division; 2:41			
 31; Fugazi; 19990916 Paradiso	 Amsterdam	 Netherlands; Recap Modotti; 3:03			
@@ -20558,7 +20558,7 @@ track; artist; album; name; duration
 13; Fugazi; 19991007 Theatre Du Moulin	 Marseille	 France; Interlude 1; 0:37			
 14; Fugazi; 19991007 Theatre Du Moulin	 Marseille	 France; Burning; 3:02			
 15; Fugazi; 19991007 Theatre Du Moulin	 Marseille	 France; Burning Too; 3:12			
-16; Fugazi; 19991007 Theatre Du Moulin	 Marseille	 France; Fell	 Destroyed; 3:59		
+16; Fugazi; 19991007 Theatre Du Moulin	 Marseille	 France; Fell, Destroyed; 3:59		
 17; Fugazi; 19991007 Theatre Du Moulin	 Marseille	 France; The Argument; 4:28			
 18; Fugazi; 19991007 Theatre Du Moulin	 Marseille	 France; Do You Like Me; 2:46			
 19; Fugazi; 19991007 Theatre Du Moulin	 Marseille	 France; Five Corporations; 2:22			
@@ -21130,7 +21130,7 @@ track; artist; album; name; duration
 25; Fugazi; 20000118 The Chili Pepper	 Fort Lauderdale	 FL	 USA; Arpeggiator; 5:15		
 26; Fugazi; 20000118 The Chili Pepper	 Fort Lauderdale	 FL	 USA; Do You Like Me; 2:44		
 27; Fugazi; 20000118 The Chili Pepper	 Fort Lauderdale	 FL	 USA; Five Corporations; 2:23		
-28; Fugazi; 20000118 The Chili Pepper	 Fort Lauderdale	 FL	 USA; Fell	 Destroyed; 4:14	
+28; Fugazi; 20000118 The Chili Pepper	 Fort Lauderdale	 FL	 USA; Fell, Destroyed; 4:14	
 29; Fugazi; 20000118 The Chili Pepper	 Fort Lauderdale	 FL	 USA; Break; 2:00		
 30; Fugazi; 20000118 The Chili Pepper	 Fort Lauderdale	 FL	 USA; Sweet and Low; 4:09		
 31; Fugazi; 20000118 The Chili Pepper	 Fort Lauderdale	 FL	 USA; Outro; 0:13		
