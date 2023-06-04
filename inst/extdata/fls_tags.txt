@@ -22230,46 +22230,46 @@ track; artist; album; name; duration
 32; Fugazi; 20010705 Performance Centre	 Kelowna	 BC	 Canada; Arpeggiator; 3:37		
 33; Fugazi; 20010705 Performance Centre	 Kelowna	 BC	 Canada; Sweet and Low; 3:56		
 34; Fugazi; 20010705 Performance Centre	 Kelowna	 BC	 Canada; Outro; 0:18		
-01; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Intro; 1:50		
-02; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Joe #1; 2:48		
-03; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Merchandise; 2:56		
-04; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Do You Like Me; 2:47		
-05; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Interlude 1; 0:44		
-06; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Birthday Pony; 2:23		
-07; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Cassavetes; 2:17		
-08; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Break; 2:03		
-09; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Oh; 4:13		
-10; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Closed Captioned; 4:46		
-11; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Rend It; 3:46		
-12; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Bed For The Scraping; 2:45		
-13; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Interlude 2; 0:57		
-14; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Forensic Scene; 3:21		
-15; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Argument; 4:34		
-16; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Give Me The Cure; 2:39		
-17; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Suggestion; 6:26		
-18; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Hello Morning; 1:53		
-19; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Waiting Room; 2:45		
-20; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Interlude 3; 1:12		
-21; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; The Kill; 4:52		
-22; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Target; 3:48		
-23; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Facet Squared; 2:39		
-24; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Number Five; 2:54		
-25; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; FD; 1:59		
-26; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Long Division; 2:31		
-27; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Encore 1; 2:09		
-28; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Public Witness Program; 2:27		
-29; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Furniture; 3:18		
-30; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Interlude 4; 0:27		
-31; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Blueprint; 3:24		
-32; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Cashout; 5:10		
-33; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Arpeggiator; 4:04		
-34; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Encore 2; 3:20		
-35; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Promises; 6:36		
-36; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Two Beats Off; 4:39		
-37; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Encore 3; 3:13		
-38; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Five Corporations; 2:43		
-39; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Sweet and Low; 4:29		
-40; Fugazi; 20010607 Archie Browning Centre	 Victoria	 BC	 Canada; Outro; 1:44		
+01; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Intro; 1:50		
+02; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Joe #1; 2:48		
+03; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Merchandise; 2:56		
+04; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Do You Like Me; 2:47		
+05; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Interlude 1; 0:44		
+06; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Birthday Pony; 2:23		
+07; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Cassavetes; 2:17		
+08; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Break; 2:03		
+09; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Oh; 4:13		
+10; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Closed Captioned; 4:46		
+11; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Rend It; 3:46		
+12; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Bed For The Scraping; 2:45		
+13; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Interlude 2; 0:57		
+14; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Forensic Scene; 3:21		
+15; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Argument; 4:34		
+16; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Give Me The Cure; 2:39		
+17; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Suggestion; 6:26		
+18; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Hello Morning; 1:53		
+19; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Waiting Room; 2:45		
+20; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Interlude 3; 1:12		
+21; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; The Kill; 4:52		
+22; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Target; 3:48		
+23; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Facet Squared; 2:39		
+24; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Number Five; 2:54		
+25; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; FD; 1:59		
+26; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Long Division; 2:31		
+27; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Encore 1; 2:09		
+28; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Public Witness Program; 2:27		
+29; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Furniture; 3:18		
+30; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Interlude 4; 0:27		
+31; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Blueprint; 3:24		
+32; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Cashout; 5:10		
+33; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Arpeggiator; 4:04		
+34; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Encore 2; 3:20		
+35; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Promises; 6:36		
+36; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Two Beats Off; 4:39		
+37; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Encore 3; 3:13		
+38; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Five Corporations; 2:43		
+39; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Sweet and Low; 4:29		
+40; Fugazi; 20010706 Archie Browning Centre	 Victoria	 BC	 Canada; Outro; 1:44		
 01; Fugazi; 20010707 Bill Copeland Arena	 Burnaby	 BC	 Canada; Intro; 1:33		
 02; Fugazi; 20010707 Bill Copeland Arena	 Burnaby	 BC	 Canada; Ex-Spectator; 4:14		
 03; Fugazi; 20010707 Bill Copeland Arena	 Burnaby	 BC	 Canada; Sieve-Fisted Find; 3:10		
