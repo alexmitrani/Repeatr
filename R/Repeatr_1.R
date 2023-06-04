@@ -1149,7 +1149,9 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
       arrange(date) %>%
       ungroup()
 
-    xray <- rbind.data.frame(xray_tracks, xray_minutes) %>%
+    xray <- rbind.data.frame(xray_tracks, xray_minutes)
+
+    xray <- xray %>%
       arrange(units, date)
 
     xray <- xray %>%
