@@ -629,6 +629,9 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   Repeatr1 <- Repeatr1 %>%
     mutate(tracktype=ifelse(grepl("outro", song)==TRUE, 0, tracktype))
 
+  Repeatr1 <- Repeatr1 %>%
+    mutate(tracktype=ifelse(grepl("untitled", song)==TRUE, 0, tracktype))
+
   # Filter to remove unreleased songs or improvised one-offs ---------------------------------------
 
   Repeatr1 <- Repeatr1 %>%
