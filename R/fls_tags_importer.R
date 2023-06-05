@@ -18,15 +18,11 @@ fls_tags_importer <- function(myfilename = NULL) {
 
   fls_tags <- read_delim(myfilename, delim = ";", escape_double = FALSE, trim_ws = TRUE)
 
-  fls_tags <- fls_tags %>%
-    mutate(seconds = as.numeric(duration)/60)
+  fls_tags <- fls_tags %>% mutate(duration = lubridate::ms(duration),
+                                  seconds = period_to_seconds(duration))
 
   fls_tags <- fls_tags %>%
     mutate(minutes = round(seconds/60, digits = 2))
-
-  fls_tags <- fls_tags %>%
-    mutate(duration = seconds_to_period(seconds))
-
 
   return(fls_tags)
 

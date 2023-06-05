@@ -1059,6 +1059,11 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     xray <- xray %>%
       left_join(gid_song_minutes)
 
+    # remove tracks from front-end data that were not actually included in the MP3 download
+
+    xray <- xray %>%
+      filter(gid!="washington-dc-usa-80793" | tracktype!=0 | is.na(minutes)==FALSE)
+
     xray <- xray %>%
       mutate(track = 1,
              songtrack = ifelse(tracktype==1, 1, 0))
