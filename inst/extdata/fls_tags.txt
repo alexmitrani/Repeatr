@@ -3136,7 +3136,7 @@ track; artist; album; name; duration
 12; Fugazi; 19900629 Upstage Lounge, Pittsburgh, PA, USA; Margin Walker; 2:41
 13; Fugazi; 19900629 Upstage Lounge, Pittsburgh, PA, USA; Interlude 5; 1:24
 14; Fugazi; 19900629 Upstage Lounge, Pittsburgh, PA, USA; Song #1; 3:26
-15; Fugazi; 19900629 Upstage Lounge, Pittsburgh, PA, USA; Give Me The Cure; 2:54
+15; Fugazi; 19900629 Upstage Lounge, Pittsburgh, PA, USA; Bulldog Front; 2:54
 16; Fugazi; 19900629 Upstage Lounge, Pittsburgh, PA, USA; Interlude 6; 0:37
 17; Fugazi; 19900629 Upstage Lounge, Pittsburgh, PA, USA; Blueprint; 4:37
 18; Fugazi; 19900629 Upstage Lounge, Pittsburgh, PA, USA; Shut the Door; 4:58
@@ -3698,7 +3698,7 @@ track; artist; album; name; duration
 14; Fugazi; 19900926 Fabrik, Hamburg, Germany; Styrofoam; 2:50,
 15; Fugazi; 19900926 Fabrik, Hamburg, Germany; Encore 1; 2:36,
 16; Fugazi; 19900926 Fabrik, Hamburg, Germany; Suggestion; 8:26,
-17; Fugazi; 19900926 Fabrik, Hamburg, Germany; Encore 1; 2:49,
+17; Fugazi; 19900926 Fabrik, Hamburg, Germany; Encore 2; 2:49,
 18; Fugazi; 19900926 Fabrik, Hamburg, Germany; And The Same; 4:39,
 19; Fugazi; 19900926 Fabrik, Hamburg, Germany; Reprovisional; 3:28,
 20; Fugazi; 19900926 Fabrik, Hamburg, Germany; Outro; 1:00,
@@ -3750,7 +3750,7 @@ track; artist; album; name; duration
 04; Fugazi; 19900929 Brigga Lillero Cafe, Tromso, Norway; Interlude 1; 0:32,
 05; Fugazi; 19900929 Brigga Lillero Cafe, Tromso, Norway; And The Same; 4:26,
 06; Fugazi; 19900929 Brigga Lillero Cafe, Tromso, Norway; Sieve-Fisted Find; 3:27,
-07; Fugazi; 19900929 Brigga Lillero Cafe, Tromso, Norway; Sieve-Fisted Find; 3:14,
+07; Fugazi; 19900929 Brigga Lillero Cafe, Tromso, Norway; Merchandise; 3:14,
 08; Fugazi; 19900929 Brigga Lillero Cafe, Tromso, Norway; Interlude 2; 0:18,
 09; Fugazi; 19900929 Brigga Lillero Cafe, Tromso, Norway; Turnover; 4:33,
 10; Fugazi; 19900929 Brigga Lillero Cafe, Tromso, Norway; Reclamation; 3:44,
@@ -3889,7 +3889,7 @@ track; artist; album; name; duration
 14; Fugazi; 19901005 Karuzela University, Warsaw, Poland; Two Beats Off; 5:02,
 15; Fugazi; 19901005 Karuzela University, Warsaw, Poland; Repeater; 2:36,
 16; Fugazi; 19901005 Karuzela University, Warsaw, Poland; Interlude 2; 0:13,
-17; Fugazi; 19901005 Karuzela University, Warsaw, Poland; Provisional; 4:50,
+17; Fugazi; 19901005 Karuzela University, Warsaw, Poland; Reprovisional; 4:50,
 18; Fugazi; 19901005 Karuzela University, Warsaw, Poland; Encore 1; 2:40,
 19; Fugazi; 19901005 Karuzela University, Warsaw, Poland; Runaway Return; 4:52,
 20; Fugazi; 19901005 Karuzela University, Warsaw, Poland; Promises; 4:49,
@@ -5790,7 +5790,7 @@ track; artist; album; name; duration
 13; Fugazi; 19910601 Studio 225, Fayetteville, AR, USA; Lockdown; 2:23
 14; Fugazi; 19910601 Studio 225, Fayetteville, AR, USA; Suggestion; 6:30
 15; Fugazi; 19910601 Studio 225, Fayetteville, AR, USA; Break-In; 1:31
-16; Fugazi; 19910601 Studio 225, Fayetteville, AR, USA; Interlude 1; 1:15
+16; Fugazi; 19910601 Studio 225, Fayetteville, AR, USA; Interlude 3; 1:15
 17; Fugazi; 19910601 Studio 225, Fayetteville, AR, USA; Two Beats Off; 4:45
 18; Fugazi; 19910601 Studio 225, Fayetteville, AR, USA; Shut the Door; 5:43
 19; Fugazi; 19910601 Studio 225, Fayetteville, AR, USA; Encore 1; 2:08
@@ -7125,6 +7125,7 @@ track; artist; album; name; duration
 01; Fugazi; 19911208 dc space, Washington, DC, USA; Intro; 1:04
 02; Fugazi; 19911208 dc space, Washington, DC, USA; Great Cop Instrumental; 1:52
 03; Fugazi; 19911208 dc space, Washington, DC, USA; Exit Only; 2:45
+04; Fugazi; 19911208 dc space, Washington, DC, USA; And The Same; 4:44
 05; Fugazi; 19911208 dc space, Washington, DC, USA; Interlude 1; 0:24
 06; Fugazi; 19911208 dc space, Washington, DC, USA; Dear Justice Letter; 3:35
 07; Fugazi; 19911208 dc space, Washington, DC, USA; Reclamation; 3:44
@@ -7643,6 +7644,7 @@ track; artist; album; name; duration
 12; Fugazi; 19920514 Irish Centre Ardri Hall, Manchester, UK; Sieve-Fisted Find; 3:18,
 13; Fugazi; 19920514 Irish Centre Ardri Hall, Manchester, UK; Interlude 3; 0:24,
 14; Fugazi; 19920514 Irish Centre Ardri Hall, Manchester, UK; Song #1; 3:53,
+15; Fugazi; 19920514 Irish Centre Ardri Hall, Manchester, UK; Lockdown; 2:07,
 16; Fugazi; 19920514 Irish Centre Ardri Hall, Manchester, UK; Burning Too; 2:45,
 17; Fugazi; 19920514 Irish Centre Ardri Hall, Manchester, UK; Margin Walker; 2:51,
 18; Fugazi; 19920514 Irish Centre Ardri Hall, Manchester, UK; Interlude 4; 0:33,
@@ -7691,6 +7693,7 @@ track; artist; album; name; duration
 09; Fugazi; 19920516 Barrowland Ballroom, Glasgow, Scotland, UK; Rend It; 4:05
 10; Fugazi; 19920516 Barrowland Ballroom, Glasgow, Scotland, UK; Instrument; 3:41
 11; Fugazi; 19920516 Barrowland Ballroom, Glasgow, Scotland, UK; Margin Walker; 2:55
+12; Fugazi; 19920516 Barrowland Ballroom, Glasgow, Scotland, UK; Suggestion; 9:59
 13; Fugazi; 19920516 Barrowland Ballroom, Glasgow, Scotland, UK; Give Me The Cure; 2:53
 14; Fugazi; 19920516 Barrowland Ballroom, Glasgow, Scotland, UK; Waiting Room; 3:28
 15; Fugazi; 19920516 Barrowland Ballroom, Glasgow, Scotland, UK; Two Beats Off; 4:57
@@ -7778,6 +7781,8 @@ track; artist; album; name; duration
 26; Fugazi; 19920521 William II, Den Bosch, Netherlands; Interlude 7; 0:25,
 27; Fugazi; 19920521 William II, Den Bosch, Netherlands; Suggestion; 7:30,
 28; Fugazi; 19920521 William II, Den Bosch, Netherlands; Outro; 1:04,
+01; Fugazi; 19920522 Concordia, Tongeren, Belgium; Brendan #1; 3:49,
+02; Fugazi; 19920522 Concordia, Tongeren, Belgium; Great Cop; 1:51,
 03; Fugazi; 19920522 Concordia, Tongeren, Belgium; Latin Roots; 3:06,
 04; Fugazi; 19920522 Concordia, Tongeren, Belgium; Merchandise; 2:58,
 05; Fugazi; 19920522 Concordia, Tongeren, Belgium; Interlude 1; 0:46,
@@ -9713,7 +9718,8 @@ track; artist; album; name; duration
 21; Fugazi; 19930414 Showcase Special Events, San Antonio, TX, USA; Smallpox Champion; 4:08
 22; Fugazi; 19930414 Showcase Special Events, San Antonio, TX, USA; Returning The Screw; 3:34
 23; Fugazi; 19930414 Showcase Special Events, San Antonio, TX, USA; Interlude 7; 2:30
-24; Fugazi; 19930414 Showcase Special Events, San Antonio, TX, USA; Sleve Fisted Find; 3:21
+24; Fugazi; 19930414 Showcase Special Events, San Antonio, TX, USA; Sieve-Fisted Find; 3:21
+25; Fugazi; 19930414 Showcase Special Events, San Antonio, TX, USA; Promises; 7:05
 26; Fugazi; 19930414 Showcase Special Events, San Antonio, TX, USA; Encore; 3:57
 27; Fugazi; 19930414 Showcase Special Events, San Antonio, TX, USA; Joe #1; 2:44
 28; Fugazi; 19930414 Showcase Special Events, San Antonio, TX, USA; Two Beats Off; 4:43
@@ -9955,7 +9961,7 @@ track; artist; album; name; duration
 24; Fugazi; 19930424 Hollywood Palladium, Los Angeles, CA, USA; By You; 3:24
 25; Fugazi; 19930424 Hollywood Palladium, Los Angeles, CA, USA; Sieve-Fisted Find; 3:19
 26; Fugazi; 19930424 Hollywood Palladium, Los Angeles, CA, USA; KYEO; 3:24
-27; Fugazi; 19930424 Hollywood Palladium, Los Angeles, CA, USA; Instrumental; 3:30
+27; Fugazi; 19930424 Hollywood Palladium, Los Angeles, CA, USA; Sweet and Low; 3:30
 28; Fugazi; 19930424 Hollywood Palladium, Los Angeles, CA, USA; Outro; 1:04
 01; Fugazi; 19930425 Hollywood Palladium, Los Angeles, CA, USA; Intro; 1:20
 02; Fugazi; 19930425 Hollywood Palladium, Los Angeles, CA, USA; Brendan #1; 2:53
@@ -15800,7 +15806,7 @@ track; artist; album; name; duration
 10; Fugazi; 19951105 Trocadero Transfer, San Francisco, CA, USA; Target; 3:43
 11; Fugazi; 19951105 Trocadero Transfer, San Francisco, CA, USA; Suggestion; 7:17
 12; Fugazi; 19951105 Trocadero Transfer, San Francisco, CA, USA; Interlude 3; 0:43
-13; Fugazi; 19951105 Trocadero Transfer, San Francisco, CA, USA; Fell, Destroyed; 3:18,
+13; Fugazi; 19951105 Trocadero Transfer, San Francisco, CA, USA; Forensic Scene; 3:18,
 14; Fugazi; 19951105 Trocadero Transfer, San Francisco, CA, USA; By You; 4:52
 15; Fugazi; 19951105 Trocadero Transfer, San Francisco, CA, USA; Instrument; 3:22
 16; Fugazi; 19951105 Trocadero Transfer, San Francisco, CA, USA; Blueprint; 3:17
@@ -17668,7 +17674,7 @@ track; artist; album; name; duration
 10; Fugazi; 19970628 Victoria University, Wellington, New Zealand; Interlude 2; 0:59,
 11; Fugazi; 19970628 Victoria University, Wellington, New Zealand; Recap Modotti; 1:52,
 01; Fugazi; 19970629 Nelson Arts Centre, Nelson, New Zealand; Intro; 0:13,
-02; Fugazi; 19970629 Nelson Arts Centre, Nelson, New Zealand; Instrumental; 3:13,
+02; Fugazi; 19970629 Nelson Arts Centre, Nelson, New Zealand; Joe #1; 3:13,
 03; Fugazi; 19970629 Nelson Arts Centre, Nelson, New Zealand; Styrofoam; 2:35,
 04; Fugazi; 19970629 Nelson Arts Centre, Nelson, New Zealand; Latin Roots; 3:11,
 05; Fugazi; 19970629 Nelson Arts Centre, Nelson, New Zealand; Interlude 1; 0:55,
@@ -21105,7 +21111,7 @@ track; artist; album; name; duration
 29; Fugazi; 20000116 Firestone, Orlando, FL, USA; Argument; 4:46
 30; Fugazi; 20000116 Firestone, Orlando, FL, USA; Arpeggiator; 3:57
 01; Fugazi; 20000118 The Chili Pepper, Fort Lauderdale, FL, USA; Intro; 1:17
-02; Fugazi; 20000118 The Chili Pepper, Fort Lauderdale, FL, USA; Epic Problem; 3:54
+02; Fugazi; 20000118 The Chili Pepper, Fort Lauderdale, FL, USA; Ex-Spectator Instrumental; 3:54
 03; Fugazi; 20000118 The Chili Pepper, Fort Lauderdale, FL, USA; Merchandise; 2:50
 04; Fugazi; 20000118 The Chili Pepper, Fort Lauderdale, FL, USA; Latin Roots; 3:49
 05; Fugazi; 20000118 The Chili Pepper, Fort Lauderdale, FL, USA; Birthday Pony; 2:25
