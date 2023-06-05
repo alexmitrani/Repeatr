@@ -1112,26 +1112,25 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
       arrange(date) %>%
       ungroup()
 
+
+
     xray_minutes <- xray %>%
       mutate(units = "minutes") %>%
       mutate(year = lubridate::year(date)) %>%
-      mutate(fugazi = ifelse(release=="fugazi",minutes,0),
-             margin_walker = ifelse(release=="margin walker",minutes,0),
-             three_songs = ifelse(release=="3 songs",minutes,0),
-             repeater = ifelse(release=="repeater",minutes,0),
-             steady_diet_of_nothing = ifelse(release=="steady diet of nothing",minutes,0),
-             in_on_the_killtaker = ifelse(release=="in on the killtaker",minutes,0),
-             red_medicine = ifelse(release=="red medicine",minutes,0),
-             end_hits = ifelse(release=="end hits",minutes,0),
-             the_argument = ifelse(release=="the argument",minutes,0),
-             furniture = ifelse(release=="furniture",minutes,0),
-             first_demo = ifelse(release=="first demo",minutes,0),
-             other = ifelse(release=="other",minutes,0),
-             unreleased = ifelse(unreleased==1,minutes,0),
-             songs = ifelse(songtrack==1,minutes,0))
-
-    xray_minutes <- xray_minutes %>%
-      mutate(other = ifelse(is.na(other)==TRUE,0,other))
+      mutate(fugazi = ifelse(release=="fugazi",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
+             margin_walker = ifelse(release=="margin walker",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
+             three_songs = ifelse(release=="3 songs",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
+             repeater = ifelse(release=="repeater",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
+             steady_diet_of_nothing = ifelse(release=="steady diet of nothing",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
+             in_on_the_killtaker = ifelse(release=="in on the killtaker",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
+             red_medicine = ifelse(release=="red medicine",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
+             end_hits = ifelse(release=="end hits",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
+             the_argument = ifelse(release=="the argument",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
+             furniture = ifelse(release=="furniture",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
+             first_demo = ifelse(release=="first demo",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
+             other = ifelse(release=="other",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
+             unreleased = ifelse(unreleased==1,ifelse(is.na(minutes)==TRUE, 0, minutes),0),
+             songs = ifelse(songtrack==1,ifelse(is.na(minutes)==TRUE, 0, minutes),0))
 
     xray_minutes <- xray_minutes %>%
       group_by(gid, date, year, tour, units) %>%
