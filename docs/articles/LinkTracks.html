@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9155</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9156</span>
       </span>
     </div>
 
@@ -517,7 +517,7 @@ was played.</p>
 <span>  <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">song</span>, values_from <span class="op">=</span> <span class="va">count</span>, values_fill <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mydf_wide</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 133</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 136</span></span></span>
 <span><span class="co">#&gt;   date       furniture in defens…¹ intro joe #…² merch…³ song …⁴ the w…⁵ turn …⁶</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 1987-09-03         1           1     1       1       1       1       1       1</span></span>
@@ -526,13 +526,13 @@ was played.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 1987-10-16         1           0     0       1       1       1       1       0</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 1987-11-25         1           0     1       1       1       1       1       1</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 1987-12-03         1           1     1       0       1       1       1       1</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 124 more variables: `waiting room` &lt;int&gt;, `and the same` &lt;int&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 127 more variables: `waiting room` &lt;int&gt;, `and the same` &lt;int&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   `interlude 1` &lt;int&gt;, `interlude 2` &lt;int&gt;, `interlude 3` &lt;int&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   `interlude 4` &lt;int&gt;, `interlude 5` &lt;int&gt;, `interlude 6` &lt;int&gt;, kyeo &lt;int&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   `bad mouth` &lt;int&gt;, `break-in` &lt;int&gt;, `opening remarks` &lt;int&gt;, encore &lt;int&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   lockdown &lt;int&gt;, suggestion &lt;int&gt;, `lock dug` &lt;int&gt;, `interlude 7` &lt;int&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   burning &lt;int&gt;, `encore 1` &lt;int&gt;, `give me the cure` &lt;int&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   `interlude 8` &lt;int&gt;, glueman &lt;int&gt;, `interlude 9` &lt;int&gt;, …</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;">#   `interlude 4` &lt;int&gt;, outro &lt;int&gt;, `interlude 5` &lt;int&gt;, `interlude 6` &lt;int&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   kyeo &lt;int&gt;, `bad mouth` &lt;int&gt;, `break-in` &lt;int&gt;, `opening remarks` &lt;int&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   encore &lt;int&gt;, lockdown &lt;int&gt;, suggestion &lt;int&gt;, `lock dug` &lt;int&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   `interlude 7` &lt;int&gt;, burning &lt;int&gt;, `encore 1` &lt;int&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   `give me the cure` &lt;int&gt;, `interlude 8` &lt;int&gt;, glueman &lt;int&gt;, …</span></span></span></code></pre></div>
 <p>Next, let’s transform the variable for each song into a cumulative
 count of the number of times the song was played.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
@@ -546,7 +546,7 @@ count of the number of times the song was played.</p>
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mydf_wide2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 133</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 136</span></span></span>
 <span><span class="co">#&gt;   date       furniture in defens…¹ intro joe #…² merch…³ song …⁴ the w…⁵ turn …⁶</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 1987-09-03         1           1     1       1       1       1       1       1</span></span>
@@ -555,13 +555,13 @@ count of the number of times the song was played.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 1987-10-16         4           3     2       3       4       4       4       3</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 1987-11-25         5           3     3       4       5       5       5       4</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 1987-12-03         6           4     4       4       6       6       6       5</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 124 more variables: `waiting room` &lt;int&gt;, `and the same` &lt;int&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 127 more variables: `waiting room` &lt;int&gt;, `and the same` &lt;int&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   `interlude 1` &lt;int&gt;, `interlude 2` &lt;int&gt;, `interlude 3` &lt;int&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   `interlude 4` &lt;int&gt;, `interlude 5` &lt;int&gt;, `interlude 6` &lt;int&gt;, kyeo &lt;int&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   `bad mouth` &lt;int&gt;, `break-in` &lt;int&gt;, `opening remarks` &lt;int&gt;, encore &lt;int&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   lockdown &lt;int&gt;, suggestion &lt;int&gt;, `lock dug` &lt;int&gt;, `interlude 7` &lt;int&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   burning &lt;int&gt;, `encore 1` &lt;int&gt;, `give me the cure` &lt;int&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   `interlude 8` &lt;int&gt;, glueman &lt;int&gt;, `interlude 9` &lt;int&gt;, …</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;">#   `interlude 4` &lt;int&gt;, outro &lt;int&gt;, `interlude 5` &lt;int&gt;, `interlude 6` &lt;int&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   kyeo &lt;int&gt;, `bad mouth` &lt;int&gt;, `break-in` &lt;int&gt;, `opening remarks` &lt;int&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   encore &lt;int&gt;, lockdown &lt;int&gt;, suggestion &lt;int&gt;, `lock dug` &lt;int&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   `interlude 7` &lt;int&gt;, burning &lt;int&gt;, `encore 1` &lt;int&gt;,</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;">#   `give me the cure` &lt;int&gt;, `interlude 8` &lt;int&gt;, glueman &lt;int&gt;, …</span></span></span></code></pre></div>
 <p>Now, we can reformat the data again to make it a long list of song
 counts that show how the number of times each song was performed built
 up over time.</p>

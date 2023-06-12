@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9155</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9156</span>
       </span>
     </div>
 
@@ -145,7 +145,7 @@ that were performed live, using data from … how many shows?</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">one_row_per_show</span> <span class="op">&lt;-</span> <span class="va">Repeatr1</span> <span class="op">%&gt;%</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">gid</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">slice</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">one_row_per_show</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 895</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 898</span></span></code></pre></div>
 <p>These frequency counts do not necessarily measure the band’s
 preferences for the songs, as more recently released songs were
 available for fewer shows than older songs.</p>
@@ -1507,7 +1507,7 @@ shows this sort of analysis probably would not be possible.</p>
 by the band during their live shows?</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">Repeatr1</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 22555</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 23285</span></span></code></pre></div>
 <p>This data was used to estimate the strength of preference for each of
 the songs in their live music repertoire.</p>
 <p>Song availability was considered at both repertoire and gig level.

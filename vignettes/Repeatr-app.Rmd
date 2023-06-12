@@ -98,7 +98,7 @@ There are some specific controls for use with the timeline slider:
 
 The data table below the map and the timeline controls shows summary data for the selected shows.
 
-![Example of the 'shows' data table.](images/paste-49A7F38D.png)
+![](images/paste-B983779C.png)
 
 Each of the following columns can be sorted using the sort controls to the right of the variable name:
 

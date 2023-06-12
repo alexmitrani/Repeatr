@@ -76,6 +76,9 @@
     <loc>/reference/fugazi_song_performance_intensity.html</loc>
   </url>
   <url>
+    <loc>/reference/gid_sound_quality.html</loc>
+  </url>
+  <url>
     <loc>/reference/index.html</loc>
   </url>
   <url>
@@ -143,6 +146,9 @@
   </url>
   <url>
     <loc>/reference/results_ml_Repeatr4_os.html</loc>
+  </url>
+  <url>
+    <loc>/reference/scrape_sound_quality.html</loc>
   </url>
   <url>
     <loc>/reference/shows_data.html</loc>

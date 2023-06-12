@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9155</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9156</span>
       </span>
     </div>
 
@@ -150,6 +150,9 @@
 <dt>minutes</dt>
 <dd><p>duration of the show in minutes if a recording is available</p></dd>
 
+<dt>sound_quality</dt>
+<dd><p>Sound quality rating: Excellent, Very Good, Good, or Poor.</p></dd>
+
 
 
 </dl></div>
@@ -161,7 +164,7 @@
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="va">shows_data</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,048 × 14</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,048 × 15</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    gid        tour   year date       venue city  country atten…¹ door_…² latit…³</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> aalst-bel… 1990…  <span style="text-decoration: underline;">1</span>990 1990-09-23 Netw… Aalst Belgium     600 <span style="color: #949494;">""</span>         50.9</span>
@@ -174,9 +177,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> albuquerq… 1995…  <span style="text-decoration: underline;">1</span>995 1995-11-13 Five… Albu… USA         895 <span style="color: #949494;">"</span>5<span style="color: #949494;">"</span>        35.1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> albuquerq… 2001…  <span style="text-decoration: underline;">2</span>001 2001-04-08 Suns… Albu… USA        <span style="text-decoration: underline;">1</span>100 <span style="color: #949494;">"</span>6<span style="color: #949494;">"</span>        35.1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> albuquerq… 1991…  <span style="text-decoration: underline;">1</span>991 1991-09-11 Suns… Albu… USA         800 <span style="color: #949494;">"</span>5<span style="color: #949494;">"</span>        35.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 1,038 more rows, 4 more variables: longitude &lt;dbl&gt;, urls &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   fls_link &lt;chr&gt;, minutes &lt;dbl&gt;, and abbreviated variable names ¹​attendance,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ²​door_price, ³​latitude</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 1,038 more rows, 5 more variables: longitude &lt;dbl&gt;, urls &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   fls_link &lt;chr&gt;, minutes &lt;dbl&gt;, sound_quality &lt;chr&gt;, and abbreviated</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   variable names ¹​attendance, ²​door_price, ³​latitude</span></span>
 </code></pre></div>
     </div>
   </div>
