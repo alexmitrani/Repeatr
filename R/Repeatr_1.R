@@ -1014,7 +1014,8 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
       rename(door_price = doorprice) %>%
       mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
       mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>")) %>%
-      left_join(gid_minutes)
+      left_join(gid_minutes) %>%
+      left_join(gid_sound_quality)
 
     save(shows_data, file = "shows_data.rda")
 
