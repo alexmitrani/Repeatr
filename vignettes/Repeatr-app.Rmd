@@ -116,6 +116,8 @@ Each of the following columns can be sorted using the sort controls to the right
 
 -   minutes - duration of the show in minutes if a recording is available.
 
+-   sound_quality - Sound quality rating: Excellent, Very Good, Good, or Poor.
+
 ## tours
 
 ![](images/paste-797BE5ED.png)

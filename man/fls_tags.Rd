@@ -12,7 +12,8 @@ dataframe with one row for each track in the Fugazi Live Series data, including 
 \item{song}{track name}
 \item{duration}{duration in period format (lubridate)}
 \item{seconds}{duration in seconds}
-\item{date}{duration in seconds}
+\item{minutes}{duration in decimal minutes}
+\item{date}{date}
 \item{venue}{venue}
 \item{city}{city}
 \item{state}{state for USA shows}

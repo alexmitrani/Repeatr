@@ -23,6 +23,7 @@ dataframe with one row for each show in the Fugazi Live Series data.
 \item{urls}{A string used to form the URLs of the corresponding page on the Fugazi Live series site.}
 \item{fls_link}{a link to the corresponding page of the Fugazi Live Series site.}
 \item{minutes}{duration of the show in minutes if a recording is available}
+\item{sound_quality}{Sound quality rating: Excellent, Very Good, Good, or Poor.}
 
 }
 }

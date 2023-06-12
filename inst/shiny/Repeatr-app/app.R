@@ -879,7 +879,7 @@ server <- function(input, output, session) {
   output$showsdatatable <- DT::renderDataTable(DT::datatable({
 
     data <- shows_data2() %>%
-      select(fls_link, date, venue, city, country, attendance, minutes) %>%
+      select(fls_link, date, venue, city, country, attendance, minutes, sound_quality) %>%
       arrange(date)},
     escape = c(-2),
     style = "bootstrap"))
