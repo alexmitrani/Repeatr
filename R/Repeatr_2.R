@@ -36,6 +36,9 @@ Repeatr_2 <- function(mydf = NULL) {
 
   }
 
+  Repeatr2 <- Repeatr2 %>%
+    filter(tracktype==1)
+
   # Add dummy variable for each song to the disaggregate data --------------
 
   Repeatr2 <- Repeatr2 %>% arrange(date, song_number)
@@ -67,12 +70,15 @@ Repeatr_2 <- function(mydf = NULL) {
 
   }
 
-  ncols <- ncol(Repeatr2)
-
   Repeatr2$song <- NULL
   Repeatr2$nchar <- NULL
 
-  browser()
+  ncols <- ncol(Repeatr2)
+
+  Repeatr2 <- Repeatr2 %>%
+    group_by(gid, song_number) %>%
+    slice(1) %>%
+    ungroup()
 
   Repeatr2 <- reshape(data = Repeatr2
                    , direction = "long"
