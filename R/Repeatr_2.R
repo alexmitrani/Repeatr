@@ -22,6 +22,8 @@
 
 Repeatr_2 <- function(mydf = NULL) {
 
+  nsongs <- nrow(songidlookup)
+
   # Reshape to long again so that there will now be one row per combination of song performed and song potentially available ------------------------------
 
   if (is.null(mydf)==FALSE) {
@@ -38,7 +40,7 @@ Repeatr_2 <- function(mydf = NULL) {
 
   Repeatr2 <- Repeatr2 %>% arrange(date, song_number)
 
-  for(mysongid in 1:92) {
+  for(mysongid in 1:nsongs) {
 
     myvarname <- paste0("song.", mysongid)
     mysongname <- as.character(songidlookup[mysongid,2])
@@ -46,7 +48,7 @@ Repeatr_2 <- function(mydf = NULL) {
 
   }
 
-  for(mysongid in 1:92) {
+  for(mysongid in 1:nsongs) {
 
     mysongvar <- rlang::sym(paste0("song.", mysongid))
     myavailablevarname <- paste0("available.", mysongid)
@@ -54,7 +56,7 @@ Repeatr_2 <- function(mydf = NULL) {
 
   }
 
-  for(mysongid in 1:92) {
+  for(mysongid in 1:nsongs) {
 
     mysongvar <- rlang::sym(paste0("song.", mysongid))
     myplayedvarname <- paste0("played.", mysongid)
@@ -65,12 +67,16 @@ Repeatr_2 <- function(mydf = NULL) {
 
   }
 
+  ncols <- ncol(Repeatr2)
+
   Repeatr2$song <- NULL
   Repeatr2$nchar <- NULL
 
+  browser()
+
   Repeatr2 <- reshape(data = Repeatr2
                    , direction = "long"
-                   , varying = 19:294
+                   , varying = 20:ncols
                    , idvar = c("gid", "song_number")
   )
 

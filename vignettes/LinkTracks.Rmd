@@ -294,14 +294,12 @@ Another approach is to group the songs by release.
 
 ```{r}
 releases_lookup <- Repeatr1 %>%
-  filter(is.na(release)==FALSE) %>%
   group_by(song, release) %>%
   summarize(count = n()) %>%
   ungroup() %>%
   select(song, release)
 
 mydf_long <- mydf_long %>%
-  filter(is.na(release)==FALSE) %>%
   left_join(releases_lookup)
 
 mydf_long %>%
