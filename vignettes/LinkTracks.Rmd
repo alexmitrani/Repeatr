@@ -294,16 +294,18 @@ Another approach is to group the songs by release.
 
 ```{r}
 releases_lookup <- Repeatr1 %>%
+  filter(is.na(release)==FALSE) %>%
   group_by(song, release) %>%
   summarize(count = n()) %>%
   ungroup() %>%
   select(song, release)
 
 mydf_long <- mydf_long %>%
+  filter(is.na(release)==FALSE) %>%
   left_join(releases_lookup)
 
 mydf_long %>%
-  filter(release=="Steady Diet") %>%
+  filter(release=="steady diet of nothing") %>%
   ggplot(aes(date, count, color = song)) +
   geom_line()
 
@@ -323,7 +325,52 @@ I have tried my best to locate all the shows on an interactive, online map. I st
 
 To the best of my knowledge, all of the shows have been located to a reasonable degree of accuracy. The results can be found [here](https://alexmitrani.shinyapps.io/Repeatr-app/).
 
-If you see an error that needs correcting on the map, please let me know. You can leave me a message by opening an issue on the [Repeatr GitHub](https://github.com/alexmitrani/Repeatr), by contacting me on [Twitter](https://twitter.com/alex_mitrani_es) or by contacting me on on [Mastodon](https://mastodon.online/@alex_mitrani_es). Thanks.
+If you see an error that needs correcting, please open an issue on the [Repeatr GitHub](https://github.com/alexmitrani/Repeatr). 
+
+## Sound Quality
+
+Here is a summary of the sound quality ratings of shows in the Fugazi Live Series. A few of the shows are on [archive.org](https://archive.org/details/Fugazi) but not on the main site at this time. The Fort Reno shows include recordings for every level on the scale from Poor to Excellent. 
+
+```{r}
+sound_quality_ratings <- shows_data %>% 
+  filter(is.na(sound_quality)==FALSE) %>% 
+  group_by(sound_quality) %>% 
+  summarize(shows = n()) %>% 
+  ungroup()
+
+totalshows <- sum(sound_quality_ratings$shows)
+
+totalrow <- as.data.frame(t(c("Total", totalshows)))
+
+names(totalrow) <- c("sound_quality", "shows")
+
+sound_quality_ratings <- as.data.frame(rbind(sound_quality_ratings, totalrow))
+
+sound_quality_ratings <- sound_quality_ratings %>%
+  mutate(shows = as.numeric(shows)) %>%
+  mutate(index = case_when(
+    sound_quality == "Excellent" ~ 1,
+    sound_quality == "Very Good" ~ 2,
+    sound_quality == "Good" ~ 3,
+    sound_quality == "Poor" ~ 4,
+    sound_quality == "Total" ~ 5
+  )) %>%
+  arrange(index) %>%
+  relocate(index)
+
+sound_quality_ratings <- sound_quality_ratings %>%
+  mutate(percentage = round(100*(shows / totalshows),1))
+
+sound_quality_ratings
+
+
+
+```
+
+
+
+
+Thanks.
 
 
 
