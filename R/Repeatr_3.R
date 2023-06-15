@@ -16,7 +16,7 @@
 #' @export
 #'
 #' @examples
-#' Repeatr_3_results <- Repeatr_3(mydf = Repeatr2)
+#' Repeatr3 <- Repeatr_3(mydf = Repeatr2)
 #'
 Repeatr_3 <- function(mydf = NULL) {
 
@@ -96,6 +96,8 @@ Repeatr_3 <- function(mydf = NULL) {
 
   checksongcounts <- Repeatr3 %>% group_by(alt) %>% summarise(count = sum(choice)) %>% ungroup()
   checksongcounts
+
+  save(Repeatr3, file = "Repeatr3.rda")
 
   return(Repeatr3)
 

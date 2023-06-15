@@ -23,8 +23,6 @@ Repeatr_4 <- function(mydf = NULL) {
 
   # Choice modelling --------------------------------
 
-  browser()
-
   if (is.null(mydf)==FALSE) {
 
     Repeatr3 <- mydf

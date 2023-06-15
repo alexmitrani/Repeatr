@@ -33,23 +33,25 @@ Repeatr_5 <- function(mymodeldf = NULL) {
 
   variable <- row.names(results.mymodel)
 
-  choice_model_results_table <- cbind.data.frame(variable, results.mymodel)
+  fugazi_song_choice_model <- cbind.data.frame(variable, results.mymodel)
 
-  choice_model_results_table <- choice_model_results_table %>%
+  fugazi_song_choice_model <- fugazi_song_choice_model %>%
     mutate(songid = ifelse(grepl("(Intercept)",variable)==TRUE,readr::parse_number(variable),NA))
 
-  choice_model_results_table <- choice_model_results_table %>%
+  fugazi_song_choice_model <- fugazi_song_choice_model %>%
     left_join(songidlookup)
 
-  choice_model_results_table <- choice_model_results_table %>%
+  fugazi_song_choice_model <- fugazi_song_choice_model %>%
     mutate(variable = ifelse(grepl("(Intercept)",variable)==TRUE,song,variable))
 
-  choice_model_results_table$songid <- NULL
-  choice_model_results_table$song <- NULL
+  fugazi_song_choice_model$songid <- NULL
+  fugazi_song_choice_model$song <- NULL
 
-  knitr::kable(choice_model_results_table, "pipe")
+  knitr::kable(fugazi_song_choice_model, "pipe")
 
-  write.csv(choice_model_results_table, "fugazi_song_choice_model.csv")
+  write.csv(fugazi_song_choice_model, "fugazi_song_choice_model.csv")
+
+  save(fugazi_song_choice_model, file = "fugazi_song_choice_model.rda")
 
   results.mymodel <- mymodeldf
 
@@ -88,6 +90,8 @@ Repeatr_5 <- function(mymodeldf = NULL) {
     relocate(rank_rating)
 
   write.csv(fugazi_song_preferences, "fugazi_song_preferences.csv")
+
+  save(fugazi_song_preferences, file = "fugazi_song_preferences.rda")
 
   # To produce normalised ratings on the interval [0,1] ------------------------
 
@@ -154,9 +158,10 @@ Repeatr_5 <- function(mymodeldf = NULL) {
   mydf2 <- mydf2 %>%
     arrange(desc(rating))
 
-  # remove First Demo as it is not comparable to the others.
+  # remove First Demo and Unreleased as they are not comparable to the others.
   releases_rated <- mydf2 %>%
-    filter(releaseid!=11)
+    filter(releaseid!=11) %>%
+    filter(releaseid!=13)
 
   releases_rated <- releases_rated %>%
     filter(is.na(releaseid)==FALSE)
@@ -165,6 +170,8 @@ Repeatr_5 <- function(mymodeldf = NULL) {
     select(release, releaseid, releasedate, songs_rated, rating, rym_rating)
 
   write.csv(releases_rated, "releases_rated.csv")
+
+  save(summary, file = "releases_rated.rda")
 
   knitr::kable(releases_rated, "pipe")
 
@@ -186,7 +193,7 @@ Repeatr_5 <- function(mymodeldf = NULL) {
     left_join(mydf) %>%
     mutate(launchdate = as.Date(launchdate, "%d/%m/%Y")) %>%
     mutate(lead = releasedate - launchdate) %>%
-    arrange(launchdate)
+    arrange(desc(rating))
 
   summary$launchyear <- lubridate::year(summary$launchdate)
   summary$releaseyear <- lubridate::year(summary$releasedate)
@@ -199,9 +206,11 @@ Repeatr_5 <- function(mymodeldf = NULL) {
 
   write.csv(summary, "summary.csv")
 
+  save(summary, file = "summary.rda")
+
   knitr::kable(summary, "pipe")
 
-  myreturnlist <- list(choice_model_results_table, fugazi_song_preferences, summary, releases_rated)
+  myreturnlist <- list(fugazi_song_choice_model, fugazi_song_preferences, summary, releases_rated)
 
   return(myreturnlist)
 

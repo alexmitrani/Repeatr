@@ -17,7 +17,7 @@
 #' @export
 #'
 #' @examples
-#' Repeatr_2_results <- Repeatr_2(mydf = Repeatr1)
+#' Repeatr2 <- Repeatr_2(mydf = Repeatr1)
 #'
 
 Repeatr_2 <- function(mydf = NULL) {
@@ -204,6 +204,8 @@ Repeatr_2 <- function(mydf = NULL) {
 
   Repeatr2 <- Repeatr2 %>%
     mutate(first_song_instrumental = first_song*instrumental)
+
+  save(Repeatr2, file = "Repeatr2.rda")
 
   return(Repeatr2)
 
