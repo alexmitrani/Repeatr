@@ -31,7 +31,7 @@ washington-dc-usa-90387	FLS0001	03/09/1987	Wilson Center	$5	300	Joey Picuri	Fuga
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9156</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9157</span>
       </span>
     </div>
 
@@ -113,8 +113,14 @@ washington-dc-usa-90387	FLS0001	03/09/1987	Wilson Center	$5	300	Joey Picuri	Fuga
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">Repeatr_2_results</span> <span class="op">&lt;-</span> <span class="fu">Repeatr_2</span><span class="op">(</span>mydf <span class="op">=</span> <span class="va">Repeatr1</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in reshapeLong(data, idvar = idvar, timevar = timevar, varying = varying,     v.names = v.names, drop = drop, times = times, ids = ids,     new.row.names = new.row.names):</span> 'varying' arguments must be the same length</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">Repeatr2</span> <span class="op">&lt;-</span> <span class="fu">Repeatr_2</span><span class="op">(</span>mydf <span class="op">=</span> <span class="va">Repeatr1</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining, by = "songid"</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining, by = "songid"</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining, by = c("songid", "song")</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining, by = c("gid", "songid")</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining, by = "songid"</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining, by = "songid"</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining, by = c("gid", "song_number")</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

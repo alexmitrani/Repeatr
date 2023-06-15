@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9156</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9157</span>
       </span>
     </div>
 
@@ -316,7 +316,7 @@ first played live 4 days after the launch of End Hits. What was the
 average lead time for all Fugazi songs with a corresponding release?</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">mysummary</span><span class="op">$</span><span class="va">lead</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Time difference of 776.4022 days</span></span></code></pre></div>
+<span><span class="co">#&gt; Time difference of NA days</span></span></code></pre></div>
 <p>That is over 2 years, but perhaps the mean is biased upwards by a few
 extreme values…</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
@@ -343,7 +343,7 @@ long Fugazi would tend to play a song live before it featuring on a
 discographical release.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">mysummary</span><span class="op">$</span><span class="va">lead</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Time difference of 341 days</span></span></code></pre></div>
+<span><span class="co">#&gt; Time difference of NA days</span></span></code></pre></div>
 <p>We have discovered several interesting things:</p>
 <ol style="list-style-type: decimal">
 <li><p>Styrofoam was the only Fugazi song whose live debut significantly
