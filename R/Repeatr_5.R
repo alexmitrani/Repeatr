@@ -11,7 +11,7 @@
 #' @import readr
 #'
 #'
-#' @param mymodeldf optional choice model coefficients dataframe to be used to generate the results. If omitted, the default choice model coefficients dataframe will be used, which is results.ml.Repeatr4.
+#' @param mymodeldf optional choice model coefficients dataframe to be used to generate the results. If omitted, the default choice model coefficients dataframe will be used, which is results_ml_Repeatr4.
 #'
 #' @return
 #' @export

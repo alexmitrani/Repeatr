@@ -8,23 +8,22 @@
 #' @import fastDummies
 #' @import rlang
 #' @import knitr
+#' @import mlogit
 #'
 #'
 #' @param mydf optional dataframe to be used.  If omitted, the default dataframe will be used.
-#' @param basic_model This should be set to TRUE if the basic choice model should be run, otherwise it will be skipped.
-#' @param first_song_model This should be set to TRUE if the first song choice model should be run, otherwise it will be skipped.
-#' @param other_songs_model This should be set to TRUE if the other songs choice model should be run, otherwise it will be skipped.
 #'
 #' @return
 #' @export
 #'
 #' @examples
-#' ml.Repeatr4_fs <- Repeatr_4()
+#' ml_Repeatr4 <- Repeatr_4()
 
-Repeatr_4 <- function(mydf = NULL, basic_model = FALSE, first_song_model = FALSE, other_songs_model = FALSE) {
+Repeatr_4 <- function(mydf = NULL) {
 
   # Choice modelling --------------------------------
 
+  browser()
 
   if (is.null(mydf)==FALSE) {
 
@@ -38,99 +37,18 @@ Repeatr_4 <- function(mydf = NULL, basic_model = FALSE, first_song_model = FALSE
   Repeatr4$alt <- as.factor(Repeatr4$alt)
   Repeatr4$choice <- as.logical(Repeatr4$choice)
 
+  Repeatr4 <- dfidx(Repeatr4, idx = c("case", "alt"), drop.index = FALSE)
 
-  if (basic_model == TRUE) {
+  ml.Repeatr4 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5
+                         + yearsold_6 + yearsold_7 + yearsold_8 , data = Repeatr4)
 
-    Repeatr4 <- dfidx(Repeatr4, idx = c("case", "alt"), drop.index = FALSE)
+  summary.ml.Repeatr4 <- summary(ml.Repeatr4)
 
-    # The basic model.
+  results_ml_Repeatr4 <- as.data.frame(summary.ml.Repeatr4[["CoefTable"]])
 
-    ml.Repeatr4 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5
-                           + yearsold_6 + yearsold_7 + yearsold_8 , data = Repeatr4)
+  save(results_ml_Repeatr4, file = "results_ml_Repeatr4.rda")
 
-    summary.ml.Repeatr4 <- summary(ml.Repeatr4)
-
-    summary.ml.Repeatr4
-
-    return(ml.Repeatr4)
-
-  } else if (first_song_model == TRUE) {
-
-    Repeatr4 <- dfidx(Repeatr4, idx = c("case", "alt"), drop.index = FALSE)
-
-    # First song model ---------------------------------------------------
-
-    Repeatr4_fs <- Repeatr4 %>%
-      filter(first_song==1)
-
-    Repeatr4_fs_counts <- Repeatr4_fs %>%
-      filter(choice==TRUE) %>%
-      group_by(alt) %>%
-      summarise(chosen=n()) %>%
-      mutate(songid=as.integer(alt)) %>%
-      ungroup()
-
-    Repeatr4_fs_counts <- Repeatr4_fs_counts %>%
-      left_join(songidlookup) %>%
-      select(alt, song, chosen)
-
-    Repeatr4_fs <- Repeatr4_fs %>%
-      left_join(Repeatr4_fs_counts)
-
-    Repeatr4_fs <- Repeatr4_fs %>%
-      mutate(yearsold_3 = yearsold_3 + yearsold_4 + yearsold_5 + yearsold_6 + yearsold_7 + yearsold_8)
-
-    # It is necessary to remove the alternatives that were never chosen
-
-    Repeatr4_fs <- Repeatr4_fs %>%
-      filter(is.na(chosen)==FALSE)
-
-    ml.Repeatr4_fs <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3, data = Repeatr4_fs)
-
-    summary.ml.Repeatr4_fs <- summary(ml.Repeatr4_fs)
-
-    summary.ml.Repeatr4_fs
-
-    return(ml.Repeatr4_fs)
-
-  } else if (other_songs_model == TRUE) {
-
-    Repeatr4 <- dfidx(Repeatr4, idx = c("case", "alt"), drop.index = FALSE)
-
-    # Other songs model -------------------------------------------------
-
-    Repeatr4_os <- Repeatr4 %>%
-      filter(first_song==0)
-
-    Repeatr4_os_counts <- Repeatr4_os %>%
-      filter(choice==TRUE) %>%
-      group_by(alt) %>%
-      summarise(chosen=n()) %>%
-      mutate(songid=as.integer(alt)) %>%
-      ungroup()
-
-    Repeatr4_os_counts <- Repeatr4_os_counts %>%
-      left_join(songidlookup) %>%
-      select(alt, song, chosen)
-
-    Repeatr4_os <- Repeatr4_os %>%
-      left_join(Repeatr4_os_counts)
-
-    # It is necessary to remove the alternatives that were never chosen
-
-    Repeatr4_os <- Repeatr4_os %>%
-      filter(is.na(chosen)==FALSE)
-
-    ml.Repeatr4_os <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5
-                           + yearsold_6 + yearsold_7 + yearsold_8, data = Repeatr4_os)
-
-    summary.ml.Repeatr4_os <- summary(ml.Repeatr4_os)
-
-    summary.ml.Repeatr4_os
-
-    return(ml.Repeatr4_os)
-
-  }
+  return(results_ml_Repeatr4)
 
 }
 
