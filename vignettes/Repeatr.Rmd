@@ -35,6 +35,8 @@ These frequency counts do not necessarily measure the band's preferences for the
 The results of this analysis, in descending order of performance count, are as follows:
 
 ```{r }
+fugazi_song_counts <- fugazi_song_counts %>%
+  arrange(desc(count))
 knitr::kable(fugazi_song_counts, "pipe")
 ```   
 
