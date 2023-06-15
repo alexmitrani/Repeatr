@@ -156,6 +156,8 @@ Repeatr_2 <- function(mydf = NULL) {
 
   write.csv(fugazi_song_performance_intensity, "fugazi_song_performance_intensity.csv")
 
+  save(fugazi_song_performance_intensity, file = "fugazi_song_performance_intensity.rda")
+
   # merge on repertoire-level availability
   Repeatr2$available_rl <- NULL
   Repeatr2 <- Repeatr2 %>% left_join(available_rl_lookup)
@@ -194,8 +196,6 @@ Repeatr_2 <- function(mydf = NULL) {
 
   mycaseidlookup <- mycaseidlookup %>%
     mutate(case = row_number())
-
-  saveRDS(mycaseidlookup, "mycaseidlookup.rds")
 
   Repeatr2 <- Repeatr2 %>%
     left_join(mycaseidlookup) %>%
