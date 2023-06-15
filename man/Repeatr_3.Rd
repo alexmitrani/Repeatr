@@ -13,6 +13,6 @@ Repeatr_3(mydf = NULL)
 "gid" is short for "gig id"
 }
 \examples{
-Repeatr_3_results <- Repeatr_3(mydf = Repeatr2)
+Repeatr3 <- Repeatr_3(mydf = Repeatr2)
 
 }

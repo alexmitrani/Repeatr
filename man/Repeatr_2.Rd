@@ -17,6 +17,6 @@ washington-dc-usa-90387	FLS0001	03/09/1987	Wilson Center	$5	300	Joey Picuri	Fuga
 "gid" is short for "gig id"
 }
 \examples{
-Repeatr_2_results <- Repeatr_2(mydf = Repeatr1)
+Repeatr2 <- Repeatr_2(mydf = Repeatr1)
 
 }
