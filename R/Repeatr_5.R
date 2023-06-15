@@ -171,7 +171,7 @@ Repeatr_5 <- function(mymodeldf = NULL) {
 
   write.csv(releases_rated, "releases_rated.csv")
 
-  save(summary, file = "releases_rated.rda")
+  save(releases_rated, file = "releases_rated.rda")
 
   knitr::kable(releases_rated, "pipe")
 
@@ -203,6 +203,13 @@ Repeatr_5 <- function(mymodeldf = NULL) {
   summary$available_rl <- as.integer(summary$available_rl)
   summary$releaseid <- as.integer(summary$releaseid)
   summary$lead <- as.integer(summary$lead)
+
+  releaseid_release <- releasesdatalookup %>%
+    select(releaseid, release)
+
+  summary <- summary %>%
+    left_join(releaseid_release) %>%
+    relocate(release, .after = releaseid)
 
   write.csv(summary, "summary.csv")
 
