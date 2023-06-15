@@ -39,6 +39,11 @@ Repeatr_2 <- function(mydf = NULL) {
   Repeatr2 <- Repeatr2 %>%
     filter(tracktype==1)
 
+  fugazi_song_counts <- Repeatr2 %>%
+    group_by(songid, song) %>%
+    summarize(count = n()) %>%
+    ungroup()
+
   # Add dummy variable for each song to the disaggregate data --------------
 
   Repeatr2 <- Repeatr2 %>% arrange(date, song_number)
@@ -113,6 +118,7 @@ Repeatr_2 <- function(mydf = NULL) {
     summarise(launchdate = min(date)) %>%
     ungroup()
 
+
   # add launch dates to count file
   fugazi_song_counts <- fugazi_song_counts %>%
     left_join(mylaunchdatelookup) %>%
@@ -122,7 +128,7 @@ Repeatr_2 <- function(mydf = NULL) {
 
   write.csv(fugazi_song_counts, "fugazi_song_counts.csv")
 
-
+  save(fugazi_song_counts, file = "fugazi_song_counts.rda")
 
   # summarise the data at song level
 
