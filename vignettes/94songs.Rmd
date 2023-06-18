@@ -1,8 +1,8 @@
 ---
-title: "92 SONGS"
+title: "94 SONGS"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{92 SONGS}
+  %\VignetteIndexEntry{94 SONGS}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
