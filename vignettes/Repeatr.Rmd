@@ -123,8 +123,7 @@ Source: https://web.archive.org/web/20201123023401/https://www.abc.net.au/double
 The following table shows ratings based on the preferences described in the section above, together with the indicators described in previous sections: performance counts and intensities. The ratings are simply the preferences normalised in such a way that the highest preference has a value of 1 and the lowest a value of 0. This way it will be easy to scale these values for comparison with ratings defined on other intervals. 
 
 ```{r }
-Repeatr_5_results <- Repeatr_5(mymodeldf = results_ml_Repeatr4)
-knitr::kable(Repeatr_5_results[[3]], "pipe")
+knitr::kable(Repeatr_5_results[[3]] %>% select(song, chosen, intensity, rating) %>% arrange(desc(rating)), "pipe")
 ```
 
 ## Breaking ranks
