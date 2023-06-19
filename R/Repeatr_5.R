@@ -215,9 +215,21 @@ Repeatr_5 <- function(mymodeldf = NULL) {
 
   save(summary, file = "summary.rda")
 
+  releases_data_input <- releases_data_input
+
+  summary <- summary %>%
+    select(song, rating)
+
+  releases_data_input <- releases_data_input %>%
+    left_join(summary) %>%
+    rename(intensity = rate) %>%
+    mutate(rating = round(rating, digits = 4))
+
+  save(releases_data_input, file = "releases_data_input.rda")
+
   knitr::kable(summary, "pipe")
 
-  myreturnlist <- list(fugazi_song_choice_model, fugazi_song_preferences, summary, releases_rated)
+  myreturnlist <- list(fugazi_song_choice_model, fugazi_song_preferences, summary, releases_rated, releases_data_input)
 
   return(myreturnlist)
 
