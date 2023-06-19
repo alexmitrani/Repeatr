@@ -17,7 +17,8 @@ dataframe with one row for each song in the Fugazi discography, except those whi
 \item{date}{The debut date of the song}
 \item{show_num}{The show number of the debut of the song}
 \item{shows}{The number of shows in which the song could have been performed}
-\item{rate}{The rate at which the song was played - this is count / shows}
+\item{intensity}{The rate at which the song was played - this is count / shows}
+\item{rating}{The rating calculated for the song based on preferences implied by the choices of which songs to play.}
 }
 }
 \source{

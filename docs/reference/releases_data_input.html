@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9157</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9158</span>
       </span>
     </div>
 
@@ -47,7 +47,7 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
-      <a href="../articles/92songs.html">92 SONGS</a>
+      <a href="../articles/94songs.html">94 SONGS</a>
     </li>
     <li>
       <a href="../articles/CombinationLock.html">Combination Lock</a>
@@ -132,8 +132,11 @@
 <dt>shows</dt>
 <dd><p>The number of shows in which the song could have been performed</p></dd>
 
-<dt>rate</dt>
+<dt>intensity</dt>
 <dd><p>The rate at which the song was played - this is count / shows</p></dd>
+
+<dt>rating</dt>
+<dd><p>The rating calculated for the song based on preferences implied by the choices of which songs to play.</p></dd>
 
 
 </dl></div>
@@ -145,7 +148,7 @@
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="va">releases_data_input</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 94 × 11</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 94 × 12</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    releas…¹ release track…² song  last_…³ colou…⁴ count date       show_…⁵ shows</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>       13 unrele…       2 worl…     897 #e69f00     2 1996-01-30     644   254</span>
@@ -158,8 +161,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>       10 furnit…       1 furn…     897 #d15743    94 1987-09-03       1   897</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>        9 the ar…      11 argu…     897 #99c3cb    66 1999-08-26     797   101</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>        9 the ar…      10 nigh…     897 #99c3cb    44 1999-08-26     797   101</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 84 more rows, 1 more variable: rate &lt;dbl&gt;, and abbreviated variable</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   names ¹​releaseid, ²​track_number, ³​last_show, ⁴​colour_code, ⁵​show_num</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 84 more rows, 2 more variables: intensity &lt;dbl&gt;, rating &lt;dbl&gt;, and</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   abbreviated variable names ¹​releaseid, ²​track_number, ³​last_show,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ⁴​colour_code, ⁵​show_num</span></span>
 </code></pre></div>
     </div>
   </div>

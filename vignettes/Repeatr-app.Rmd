@@ -206,15 +206,17 @@ The bar chart shows summary data for each song of each Fugazi release, sorted in
 
 The data can be filtered for one or more specific releases using the 'release' selection box.
 
-The 'variable' menu has two options:
+The 'variable' menu has three options:
 
 -   count - the number of times the song was performed in the Fugazi Live Series. All else being equal, older songs tend to have higher counts because they were available in the band's repertoire for more shows.
 
--   rate - the number of times the song was performed divided by the number of shows since the song's debut. This variable normalizes the counts by the potential maximum number of performances to give fairer treatment to newer songs.
+-   intensity - the number of times the song was performed divided by the number of shows since the song's debut. This variable normalizes the counts by the potential maximum number of performances to give fairer treatment to newer songs.
+
+-   rating - the rating calculated for the song based on preferences implied by the choices of which songs to play.
+
+![](images/paste-7F4EDE94.png)
 
 The data table includes the following columns, all of which can be sorted:
-
-![Data table on the 'releases' page.](images/paste-4E114C21.png)
 
 -   release
 
@@ -230,9 +232,11 @@ The data table includes the following columns, all of which can be sorted:
 
 -   shows - number of shows at which songs from the release were performed
 
--   rate - the average of the rates for the songs on the release
+-   intensity - the average of the intensities of the songs on the release
 
-The counts and the rates give different results if they are used to rank the releases. Repeater was the album that yielded more live performances than any other in Fugazi's catalogue, but The Argument had the highest performance rate in relation to the number of shows at which these songs were available.
+-   rating - the average of the ratings of the songs on the release
+
+The counts, intensities and ratings give different results if they are used to rank the releases. Repeater was the album that yielded more live performances than any other in Fugazi's catalogue, but The Argument had the highest performance rate in relation to the number of shows at which these songs were available. The top 3 places are the same in terms of rating and intensity, but further down the table there are differences - the Fugazi EP is ranked higher than Red Medicine and In on the Killtaker when the releases are ranked by rating. This is probably because the ratings take into account the age of the releases and separate the effects of age from the implied preferences.
 
 ## renditions
 
