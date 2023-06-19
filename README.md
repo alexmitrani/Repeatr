@@ -10,8 +10,6 @@ Exploring the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series).
 
 [Repeatr](https://alexmitrani.github.io/Repeatr/articles/Repeatr.html) outlines the process by which song ratings were calculated using the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) metadata. 
 
-[Songnumberone](https://alexmitrani.github.io/Repeatr/articles/Songnumberone.html) presents analysis of the choice of opening songs.  
-
 [94 SONGS](https://alexmitrani.github.io/Repeatr/articles/94songs.html) summarises the main results of the data processing and choice modelling as an interactive graph.  The graph  shows ratings, performance counts and launch dates for the 94 songs that were performed live at least twice.  
 
 [Combination Lock](https://alexmitrani.github.io/Repeatr/articles/CombinationLock.html) explores Fugazi's use of transitions between songs: which ones they played live, and how often compared to others.  
