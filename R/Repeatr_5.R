@@ -222,10 +222,34 @@ Repeatr_5 <- function(mymodeldf = NULL) {
 
   releases_data_input <- releases_data_input %>%
     left_join(summary) %>%
-    rename(intensity = rate) %>%
-    mutate(rating = round(rating, digits = 4))
+    mutate(rating = round(rating, digits = 4)) %>%
+    arrange(desc(releaseid), desc(track_number))
 
   save(releases_data_input, file = "releases_data_input.rda")
+
+  releases_summary <- releases_data_input %>%
+    group_by(releaseid, release, last_show) %>%
+    summarize(count = sum(count),
+              songs=n(),
+              first_debut=min(date),
+              last_debut=max(date),
+              first_show = min(show_num),
+              shows = round(mean(shows), digits=0),
+              intensity = round(mean(intensity), digits = 4),
+              rating = round(mean(rating), digits = 4)) %>%
+    ungroup()
+
+  releasesdatalookup <- releasesdatalookup %>%
+    select(releaseid, releasedate) %>%
+    mutate(releasedate = as.Date(releasedate, "%d/%m/%Y", origin = "1970-01-01"))
+
+  releases_summary <- releases_summary %>%
+    left_join(releasesdatalookup) %>%
+    select(releaseid, release, first_debut, last_debut, releasedate, songs, count, shows, intensity, rating) %>%
+    rename(release_date = releasedate) %>%
+    filter(releaseid>0)
+
+  save(releases_summary, file = "releases_summary.rda")
 
   knitr::kable(summary, "pipe")
 

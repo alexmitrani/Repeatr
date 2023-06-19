@@ -290,8 +290,8 @@ ui <- fluidPage(
                                       ),
                                column(6,
                                       selectizeInput("Input_releases_var", "variable:",
-                                                     c("count", "rate"),
-                                                     selected="rate", multiple =FALSE)
+                                                     c("count", "intensity", "rating"),
+                                                     selected="rating", multiple =FALSE)
                                       )
 
                              ),
@@ -1108,21 +1108,35 @@ server <- function(input, output, session) {
 
     colours <- unique(releases_data()$colour_code)
 
-    if(input$Input_releases_var == "rate") {
+    if(input$Input_releases_var == "rating") {
 
         releases_plot <- ggplot(releases_data(), aes(x = song,
-                                                   y = rate,
+                                                   y = rating,
                                                    fill = release)) +
           geom_bar(stat="identity") +
           xlab("track") +
-          ylab("rate") +
+          ylab("rating") +
           scale_fill_manual(values=colours) +
           scale_y_continuous(expand = expansion(mult = c(0, 0.1)),
                              limits = c(0, NA),
                              labels = comma) +
           coord_flip()
 
-      } else {
+    } else if (input$Input_releases_var == "intensity") {
+
+      releases_plot <- ggplot(releases_data(), aes(x = song,
+                                                   y = intensity,
+                                                   fill = release)) +
+        geom_bar(stat="identity") +
+        xlab("track") +
+        ylab("intensity") +
+        scale_fill_manual(values=colours) +
+        scale_y_continuous(expand = expansion(mult = c(0, 0.1)),
+                           limits = c(0, NA),
+                           labels = comma) +
+        coord_flip()
+
+    } else {
 
         releases_plot <- ggplot(releases_data(), aes(x = song,
                                                      y = count,

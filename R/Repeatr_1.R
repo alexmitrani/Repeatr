@@ -955,7 +955,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
       mutate(song = factor(song, levels=unique(song))) %>%
       mutate(release = factor(release, levels=rev(unique(release)))) %>%
       mutate(shows = last_show-show_num+1,
-             rate = round(count / shows, digits=2)) %>%
+             intensity = round(count / shows, digits=4)) %>%
       filter(releaseid>0)
 
     save(releases_data_input, file = "releases_data_input.rda")
@@ -968,7 +968,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
                 last_debut=max(date),
                 first_show = min(show_num),
                 shows = round(mean(shows), digits=0),
-                rate = round(mean(rate), digits = 2)) %>%
+                intensity = round(mean(intensity), digits = 4)) %>%
       ungroup()
 
     releasesdatalookup <- releasesdatalookup %>%
@@ -977,7 +977,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
     releases_summary <- releases_summary %>%
       left_join(releasesdatalookup) %>%
-      select(releaseid, release, first_debut, last_debut, releasedate, songs, count, shows, rate) %>%
+      select(releaseid, release, first_debut, last_debut, releasedate, songs, count, shows, intensity) %>%
       rename(release_date = releasedate) %>%
       filter(releaseid>0)
 
