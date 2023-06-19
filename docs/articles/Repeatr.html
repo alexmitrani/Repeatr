@@ -3156,14 +3156,11 @@ adjacent songs in the table could be interchanged and the resulting
 ranking would be just as valid.</p>
 </div>
 <div class="section level2">
-<h2 id="ratings-applied-to-studio-releases-and-compared-to-rym-ratings">Ratings applied to studio releases and compared to RYM ratings<a class="anchor" aria-label="anchor" href="#ratings-applied-to-studio-releases-and-compared-to-rym-ratings"></a>
+<h2 id="rating-releases">Rating releases<a class="anchor" aria-label="anchor" href="#rating-releases"></a>
 </h2>
 <p>The song ratings calculated using the Fugazi Live Series (FLS) data
 were used to calculate average ratings for the band’s studio releases.
-These were compared to the average ratings for the same releases at <a href="https://web.archive.org/web/20210211085323/https://rateyourmusic.com/artist/fugazi" class="external-link">https://rateyourmusic.com/artist/fugazi</a>,
-as at 11 February 2021. The original RYM ratings were on a scale from 0
-to 5 stars, so these were multiplied by 0.2 to convert them to the same
-scale as the FLS ratings. The results are shown below.</p>
+The results are shown below.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Repeatr_5_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Repeatr_5.html">Repeatr_5</a></span><span class="op">(</span>mymodeldf <span class="op">=</span> <span class="va">results_ml_Repeatr4</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Joining, by = "songid"</span></span>
@@ -3179,13 +3176,12 @@ scale as the FLS ratings. The results are shown below.</p>
 <span><span class="co">#&gt; Joining, by = c("releaseid", "track_number", "rating")</span></span>
 <span><span class="co">#&gt; Joining, by = "releaseid"</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">Repeatr_5_results</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span>, <span class="st">"pipe"</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
-<col width="29%">
-<col width="12%">
-<col width="15%">
-<col width="15%">
-<col width="12%">
+<col width="34%">
+<col width="14%">
+<col width="17%">
+<col width="17%">
 <col width="14%">
 </colgroup>
 <thead><tr class="header">
@@ -3194,7 +3190,6 @@ scale as the FLS ratings. The results are shown below.</p>
 <th align="left">releasedate</th>
 <th align="right">songs_rated</th>
 <th align="right">rating</th>
-<th align="right">rym_rating</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -3203,7 +3198,6 @@ scale as the FLS ratings. The results are shown below.</p>
 <td align="left">16/10/2001</td>
 <td align="right">10</td>
 <td align="right">0.8000779</td>
-<td align="right">0.778</td>
 </tr>
 <tr class="even">
 <td align="left">end hits</td>
@@ -3211,7 +3205,6 @@ scale as the FLS ratings. The results are shown below.</p>
 <td align="left">24/04/1998</td>
 <td align="right">13</td>
 <td align="right">0.7962262</td>
-<td align="right">0.734</td>
 </tr>
 <tr class="odd">
 <td align="left">repeater</td>
@@ -3219,7 +3212,6 @@ scale as the FLS ratings. The results are shown below.</p>
 <td align="left">01/03/1990</td>
 <td align="right">11</td>
 <td align="right">0.7780685</td>
-<td align="right">0.774</td>
 </tr>
 <tr class="even">
 <td align="left">fugazi</td>
@@ -3227,7 +3219,6 @@ scale as the FLS ratings. The results are shown below.</p>
 <td align="left">19/11/1988</td>
 <td align="right">7</td>
 <td align="right">0.7353388</td>
-<td align="right">0.796</td>
 </tr>
 <tr class="odd">
 <td align="left">red medicine</td>
@@ -3235,7 +3226,6 @@ scale as the FLS ratings. The results are shown below.</p>
 <td align="left">12/05/1995</td>
 <td align="right">13</td>
 <td align="right">0.7352127</td>
-<td align="right">0.762</td>
 </tr>
 <tr class="even">
 <td align="left">in on the killtaker</td>
@@ -3243,7 +3233,6 @@ scale as the FLS ratings. The results are shown below.</p>
 <td align="left">18/06/1993</td>
 <td align="right">12</td>
 <td align="right">0.7304708</td>
-<td align="right">0.756</td>
 </tr>
 <tr class="odd">
 <td align="left">margin walker</td>
@@ -3251,7 +3240,6 @@ scale as the FLS ratings. The results are shown below.</p>
 <td align="left">15/06/1989</td>
 <td align="right">6</td>
 <td align="right">0.6985145</td>
-<td align="right">0.744</td>
 </tr>
 <tr class="even">
 <td align="left">3 songs</td>
@@ -3259,7 +3247,6 @@ scale as the FLS ratings. The results are shown below.</p>
 <td align="left">01/12/1989</td>
 <td align="right">3</td>
 <td align="right">0.6442041</td>
-<td align="right">0.656</td>
 </tr>
 <tr class="odd">
 <td align="left">steady diet of nothing</td>
@@ -3267,7 +3254,6 @@ scale as the FLS ratings. The results are shown below.</p>
 <td align="left">01/08/1991</td>
 <td align="right">11</td>
 <td align="right">0.6302814</td>
-<td align="right">0.708</td>
 </tr>
 <tr class="even">
 <td align="left">furniture</td>
@@ -3275,21 +3261,9 @@ scale as the FLS ratings. The results are shown below.</p>
 <td align="left">16/10/2001</td>
 <td align="right">3</td>
 <td align="right">0.5748295</td>
-<td align="right">0.734</td>
 </tr>
 </tbody>
 </table>
-<p>Although many of the ratings are similar in magnitude, there are some
-differences. There is more variation in the ratings that have been
-calculated using the FLS data compared to the RYM ratings, and the
-lowest FLS ratings are considerably lower than the lowest RYM ratings.
-Differences such as these were to be expected. The FLS ratings were
-calculated in a consistent way, based largely on the real choices of the
-band regarding which songs to play at shows, and the band actually
-played the songs they chose to a live audience! The RYM ratings were
-from larger groups of people, not necessarily the same people in each
-case, who were simply expressing how much they liked or disliked the
-music, with no restrictions and no consequences.</p>
 </div>
   </div>
 
