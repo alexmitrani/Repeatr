@@ -23026,7 +23026,7 @@ track; artist; album; name; duration
 26; Fugazi; 20021029 Barrowland Ballroom, Glasgow, Scotland; Forensic Scene; 3:19,
 27; Fugazi; 20021029 Barrowland Ballroom, Glasgow, Scotland; Argument; 6:18,
 28; Fugazi; 20021029 Barrowland Ballroom, Glasgow, Scotland; Smallpox Champion; 3:09,
-29; Fugazi; 20021029 Barrowland Ballroom, Glasgow, Scotland; Ex-Spectator; 4:00,
+29; Fugazi; 20021029 Barrowland Ballroom, Glasgow, Scotland; Epic Problem; 4:00,
 30; Fugazi; 20021029 Barrowland Ballroom, Glasgow, Scotland; Arpeggiator; 3:48,
 31; Fugazi; 20021029 Barrowland Ballroom, Glasgow, Scotland; Outro; 0:40,
 01; Fugazi; 20021030 Manchester University, Manchester, England; Intro; 1:22,
