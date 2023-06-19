@@ -223,7 +223,7 @@ Repeatr_5 <- function(mymodeldf = NULL) {
   releases_data_input <- releases_data_input %>%
     left_join(summary) %>%
     mutate(rating = round(rating, digits = 4)) %>%
-    arrange(desc(releaseid), desc(track_number))
+    arrange(releaseid, track_number)
 
   save(releases_data_input, file = "releases_data_input.rda")
 
