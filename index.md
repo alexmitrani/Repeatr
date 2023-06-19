@@ -12,7 +12,7 @@ Exploring the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) 
 
 [Songnumberone](articles/Songnumberone.html) presents analysis of the choice of opening songs.  
 
-[92 SONGS](articles/92songs.html) summarises the main results of the data processing and choice modelling as an interactive graph.  The graph  shows ratings, performance counts and launch dates for the 92 songs that were performed live and released.  
+[94 SONGS](articles/94songs.html) summarises the main results of the data processing and choice modelling as an interactive graph.  The graph  shows ratings, performance counts and launch dates for the 92 songs that were performed live and released.  
 
 [Combination Lock](articles/CombinationLock.html) explores Fugazi's use of transitions between songs: which ones they played live, and how often compared to others.  
 
