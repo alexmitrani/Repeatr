@@ -157,9 +157,9 @@ knitr::kable(mycomparisons, format = "pipe", digits = 3)
 ```
 So, the ranks should not be interpreted rigidly. Any two of the adjacent songs in the table could be interchanged and the resulting ranking would be just as valid.  
 
-## Ratings applied to studio releases and compared to RYM ratings
+## Ratings applied to studio releases
 
-The song ratings calculated using the Fugazi Live Series (FLS) data were used to calculate average ratings for the band's studio releases. These were compared to the average ratings for the same releases at [https://rateyourmusic.com/artist/fugazi](https://web.archive.org/web/20210211085323/https://rateyourmusic.com/artist/fugazi), as at 11 February 2021.  The original RYM ratings were on a scale from 0 to 5 stars, so these were multiplied by 0.2 to convert them to the same scale as the FLS ratings. The results are shown below.   
+The song ratings calculated using the Fugazi Live Series (FLS) data were used to calculate average ratings for the band's studio releases. The results are shown below.   
 
 ```{r }
 Repeatr_5_results <- Repeatr_5(mymodeldf = results_ml_Repeatr4)

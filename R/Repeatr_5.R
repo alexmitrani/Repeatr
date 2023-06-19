@@ -167,7 +167,7 @@ Repeatr_5 <- function(mymodeldf = NULL) {
     filter(is.na(releaseid)==FALSE)
 
   releases_rated <- releases_rated %>%
-    select(release, releaseid, releasedate, songs_rated, rating, rym_rating)
+    select(release, releaseid, releasedate, songs_rated, rating)
 
   write.csv(releases_rated, "releases_rated.csv")
 

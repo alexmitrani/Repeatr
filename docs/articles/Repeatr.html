@@ -2412,496 +2412,578 @@ value of 1 and the lowest a value of 0. This way it will be easy to
 scale these values for comparison with ratings defined on other
 intervals.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">Repeatr_5_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Repeatr_5.html">Repeatr_5</a></span><span class="op">(</span>mymodeldf <span class="op">=</span> <span class="va">results_ml_Repeatr4</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Joining, by = "songid"</span></span>
-<span><span class="co">#&gt; Joining, by = "songid"</span></span>
-<span><span class="co">#&gt; Joining, by = "songid"</span></span>
-<span><span class="co">#&gt; Joining, by = c("songid", "song")</span></span>
-<span><span class="co">#&gt; Joining, by = c("songid", "track_number", "song")</span></span>
-<span><span class="co">#&gt; Joining, by = "releaseid"</span></span>
-<span><span class="co">#&gt; Joining, by = "releaseid"</span></span>
-<span><span class="co">#&gt; Joining, by = c("song", "songid")</span></span>
-<span><span class="co">#&gt; Joining, by = c("songid", "song")</span></span>
-<span><span class="co">#&gt; Joining, by = "releaseid"</span></span>
-<span><span class="co">#&gt; Joining, by = c("releaseid", "track_number", "rating")</span></span>
-<span><span class="co">#&gt; Joining, by = "releaseid"</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">Repeatr_5_results</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span>, <span class="st">"pipe"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">Repeatr_5_results</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">song</span>, <span class="va">chosen</span>, <span class="va">intensity</span>, <span class="va">rating</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">rating</span><span class="op">)</span><span class="op">)</span>, <span class="st">"pipe"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
-<th align="right">releaseid</th>
-<th align="right">track_number</th>
+<th align="left">song</th>
+<th align="right">chosen</th>
+<th align="right">intensity</th>
 <th align="right">rating</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">0.9184897</td>
+<td align="left">break</td>
+<td align="right">171</td>
+<td align="right">0.7467249</td>
+<td align="right">1.0000000</td>
 </tr>
 <tr class="even">
-<td align="right">1</td>
-<td align="right">2</td>
-<td align="right">0.6976638</td>
-</tr>
-<tr class="odd">
-<td align="right">1</td>
-<td align="right">3</td>
-<td align="right">0.7483945</td>
-</tr>
-<tr class="even">
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">0.6804089</td>
-</tr>
-<tr class="odd">
-<td align="right">1</td>
-<td align="right">5</td>
-<td align="right">0.7826139</td>
-</tr>
-<tr class="even">
-<td align="right">1</td>
-<td align="right">6</td>
-<td align="right">0.7633609</td>
-</tr>
-<tr class="odd">
-<td align="right">1</td>
-<td align="right">7</td>
-<td align="right">0.5564397</td>
-</tr>
-<tr class="even">
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">0.8528001</td>
-</tr>
-<tr class="odd">
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="right">0.8117585</td>
-</tr>
-<tr class="even">
-<td align="right">2</td>
-<td align="right">3</td>
-<td align="right">0.6838528</td>
-</tr>
-<tr class="odd">
-<td align="right">2</td>
-<td align="right">4</td>
-<td align="right">0.4607806</td>
-</tr>
-<tr class="even">
-<td align="right">2</td>
-<td align="right">5</td>
-<td align="right">0.6217706</td>
-</tr>
-<tr class="odd">
-<td align="right">2</td>
-<td align="right">6</td>
-<td align="right">0.7601244</td>
-</tr>
-<tr class="even">
-<td align="right">3</td>
-<td align="right">1</td>
-<td align="right">0.7849962</td>
-</tr>
-<tr class="odd">
-<td align="right">3</td>
-<td align="right">2</td>
-<td align="right">0.5696784</td>
-</tr>
-<tr class="even">
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0.5779376</td>
-</tr>
-<tr class="odd">
-<td align="right">4</td>
-<td align="right">1</td>
-<td align="right">0.8470866</td>
-</tr>
-<tr class="even">
-<td align="right">4</td>
-<td align="right">2</td>
-<td align="right">0.7736443</td>
-</tr>
-<tr class="odd">
-<td align="right">4</td>
-<td align="right">3</td>
-<td align="right">0.6219935</td>
-</tr>
-<tr class="even">
-<td align="right">4</td>
-<td align="right">4</td>
-<td align="right">0.8841688</td>
-</tr>
-<tr class="odd">
-<td align="right">4</td>
-<td align="right">5</td>
-<td align="right">0.8938649</td>
-</tr>
-<tr class="even">
-<td align="right">4</td>
-<td align="right">6</td>
-<td align="right">0.8850629</td>
-</tr>
-<tr class="odd">
-<td align="right">4</td>
-<td align="right">7</td>
-<td align="right">0.6672249</td>
-</tr>
-<tr class="even">
-<td align="right">4</td>
-<td align="right">8</td>
-<td align="right">0.7827087</td>
-</tr>
-<tr class="odd">
-<td align="right">4</td>
-<td align="right">9</td>
-<td align="right">0.7640208</td>
-</tr>
-<tr class="even">
-<td align="right">4</td>
-<td align="right">10</td>
-<td align="right">0.6942476</td>
-</tr>
-<tr class="odd">
-<td align="right">4</td>
-<td align="right">11</td>
-<td align="right">0.7447307</td>
-</tr>
-<tr class="even">
-<td align="right">5</td>
-<td align="right">1</td>
-<td align="right">0.7458297</td>
-</tr>
-<tr class="odd">
-<td align="right">5</td>
-<td align="right">2</td>
-<td align="right">0.9959028</td>
-</tr>
-<tr class="even">
-<td align="right">5</td>
-<td align="right">3</td>
-<td align="right">0.5937426</td>
-</tr>
-<tr class="odd">
-<td align="right">5</td>
-<td align="right">4</td>
-<td align="right">0.6398720</td>
-</tr>
-<tr class="even">
-<td align="right">5</td>
-<td align="right">5</td>
-<td align="right">0.6732158</td>
-</tr>
-<tr class="odd">
-<td align="right">5</td>
-<td align="right">6</td>
-<td align="right">0.4241913</td>
-</tr>
-<tr class="even">
-<td align="right">5</td>
-<td align="right">7</td>
-<td align="right">0.8397264</td>
-</tr>
-<tr class="odd">
-<td align="right">5</td>
-<td align="right">8</td>
-<td align="right">0.7176019</td>
-</tr>
-<tr class="even">
-<td align="right">5</td>
-<td align="right">9</td>
-<td align="right">0.0458624</td>
-</tr>
-<tr class="odd">
-<td align="right">5</td>
-<td align="right">10</td>
-<td align="right">0.6464330</td>
-</tr>
-<tr class="even">
-<td align="right">5</td>
-<td align="right">11</td>
-<td align="right">0.6107174</td>
-</tr>
-<tr class="odd">
-<td align="right">6</td>
-<td align="right">1</td>
-<td align="right">0.8529654</td>
-</tr>
-<tr class="even">
-<td align="right">6</td>
-<td align="right">2</td>
-<td align="right">0.8387518</td>
-</tr>
-<tr class="odd">
-<td align="right">6</td>
-<td align="right">3</td>
-<td align="right">0.6768544</td>
-</tr>
-<tr class="even">
-<td align="right">6</td>
-<td align="right">4</td>
-<td align="right">0.8153544</td>
-</tr>
-<tr class="odd">
-<td align="right">6</td>
-<td align="right">5</td>
-<td align="right">0.8792914</td>
-</tr>
-<tr class="even">
-<td align="right">6</td>
-<td align="right">6</td>
-<td align="right">0.3631229</td>
-</tr>
-<tr class="odd">
-<td align="right">6</td>
-<td align="right">7</td>
-<td align="right">0.7404085</td>
-</tr>
-<tr class="even">
-<td align="right">6</td>
-<td align="right">8</td>
-<td align="right">0.6837001</td>
-</tr>
-<tr class="odd">
-<td align="right">6</td>
-<td align="right">9</td>
-<td align="right">0.7876948</td>
-</tr>
-<tr class="even">
-<td align="right">6</td>
-<td align="right">10</td>
-<td align="right">0.6953575</td>
-</tr>
-<tr class="odd">
-<td align="right">6</td>
-<td align="right">11</td>
-<td align="right">0.8036497</td>
-</tr>
-<tr class="even">
-<td align="right">6</td>
-<td align="right">12</td>
-<td align="right">0.6284982</td>
-</tr>
-<tr class="odd">
-<td align="right">7</td>
-<td align="right">1</td>
-<td align="right">0.9688246</td>
-</tr>
-<tr class="even">
-<td align="right">7</td>
-<td align="right">2</td>
+<td align="left">bed for the scraping</td>
+<td align="right">299</td>
+<td align="right">0.7931034</td>
 <td align="right">0.9995836</td>
 </tr>
 <tr class="odd">
-<td align="right">7</td>
-<td align="right">3</td>
-<td align="right">0.5003910</td>
+<td align="left">reclamation</td>
+<td align="right">594</td>
+<td align="right">0.7471698</td>
+<td align="right">0.9959028</td>
 </tr>
 <tr class="even">
-<td align="right">7</td>
-<td align="right">4</td>
-<td align="right">0.8536053</td>
+<td align="left">do you like me</td>
+<td align="right">272</td>
+<td align="right">0.7214854</td>
+<td align="right">0.9688246</td>
 </tr>
 <tr class="odd">
-<td align="right">7</td>
-<td align="right">5</td>
-<td align="right">0.8225465</td>
+<td align="left">closed captioned</td>
+<td align="right">159</td>
+<td align="right">0.7989950</td>
+<td align="right">0.9502630</td>
 </tr>
 <tr class="even">
-<td align="right">7</td>
-<td align="right">6</td>
-<td align="right">0.3832488</td>
+<td align="left">cashout</td>
+<td align="right">61</td>
+<td align="right">0.9242424</td>
+<td align="right">0.9483810</td>
 </tr>
 <tr class="odd">
-<td align="right">7</td>
-<td align="right">7</td>
-<td align="right">0.6961155</td>
-</tr>
-<tr class="even">
-<td align="right">7</td>
-<td align="right">8</td>
-<td align="right">0.8174574</td>
-</tr>
-<tr class="odd">
-<td align="right">7</td>
-<td align="right">9</td>
-<td align="right">0.4591913</td>
-</tr>
-<tr class="even">
-<td align="right">7</td>
-<td align="right">10</td>
-<td align="right">0.9183867</td>
-</tr>
-<tr class="odd">
-<td align="right">7</td>
-<td align="right">11</td>
-<td align="right">0.7508727</td>
-</tr>
-<tr class="even">
-<td align="right">7</td>
-<td align="right">12</td>
-<td align="right">0.6987616</td>
-</tr>
-<tr class="odd">
-<td align="right">7</td>
-<td align="right">13</td>
-<td align="right">0.6887806</td>
-</tr>
-<tr class="even">
-<td align="right">8</td>
-<td align="right">1</td>
-<td align="right">1.0000000</td>
-</tr>
-<tr class="odd">
-<td align="right">8</td>
-<td align="right">2</td>
+<td align="left">place position</td>
+<td align="right">133</td>
+<td align="right">0.5807860</td>
 <td align="right">0.9318732</td>
 </tr>
 <tr class="even">
-<td align="right">8</td>
-<td align="right">3</td>
+<td align="left">waiting room</td>
+<td align="right">632</td>
+<td align="right">0.7037862</td>
+<td align="right">0.9184897</td>
+</tr>
+<tr class="odd">
+<td align="left">target</td>
+<td align="right">260</td>
+<td align="right">0.6753247</td>
+<td align="right">0.9183867</td>
+</tr>
+<tr class="even">
+<td align="left">recap modotti</td>
+<td align="right">141</td>
+<td align="right">0.6811594</td>
 <td align="right">0.9149588</td>
 </tr>
 <tr class="odd">
-<td align="right">8</td>
-<td align="right">4</td>
-<td align="right">0.7624314</td>
+<td align="left">number 5</td>
+<td align="right">110</td>
+<td align="right">0.7586207</td>
+<td align="right">0.8955581</td>
 </tr>
 <tr class="even">
-<td align="right">8</td>
-<td align="right">5</td>
-<td align="right">0.8141438</td>
+<td align="left">blueprint</td>
+<td align="right">583</td>
+<td align="right">0.7066667</td>
+<td align="right">0.8938649</td>
 </tr>
 <tr class="odd">
-<td align="right">8</td>
-<td align="right">6</td>
-<td align="right">0.6405746</td>
+<td align="left">sieve-fisted find</td>
+<td align="right">417</td>
+<td align="right">0.4894366</td>
+<td align="right">0.8850629</td>
 </tr>
 <tr class="even">
-<td align="right">8</td>
-<td align="right">7</td>
-<td align="right">0.9502630</td>
+<td align="left">merchandise</td>
+<td align="right">477</td>
+<td align="right">0.5311804</td>
+<td align="right">0.8841688</td>
 </tr>
 <tr class="odd">
-<td align="right">8</td>
-<td align="right">8</td>
-<td align="right">0.8096920</td>
+<td align="left">rend it</td>
+<td align="right">346</td>
+<td align="right">0.5914530</td>
+<td align="right">0.8792914</td>
 </tr>
 <tr class="even">
-<td align="right">8</td>
-<td align="right">9</td>
-<td align="right">0.5857549</td>
-</tr>
-<tr class="odd">
-<td align="right">8</td>
-<td align="right">10</td>
+<td align="left">arpeggiator</td>
+<td align="right">154</td>
+<td align="right">0.7403846</td>
 <td align="right">0.8700223</td>
 </tr>
-<tr class="even">
-<td align="right">8</td>
-<td align="right">11</td>
-<td align="right">0.5657294</td>
-</tr>
 <tr class="odd">
-<td align="right">8</td>
-<td align="right">12</td>
-<td align="right">0.6814112</td>
+<td align="left">birthday pony</td>
+<td align="right">199</td>
+<td align="right">0.5168831</td>
+<td align="right">0.8536053</td>
 </tr>
 <tr class="even">
-<td align="right">8</td>
-<td align="right">13</td>
-<td align="right">0.8240861</td>
+<td align="left">facet squared</td>
+<td align="right">299</td>
+<td align="right">0.4814815</td>
+<td align="right">0.8529654</td>
 </tr>
 <tr class="odd">
-<td align="right">9</td>
-<td align="right">2</td>
-<td align="right">0.9483810</td>
+<td align="left">margin walker</td>
+<td align="right">429</td>
+<td align="right">0.4925373</td>
+<td align="right">0.8528001</td>
 </tr>
 <tr class="even">
-<td align="right">9</td>
-<td align="right">3</td>
-<td align="right">0.7791376</td>
+<td align="left">turnover</td>
+<td align="right">393</td>
+<td align="right">0.4639906</td>
+<td align="right">0.8470866</td>
 </tr>
 <tr class="odd">
-<td align="right">9</td>
-<td align="right">4</td>
-<td align="right">0.7660139</td>
+<td align="left">long division</td>
+<td align="right">498</td>
+<td align="right">0.5879575</td>
+<td align="right">0.8397264</td>
 </tr>
 <tr class="even">
-<td align="right">9</td>
-<td align="right">5</td>
-<td align="right">0.7879500</td>
+<td align="left">public witness program</td>
+<td align="right">264</td>
+<td align="right">0.5146199</td>
+<td align="right">0.8387518</td>
 </tr>
 <tr class="odd">
-<td align="right">9</td>
-<td align="right">6</td>
+<td align="left">argument</td>
+<td align="right">66</td>
+<td align="right">0.6534653</td>
+<td align="right">0.8384478</td>
+</tr>
+<tr class="even">
+<td align="left">oh</td>
+<td align="right">80</td>
+<td align="right">0.5839416</td>
+<td align="right">0.8353861</td>
+</tr>
+<tr class="odd">
+<td align="left">the kill</td>
+<td align="right">35</td>
+<td align="right">0.6034483</td>
 <td align="right">0.8326374</td>
 </tr>
 <tr class="even">
-<td align="right">9</td>
-<td align="right">7</td>
-<td align="right">0.6845876</td>
+<td align="left">fd</td>
+<td align="right">115</td>
+<td align="right">0.5528846</td>
+<td align="right">0.8240861</td>
 </tr>
 <tr class="odd">
-<td align="right">9</td>
-<td align="right">8</td>
-<td align="right">0.8353861</td>
+<td align="left">forensic scene</td>
+<td align="right">201</td>
+<td align="right">0.5248042</td>
+<td align="right">0.8225465</td>
 </tr>
 <tr class="even">
-<td align="right">9</td>
-<td align="right">9</td>
-<td align="right">0.7842751</td>
+<td align="left">by you</td>
+<td align="right">233</td>
+<td align="right">0.4884696</td>
+<td align="right">0.8174574</td>
 </tr>
 <tr class="odd">
-<td align="right">9</td>
-<td align="right">10</td>
+<td align="left">smallpox champion</td>
+<td align="right">252</td>
+<td align="right">0.4883721</td>
+<td align="right">0.8153544</td>
+</tr>
+<tr class="even">
+<td align="left">five corporations</td>
+<td align="right">109</td>
+<td align="right">0.4759825</td>
+<td align="right">0.8141438</td>
+</tr>
+<tr class="odd">
+<td align="left">and the same</td>
+<td align="right">375</td>
+<td align="right">0.4180602</td>
+<td align="right">0.8117585</td>
+</tr>
+<tr class="even">
+<td align="left">floating boy</td>
+<td align="right">106</td>
+<td align="right">0.4669604</td>
+<td align="right">0.8096920</td>
+</tr>
+<tr class="odd">
+<td align="left">instrument</td>
+<td align="right">272</td>
+<td align="right">0.4665523</td>
+<td align="right">0.8036497</td>
+</tr>
+<tr class="even">
+<td align="left">life and limb</td>
+<td align="right">21</td>
+<td align="right">0.4772727</td>
+<td align="right">0.7879500</td>
+</tr>
+<tr class="odd">
+<td align="left">great cop</td>
+<td align="right">268</td>
+<td align="right">0.4581197</td>
+<td align="right">0.7876948</td>
+</tr>
+<tr class="even">
+<td align="left">song #1</td>
+<td align="right">321</td>
+<td align="right">0.3574610</td>
+<td align="right">0.7849962</td>
+</tr>
+<tr class="odd">
+<td align="left">ex-spectator</td>
+<td align="right">46</td>
+<td align="right">0.4554455</td>
+<td align="right">0.7842751</td>
+</tr>
+<tr class="even">
+<td align="left">two beats off</td>
+<td align="right">370</td>
+<td align="right">0.4378698</td>
+<td align="right">0.7827087</td>
+</tr>
+<tr class="odd">
+<td align="left">give me the cure</td>
+<td align="right">367</td>
+<td align="right">0.4146893</td>
+<td align="right">0.7826139</td>
+</tr>
+<tr class="even">
+<td align="left">full disclosure</td>
+<td align="right">25</td>
+<td align="right">0.4310345</td>
+<td align="right">0.7791376</td>
+</tr>
+<tr class="odd">
+<td align="left">repeater</td>
+<td align="right">409</td>
+<td align="right">0.4886499</td>
+<td align="right">0.7736443</td>
+</tr>
+<tr class="even">
+<td align="left">epic problem</td>
+<td align="right">31</td>
+<td align="right">0.4769231</td>
+<td align="right">0.7660139</td>
+</tr>
+<tr class="odd">
+<td align="left">styrofoam</td>
+<td align="right">287</td>
+<td align="right">0.3642132</td>
+<td align="right">0.7640208</td>
+</tr>
+<tr class="even">
+<td align="left">suggestion</td>
+<td align="right">339</td>
+<td align="right">0.3796193</td>
+<td align="right">0.7633609</td>
+</tr>
+<tr class="odd">
+<td align="left">no surprise</td>
+<td align="right">89</td>
+<td align="right">0.3903509</td>
+<td align="right">0.7624314</td>
+</tr>
+<tr class="even">
+<td align="left">promises</td>
+<td align="right">380</td>
+<td align="right">0.4377880</td>
+<td align="right">0.7601244</td>
+</tr>
+<tr class="odd">
+<td align="left">back to base</td>
+<td align="right">136</td>
+<td align="right">0.3607427</td>
+<td align="right">0.7508727</td>
+</tr>
+<tr class="even">
+<td align="left">bad mouth</td>
+<td align="right">279</td>
+<td align="right">0.3117318</td>
+<td align="right">0.7483945</td>
+</tr>
+<tr class="odd">
+<td align="left">exit only</td>
+<td align="right">275</td>
+<td align="right">0.3642384</td>
+<td align="right">0.7458297</td>
+</tr>
+<tr class="even">
+<td align="left">shut the door</td>
+<td align="right">322</td>
+<td align="right">0.3779343</td>
+<td align="right">0.7447307</td>
+</tr>
+<tr class="odd">
+<td align="left">nightshop</td>
+<td align="right">44</td>
+<td align="right">0.4356436</td>
 <td align="right">0.7439624</td>
 </tr>
 <tr class="even">
-<td align="right">9</td>
-<td align="right">11</td>
-<td align="right">0.8384478</td>
+<td align="left">sweet and low</td>
+<td align="right">249</td>
+<td align="right">0.4422735</td>
+<td align="right">0.7404085</td>
 </tr>
 <tr class="odd">
-<td align="right">10</td>
-<td align="right">1</td>
+<td align="left">runaway return</td>
+<td align="right">265</td>
+<td align="right">0.3243574</td>
+<td align="right">0.7176019</td>
+</tr>
+<tr class="even">
+<td align="left">downed city</td>
+<td align="right">111</td>
+<td align="right">0.2944297</td>
+<td align="right">0.6987616</td>
+</tr>
+<tr class="odd">
+<td align="left">bulldog front</td>
+<td align="right">225</td>
+<td align="right">0.2574371</td>
+<td align="right">0.6976638</td>
+</tr>
+<tr class="even">
+<td align="left">fell, destroyed</td>
+<td align="right">137</td>
+<td align="right">0.3051225</td>
+<td align="right">0.6961155</td>
+</tr>
+<tr class="odd">
+<td align="left">walken’s syndrome</td>
+<td align="right">141</td>
+<td align="right">0.2732558</td>
+<td align="right">0.6953575</td>
+</tr>
+<tr class="even">
+<td align="left">reprovisional</td>
+<td align="right">275</td>
+<td align="right">0.3223916</td>
+<td align="right">0.6942476</td>
+</tr>
+<tr class="odd">
+<td align="left">long distance runner</td>
+<td align="right">113</td>
+<td align="right">0.3005319</td>
+<td align="right">0.6887806</td>
+</tr>
+<tr class="even">
+<td align="left">strangelight</td>
+<td align="right">19</td>
+<td align="right">0.3333333</td>
+<td align="right">0.6845876</td>
+</tr>
+<tr class="odd">
+<td align="left">burning too</td>
+<td align="right">214</td>
+<td align="right">0.2456946</td>
+<td align="right">0.6838528</td>
+</tr>
+<tr class="even">
+<td align="left">cassavetes</td>
+<td align="right">171</td>
+<td align="right">0.2705696</td>
+<td align="right">0.6837001</td>
+</tr>
+<tr class="odd">
+<td align="left">pink frosty</td>
+<td align="right">67</td>
+<td align="right">0.2669323</td>
+<td align="right">0.6814112</td>
+</tr>
+<tr class="even">
+<td align="left">burning</td>
+<td align="right">214</td>
+<td align="right">0.2409910</td>
+<td align="right">0.6804089</td>
+</tr>
+<tr class="odd">
+<td align="left">returning the screw</td>
+<td align="right">134</td>
+<td align="right">0.2596899</td>
+<td align="right">0.6768544</td>
+</tr>
+<tr class="even">
+<td align="left">latin roots</td>
+<td align="right">182</td>
+<td align="right">0.2496571</td>
+<td align="right">0.6732158</td>
+</tr>
+<tr class="odd">
+<td align="left">greed</td>
+<td align="right">188</td>
+<td align="right">0.2206573</td>
+<td align="right">0.6672249</td>
+</tr>
+<tr class="even">
+<td align="left">dear justice letter</td>
+<td align="right">148</td>
+<td align="right">0.2132565</td>
+<td align="right">0.6464330</td>
+</tr>
+<tr class="odd">
+<td align="left">caustic acrostic</td>
+<td align="right">51</td>
+<td align="right">0.2007874</td>
+<td align="right">0.6405746</td>
+</tr>
+<tr class="even">
+<td align="left">stacks</td>
+<td align="right">153</td>
+<td align="right">0.2214182</td>
+<td align="right">0.6398720</td>
+</tr>
+<tr class="odd">
+<td align="left">last chance for a slow dance</td>
+<td align="right">137</td>
+<td align="right">0.2167722</td>
+<td align="right">0.6284982</td>
+</tr>
+<tr class="even">
+<td align="left">brendan #1</td>
+<td align="right">158</td>
+<td align="right">0.1854460</td>
+<td align="right">0.6219935</td>
+</tr>
+<tr class="odd">
+<td align="left">lockdown</td>
+<td align="right">164</td>
+<td align="right">0.1836506</td>
+<td align="right">0.6217706</td>
+</tr>
+<tr class="even">
+<td align="left">kyeo</td>
+<td align="right">173</td>
+<td align="right">0.1930804</td>
+<td align="right">0.6107174</td>
+</tr>
+<tr class="odd">
+<td align="left">nice new outfit</td>
+<td align="right">115</td>
+<td align="right">0.1666667</td>
+<td align="right">0.5937426</td>
+</tr>
+<tr class="even">
+<td align="left">foreman’s dog</td>
+<td align="right">33</td>
+<td align="right">0.1875000</td>
+<td align="right">0.5857549</td>
+</tr>
+<tr class="odd">
+<td align="left">break-in</td>
+<td align="right">134</td>
+<td align="right">0.1497207</td>
+<td align="right">0.5779376</td>
+</tr>
+<tr class="even">
+<td align="left">joe #1</td>
+<td align="right">131</td>
+<td align="right">0.1458797</td>
+<td align="right">0.5696784</td>
+</tr>
+<tr class="odd">
+<td align="left">guilford fall</td>
+<td align="right">32</td>
+<td align="right">0.1397380</td>
+<td align="right">0.5657294</td>
+</tr>
+<tr class="even">
+<td align="left">glueman</td>
+<td align="right">133</td>
+<td align="right">0.1507937</td>
+<td align="right">0.5564397</td>
+</tr>
+<tr class="odd">
+<td align="left">furniture</td>
+<td align="right">94</td>
+<td align="right">0.1046771</td>
 <td align="right">0.5161086</td>
 </tr>
 <tr class="even">
-<td align="right">10</td>
-<td align="right">2</td>
-<td align="right">0.8955581</td>
+<td align="left">latest disgrace</td>
+<td align="right">39</td>
+<td align="right">0.1034483</td>
+<td align="right">0.5003910</td>
 </tr>
 <tr class="odd">
-<td align="right">10</td>
-<td align="right">3</td>
+<td align="left">provisional</td>
+<td align="right">8</td>
+<td align="right">0.0092807</td>
+<td align="right">0.4607806</td>
+</tr>
+<tr class="even">
+<td align="left">version</td>
+<td align="right">34</td>
+<td align="right">0.0899471</td>
+<td align="right">0.4591913</td>
+</tr>
+<tr class="odd">
+<td align="left">steady diet</td>
+<td align="right">46</td>
+<td align="right">0.0683507</td>
+<td align="right">0.4241913</td>
+</tr>
+<tr class="even">
+<td align="left">combination lock</td>
+<td align="right">21</td>
+<td align="right">0.0558511</td>
+<td align="right">0.3832488</td>
+</tr>
+<tr class="odd">
+<td align="left">23 beats off</td>
+<td align="right">26</td>
+<td align="right">0.0503876</td>
+<td align="right">0.3631229</td>
+</tr>
+<tr class="even">
+<td align="left">hello morning</td>
+<td align="right">2</td>
+<td align="right">0.0444444</td>
 <td align="right">0.3128219</td>
 </tr>
-<tr class="even">
-<td align="right">11</td>
-<td align="right">5</td>
+<tr class="odd">
+<td align="left">the word</td>
+<td align="right">31</td>
+<td align="right">0.0345212</td>
 <td align="right">0.2868113</td>
 </tr>
-<tr class="odd">
-<td align="right">11</td>
-<td align="right">8</td>
-<td align="right">0.1604132</td>
-</tr>
 <tr class="even">
-<td align="right">11</td>
-<td align="right">10</td>
+<td align="left">in defense of humans</td>
+<td align="right">25</td>
+<td align="right">0.0278396</td>
 <td align="right">0.2643827</td>
 </tr>
 <tr class="odd">
-<td align="right">13</td>
-<td align="right">1</td>
-<td align="right">0.0000000</td>
+<td align="left">turn off your guns</td>
+<td align="right">14</td>
+<td align="right">0.0155902</td>
+<td align="right">0.1604132</td>
 </tr>
 <tr class="even">
-<td align="right">13</td>
+<td align="left">world beat</td>
 <td align="right">2</td>
+<td align="right">0.0078740</td>
 <td align="right">0.0461699</td>
+</tr>
+<tr class="odd">
+<td align="left">polish</td>
+<td align="right">6</td>
+<td align="right">0.0087591</td>
+<td align="right">0.0458624</td>
+</tr>
+<tr class="even">
+<td align="left">preprovisional</td>
+<td align="right">6</td>
+<td align="right">0.0069364</td>
+<td align="right">0.0000000</td>
 </tr>
 </tbody>
 </table>
