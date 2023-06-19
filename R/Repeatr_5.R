@@ -131,7 +131,7 @@ Repeatr_5 <- function(mymodeldf = NULL) {
     relocate(duration_seconds, .after=launchdate)
 
   summary <- mydf2 %>%
-    select(songid, song, launchdate, duration_seconds, chosen, available_rl, intensity, rating) %>%
+    select(songid, track_number, song, launchdate, duration_seconds, chosen, available_rl, intensity, rating) %>%
     arrange(desc(rating)) %>%
     mutate(rank = row_number()) %>%
     relocate(rank) %>%
@@ -209,7 +209,8 @@ Repeatr_5 <- function(mymodeldf = NULL) {
 
   summary <- summary %>%
     left_join(releaseid_release) %>%
-    relocate(release, .after = releaseid)
+    relocate(release, .after = releaseid) %>%
+    arrange(releaseid, track_number)
 
   write.csv(summary, "summary.csv")
 
@@ -218,12 +219,11 @@ Repeatr_5 <- function(mymodeldf = NULL) {
   releases_data_input <- releases_data_input
 
   summary <- summary %>%
-    select(song, rating)
+    select(releaseid, track_number, rating)
 
   releases_data_input <- releases_data_input %>%
     left_join(summary) %>%
-    mutate(rating = round(rating, digits = 4)) %>%
-    arrange(releaseid, track_number)
+    mutate(rating = round(rating, digits = 4))
 
   save(releases_data_input, file = "releases_data_input.rda")
 
