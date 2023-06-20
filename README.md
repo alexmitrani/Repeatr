@@ -8,7 +8,7 @@ Exploring the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series).
 
 [Repeatr-app](https://alexmitrani.github.io/Repeatr/articles/Repeatr-app.html) provides documentation for the [Repeatr web app](https://alexmitrani.shinyapps.io/Repeatr-app/). 
 
-[Repeatr](https://alexmitrani.github.io/Repeatr/articles/Repeatr.html) outlines the process by which song ratings were calculated using the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) metadata. 
+[Ratings](https://alexmitrani.github.io/Repeatr/articles/Ratings.html) outlines the process by which song ratings were calculated using the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) metadata. 
 
 [94 SONGS](https://alexmitrani.github.io/Repeatr/articles/94songs.html) summarises the main results of the data processing and choice modelling as an interactive graph.  The graph  shows ratings, performance counts and launch dates for the 94 songs that were performed live at least twice.  
 
