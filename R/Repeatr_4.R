@@ -1,5 +1,5 @@
 #' @name Repeatr_4
-#' @title prepares data for choice modelling with mlogit, and estimates a basic choice model. .
+#' @title prepares data for choice modelling with mlogit, and estimates a basic choice model.
 #' @description Defines indices, makes changes to variable formats and data structure to prepare for choice modelling with mlogit.
 #'
 #' @import dplyr
@@ -17,7 +17,7 @@
 #' @export
 #'
 #' @examples
-#' ml_Repeatr4 <- Repeatr_4()
+# ml_Repeatr4 <- Repeatr_4()
 
 Repeatr_4 <- function(mydf = NULL) {
 
