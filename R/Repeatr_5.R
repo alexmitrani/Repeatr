@@ -81,7 +81,7 @@ Repeatr_5 <- function(mymodeldf = NULL) {
   results.mymodel <- results.mymodel %>%
     select(songid, song, Estimate, "z-value")
 
-  # to add back in "waiting room" which was the omitted constant in the choice model and has a parameter value of zero by definition.
+  # to add back in "23 beats off" which was the omitted constant in the choice model and has a parameter value of zero by definition.
 
   results.mymodel.os <- songidlookup %>%
     filter(songid==1) %>%

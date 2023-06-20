@@ -107,8 +107,7 @@ The implied preferences for each song are shown here in descending order of pref
 
 ```{r }
 
-Repeatr_5_results <- Repeatr_5(mymodeldf = results_ml_Repeatr4)
-myresults <- as.data.frame(Repeatr_5_results[1]) %>%
+myresults <- fugazi_song_preferences %>%
   arrange(desc(Estimate))
 knitr::kable((myresults), "pipe")
 ```   
@@ -123,7 +122,7 @@ Source: https://web.archive.org/web/20201123023401/https://www.abc.net.au/double
 The following table shows ratings based on the preferences described in the section above, together with the indicators described in previous sections: performance counts and intensities. The ratings are simply the preferences normalised in such a way that the highest preference has a value of 1 and the lowest a value of 0. This way it will be easy to scale these values for comparison with ratings defined on other intervals. 
 
 ```{r }
-knitr::kable(Repeatr_5_results[[3]] %>% select(song, chosen, intensity, rating) %>% arrange(desc(rating)), "pipe")
+knitr::kable(summary %>% select(song, chosen, intensity, rating) %>% arrange(desc(rating)), "pipe")
 ```
 
 ## Breaking ranks
@@ -162,8 +161,8 @@ So, the ranks should not be interpreted rigidly. Any two of the adjacent songs i
 The song ratings calculated using the Fugazi Live Series (FLS) data were used to calculate average ratings for the band's studio releases. The results are shown below.   
 
 ```{r }
-Repeatr_5_results <- Repeatr_5(mymodeldf = results_ml_Repeatr4)
-knitr::kable(Repeatr_5_results[[4]], "pipe")
+releases_data <- releases_summary 
+knitr::kable(releases_data %>% arrange(desc(rating)), "pipe")
 ```
 
 
