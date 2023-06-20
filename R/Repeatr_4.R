@@ -17,7 +17,7 @@
 #' @export
 #'
 #' @examples
-# ml_Repeatr4 <- Repeatr_4()
+#' ml_Repeatr4 <- Repeatr_4()
 
 Repeatr_4 <- function(mydf = NULL) {
 
