@@ -20,6 +20,10 @@
 #'
 Repeatr_3 <- function(mydf = NULL) {
 
+  mydir <- getwd()
+  myinputdir <- paste0(mydir, "/inst/extdata/")
+  mydatadir <- paste0(mydir, "/data")
+
   if (is.null(mydf)==FALSE) {
 
     Repeatr2 <- mydf
@@ -97,7 +101,11 @@ Repeatr_3 <- function(mydf = NULL) {
   checksongcounts <- Repeatr3 %>% group_by(alt) %>% summarise(count = sum(choice)) %>% ungroup()
   checksongcounts
 
+  setwd(mydatadir)
+
   save(Repeatr3, file = "Repeatr3.rda")
+
+  setwd(mydir)
 
   return(Repeatr3)
 

@@ -22,6 +22,10 @@
 
 Repeatr_2 <- function(mydf = NULL) {
 
+  mydir <- getwd()
+  myinputdir <- paste0(mydir, "/inst/extdata/")
+  mydatadir <- paste0(mydir, "/data")
+
   nsongs <- nrow(songidlookup)
 
   # Reshape to long again so that there will now be one row per combination of song performed and song potentially available ------------------------------
@@ -126,9 +130,15 @@ Repeatr_2 <- function(mydf = NULL) {
 
   knitr::kable(fugazi_song_counts, "pipe")
 
+  setwd(myinputdir)
+
   write.csv(fugazi_song_counts, "fugazi_song_counts.csv")
 
+  setwd(mydatadir)
+
   save(fugazi_song_counts, file = "fugazi_song_counts.rda")
+
+  setwd(mydir)
 
   # summarise the data at song level
 
@@ -154,9 +164,15 @@ Repeatr_2 <- function(mydf = NULL) {
 
   knitr::kable(fugazi_song_performance_intensity, "pipe")
 
+  setwd(myinputdir)
+
   write.csv(fugazi_song_performance_intensity, "fugazi_song_performance_intensity.csv")
 
+  setwd(mydatadir)
+
   save(fugazi_song_performance_intensity, file = "fugazi_song_performance_intensity.rda")
+
+  setwd(mydir)
 
   # merge on repertoire-level availability
   Repeatr2$available_rl <- NULL
@@ -211,7 +227,11 @@ Repeatr_2 <- function(mydf = NULL) {
   Repeatr2 <- Repeatr2 %>%
     mutate(first_song_instrumental = first_song*instrumental)
 
+  setwd(mydatadir)
+
   save(Repeatr2, file = "Repeatr2.rda")
+
+  setwd(mydir)
 
   return(Repeatr2)
 

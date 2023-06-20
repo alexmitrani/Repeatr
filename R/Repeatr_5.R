@@ -21,6 +21,10 @@
 #'
 Repeatr_5 <- function(mymodeldf = NULL) {
 
+  mydir <- getwd()
+  myinputdir <- paste0(mydir, "/inst/extdata/")
+  mydatadir <- paste0(mydir, "/data")
+
   # Report results of the choice modelling for the preferred choice model ----------------------------------
 
   if(is.null(mymodeldf)==TRUE) {
@@ -49,9 +53,15 @@ Repeatr_5 <- function(mymodeldf = NULL) {
 
   knitr::kable(fugazi_song_choice_model, "pipe")
 
+  setwd(myinputdir)
+
   write.csv(fugazi_song_choice_model, "fugazi_song_choice_model.csv")
 
+  setwd(mydatadir)
+
   save(fugazi_song_choice_model, file = "fugazi_song_choice_model.rda")
+
+  setwd(mydir)
 
   results.mymodel <- mymodeldf
 
@@ -89,9 +99,15 @@ Repeatr_5 <- function(mymodeldf = NULL) {
     mutate(rank_rating = row_number()) %>%
     relocate(rank_rating)
 
+  setwd(myinputdir)
+
   write.csv(fugazi_song_preferences, "fugazi_song_preferences.csv")
 
+  setwd(mydatadir)
+
   save(fugazi_song_preferences, file = "fugazi_song_preferences.rda")
+
+  setwd(mydir)
 
   # To produce normalised ratings on the interval [0,1] ------------------------
 
@@ -169,9 +185,15 @@ Repeatr_5 <- function(mymodeldf = NULL) {
   releases_rated <- releases_rated %>%
     select(release, releaseid, releasedate, songs_rated, rating)
 
+  setwd(myinputdir)
+
   write.csv(releases_rated, "releases_rated.csv")
 
+  setwd(mydatadir)
+
   save(releases_rated, file = "releases_rated.rda")
+
+  setwd(mydir)
 
   knitr::kable(releases_rated, "pipe")
 
@@ -212,9 +234,15 @@ Repeatr_5 <- function(mymodeldf = NULL) {
     relocate(release, .after = releaseid) %>%
     arrange(releaseid, track_number)
 
+  setwd(myinputdir)
+
   write.csv(summary, "summary.csv")
 
+  setwd(mydatadir)
+
   save(summary, file = "summary.rda")
+
+  setwd(mydir)
 
   releases_data_input <- releases_data_input
 
@@ -225,7 +253,11 @@ Repeatr_5 <- function(mymodeldf = NULL) {
     left_join(summary_selected) %>%
     mutate(rating = round(rating, digits = 4))
 
+  setwd(mydatadir)
+
   save(releases_data_input, file = "releases_data_input.rda")
+
+  setwd(mydir)
 
   releases_summary <- releases_data_input %>%
     group_by(releaseid, release, last_show) %>%
@@ -249,7 +281,11 @@ Repeatr_5 <- function(mymodeldf = NULL) {
     rename(release_date = releasedate) %>%
     filter(releaseid>0)
 
+  setwd(mydatadir)
+
   save(releases_summary, file = "releases_summary.rda")
+
+  setwd(mydir)
 
   knitr::kable(summary, "pipe")
 

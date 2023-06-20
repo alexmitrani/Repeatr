@@ -21,6 +21,10 @@
 
 Repeatr_4 <- function(mydf = NULL) {
 
+  mydir <- getwd()
+  myinputdir <- paste0(mydir, "/inst/extdata/")
+  mydatadir <- paste0(mydir, "/data")
+
   # Choice modelling --------------------------------
 
   if (is.null(mydf)==FALSE) {
@@ -44,7 +48,11 @@ Repeatr_4 <- function(mydf = NULL) {
 
   results_ml_Repeatr4 <- as.data.frame(summary.ml.Repeatr4[["CoefTable"]])
 
+  setwd(mydatadir)
+
   save(results_ml_Repeatr4, file = "results_ml_Repeatr4.rda")
+
+  setwd(mydir)
 
   return(results_ml_Repeatr4)
 
