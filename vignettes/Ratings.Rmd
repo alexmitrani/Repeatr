@@ -1,0 +1,170 @@
+---
+title: "Ratings"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Ratings}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r, include = FALSE}
+library(Repeatr)
+```
+
+## Introduction
+
+This article outlines the process by which song ratings were calculated using the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) metadata.  
+
+## Song counts
+Performance counts were calculated for all the released Fugazi songs that were performed live, using data from ... how many shows?
+
+```{r }
+one_row_per_show <- Repeatr1 %>% group_by(gid) %>% slice(1) %>% ungroup()
+nrow(one_row_per_show)
+``` 
+
+These frequency counts do not necessarily measure the band's preferences for the songs, as more recently released songs were available for fewer shows than older songs.
+
+The results of this analysis, in descending order of performance count, are as follows:
+
+```{r }
+fugazi_song_counts <- fugazi_song_counts %>%
+  arrange(desc(count))
+knitr::kable(fugazi_song_counts, "pipe")
+```   
+
+## Performance intensity
+
+A slightly more detailed analysis was undertaken by calculating the performance intensity of each song.
+
+Song performance intensity = number of times a song was played / number of shows at which it was available in the repertoire.
+
+A song was considered available in the repertoire from the first show it was performed.
+
+The results of this analysis look like this:
+
+```{r }
+knitr::kable(fugazi_song_performance_intensity, "pipe")
+```   
+
+The "songid" variable indicates the raw frequency ranking of each song, allowing easy comparison between the intensity and frequency measures.
+
+## Song preferences
+
+> “We played without a setlist from the first show to the last show,” Picciotto said. “We never had a program for the night before we hit the stage. Right before we went on stage we'd get together and decide on a song to start with. From then on, we were basically improvising the set as we went." - [Guy Picciotto 25/5/2018](https://www.abc.net.au/doublej/music-reads/features/fugazi-the-past-the-future-and-the-ethos-that-drove-them/10265848)
+
+It is only possible to estimate a choice model from the Fugazi Live Series data because of the way that the songs were chosen quite freely as each show was performed. If fixed set lists had been used for many shows this sort of analysis probably would not be possible.  
+
+The Fugazi Live Series data includes ... how many choices of songs made by the band during their live shows? 
+
+```{r }
+nrow(Repeatr1)
+``` 
+
+This data was used to estimate the strength of preference for each of the songs in their live music repertoire.
+
+Song availability was considered at both repertoire and gig level. Songs were only considered available from the time they were first played, but thereafter they were assumed to be always available. There is some evidence that certain songs were discontinued but this has not been represented here.
+
+> "To the guy who is yelling for Steady Diet, I got bad news for you. Every time before we go out for a tour, we take a week to go through every record that we've done, and we relearn every song and we make sure that we know everything, because we make up the sets as we go, and we relearn everything so we can play anything at anytime... but there's three songs that we have not been able to remember how to play, one of them is Steady Diet, I am sorry to say, the other is Polish, and the other one, I can't remember the name of, but basically, you can call out anything else, but if you call out Steady Diet, you are wasting your breath" - [Guy Picciotto 27/6/2001](https://www.dischord.com/fugazi_live_series/minneapolis-mn-usa-62701)
+
+Within any given gig, the songs were sorted in the order that they were performed, and once a song had been played it was assumed to be unavailable for the rest of the gig. Interestingly, there were a few exceptions to this rule. One was [a 1991 gig in Birmingham, Alabama](https://www.dischord.com/fugazi_live_series/birmingham-al-usa-52191), where the show notes comment "Featuring the one-time attempt of our 'Two for Tuesday' gag. No one appeared to notice, so we shelved the idea." On that occasion, the song "Greed" was played twice.  Another case was [a 1998 gig in Richmond,  Virginia](https://www.dischord.com/fugazi_live_series/richmond-va-usa-51198) where "Great Cop" was played twice due to a specific situation.  
+
+The age of the songs needs considering because bands generally prioritise new material when they play live and Fugazi was no exception to this. Dummy variables (on/off) were used to represent the age of the songs at the time of each gig, as follows:
+
+| Age (years)      | Dummy variable |
+| ----------- | ----------- |
+| 0 < age < 1      | (omitted)       |
+| 1 ≤ age < 2    | yearsold_1        |
+| 2 ≤ age < 3   | yearsold_2        |
+| 3 ≤ age < 4   | yearsold_3        |
+| 4 ≤ age < 5   | yearsold_4        |
+| 5 ≤ age < 6   | yearsold_5        |
+| 6 ≤ age < 7   | yearsold_6        |
+| 7 ≤ age < 8   | yearsold_7        |
+| 8 ≤ age   | yearsold_8        |
+
+The above categories were defined after some experimentation to establish which categories deserved separate representation and which could be grouped together. The "less than a year old" variable was omitted because it is always necessary to omit one of each set of dummy variables in this type of model. An omitted dummy variable has a parameter of zero by definition and provides a reference point for the parameters whose values are estimated.   
+
+A dummy variable (on/off) was defined for each song, such that the corresponding parameters would represent the strength of preference for playing each song live. The dummy variable for '23 Beats Off' was omitted and therefore the preference parameter for this song was zero by definition.  
+The formula used for the preferred model was this one:
+
+choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 
+          + yearsold_5 + yearsold_6 + yearsold_7 + yearsold_8
+          + song2 + ... + song92
+
+The model was fitted by an optimisation process which estimated a parameter for each of the independent variables, such that the likelihood of correctly predicting the observed choices would be maximised. 
+
+The parameters related to the age of the songs support the hypothesis that recent material tended to be favoured in the band's choices of songs to be performed. 
+
+The implied preferences for each song are shown here in descending order of preference: 
+
+```{r }
+
+Repeatr_5_results <- Repeatr_5(mymodeldf = results_ml_Repeatr4)
+myresults <- as.data.frame(Repeatr_5_results[1]) %>%
+  arrange(desc(Estimate))
+knitr::kable((myresults), "pipe")
+```   
+
+It is hard to say exactly whose preferences are represented by these results. It seems reasonable to assume that they mainly represent the band's preferences, more often than not Ian MacKaye and Guy Picciotto, but the preferences of the audience may also have influenced the choice of the songs that were performed, directly or indirectly. 
+
+> “We played without a setlist from the first show to the last show. We never had a program for the night before we hit the stage. Right before we went on stage we'd get together and decide on a song to start with. From then on, we were basically improvising the set as we went. That meant, before we went on tour, we had to have these insanely long rehearsals where we relearned very piece of music that we knew so that everyone was ready. So, every night was completely different show. You could pick from over 100 songs. The only methodology we had was that we alternated singing. Once Ian was wrapping up his song, I knew that I had to have a song ready to go for my thing." - Guy Picciotto, 25/5/2018
+Source: https://web.archive.org/web/20201123023401/https://www.abc.net.au/doublej/music-reads/features/fugazi-the-past-the-future-and-the-ethos-that-drove-them/10265848
+
+## ["Do you like me?"](https://fugazi.bandcamp.com/track/do-you-like-me)
+
+The following table shows ratings based on the preferences described in the section above, together with the indicators described in previous sections: performance counts and intensities. The ratings are simply the preferences normalised in such a way that the highest preference has a value of 1 and the lowest a value of 0. This way it will be easy to scale these values for comparison with ratings defined on other intervals. 
+
+```{r }
+knitr::kable(Repeatr_5_results[[3]] %>% select(song, chosen, intensity, rating) %>% arrange(desc(rating)), "pipe")
+```
+
+## Breaking ranks
+
+The rank order of songs derived from the ratings is not very strong. Some of the differences between the ratings are very small and the differences between the ratings of adjacent songs in the table turned out to be insignificant. The rankr function makes it easy to test which differences between song ratings are significant and which are not.  For instance, do the results really indicate that "Bed for the Scraping" was preferred over "Reclamation"?  
+
+```{r echo=T, results='hide'}
+songstobecompared <- songstobecompared <- summary %>% slice(seq(from=1, to=2, by=1))
+mycomparisons <- rankr(coeftable = results_ml_Repeatr4, vcovmat = vcovmat_ml_Repeatr4, mysongidlist = songstobecompared)
+mycomparisons <- mycomparisons %>%
+  select(song1, song2, mycoef1, mycoef2, mycoefdiff, myz) %>%
+  rename(coef1 = mycoef1, coef2 = mycoef2, coefdiff = mycoefdiff, z = myz)
+```
+
+```{r }
+knitr::kable(mycomparisons, format = "pipe", digits = 3)
+```
+
+A z-statistic of 1.96 or greater indicates a difference that is statistically significant with 95% confidence. The difference between 'Bed for the Scraping' and 'Reclamation' is not statistically significant. In fact, none of the differences between adjacent songs are statistically significant. However, some of the differences between songs further apart on the table are significant, as can be seen below.  
+
+```{r echo=T, results='hide'}
+songstobecompared <- songstobecompared <- songstobecompared <- summary %>% slice(seq(from=1, to=92, by=8))
+mycomparisons <- rankr(coeftable = results_ml_Repeatr4, vcovmat = vcovmat_ml_Repeatr4, mysongidlist = songstobecompared)
+mycomparisons <- mycomparisons %>%
+  select(song1, song2, mycoef1, mycoef2, mycoefdiff, myz) %>%
+  rename(coef1 = mycoef1, coef2 = mycoef2, coefdiff = mycoefdiff, z = myz)
+```
+
+```{r}
+knitr::kable(mycomparisons, format = "pipe", digits = 3)
+```
+So, the ranks should not be interpreted rigidly. Any two of the adjacent songs in the table could be interchanged and the resulting ranking would be just as valid.  
+
+## Rating releases
+
+The song ratings calculated using the Fugazi Live Series (FLS) data were used to calculate average ratings for the band's studio releases. The results are shown below.   
+
+```{r }
+Repeatr_5_results <- Repeatr_5(mymodeldf = results_ml_Repeatr4)
+knitr::kable(Repeatr_5_results[[4]], "pipe")
+```
+
+
+

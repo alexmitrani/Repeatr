@@ -1,5 +1,5 @@
 #' @name Repeatr_5
-#' @title Produces results using a preferred choice model supplied by the user as "mymodel"
+#' @title produces results using a coefficient table for a choice model estimated with mlogit.
 #' @description Produces a summary table that includes song performance counts, song performance intensities, and ratings based on the estimated choice model parameters.
 #'
 #' @import dplyr

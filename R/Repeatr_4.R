@@ -1,5 +1,5 @@
 #' @name Repeatr_4
-#' @title Prepares data for choice modelling with mlogit.  Running pre-defined choice models is optional.
+#' @title prepares data for choice modelling with mlogit, and estimates a basic choice model. .
 #' @description Defines indices, makes changes to variable formats and data structure to prepare for choice modelling with mlogit.
 #'
 #' @import dplyr
