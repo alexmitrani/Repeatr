@@ -2,7 +2,7 @@
 % Please edit documentation in R/Repeatr_4.R
 \name{Repeatr_4}
 \alias{Repeatr_4}
-\title{Prepares data for choice modelling with mlogit.  Running pre-defined choice models is optional.}
+\title{prepares data for choice modelling with mlogit, and estimates a basic choice model. .}
 \usage{
 Repeatr_4(mydf = NULL)
 }

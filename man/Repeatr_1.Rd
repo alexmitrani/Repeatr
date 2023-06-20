@@ -2,7 +2,7 @@
 % Please edit documentation in R/Repeatr_1.R
 \name{Repeatr_1}
 \alias{Repeatr_1}
-\title{imports raw data in CSV format, cleans the data, and reshapes it long so that the rows are identified by combinations of gid and song_number.}
+\title{imports raw data in CSV format (1 row per show), cleans the data, and reshapes it long so that the rows are identified by combinations of gid and song_number.}
 \usage{
 Repeatr_1(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile = NULL)
 }

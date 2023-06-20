@@ -2,7 +2,7 @@
 % Please edit documentation in R/Repeatr_5.R
 \name{Repeatr_5}
 \alias{Repeatr_5}
-\title{Produces results using a preferred choice model supplied by the user as "mymodel"}
+\title{produces results using a coefficient table for a choice model estimated with mlogit.}
 \usage{
 Repeatr_5(mymodeldf = NULL)
 }
