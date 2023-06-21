@@ -11,13 +11,13 @@
 #' @import mlogit
 #'
 #'
-#' @param mydf optional dataframe to be used.  If omitted, the default dataframe will be used.
+#' @param mydf optional dataframe to be used.  If omitted, the default dataframe will be used.  Example of use: ml_Repeatr4 <- Repeatr_4()
 #'
 #' @return
 #' @export
 #'
 #' @examples
-#' ml_Repeatr4 <- Repeatr_4()
+#'
 
 Repeatr_4 <- function(mydf = NULL) {
 
