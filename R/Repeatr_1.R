@@ -1190,6 +1190,30 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
       mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>")) %>%
       left_join(gid_song_minutes)
 
+    # need to knock out a few fake duplicates caused by the match not being done on all the required variables
+
+    duration_data_da <- duration_data_da %>%
+      filter(gid!="annapolis-md-usa-20688" | song_number!=13 | minutes!=1.57) %>%
+      filter(gid!="annapolis-md-usa-20688" | song_number!=16 | minutes!=1.48)
+
+    duration_data_da <- duration_data_da %>%
+      filter(gid!="canberra-australia-111793" | song_number!=5 | minutes!=1.88) %>%
+      filter(gid!="canberra-australia-111793" | song_number!=7 | minutes!=2.93)
+
+    duration_data_da <- duration_data_da %>%
+      filter(gid!="peoria-il-usa-100995" | song_number!=12 | minutes!=2.75) %>%
+      filter(gid!="peoria-il-usa-100995" | song_number!=14 | minutes!=1.48)
+
+    duration_data_da <- duration_data_da %>%
+      filter(gid!="richmond-va-usa-51198" | song_number!=10 | minutes!=1.97) %>%
+      filter(gid!="richmond-va-usa-51198" | song_number!=22 | minutes!=1.75)
+
+    duration_data_da <- duration_data_da %>%
+      filter(gid!="washington-dc-usa-73198" | song_number!=4 | minutes!=5.35) %>%
+      filter(gid!="washington-dc-usa-73198" | song_number!=23 | minutes!=4.08) %>%
+      filter(gid!="washington-dc-usa-73198" | song_number!=9 | minutes!=5.20) %>%
+      filter(gid!="washington-dc-usa-73198" | song_number!=22 | minutes!=5.02)
+
     save(duration_data_da, file = "duration_data_da.rda")
 
     setwd(mydir)
