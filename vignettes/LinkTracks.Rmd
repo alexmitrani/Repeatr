@@ -365,7 +365,7 @@ sound_quality_ratings
 
 ```
 
-## Two for Tuesdays
+## Three Repeats, but Only One Two for Tuesdays
 
 There is a small number of shows where the same song was performed twice, for different reasons. Some are easier to find than others and there are a few false positives. Let's have a look, shall we? 
 
@@ -380,7 +380,7 @@ two_for_tuesdays <- Repeatr1 %>%
 two_for_tuesdays
 
 ```
-'Break In' was played twice in Annapolis in 1988 for musical reasons - Ian broke a string the first time through. Neither 'Reclamation' nor 'Bed for the Scraping' are true duplicates - in both cases the song was so badly interrupted the interruption was treated as a separate track splitting the song in two MP3 tracks. 'Great Cop' was actually played twice due to a conflict with security staff at [the 1998 gig in Richmond, Virginia](https://www.dischord.com/fugazi_live_series/richmond-va-usa-51198). The 1998 Sanctuary Theater show in Washington DC features two versions of both 'Closed Captioned' and 'Foreman's Dog' but this is because two songs from the soundcheck are included in the MP3 download as a bonus.     
+'Break In' was played twice [in Annapolis in 1988](https://www.dischord.com/fugazi_live_series/annapolis-md-usa-20688) for musical reasons - Ian broke a string the first time through. Neither 'Reclamation' nor 'Bed for the Scraping' are true duplicates - in both cases the song was so badly interrupted the interruption was treated as a separate track splitting the song in two MP3 tracks. 'Great Cop' was actually played twice due to a conflict with security staff at [the 1998 gig in Richmond, Virginia](https://www.dischord.com/fugazi_live_series/richmond-va-usa-51198). The 1998 Sanctuary Theater show in Washington DC features two versions of both 'Closed Captioned' and 'Foreman's Dog' but this is because two songs from the soundcheck are included in the MP3 download as a bonus.     
 
 The real "Two for Tuesdays" was at [a 1991 gig in Birmingham, Alabama](https://www.dischord.com/fugazi_live_series/birmingham-al-usa-52191), where the show notes comment "Featuring the one-time attempt of our 'Two for Tuesday' gag. No one appeared to notice, so we shelved the idea." On that occasion, the song "Greed" was played twice, and the gag was announced immediately after the double performance: "Two for Tuesday, Two for Tuesday". Perhaps this was a little too subtle? 'Greed' is such a short song you can fit two renditions into the time it would take to play a normal song. I was specifically looking for the shows where the same song was played twice and this one didn't come up on the above list because 'Greed' followed by 'Greed' was treated as one song in the track listing and one MP3 track - perhaps because the person who mastered the recording didn't notice either, or perhaps they wanted the gag to live on in the digital realm? I also missed it the first time I listened to the show. I bet more people would have noticed if it had been 'Suggestion'! 
 
