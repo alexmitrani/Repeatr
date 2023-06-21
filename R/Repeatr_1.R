@@ -736,6 +736,13 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     select(gid, date, year, month, day, tracktype, song_number, songid, song, number_songs, first_song, last_song, releaseid,	release, track_number, instrumental,	vocals_picciotto,	vocals_mackaye,	vocals_lally,	duration_seconds) %>%
     arrange(date, song_number)
 
+  # remove duplicates
+
+  Repeatr1 <- Repeatr1 %>%
+    group_by(gid, song_number) %>%
+    slice(1) %>%
+    ungroup()
+
   setwd(mydatadir)
 
   save(Repeatr1, file = "Repeatr1.rda")
