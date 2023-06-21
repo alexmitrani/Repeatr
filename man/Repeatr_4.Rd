@@ -2,16 +2,13 @@
 % Please edit documentation in R/Repeatr_4.R
 \name{Repeatr_4}
 \alias{Repeatr_4}
-\title{prepares data for choice modelling with mlogit, and estimates a basic choice model. .}
+\title{prepares data for choice modelling with mlogit, and estimates a basic choice model.}
 \usage{
 Repeatr_4(mydf = NULL)
 }
 \arguments{
-\item{mydf}{optional dataframe to be used.  If omitted, the default dataframe will be used.}
+\item{mydf}{optional dataframe to be used.  If omitted, the default dataframe will be used.  Example of use: ml_Repeatr4 <- Repeatr_4()}
 }
 \description{
 Defines indices, makes changes to variable formats and data structure to prepare for choice modelling with mlogit.
-}
-\examples{
-ml_Repeatr4 <- Repeatr_4()
 }

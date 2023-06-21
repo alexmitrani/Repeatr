@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9158</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9159</span>
       </span>
     </div>
 
@@ -692,6 +692,58 @@ level on the scale from Poor to Excellent.</p>
 <span><span class="co">#&gt; 3     3          Good   344       38.3</span></span>
 <span><span class="co">#&gt; 4     4          Poor    64        7.1</span></span>
 <span><span class="co">#&gt; 5     5         Total   898      100.0</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="two-for-tuesdays">Two for Tuesdays<a class="anchor" aria-label="anchor" href="#two-for-tuesdays"></a>
+</h2>
+<p>There is a small number of shows where the same song was performed
+twice, for different reasons. Some are easier to find than others and
+there are a few false positives. Let’s have a look, shall we?</p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">two_for_tuesdays</span> <span class="op">&lt;-</span> <span class="va">Repeatr1</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">tracktype</span><span class="op">==</span><span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">date</span>, <span class="va">gid</span>, <span class="va">song</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">summarize</span><span class="op">(</span>count <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">count</span><span class="op">&gt;=</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; `summarise()` has grouped output by 'date', 'gid'. You can override using the</span></span>
+<span><span class="co">#&gt; `.groups` argument.</span></span>
+<span></span>
+<span><span class="va">two_for_tuesdays</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 4</span></span></span>
+<span><span class="co">#&gt;   date       gid                       song                 count</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 1988-02-06 annapolis-md-usa-20688    break-in                 2</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 1993-11-17 canberra-australia-111793 reclamation              2</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 1995-10-09 peoria-il-usa-100995      bed for the scraping     2</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 1998-05-11 richmond-va-usa-51198     great cop                2</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 1998-07-31 washington-dc-usa-73198   closed captioned         2</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 1998-07-31 washington-dc-usa-73198   foreman's dog            2</span></span></code></pre></div>
+<p>‘Break In’ was played twice in Annapolis in 1988 for musical reasons
+- Ian broke a string the first time through. Neither ‘Reclamation’ nor
+‘Bed for the Scraping’ are true duplicates - in both cases the song was
+so badly interrupted the interruption was treated as a separate track
+splitting the song in two MP3 tracks. ‘Great Cop’ was actually played
+twice due to a conflict with security staff at <a href="https://www.dischord.com/fugazi_live_series/richmond-va-usa-51198" class="external-link">the
+1998 gig in Richmond, Virginia</a>. The 1998 Sanctuary Theater show in
+Washington DC features two versions of both ‘Closed Captioned’ and
+‘Foreman’s Dog’ but this is because two songs from the soundcheck are
+included in the MP3 download as a bonus.</p>
+<p>The real “Two for Tuesdays” was at <a href="https://www.dischord.com/fugazi_live_series/birmingham-al-usa-52191" class="external-link">a
+1991 gig in Birmingham, Alabama</a>, where the show notes comment
+“Featuring the one-time attempt of our ‘Two for Tuesday’ gag. No one
+appeared to notice, so we shelved the idea.” On that occasion, the song
+“Greed” was played twice, and the gag was announced immediately after
+the double performance: “Two for Tuesday, Two for Tuesday”. Perhaps this
+was a little too subtle? ‘Greed’ is such a short song you can fit two
+renditions into the time it would take to play a normal song. I was
+specifically looking for the shows where the same song was played twice
+and this one didn’t come up on the above list because ‘Greed’ followed
+by ‘Greed’ was treated as one song in the track listing and one MP3
+track - perhaps because the person who mastered the recording didn’t
+notice either, or perhaps they wanted the gag to live on in the digital
+realm? I also missed it the first time I listened to the show. I bet
+more people would have noticed if it had been ‘Suggestion’!</p>
 <p>Thanks.</p>
 </div>
   </div>
