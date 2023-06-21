@@ -180,4 +180,5 @@ This is a list of shows that I plan to listen to again in future, based on what 
 [FLS0791, Groove, Honolulu, HI, USA, 1996-10-16](https://www.dischord.com/fugazi_live_series/honolulu-hi-usa-101696)<br>
 [FLS0795, Pepperland, Okayama, Japan, 1996-10-22](https://www.dischord.com/fugazi_live_series/okayama-japan-102296)<br>
 [FLS0798, Guilty, Tokyo, Japan, 1996-10-26](https://www.dischord.com/fugazi_live_series/tokyo-japan-102696)<br>
+[FLS0800, Guilty, Tokyo, Japan, 1996-10-28](https://www.dischord.com/fugazi_live_series/tokyo-japan-102896)<br>
 
