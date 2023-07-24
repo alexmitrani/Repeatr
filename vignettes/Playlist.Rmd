@@ -185,4 +185,9 @@ This is a list of shows that I plan to listen to again in future, based on what 
 [FLS0809, Sapphire Ballroom, Hobart, Tasmania, Australia, 1996-11-13](https://www.dischord.com/fugazi_live_series/hobart-tz-australia-111396)<br>
 [FLS0814, NYU Loeb Center, New York, NY, USA, 1997-05-02](https://www.dischord.com/fugazi_live_series/new-york-city-ny-usa-50297)<br>
 [FLS0815, Electric Factory, Philadelphia, PA, USA, 1997-05-03](https://www.dischord.com/fugazi_live_series/philadelphia-pa-usa-50397)<br>
+[FLS0821, Metro Theatre, Sydney, Australia, 1997-06-15](https://www.dischord.com/fugazi_live_series/sydney-australia-61597)<br>
+[FLS0823, Lava Lounge, Melbourne, Australia, 1997-06-18](https://www.dischord.com/fugazi_live_series/melbourne-australia-61897)<br>
 [FLS0825, Courthouse, Geelong, Australia, 1997-06-20](https://www.dischord.com/fugazi_live_series/geelong-australia-62097)<br>
+[FLS0831, Nelson Arts Centre, Nelson, New Zealand, 1997-06-29](https://www.dischord.com/fugazi_live_series/nelson-new-zealand-62997)<br>
+
+
