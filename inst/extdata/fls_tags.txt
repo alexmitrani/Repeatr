@@ -16977,7 +16977,7 @@ track; artist; album; name; duration
 24; Fugazi; 19961028 Guilty, Tokyo, Japan; Outro; 0:40,
 01; Fugazi; 19961030 Counteraction, Sapporo, Japan; Intro; 1:35,
 02; Fugazi; 19961030 Counteraction, Sapporo, Japan; Birthday Pony; 2:28,
-03; Fugazi; 19961030 Counteraction, Sapporo, Japan; Down City; 2:06,
+03; Fugazi; 19961030 Counteraction, Sapporo, Japan; Downed City; 2:06,
 04; Fugazi; 19961030 Counteraction, Sapporo, Japan; Merchandise; 3:08,
 05; Fugazi; 19961030 Counteraction, Sapporo, Japan; Walken's Syndrome; 2:43,
 06; Fugazi; 19961030 Counteraction, Sapporo, Japan; Reclamation; 5:05,
