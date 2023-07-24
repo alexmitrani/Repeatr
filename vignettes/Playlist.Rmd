@@ -1,4 +1,4 @@
-----
+---
 title: "Playlist"
 output: rmarkdown::html_vignette
 vignette: >
