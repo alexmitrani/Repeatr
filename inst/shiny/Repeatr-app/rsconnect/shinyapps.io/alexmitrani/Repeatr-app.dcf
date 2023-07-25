@@ -5,9 +5,9 @@ account: alexmitrani
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 6866953
-bundleId: 7488855
+bundleId: 7492957
 url: https://alexmitrani.shinyapps.io/Repeatr-app/
-when: 1690158634.67008
-lastSyncTime: 1690158634.67009
+when: 1690251366.33341
+lastSyncTime: 1690251366.33342
 asMultiple: FALSE
 asStatic: FALSE
