@@ -22,9 +22,9 @@ library(Repeatr)
 
 ## introduction
 
-The [Repeatr-app](https://alexmitrani.shinyapps.io/Repeatr-app/) makes it easy to get some insights and answer questions about the Fugazi Live Series. It also provides several new ways of finding shows to listen to. The app has 9 pages which will be described in the following sections. Most of the pages have a visualisation (map or graph) and a data table further down the page, with the exception of 'transition' and 'duration' which only have data tables.
+The [Repeatr-app](https://alexmitrani.shinyapps.io/Repeatr-app/) makes it easy to get some insights and answer questions about the Fugazi Live Series. It also provides several new ways of finding shows to listen to. The app has 10 pages which will be described in the following sections. Most of the pages have a visualisation (map or graph) and a data table further down the page, with the exception of 'transition', 'duration' and 'search' which only have data tables.
 
-![The header and the 9 pages of the Repeatr-app.](images/paste-29C9BCE5.png)
+![The header and the 10 pages of the Repeatr-app.](images/paste-2408447F.png)
 
 Most of the input boxes are 'selectize' controls - when you select the control a menu will appear, and if you start typing the menu will be filtered by what you type. You can select any number of items or none at all.
 
@@ -373,5 +373,21 @@ The data table includes:
 -   minutes_sd - the standard deviation of the duration - this is a measure of spread, it indicates how much variation there is across all of the renditions.
 
 -   minutes_total - the total duration of all the times the song was played.
+
+## search
+
+This page allows you to search for shows that contain a specific selection of songs. For instance:
+
+![](images/paste-E6FAF4CF.png)
+
+The data table lists the shows that contain all of the specified songs, or none if that is the case, including the following columns:
+
+-   fls_link provides a link to the corresponding page of the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) site
+
+-   date - date of the show
+
+-   hits - the number of the specified songs included in the show
+
+-   sound_quality - Sound quality rating: Excellent, Very Good, Good, or Poor.
 
 Thanks.
