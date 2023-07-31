@@ -1375,7 +1375,8 @@ server <- function(input, output, session) {
 
     }
 
-    transitions_data_da_results
+    transitions_data_da_results %>%
+      arrange(date)
 
   })
 
@@ -1444,6 +1445,7 @@ server <- function(input, output, session) {
       rename(song1 = song)
 
     mydf2 <- Repeatr1 %>%
+      filter(tracktype==1) %>%
       select(gid,year,date,song_number,song) %>%
       mutate(song_number = song_number-1) %>%
       rename(song2 = song)
@@ -1512,7 +1514,8 @@ server <- function(input, output, session) {
   output$duration_shows_datatable <- DT::renderDataTable(DT::datatable({
 
     data <- duration_shows_data() %>%
-      select(fls_link, date, song_number, song, minutes)
+      select(fls_link, date, song_number, song, minutes) %>%
+      arrange(date, song_number)
 
     data
 
