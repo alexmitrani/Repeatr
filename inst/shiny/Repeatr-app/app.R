@@ -557,8 +557,43 @@ ui <- fluidPage(
 
                            )
 
-                  )
+                  ),
 
+
+# search ------------------------------------------------------------------
+
+                  tabPanel("search",
+
+                           fluidPage(
+
+                             tags$br(),
+
+                             h4("Selection of songs"),
+                             tags$br(),
+
+                             # Create a new Row in the UI for selectInputs
+                             fluidRow(
+                               column(12,
+                                      selectizeInput("search_songs", "songs:",
+                                                     sort(unique((songidlookup$song))),
+                                                     selected=NULL, multiple =TRUE))
+                             ),
+
+
+                             tags$br(),
+
+                             h4("Data table"),
+                             tags$br(),
+
+                             fluidRow(
+                               column(12,
+                                      DT::dataTableOutput("search_shows_datatable")
+                               )
+                             )
+
+                           )
+
+                  ),
 
 # end -------------------------------------------------------------
 
@@ -1552,6 +1587,56 @@ server <- function(input, output, session) {
   },
   style = "bootstrap"))
 
+
+# search ------------------------------------------------------------------
+
+
+  search_shows_data <- reactive({
+
+    if (is.null(input$search_songs)==FALSE) {
+
+      mysearch <- input$search_songs
+      mysearch <- as.data.frame(mysearch)
+      names(mysearch)[1]<-"song"
+      mysearch <- mysearch %>% mutate(hits = 1)
+      successcriteria <- nrow(mysearch)
+
+      search_data_da_results <- duration_data_da %>%
+        left_join(mysearch) %>%
+        left_join(gid_sound_quality)
+
+      search_data_results <- search_data_da_results %>%
+        group_by(fls_link, date, sound_quality) %>%
+        summarize(hits = sum(hits, na.rm = TRUE)) %>%
+        arrange(desc(hits), date) %>%
+        ungroup() %>%
+        filter(hits==successcriteria)
+
+    } else {
+
+      search_data_results <- duration_data_da %>%
+        left_join(gid_sound_quality) %>%
+        group_by(fls_link, date, sound_quality) %>%
+        summarize(hits = n()) %>%
+        arrange(date) %>%
+        ungroup()
+
+    }
+
+    search_data_results
+
+  })
+
+
+  output$search_shows_datatable <- DT::renderDataTable(DT::datatable({
+
+    data <- search_shows_data() %>%
+      select(fls_link, date, hits, sound_quality)
+
+    data
+
+  }, escape = c(-2),
+  style = "bootstrap"))
 
 
 
