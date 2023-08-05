@@ -196,4 +196,5 @@ This is a list of shows that I plan to listen to again in future, based on what 
 [FLS0844, Bar do 3, Santos, Brazil, 1997-08-20](https://www.dischord.com/fugazi_live_series/santos-brazil-82097)<br>
 [FLS0847, Fort Reno, Washington, DC, USA, 1997-08-29](https://www.dischord.com/fugazi_live_series/washington-dc-usa-82997)<br>
 [FLS0848, Wilson Center, Washington, DC, USA, 1997-09-03](https://www.dischord.com/fugazi_live_series/washington-dc-usa-90397)<br>
+[FLS0849, 180 Club, Hagerstown, MD, USA, 1998-05-01](https://www.dischord.com/fugazi_live_series/hagerstown-md-usa-50198)<br>
 
