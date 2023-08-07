@@ -15,6 +15,16 @@ thematic_shiny(font = "auto")
 
 timestamptext <- paste0("Made with Repeatr version ", packageVersion("Repeatr"), ", updated ", packageDate("Repeatr"), ".")
 
+year_tour_release <- Repeatr1 %>%
+  select(year, gid, release) %>%
+  group_by(year, gid, release) %>%
+  filter(is.na(release)==FALSE) %>%
+  summarize(count = n()) %>%
+  ungroup() %>%
+  left_join(othervariables) %>%
+  select(year, gid, release, tour, count)
+
+
 # user interface ----------------------------------------------------------
 
 ui <- fluidPage(
@@ -48,226 +58,312 @@ ui <- fluidPage(
       tabsetPanel(type = "tabs",
 
 
-# shows -------------------------------------------------------------------
+# when -------------------------------------------------------------------
 
-                  tabPanel("shows",
+tabPanel("when",
 
 
-                           fluidPage(
+         fluidPage(
 
-                             tags$br(),
+           fluidRow(
+             column(6,
+                    selectizeInput("yearInput_shows", "years:",
+                                   sort(unique(othervariables$year)),
+                                   selected=NULL, multiple =TRUE)),
+             column(6, uiOutput("menuOptions_tours"))
 
-                             h4("Selection"),
-                             tags$br(),
+           ),
 
-                             fluidRow(
-                               column(6,
-                                      selectizeInput("yearInput_shows", "years:",
-                                                     sort(unique(othervariables$year)),
-                                                     selected=NULL, multiple =TRUE)),
-                               column(6, uiOutput("menuOptions_tours"))
+           tabsetPanel(type = "tabs",
 
-                             ),
+           # shows -------------------------------------------------------------------
 
-                           fluidRow(
+           tabPanel("shows",
 
-                             column(6, uiOutput("menuOptions_countries")),
-                             column(6, uiOutput("menuOptions_cities"))
 
-                            ),
+                    fluidPage(
 
-                           h4("Map"),
-                           tags$br(),
+                      tags$br(),
 
-                           fluidRow(
+                      h4("Selection"),
+                      tags$br(),
 
-                             column(12,
 
-                              leafletOutput("mymap")
+                      fluidRow(
 
-                             )
+                        column(6, uiOutput("menuOptions_countries")),
+                        column(6, uiOutput("menuOptions_cities"))
 
-                           ),
+                      ),
 
+                      h4("Map"),
+                      tags$br(),
 
-                           tags$br(),
+                      fluidRow(
 
+                        column(12,
 
-                              conditionalPanel(
-                                condition = "input.cityInput_shows=='' & input.countryInput_shows==''",
+                               leafletOutput("mymap")
 
-                                  fluidRow(
+                        )
 
-                                    column(12,
-                                           sliderInput("dateInput_shows", "timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
-                                                       value=c(as.Date("1987-09-03")), timeFormat = "%F", width = "100%", animate = TRUE))
+                      ),
 
-                                  ),
 
-                                  fluidRow(
+                      tags$br(),
 
-                                    column(2,
-                                           numericInput("weeks", "period (weeks):", 792,
-                                                        min = 1, max = 792)),
 
-                                    column(2,
-                                           numericInput("step_days", "step (days):", 1,
-                                                        min = 1, max = 365)),
+                      conditionalPanel(
+                        condition = "input.cityInput_shows=='' & input.countryInput_shows==''",
 
-                                    column(8,
+                        fluidRow(
 
-                                             div(style="display: inline-block;vertical-align:top;",column(2, actionButton(
-                                               "visit",
-                                               icon("location-dot")
-                                             ))),
-                                             div(style="display: inline-block;vertical-align:top;",column(2, actionButton(
-                                               "step_b",
-                                               icon("backward")
-                                             ))),
-                                             div(style="display: inline-block;vertical-align:top;",column(2, actionButton(
-                                               "step_f",
-                                               icon("forward")
-                                             ))),
-                                             div(style="display: inline-block;vertical-align:top;",column(2, actionButton(
-                                               "home",
-                                               icon("house")
-                                             )))
+                          column(12,
+                                 sliderInput("dateInput_shows", "timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
+                                             value=c(as.Date("1987-09-03")), timeFormat = "%F", width = "100%", animate = TRUE))
 
-                                           )
+                        ),
 
-                                  ),
+                        fluidRow(
 
+                          column(2,
+                                 numericInput("weeks", "period (weeks):", 792,
+                                              min = 1, max = 792)),
 
-                             ),
+                          column(2,
+                                 numericInput("step_days", "step (days):", 1,
+                                              min = 1, max = 365)),
 
-                          h4("Data table"),
-                           tags$br(),
+                          column(8,
 
+                                 div(style="display: inline-block;vertical-align:top;",column(2, actionButton(
+                                   "visit",
+                                   icon("location-dot")
+                                 ))),
+                                 div(style="display: inline-block;vertical-align:top;",column(2, actionButton(
+                                   "step_b",
+                                   icon("backward")
+                                 ))),
+                                 div(style="display: inline-block;vertical-align:top;",column(2, actionButton(
+                                   "step_f",
+                                   icon("forward")
+                                 ))),
+                                 div(style="display: inline-block;vertical-align:top;",column(2, actionButton(
+                                   "home",
+                                   icon("house")
+                                 )))
 
-                             fluidRow(
+                          )
 
-                               tags$br(),
+                        ),
 
-                               column(12,
 
-                                 # Create a new row for the table.
-                                 DT::dataTableOutput("showsdatatable")
+                      ),
 
-                               )
+                      h4("Data table"),
+                      tags$br(),
 
-                             )
 
-                           )
+                      fluidRow(
 
-                  ),
+                        tags$br(),
 
+                        column(12,
 
-# tours -------------------------------------------------------------------
+                               # Create a new row for the table.
+                               DT::dataTableOutput("showsdatatable")
 
+                        )
 
-                  tabPanel("tours",
+                      )
 
-                           fluidPage(
+                    )
 
-                             tags$br(),
+           ),
 
-                             h4("Selection"),
-                             tags$br(),
 
-                             # Create a new Row in the UI for selectInputs
-                             fluidRow(
-                               column(12,
-                                      selectizeInput("yearInput_tours", "years:",
-                                                     sort(unique((toursdata$startyear))),
-                                                     selected=NULL, multiple =TRUE)
-                               )
+           # attendance -------------------------------------------------------------------
 
-                             ),
 
-                             # Graph
+           tabPanel("attendance",
 
-                             h4("Graph"),
-                             tags$br(),
+                    fluidPage(
 
-                             fluidRow(
-                               column(12,
-                                      plotlyOutput("attendance_count_plot")
-                               )
-                             ),
+                      tags$br(),
 
-                             tags$br(),
+                      # Graph
 
-                             h4("Data table"),
-                             tags$br(),
+                      h4("Graph"),
+                      tags$br(),
 
-                             # Create a new row for the table.
-                             DT::dataTableOutput("toursdatatable")
+                      fluidRow(
+                        column(12,
+                               plotlyOutput("attendance_count_plot")
+                        )
+                      ),
 
-                           )
+                      tags$br(),
 
-                  ),
+                      h4("Data table"),
+                      tags$br(),
 
+                      # Create a new row for the table.
+                      DT::dataTableOutput("toursdatatable")
 
-# xray -------------------------------------------------------------------
+                    )
 
+           ),
 
-                  tabPanel("xray",
 
-                           fluidPage(
+           # xray -------------------------------------------------------------------
 
-                             tags$br(),
 
-                             h4("Selection"),
-                             tags$br(),
+           tabPanel("xray",
 
-                             fluidRow(
-                               column(6,
-                                      selectizeInput("yearInput_xray", "years:",
-                                                     sort(unique(othervariables$year)),
-                                                     selected=1987, multiple =TRUE)),
-                               column(6, uiOutput("menuTours_xray"))
+                    fluidPage(
 
-                             ),
+                      tags$br(),
 
-                             fluidRow(
-                               column(6,
-                                      selectizeInput("xrayGraph_choice", "graph:",
-                                                     c("releases", "unreleased", "other"),
-                                                     selected="releases", multiple =FALSE)),
-                               column(6,
-                                      selectizeInput("xrayGraph_units", "units:",
-                                                     c("tracks", "minutes"),
-                                                     selected="minutes", multiple =FALSE))
+                      h4("Selection"),
+                      tags$br(),
 
-                             ),
+                      fluidRow(
+                        column(6,
+                               selectizeInput("xrayGraph_choice", "graph:",
+                                              c("releases", "unreleased", "other"),
+                                              selected="releases", multiple =FALSE)),
+                        column(6,
+                               selectizeInput("xrayGraph_units", "units:",
+                                              c("tracks", "minutes"),
+                                              selected="minutes", multiple =FALSE))
 
-                             tags$br(),
+                      ),
 
-                             # Graph
+                      tags$br(),
 
-                             h4("Graph"),
-                             tags$br(),
+                      # Graph
 
-                             fluidRow(
-                               column(12,
-                                      plotlyOutput("xray_plot")
-                               )
-                             ),
+                      h4("Graph"),
+                      tags$br(),
 
-                             tags$br(),
+                      fluidRow(
+                        column(12,
+                               plotlyOutput("xray_plot")
+                        )
+                      ),
 
-                             h4("Data table"),
-                             tags$br(),
+                      tags$br(),
 
-                             fluidRow(
-                               column(12,
-                                      # Create a new row for the table.
-                                      DT::dataTableOutput("xraydatatable"))
-                               )
+                      h4("Data table"),
+                      tags$br(),
 
-                           )
+                      fluidRow(
+                        column(12,
+                               # Create a new row for the table.
+                               DT::dataTableOutput("xraydatatable"))
+                      )
 
-                  ),
+                    )
+
+           ),
+
+           # renditions -------------------------------------------------------------------
+
+
+           tabPanel("renditions",
+
+                    fluidPage(
+
+                      tags$br(),
+
+                      h4("Selection"),
+                      tags$br(),
+
+                      # Release and song selection controls
+
+                      fluidRow(
+                        column(6,
+                               uiOutput("releaseOptions")),
+                        column(6,
+                               uiOutput("menuOptions")
+                        )
+
+                      ),
+
+                      # Graph
+
+                      h4("Graph"),
+                      tags$br(),
+
+                      fluidRow(
+                        column(12,
+                               plotlyOutput("performance_count_plot")
+                        )
+                      ),
+
+                      tags$br(),
+
+                      h4("Data table"),
+                      tags$br(),
+
+                      fluidRow(
+                        column(12,
+                               DT::dataTableOutput("songsdatatable")
+                        )
+                      )
+
+                    )
+
+           ),
+
+           # matrix -------------------------------------------------------------
+
+
+           tabPanel("matrix",
+
+                    fluidPage(
+
+                      # Graph
+
+                      h4("Graph"),
+                      tags$br(),
+
+                      fluidRow(
+                        column(12,
+                               plotlyOutput("transitions_heatmap")
+                        )
+                      ),
+
+                      tags$br(),
+
+                      h4("Data table"),
+                      tags$br(),
+
+                      fluidRow(
+                        column(12,
+                               DT::dataTableOutput("transitionsdatatable")
+                        )
+                      )
+
+                    )
+
+           )
+
+
+
+
+# end of 'when' tabset -----------------------------------------------------
+
+
+
+
+           )
+
+         )
+
+),
+
+
 
 # releases -------------------------------------------------------------------
 
@@ -326,67 +422,6 @@ ui <- fluidPage(
 
                   ),
 
-# renditions -------------------------------------------------------------------
-
-
-                  tabPanel("renditions",
-
-                           fluidPage(
-
-                             tags$br(),
-
-                             h4("Selection"),
-                             tags$br(),
-
-                             fluidRow(
-                               column(6,
-                                      selectizeInput("yearInput_songs", "years:",
-                                                     sort(unique((othervariables$year))),
-                                                     selected=NULL, multiple =TRUE)),
-                               column(6, uiOutput("menuOptions_tours_songs")
-
-                                      )
-
-                             ),
-
-                             # Release and song selection controls
-
-                             fluidRow(
-                               column(6,
-                                      selectizeInput("releaseInput", "release",
-                                                     choices = c(unique(cumulative_song_counts$release)),
-                                                     selected="fugazi", multiple =TRUE)),
-                              column(6,
-                                      uiOutput("menuOptions")
-                                     )
-
-                             ),
-
-                             # Graph
-
-                             h4("Graph"),
-                             tags$br(),
-
-                             fluidRow(
-                               column(12,
-                                        plotlyOutput("performance_count_plot")
-                                      )
-                               ),
-
-                            tags$br(),
-
-                            h4("Data table"),
-                            tags$br(),
-
-                            fluidRow(
-                              column(12,
-                                     DT::dataTableOutput("songsdatatable")
-                                     )
-                            )
-
-                          )
-
-                  ),
 
 # transition -------------------------------------------------------------
 
@@ -425,53 +460,6 @@ ui <- fluidPage(
                   ),
 
 
-# matrix -------------------------------------------------------------
-
-
-                  tabPanel("matrix",
-
-                             fluidPage(
-
-                               tags$br(),
-                               h4("Selection"),
-                               tags$br(),
-
-                               # Create a new Row in the UI for selectInputs
-                               fluidRow(
-                                 column(6,
-                                        selectizeInput("year_transitions", "years:",
-                                                       sort(unique((toursdata$startyear))),
-                                                       selected="1989", multiple =TRUE)),
-                                 column(6, uiOutput("menuOptions_tours_transitions")
-                                        )
-
-                               ),
-
-                               # Graph
-
-                               h4("Graph"),
-                               tags$br(),
-
-                               fluidRow(
-                                 column(12,
-                                        plotlyOutput("transitions_heatmap")
-                                 )
-                               ),
-
-                               tags$br(),
-
-                               h4("Data table"),
-                               tags$br(),
-
-                               fluidRow(
-                                 column(12,
-                                        DT::dataTableOutput("transitionsdatatable")
-                                 )
-                               )
-
-                             )
-
-                  ),
 
 
 
@@ -621,8 +609,8 @@ server <- function(input, output, session) {
 
   session$onSessionEnded(stopApp)
 
-# shows -------------------------------------------------------------------
 
+# when --------------------------------------------------------------------
 
 
   output$menuOptions_tours <- renderUI({
@@ -640,6 +628,9 @@ server <- function(input, output, session) {
                    choices = c(unique(menudata$tour)), multiple =TRUE)
 
   })
+
+# shows -------------------------------------------------------------------
+
 
   output$menuOptions_countries <- renderUI({
 
@@ -919,7 +910,7 @@ server <- function(input, output, session) {
     escape = c(-2),
     style = "bootstrap"))
 
-# tours -------------------------------------------------------------------
+# attendance -------------------------------------------------------------------
 
   attendance_data <- reactive({
 
@@ -937,9 +928,15 @@ server <- function(input, output, session) {
       arrange(date) %>%
       mutate(cumulative_attendance = cumsum(attendance))
 
-    if (is.null(input$yearInput_tours)==FALSE) {
+    if (is.null(input$yearInput_shows)==FALSE) {
 
-      attendancedata <- attendancedata[attendancedata$year %in% input$yearInput_tours,]
+      attendancedata <- attendancedata[attendancedata$year %in% input$yearInput_shows,]
+
+    }
+
+    if (is.null(input$tourInput_shows)==FALSE) {
+
+      attendancedata <- attendancedata[attendancedata$tour %in% input$tourInput_shows,]
 
     }
 
@@ -988,30 +985,13 @@ server <- function(input, output, session) {
 # xray -------------------------------------------------------------------
 
 
-  output$menuTours_xray <- renderUI({
-
-    if (is.null(input$yearInput_xray)==FALSE) {
-      menudata <- shows_data %>%
-        filter(year %in% input$yearInput_xray) %>%
-        arrange(date)
-    } else {
-      menudata <- shows_data %>%
-        arrange(date)
-    }
-
-    selectizeInput("tourInput_xray", "tours:",
-                   choices = c(unique(menudata$tour)), multiple =TRUE)
-
-  })
-
-
   xray_data <- reactive({
 
 
-    if (is.null(input$yearInput_xray)==FALSE) {
+    if (is.null(input$yearInput_shows)==FALSE) {
 
       xray_data <- xray %>%
-        filter(year %in% input$yearInput_xray)
+        filter(year %in% input$yearInput_shows)
 
     } else {
 
@@ -1019,10 +999,10 @@ server <- function(input, output, session) {
 
     }
 
-    if (is.null(input$tourInput_xray)==FALSE) {
+    if (is.null(input$tourInput_shows)==FALSE) {
 
       xray_data <- xray_data %>%
-        filter(tour %in% input$tourInput_xray)
+        filter(tour %in% input$tourInput_shows)
 
     } else {
 
@@ -1202,21 +1182,31 @@ server <- function(input, output, session) {
 
 # renditions -------------------------------------------------------------------
 
-  max_songs <- 100
+  # no more than one album's worth of shows to be graphed at once
+  max_songs <- 13
 
-  output$menuOptions_tours_songs <- renderUI({
+  output$releaseOptions <- renderUI({
 
-    if (is.null(input$yearInput_songs)==FALSE) {
-      menudata <- shows_data %>%
-        filter(year %in% input$yearInput_songs) %>%
-        arrange(date)
+    if (is.null(input$yearInput_shows)==FALSE) {
+      menudata <- year_tour_release %>%
+        filter(year %in% input$yearInput_shows) %>%
+        arrange(release)
     } else {
-      menudata <- shows_data %>%
-        arrange(date)
+      menudata <- year_tour_release %>%
+        arrange(release)
     }
 
-    selectizeInput("tourInput_songs", "tours:",
-                   choices = c(unique(menudata$tour)), multiple =TRUE)
+    if (is.null(input$tourInput_shows)==FALSE) {
+      menudata <- menudata %>%
+        filter(tour %in% input$tourInput_shows) %>%
+        arrange(release)
+    } else {
+      menudata <- menudata %>%
+        arrange(release)
+    }
+
+    selectizeInput("releaseInput", "releases",
+                   choices = c(unique(menudata$release)), multiple =TRUE)
 
   })
 
@@ -1238,18 +1228,18 @@ server <- function(input, output, session) {
 
   songs_data <- reactive({
 
-    if (is.null(input$yearInput_songs)==FALSE & is.null(input$tourInput_songs)==FALSE) {
+    if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==FALSE) {
       datedata <- shows_data %>%
-        filter(year %in% input$yearInput_songs &
-                 tour %in% input$tourInput_songs)
+        filter(year %in% input$yearInput_shows &
+                 tour %in% input$tourInput_shows)
 
-    } else if (is.null(input$yearInput_songs)==FALSE & is.null(input$tourInput_songs)==TRUE) {
+    } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==TRUE) {
       datedata <- shows_data %>%
-        filter(year %in% input$yearInput_songs)
+        filter(year %in% input$yearInput_shows)
 
-    } else if (is.null(input$yearInput_songs)==TRUE & is.null(input$tourInput_songs)==FALSE) {
+    } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==FALSE) {
       datedata <- shows_data %>%
-        filter(tour %in% input$tourInput_songs)
+        filter(tour %in% input$tourInput_shows)
 
     } else {
       datedata <- shows_data
@@ -1293,7 +1283,8 @@ server <- function(input, output, session) {
 
     mysongs <- songs_data() %>%
       group_by(song, releasedate) %>%
-      summarize(count = max(count) - min(count), from = min(date), to=max(date)) %>%
+      summarize(count = max(count) - min(count),
+                from = min(date), to=max(date)) %>%
       ungroup() %>%
       arrange(desc(count)) %>%
       mutate(index = row_number()) %>%
@@ -1307,10 +1298,19 @@ server <- function(input, output, session) {
 
     mydf <- songs_data() %>%
       left_join(songs_data2()) %>%
-      filter(index<=max_songs) %>%
       left_join(last_performance_data) %>%
       mutate(to = as.Date(ifelse(last_performance<to, last_performance, to), origin = "1970-01-01")) %>%
       mutate(released = as.Date(releasedate, format = "%d/%m/%Y"))
+
+
+    mydf
+
+  })
+
+  songs_data4 <- reactive({
+
+    mydf <- songs_data3() %>%
+      filter(index<=max_songs)
 
     mydf
 
@@ -1318,7 +1318,7 @@ server <- function(input, output, session) {
 
   output$performance_count_plot <- renderPlotly({
 
-    p <- ggplot(songs_data3(), aes(x = date, y = count, color = song)) +
+    p <- ggplot(songs_data4(), aes(x = date, y = count, color = song)) +
       geom_line() +
       xlab("date") +
       ylab("cumulative renditions")
@@ -1326,6 +1326,7 @@ server <- function(input, output, session) {
     plotly::ggplotly(p)
 
   })
+
 
   output$songsdatatable <- DT::renderDataTable(DT::datatable({
     data <- songs_data3() %>%
@@ -1335,6 +1336,7 @@ server <- function(input, output, session) {
       arrange(desc(renditions))
   },
   style = "bootstrap"))
+
 
 # transition -------------------------------------------------------------
 
@@ -1395,37 +1397,20 @@ server <- function(input, output, session) {
 # matrix -------------------------------------------------------------
 
 
-  output$menuOptions_tours_transitions <- renderUI({
-
-    if (is.null(input$year_transitions)==FALSE) {
-      menudata <- shows_data %>%
-        filter(year %in% input$year_transitions) %>%
-        arrange(date)
-    } else {
-      menudata <- shows_data %>%
-        arrange(date)
-    }
-
-    selectizeInput("tourInput_transitions", "tours:",
-                   choices = c(unique(menudata$tour)), multiple =TRUE)
-
-  })
-
-
   transitions_data <- reactive({
 
-    if (is.null(input$year_transitions)==FALSE & is.null(input$tourInput_transitions)==FALSE) {
+    if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==FALSE) {
       datedata <- shows_data %>%
-        filter(year %in% input$year_transitions &
-                 tour %in% input$tourInput_transitions)
+        filter(year %in% input$yearInput_shows &
+                 tour %in% input$tourInput_shows)
 
-    } else if (is.null(input$year_transitions)==FALSE & is.null(input$tourInput_transitions)==TRUE) {
+    } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==TRUE) {
       datedata <- shows_data %>%
-        filter(year %in% input$year_transitions)
+        filter(year %in% input$yearInput_shows)
 
-    } else if (is.null(input$year_transitions)==TRUE & is.null(input$tourInput_transitions)==FALSE) {
+    } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==FALSE) {
       datedata <- shows_data %>%
-        filter(tour %in% input$tourInput_transitions)
+        filter(tour %in% input$tourInput_shows)
 
     } else {
       datedata <- shows_data
