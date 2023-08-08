@@ -24,6 +24,13 @@ year_tour_release <- Repeatr1 %>%
   left_join(othervariables) %>%
   select(year, gid, release, tour, count)
 
+song1_release <- releases_data_input %>%
+  select(song, release) %>%
+  rename(song1 = song)
+
+transitions_data_da <- transitions_data_da %>%
+  left_join(song1_release)
+
 
 # user interface ----------------------------------------------------------
 
@@ -54,13 +61,14 @@ ui <- fluidPage(
         tags$br(),
       ),
 
-      # Output
+      # flow and stock
+
       tabsetPanel(type = "tabs",
 
 
-# when -------------------------------------------------------------------
+# start of 'flow' tabset -------------------------------------------------------------------
 
-tabPanel("when",
+tabPanel("flow",
 
 
          fluidPage(
@@ -352,7 +360,7 @@ tabPanel("when",
 
 
 
-# end of 'when' tabset -----------------------------------------------------
+# end of 'flow' tabset -----------------------------------------------------
 
 
 
@@ -362,6 +370,26 @@ tabPanel("when",
          )
 
 ),
+
+# start of 'stock' tabset -------------------------------------------------------------------
+
+tabPanel("stock",
+
+
+         fluidPage(
+
+           fluidRow(
+
+             column(12,
+                    selectizeInput("Input_releases", "releases:",
+                                   releases_menu_list$release,
+                                   selected=NULL, multiple =TRUE)
+             )
+
+           ),
+
+           tabsetPanel(type = "tabs",
+
 
 
 
@@ -379,12 +407,8 @@ tabPanel("when",
                              tags$br(),
 
                              fluidRow(
-                               column(6,
-                                      selectizeInput("Input_releases", "release:",
-                                                     releases_menu_list$release,
-                                                     selected=NULL, multiple =TRUE)
-                                      ),
-                               column(6,
+
+                               column(12,
                                       selectizeInput("Input_releases_var", "variable:",
                                                      c("count", "intensity", "rating"),
                                                      selected="rating", multiple =FALSE)
@@ -436,10 +460,7 @@ tabPanel("when",
 
                              # Create a new Row in the UI for selectInputs
                              fluidRow(
-                               column(6,
-                                      selectizeInput("search_from_song", "from:",
-                                                     sort(unique((songidlookup$song))),
-                                                     selected=NULL, multiple =TRUE)),
+                               column(6, uiOutput("menuOptions_searchfrom")),
                                column(6, uiOutput("menuOptions_search"))
                              ),
 
@@ -476,12 +497,8 @@ tabPanel("when",
 
                              # Create a new Row in the UI for selectInputs
                              fluidRow(
-                               column(12,
-                                      selectizeInput("duration_song", "songs:",
-                                                     sort(unique((songidlookup$song))),
-                                                     selected=NULL, multiple =TRUE))
+                               column(12, uiOutput("menuOptions_duration_song"))
                              ),
-
 
                              tags$br(),
 
@@ -511,11 +528,7 @@ tabPanel("when",
                              tags$br(),
 
                              fluidRow(
-                               column(6,
-                                      selectizeInput("variation_releaseInput", "release",
-                                                     choices = c(unique(cumulative_duration_counts$release)),
-                                                     selected="fugazi", multiple =TRUE)),
-                               column(6,
+                               column(12,
                                       uiOutput("variation_songInput")
                                )
 
@@ -560,13 +573,12 @@ tabPanel("when",
                              tags$br(),
 
                              # Create a new Row in the UI for selectInputs
+
                              fluidRow(
                                column(12,
-                                      selectizeInput("search_songs", "songs:",
-                                                     sort(unique((songidlookup$song))),
-                                                     selected=NULL, multiple =TRUE))
+                                      uiOutput("menuOptions_search_songs")
+                               )
                              ),
-
 
                              tags$br(),
 
@@ -581,7 +593,18 @@ tabPanel("when",
 
                            )
 
-                  ),
+                  )
+
+# end of 'stock' tabset -----------------------------------------------------
+
+
+
+
+           )
+
+         )
+
+)
 
 # end -------------------------------------------------------------
 
@@ -1099,88 +1122,7 @@ server <- function(input, output, session) {
   escape = c(-2),
   style = "bootstrap"))
 
-# releases -------------------------------------------------------------------
-
-  releases_data <- reactive({
-
-    if (is.null(input$Input_releases)==FALSE) {
-      releases_data <- releases_data_input %>%
-        filter(release %in% input$Input_releases) %>%
-        arrange(releaseid, track_number)
-
-    } else {
-
-      releases_data <- releases_data_input %>%
-        arrange(releaseid, track_number)
-
-    }
-
-    releases_data
-
-  })
-
-  output$releases_plot <- renderPlotly({
-
-    colours <- unique(releases_data()$colour_code)
-
-    if(input$Input_releases_var == "rating") {
-
-        releases_plot <- ggplot(releases_data(), aes(x = song,
-                                                   y = rating,
-                                                   fill = release)) +
-          geom_bar(stat="identity") +
-          xlab("track") +
-          ylab("rating") +
-          scale_fill_manual(values=colours) +
-          scale_y_continuous(expand = expansion(mult = c(0, 0.1)),
-                             limits = c(0, NA),
-                             labels = comma) +
-          coord_flip()
-
-    } else if (input$Input_releases_var == "intensity") {
-
-      releases_plot <- ggplot(releases_data(), aes(x = song,
-                                                   y = intensity,
-                                                   fill = release)) +
-        geom_bar(stat="identity") +
-        xlab("track") +
-        ylab("intensity") +
-        scale_fill_manual(values=colours) +
-        scale_y_continuous(expand = expansion(mult = c(0, 0.1)),
-                           limits = c(0, NA),
-                           labels = comma) +
-        coord_flip()
-
-    } else {
-
-        releases_plot <- ggplot(releases_data(), aes(x = song,
-                                                     y = count,
-                                                     fill = release)) +
-          geom_bar(stat="identity") +
-          xlab("track") +
-          ylab("count") +
-          scale_fill_manual(values=colours) +
-          scale_y_continuous(expand = expansion(mult = c(0, 0.1)),
-                             limits = c(0, NA),
-                             labels = comma) +
-          coord_flip()
-
-      }
-
-      plotly::ggplotly(releases_plot)
-
-  })
-
-  output$releasesdatatable <- DT::renderDataTable(DT::datatable({
-    data <- releases_summary %>%
-      select(-releaseid)
-
-    data
-
-  },
-  style = "bootstrap"))
-
-# renditions -------------------------------------------------------------------
+  # renditions -------------------------------------------------------------------
 
   # no more than one album's worth of shows to be graphed at once
   max_songs <- 13
@@ -1337,64 +1279,7 @@ server <- function(input, output, session) {
   },
   style = "bootstrap"))
 
-
-# transition -------------------------------------------------------------
-
-  output$menuOptions_search <- renderUI({
-
-    if (is.null(input$search_from_song)==FALSE) {
-      searchmenudata <- transitions_data_da %>%
-        filter(song1 %in% input$search_from_song) %>%
-        arrange(song2)
-    } else {
-      searchmenudata <- transitions_data_da %>%
-        arrange(song2)
-    }
-
-    selectizeInput("searchInput_to_song", "to:",
-                   choices = c(unique(searchmenudata$song2)), multiple =TRUE)
-
-  })
-
-  transitions_shows_data <- reactive({
-
-    if (is.null(input$search_from_song)==FALSE & is.null(input$searchInput_to_song)==FALSE) {
-      transitions_data_da_results <- transitions_data_da %>%
-        filter(song1 %in% input$search_from_song &
-                 song2 %in% input$searchInput_to_song)
-
-    } else if (is.null(input$search_from_song)==FALSE & is.null(input$searchInput_to_song)==TRUE) {
-      transitions_data_da_results <- transitions_data_da %>%
-        filter(song1 %in% input$search_from_song)
-
-    } else if (is.null(input$search_from_song)==TRUE & is.null(input$searchInput_to_song)==FALSE) {
-      transitions_data_da_results <- transitions_data_da %>%
-        filter(song2 %in% input$searchInput_to_song)
-
-    } else {
-
-      transitions_data_da_results <- transitions_data_da
-
-    }
-
-    transitions_data_da_results %>%
-      arrange(date)
-
-  })
-
-
-  output$transitions_shows_datatable <- DT::renderDataTable(DT::datatable({
-
-    data <- transitions_shows_data()
-
-    data
-
-  }, escape = c(-2),
-  style = "bootstrap"))
-
-
-
-# matrix -------------------------------------------------------------
+  # matrix -------------------------------------------------------------
 
 
   transitions_data <- reactive({
@@ -1476,7 +1361,184 @@ server <- function(input, output, session) {
   })
 
 
+
+# releases -------------------------------------------------------------------
+
+  releases_data <- reactive({
+
+    if (is.null(input$Input_releases)==FALSE) {
+      releases_data <- releases_data_input %>%
+        filter(release %in% input$Input_releases) %>%
+        arrange(releaseid, track_number)
+
+    } else {
+
+      releases_data <- releases_data_input %>%
+        arrange(releaseid, track_number)
+
+    }
+
+    releases_data
+
+  })
+
+  output$releases_plot <- renderPlotly({
+
+    colours <- unique(releases_data()$colour_code)
+
+    if(input$Input_releases_var == "rating") {
+
+        releases_plot <- ggplot(releases_data(), aes(x = song,
+                                                   y = rating,
+                                                   fill = release)) +
+          geom_bar(stat="identity") +
+          xlab("track") +
+          ylab("rating") +
+          scale_fill_manual(values=colours) +
+          scale_y_continuous(expand = expansion(mult = c(0, 0.1)),
+                             limits = c(0, NA),
+                             labels = comma) +
+          coord_flip()
+
+    } else if (input$Input_releases_var == "intensity") {
+
+      releases_plot <- ggplot(releases_data(), aes(x = song,
+                                                   y = intensity,
+                                                   fill = release)) +
+        geom_bar(stat="identity") +
+        xlab("track") +
+        ylab("intensity") +
+        scale_fill_manual(values=colours) +
+        scale_y_continuous(expand = expansion(mult = c(0, 0.1)),
+                           limits = c(0, NA),
+                           labels = comma) +
+        coord_flip()
+
+    } else {
+
+        releases_plot <- ggplot(releases_data(), aes(x = song,
+                                                     y = count,
+                                                     fill = release)) +
+          geom_bar(stat="identity") +
+          xlab("track") +
+          ylab("count") +
+          scale_fill_manual(values=colours) +
+          scale_y_continuous(expand = expansion(mult = c(0, 0.1)),
+                             limits = c(0, NA),
+                             labels = comma) +
+          coord_flip()
+
+      }
+
+      plotly::ggplotly(releases_plot)
+
+  })
+
+  output$releasesdatatable <- DT::renderDataTable(DT::datatable({
+    data <- releases_summary %>%
+      select(-releaseid)
+
+    data
+
+  },
+  style = "bootstrap"))
+
+
+
+# transition -------------------------------------------------------------
+
+  output$menuOptions_searchfrom <- renderUI({
+
+    if (is.null(input$Input_releases)==FALSE) {
+      searchmenudata <- transitions_data_da %>%
+        filter(release %in% input$Input_releases) %>%
+        arrange(song1)
+    } else {
+      searchmenudata <- transitions_data_da %>%
+        arrange(song1)
+    }
+
+    selectizeInput("search_from_song", "from:",
+                   choices = c(unique(searchmenudata$song1)), multiple =TRUE)
+
+  })
+
+  output$menuOptions_search <- renderUI({
+
+    if (is.null(input$search_from_song)==FALSE) {
+      searchmenudata <- transitions_data_da %>%
+        filter(song1 %in% input$search_from_song) %>%
+        arrange(song2)
+    } else {
+      searchmenudata <- transitions_data_da %>%
+        arrange(song2)
+    }
+
+    selectizeInput("searchInput_to_song", "to:",
+                   choices = c(unique(searchmenudata$song2)), multiple =TRUE)
+
+  })
+
+  transitions_shows_data <- reactive({
+
+    if (is.null(input$search_from_song)==FALSE & is.null(input$searchInput_to_song)==FALSE) {
+      transitions_data_da_results <- transitions_data_da %>%
+        filter(song1 %in% input$search_from_song &
+                 song2 %in% input$searchInput_to_song)
+
+    } else if (is.null(input$search_from_song)==FALSE & is.null(input$searchInput_to_song)==TRUE) {
+      transitions_data_da_results <- transitions_data_da %>%
+        filter(song1 %in% input$search_from_song)
+
+    } else if (is.null(input$search_from_song)==TRUE & is.null(input$searchInput_to_song)==FALSE) {
+      transitions_data_da_results <- transitions_data_da %>%
+        filter(song2 %in% input$searchInput_to_song)
+
+    } else {
+
+      transitions_data_da_results <- transitions_data_da
+
+    }
+
+    transitions_data_da_results %>%
+      select(-release) %>%
+      arrange(date)
+
+  })
+
+
+  output$transitions_shows_datatable <- DT::renderDataTable(DT::datatable({
+
+    data <- transitions_shows_data()
+
+    data
+
+  }, escape = c(-2),
+  style = "bootstrap"))
+
+
+
+
+
 # duration -------------------------------------------------------------
+
+
+
+  output$menuOptions_duration_song <- renderUI({
+
+    if (is.null(input$Input_releases)==FALSE) {
+      duration_song_menu_data <- releases_data_input %>%
+        filter(release %in% input$Input_releases) %>%
+        arrange(song)
+    } else {
+      duration_song_menu_data <- releases_data_input %>%
+        arrange(song)
+    }
+
+    selectizeInput("duration_song", "songs:",
+                   choices = c(unique(duration_song_menu_data$song)), multiple =TRUE)
+
+  })
 
 
   duration_shows_data <- reactive({
@@ -1511,9 +1573,9 @@ server <- function(input, output, session) {
 
   output$variation_songInput <- renderUI({
 
-    if (is.null(input$variation_releaseInput)==FALSE) {
+    if (is.null(input$Input_releases)==FALSE) {
       menudata <- cumulative_duration_counts %>%
-        filter(release %in% input$variation_releaseInput) %>%
+        filter(release %in% input$Input_releases) %>%
         arrange(song)
     } else {
       menudata <- cumulative_duration_counts %>%
@@ -1527,10 +1589,10 @@ server <- function(input, output, session) {
 
   variation_data <- reactive({
 
-    if (is.null(input$variation_releaseInput)==FALSE) {
+    if (is.null(input$Input_releases)==FALSE) {
 
       mydf <- cumulative_duration_counts %>%
-        filter(release %in% input$variation_releaseInput)
+        filter(release %in% input$Input_releases)
 
     } else {
 
@@ -1579,6 +1641,22 @@ server <- function(input, output, session) {
 # search ------------------------------------------------------------------
 
 
+  output$menuOptions_search_songs <- renderUI({
+
+    if (is.null(input$Input_releases)==FALSE) {
+      search_songs_menu_data <- releases_data_input %>%
+        filter(release %in% input$Input_releases) %>%
+        arrange(song)
+    } else {
+      search_songs_menu_data <- releases_data_input %>%
+        arrange(song)
+    }
+
+    selectizeInput("search_songs", "songs:",
+                   choices = c(unique(search_songs_menu_data$song)), multiple =TRUE)
+
+  })
+
   search_shows_data <- reactive({
 
     if (is.null(input$search_songs)==FALSE) {
@@ -1587,7 +1665,7 @@ server <- function(input, output, session) {
       mysearch <- as.data.frame(mysearch)
       names(mysearch)[1]<-"song"
       mysearch <- mysearch %>% mutate(hits = 1)
-      successcriteria <- nrow(mysearch)
+      successcriteria <- nrow(mysearch)*0.8
 
       search_data_da_results <- duration_data_da %>%
         left_join(mysearch) %>%
@@ -1598,7 +1676,7 @@ server <- function(input, output, session) {
         summarize(hits = sum(hits, na.rm = TRUE)) %>%
         arrange(desc(hits), date) %>%
         ungroup() %>%
-        filter(hits==successcriteria)
+        filter(hits>=successcriteria)
 
     } else {
 
