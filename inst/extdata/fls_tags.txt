@@ -18079,7 +18079,7 @@ track; artist; album; name; duration
 08; Fugazi; 19980502 Carnegie Mellon University, Pittsburgh, PA, USA; Break; 2:07
 09; Fugazi; 19980502 Carnegie Mellon University, Pittsburgh, PA, USA; Blueprint; 3:42
 10; Fugazi; 19980502 Carnegie Mellon University, Pittsburgh, PA, USA; Recap Modotti; 3:55
-11; Fugazi; 19980502 Carnegie Mellon University, Pittsburgh, PA, USA; By Now; 4:46
+11; Fugazi; 19980502 Carnegie Mellon University, Pittsburgh, PA, USA; By You; 4:46
 12; Fugazi; 19980502 Carnegie Mellon University, Pittsburgh, PA, USA; Arpeggiator; 4:05
 13; Fugazi; 19980502 Carnegie Mellon University, Pittsburgh, PA, USA; Closed Caption; 4:54
 14; Fugazi; 19980502 Carnegie Mellon University, Pittsburgh, PA, USA; Two Beats Off; 5:30
