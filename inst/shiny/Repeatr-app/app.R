@@ -30,6 +30,12 @@ fls_link_year_tour <- shows_data %>%
 transitions_data_da <- transitions_data_da %>%
   left_join(fls_link_year_tour)
 
+song_release <- summary %>%
+  select(song, release)
+
+duration_data_da <- duration_data_da %>%
+  left_join(song_release)
+
 
 # user interface ----------------------------------------------------------
 
@@ -1561,20 +1567,19 @@ server <- function(input, output, session) {
 # duration -------------------------------------------------------------
 
 
-
   output$menuOptions_duration_song <- renderUI({
 
     if (is.null(input$Input_releases)==FALSE) {
-      duration_song_menu_data <- releases_data_input %>%
+      menudata <- cumulative_duration_counts %>%
         filter(release %in% input$Input_releases) %>%
         arrange(song)
     } else {
-      duration_song_menu_data <- releases_data_input %>%
+      menudata <- cumulative_duration_counts %>%
         arrange(song)
     }
 
-    selectizeInput("duration_song", "songs:",
-                   choices = c(unique(duration_song_menu_data$song)), multiple =TRUE)
+    selectizeInput("duration_song", "songs",
+                   choices = c(unique(menudata$song)), multiple =TRUE)
 
   })
 
@@ -1584,6 +1589,11 @@ server <- function(input, output, session) {
     if (is.null(input$duration_song)==FALSE) {
       duration_data_da_results <- duration_data_da %>%
         filter(song %in% input$duration_song)
+
+    } else if (is.null(input$Input_releases)==FALSE) {
+
+      duration_data_da_results <- duration_data_da %>%
+        filter(release %in% input$Input_releases)
 
     } else {
 
@@ -1682,16 +1692,16 @@ server <- function(input, output, session) {
   output$menuOptions_search_songs <- renderUI({
 
     if (is.null(input$Input_releases)==FALSE) {
-      search_songs_menu_data <- releases_data_input %>%
+      menudata <- cumulative_duration_counts %>%
         filter(release %in% input$Input_releases) %>%
         arrange(song)
     } else {
-      search_songs_menu_data <- releases_data_input %>%
+      menudata <- cumulative_duration_counts %>%
         arrange(song)
     }
 
-    selectizeInput("search_songs", "songs:",
-                   choices = c(unique(search_songs_menu_data$song)), multiple =TRUE)
+    selectizeInput("search_songs", "songs",
+                   choices = c(unique(menudata$song)), multiple =TRUE)
 
   })
 
@@ -1715,6 +1725,16 @@ server <- function(input, output, session) {
         arrange(desc(hits), date) %>%
         ungroup() %>%
         filter(hits>=successcriteria)
+
+    } else if (is.null(input$Input_releases)==FALSE){
+
+      search_data_results <- duration_data_da %>%
+        filter(release %in% input$Input_releases) %>%
+        left_join(gid_sound_quality) %>%
+        group_by(fls_link, date, sound_quality) %>%
+        summarize(hits = n()) %>%
+        arrange(date) %>%
+        ungroup()
 
     } else {
 
