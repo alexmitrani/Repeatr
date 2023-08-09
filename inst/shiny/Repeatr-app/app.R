@@ -73,6 +73,8 @@ tabPanel("flow",
 
          fluidPage(
 
+           tags$br(),
+
            fluidRow(
              column(6,
                     selectizeInput("yearInput_shows", "years:",
@@ -377,6 +379,8 @@ tabPanel("stock",
 
 
          fluidPage(
+
+           tags$br(),
 
            fluidRow(
 
