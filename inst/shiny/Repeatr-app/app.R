@@ -24,12 +24,11 @@ year_tour_release <- Repeatr1 %>%
   left_join(othervariables) %>%
   select(year, gid, release, tour, count)
 
-song1_release <- releases_data_input %>%
-  select(song, release) %>%
-  rename(song1 = song)
+fls_link_year_tour <- shows_data %>%
+  select(fls_link, year, tour)
 
 transitions_data_da <- transitions_data_da %>%
-  left_join(song1_release)
+  left_join(fls_link_year_tour)
 
 
 # user interface ----------------------------------------------------------
@@ -326,6 +325,8 @@ tabPanel("flow",
 
            ),
 
+
+
            # matrix -------------------------------------------------------------
 
 
@@ -357,7 +358,41 @@ tabPanel("flow",
 
                     )
 
+           ),
+
+           # transition -------------------------------------------------------------
+
+           tabPanel("transition",
+
+                    fluidPage(
+
+                      tags$br(),
+
+                      h4("Transition"),
+                      tags$br(),
+
+                      # Create a new Row in the UI for selectInputs
+                      fluidRow(
+                        column(6, uiOutput("menuOptions_searchfrom")),
+                        column(6, uiOutput("menuOptions_search"))
+                      ),
+
+
+                      tags$br(),
+
+                      h4("Data table"),
+                      tags$br(),
+
+                      fluidRow(
+                        column(12,
+                               DT::dataTableOutput("transitions_shows_datatable")
+                        )
+                      )
+
+                    )
+
            )
+
 
 
 
@@ -397,11 +432,11 @@ tabPanel("stock",
 
 
 
-# releases -------------------------------------------------------------------
+# discography -------------------------------------------------------------------
 
 
 
-                  tabPanel("releases",
+                  tabPanel("discography",
 
                            fluidPage(
 
@@ -449,43 +484,6 @@ tabPanel("stock",
                            )
 
                   ),
-
-
-# transition -------------------------------------------------------------
-
-                  tabPanel("transition",
-
-                           fluidPage(
-
-                             tags$br(),
-
-                             h4("Transition"),
-                             tags$br(),
-
-                             # Create a new Row in the UI for selectInputs
-                             fluidRow(
-                               column(6, uiOutput("menuOptions_searchfrom")),
-                               column(6, uiOutput("menuOptions_search"))
-                             ),
-
-
-                             tags$br(),
-
-                             h4("Data table"),
-                             tags$br(),
-
-                             fluidRow(
-                               column(12,
-                                      DT::dataTableOutput("transitions_shows_datatable")
-                               )
-                             )
-
-                           )
-
-                  ),
-
-
-
 
 
 # duration -------------------------------------------------------------
@@ -573,7 +571,7 @@ tabPanel("stock",
 
                              tags$br(),
 
-                             h4("Selection of songs"),
+                             h4("Selection"),
                              tags$br(),
 
                              # Create a new Row in the UI for selectInputs
@@ -1364,9 +1362,99 @@ server <- function(input, output, session) {
 
   })
 
+  # transition -------------------------------------------------------------
+
+  transitions_shows_data_filtered <- reactive({
+
+    if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==FALSE) {
+      transitions_shows_data_filtered <- transitions_data_da %>%
+        filter(year %in% input$yearInput_shows &
+                 tour %in% input$tourInput_shows)
+
+    } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==TRUE) {
+      transitions_shows_data_filtered <- transitions_data_da %>%
+        filter(year %in% input$yearInput_shows)
+
+    } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==FALSE) {
+      transitions_shows_data_filtered <- transitions_data_da %>%
+        filter(tour %in% input$tourInput_shows)
+
+    } else {
+      transitions_shows_data_filtered <- transitions_data_da
+
+    }
+
+    transitions_shows_data_filtered
+
+  })
 
 
-# releases -------------------------------------------------------------------
+  output$menuOptions_searchfrom <- renderUI({
+
+
+    searchmenudata <- transitions_shows_data_filtered() %>%
+        arrange(song1)
+
+
+    selectizeInput("search_from_song", "from:",
+                   choices = c(unique(searchmenudata$song1)), multiple =TRUE)
+
+  })
+
+  output$menuOptions_search <- renderUI({
+
+    if (is.null(input$search_from_song)==FALSE) {
+      searchmenudata <- transitions_shows_data_filtered() %>%
+        filter(song1 %in% input$search_from_song) %>%
+        arrange(song2)
+    } else {
+      searchmenudata <- transitions_shows_data_filtered() %>%
+        arrange(song2)
+    }
+
+    selectizeInput("searchInput_to_song", "to:",
+                   choices = c(unique(searchmenudata$song2)), multiple =TRUE)
+
+  })
+
+  transitions_shows_data <- reactive({
+
+    if (is.null(input$search_from_song)==FALSE & is.null(input$searchInput_to_song)==FALSE) {
+      transitions_data_da_results <- transitions_shows_data_filtered() %>%
+        filter(song1 %in% input$search_from_song &
+                 song2 %in% input$searchInput_to_song)
+
+    } else if (is.null(input$search_from_song)==FALSE & is.null(input$searchInput_to_song)==TRUE) {
+      transitions_data_da_results <- transitions_shows_data_filtered() %>%
+        filter(song1 %in% input$search_from_song)
+
+    } else if (is.null(input$search_from_song)==TRUE & is.null(input$searchInput_to_song)==FALSE) {
+      transitions_data_da_results <- transitions_shows_data_filtered() %>%
+        filter(song2 %in% input$searchInput_to_song)
+
+    } else {
+
+      transitions_data_da_results <- transitions_shows_data_filtered()
+
+    }
+
+    transitions_data_da_results %>%
+      arrange(date)
+
+  })
+
+
+  output$transitions_shows_datatable <- DT::renderDataTable(DT::datatable({
+
+    data <- transitions_shows_data()
+
+    data
+
+  }, escape = c(-2),
+  style = "bootstrap"))
+
+
+# discography -------------------------------------------------------------------
 
   releases_data <- reactive({
 
@@ -1383,6 +1471,22 @@ server <- function(input, output, session) {
     }
 
     releases_data
+
+  })
+
+  releases_summary_filtered <- reactive({
+
+    if (is.null(input$Input_releases)==FALSE) {
+      releases_summary_filtered <- releases_summary %>%
+        filter(release %in% input$Input_releases)
+
+    } else {
+
+      releases_summary_filtered <- releases_summary
+
+    }
+
+    releases_summary_filtered
 
   })
 
@@ -1439,7 +1543,7 @@ server <- function(input, output, session) {
   })
 
   output$releasesdatatable <- DT::renderDataTable(DT::datatable({
-    data <- releases_summary %>%
+    data <- releases_summary_filtered() %>%
       select(-releaseid)
 
     data
@@ -1449,76 +1553,6 @@ server <- function(input, output, session) {
 
 
 
-# transition -------------------------------------------------------------
-
-  output$menuOptions_searchfrom <- renderUI({
-
-    if (is.null(input$Input_releases)==FALSE) {
-      searchmenudata <- transitions_data_da %>%
-        filter(release %in% input$Input_releases) %>%
-        arrange(song1)
-    } else {
-      searchmenudata <- transitions_data_da %>%
-        arrange(song1)
-    }
-
-    selectizeInput("search_from_song", "from:",
-                   choices = c(unique(searchmenudata$song1)), multiple =TRUE)
-
-  })
-
-  output$menuOptions_search <- renderUI({
-
-    if (is.null(input$search_from_song)==FALSE) {
-      searchmenudata <- transitions_data_da %>%
-        filter(song1 %in% input$search_from_song) %>%
-        arrange(song2)
-    } else {
-      searchmenudata <- transitions_data_da %>%
-        arrange(song2)
-    }
-
-    selectizeInput("searchInput_to_song", "to:",
-                   choices = c(unique(searchmenudata$song2)), multiple =TRUE)
-
-  })
-
-  transitions_shows_data <- reactive({
-
-    if (is.null(input$search_from_song)==FALSE & is.null(input$searchInput_to_song)==FALSE) {
-      transitions_data_da_results <- transitions_data_da %>%
-        filter(song1 %in% input$search_from_song &
-                 song2 %in% input$searchInput_to_song)
-
-    } else if (is.null(input$search_from_song)==FALSE & is.null(input$searchInput_to_song)==TRUE) {
-      transitions_data_da_results <- transitions_data_da %>%
-        filter(song1 %in% input$search_from_song)
-
-    } else if (is.null(input$search_from_song)==TRUE & is.null(input$searchInput_to_song)==FALSE) {
-      transitions_data_da_results <- transitions_data_da %>%
-        filter(song2 %in% input$searchInput_to_song)
-
-    } else {
-
-      transitions_data_da_results <- transitions_data_da
-
-    }
-
-    transitions_data_da_results %>%
-      select(-release) %>%
-      arrange(date)
-
-  })
-
-
-  output$transitions_shows_datatable <- DT::renderDataTable(DT::datatable({
-
-    data <- transitions_shows_data()
-
-    data
-
-  }, escape = c(-2),
-  style = "bootstrap"))
 
 
 
