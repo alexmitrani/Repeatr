@@ -954,8 +954,8 @@ server <- function(input, output, session) {
     attendancedata <- othervariables %>%
       filter(is.na(tour)==FALSE) %>%
       left_join(meanattendance) %>%
-      mutate(attendance = round(ifelse(is.na(attendance)==TRUE,meanattendance,attendance))) %>%
-      select(year, tour, date, attendance) %>%
+      mutate(attendance = round(ifelse(is.na(attendance)==TRUE, meanattendance, attendance))) %>%
+      select(gid, year, tour, date, attendance) %>%
       arrange(date) %>%
       mutate(cumulative_attendance = cumsum(attendance))
 
@@ -990,12 +990,25 @@ server <- function(input, output, session) {
 
   output$attendance_count_plot <- renderPlotly({
 
-    attendance_plot <- ggplot(attendance_data(), aes(date, cumulative_attendance, color = tour)) +
-      geom_point() +
-      theme(legend.position="none") +
-      xlab("date") +
-      ylab("cumulative attendance") +
-      scale_y_continuous(labels = comma)
+    if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==FALSE) {
+
+      attendance_plot <- ggplot(attendance_data(), aes(date, attendance, color = gid)) +
+        geom_point() +
+        theme(legend.position="none") +
+        xlab("date") +
+        ylab("attendance") +
+        scale_y_continuous(labels = comma)
+
+    } else {
+
+      attendance_plot <- ggplot(attendance_data(), aes(date, cumulative_attendance, color = tour)) +
+        geom_point() +
+        theme(legend.position="none") +
+        xlab("date") +
+        ylab("cumulative attendance") +
+        scale_y_continuous(labels = comma)
+
+    }
 
     plotly::ggplotly(attendance_plot)
 
