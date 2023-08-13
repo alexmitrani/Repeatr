@@ -36,6 +36,10 @@ song_release <- summary %>%
 duration_data_da <- duration_data_da %>%
   left_join(song_release)
 
+othervariables <- othervariables %>%
+  mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
+  mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>"))
+
 
 # user interface ----------------------------------------------------------
 
@@ -955,7 +959,7 @@ server <- function(input, output, session) {
       filter(is.na(tour)==FALSE) %>%
       left_join(meanattendance) %>%
       mutate(attendance = round(ifelse(is.na(attendance)==TRUE, meanattendance, attendance))) %>%
-      select(gid, year, tour, date, attendance) %>%
+      select(fls_link, gid, year, tour, date, attendance) %>%
       arrange(date) %>%
       mutate(cumulative_attendance = cumsum(attendance))
 
@@ -977,12 +981,26 @@ server <- function(input, output, session) {
 
   attendance_data2 <- reactive({
 
-    attendancedata2 <- attendance_data() %>%
-      group_by(tour) %>%
-      filter(is.na(date)==FALSE) %>%
-      summarise(start = min(date), end = max(date), shows = n(), duration = as.numeric((end - start)), attendance=sum(attendance), cumulative_attendance = max(cumulative_attendance)) %>%
-      ungroup() %>%
-      arrange(start)
+    if (is.null(input$yearInput_shows)==FALSE | is.null(input$tourInput_shows)==FALSE) {
+
+      attendancedata2 <- attendance_data() %>%
+        filter(is.na(date)==FALSE) %>%
+        filter(tour!="Unknown") %>%
+        arrange(date) %>%
+        select(-gid, -cumulative_attendance, -year)
+
+    } else {
+
+      attendancedata2 <- attendance_data() %>%
+        group_by(tour) %>%
+        filter(is.na(date)==FALSE) %>%
+        filter(tour!="Unknown") %>%
+        summarise(start = min(date), end = max(date), shows = n(), duration = as.numeric((end - start)), attendance=sum(attendance), cumulative_attendance = max(cumulative_attendance)) %>%
+        ungroup() %>%
+        rename(days = duration) %>%
+        arrange(start)
+
+    }
 
     attendancedata2
 
@@ -990,14 +1008,15 @@ server <- function(input, output, session) {
 
   output$attendance_count_plot <- renderPlotly({
 
-    if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==FALSE) {
+    if (is.null(input$yearInput_shows)==FALSE | is.null(input$tourInput_shows)==FALSE) {
 
       attendance_plot <- ggplot(attendance_data(), aes(date, attendance, color = gid)) +
         geom_point() +
         theme(legend.position="none") +
         xlab("date") +
         ylab("attendance") +
-        scale_y_continuous(labels = comma)
+        scale_y_continuous(limits = c(0, NA),
+                           expand = expansion(mult = c(0, 0.1)), labels = comma)
 
     } else {
 
@@ -1015,16 +1034,13 @@ server <- function(input, output, session) {
   })
 
   output$toursdatatable <- DT::renderDataTable(DT::datatable({
-    data <- attendance_data2()  %>%
-      filter(tour!="Unknown") %>%
-      rename(days = duration) %>%
-      arrange(start)
+    data <- attendance_data2()
 
     data
 
   },
+  escape = c(-2),
   style = "bootstrap"))
-
 
 # xray -------------------------------------------------------------------
 
