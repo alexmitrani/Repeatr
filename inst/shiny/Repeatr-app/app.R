@@ -37,6 +37,7 @@ duration_data_da <- duration_data_da %>%
   left_join(song_release)
 
 othervariables <- othervariables %>%
+  left_join(gid_sound_quality) %>%
   mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
   mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>"))
 
@@ -959,7 +960,7 @@ server <- function(input, output, session) {
       filter(is.na(tour)==FALSE) %>%
       left_join(meanattendance) %>%
       mutate(attendance = round(ifelse(is.na(attendance)==TRUE, meanattendance, attendance))) %>%
-      select(fls_link, gid, year, tour, date, attendance) %>%
+      select(fls_link, gid, year, tour, date, attendance, sound_quality) %>%
       arrange(date) %>%
       mutate(cumulative_attendance = cumsum(attendance))
 
@@ -987,7 +988,7 @@ server <- function(input, output, session) {
         filter(is.na(date)==FALSE) %>%
         filter(tour!="Unknown") %>%
         arrange(date) %>%
-        select(-gid, -cumulative_attendance, -year)
+        select(tour, date, fls_link, attendance, sound_quality)
 
     } else {
 
@@ -1039,7 +1040,7 @@ server <- function(input, output, session) {
     data
 
   },
-  escape = c(-2),
+  escape = c(-4),
   style = "bootstrap"))
 
 # xray -------------------------------------------------------------------
