@@ -11,16 +11,6 @@ my_theme <- bs_theme(bootswatch = "darkly",
 
 thematic_shiny(font = "auto")
 
-
-# parameters --------------------------------------------------------------
-
-# maximum number of songs to be graphed at once
-max_songs <- 10
-# this parameter is used on the pages 'renditions' and 'variation' to prevent the graphs from being overloaded
-
-# maximum number of transitions to display at once, used on 'matrix'
-max_transitions <- 40
-
 # pre-processing ----------------------------------------------------------
 
 timestamptext <- paste0("Made with Repeatr version ", packageVersion("Repeatr"), ", updated ", packageDate("Repeatr"), ".")
@@ -312,6 +302,16 @@ tabPanel("flow",
                         )
                       ),
 
+                      # max songs control
+
+                      fluidRow(
+                        column(12,
+                               sliderInput("max_songs_renditions", "max_songs:",
+                                           min = 1, max = 100,
+                                           value = 10, width = "100%")
+                        )
+                      ),
+
                       hr(),
                       tags$br(),
 
@@ -341,6 +341,18 @@ tabPanel("flow",
                       fluidRow(
                         column(12,
                                plotlyOutput("transitions_heatmap")
+                        )
+                      ),
+
+                      tags$br(),
+
+                      # max transitions control
+
+                      fluidRow(
+                        column(12,
+                               sliderInput("max_transitions", "max_transitions:",
+                                           min = 10, max = 100,
+                                           value = 40, width = "100%")
                         )
                       ),
 
@@ -517,6 +529,16 @@ tabPanel("stock",
                              fluidRow(
                                column(12,
                                       plotlyOutput("variation_count_plot")
+                               )
+                             ),
+
+                             # max songs control
+
+                             fluidRow(
+                               column(12,
+                                      sliderInput("max_songs_variation", "max_songs:",
+                                                  min = 1, max = 100,
+                                                  value = 10, width = "100%")
                                )
                              ),
 
@@ -1230,25 +1252,12 @@ server <- function(input, output, session) {
 
   songs_data3 <- reactive({
 
-    if (is.null(input$releaseInput)==TRUE) {
-
-      mydf <- songs_data() %>%
-        left_join(songs_data2()) %>%
-        left_join(last_performance_data) %>%
-        mutate(to = as.Date(ifelse(last_performance<to, last_performance, to), origin = "1970-01-01")) %>%
-        mutate(released = as.Date(releasedate, format = "%d/%m/%Y")) %>%
-        filter(index<=max_songs)
-
-    } else {
-
-      mydf <- songs_data() %>%
-        left_join(songs_data2()) %>%
-        left_join(last_performance_data) %>%
-        mutate(to = as.Date(ifelse(last_performance<to, last_performance, to), origin = "1970-01-01")) %>%
-        mutate(released = as.Date(releasedate, format = "%d/%m/%Y"))
-
-    }
-
+    mydf <- songs_data() %>%
+      left_join(songs_data2()) %>%
+      left_join(last_performance_data) %>%
+      mutate(to = as.Date(ifelse(last_performance<to, last_performance, to), origin = "1970-01-01")) %>%
+      mutate(released = as.Date(releasedate, format = "%d/%m/%Y")) %>%
+      filter(index<=input$max_songs_renditions)
 
     mydf
 
@@ -1335,7 +1344,7 @@ server <- function(input, output, session) {
       ungroup() %>%
       arrange(desc(count)) %>%
       mutate(index = row_number()) %>%
-      filter(index<max_transitions)
+      filter(index<=input$max_transitions)
 
     mytransitions <- mytransitions %>%
       select(-index)
@@ -1674,18 +1683,9 @@ server <- function(input, output, session) {
 
   variation_data3 <- reactive({
 
-    if (is.null(input$Input_releases)==TRUE) {
-
-      mydf <- variation_data() %>%
-        left_join(variation_data2()) %>%
-        filter(index<=max_songs)
-
-    } else {
-
-      mydf <- variation_data() %>%
-        left_join(variation_data2())
-
-    }
+    mydf <- variation_data() %>%
+      left_join(variation_data2()) %>%
+      filter(index<=input$max_songs_variation)
 
     mydf
 
@@ -1702,6 +1702,8 @@ server <- function(input, output, session) {
     plotly::ggplotly(p)
 
   })
+
+
 
   output$variationdatatable <- DT::renderDataTable(DT::datatable({
     data <- variation_data3() %>%
