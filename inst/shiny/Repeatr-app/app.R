@@ -456,11 +456,15 @@ tabPanel("stock",
 
                              fluidRow(
 
-                               column(12,
+                               column(6,
                                       selectizeInput("Input_releases_var", "variable:",
                                                      c("count", "intensity", "rating"),
                                                      selected="rating", multiple =FALSE)
-                                      )
+                                      ),
+                               column(6,
+                                      selectizeInput("legend_position", "legend:",
+                                                     c("right", "none"),
+                                                     selected="none", multiple =FALSE))
 
                              ),
 
@@ -1525,7 +1529,7 @@ server <- function(input, output, session) {
                              limits = c(0, NA),
                              labels = comma) +
           coord_flip() +
-          theme(legend.position="none")
+          theme(legend.position=input$legend_position)
 
     } else if (input$Input_releases_var == "intensity") {
 
@@ -1540,7 +1544,7 @@ server <- function(input, output, session) {
                            limits = c(0, NA),
                            labels = comma) +
         coord_flip() +
-        theme(legend.position="none")
+        theme(legend.position=input$legend_position)
 
     } else {
 
@@ -1555,7 +1559,7 @@ server <- function(input, output, session) {
                              limits = c(0, NA),
                              labels = comma) +
           coord_flip() +
-          theme(legend.position="none")
+          theme(legend.position=input$legend_position)
 
     }
 
