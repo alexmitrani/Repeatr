@@ -1461,6 +1461,7 @@ server <- function(input, output, session) {
     }
 
     transitions_data_da_results %>%
+      select(tour, date, fls_link, transition, song1, song2) %>%
       arrange(date)
 
   })
@@ -1472,7 +1473,7 @@ server <- function(input, output, session) {
 
     data
 
-  }, escape = c(-2),
+  }, escape = c(-4),
   style = "bootstrap"))
 
 
