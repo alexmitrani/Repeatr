@@ -14,9 +14,12 @@ thematic_shiny(font = "auto")
 
 # parameters --------------------------------------------------------------
 
-# no more than one album's worth of shows to be graphed at once
-max_songs <- 13
+# maximum number of songs to be graphed at once
+max_songs <- 10
 # this parameter is used on the pages 'renditions' and 'variation' to prevent the graphs from being overloaded
+
+# maximum number of transitions to display at once, used on 'matrix'
+max_transitions <- 40
 
 # pre-processing ----------------------------------------------------------
 
@@ -1212,12 +1215,14 @@ server <- function(input, output, session) {
 
     mysongs <- songs_data() %>%
       group_by(song, releasedate) %>%
-      summarize(count = max(count) - min(count),
-                from = min(date), to=max(date)) %>%
+      summarize(renditions = max(count) - min(count),
+                pcnt_change = (max(count) - min(count))/(min(count)+1),
+                from = min(date),
+                to=max(date)) %>%
       ungroup() %>%
-      arrange(desc(count)) %>%
+      arrange(desc(pcnt_change)) %>%
       mutate(index = row_number()) %>%
-      select(song, index, from, to, releasedate)
+      select(song, index, from, to, releasedate, pcnt_change)
 
     mysongs
 
@@ -1225,12 +1230,24 @@ server <- function(input, output, session) {
 
   songs_data3 <- reactive({
 
-    mydf <- songs_data() %>%
-      left_join(songs_data2()) %>%
-      left_join(last_performance_data) %>%
-      mutate(to = as.Date(ifelse(last_performance<to, last_performance, to), origin = "1970-01-01")) %>%
-      mutate(released = as.Date(releasedate, format = "%d/%m/%Y")) %>%
-      filter(index<=max_songs)
+    if (is.null(input$releaseInput)==TRUE) {
+
+      mydf <- songs_data() %>%
+        left_join(songs_data2()) %>%
+        left_join(last_performance_data) %>%
+        mutate(to = as.Date(ifelse(last_performance<to, last_performance, to), origin = "1970-01-01")) %>%
+        mutate(released = as.Date(releasedate, format = "%d/%m/%Y")) %>%
+        filter(index<=max_songs)
+
+    } else {
+
+      mydf <- songs_data() %>%
+        left_join(songs_data2()) %>%
+        left_join(last_performance_data) %>%
+        mutate(to = as.Date(ifelse(last_performance<to, last_performance, to), origin = "1970-01-01")) %>%
+        mutate(released = as.Date(releasedate, format = "%d/%m/%Y"))
+
+    }
 
 
     mydf
@@ -1316,7 +1333,12 @@ server <- function(input, output, session) {
       group_by(from, to) %>%
       summarize(count = n()) %>%
       ungroup() %>%
-      arrange(desc(count))
+      arrange(desc(count)) %>%
+      mutate(index = row_number()) %>%
+      filter(index<max_transitions)
+
+    mytransitions <- mytransitions %>%
+      select(-index)
 
     mytransitions
 
@@ -1335,7 +1357,8 @@ server <- function(input, output, session) {
 
     ggplot(transitions_data(), aes(to, from, fill= count)) +
       geom_tile() +
-      scale_fill_viridis(discrete=FALSE)
+      scale_fill_viridis(discrete=FALSE) +
+      theme(axis.text.x = element_text(angle = 90))
 
   })
 
@@ -1637,10 +1660,11 @@ server <- function(input, output, session) {
   variation_data2 <- reactive({
 
     mydf <- variation_data() %>%
+      left_join(duration_summary) %>%
       group_by(song) %>%
-      summarize(renditions = max(count) - min(count)) %>%
+      summarize(minutes_sd = mean(minutes_sd)) %>%
       ungroup() %>%
-      arrange(desc(renditions)) %>%
+      arrange(desc(minutes_sd)) %>%
       mutate(index = row_number()) %>%
       select(song, index)
 
@@ -1650,9 +1674,18 @@ server <- function(input, output, session) {
 
   variation_data3 <- reactive({
 
-    mydf <- variation_data() %>%
-      left_join(variation_data2()) %>%
-      filter(index<=max_songs)
+    if (is.null(input$Input_releases)==TRUE) {
+
+      mydf <- variation_data() %>%
+        left_join(variation_data2()) %>%
+        filter(index<=max_songs)
+
+    } else {
+
+      mydf <- variation_data() %>%
+        left_join(variation_data2())
+
+    }
 
     mydf
 
@@ -1675,8 +1708,8 @@ server <- function(input, output, session) {
       group_by(song) %>%
       summarize(renditions = max(count)) %>%
       ungroup() %>%
-      arrange(desc(renditions)) %>%
-      left_join(duration_summary)
+      left_join(duration_summary) %>%
+      arrange(desc(minutes_sd))
   },
   style = "bootstrap"))
 
