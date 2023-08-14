@@ -338,9 +338,17 @@ tabPanel("flow",
 
                       tags$br(),
 
+
+
                       fluidRow(
                         column(12,
-                               plotlyOutput("transitions_heatmap")
+                               div(style="width:100%;height:0;padding-top:100%;position:relative;",
+                                   div(style="position: absolute;
+                                              top: 0;
+                                              left: 0;
+                                              width: 100%;
+                                              height: 100%;",
+                                       plotlyOutput("transitions_heatmap",height="100%")))
                         )
                       ),
 
@@ -460,9 +468,7 @@ tabPanel("stock",
 
                              fluidRow(
                                column(12,
-                                      plotlyOutput("releases_plot",
-                                                   width = "100%",
-                                                   height = "700px")
+                                      uiOutput("releases_plot_ui", width = "100%")
                                )
                              ),
 
@@ -478,6 +484,56 @@ tabPanel("stock",
                            )
 
                   ),
+
+# variation -------------------------------------------------------------------
+
+
+tabPanel("variation",
+
+         fluidPage(
+
+           tags$br(),
+
+           fluidRow(
+             column(12,
+                    uiOutput("variation_songInput")
+             )
+
+           ),
+
+           hr(),
+
+           # Graph
+
+           fluidRow(
+             column(12,
+                    plotlyOutput("variation_count_plot")
+             )
+           ),
+
+           # max songs control
+
+           fluidRow(
+             column(12,
+                    sliderInput("max_songs_variation", "max_songs:",
+                                min = 1, max = 100,
+                                value = 10, width = "100%")
+             )
+           ),
+
+           hr(),
+           tags$br(),
+
+           fluidRow(
+             column(12,
+                    DT::dataTableOutput("variationdatatable")
+             )
+           )
+
+         )
+
+),
+
 
 
 # duration -------------------------------------------------------------
@@ -506,54 +562,6 @@ tabPanel("stock",
 
                   ),
 
-# variation -------------------------------------------------------------------
-
-
-                  tabPanel("variation",
-
-                           fluidPage(
-
-                             tags$br(),
-
-                             fluidRow(
-                               column(12,
-                                      uiOutput("variation_songInput")
-                               )
-
-                             ),
-
-                             hr(),
-
-                             # Graph
-
-                             fluidRow(
-                               column(12,
-                                      plotlyOutput("variation_count_plot")
-                               )
-                             ),
-
-                             # max songs control
-
-                             fluidRow(
-                               column(12,
-                                      sliderInput("max_songs_variation", "max_songs:",
-                                                  min = 1, max = 100,
-                                                  value = 10, width = "100%")
-                               )
-                             ),
-
-                             hr(),
-                             tags$br(),
-
-                             fluidRow(
-                               column(12,
-                                      DT::dataTableOutput("variationdatatable")
-                               )
-                             )
-
-                           )
-
-                  ),
 
 
 # search ------------------------------------------------------------------
@@ -1367,7 +1375,8 @@ server <- function(input, output, session) {
     ggplot(transitions_data(), aes(to, from, fill= count)) +
       geom_tile() +
       scale_fill_viridis(discrete=FALSE) +
-      theme(axis.text.x = element_text(angle = 90))
+      theme(axis.text.x = element_text(angle = 90),
+            aspect.ratio=1)
 
   })
 
@@ -1499,7 +1508,7 @@ server <- function(input, output, session) {
 
   })
 
-  output$releases_plot <- renderPlotly({
+  output$releases_plot <- renderPlot({
 
     colours <- unique(releases_data()$colour_code)
 
@@ -1515,7 +1524,8 @@ server <- function(input, output, session) {
           scale_y_continuous(expand = expansion(mult = c(0, 0.1)),
                              limits = c(0, NA),
                              labels = comma) +
-          coord_flip()
+          coord_flip() +
+          theme(legend.position="none")
 
     } else if (input$Input_releases_var == "intensity") {
 
@@ -1529,7 +1539,8 @@ server <- function(input, output, session) {
         scale_y_continuous(expand = expansion(mult = c(0, 0.1)),
                            limits = c(0, NA),
                            labels = comma) +
-        coord_flip()
+        coord_flip() +
+        theme(legend.position="none")
 
     } else {
 
@@ -1543,12 +1554,35 @@ server <- function(input, output, session) {
           scale_y_continuous(expand = expansion(mult = c(0, 0.1)),
                              limits = c(0, NA),
                              labels = comma) +
-          coord_flip()
+          coord_flip() +
+          theme(legend.position="none")
 
-      }
+    }
 
-      plotly::ggplotly(releases_plot)
+    print(releases_plot)
 
+  })
+
+  plotheight <- reactive({
+
+    if (is.null(input$Input_releases)==TRUE) {
+
+      plotheight = 1000
+
+    } else {
+
+      myreleases <- input$Input_releases
+      myreleases <- as.data.frame(myreleases)
+      myreleases <- nrow(myreleases)
+
+      plotheight = 100 + 100*myreleases
+
+    }
+
+  })
+
+  output$releases_plot_ui <- renderUI({
+    plotOutput("releases_plot", height = plotheight())
   })
 
   output$releasesdatatable <- DT::renderDataTable(DT::datatable({
@@ -1561,66 +1595,7 @@ server <- function(input, output, session) {
   style = "bootstrap"))
 
 
-
-
-
-
-
-
-# duration -------------------------------------------------------------
-
-
-  output$menuOptions_duration_song <- renderUI({
-
-    if (is.null(input$Input_releases)==FALSE) {
-      menudata <- cumulative_duration_counts %>%
-        filter(release %in% input$Input_releases) %>%
-        arrange(song)
-    } else {
-      menudata <- cumulative_duration_counts %>%
-        arrange(song)
-    }
-
-    selectizeInput("duration_song", "songs",
-                   choices = c(unique(menudata$song)), multiple =TRUE)
-
-  })
-
-
-  duration_shows_data <- reactive({
-
-    if (is.null(input$duration_song)==FALSE) {
-      duration_data_da_results <- duration_data_da %>%
-        filter(song %in% input$duration_song)
-
-    } else if (is.null(input$Input_releases)==FALSE) {
-
-      duration_data_da_results <- duration_data_da %>%
-        filter(release %in% input$Input_releases)
-
-    } else {
-
-      duration_data_da_results <- duration_data_da
-
-    }
-
-    duration_data_da_results
-
-  })
-
-
-  output$duration_shows_datatable <- DT::renderDataTable(DT::datatable({
-
-    data <- duration_shows_data() %>%
-      select(fls_link, date, song_number, song, minutes) %>%
-      arrange(date, song_number)
-
-    data
-
-  }, escape = c(-2),
-  style = "bootstrap"))
-
-# variation -------------------------------------------------------------------
+  # variation -------------------------------------------------------------------
 
   output$variation_songInput <- renderUI({
 
@@ -1714,6 +1689,61 @@ server <- function(input, output, session) {
       arrange(desc(minutes_sd))
   },
   style = "bootstrap"))
+
+
+# duration -------------------------------------------------------------
+
+
+  output$menuOptions_duration_song <- renderUI({
+
+    if (is.null(input$Input_releases)==FALSE) {
+      menudata <- cumulative_duration_counts %>%
+        filter(release %in% input$Input_releases) %>%
+        arrange(song)
+    } else {
+      menudata <- cumulative_duration_counts %>%
+        arrange(song)
+    }
+
+    selectizeInput("duration_song", "songs",
+                   choices = c(unique(menudata$song)), multiple =TRUE)
+
+  })
+
+
+  duration_shows_data <- reactive({
+
+    if (is.null(input$duration_song)==FALSE) {
+      duration_data_da_results <- duration_data_da %>%
+        filter(song %in% input$duration_song)
+
+    } else if (is.null(input$Input_releases)==FALSE) {
+
+      duration_data_da_results <- duration_data_da %>%
+        filter(release %in% input$Input_releases)
+
+    } else {
+
+      duration_data_da_results <- duration_data_da
+
+    }
+
+    duration_data_da_results
+
+  })
+
+
+  output$duration_shows_datatable <- DT::renderDataTable(DT::datatable({
+
+    data <- duration_shows_data() %>%
+      select(fls_link, date, song_number, song, minutes) %>%
+      arrange(date, song_number)
+
+    data
+
+  }, escape = c(-2),
+  style = "bootstrap"))
+
 
 
 # search ------------------------------------------------------------------
