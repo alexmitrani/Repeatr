@@ -105,9 +105,6 @@ tabPanel("flow",
 
                       tags$br(),
 
-                      h4("Selection"),
-                      tags$br(),
-
 
                       fluidRow(
 
@@ -116,7 +113,8 @@ tabPanel("flow",
 
                       ),
 
-                      h4("Map"),
+                      hr(),
+
                       tags$br(),
 
                       fluidRow(
@@ -180,7 +178,7 @@ tabPanel("flow",
 
                       ),
 
-                      h4("Data table"),
+                      hr(),
                       tags$br(),
 
 
@@ -209,11 +207,8 @@ tabPanel("flow",
 
                     fluidPage(
 
-                      tags$br(),
-
                       # Graph
 
-                      h4("Graph"),
                       tags$br(),
 
                       fluidRow(
@@ -222,9 +217,7 @@ tabPanel("flow",
                         )
                       ),
 
-                      tags$br(),
-
-                      h4("Data table"),
+                      hr(),
                       tags$br(),
 
                       # Create a new row for the table.
@@ -244,9 +237,6 @@ tabPanel("flow",
 
                       tags$br(),
 
-                      h4("Selection"),
-                      tags$br(),
-
                       fluidRow(
                         column(6,
                                selectizeInput("xrayGraph_choice", "graph:",
@@ -259,12 +249,9 @@ tabPanel("flow",
 
                       ),
 
-                      tags$br(),
+                      hr(),
 
                       # Graph
-
-                      h4("Graph"),
-                      tags$br(),
 
                       fluidRow(
                         column(12,
@@ -272,9 +259,7 @@ tabPanel("flow",
                         )
                       ),
 
-                      tags$br(),
-
-                      h4("Data table"),
+                      hr(),
                       tags$br(),
 
                       fluidRow(
@@ -296,9 +281,6 @@ tabPanel("flow",
 
                       tags$br(),
 
-                      h4("Selection"),
-                      tags$br(),
-
                       # Release and song selection controls
 
                       fluidRow(
@@ -310,10 +292,9 @@ tabPanel("flow",
 
                       ),
 
-                      # Graph
+                      hr(),
 
-                      h4("Graph"),
-                      tags$br(),
+                      # Graph
 
                       fluidRow(
                         column(12,
@@ -321,9 +302,7 @@ tabPanel("flow",
                         )
                       ),
 
-                      tags$br(),
-
-                      h4("Data table"),
+                      hr(),
                       tags$br(),
 
                       fluidRow(
@@ -347,7 +326,6 @@ tabPanel("flow",
 
                       # Graph
 
-                      h4("Graph"),
                       tags$br(),
 
                       fluidRow(
@@ -356,9 +334,7 @@ tabPanel("flow",
                         )
                       ),
 
-                      tags$br(),
-
-                      h4("Data table"),
+                      hr(),
                       tags$br(),
 
                       fluidRow(
@@ -379,19 +355,13 @@ tabPanel("flow",
 
                       tags$br(),
 
-                      h4("Transition"),
-                      tags$br(),
-
                       # Create a new Row in the UI for selectInputs
                       fluidRow(
                         column(6, uiOutput("menuOptions_searchfrom")),
                         column(6, uiOutput("menuOptions_search"))
                       ),
 
-
-                      tags$br(),
-
-                      h4("Data table"),
+                      hr(),
                       tags$br(),
 
                       fluidRow(
@@ -453,8 +423,6 @@ tabPanel("stock",
 
                              tags$br(),
 
-                             h4("Selection"),
-                             tags$br(),
 
                              fluidRow(
 
@@ -466,12 +434,7 @@ tabPanel("stock",
 
                              ),
 
-                             tags$br(),
-
-                             # Graph
-
-                             h4("Graph"),
-                             tags$br(),
+                             hr(),
 
                              fluidRow(
                                column(12,
@@ -481,9 +444,7 @@ tabPanel("stock",
                                )
                              ),
 
-                             tags$br(),
-
-                             h4("Data table"),
+                             hr(),
                              tags$br(),
 
                              fluidRow(
@@ -505,17 +466,12 @@ tabPanel("stock",
 
                              tags$br(),
 
-                             h4("Selection"),
-                             tags$br(),
-
                              # Create a new Row in the UI for selectInputs
                              fluidRow(
                                column(12, uiOutput("menuOptions_duration_song"))
                              ),
 
-                             tags$br(),
-
-                             h4("Data table"),
+                             hr(),
                              tags$br(),
 
                              fluidRow(
@@ -537,9 +493,6 @@ tabPanel("stock",
 
                              tags$br(),
 
-                             h4("Selection"),
-                             tags$br(),
-
                              fluidRow(
                                column(12,
                                       uiOutput("variation_songInput")
@@ -547,10 +500,9 @@ tabPanel("stock",
 
                              ),
 
-                             # Graph
+                             hr(),
 
-                             h4("Graph"),
-                             tags$br(),
+                             # Graph
 
                              fluidRow(
                                column(12,
@@ -558,9 +510,7 @@ tabPanel("stock",
                                )
                              ),
 
-                             tags$br(),
-
-                             h4("Data table"),
+                             hr(),
                              tags$br(),
 
                              fluidRow(
@@ -582,9 +532,6 @@ tabPanel("stock",
 
                              tags$br(),
 
-                             h4("Selection"),
-                             tags$br(),
-
                              # Create a new Row in the UI for selectInputs
 
                              fluidRow(
@@ -593,9 +540,7 @@ tabPanel("stock",
                                )
                              ),
 
-                             tags$br(),
-
-                             h4("Data table"),
+                             hr(),
                              tags$br(),
 
                              fluidRow(
