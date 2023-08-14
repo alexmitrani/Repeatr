@@ -11,6 +11,13 @@ my_theme <- bs_theme(bootswatch = "darkly",
 
 thematic_shiny(font = "auto")
 
+
+# parameters --------------------------------------------------------------
+
+# no more than one album's worth of shows to be graphed at once
+max_songs <- 13
+# this parameter is used on the pages 'renditions' and 'variation' to prevent the graphs from being overloaded
+
 # pre-processing ----------------------------------------------------------
 
 timestamptext <- paste0("Made with Repeatr version ", packageVersion("Repeatr"), ", updated ", packageDate("Repeatr"), ".")
@@ -1107,9 +1114,6 @@ server <- function(input, output, session) {
 
   # renditions -------------------------------------------------------------------
 
-  # no more than one album's worth of shows to be graphed at once
-  max_songs <- 13
-
   output$releaseOptions <- renderUI({
 
     if (is.null(input$yearInput_shows)==FALSE) {
@@ -1225,17 +1229,9 @@ server <- function(input, output, session) {
       left_join(songs_data2()) %>%
       left_join(last_performance_data) %>%
       mutate(to = as.Date(ifelse(last_performance<to, last_performance, to), origin = "1970-01-01")) %>%
-      mutate(released = as.Date(releasedate, format = "%d/%m/%Y"))
-
-
-    mydf
-
-  })
-
-  songs_data4 <- reactive({
-
-    mydf <- songs_data3() %>%
+      mutate(released = as.Date(releasedate, format = "%d/%m/%Y")) %>%
       filter(index<=max_songs)
+
 
     mydf
 
@@ -1243,7 +1239,7 @@ server <- function(input, output, session) {
 
   output$performance_count_plot <- renderPlotly({
 
-    p <- ggplot(songs_data4(), aes(x = date, y = count, color = song)) +
+    p <- ggplot(songs_data3(), aes(x = date, y = count, color = song)) +
       geom_line() +
       xlab("date") +
       ylab("cumulative renditions")
@@ -1638,10 +1634,34 @@ server <- function(input, output, session) {
 
   })
 
+  variation_data2 <- reactive({
+
+    mydf <- variation_data() %>%
+      group_by(song) %>%
+      summarize(renditions = max(count) - min(count)) %>%
+      ungroup() %>%
+      arrange(desc(renditions)) %>%
+      mutate(index = row_number()) %>%
+      select(song, index)
+
+    mydf
+
+  })
+
+  variation_data3 <- reactive({
+
+    mydf <- variation_data() %>%
+      left_join(variation_data2()) %>%
+      filter(index<=max_songs)
+
+    mydf
+
+  })
+
 
   output$variation_count_plot <- renderPlotly({
 
-    p <- ggplot(variation_data(), aes(x = minutes, y = count, color = song)) +
+    p <- ggplot(variation_data3(), aes(x = minutes, y = count, color = song)) +
       geom_line() +
       xlab("minutes") +
       ylab("cumulative renditions")
@@ -1651,7 +1671,7 @@ server <- function(input, output, session) {
   })
 
   output$variationdatatable <- DT::renderDataTable(DT::datatable({
-    data <- variation_data() %>%
+    data <- variation_data3() %>%
       group_by(song) %>%
       summarize(renditions = max(count)) %>%
       ungroup() %>%
