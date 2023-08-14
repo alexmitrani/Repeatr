@@ -151,15 +151,15 @@ tabPanel("flow",
 
                         fluidRow(
 
-                          column(2,
-                                 numericInput("weeks", "period (weeks):", 792,
+                          column(3,
+                                 numericInput("weeks", "period_weeks:", 792,
                                               min = 1, max = 792)),
 
-                          column(2,
-                                 numericInput("step_days", "step (days):", 1,
+                          column(3,
+                                 numericInput("step_days", "step_days:", 1,
                                               min = 1, max = 365)),
 
-                          column(8,
+                          column(6,
 
                                  div(style="display: inline-block;vertical-align:top;",column(2, actionButton(
                                    "visit",
@@ -687,10 +687,10 @@ server <- function(input, output, session) {
     updateSliderInput(session,"dateInput_shows", "timeline:", min=date1, max=date2,
                       value=date1-7, timeFormat = "%F")
     freezeReactiveValue(input, "weeks")
-    updateNumericInput(session, "weeks", "period (weeks):", 1,
+    updateNumericInput(session, "weeks", "period_weeks:", 1,
                        min = 1, max = 792)
     freezeReactiveValue(input, "step_days")
-    updateNumericInput(session, "step_days", "step (days):", 1,
+    updateNumericInput(session, "step_days", "step_days:", 1,
                        min = 1, max = 5542)
   })
 
@@ -718,10 +718,10 @@ server <- function(input, output, session) {
     updateSliderInput(session,"dateInput_shows", "timeline:", min=as.Date("1987-09-03"), max=as.Date("2002-11-04"),
                       value=date1-7, timeFormat = "%F")
     freezeReactiveValue(input, "weeks")
-    updateNumericInput(session, "weeks", "period (weeks):", 792,
+    updateNumericInput(session, "weeks", "period_weeks:", 792,
                        min = 1, max = 792)
     freezeReactiveValue(input, "step_days")
-    updateNumericInput(session, "step_days", "step (days):", 1,
+    updateNumericInput(session, "step_days", "step_days:", 1,
                        min = 1, max = 5542)
   })
 
