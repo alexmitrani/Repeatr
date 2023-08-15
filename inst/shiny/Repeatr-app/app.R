@@ -801,9 +801,10 @@ server <- function(input, output, session) {
 
   shows_data3 <- reactive({
 
+    mydf <- shows_data
 
     if (is.null(input$yearInput_shows)==FALSE) {
-      mydf <- shows_data %>%
+      mydf <- mydf %>%
         filter(year %in% input$yearInput_shows)
 
     }
