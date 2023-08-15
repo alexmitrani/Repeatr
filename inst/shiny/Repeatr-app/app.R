@@ -1590,9 +1590,27 @@ server <- function(input, output, session) {
     plotOutput("releases_plot", height = plotheight())
   })
 
+  releases_data_table <- reactive({
+
+    if (is.null(input$Input_releases)==FALSE) {
+
+      releases_data_table <- releases_data() %>%
+        select(release, track_number, song, date, count, intensity, rating) %>%
+        rename(debut = date)
+
+    } else {
+
+      releases_data_table <- releases_summary %>%
+        select(-releaseid)
+
+    }
+
+    releases_data_table
+
+  })
+
   output$releasesdatatable <- DT::renderDataTable(DT::datatable({
-    data <- releases_summary_filtered() %>%
-      select(-releaseid)
+    data <- releases_data_table()
 
     data
 
