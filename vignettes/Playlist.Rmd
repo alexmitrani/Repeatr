@@ -201,4 +201,6 @@ This is a list of shows that I plan to listen to again in future, based on what 
 [FLS0853, Agora Theater, Cleveland, OH, USA, 1998-05-05](https://www.dischord.com/fugazi_live_series/cleveland-oh-usa-50598)<br>
 [FLS0854, Bogart's, Cincinnati, OH, USA, 1998-05-06](https://www.dischord.com/fugazi_live_series/cincinnati-oh-usa-50698)<br>
 [FLS0857, State Theater, Detroit, MI, USA, 1998-05-09](https://www.dischord.com/fugazi_live_series/detroit-mi-usa-50998)<br>
+[FLS0859, Teamsters Hall, Baltimore, MD, USA, 1998-05-12](https://www.dischord.com/fugazi_live_series/baltimore-md-usa-51298)<br>
+
 
