@@ -43,6 +43,7 @@ This is a list of shows that I plan to listen to again in future, based on what 
 [FLS0256, Riverside, Newcastle, England, 1990-09-14](https://www.dischord.com/fugazi_live_series/newcastle-england-91490)<br>
 [FLS0262, King's Hall, Herne Bay, England, 1990-09-20](https://www.dischord.com/fugazi_live_series/herne-bay-england-92090)<br>
 [FLS0272, Rock Lamour, Linkoping, Sweden, 1990-10-02](https://www.dischord.com/fugazi_live_series/linkoping-sweden-100290)<br>
+[FLS0274, Karuzela University, Warsaw, Poland, 1990-10-05](https://www.dischord.com/fugazi_live_series/warsaw-poland-100590)<br>
 [FLS0278, Glocksee, Hannover, Germany, 1990-10-09](https://www.dischord.com/fugazi_live_series/hannover-germany-100990)<br>
 [FLS0287, Schlachthof, Wels, Austria, 1990-10-19](https://www.dischord.com/fugazi_live_series/wels-austria-101990)<br>
 [FLS0294, Forte Prenestino, Rome, Italy, 1990-10-27](https://www.dischord.com/fugazi_live_series/rome-italy-102790)<br>
@@ -202,5 +203,6 @@ This is a list of shows that I plan to listen to again in future, based on what 
 [FLS0854, Bogart's, Cincinnati, OH, USA, 1998-05-06](https://www.dischord.com/fugazi_live_series/cincinnati-oh-usa-50698)<br>
 [FLS0857, State Theater, Detroit, MI, USA, 1998-05-09](https://www.dischord.com/fugazi_live_series/detroit-mi-usa-50998)<br>
 [FLS0859, Teamsters Hall, Baltimore, MD, USA, 1998-05-12](https://www.dischord.com/fugazi_live_series/baltimore-md-usa-51298)<br>
+[FLS0863, Phoenix Theater, Toronto, ON, Canada, 1998-07-19](https://www.dischord.com/fugazi_live_series/toronto-on-canada-71998)<br>
 
 
