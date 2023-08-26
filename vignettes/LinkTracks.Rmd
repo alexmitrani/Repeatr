@@ -86,19 +86,7 @@ head(toursdata, n=10)
   
 ```
 
-It looks like a tie between the 1990 Fall European Tour and the 1995 Spring/Summer European Tour, each with 58 shows. On the 1990 Fall European Tour the 58 shows were played in 67 days, compared to 71 days for the 1995 Spring/Summer European Tour. Did the 1995 tour cover a longer distance? Let's have a look at the number of shows in each country on each of those tours. 
-
-```{r}
-
-mydf <- othervariables %>% group_by(tour, country) %>% summarise(shows = n()) %>% ungroup()
-
-mydf2 <- mydf %>% filter(tour=="1990 Fall European Tour" | tour == "1995 Spring/Summer European Tour") %>% pivot_wider(names_from = tour, values_from = shows)
-
-mydf2[is.na(mydf2)] <- 0
-
-mydf2
-```
-The 1995 tour included visits to 17 countries compared to only 16 in the 1990 tour. In 1995 Fugazi skipped Sweden and Poland but added visits to Finland, the Czech Republic and Portugal. The 1995 tour almost certainly covered a longer distance which probably explains why a few more days were required to complete it. 
+On the 1990 Fall European Tour, between 1990-09-01 and 1990-11-07, Fugazi played 60 shows over 67 days, with a total attendance of 43,478 people. This tour wasn't the longest in terms of the number of days, or the biggest in terms of total attendance (the 1993 Spring USA tour had a total attendance of 74,550 people), but it was the longest tour in terms of the number of shows.
 
 ## Leads and lags
 
