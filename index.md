@@ -18,6 +18,8 @@ Exploring the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) 
 
 [Playlist](articles/Playlist.html) A list of recommended shows - work in progress. 
 
+[Polish](articles/Polish.html) A discussion of the song 'Polish'. 
+
 ## Repeatr package for R
 
 The Repeatr package can be installed from RStudio using the following command:

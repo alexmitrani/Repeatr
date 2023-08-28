@@ -1,0 +1,144 @@
+---
+title: "Polish"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Polish}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  fig.width=7,
+  fig.height=5,
+  comment = "#>"
+)
+```
+
+```{r, include = FALSE}
+library(Repeatr)
+```
+
+## Introduction
+
+Polish is the ninth track on Fugazi's Steady Diet of Nothing album which was recorded at Inner Ear studios in January 1991 (Fugazi, 1991a). The original title of the track was ‘Steady Diet of Nothing’ and it was introduced as such by Ian MacKaye the second time it was performed, at the University of Connecticut (Fugazi, 1991b). 
+
+
+Judging from the dates of debut live performances in the Fugazi Live Series, the songs on Steady Diet of Nothing were written at different times in a period of about 3 years and 3 months, from October 1987 to January 1991. 
+
+
+```{r}
+releases_data_input %>%
+  filter(release=="steady diet of nothing") %>%
+  select(song, date) %>%
+  rename(debut = date) %>%
+  arrange(debut)
+
+```
+On the 12th January 1991 the US congress authorized the use of force to eject Iraq from Kuwait, and ‘Operation Desert Storm’ started on the 16th of January with US warplanes attacking targets in Iraq and Kuwait (Institute of Medicine (US) Committee on the Evaluation of the Department of Defense Comprehensive Clinical Evaluation Program, 1997).
+
+
+It seems highly likely that the unfolding events of the US involvement in the Gulf war may have influenced at least 2 of the songs on Steady Diet of Nothing: ‘Nice New Outfit’ and ‘Polish’, which were probably amongst the last songs to be written for the album.   
+
+
+‘Nice New Outfit’ contains the lyrics: 
+
+>‘You can pinpoint your chimney and drop one down its length. In your nice new outfit, sorry about the mess’. 
+
+Laser-guided bombs were initially developed during the Vietnam war but their first large-scale use was during the Gulf war (Browne, 1991). 
+
+## Lyrics
+
+If not otherwise cited all quotes here are from Polish by Fugazi. 
+
+> Got with the program, swallowed it whole, sugar made it easy, ice made it cold.
+
+This probably refers to the way in which TV news was used by politicians and military leaders to make the case for the US going to war against Iraq and the way in which many people were easily persuaded. 
+
+> Reached out and touched them on a TV screen, broke out the polish, scrubbed it clean, scrubbed it clean, that dirty machine.
+
+The Gulf war was televised more than any war had been up to that time, due to the use of satellite communications.  
+
+>“We swamped the region with as many people and pieces of high technology we could afford and get permission for. It produced on-the-day war reporting on a scale never seen before. People will argue about which was the first 'television war'. Vietnam? The Israeli invasion of Lebanon? The Falklands? I have no doubt that the Gulf was the first war in which the full potential of satellite technology was used, bringing with it new technical and ethical challenges for broadcasters” (Purvis, 1991)
+
+People use polish to make something shine, perhaps alluding to the shine of a TV screen.  “Scrubbed it clean” brings to mind the image of blood and Lady Macbeth washing her hands:
+
+> Out, damned spot; out, I say. One, two,—why, then ’tis time to do’t. Hell is murky. Fie, my lord, fie, a soldier and afeard? What need we fear who knows it when none can call our power to account? Yet who would have thought the old man to have had so much blood in him? (William Shakespeare, 1606)
+
+There are several MacKaye songs that seem to contain similar references, for instance 'Don't you know ink washes out easier than blood' ('Repeater' by Fugazi, 1990), 'Soap and water will never get rid of that spot' ('Clean Kill' by Coriky, 2020). 
+
+‘that dirty machine’ suggests the machinery of war.  The way in which TV journalists tend to present war has been the subject of research:  
+
+>‘In "our" war coverage, television journalists tend to excise the opposite side, sanitize the suffering inflicted on it, attribute equal strength to both sides, personalize "our" side, demonize "their" side, and decontextualize its aggressive actions.’ (Liebes, 2009)
+
+The song continues: 
+
+> This is your portion, please don't share, the only answer, your only prayer, your reflection, please don't stare, nothing is going on in...
+
+‘This is your portion’ compares TV news to food and hints at how someone is deciding what gets served up to TV audiences, how much and in what way.
+
+The list here relates to thought and perception: ‘the only answer, your only prayer, your reflection, please don't stare’
+
+‘Please don’t share’ suggests individuals are expected to receive what they are being served in isolation.  
+
+The omission of the ending to the phrase ‘Nothing is going on in…’ hints at how censorship and editing decisions may shape the perceptions of people relying on the TV to inform themselves about the world. 
+
+> There is your manner, what you wear, your diseases and your repairs, all your belongings, please don't share, nothing is going on in there.
+
+Here the list seems to refer to behaviour and needs: ‘your manner, what you wear, your diseases and your repairs, all your belongings’
+
+‘nothing is going on in’ is repeated but this time the phrase is finished – ‘nothing is going on in there’.
+
+> Update the cleanser, never mind the stain, we'll take the package, let the contents remain, contents remain as yet unnamed.
+
+Again, the image of sanitization and what cannot be cleaned (blood). Package versus contents contrasts the superficial appearance of things, how they are presented, how they are sold, with what they really are on a deeper more intrinsic level – which is not shared with the viewer and may not be seen at all.
+
+> Came home flat busted only to be saved; everything comes down to you in a world concave, world concave, so well behaved, we still turn on, thirty minutes long, we still turn on.
+
+‘Came home flat busted only to be saved’ suggests someone getting home and slumping in front of the TV, but that is not necessarily the only meaning, it could also refer to someone using their time and energy to do something else more worthwhile than watching TV.  
+
+‘everything comes down to you in a world concave’ sounds like a call to action, to engage with the world and with other people – unlike the TV screen which is convex (or it would have been at the time this song was written), we are immersed in and surrounded by the real world.  
+
+The song ends with a criticism of passivity, ‘so well behaved’ echoes the starting line ‘got with the program’. ‘Thirty minutes long’ probably refers to what used to be a typical duration of TV news broadcasts (Schultz, 2005, p. 89). 
+
+## Discussion
+
+It isn't always clear who is doing what in this song. Who reaches out and touches who? Who breaks out the polish? Who scrubs clean the dirty machine? Who came home flat busted, and who saved them? 
+
+'You' is clearer - 'everything comes down to you in a world concave' sounds like a direct appeal to the listener. 
+
+The use of 'we' seems to indicate the community formed by band and audience. 
+
+A recent discussion about this song on the podcast 'The Alphabetical Fugazi' seemed to conclude that the song was mainly a criticism of TV culture (Wright & Lalonde, 2021). There have been many previous songs critical of TV culture, for instance '(Welcome) Television' (Beatnigs, 1988). What makes this song different from previous songs about TV is the context in which it was written - the build-up to the Gulf war, and perhaps the early stages of the war itself. The lyrics seem to reflect on the role of TV in this context, and the potential role of ordinary people in resisting such wars. 
+
+At the Lafayette Square show Ian MacKaye gives a short speech by way of introduction to KYEO in which he shared some thoughts about the build-up to war that seemed to be happening, which seem related to the content of the song Polish:
+
+> “I gotta tell you I’m kinda terrified, it’s definitely looking like a situation where you can’t turn around and worst of all it’s a decision that none of us can even make, except for the fact that we didn’t say anything in the first place about it, so because we didn’t, it’s time to get even more louder and make more volume make more noise … (Guy) like he says, they think they’re going to have a war over there, but they’re going to have to fight a war over here too … (Ian) keep your eyes open”  (Fugazi, 1991b)
+
+## References
+
+Browne, M. W. (1991, February 26). Invention That Shaped the Gulf War: The Laser-Guided Bomb. The New York Times. https://www.nytimes.com/1991/02/26/science/invention-that-shaped-the-gulf-war-the-laser-guided-bomb.html
+
+Fugazi. (1991a). Steady Diet of Nothing (060). Dischord Records. https://www.dischord.com/release/060/steady-diet-of-nothing
+
+Fugazi. (1991b, January 12). Washington, DC USA 1/12/1991 (FLS0308). Dischord Records; Fugazi Live Series. https://www.dischord.com/fugazi_live_series/washington-dc-usa-11291
+
+Fugazi. (1991c, March 7). Storrs, CT USA 3/07/91 (FLS0316). Dischord Records; Fugazi Live Series. https://www.dischord.com/fugazi_live_series/storrs-ct-usa-30791
+
+Institute of Medicine (US) Committee on the Evaluation of the Department of Defense Comprehensive Clinical Evaluation Program. (1997). Persian Gulf War-Related Events: Timeline. In Adequacy of the Comprehensive Clinical Evaluation Program: Nerve Agents. National Academies Press (US). https://www.ncbi.nlm.nih.gov/books/NBK233468/
+
+Liebes, T. (2009). Our war/their war: Comparing the intifadeh and the gulf war on U.S. and Israeli television. Critical Studies in Media Communication. https://doi.org/10.1080/15295039209366814
+
+Purvis, S. (1991). The Media and the Gulf War. RSA Journal, 139(5423), 735–744.
+
+Schultz, B. (2005). Broadcast News Producing. SAGE Publications, Inc. https://doi.org/10.4135/9781452233093
+
+William Shakespeare. (1606). The Tragedy of Macbeth (Act 5, scene 1, lines 30–34; Vol. 2). Classic Books Company.
+
+Wright, I. J., & Lalonde, R. (2021, July). Polish with Robert Lalonde. https://open.spotify.com/episode/4ZfA4IVWpWj4rdKUlIEXOr
+
+
+
+
+
