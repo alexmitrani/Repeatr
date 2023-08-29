@@ -22,7 +22,11 @@ library(Repeatr)
 
 ## Introduction
 
-Polish is the ninth track on Fugazi's Steady Diet of Nothing album which was recorded at Inner Ear studios in January 1991 (Fugazi, 1991a). The original title of the track was ‘Steady Diet of Nothing’ and it was introduced as such by Ian MacKaye the second time it was performed, at the University of Connecticut (Fugazi, 1991b). 
+Polish is the ninth track on Fugazi's Steady Diet of Nothing album which was recorded at Inner Ear studios in January 1991 (Fugazi, 1991a). 
+
+> “My journals report that I was considering the title ’Steady Diet’ for a song that had the working title ‘Big Choppy Chord’ in late February of 1991. That song ended up being ‘Polish’. In March of 1991, we decided to call the album ’Steady Diet of Nothing’ and then in April we decided to include the instrumental and called that ’Steady Diet.'” (MacKaye, 2022)
+
+The original title of the track was ‘Steady Diet of Nothing’ and it was introduced as such by Ian MacKaye the second time it was performed, at the University of Connecticut (Fugazi, 1991b). 
 
 
 Judging from the dates of debut live performances in the Fugazi Live Series, the songs on Steady Diet of Nothing were written at different times in a period of about 3 years and 3 months, from October 1987 to January 1991. 
@@ -64,7 +68,7 @@ The Gulf war was televised more than any war had been up to that time, due to th
 
 People use polish to make something shine, perhaps alluding to the shine of a TV screen.  “Scrubbed it clean” brings to mind the image of blood and Lady Macbeth washing her hands:
 
-> Out, damned spot; out, I say. One, two,—why, then ’tis time to do’t. Hell is murky. Fie, my lord, fie, a soldier and afeard? What need we fear who knows it when none can call our power to account? Yet who would have thought the old man to have had so much blood in him? (William Shakespeare, 1606)
+> Out, damned spot; out, I say. One, two,—why, then ’tis time to do’t. Hell is murky. Fie, my lord, fie, a soldier and afeard? What need we fear who knows it when none can call our power to account? Yet who would have thought the old man to have had so much blood in him? (Shakespeare, 1606)
 
 There are several MacKaye songs that seem to contain similar references, for instance 'Don't you know ink washes out easier than blood' ('Repeater' by Fugazi, 1990), 'Soap and water will never get rid of that spot' ('Clean Kill' by Coriky, 2020). 
 
@@ -130,11 +134,13 @@ Institute of Medicine (US) Committee on the Evaluation of the Department of Defe
 
 Liebes, T. (2009). Our war/their war: Comparing the intifadeh and the gulf war on U.S. and Israeli television. Critical Studies in Media Communication. https://doi.org/10.1080/15295039209366814
 
+MacKaye, I. (2022, February 2). Reappraising Steady Diet of Nothing (O. Sheppard, Interviewer) [Interview]. https://thebattleground.eu/2022/02/02/reappraising-steady-diet-of-nothing/
+
 Purvis, S. (1991). The Media and the Gulf War. RSA Journal, 139(5423), 735–744.
 
 Schultz, B. (2005). Broadcast News Producing. SAGE Publications, Inc. https://doi.org/10.4135/9781452233093
 
-William Shakespeare. (1606). The Tragedy of Macbeth (Act 5, scene 1, lines 30–34; Vol. 2). Classic Books Company.
+Shakespeare, W. (1606). The Tragedy of Macbeth (Act 5, scene 1, lines 30–38; The Complete Oxford Shakespeare, Vol. 3). Oxford University Press
 
 Wright, I. J., & Lalonde, R. (2021, July). Polish with Robert Lalonde. https://open.spotify.com/episode/4ZfA4IVWpWj4rdKUlIEXOr
 
