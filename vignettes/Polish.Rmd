@@ -43,9 +43,11 @@ releases_data_input %>%
 ```
 On the 12th January 1991 the US congress authorized the use of force to eject Iraq from Kuwait, and ‘Operation Desert Storm’ started on the 16th of January with US warplanes attacking targets in Iraq and Kuwait (Institute of Medicine (US) Committee on the Evaluation of the Department of Defense Comprehensive Clinical Evaluation Program, 1997).
 
+On that same day Fugazi played at a protest at Lafayette Park, in front of the White House:
+> “The timing of this was unbelievable. Suddenly, they’d set a date to bomb Iraq, and the date we had the permit for the park was a couple of days before it,” recalled Ian MacKaye, frontman of Fugazi, the headliners of the show. The city’s punk dissenters arrived en masse, braving bracing temperatures. “Not only was it cold, but it was raining and snowing. It was a miserable day, and yet thousands of people came out. It was a pretty incredible show.” (Ian MacKaye quoted in Anderson, 2015)
 
-It seems highly likely that the unfolding events of the US involvement in the Gulf war may have influenced at least 2 of the songs on Steady Diet of Nothing: ‘Nice New Outfit’ and ‘Polish’, which were probably amongst the last songs to be written for the album.   
-
+The Fugazi show in front of the White House did not include either 'Nice New Outfit' or 'Polish', and neither had been performed previously, suggesting that those songs probably hadn't been finished yet.
+It seems highly likely that the unfolding events of the US involvement in the Gulf war may have influenced those two songs, which were probably among the last songs to be written for the album. 
 
 ‘Nice New Outfit’ contains the lyrics: 
 
@@ -53,13 +55,22 @@ It seems highly likely that the unfolding events of the US involvement in the Gu
 
 Laser-guided bombs were initially developed during the Vietnam war but their first large-scale use was during the Gulf war (Browne, 1991). 
 
+The Gulf war was nicknamed the “video-game war” due to the pervasive television coverage of bombing raids and targets apparently being hit:  
+
+> This superiority was exercised by televising the high-end war technology the US and its allies used during the war. However, in all this reporting about war, TV provided an extremely limited view of the fighting. In fact, it was a “bird-view” of the fighting as the Defense Department supplied most of the video of the air war. Recorded at night and with night vision equipment, the images resembled a video game (“Television – The Persian Gulf War”), hence the war being nicknamed – The Video Game War. (Žigić, 2023)
+
+> The uneasy relationship between war and video games has been an issue at least since the first Gulf War. At a press conference in February, 1991 General Norman Schwartzkopf felt compelled to remind Americans that "This [Operation Desert Storm] is not a video game" (Stahl, 2006)
+
+The White House protest show and the apparent reference to laser-guided bombs in 'Nice New Outfit' strongly suggest that both 'Polish' and 'Nice New Outfit' were still being worked on when the Gulf war had already started, perhaps while Fugazi were in the studio at Inner Ear recording the album. Given that the album was recorded in January 1991 this narrows down the period in which these 2 songs were probably finished to the last 19 days of January.
+
 ## Lyrics
 
-If not otherwise cited all quotes here are from Polish by Fugazi. 
+If not otherwise cited all quotes are from 'Polish' by Fugazi. 
 
 > Got with the program, swallowed it whole, sugar made it easy, ice made it cold.
 
-This probably refers to the way in which TV news was used by politicians and military leaders to make the case for the US going to war against Iraq and the way in which many people were easily persuaded. 
+This probably refers to the way in which television news was used by politicians and military leaders to make the case for the US going to war against Iraq and the way in which many people were easily persuaded. 'Sugar' brings to mind 'sugar-coated mindless garbage' from 'MTV-Get Off the Air' (Dead Kennedys, 1985). ‘Ice’ could be a seasonal reference as it was probably winter when the song was written, or perhaps a more specific reference to the protest in front of the White House in particular:
+> “Of the hundreds of raucous punk protest concerts organized by Positive Force, the enduring Washington DC youth activist collective, only one gave President George HW Bush insomnia and Fugazi near-frostbite. Called the Punk Percussion Protest and War On Poverty Not In the Middle East, the now-infamous demonstration was staged directly in front of the White House on 12 January 1991. Long planned as a multi-artist rally that would draw attention to homelessness in America, the event took a hairpin turn as Operation Desert Storm grew imminent.” (Anderson, 2015)
 
 > Reached out and touched them on a TV screen, broke out the polish, scrubbed it clean, scrubbed it clean, that dirty machine.
 
@@ -67,15 +78,17 @@ The Gulf war was televised more than any war had been up to that time, due to th
 
 >“We swamped the region with as many people and pieces of high technology we could afford and get permission for. It produced on-the-day war reporting on a scale never seen before. People will argue about which was the first 'television war'. Vietnam? The Israeli invasion of Lebanon? The Falklands? I have no doubt that the Gulf was the first war in which the full potential of satellite technology was used, bringing with it new technical and ethical challenges for broadcasters” (Purvis, 1991)
 
-People use polish to make something shine, perhaps alluding to the shine of a TV screen.  “Scrubbed it clean” brings to mind the image of blood and Lady Macbeth washing her hands:
+People use polish to make something shine - but it should be clean first. The idea of polishing seems dissonant which comes next - scrubbing clean a dirty machine. “Scrubbed it clean” brings to mind the image of blood and Lady Macbeth:
 
 > Out, damned spot; out, I say. One, two,—why, then ’tis time to do’t. Hell is murky. Fie, my lord, fie, a soldier and afeard? What need we fear who knows it when none can call our power to account? Yet who would have thought the old man to have had so much blood in him? (Shakespeare, 1606)
 
 There are several MacKaye songs that seem to contain similar references, for instance 'Don't you know ink washes out easier than blood' ('Repeater' by Fugazi, 1990), 'Soap and water will never get rid of that spot' ('Clean Kill' by Coriky, 2020). 
 
-‘that dirty machine’ suggests the machinery of war.  The way in which TV journalists tend to present war has been the subject of research:  
+‘that dirty machine’ suggests the machinery of war. The way in which television journalists tend to present war has been the subject of research:  
 
 >‘In "our" war coverage, television journalists tend to excise the opposite side, sanitize the suffering inflicted on it, attribute equal strength to both sides, personalize "our" side, demonize "their" side, and decontextualize its aggressive actions.’ (Liebes, 2009)
+
+Another possibility is the use of polish to black out a television screen, by someone who does not want to see what the television is showing - quite possible given the relentless and unpleasant nature of television war coverage. 
 
 The song continues: 
 
@@ -87,7 +100,7 @@ The list here relates to thought and perception: ‘the only answer, your only p
 
 ‘Please don’t share’ suggests individuals are expected to receive what they are being served in isolation.  
 
-The omission of the ending to the phrase ‘Nothing is going on in…’ hints at how censorship and editing decisions may shape the perceptions of people relying on the TV to inform themselves about the world. 
+The omission of the ending to the phrase ‘Nothing is going on in…’ hints at how censorship and editing decisions may shape the perceptions of people relying on the television to inform themselves about the world. 
 
 > There is your manner, what you wear, your diseases and your repairs, all your belongings, please don't share, nothing is going on in there.
 
@@ -101,29 +114,49 @@ Again, the image of sanitization and what cannot be cleaned (blood). Package ver
 
 > Came home flat busted only to be saved; everything comes down to you in a world concave, world concave, so well behaved, we still turn on, thirty minutes long, we still turn on.
 
-‘Came home flat busted only to be saved’ suggests someone getting home and slumping in front of the TV, but that is not necessarily the only meaning, it could also refer to someone using their time and energy to do something else more worthwhile than watching TV.  
+‘Came home flat busted only to be saved’ suggests someone getting home and slumping in front of the television, but that is not necessarily the only meaning, it could also refer to someone using their time and energy to do something else more worthwhile than watching television.   
 
 ‘everything comes down to you in a world concave’ sounds like a call to action, to engage with the world and with other people – unlike the TV screen which is convex (or it would have been at the time this song was written), we are immersed in and surrounded by the real world.  
 
-The song ends with a criticism of passivity, ‘so well behaved’ echoes the starting line ‘got with the program’. ‘Thirty minutes long’ probably refers to what used to be a typical duration of TV news broadcasts (Schultz, 2005, p. 89). 
+The song ends with a criticism of passivity, ‘so well behaved’ echoing the starting line ‘got with the program’. 
+
+'We still turn on' sounds like a weary acknowledgement that despite everything, it is hard to ignore the television coverage of the unfolding war. 
+
+‘Thirty minutes long’ probably refers to what used to be a typical duration of TV news broadcasts (Schultz, 2005, p. 89). 
 
 ## Discussion
 
-It isn't always clear who is doing what in this song. Who reaches out and touches who? Who breaks out the polish? Who scrubs clean the dirty machine? Who came home flat busted, and who saved them? 
+It isn't always clear who is doing what in this song. Who reaches out and touches who? Who breaks out the polish? Who scrubs clean the dirty machine? Who came home flat busted, and who saved them? Some of this vagueness might be deliberate, echoing the nature of television war coverage where it isn't clear who is doing what, or what is really happening. 
 
-'You' is clearer - 'everything comes down to you in a world concave' sounds like a direct appeal to the listener. 
+'You' is clearer - 'everything comes down to you in a world concave' sounds like a direct appeal to the listener, perhaps echoing the sentiment of 'The Revolution Will Not Be Televised' (Scott-Heron, 1971).   
 
 The use of 'we' seems to indicate the community formed by band and audience. 
 
-A recent discussion about this song on the podcast 'The Alphabetical Fugazi' seemed to conclude that the song was mainly a criticism of TV culture (Wright & Lalonde, 2021). There have been many previous songs critical of TV culture, for instance '(Welcome) Television' (Beatnigs, 1988). What makes this song different from previous songs about TV is the context in which it was written - the build-up to the Gulf war, and perhaps the early stages of the war itself. The lyrics seem to reflect on the role of TV in this context, and the potential role of ordinary people in resisting such wars. 
+A recent discussion about this song on the podcast 'The Alphabetical Fugazi' focused on television and described the topic of this song, “disliking television programming”, as being relatively low-stakes compared to other songs on the same album such as ‘Reclamation’ (Wright & Lalonde, 2021). 
 
-At the Lafayette Park show (in front of the White House) Ian MacKaye gives a short speech by way of introduction to KYEO in which he shared some thoughts about the build-up to war that seemed to be happening, which seem related to the content of the song Polish:
+There have been many previous songs critical of television, for instance ‘The Revolution will not be Televised’ (Scott-Heron, 1971), ‘TV Party’ (Black Flag, 1981), ‘MTV-Get Off the Air’ (Dead Kennedys, 1985), ‘She Watch Channel Zero?!’ (Public Enemy, 1988) and '(Welcome) Television' (The Beatnigs, 1988) – to name some likely points of reference for the present song.
 
-> “I gotta tell you I’m kinda terrified, it’s definitely looking like a situation where you can’t turn around and worst of all it’s a decision that none of us can even make, except for the fact that we didn’t say anything in the first place about it, so because we didn’t, it’s time to get even more louder and make more volume make more noise … (Guy) like he says, they think they’re going to have a war over there, but they’re going to have to fight a war over here too … (Ian) keep your eyes open”  (Fugazi, 1991b)
+The strength of feeling conveyed by the song's performance - MacKaye sounds angry right from the start - seems to contradict the idea that this is just another song about television. The music sounds much more urgent than that, the singing seems to express outrage, and it builds up to a crescendo that makes my spine tingle. What makes this song different is the focus on how television was used in the context of the build-up to the Gulf war, and perhaps the early stages of the war itself.
+
+The Lafayette Park show (in front of the White House on the 12th of January 1991) seems worth revisiting at this point. 
+
+> The day before the event, a heavy snowstorm hit the city. The next day, temperatures nudged into the 40s and the snow melted, but is was cold and rainy. With the country preparing for war, police blanketed the White House area. Despite the weather, around 3000 people showed up, including rarely seen old allies like Squip. As the protesters beat on oil barrels, drums, tin cans, and kettles, the organizers wondered what to do about the show. Playing on an unprotected stage in the rain could expose musicians and crew to potential electrocution. At one point the rain stopped, only to begin again just as the band was ready to go. Organizers and musicians huddled on the stage, trying to decide what to do. Finally, feeling the gravity of the political moment, MacKaye said simply, ‘Let’s fucking do it!’ All available hands scrambled to uncover the gear and prepare for the chancy performance. (Andersen & Jenkins, 2009)
+
+The willingness of the band to play in the rain on an outdoor stage on a cold day, risking potential electrocution, clearly illustrates their strength of feeling over all that was at stake. Ian MacKaye gave a short speech by way of introduction to KYEO in which he shared some thoughts which seem related to the content of the song Polish: 
+
+> I gotta tell you I’m kinda terrified, it’s definitely looking like a situation where you can’t turn around and worst of all it’s a decision that none of us can even make, except for the fact that we didn’t say anything in the first place about it, so because we didn’t, it’s time to get even more louder and make more volume make more noise (Fugazi, 1991b)
 
 ## References
 
+Andersen, M., & Jenkins, M. (2009). Dance of days: Two decades of punk in the nation’s capital. Akashic Books.
+
+Anderson, S. (2015, August 21). Positive Force: The film that remembers when punk took on the White House. The Guardian. https://www.theguardian.com/music/2015/aug/21/positive-force-punk-activism-washington-dc-documentary
+
+Black Flag. (1981, December). TV Party. SST.
+
 Browne, M. W. (1991, February 26). Invention That Shaped the Gulf War: The Laser-Guided Bomb. The New York Times. https://www.nytimes.com/1991/02/26/science/invention-that-shaped-the-gulf-war-the-laser-guided-bomb.html
+
+Dead Kennedys. (1985). MTV-Get Off the Air. Alternative Tentacles.
 
 Fugazi. (1991a). Steady Diet of Nothing (060). Dischord Records. https://www.dischord.com/release/060/steady-diet-of-nothing
 
@@ -137,13 +170,25 @@ Liebes, T. (2009). Our war/their war: Comparing the intifadeh and the gulf war o
 
 MacKaye, I. (2022, February 2). Reappraising Steady Diet of Nothing (O. Sheppard, Interviewer) [Interview]. https://thebattleground.eu/2022/02/02/reappraising-steady-diet-of-nothing/
 
+Public Enemy. (1988, June 28). She Watch Channel Zero?! Columbia Records, Columbia Records / Legacy Recordings & Def Jam Recordings.
+
 Purvis, S. (1991). The Media and the Gulf War. RSA Journal, 139(5423), 735–744.
 
 Schultz, B. (2005). Broadcast News Producing. SAGE Publications, Inc. https://doi.org/10.4135/9781452233093
 
+Scott-Heron, G. (1971). The Revolution Will Not Be Televised. Flying Dutchman.
+
 Shakespeare, W. (1606). The Tragedy of Macbeth (Act 5, scene 1, lines 30–38; The Complete Oxford Shakespeare, Vol. 3). Oxford University Press
 
+Stahl, R. (2006). Have you played the war on terror? Critical Studies in Media Communication, 23(2), 112–130.
+
+The Beatnigs. (1988). (Welcome) Television. Alternative Tentacles.
+
 Wright, I. J., & Lalonde, R. (2021, July). Polish with Robert Lalonde. https://open.spotify.com/episode/4ZfA4IVWpWj4rdKUlIEXOr
+
+Žigić, K. (2023). Media Representations of the Gulf War: What Transpired on the Battlefront? [PhD Thesis, University of Zagreb. Faculty of Humanities and Social Sciences.]. https://repozitorij.ffzg.unizg.hr/islandora/object/ffzg:7592
+
+
 
 
 
