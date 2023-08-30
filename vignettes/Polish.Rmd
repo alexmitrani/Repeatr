@@ -33,7 +33,7 @@ The original title of the track was Steady Diet and it was introduced as such by
 Judging from the dates of debut live performances in the Fugazi Live Series, the songs on Steady Diet of Nothing were written at different times in a period of about 3 years and 3 months, from October 1987 to January 1991. 
 
 
-```{r}
+```{r echo=FALSE}
 releases_data_input %>%
   filter(release=="steady diet of nothing") %>%
   select(song, date) %>%
@@ -50,11 +50,11 @@ On that same day Fugazi played at a protest at Lafayette Park, in front of the W
 The Fugazi show in front of the White House did not include either Nice New Outfit or Polish, and neither had been performed previously, suggesting that those songs probably hadn't been finished yet.
 It seems highly likely that the unfolding events of the US involvement in the Gulf war may have influenced those two songs, which were probably among the last songs to be written for the album. 
 
-Nice New Outfit contains the lyrics: 
+Nice New Outfit contains the lines: 
 
 >‘You can pinpoint your chimney and drop one down its length. In your nice new outfit, sorry about the mess’. 
 
-Laser-guided bombs were initially developed during the Vietnam war but their first large-scale use was during the Gulf war (Browne, 1991). 
+Laser-guided bombs were initially developed during the Vietnam war but their first large-scale use was during the Gulf war (Browne, 1991). The Alphabetical Fugazi episode on Nice New Outfit noted the reference to the laser-guided bombs, the context of the Gulf war, and the way the war was sold to the public (Wright & Audra, 2021).  
 
 The Gulf war was nicknamed the “video-game war” due to the pervasive television coverage of bombing raids and targets apparently being hit:  
 
@@ -62,7 +62,7 @@ The Gulf war was nicknamed the “video-game war” due to the pervasive televis
 
 > The uneasy relationship between war and video games has been an issue at least since the first Gulf War. At a press conference in February, 1991 General Norman Schwartzkopf felt compelled to remind Americans that "This [Operation Desert Storm] is not a video game" (Stahl, 2006)
 
-The White House protest show and the apparent reference to laser-guided bombs in Nice New Outfit strongly suggest that both Polish and Nice New Outfit were still being worked on when the Gulf war had already started, perhaps while Fugazi were in the studio at Inner Ear recording the album. Given that the album was recorded in January 1991 this narrows down the period in which these 2 songs were probably finished to the last 19 days of January.
+The White House protest show and the apparent reference to laser-guided bombs in Nice New Outfit strongly suggest that both Polish and Nice New Outfit were still being worked on when the Gulf war had already started, perhaps while Fugazi were in the studio at Inner Ear recording the album. Given that the album was recorded in January 1991 this narrows down the period in which these 2 songs were probably finished to the last 19 days of January. 
 
 ## Lyrics
 
@@ -84,15 +84,11 @@ People use polish to make something shine - but it should be clean first. The id
 
 > Out, damned spot; out, I say. One, two,—why, then ’tis time to do’t. Hell is murky. Fie, my lord, fie, a soldier and afeard? What need we fear who knows it when none can call our power to account? Yet who would have thought the old man to have had so much blood in him? (Shakespeare, 1606)
 
-There are several MacKaye songs that seem to contain similar references, for instance "Don't you know ink washes out easier than blood" ('Repeater' by Fugazi, 1990), 'Soap and water will never get rid of that spot' ('Clean Kill' by Coriky, 2020). 
-
 "that dirty machine" suggests the machinery of war. The way in which television journalists tend to present war has been the subject of research:  
 
 >"In 'our' war coverage, television journalists tend to excise the opposite side, sanitize the suffering inflicted on it, attribute equal strength to both sides, personalize 'our' side, demonize 'their' side, and decontextualize its aggressive actions." (Liebes, 2009)
 
 Another possibility is the use of polish to black out a television screen, by someone who does not want to see what the television is showing - quite possible given the relentless and unpleasant nature of television war coverage. 
-
-The song continues: 
 
 ### This is your portion, please don't share, the only answer, your only prayer, your reflection, please don't stare, nothing is going on in...
 
@@ -112,7 +108,7 @@ Here the list seems to refer to behaviour and needs: "your manner, what you wear
 
 ### Update the cleanser, never mind the stain, we'll take the package, let the contents remain, contents remain as yet unnamed.
 
-Again, the image of sanitization and what cannot be cleaned (blood). Package versus contents contrasts the superficial appearance of things, how they are presented, how they are sold, with what they really are on a deeper more intrinsic level – which is not shared with the viewer and may not be seen at all.
+This seems to speak of technological change or political change linked to sanitization. "The stain" probably refers to what cannot be cleaned: blood and loss of life. Package versus contents contrasts the superficial appearance of things with what they really are on a deeper level, which may be unknown.
 
 ### Came home flat busted only to be saved; everything comes down to you in a world concave, world concave, so well behaved, we still turn on, thirty minutes long, we still turn on.
 
@@ -134,19 +130,25 @@ It isn't always clear who is doing what in this song. Who reaches out and touche
 
 The use of "we" seems to indicate the community formed by band and audience. 
 
-A recent discussion about this song on the podcast The Alphabetical Fugazi focused on television and described the topic of this song, “disliking television programming”, as being relatively low-stakes compared to other songs on the same album such as Reclamation (Wright & Lalonde, 2021). 
+A recent discussion about this song on the podcast The Alphabetical Fugazi focused on this being a song about television:
 
-There have been many previous songs critical of television, for instance The Revolution will not be Televised (Scott-Heron, 1971), TV Party (Black Flag, 1981), MTV-Get Off the Air (Dead Kennedys, 1985), She Watch Channel Zero?! (Public Enemy, 1988) and (Welcome) Television (The Beatnigs, 1988) – to name some likely points of reference for the present song.
+> The stakes are higher with Reclamation and it seems like a topic that needs a plain-spoken, on-the nose statement, whereas maybe disliking television programming is not one of those topics, and that's the main difference
+(Ian James Wright in Wright & Lalonde, 2021).  
 
-The strength of feeling conveyed by the song's performance - MacKaye sounds angry right from the start - seems to contradict the idea that this is just another song about television. The music sounds much more urgent than that, the singing seems to express outrage, and it builds up to a crescendo that makes my spine tingle. What makes this song different is the focus on how television was used in the context of the build-up to the Gulf war, and perhaps the early stages of the war itself.
+There have been many previous songs critical of the use of television, for instance The Revolution will not be Televised (Scott-Heron, 1971), TV Party (Black Flag, 1981), MTV-Get Off the Air (Dead Kennedys, 1985), She Watch Channel Zero?! (Public Enemy, 1988) and (Welcome) Television (The Beatnigs, 1988) – to name some likely points of reference for the present song. What makes this song different is the focus on how television was used in the context of the build-up to the Gulf war and perhaps the early stages of the war itself. Considering this specific context helps to make sense of the strength of feeling expressed in the song, the urgency, like the music is trying to transmit an important message. 
 
-The Lafayette Park show (in front of the White House on the 12th of January 1991) seems worth revisiting at this point. 
+The show in front of the White House on the 12th of January 1991 seems worth revisiting at this point.
 
 > The day before the event, a heavy snowstorm hit the city. The next day, temperatures nudged into the 40s and the snow melted, but is was cold and rainy. With the country preparing for war, police blanketed the White House area. Despite the weather, around 3000 people showed up, including rarely seen old allies like Squip. As the protesters beat on oil barrels, drums, tin cans, and kettles, the organizers wondered what to do about the show. Playing on an unprotected stage in the rain could expose musicians and crew to potential electrocution. At one point the rain stopped, only to begin again just as the band was ready to go. Organizers and musicians huddled on the stage, trying to decide what to do. Finally, feeling the gravity of the political moment, MacKaye said simply, ‘Let’s fucking do it!’ All available hands scrambled to uncover the gear and prepare for the chancy performance. (Andersen & Jenkins, 2009)
 
-The willingness of the band to play in the rain on an outdoor stage on a cold day, risking potential electrocution, clearly illustrates their strength of feeling over all that was at stake. Ian MacKaye gave a short speech by way of introduction to KYEO in which he shared some thoughts which seem related to the content of the song Polish: 
+The willingness of the band to play in the rain on an outdoor stage on a cold day, risking potential electrocution, clearly illustrates how strongly they felt about all that was at stake. By way of an introduction to KYEO Ian MacKaye spoke the following words: 
 
 > I gotta tell you I’m kinda terrified, it’s definitely looking like a situation where you can’t turn around and worst of all it’s a decision that none of us can even make, except for the fact that we didn’t say anything in the first place about it, so because we didn’t, it’s time to get even more louder and make more volume make more noise (Fugazi, 1991b)
+
+In conclusion, this song is about the use of television in a very specific context - the participation of the US in the Gulf war (1990 - 1991). Polish seems to be strongly related to several other songs on the Steady Diet of Nothing album, in particular Nice New Outfit and KYEO. Keep Your Eyes Open (KYEO) emphasises the importance of awareness complementing the concern about superficiality in Polish, with specific reference to the military: "The troops are quiet tonight, but it's not alright, because we know they're planning something". 
+
+
+
 
 ## References
 
@@ -154,11 +156,11 @@ Andersen, M., & Jenkins, M. (2009). Dance of days: Two decades of punk in the na
 
 Anderson, S. (2015, August 21). Positive Force: The film that remembers when punk took on the White House. The Guardian. https://www.theguardian.com/music/2015/aug/21/positive-force-punk-activism-washington-dc-documentary
 
-Black Flag. (1981, December). TV Party. SST.
+Black Flag. (1981, December). TV Party [Song]. On Damaged. SST.
 
 Browne, M. W. (1991, February 26). Invention That Shaped the Gulf War: The Laser-Guided Bomb. The New York Times. https://www.nytimes.com/1991/02/26/science/invention-that-shaped-the-gulf-war-the-laser-guided-bomb.html
 
-Dead Kennedys. (1985). MTV-Get Off the Air. Alternative Tentacles.
+Dead Kennedys. (1985). MTV-Get Off the Air [Song]. On Frankenchrist. Alternative Tentacles.
 
 Fugazi. (1991a). Steady Diet of Nothing (060). Dischord Records. https://www.dischord.com/release/060/steady-diet-of-nothing
 
@@ -172,27 +174,23 @@ Liebes, T. (2009). Our war/their war: Comparing the intifadeh and the gulf war o
 
 MacKaye, I. (2022, February 2). Reappraising Steady Diet of Nothing (O. Sheppard, Interviewer) [Interview]. https://thebattleground.eu/2022/02/02/reappraising-steady-diet-of-nothing/
 
-Public Enemy. (1988, June 28). She Watch Channel Zero?! Columbia Records, Columbia Records / Legacy Recordings & Def Jam Recordings.
+Public Enemy. (1988, June 28). She Watch Channel Zero?! [Song]. On It Takes a Nation of Millions to Hold Us Back. Columbia Records, Legacy Recordings & Def Jam Recordings.
 
 Purvis, S. (1991). The Media and the Gulf War. RSA Journal, 139(5423), 735–744.
 
 Schultz, B. (2005). Broadcast News Producing. SAGE Publications, Inc. https://doi.org/10.4135/9781452233093
 
-Scott-Heron, G. (1971). The Revolution Will Not Be Televised. Flying Dutchman.
+Scott-Heron, G. (1971). The Revolution Will Not Be Televised [Song]. On Pieces of a Man. Flying Dutchman.
 
-Shakespeare, W. (1606). The Tragedy of Macbeth (Act 5, scene 1, lines 30–38; The Complete Oxford Shakespeare, Vol. 3). Oxford University Press
+Shakespeare, W. (1606). The Tragedy of Macbeth (Act 5, scene 1, lines 30–38; The Complete Oxford Shakespeare, Vol. 3). Oxford University Press.
 
 Stahl, R. (2006). Have you played the war on terror? Critical Studies in Media Communication, 23(2), 112–130.
 
-The Beatnigs. (1988). (Welcome) Television. Alternative Tentacles.
+The Beatnigs. (1988). (Welcome) Television [Song]. On The Beatnigs. Alternative Tentacles.
+
+Wright, I. J., & Audra, B. (2021, May). “Nice New Outfit” with Buick Audra. https://open.spotify.com/episode/5UwIC8JHrvIBac71enEkKP
 
 Wright, I. J., & Lalonde, R. (2021, July). Polish with Robert Lalonde. https://open.spotify.com/episode/4ZfA4IVWpWj4rdKUlIEXOr
 
 Žigić, K. (2023). Media Representations of the Gulf War: What Transpired on the Battlefront? [PhD Thesis, University of Zagreb. Faculty of Humanities and Social Sciences.]. https://repozitorij.ffzg.unizg.hr/islandora/object/ffzg:7592
-
-
-
-
-
-
 
