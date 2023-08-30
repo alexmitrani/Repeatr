@@ -18,7 +18,7 @@ Exploring the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series).
 
 [Playlist](https://alexmitrani.github.io/Repeatr/articles/Playlist.html) A list of recommended shows - work in progress.
 
-[Polish](https://alexmitrani.github.io/Repeatr/articles/Polish.html) A discussion of the song 'Polish'. 
+[Polish](https://alexmitrani.github.io/Repeatr/articles/Polish.html) A discussion of the song Polish from the Steady Diet of Nothing album.  
 
 ## Repeatr package for R
 
