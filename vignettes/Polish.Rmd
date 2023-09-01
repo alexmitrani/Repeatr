@@ -20,6 +20,10 @@ knitr::opts_chunk$set(
 library(Repeatr)
 ```
 
+By Alex Mitrani
+1 September 2023
+
+
 ## Introduction
 
 Polish is the ninth track on Fugazi's Steady Diet of Nothing album which was recorded at Inner Ear studios in January 1991 (Fugazi, 1991a). 
@@ -72,15 +76,17 @@ Here the lyrics of Polish will be used as headings and commented in detail.
 
 ### Got with the program, swallowed it whole, sugar made it easy, ice made it cold.
 
-This probably refers to the way in which television news was used by politicians and military leaders to make the case for the US going to war against Iraq and the way in which many people were easily persuaded. "Sugar" brings to mind "sugar-coated mindless garbage" from MTV-Get Off the Air (Dead Kennedys, 1985). "Ice" could be a seasonal reference as it was probably winter when the song was written, or perhaps a more specific reference to the protest in front of the White House in particular:
+This probably refers to the way in which television news was used by politicians and military leaders to make the case for the US going to war against Iraq and the way in which many people were easily persuaded. "Sugar" brings to mind "sugar-coated mindless garbage" from MTV-Get Off the Air (Dead Kennedys, 1985). 
+
+"Ice" could be a seasonal reference as it was probably winter when the song was written, and perhaps a specific reference to the protest in front of the White House:
 
 > “Of the hundreds of raucous punk protest concerts organized by Positive Force, the enduring Washington DC youth activist collective, only one gave President George HW Bush insomnia and Fugazi near-frostbite. Called the Punk Percussion Protest and War On Poverty Not In the Middle East, the now-infamous demonstration was staged directly in front of the White House on 12 January 1991. Long planned as a multi-artist rally that would draw attention to homelessness in America, the event took a hairpin turn as Operation Desert Storm grew imminent.” (Anderson, 2015)
 
-Ice could also refer to the ‘forward-looking, infrared radar (FLIR)’, which is a guidance system for bombs that requires the sensor to be very cold: 
+Ice could also refer to forward-looking infrared radar (FLIR), a guidance system for bombs that requires the sensor to be very cold: 
 
 > One of the principal airborne devices used to assist attacks with Paveway-equipped bombs is the forward-looking, infrared radar, or FLIR, which is fitted to the noses of many of the American fighters and attack aircraft in the gulf region. The heart of the FLIR is a special camera with a sensor chilled to minus 320 degrees Fahrenheit. The very low temperature of this device enables it to detect the faint infrared radiation given off by warmer objects, including tanks and warm human beings. (Browne, 1991) 
 
-Minus 320 degrees Fahrenheit is approximately minus 195 degrees Celsius - much colder than freezing.  
+Minus 320 degrees Fahrenheit is approximately minus 195 degrees Celsius - much colder than freezing. "Ice made it cold" may also allude to the emotional detachment implied in the  planning and execution of military operations. 
 
 ### Reached out and touched them on a TV screen, broke out the polish, scrubbed it clean, scrubbed it clean, that dirty machine.
 
