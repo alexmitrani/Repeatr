@@ -207,4 +207,5 @@ This is a list of shows that I plan to listen to again in future, based on what 
 [FLS0870, Maxwell's, Hoboken, NJ, USA, 1998-07-27](https://www.dischord.com/fugazi_live_series/hoboken-nj-usa-72798)<br>
 [FLS0872, Sanctuary Theater, Washington, DC, USA, 1998-07-31](https://www.dischord.com/fugazi_live_series/washington-dc-usa-73198)<br>
 [FLS0875, First Avenue, Minneapolis, MN, USA, 1998-11-15](https://www.dischord.com/fugazi_live_series/minneapolis-mn-usa-111598)<br>
+[FLS0877, Sokol Hall, Omaha, NE, USA, 1998-11-17](https://www.dischord.com/fugazi_live_series/omaha-ne-usa-111798)<br>
 
