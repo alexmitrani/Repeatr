@@ -2,7 +2,7 @@
 
 > ["I had a name, but now I'm a number"](https://fugazi.bandcamp.com/track/repeater)
 
-Exploring the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) metadata. 
+Exploring the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series). 
 
 ## Articles
 
@@ -14,7 +14,7 @@ Exploring the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) 
 
 [Combination Lock](articles/CombinationLock.html) explores Fugazi's use of transitions between songs: which ones they played live, and how often compared to others.  
 
-[Link Tracks](articles/LinkTracks.html) A series of brief explorations of the Fugazi Live Series data.  
+[Link Tracks](articles/LinkTracks.html) A series of brief explorations of the Fugazi Live Series data.
 
 [Playlist](articles/Playlist.html) A list of recommended shows - work in progress. 
 
@@ -31,6 +31,9 @@ The package gives easy access to the functions, dataframes, and related document
 ## Repeatr web app
 
 A web app that presents some of the data from the Repeatr package with interactive controls can be found [here](https://alexmitrani.shinyapps.io/Repeatr-app/).
+
+## Quiz
+[Fugazi Live Series Quiz #1](https://forms.gle/cxWd38nPi6Dtk9ub8)
 
 ## Acknowledgements
 
