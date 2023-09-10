@@ -5,7 +5,7 @@ vignette: >
   %\VignetteIndexEntry{polish with a small p}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-bibliography: references.bib
+bibliography: references_polish_with_a_small_p.bib
 link-citations: true
 ---
 
