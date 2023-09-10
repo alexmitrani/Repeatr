@@ -59,11 +59,17 @@ Here the lyrics of Nice New Outfit will be used as headings and commented in det
 
 The person who is being addressed is someone who has recently made a change, perhaps from one side to another. The critical tone of the song suggests that they might be viewed as a turncoat, someone who has shifted their allegiance for personal benefit.
 
+There was a politician who was reported to be shopping for clothes at around the time the war started:
+
+> When the President's call came in to Representative Thomas S. Foley, Democrat of Washington, the Speaker of the House, at 5:30 P.M., Mr. Foley was shopping for shirts [@dowd1991]
+
+However, Foley does not seem to deserve to be the subject of all the anger expressed in this song - he was consistently against the war, he made a speech against the war and he voted against the joint resolution on the use of military force in the Congress [@clymer1991].
+
 ### There's blood in your mouth, but not in mine.
 
 People are going to die and it will be your responsibility not mine. This indicates disassociation between the author and the subject of the song.
 
-### You think that I'm a sucker for it, that we're all fodder for this. Quick purchase once brought to market, dress it up and it's sold. 
+### You think that I'm a sucker for it, that we're all fodder for this. Quick purchase once brought to market, dress it up and it's sold.
 
 This probably refers to the way the use of military force in the Persian Gulf was promoted to the American public, as if many people were going to be easily convinced. The author does not buy the arguments offered to support military intervention.
 
@@ -71,41 +77,37 @@ This probably refers to the way the use of military force in the Persian Gulf wa
 
 A bedsit is a single-room lodging so a bedsitter's tour does not go anywhere or offer anything. This conveys the frustration and powerlessness of someone railroaded into something they are opposed to - in this case, a war. "Your adventure" is similar to "your nice new outfit" and suggests bitter separation and opposition between the author and the subject of the song.
 
-### In your nice new outfit, all straight clean lines. There's blood in your mouth, dressed to the nines. 
+### In your nice new outfit, all straight clean lines. There's blood in your mouth, dressed to the nines.
 
 According to the dictionary, "dressed to the nines" means "to be wearing fashionable or formal clothes for a special occasion" [@cambridgedictionary2023]
 
 This suggests civilian clothes, although Buick Audra commented that the person in question might be a member of the military [@wright2021].
 
-### You're number one with a bullet, that's money well spent, 
+### You're number one with a bullet, that's money well spent,
 
 "Number One with a Bullet" originates from the Billboard Hot 100 chart where a song at #1 but still rising was marked with a bullet symbol.
 
-> the phrase \"number one with a bullet\" refers to a Hot 100 innovation, a small symbol indicating that a song is on its way up. To be \"number one with a bullet\" means you\'re at the top and still rising, thus not likely to vacate the penthouse anytime soon. [@giaimo2015].
+> the phrase "number one with a bullet" refers to a Hot 100 innovation, a small symbol indicating that a song is on its way up. To be "number one with a bullet" means you're at the top and still rising, thus not likely to vacate the penthouse anytime soon. [@giaimo2015].
 
 Therefore, the subject is probably someone who is at the top of their area or on the rise. One possible interpretation would be that this refers to the person with the top job in the USA - the president.
 
-"number one with a bullet" is probably also a reference to the context in which the song was probably written - the start of the gulf war - and the role that the person played in the events leading up to the war.
+"number one with a bullet" is probably also a reference to the context in which the song was probably written - the start of the gulf war - and the role that the subject played in the events leading up to the war.
 
-"that's money well spent" probably refers to donations or contributions, and strongly suggests that the subject of the song might be a politician.
+"that's money well spent" probably refers to donations or contributions, suggesting that the war would probably be in the interests of those who supported the subject financially. This strongly suggests that the subject of the song might be a politician.
 
 ### your mouth plastered like poster, address yourself success.
 
 "your mouth plastered like poster" brings to mind TV broadcasts of speeches and interviews, specifically walls of TV screens such as those in shop windows, all the TVs tuned to the same channel, showing someone making a speech.
 
-"address yourself success" suggests that the subject of the song might be in it for themselves, their actions motivated by personal interest and benefit. "address" is used for formal speeches, as in "address to the nation".
+"address yourself success" suggests that the subject of the song might be in it for themselves, their actions motivated by personal interest and benefit. "address" is used for formal speeches, as in "address to the nation":
 
-> When we are successful, and we will be, we have a real chance at this new world order, an order in
-> which a credible United Nations can use its peace-keeping role to fulfil the promise and vision of the
-> U.N.'s founders. [@bush1991]
+> When we are successful, and we will be, we have a real chance at this new world order, an order in which a credible United Nations can use its peace-keeping role to fulfill the promise and vision of the U.N.'s founders. [@bush1991]
 
-"address yourself success" also hints at "dress for success" [@entwistle2023], which would link back to the "nice new outfit" main theme.
+"address yourself success" also hints at "dress for success" [@entwistle2023], which would link back to the "nice new outfit" theme.
 
 Perhaps there is also an echo of Dylan here, who sang on Subterranean Homesick Blues:
 
-> Learn to dance, get dressed
->
-> Get blessed, try to be a success [@bobdylan1965]
+> Learn to dance, get dressed Get blessed, try to be a success [@bobdylan1965]
 
 This was one of the first popular songs to be accompanied by a video (part of a documentary film), in which Dylan shows a series of prompt cards with words often varying from the lyrics - in the case of "success" the prompt card says "suck-cess" [@pennebaker1967].
 
@@ -115,9 +117,9 @@ Laser-guided bombs were initially developed during the Vietnam war but their fir
 
 > The FLIR also contains a laser "designator" linked to a cross-hair sight on the pilot's computer display. To send a 2,000-pound bomb hurtling through the ventilation shaft of a hardened bunker, a pilot has only to head his airplane in approximately the right direction, release his bomb, fix the FLIR cross-hairs on the target, and order his laser designator to remain locked on the target. [@browne1991]
 
-### In your nice new outfit, sorry about the mess. 
+### In your nice new outfit, sorry about the mess.
 
-This line contrasts the "nice new outfit" with "all straight clean lines" with the impending disaster of war, in an ironic way suggesting that the subject of the song will likely keep their distance from the actual violence and will probably not accept full responsibility. "sorry about the mess" is another hint that the subject of the song is a civilian, not a member of the military, who would be unlikely to apologize, and for whom war would not be an "adventure".
+This line contrasts the "nice new outfit" with "all straight clean lines" with the impending disaster of war, in an ironic way suggesting that the subject of the song will keep their distance from the actual violence and will not accept full responsibility. "sorry about the mess" is another hint that the subject of the song is a civilian, not a member of the military, who would be unlikely to apologize, and for whom war would not be an "adventure".
 
 ## Discussion
 
@@ -125,6 +127,6 @@ The White House protest show and the apparent reference to laser-guided bombs in
 
 ## Conclusion
 
-XX
+To be continued.
 
 ## References
