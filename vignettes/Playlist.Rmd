@@ -211,4 +211,5 @@ This is a list of shows that I plan to listen to again in future, based on what 
 [FLS0877, Sokol Hall, Omaha, NE, USA, 1998-11-17](https://www.dischord.com/fugazi_live_series/omaha-ne-usa-111798)<br>
 [FLS0880, Fitzgerald's, Houston, TX, USA, 1998-11-21](https://www.dischord.com/fugazi_live_series/houston-tx-usa-112198)<br>
 [FLS0881, Liberty Lunch, Austin, TX, USA, 1998-11-22](https://www.dischord.com/fugazi_live_series/austin-tx-usa-112298)<br>
+[FLS0889, Sanctuary Theater, Washington, DC, USA, 1998-12-03](https://dischord.com/fugazi_live_series/washington-dc-usa-120398)<br>
 
