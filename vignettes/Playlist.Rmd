@@ -213,4 +213,5 @@ This is a list of shows that I plan to listen to again in future, based on what 
 [FLS0881, Liberty Lunch, Austin, TX, USA, 1998-11-22](https://www.dischord.com/fugazi_live_series/austin-tx-usa-112298)<br>
 [FLS0889, Sanctuary Theater, Washington, DC, USA, 1998-12-03](https://dischord.com/fugazi_live_series/washington-dc-usa-120398)<br>
 [FLS0890, George Mason University Johnson Center, Fairfax, VA, USA, 1998-12-04](https://dischord.com/fugazi_live_series/fairfax-va-usa-120498)<br>
+[FLS0891, Soma, San Diego, CA, USA, 1999-02-18](https://dischord.com/fugazi_live_series/san-diego-ca-usa-21899)<br>
 
