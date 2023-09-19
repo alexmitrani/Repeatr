@@ -1250,8 +1250,8 @@ server <- function(input, output, session) {
 
     mysongs <- songs_data() %>%
       group_by(song, releasedate) %>%
-      summarize(renditions = max(count) - min(count),
-                pcnt_change = (max(count) - min(count))/(min(count)+1),
+      summarize(renditions = max(count) - min(count) + 1,
+                pcnt_change = (max(count) - min(count) + 1)/(min(count)+1),
                 from = min(date),
                 to=max(date)) %>%
       ungroup() %>%
@@ -1291,7 +1291,7 @@ server <- function(input, output, session) {
   output$songsdatatable <- DT::renderDataTable(DT::datatable({
     data <- songs_data3() %>%
       group_by(release, song, from, to, released) %>%
-      summarize(renditions = max(count) - min(count)) %>%
+      summarize(renditions = max(count) - min(count) + 1) %>%
       ungroup() %>%
       arrange(desc(renditions))
   },
