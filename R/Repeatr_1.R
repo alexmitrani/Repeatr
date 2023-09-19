@@ -132,6 +132,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   othervariables <- othervariables %>%
     mutate(country = ifelse(flsid=="FLS0970", "USA", country),
            country = ifelse(city=="Ljubljana" & year>=1991, "Slovenia", country),
+           country = ifelse(city=="Prague" & year<=1992, "Czechoslovakia", country),
            city = ifelse(flsid=="FLS0970", "San Francisco", city),
            x = ifelse(flsid=="FLS0970", -122.4272376, x),
            y = ifelse(flsid=="FLS0970", 37.760407, y),
@@ -269,6 +270,10 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   # Liga da Sociedade Joinvilense
   othervariables <- othervariables %>%
     mutate(venue = ifelse(gid=="joinville-brazil-81597", "Liga da Sociedade Joinvilense", venue))
+
+  # Correct venue name for 1998 quebec city show https://dischord.com/fugazi_live_series/quebec-city-qc-canada-72298
+  othervariables <- othervariables %>%
+    mutate(venue = ifelse(gid=="quebec-city-qc-canada-72298", "Centre des Loisirs Saint-Sacrement", venue))
 
   # impute values where they are missing
   meanattendance <- othervariables %>%

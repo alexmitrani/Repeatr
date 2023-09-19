@@ -461,6 +461,10 @@ track; artist; album; name; duration
 20; Fugazi; 19880630 Maxwell's, Hoboken, NJ, USA; Encore; 2:23
 21; Fugazi; 19880630 Maxwell's, Hoboken, NJ, USA; Glueman; 4:33
 22; Fugazi; 19880630 Maxwell's, Hoboken, NJ, USA; Outro; 1:12
+01; Fugazi; 19880716 Beach Theater, Virginia Beach, VA, USA; Turn Off Your Guns; 3:14
+02; Fugazi; 19880716 Beach Theater, Virginia Beach, VA, USA; Furniture; 3:31
+03; Fugazi; 19880716 Beach Theater, Virginia Beach, VA, USA; Interlude; 0:17
+04; Fugazi; 19880716 Beach Theater, Virginia Beach, VA, USA; Give Me The Cure; 2:59
 01; Fugazi; 19880718 Fort Reno, Washington, DC, USA; Intro; 2:02
 02; Fugazi; 19880718 Fort Reno, Washington, DC, USA; Break-In; 1:44
 03; Fugazi; 19880718 Fort Reno, Washington, DC, USA; The Word; 5:17
@@ -18916,7 +18920,7 @@ track; artist; album; name; duration
 01; Fugazi; 19981122 Liberty Lunch, Austin, TX, USA; Intro; 1:36
 02; Fugazi; 19981122 Liberty Lunch, Austin, TX, USA; Turnover; 3:58
 03; Fugazi; 19981122 Liberty Lunch, Austin, TX, USA; Facet Squared; 2:44
-04; Fugazi; 19981122 Liberty Lunch, Austin, TX, USA; Placed Position; 2:42
+04; Fugazi; 19981122 Liberty Lunch, Austin, TX, USA; Place Position; 2:42
 05; Fugazi; 19981122 Liberty Lunch, Austin, TX, USA; Reclamation; 4:11
 06; Fugazi; 19981122 Liberty Lunch, Austin, TX, USA; Interlude 1; 2:00
 07; Fugazi; 19981122 Liberty Lunch, Austin, TX, USA; Caustic Acrostic; 2:07
