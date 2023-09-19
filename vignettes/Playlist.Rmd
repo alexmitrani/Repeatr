@@ -52,7 +52,7 @@ This is a list of shows that I plan to listen to again in future, based on what 
 [FLS0307, 9:30 Club, Washington, DC, USA, 1991-01-03](https://www.dischord.com/fugazi_live_series/washington-dc-usa-10391)<br>
 [FLS0308, Lafayette Park, Washington, DC, USA, 1991-01-12](https://www.dischord.com/fugazi_live_series/washington-dc-usa-11291)<br>
 [FLS0309, Sacred Heart Church, Washington, DC, USA, 1991-02-15](https://www.dischord.com/fugazi_live_series/washington-dc-usa-21591)<br>
-[FLS0310 Twisters, Richmond, VA, USA, 1991-02-20](https://www.dischord.com/fugazi_live_series/richmond-va-usa-22091)<br>
+[FLS0310, Twisters, Richmond, VA, USA, 1991-02-20](https://www.dischord.com/fugazi_live_series/richmond-va-usa-22091)<br>
 [FLS0314, Marquee, New York, NY, USA, 1991-03-05](https://www.dischord.com/fugazi_live_series/new-york-ny-usa-30591)<br>
 [FLS0315, Maxwell's, Hoboken, NJ, USA, 1991-03-06](https://www.dischord.com/fugazi_live_series/hoboken-nj-usa-30691)<br>
 [FLS0325, Church House Inn, Providence, RI, USA, 1991-03-18](https://www.dischord.com/fugazi_live_series/providence-ri-usa-31891)<br>
@@ -169,10 +169,10 @@ This is a list of shows that I plan to listen to again in future, based on what 
 [FLS0755, Soma, San Diego, CA, USA, 1995-11-10](https://www.dischord.com/fugazi_live_series/san-diego-ca-usa-111095)<br>
 [FLS0759, Liberty Lunch, Austin, TX, USA, 1995-11-16](https://www.dischord.com/fugazi_live_series/austin-tx-usa-111695)<br>
 [FLS0761, Showcase Special Events, San Antonio, TX, USA, 1995-11-18](https://www.dischord.com/fugazi_live_series/san-antonio-tx-usa-111895)<br>
-[FLS0764 Black Cat, Washington, DC, USA, 1996-01-30](https://www.dischord.com/fugazi_live_series/washington-dc-usa-13096)<br>
-[FLS0765 9:30 Club, Washington, DC, USA, 1996-01-31](https://www.dischord.com/fugazi_live_series/washington-dc-usa-13196)<br>
-[FLS0772 40 Watt, Athens, GA, USA, 1996-03-26](https://www.dischord.com/fugazi_live_series/athens-ga-usa-32696)<br>
-[FLS0773 University of Alabama Spragins Hall Gym, Huntsville, AL, USA, 1996-03-27](https://www.dischord.com/fugazi_live_series/huntsville-al-usa-32796)<br>
+[FLS0764, Black Cat, Washington, DC, USA, 1996-01-30](https://www.dischord.com/fugazi_live_series/washington-dc-usa-13096)<br>
+[FLS0765, 9:30 Club, Washington, DC, USA, 1996-01-31](https://www.dischord.com/fugazi_live_series/washington-dc-usa-13196)<br>
+[FLS0772, 40 Watt, Athens, GA, USA, 1996-03-26](https://www.dischord.com/fugazi_live_series/athens-ga-usa-32696)<br>
+[FLS0773, University of Alabama Spragins Hall Gym, Huntsville, AL, USA, 1996-03-27](https://www.dischord.com/fugazi_live_series/huntsville-al-usa-32796)<br>
 [FLS0775, Masquerade, Atlanta, GA, USA, 1996-03-29](https://www.dischord.com/fugazi_live_series/atlanta-ga-usa-32996)<br>
 [FLS0781, Tipitina's, New Orleans, LA, USA, 1996-04-05](https://www.dischord.com/fugazi_live_series/new-orleans-la-usa-40596)<br>
 [FLS0783, D&I Colonial Hall, Houston, TX, USA, 1996-04-08](https://www.dischord.com/fugazi_live_series/houston-tx-usa-40896)<br>
