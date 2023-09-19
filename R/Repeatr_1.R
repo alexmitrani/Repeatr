@@ -1052,7 +1052,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     xray <- xray %>%
       mutate(unreleased = ifelse(tracktype==2 | (tracktype==1 & date<releasedate) | song=="preprovisional" | song=="world beat",1,0))
 
-    xray2 <- summary %>%
+    xray2 <- Repeatr::summary %>%
       select(songid, launchdate)
 
     xray <- xray %>%

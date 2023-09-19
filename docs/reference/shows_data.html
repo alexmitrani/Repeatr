@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9164</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9165</span>
       </span>
     </div>
 
@@ -66,6 +66,9 @@
     </li>
     <li>
       <a href="../articles/Repeatr-app.html">Repeatr-app</a>
+    </li>
+    <li>
+      <a href="../articles/The%20Emperor's%20New%20Outfit.html">The Emperor's New Outfit</a>
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
@@ -168,21 +171,21 @@
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="va">shows_data</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,048 × 15</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    gid        tour   year date       venue city  country atten…¹ door_…² latit…³</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> aalst-bel… 1990…  <span style="text-decoration: underline;">1</span>990 1990-09-23 Netw… Aalst Belgium     600 <span style="color: #949494;">""</span>         50.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> aberdeen-… 1999…  <span style="text-decoration: underline;">1</span>999 1999-05-04 Lemo… Aber… Scotla…     550 <span style="color: #949494;">"</span>6(pou…    57.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> adelaide-… 1993…  <span style="text-decoration: underline;">1</span>993 1993-11-11 Dom … Adel… Austra…     550 <span style="color: #949494;">"</span>15<span style="color: #949494;">"</span>      -<span style="color: #BB0000;">34.9</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> adelaide-… 1996…  <span style="text-decoration: underline;">1</span>996 1996-11-12 Adel… Adel… Austra…     913 <span style="color: #949494;">""</span>        -<span style="color: #BB0000;">34.9</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> adelaide-… 1991…  <span style="text-decoration: underline;">1</span>991 1991-10-22 Le R… Adel… Austra…     450 <span style="color: #949494;">""</span>        -<span style="color: #BB0000;">34.9</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> akron-oh-… 1990…  <span style="text-decoration: underline;">1</span>990 1990-06-28 Jack… Akron USA         700 <span style="color: #949494;">"</span>5<span style="color: #949494;">"</span>        41.0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> albany-ny… 1993…  <span style="text-decoration: underline;">1</span>993 1993-09-20 S.U.… Alba… USA        <span style="text-decoration: underline;">1</span>000 <span style="color: #949494;">"</span>5<span style="color: #949494;">"</span>        42.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> albuquerq… 1995…  <span style="text-decoration: underline;">1</span>995 1995-11-13 Five… Albu… USA         895 <span style="color: #949494;">"</span>5<span style="color: #949494;">"</span>        35.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> albuquerq… 2001…  <span style="text-decoration: underline;">2</span>001 2001-04-08 Suns… Albu… USA        <span style="text-decoration: underline;">1</span>100 <span style="color: #949494;">"</span>6<span style="color: #949494;">"</span>        35.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> albuquerq… 1991…  <span style="text-decoration: underline;">1</span>991 1991-09-11 Suns… Albu… USA         800 <span style="color: #949494;">"</span>5<span style="color: #949494;">"</span>        35.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 1,038 more rows, 5 more variables: longitude &lt;dbl&gt;, urls &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   fls_link &lt;chr&gt;, minutes &lt;dbl&gt;, sound_quality &lt;chr&gt;, and abbreviated</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   variable names ¹​attendance, ²​door_price, ³​latitude</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    gid          tour   year date       venue city  country attendance door_price</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> aalst-belgi… 1990…  <span style="text-decoration: underline;">1</span>990 1990-09-23 Netw… Aalst Belgium        600 <span style="color: #949494;">""</span>        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> aberdeen-sc… 1999…  <span style="text-decoration: underline;">1</span>999 1999-05-04 Lemo… Aber… Scotla…        550 <span style="color: #949494;">"</span>6(pounds…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> adelaide-au… 1993…  <span style="text-decoration: underline;">1</span>993 1993-11-11 Dom … Adel… Austra…        550 <span style="color: #949494;">"</span>15<span style="color: #949494;">"</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> adelaide-au… 1996…  <span style="text-decoration: underline;">1</span>996 1996-11-12 Adel… Adel… Austra…        913 <span style="color: #949494;">""</span>        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> adelaide-sa… 1991…  <span style="text-decoration: underline;">1</span>991 1991-10-22 Le R… Adel… Austra…        450 <span style="color: #949494;">""</span>        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> akron-oh-us… 1990…  <span style="text-decoration: underline;">1</span>990 1990-06-28 Jack… Akron USA            700 <span style="color: #949494;">"</span>5<span style="color: #949494;">"</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> albany-ny-u… 1993…  <span style="text-decoration: underline;">1</span>993 1993-09-20 S.U.… Alba… USA           <span style="text-decoration: underline;">1</span>000 <span style="color: #949494;">"</span>5<span style="color: #949494;">"</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> albuquerque… 1995…  <span style="text-decoration: underline;">1</span>995 1995-11-13 Five… Albu… USA            895 <span style="color: #949494;">"</span>5<span style="color: #949494;">"</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> albuquerque… 2001…  <span style="text-decoration: underline;">2</span>001 2001-04-08 Suns… Albu… USA           <span style="text-decoration: underline;">1</span>100 <span style="color: #949494;">"</span>6<span style="color: #949494;">"</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> albuquerque… 1991…  <span style="text-decoration: underline;">1</span>991 1991-09-11 Suns… Albu… USA            800 <span style="color: #949494;">"</span>5<span style="color: #949494;">"</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1,038 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 6 more variables: latitude &lt;dbl&gt;, longitude &lt;dbl&gt;, urls &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   fls_link &lt;chr&gt;, minutes &lt;dbl&gt;, sound_quality &lt;chr&gt;</span></span>
 </code></pre></div>
     </div>
   </div>
@@ -197,7 +200,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
   <p class="preferably">Using <a href="https://preferably.amirmasoudabdol.name/?source=footer" class="external-link">preferably</a> template.</p>
 </div>
 

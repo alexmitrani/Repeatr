@@ -33,7 +33,7 @@ This file contains the following variables: index	releaseid	release	track_number
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9164</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9165</span>
       </span>
     </div>
 
@@ -70,6 +70,9 @@ This file contains the following variables: index	releaseid	release	track_number
     </li>
     <li>
       <a href="../articles/Repeatr-app.html">Repeatr-app</a>
+    </li>
+    <li>
+      <a href="../articles/The%20Emperor's%20New%20Outfit.html">The Emperor's New Outfit</a>
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
@@ -135,8 +138,8 @@ This file contains the following variables: index	releaseid	release	track_number
 <span class="r-in"><span><span class="va">releases_songs_durations_wikipedia</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"releases_songs_durations_wikipedia.csv"</span>, package <span class="op">=</span> <span class="st">"Repeatr"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">releasesdatafile</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"releases.csv"</span>, package <span class="op">=</span> <span class="st">"Repeatr"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">Repeatr_1_results</span> <span class="op">&lt;-</span> <span class="fu">Repeatr_1</span><span class="op">(</span>mycsvfile <span class="op">=</span> <span class="va">fugotcha</span>, mysongdatafile <span class="op">=</span> <span class="va">releases_songs_durations_wikipedia</span>, releasesdatafile <span class="op">=</span> <span class="va">releasesdatafile</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining, by = c("date", "venue")</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining, by = "year"</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(date, venue)`</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(year)`</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot open file 'C:/Users/alexm/Documents/GitHub/Repeatr/docs/reference/inst/extdata/fls_venue_geocoding.csv': No such file or directory</span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in file(file, "rt"):</span> cannot open the connection</span>
 <span class="r-in"><span></span></span>
@@ -154,7 +157,7 @@ This file contains the following variables: index	releaseid	release	track_number
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
   <p class="preferably">Using <a href="https://preferably.amirmasoudabdol.name/?source=footer" class="external-link">preferably</a> template.</p>
 </div>
 

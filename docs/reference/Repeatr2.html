@@ -30,7 +30,7 @@ The variables song_number, first_song and last_song were defined after data clea
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9164</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9165</span>
       </span>
     </div>
 
@@ -67,6 +67,9 @@ The variables song_number, first_song and last_song were defined after data clea
     </li>
     <li>
       <a href="../articles/Repeatr-app.html">Repeatr-app</a>
+    </li>
+    <li>
+      <a href="../articles/The%20Emperor's%20New%20Outfit.html">The Emperor's New Outfit</a>
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
@@ -194,24 +197,24 @@ The variables song_number, first_song and last_song were defined after data clea
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="va">Repeatr2</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 878,232 × 24</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     case gid      date        year launchdate years…¹ song_…²   alt song  choice</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>     1 washing… 1987-09-03  <span style="text-decoration: underline;">1</span>987 1987-09-03       0       1    36 furn…      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>     1 washing… 1987-09-03  <span style="text-decoration: underline;">1</span>987 1987-09-03       0       1    43 in d…      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>     1 washing… 1987-09-03  <span style="text-decoration: underline;">1</span>987 1987-09-03       0       1    45 joe …      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>     1 washing… 1987-09-03  <span style="text-decoration: underline;">1</span>987 1987-09-03       0       1    55 merc…      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>     1 washing… 1987-09-03  <span style="text-decoration: underline;">1</span>987 1987-09-03       0       1    78 song…      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>     1 washing… 1987-09-03  <span style="text-decoration: underline;">1</span>987 1987-09-03       0       1    87 the …      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>     1 washing… 1987-09-03  <span style="text-decoration: underline;">1</span>987 1987-09-03       0       1    88 turn…      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>     1 washing… 1987-09-03  <span style="text-decoration: underline;">1</span>987 1987-09-03       0       1    92 wait…      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>     3 washing… 1987-09-03  <span style="text-decoration: underline;">1</span>987 1987-09-03       0       3    36 furn…      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>     3 washing… 1987-09-03  <span style="text-decoration: underline;">1</span>987 1987-09-03       0       3    43 in d…      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 878,222 more rows, 14 more variables: played &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   available_rl &lt;dbl&gt;, available_gl &lt;dbl&gt;, first_song &lt;dbl&gt;, last_song &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   releaseid &lt;int&gt;, release &lt;chr&gt;, track_number &lt;int&gt;, instrumental &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     case gid        date        year launchdate yearsold song_number   alt song </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>     1 washingto… 1987-09-03  <span style="text-decoration: underline;">1</span>987 1987-09-03        0           1    36 furn…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>     1 washingto… 1987-09-03  <span style="text-decoration: underline;">1</span>987 1987-09-03        0           1    43 in d…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>     1 washingto… 1987-09-03  <span style="text-decoration: underline;">1</span>987 1987-09-03        0           1    45 joe …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>     1 washingto… 1987-09-03  <span style="text-decoration: underline;">1</span>987 1987-09-03        0           1    55 merc…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>     1 washingto… 1987-09-03  <span style="text-decoration: underline;">1</span>987 1987-09-03        0           1    78 song…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>     1 washingto… 1987-09-03  <span style="text-decoration: underline;">1</span>987 1987-09-03        0           1    87 the …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>     1 washingto… 1987-09-03  <span style="text-decoration: underline;">1</span>987 1987-09-03        0           1    88 turn…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>     1 washingto… 1987-09-03  <span style="text-decoration: underline;">1</span>987 1987-09-03        0           1    92 wait…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>     3 washingto… 1987-09-03  <span style="text-decoration: underline;">1</span>987 1987-09-03        0           3    36 furn…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>     3 washingto… 1987-09-03  <span style="text-decoration: underline;">1</span>987 1987-09-03        0           3    43 in d…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 878,222 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 15 more variables: choice &lt;dbl&gt;, played &lt;dbl&gt;, available_rl &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   available_gl &lt;dbl&gt;, first_song &lt;dbl&gt;, last_song &lt;dbl&gt;, releaseid &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   release &lt;chr&gt;, track_number &lt;int&gt;, instrumental &lt;int&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   vocals_picciotto &lt;int&gt;, vocals_mackaye &lt;int&gt;, vocals_lally &lt;int&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   duration_seconds &lt;int&gt;, first_song_instrumental &lt;dbl&gt;, and abbreviated</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   variable names ¹​yearsold, ²​song_number</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   duration_seconds &lt;int&gt;, first_song_instrumental &lt;dbl&gt;</span></span>
 </code></pre></div>
     </div>
   </div>
@@ -226,7 +229,7 @@ The variables song_number, first_song and last_song were defined after data clea
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
   <p class="preferably">Using <a href="https://preferably.amirmasoudabdol.name/?source=footer" class="external-link">preferably</a> template.</p>
 </div>
 

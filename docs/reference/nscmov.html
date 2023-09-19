@@ -37,7 +37,7 @@ reinstall the Shiny app on shinyapps.io
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9164</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9165</span>
       </span>
     </div>
 
@@ -74,6 +74,9 @@ reinstall the Shiny app on shinyapps.io
     </li>
     <li>
       <a href="../articles/Repeatr-app.html">Repeatr-app</a>
+    </li>
+    <li>
+      <a href="../articles/The%20Emperor's%20New%20Outfit.html">The Emperor's New Outfit</a>
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
@@ -130,7 +133,7 @@ reinstall the Shiny app on shinyapps.io
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">fls_venue_geocoding_update</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"fls_venue_geocoding.csv"</span>, package <span class="op">=</span> <span class="st">"Repeatr"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">othervariables</span> <span class="op">&lt;-</span> <span class="fu">nscmov</span><span class="op">(</span>fls_venue_geocoding_update_filename <span class="op">=</span> <span class="va">fls_venue_geocoding_update</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining, by = c("venue", "city", "country")</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(venue, city, country)`</span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in setwd(mydatadir):</span> cannot change working directory</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
@@ -147,7 +150,7 @@ reinstall the Shiny app on shinyapps.io
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
   <p class="preferably">Using <a href="https://preferably.amirmasoudabdol.name/?source=footer" class="external-link">preferably</a> template.</p>
 </div>
 

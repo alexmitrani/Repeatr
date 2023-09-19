@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9164</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9165</span>
       </span>
     </div>
 
@@ -66,6 +66,9 @@
     </li>
     <li>
       <a href="../articles/Repeatr-app.html">Repeatr-app</a>
+    </li>
+    <li>
+      <a href="../articles/The%20Emperor's%20New%20Outfit.html">The Emperor's New Outfit</a>
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
@@ -159,23 +162,24 @@
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="va">xray</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,796 × 23</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    fls_link        year tour  date       units songs relea…¹ unrel…² other debut</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> &lt;a href='http…  <span style="text-decoration: underline;">1</span>987 1987… 1987-09-03 minu…  31.0    0       31.0  0.93     8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> &lt;a href='http…  <span style="text-decoration: underline;">1</span>987 1987… 1987-09-26 minu…  30.0    0       30.0  6.65     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> &lt;a href='http…  <span style="text-decoration: underline;">1</span>987 1987… 1987-10-07 minu…  37.0    0       37.0  9.09     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> &lt;a href='http…  <span style="text-decoration: underline;">1</span>987 1987… 1987-10-16 minu…  31.8    0       31.8  5.29     2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> &lt;a href='http…  <span style="text-decoration: underline;">1</span>987 1987… 1987-11-25 minu…  34.9    0       34.9  8.6      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> &lt;a href='http…  <span style="text-decoration: underline;">1</span>987 1987… 1987-12-03 minu…  45.7    0       45.7  8.62     2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> &lt;a href='http…  <span style="text-decoration: underline;">1</span>987 1987… 1987-12-05 minu…  33.7   -<span style="color: #BB0000;">5.55</span>    39.2 12.8      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> &lt;a href='http…  <span style="text-decoration: underline;">1</span>987 1987… 1987-12-28 minu…  52.8    0       52.8  2.93     0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> &lt;a href='http…  <span style="text-decoration: underline;">1</span>988 1988… 1988-01-21 minu…  44.6    0       44.6  7.73     0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> &lt;a href='http…  <span style="text-decoration: underline;">1</span>988 1988… 1988-01-22 minu…  40.5    0       40.5 10.5      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 1,786 more rows, 13 more variables: farewell &lt;dbl&gt;, incumbent &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   fugazi &lt;dbl&gt;, margin_walker &lt;dbl&gt;, three_songs &lt;dbl&gt;, repeater &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    fls_link    year tour  date       units songs released unreleased other debut</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> &lt;a href='…  <span style="text-decoration: underline;">1</span>987 1987… 1987-09-03 minu…  31.0     0          31.0  0.93     8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> &lt;a href='…  <span style="text-decoration: underline;">1</span>987 1987… 1987-09-26 minu…  30.0     0          30.0  6.65     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> &lt;a href='…  <span style="text-decoration: underline;">1</span>987 1987… 1987-10-07 minu…  37.0     0          37.0  9.09     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> &lt;a href='…  <span style="text-decoration: underline;">1</span>987 1987… 1987-10-16 minu…  31.8     0          31.8  5.29     2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> &lt;a href='…  <span style="text-decoration: underline;">1</span>987 1987… 1987-11-25 minu…  34.9     0          34.9  8.6      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> &lt;a href='…  <span style="text-decoration: underline;">1</span>987 1987… 1987-12-03 minu…  45.7     0          45.7  8.62     2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> &lt;a href='…  <span style="text-decoration: underline;">1</span>987 1987… 1987-12-05 minu…  33.7    -<span style="color: #BB0000;">5.55</span>       39.2 12.8      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> &lt;a href='…  <span style="text-decoration: underline;">1</span>987 1987… 1987-12-28 minu…  52.8     0          52.8  2.93     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> &lt;a href='…  <span style="text-decoration: underline;">1</span>988 1988… 1988-01-21 minu…  44.6     0          44.6  7.73     0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> &lt;a href='…  <span style="text-decoration: underline;">1</span>988 1988… 1988-01-22 minu…  40.5     0          40.5 10.5      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1,786 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 13 more variables: farewell &lt;dbl&gt;, incumbent &lt;dbl&gt;, fugazi &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   margin_walker &lt;dbl&gt;, three_songs &lt;dbl&gt;, repeater &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   steady_diet_of_nothing &lt;dbl&gt;, in_on_the_killtaker &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   red_medicine &lt;dbl&gt;, end_hits &lt;dbl&gt;, the_argument &lt;dbl&gt;, furniture &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   first_demo &lt;dbl&gt;, and abbreviated variable names ¹​released, ²​unreleased</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   first_demo &lt;dbl&gt;</span></span>
 </code></pre></div>
     </div>
   </div>
@@ -190,7 +194,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
   <p class="preferably">Using <a href="https://preferably.amirmasoudabdol.name/?source=footer" class="external-link">preferably</a> template.</p>
 </div>
 
