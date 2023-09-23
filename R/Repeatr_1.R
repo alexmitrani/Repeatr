@@ -899,6 +899,53 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     setwd(mydir)
 
 
+# Played with data --------------------------------------------------------
+
+    played_with_file <- system.file("extdata", "gid_fls_id_played_with.csv", package = "Repeatr")
+    played_with <- read.csv(played_with_file)
+
+    played_with <- played_with %>%
+      mutate_if(is.character, utf8::utf8_encode)
+
+    played_with <- played_with %>%
+      mutate(played_with = ifelse(gid=="bielefeld-germany-103188", "Pygmies", played_with))
+
+    played_with <- played_with %>%
+      mutate(played_with = ifelse(gid=="rome-italy-102790", "Ratos de Porão", played_with))
+
+    played_with <- played_with %>%
+      mutate(played_with = ifelse(gid=="ann-arbor-mi-usa-62390", "Ward, Phünhögg", played_with))
+
+    played_with <- played_with %>%
+      mutate(played_with = ifelse(gid=="bergara-spainbasque-101099", "Half Foot Outside, Lisabö", played_with))
+
+    played_with <- played_with %>%
+      mutate(played_with = ifelse(gid=="jawbone-canyon-ca-usa-90691", "Pop Defect, Sandy Duncan’s Eye, The Paper Tulips, The Offspring, The Fumes, This Great Religion, TVTV$", played_with))
+
+    played_with <- played_with %>%
+      mutate(played_with = ifelse(gid=="washington-dc-usa-101589", "Fidelity Jones, Tiik, Lungfish, Juliana Experience, Weatherhead, Moss Icon, Dog Born Society, Choke, Cabal, All White Jury, Daryl Stover, Caroline Ely, 200 Stitches, Transilience, Neverman", played_with))
+
+    played_with <- played_with %>%
+      mutate(played_with = ifelse(gid=="belo-horizonte-brazil-81594", "Stigmata, Jorge Cabeleira, Daizy Down, Oz, Intense Manner of Living, Virna Lisi", played_with))
+
+    played_with<-played_with %>%
+      separate_rows(played_with, sep=",")
+
+    played_with<-played_with %>%
+      separate_rows(played_with, sep="&amp;")
+
+    played_with <- played_with %>%
+      mutate(played_with = str_trim(played_with))
+
+    played_with <- played_with %>%
+      filter(played_with!="?")
+
+    setwd(mydatadir)
+
+    save(played_with, file = "played_with.rda")
+
+    setwd(mydir)
+
 # prepare input data for Repeatr-app --------------------------------------
 
     setwd(mydatadir)
