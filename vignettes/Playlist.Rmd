@@ -216,5 +216,7 @@ This is a list of shows that I plan to listen to again in future, based on what 
 [FLS0891, Soma, San Diego, CA, USA, 1999-02-18](https://dischord.com/fugazi_live_series/san-diego-ca-usa-21899)<br>
 [FLS0893, Veteran's Memorial Hall, Watsonville, CA, USA, 1999-02-20](https://dischord.com/fugazi_live_series/watsonville-ca-usa-22099)<br>
 [FLS0895, Maritime, San Francisco, CA, USA, 1999-02-22](https://dischord.com/fugazi_live_series/san-francisco-ca-usa-22299)<br>
+[FLS0897, Crest Theater, Sacramento, CA, USA, 1999-02-24](https://dischord.com/fugazi_live_series/sacramento-ca-usa-22499)<br>
+
 
 
