@@ -976,7 +976,6 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     played_with <- played_with %>%
       mutate(played_with = ifelse(played_with=="Int. Noise Conspiracy", "The International Noise Conspiracy", played_with))
 
-
     played_with<-played_with %>%
       separate_rows(played_with, sep=",")
 
