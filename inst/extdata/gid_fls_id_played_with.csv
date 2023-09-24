@@ -5,6 +5,7 @@ chapel-hill-nc-usa-92787,FLS0003,"Slush Puppies, Days Of"
 richmond-va-usa-100787,FLS0004,"Oi Polloi, Killjoy"
 washington-dc-usa-101687,FLS0005,Kingface
 frederick-md-usa-112587,FLS0006,"Three, Soulside, Second Nature"
+bethesda-md-usa-120287,FLS0007,NA
 washington-dc-usa-120387,FLS0008,"Soulside, The Hated, Thorns"
 middletown-ct-usa-120487,FLS0009,Soulside
 norwalk-ct-usa-120587,FLS0010,"Soulside, American Standard"
@@ -29,7 +30,9 @@ bozeman-mt-usa-51288,FLS0028,Homes With Pelicans
 spokane-wa-usa-51388,FLS0029,"Buzz amp; the Feedback, Coffee Achievers, Free Keg"
 tacoma-wa-usa-51588,FLS0030,"Brotherhood, Noise For Nothing"
 olympia-wa-usa-51688,FLS0031,"Dangermouse, Green Eggs & Ham"
+berkeley-ca-usa-52088,FLS0032,"Beatnigs, Yeastie Girlz, Crimpshrine"
 pomona-ca-usa-52288,FLS0033,"Savage Republic, Lazy Cowgirls, Public Humiliation"
+long-beach-ca-usa-52188,FLS0034,NA
 tucson-az-usa-52488,FLS0035,"Wind of Change, The Squares"
 college-station-tx-usa-52688,FLS0036,"Bad Mutha Goose, Hostile Union"
 houston-tx-usa-52788,FLS0037,Bad Mutha Goose
@@ -59,22 +62,32 @@ oslo-norway-102588,FLS0060,Life But How to Live It
 hamburg-germany-102788,FLS0061,Gulag
 berlin-germany-102888,FLS0062,Naked Raygun
 hannover-germany-102988,FLS0063,"Militant Mothers, Bionic"
-bielefeld-germany-103188,FLS0065,Bobo / AJZ
+kiel-germany-103088,FLS0064,NA
+bielefeld-germany-103188,FLS0065,Pygmies
 dusseldorf-germany-110188,FLS0066,Billy & the Willies
+waiblingen-germany-110288,FLS0067,NA
 homburg-germany-110388,FLS0068,Militant Mothers
 nagold-germany-110488,FLS0069,"Too Bad, NoNoYesNo, Militant Mothers"
 augsburg-germany-110588,FLS0070,Militant Mothers
 zurich-switzerland-110888,FLS0071,Kina
 ottobrunn-germany-110988,FLS0072,"Yeastie Girlz, NoNoYesNo, Target of Demand"
 linz-austria-111088,FLS0073,Target of Demand
+ljubljana-yugoslavia-111288,FLS0074,NA
+udine-italy-111488,FLS0075,NA
 naples-italy-111688,FLS0076,Randall Flagg
-milan-italy-111988,FLS0079,Overdrive
+rome-italy-111788,FLS0077,NA
+pisa-italy-111888,FLS0078,NA
+milan-italy-111988,FLS0079,"Impact, Rabid Duck"
+torino-italy-112088,FLS0080,NA
 paris-france-112288,FLS0081,Krull
 london-england-112488,FLS0082,"Sink, Playground, Exit Condition"
 liverpool-england-112688,FLS0083,"Joyce McKinney Experience, Heresy, Rose Rose"
 nottingham-england-112788,FLS0084,"Heresy, Rose Rose, Snuff"
 newport-wales-112888,FLS0085,Slow Jam
+dublin-ireland-112988,FLS0086,NA
 leeds-england-113088,FLS0087,"Joyce McKinney Experience, Karma Sutra"
+wigan-england-120188,FLS0088,NA
+canterbury-england-120288,FLS0089,"Playground, Pest Control"
 london-england-120588,FLS0090,"Beatnigs, God"
 eindhoven-netherlands-121688,FLS0091,Beatnigs
 washington-dc-usa-122988,FLS0092,"Soulside, Verbal Assault, Raincrow"
@@ -82,7 +95,9 @@ frederick-md-usa-11389,FLS0093,"Fire Party, Ignition, Why?"
 washington-dc-usa-12689,FLS0094,"Nation of Ulysses, Jackhammer Orchestra"
 washington-dc-usa-32489,FLS0095,"Swiz, Holy Rollers, Edsel"
 new-york-ny-usa-40589,FLS0096,"Edsel, Manifesto"
+princeton-nj-usa-40689,FLS0097,NA
 norwalk-ct-usa-40789,FLS0098,"Purple Geezus, Heads Up"
+middletown-ct-usa-40889,FLS0099,NA
 hoboken-nj-usa-40989,FLS0100,The Blisters
 morgantown-wv-usa-42889,FLS0101,Grizzly Fiction
 richmond-va-usa-43089,FLS0102,"Alternatives, Burma Jam, Butter Glove"
@@ -135,7 +150,7 @@ hoboken-nj-usa-100889,FLS0148,Holy Rollers
 new-york-ny-usa-100989,FLS0149,Holy Rollers
 washington-dc-usa-101589,FLS0150,"Fidelity Jones, Lungfish, & many others"
 amsterdam-netherlands-110389,FLS0151,Swamp surfers
-nijmegen-netherlands-110989,FLS0152,Radio Broadcast
+nijmegen-netherlands-110989,FLS0152,NA
 canterbury-england-111389,FLS0153,Snuff
 brighton-england-111489,FLS0154,"Silverfish, Sex and The Sand"
 portsmouth-england-111589,FLS0155,AC Temple
@@ -150,7 +165,7 @@ liverpool-england-112589,FLS0163,"Visions of Change, Can't Decide"
 newcastle-england-112689,FLS0164,"Crane, God's Ultimate Noise"
 glasgow-scotland-112789,FLS0165,"Stretch Heads, Dawson"
 manchester-england-112889,FLS0166,Jailhouse Recipes
-london-england-112989,FLS0167,"Senseless Things, Joyce McKinney Experience"
+london-england-112989,FLS0167,"Senseless Things, Joyce McKinney Exp."
 hamburg-germany-120289,FLS0168,Visions of Change
 berlin-germany-120389,FLS0169,Visions of Change
 heidelberg-germany-120489,FLS0170,Visions of Change
@@ -179,6 +194,7 @@ new-orleans-la-usa-32190,FLS0192,Red Army
 nashville-tn-usa-32390,FLS0193,Clockhammer
 knoxville-tn-usa-32490,FLS0194,Whitey
 chapel-hill-nc-usa-32590,FLS0195,Bricks
+poughkeepsie-ny-usa-41390,FLS0196,?
 northampton-ma-usa-41490,FLS0197,"Holy Rollers, Brood, Vampire Lezbos, Sex Kitchen"
 boston-ma-usa-42090,FLS0198,"Scram, Scudder"
 providence-ri-usa-42190,FLS0199,Firehose
@@ -218,7 +234,7 @@ green-bay-wi-usa-61890,FLS0232,"Nerve Circus, Jazzman, Road Affair"
 madison-wi-usa-61990,FLS0233,"Fifteen, Eight Bark"
 flint-mi-usa-62190,FLS0234,"Jawbox, Mondocane"
 detroit-mi-usa-62290,FLS0235,"Jawbox, Hay"
-ann-arbor-mi-usa-62390,FLS0236,"Ward, Phünhögg"
+ann-arbor-mi-usa-62390,FLS0236,"Ward, PhÃ¼nhÃ¶gg"
 kalamazoo-mi-usa-62490,FLS0237,"Jawbox, Slap of Reality, Mannequin Hand"
 toledo-oh-usa-62590,FLS0238,"Clodhopper, Trenchmouth, Gangster Fun"
 louisville-ky-usa-62690,FLS0239,Crain
@@ -271,16 +287,26 @@ zurich-switzerland-101790,FLS0285,Urge
 dornbirn-austria-101890,FLS0286,"Urge, Seven Sioux"
 wels-austria-101990,FLS0287,Urge
 vienna-austria-102090,FLS0288,"Urge, Seven Souix, No Fish On Friday"
-ljubljana-yugoslavia-102190,FLS0289,It's Not For Sale
+ljubljana-yugoslavia-102190,FLS0289,It s Not For Sale
 zagreb-yugoslavia-102290,FLS0290,Urge
 udine-italy-102490,FLS0291,Bambine
-rome-italy-102790,FLS0294,Ratos Del Porão
-lyon-france-103090,FLS0297,"G.I. Love, Victim's Family"
+milano-italy-102590,FLS0292,NA
+bologna-italy-102690,FLS0293,NA
+rome-italy-102790,FLS0294,Ratos Del PorÃ£o
+pisa-italy-102890,FLS0295,NA
+torino-italy-102990,FLS0296,NA
+lyon-france-103090,FLS0297,"G.I. Love, Victim s Family"
+barcelona-spain-110190,FLS0298,NA
+bordeaux-france-110290,FLS0299,NA
 poitiers-france-110390,FLS0300,Parkinson Square
+riec-sur-belon-france-110490,FLS0301,NA
 paris-france-110590,FLS0302,Dirty Districts
+nancy-france-110690,FLS0303,NA
 amsterdam-netherlands-110790,FLS0304,The Ex
+lorton-va-usa-122690,FLS0305,NA
 washington-dc-usa-10291,FLS0306,Autoclave
 washington-dc-usa-10391,FLS0307,Unrest
+washington-dc-usa-11291,FLS0308,NA
 washington-dc-usa-21591,FLS0309,"Nation of Ulysses, Admiral"
 richmond-va-usa-22091,FLS0310,"Breadwinner, Coral"
 philadelphia-pa-usa-30291,FLS0311,"Youth Tsunami, Random Children"
@@ -312,6 +338,7 @@ columbia-sc-usa-51091,FLS0336,Bedlam Hour
 athens-ga-usa-51191,FLS0337,Porn Orchard
 atlanta-ga-usa-51291,FLS0338,"Fiddlehead, Daisy"
 savannah-ga-usa-51391,FLS0339,"Slow Worm, Snout"
+jacksonville-fl-usa-51491,FLS0340,NA
 tampa-fl-usa-51591,FLS0341,Dirt
 miami-fl-usa-51691,FLS0342,"Funkhouser, Believers"
 orlando-fl-usa-51791,FLS0343,"Adventures of Immortality, Dirt"
@@ -397,6 +424,7 @@ washington-dc-usa-40492,FLS0422,"L7, Bikini Kill"
 philadelphia-pa-usa-40692,FLS0423,"Scrawl, High Karate"
 hoboken-nj-usa-40792,FLS0424,Haymaker
 new-york-ny-usa-40892,FLS0425,"Shudder to Think, Come"
+latham-ny-usa-40992,FLS0426,NA
 bennington-vt-usa-41092,FLS0427,Lunachicks
 worcester-ma-usa-41192,FLS0428,"Alloy, Grind"
 portland-me-usa-41292,FLS0429,Vampire Lezbos
@@ -424,11 +452,14 @@ diksmuide-belgium-52692,FLS0450,Girls Vs. Boys
 paris-france-52792,FLS0451,"Girls Vs. Boys, M.A.T."
 poitiers-france-52892,FLS0452,Dirty District
 bordeaux-france-52992,FLS0453,"Dirty Hands, Blind Folded"
+toulouse-france-53092,FLS0454,NA
 barcelona-spain-53192,FLS0455,Subterranean Kids
 madrid-spain-60292,FLS0456,Ink
 zaragoza-spain-60392,FLS0457,Ink
 torino-italy-60592,FLS0458,Free The Nation
 pisa-italy-60692,FLS0459,Glommin Geek
+rome-italy-60792,FLS0460,NA
+modena-italy-60892,FLS0461,NA
 padova-italy-60992,FLS0462,Frutteti Riarsi
 ljubljana-slovenia-61092,FLS0463,Junkfish
 budapest-hungary-61192,FLS0464,ADM
@@ -444,6 +475,7 @@ nuremberg-germany-62292,FLS0473,"Tech Ahead, Franz Flak"
 neuhausen-auf-den-fildern-germany-62392,FLS0474,"Tech Ahead, Coltello"
 v-schwenningen-germany-62492,FLS0475,Tech Ahead
 hannover-germany-62592,FLS0476,"Tech Ahead, No Twist"
+poznan-poland-62692,FLS0477,?
 berlin-germany-62892,FLS0478,"Tech Ahead, No Twist"
 osnabruck-germany-62992,FLS0479,"The Pygmies, Tech Ahead"
 dortmund-germany-63092,FLS0480,"Tech Ahead, No Twist"
@@ -474,6 +506,7 @@ athens-ga-usa-21893,FLS0504,Shudder to Think
 athens-ga-usa-21993,FLS0505,"Superchunk, Unrest"
 greensboro-nc-usa-22093,FLS0506,"Shudder to Think, Bad Dreamhouse"
 richmond-va-usa-22193,FLS0507,"Coral, Slant 6"
+washington-dc-usa-32193,FLS0508,NA
 college-park-md-usa-40293,FLS0509,"Slant 6, Hoover"
 charlottesville-va-usa-40493,FLS0510,Jawbox
 knoxville-tn-usa-40593,FLS0511,"Hypertribe, Lawn Darts"
@@ -498,6 +531,7 @@ los-angeles-ca-usa-42593,FLS0529,"Sandy Duncan's Eye, Trashcan School"
 san-diego-ca-usa-42693,FLS0530,3 Mile Pilot
 santa-barbara-ca-usa-42793,FLS0531,Bikini Kill
 watsonville-ca-usa-42893,FLS0532,Hedgehog
+berkeley-ca-usa-43093,FLS0533,NA
 san-franscisco-ca-usa-50193,FLS0534,"El Cid, Gr ups, Raoul"
 sacramento-ca-usa-50293,FLS0535,Tigertrap
 eugene-or-usa-50493,FLS0536,Oswald 5-0
@@ -522,6 +556,7 @@ chicago-il-usa-52993,FLS0554,Grifters
 indianapolis-in-usa-53093,FLS0555,"Grifters, Oxymorons"
 columbus-oh-usa-53193,FLS0556,Skinwhig
 washington-dc-usa-80793,FLS0558,"Pleasure, Izalco"
+washington-dc-usa-80993,FLS0559,NA
 hoboken-nj-usa-81693,FLS0560,Mosquito
 trenton-nj-usa-81793,FLS0561,Girls Vs. Boys
 trenton-nj-usa-81893,FLS0562,Lunachicks
@@ -566,6 +601,7 @@ kyoto-japan-110193,FLS0600,"Blow Ones Cool, Satorie School"
 nagoya-japan-110393,FLS0601,Genbaku Onanies
 tokyo-japan-110593,FLS0602,"Bloodthirsty Butchers, Jackie and the Cedrics"
 tokyo-japan-110693,FLS0603,"Nukey Pikes, Sadato"
+singapore-singapore-110893,FLS0604,NA
 perth-australia-111093,FLS0605,"Veronas, Bucket"
 adelaide-australia-111193,FLS0606,Magic Dirt
 croydon-vic-australia-111293,FLS0607,"Spiderbait, Noise Addicts, Aquanuggets"
@@ -586,8 +622,10 @@ dunedin-new-zealand-120993,FLS0621,"Swarm, Kid Eternity"
 wellington-new-zealand-121093,FLS0622,Skinshed
 auckland-new-zealand-121193,FLS0623,"Rainy Days, Semi Lemon Kola"
 auckland-new-zealand-121293,FLS0624,"Rainy Days, Thorazine Shuffle"
+honolulu-hi-usa-121493,FLS0625,NA
 washington-dc-usa-60394,FLS0626,TAMI Show
 washington-dc-usa-80494,FLS0627,"Metamatix, Clone of Society"
+belo-horizonte-brazil-81594,FLS0628,20 bands
 rio-de-janeiro-brazil-81894,FLS0629,Beach Lizards
 itaborai-brazil-81994,FLS0630,"Gangrena Gasosa, Tubaroes Voadores"
 sao-paulo-brazil-82094,FLS0631,Psycho Drops
@@ -616,6 +654,8 @@ eindhoven-netherlands-50495,FLS0655,Zool
 brighton-england-50695,FLS0656,"Slant 6, Useful Idiots"
 manchester-england-50795,FLS0657,"Slant 6, Fabric"
 glasgow-scotland-50895,FLS0658,"Slant 6, Badgewearer, Des Man DeAblo"
+belfast-northern-ireland-50995,FLS0659,NA
+dublin-ireland-51095,FLS0660,NA
 nottingham-england-51295,FLS0661,"Bob Tilton, Slant 6"
 london-england-51395,FLS0662,Prophets Of Da City
 wolverhampton-england-51495,FLS0663,"Snuff, Slant 6"
@@ -626,18 +666,24 @@ gent-belgium-51995,FLS0667,Kosjer D
 arras-france-52095,FLS0668,Cooper
 nancy-france-52195,FLS0669,Cooper
 paris-france-52295,FLS0670,Cooper
+poitiers-france-52495,FLS0671,NA
 angers-france-52595,FLS0672,Prohibition
 bordeaux-france-52695,FLS0673,"Prohibition, Belly Button"
+lakuntza-spainbasque-52795,FLS0674,NA
 oviedo-spain-52895,FLS0675,E-330
+santiago-de-compostela-spain-52995,FLS0676,NA
+lisbon-portugal-53195,FLS0677,NA
 madrid-spain-60295,FLS0678,Childhood
 barcelona-spain-60395,FLS0679,Painbox
+valencia-spain-60495,FLS0680,NA
 toulouse-france-60695,FLS0681,Prohibition
 marseille-france-60795,FLS0682,"Prohibition, Daily Planet"
-lyon-france-60895,FLS0683,Tom Korbler
+lyon-france-60895,FLS0683,Prohibition
 zurich-switzerland-60995,FLS0684,A.S.E
-kingersheim-france-61095,FLS0685,Tom Korbler
-milan-italy-61295,FLS0686,Tom Korbler
-padova-italy-61395,FLS0687,Tom Korbler
+kingersheim-france-61095,FLS0685,"Condense, Well Spotted"
+milan-italy-61295,FLS0686,Kina
+padova-italy-61395,FLS0687,Assaulti Frontali
+florence-italy-61495,FLS0688,NA
 torino-italy-61595,FLS0689,Assault Frontali
 bologna-italy-61695,FLS0690,Assaulti Frontali
 gavoi-sardinia-italy-61795,FLS0691,Canidarapina
@@ -645,8 +691,10 @@ catania-sicily-italy-61895,FLS0692,Uzeda
 rome-italy-62095,FLS0693,Assaulti Frontali
 verona-italy-62195,FLS0694,Rumble Mumble
 gde-spilimbergo-italy-62295,FLS0695,Meanies
+ljubljana-slovenia-62395,FLS0696,NA
 vienna-austria-62495,FLS0697,Kurort
 wels-austria-62595,FLS0698,Kurort
+munich-germany-62695,FLS0699,NA
 ulm-germany-62795,FLS0700,"4 Walls Falling, Sensefield"
 prague-czech-republic-62995,FLS0701,"Lifetime, State of The Nation"
 stuttgart-germany-63095,FLS0702,Kurort
@@ -658,6 +706,8 @@ nijmegen-netherlands-70595,FLS0707,Andy and Terry
 groningen-netherlands-70795,FLS0708,Beaver
 bielefeld-germany-70895,FLS0709,"Party Diktator, Beaver"
 bremen-germany-70995,FLS0710,Messerkencht
+copenhagen-denmark-71095,FLS0711,NA
+tampere-finland-71295,FLS0712,NA
 oslo-norway-71495,FLS0713,Drunk
 washington-dc-usa-91695,FLS0714,"Lucy Murphy, Jasaga"
 lindenhurst-ny-usa-92195,FLS0715,Suck Pretty
@@ -735,6 +785,7 @@ knoxville-tn-usa-41296,FLS0786,"Branch Manager, Blast Off Country Style"
 roanoke-va-usa-41396,FLS0787,Branch Manager
 richmond-va-usa-41496,FLS0788,"Branch Manager, Lazy Kain, Young Pioneers"
 washington-dc-usa-41996,FLS0789,"Norman Meyer Group, Cold Cold Hearts"
+washington-dc-usa-92996,FLS0790,NA
 honolulu-hi-usa-101696,FLS0791,O.N.S.
 maui-hi-usa-101796,FLS0792,Phat For Your Soul
 maui-hi-usa-101896,FLS0793,Phat For Your Soul
@@ -749,10 +800,11 @@ sapporo-japan-103096,FLS0801,"Cowpers, Thugs, Aeroscream"
 sapporo-japan-103196,FLS0802,"Slang, Bonescratch"
 hong-kong-hong-kong-110296,FLS0803,Sisters of Sharon
 hong-kong-hong-kong-110396,FLS0804,"That Guy's Belly, Maze, Venue"
+kuala-lumpur-malaysia-110696,FLS0805,NA
 singapore-singapore-110896,FLS0806,Stomping Ground
 perth-australia-111096,FLS0807,"Beaverloop, Blue Tile Lounge"
 adelaide-australia-111296,FLS0808,"Test Eagles, Sin Dog Jellyroll"
-hobart-tz-australia-111396,FLS0809,Andy Hazel
+hobart-tz-australia-111396,FLS0809,"50 Million Clowns, Honey Pet"
 sydney-nsw-australia-111596,FLS0810,"Tweezer, Mothra"
 newcastle-australia-111696,FLS0811,"Wash, No Reason"
 baltimore-md-usa-42997,FLS0812,"Prisoner of Conscience, Top Notch"
@@ -762,8 +814,23 @@ philadelphia-pa-usa-50397,FLS0815,"Branch Manager, Skeleton Key"
 durham-nh-usa-50497,FLS0816,Branch Manager
 clinton-ma-usa-50597,FLS0817,"Branch Manager, Cast Iron Hike"
 providence-ri-usa-50697,FLS0818,Branch Manager
+canberra-australia-61397,FLS0819,NA
+sydney-australia-61497,FLS0820,NA
+sydney-australia-61597,FLS0821,NA
+melbourne-australia-61797,FLS0822,NA
+melbourne-australia-61897,FLS0823,NA
+ballarat-australia-61997,FLS0824,NA
+geelong-australia-62097,FLS0825,NA
+brisbane-australia-62197,FLS0826,NA
+lismore-australia-62397,FLS0827,NA
+darwin-australia-62597,FLS0828,NA
+auckland-new-zealand-62797,FLS0829,NA
 wellington-new-zealand-62897,FLS0830,Brubeck
+nelson-new-zealand-62997,FLS0831,NA
+dunedin-new-zealand-70197,FLS0832,NA
+christchurch-new-zealand-70297,FLS0833,NA
 piracicaba-brazil-80597,FLS0834,Killing Chainsaws
+sao-paulo-brazil-80697,FLS0835,NA
 vitoria-brazil-80797,FLS0836,"Turtle Creek, E"
 brasilia-brazil-80997,FLS0837,"Ard, Sem Destino"
 brasilia-brazil-81097,FLS0838,"Succulent Fly, Sem Destino"
@@ -794,9 +861,12 @@ rochester-ny-usa-71898,FLS0862,"Blonde Redhead, Hilkka"
 toronto-on-canada-71998,FLS0863,Grade
 ottawa-on-canada-72098,FLS0864,"Three Penny Opera, Blake"
 montreal-qc-canada-72198,FLS0865,"Ire, Nullset"
+quebec-city-qc-canada-72298,FLS0866,NA
 fredericton-nb-canada-72498,FLS0867,"Conniption Fit, Room 101, 8 Months"
 halifax-ns-canada-72598,FLS0868,"North of America, Equation of State"
 portland-me-usa-72698,FLS0869,"Panoply Academy, 13 Ghost"
+hoboken-nj-usa-72798,FLS0870,NA
+washington-dc-usa-73098,FLS0871,NA
 washington-dc-usa-73198,FLS0872,"Shine, Quixotic"
 milwaukee-wi-usa-111398,FLS0873,"Promise Ring, Jets To Brazil, Compound Red"
 eau-claire-wi-usa-111498,FLS0874,"Poster Children, Planet Vinyl"
@@ -832,9 +902,9 @@ bakersfield-ca-usa-30499,FLS0903,"Fluf, Pop Rockets"
 las-vegas-nv-usa-30599,FLS0904,"Fluf, Los Trios De Nada"
 victorville-ca-usa-30699,FLS0905,Fluf
 pomona-ca-usa-30799,FLS0906,Fluf
-los-angeles-ca-usa-30999,FLS0907,Gary Davis
-los-angeles-ca-usa-31099,FLS0908,Gary Davis
-reykjavik-iceland-42799,FLS0909,Hjortur Suavarsion / RUV
+los-angeles-ca-usa-30999,FLS0907,"Distortion Felix, Godzik Pink"
+los-angeles-ca-usa-31099,FLS0908,"Goatsnake, Destroy All Nels Cline"
+reykjavik-iceland-42799,FLS0909,Minus
 leeds-england-42999,FLS0910,"Pylon, Hood"
 wolverhampton-england-43099,FLS0911,"Pram, Tone"
 newcastle-england-50299,FLS0912,Red Monkey
@@ -849,21 +919,33 @@ manchester-england-51299,FLS0920,"Gold Blade, Spy vs. Spy"
 nottingham-england-51399,FLS0921,"6X7, Boom"
 brighton-england-51499,FLS0922,"Eater, Beachie Heads"
 london-england-51599,FLS0923,"Shellac, Marine Research"
-washington-dc-usa-82699,FLS0924,Aron Conaway
+washington-dc-usa-82699,FLS0924,Flin Flon
 amsterdam-netherlands-91699,FLS0925,Lowlife
+hamburg-germany-91899,FLS0926,NA
 berlin-germany-92099,FLS0927,Real
 wroclaw-poland-92199,FLS0928,Starzy Singers
 leipzig-germany-92299,FLS0929,"Something Like Elvis, Bollo"
 prague-czech-republic-92399,FLS0930,"Something Like Elvis, Landmine Spring"
 nuremberg-germany-92499,FLS0931,"Something Like Elvis, Bambi Division"
 munich-germany-92599,FLS0932,Something Like Elvis
+vienna-austria-92699,FLS0933,NA
 ljubljana-slovenia-92899,FLS0934,Å tirje Pravi Dedci
+marghera-italy-92999,FLS0935,NA
+rome-italy-93099,FLS0936,NA
+florence-italy-100199,FLS0938,NA
+milan-italy-100299,FLS0939,NA
+catania-sicily-italy-100399,FLS0940,NA
 zurich-switzerland-100599,FLS0941,Blue Water Boy
+geneva-switzerland-100699,FLS0942,NA
+marseille-france-100799,FLS0943,NA
 barcelona-spain-100899,FLS0944,No More Lies
-bergara-spainbasque-101099,FLS0945,"Half Foot Outside, Lisabö"
+bergara-spainbasque-101099,FLS0945,"Half Foot Outside, LisabÃ¶"
 bordeaux-france-101199,FLS0946,Virago
 poitiers-france-101299,FLS0947,Gum
+nantes-france-101399,FLS0948,NA
+paris-france-101499,FLS0949,NA
 brussels-belgium-101599,FLS0950,"Black Heart Procession, Vandal X"
+tilburg-netherlands-101699,FLS0951,NA
 providence-ri-usa-120299,FLS0953,The Ex
 new-york-city-ny-usa-120399,FLS0954,The Ex
 philadelphia-pa-usa-120499,FLS0955,"The Ex, Lungfish"
@@ -882,13 +964,14 @@ fort-lauderdale-fl-usa-11800,FLS0967,Faraquet
 tampa-fl-usa-11900,FLS0968,Faraquet
 tallahassee-fl-usa-12000,FLS0969,"Faraquet, Flanders"
 san-francisco-ca-usa-60400,FLS0970,"Sleater Kinney, Vic Chesnutt, Bonfire Madigan, DJ Disk"
-washington-dc-usa-62700,FLS0971,Dave Redman
+washington-dc-usa-62700,FLS0971,NA
 washington-dc-usa-80700,FLS0972,Vertabrates
-umea-sweden-93000,FLS0973,The (International) Noise Conspiracy
+umea-sweden-93000,FLS0973,Int. Noise Conspiracy
 stockholm-sweden-100100,FLS0974,"Randy, Trap Door Fucking Exit"
 oslo-norway-100200,FLS0975,Billion Dollar Mission
 trondheim-norway-100300,FLS0976,Opera Performance
-jonkoping-sweden-100600,FLS0978,Ola Sivertson
+bergen-norway-100400,FLS0977,NA
+jonkoping-sweden-100600,FLS0978,Dialog Cet
 copenhagen-denmark-100700,FLS0979,Barrahead
 lund-sweden-100800,FLS0980,Last Days of April
 helsinki-finland-101000,FLS0981,Candy Cane
@@ -956,11 +1039,11 @@ bristol-england-110102,FLS1042,Dead Inside
 london-england-110202,FLS1043,Quickspace
 london-england-110302,FLS1044,"Q and Not U, Erase Errata"
 london-england-110402,FLS1045,"Buff Medways, Winnebago Deal"
-ypsilanti-mi-eastern-michigan-university-12288,FLS1046,Political Silence
+ypsilanti-mi-eastern-michigan-university-12288,FLS1046,NA
 east-lansing-mi-12088,FLS1048,Lowly Cows
 los-angeles-ca-usa-palace-3899,FLS1049,"Bluebird, Paper Lantern"
 carlisle-pa-usa-21388,FLS1050,"Kingface, Scram, Slush Puppies"
 washington-dc-081596,FLS1051,Branch Manager
 sydney-australia-111796,FLS1052,Midget
-bremen-germany-091799,FLS1053,Torsten Meyer
+bremen-germany-091799,FLS1053,NA
 wollongong-australia-111896,FLS1054,"Shifter, Tripe"

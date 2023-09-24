@@ -41,6 +41,14 @@ othervariables <- othervariables %>%
   mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
   mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>"))
 
+played_with <- played_with %>%
+  select(gid, played_with)
+
+played_with <- othervariables %>%
+  left_join(played_with)
+
+played_with <- played_with %>%
+  select(fls_link, date, venue, city, country, played_with, x, y)
 
 # user interface ----------------------------------------------------------
 
