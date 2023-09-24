@@ -976,6 +976,9 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     played_with <- played_with %>%
       mutate(played_with = ifelse(played_with=="Int. Noise Conspiracy", "The International Noise Conspiracy", played_with))
 
+    played_with <- played_with %>%
+      mutate(played_with = ifelse(played_with=="Victim s Family", "Victim's Family", played_with))
+
     played_with<-played_with %>%
       separate_rows(played_with, sep=",")
 
@@ -990,6 +993,17 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
     played_with <- played_with %>%
       filter(played_with!="?")
+
+    played_with <- played_with %>%
+      group_by(gid, fls_id, played_with) %>%
+      summarize(count = n()) %>%
+      ungroup()
+
+    played_with <- played_with %>%
+      select(gid, fls_id, played_with)
+
+    played_with <- played_with %>%
+      arrange(fls_id, played_with)
 
     setwd(mydatadir)
 
