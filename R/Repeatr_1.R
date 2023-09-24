@@ -928,11 +928,63 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     played_with <- played_with %>%
       mutate(played_with = ifelse(gid=="belo-horizonte-brazil-81594", "Stigmata, Jorge Cabeleira, Daizy Down, Oz, Intense Manner of Living, Virna Lisi", played_with))
 
+    played_with <- played_with %>%
+      mutate(played_with = ifelse(played_with=="Shudder To Think", "Shudder to Think", played_with))
+
+    played_with <- played_with %>%
+      mutate(played_with = ifelse(played_with=="Adventures of Immortality", "Adventures In Immortality", played_with))
+
+    played_with <- played_with %>%
+      mutate(played_with = ifelse(played_with=="Assault Frontali", "Assalti Frontali", played_with))
+
+    played_with <- played_with %>%
+      mutate(played_with = ifelse(played_with=="Assaulti Frontali", "Assalti Frontali", played_with))
+
+    played_with <- played_with %>%
+      mutate(played_with = ifelse(played_with=="Darkness At Noon", "Darkness at Noon", played_with))
+
+    played_with <- played_with %>%
+      mutate(played_with = ifelse(played_with=="Dirty Districts", "Dirty District", played_with))
+
+    played_with <- played_with %>%
+      mutate(played_with = ifelse(played_with=="Genbaku Onanisu", "Genbaku Onanies", played_with))
+
+    played_with <- played_with %>%
+      mutate(played_with = ifelse(played_with=="God Is My Co-Pulot", "God Is My Co-Pilot", played_with))
+
+    played_with <- played_with %>%
+      mutate(played_with = ifelse(played_with=="Metamatix", "Metamatics", played_with))
+
+    played_with <- played_with %>%
+      mutate(played_with = ifelse(played_with=="Missonarios", "Missionarios", played_with))
+
+    played_with <- played_with %>%
+      mutate(played_with = ifelse(played_with=="Nation Of Ulysses", "Nation of Ulysses", played_with))
+
+    played_with <- played_with %>%
+      mutate(played_with = ifelse(played_with=="Sandy Duncan's Eye", "Sandy Duncan’s Eye", played_with))
+
+    played_with <- played_with %>%
+      mutate(played_with = ifelse(played_with=="Seven Souix", "Seven Sioux", played_with))
+
+    played_with <- played_with %>%
+      mutate(played_with = ifelse(played_with=="Thatcher On Acid", "Thatcher on Acid", played_with))
+
+    played_with <- played_with %>%
+      mutate(played_with = ifelse(played_with=="Vampire Lesbos", "Vampire Lezbos", played_with))
+
+    played_with <- played_with %>%
+      mutate(played_with = ifelse(played_with=="Int. Noise Conspiracy", "The International Noise Conspiracy", played_with))
+
+
     played_with<-played_with %>%
       separate_rows(played_with, sep=",")
 
     played_with<-played_with %>%
       separate_rows(played_with, sep="&amp;")
+
+    played_with<-played_with %>%
+      separate_rows(played_with, sep="amp;")
 
     played_with <- played_with %>%
       mutate(played_with = str_trim(played_with))
