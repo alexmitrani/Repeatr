@@ -9,6 +9,7 @@
 #' @param mycsvfilename filename for the CSV file to which the results will be written.
 #' @param sleepseconds seconds to wait before getting info from the next page.
 #' @param mydt_caption caption of data to be extracted.  This could be: "Show Date:", "Venue:", "Door Price:", "Attendance:", "Played with:", "Recorded by", "Mastered by", or "Original Source:". The data will be extracted from the corresponding cell to the right of this caption, on the same row.
+#' @param page_to_scrape specific URL to use for test
 #'
 #' @import rvest
 #' @return
@@ -18,7 +19,7 @@
 #' scraped_data_played_with <- scrape_fls_dtdd(mygiddata = NULL, mylimit = 5, sleepseconds = 1, mycsvfilename = "gid_fls_id_fls_data.csv", mydt_caption = "Played with:")
 #' scraped_data_original_source <- scrape_fls_dtdd(mygiddata = NULL, mylimit = 5, sleepseconds = 1, mycsvfilename = "gid_fls_id_fls_data.csv", mydt_caption = "Original Source:")
 #'
-scrape_fls_dtdd <- function(mygiddata = NULL, mylimit = 3, sleepseconds = 1, mycsvfilename = "gid_fls_id_sound_quality.csv", mydt_caption = "Played with:") {
+scrape_fls_dtdd <- function(mygiddata = NULL, mylimit = 3, sleepseconds = 1, mycsvfilename = "gid_fls_id_sound_quality.csv", mydt_caption = "Played with:", page_to_scrape = NULL) {
 
 
   if (is.null(mygiddata) == TRUE) {
@@ -42,7 +43,16 @@ scrape_fls_dtdd <- function(mygiddata = NULL, mylimit = 3, sleepseconds = 1, myc
   fls_data <- list()
 
   # initializing the list of pages to scrape with the first pagination links
-  pages_to_scrape <- as.data.frame(gid_url$url)
+
+  if(is.null(page_to_scrape)==TRUE) {
+
+    pages_to_scrape <- as.data.frame(gid_url$url)
+
+  } else {
+
+    pages_to_scrape <- as.data.frame(page_to_scrape)
+
+  }
 
   # initializing the list of pages discovered
   pages_discovered <- pages_to_scrape
@@ -113,7 +123,7 @@ scrape_fls_dtdd <- function(mygiddata = NULL, mylimit = 3, sleepseconds = 1, myc
                       html_text2()
     )
 
-    if(fls_probe1==mydt_caption) {
+    if(is.na(fls_probe1)==FALSE & fls_probe1==mydt_caption) {
 
       fls_data <- c(
         fls_data,
@@ -122,7 +132,7 @@ scrape_fls_dtdd <- function(mygiddata = NULL, mylimit = 3, sleepseconds = 1, myc
           html_text2()
       )
 
-    } else if(fls_probe3==mydt_caption) {
+    } else if(is.na(fls_probe3)==FALSE & fls_probe3==mydt_caption) {
 
       fls_data <- c(
         fls_data,
@@ -131,7 +141,7 @@ scrape_fls_dtdd <- function(mygiddata = NULL, mylimit = 3, sleepseconds = 1, myc
           html_text2()
       )
 
-    } else if(fls_probe5==mydt_caption) {
+    } else if(is.na(fls_probe5)==FALSE & fls_probe5==mydt_caption) {
 
       fls_data <- c(
         fls_data,
@@ -140,7 +150,7 @@ scrape_fls_dtdd <- function(mygiddata = NULL, mylimit = 3, sleepseconds = 1, myc
           html_text2()
       )
 
-    } else if (fls_probe7==mydt_caption) {
+    } else if (is.na(fls_probe7)==FALSE & fls_probe7==mydt_caption) {
 
       fls_data <- c(
         fls_data,
@@ -149,7 +159,7 @@ scrape_fls_dtdd <- function(mygiddata = NULL, mylimit = 3, sleepseconds = 1, myc
           html_text2()
       )
 
-    } else if (fls_probe9==mydt_caption){
+    } else if (is.na(fls_probe9)==FALSE & fls_probe9==mydt_caption){
 
       fls_data <- c(
         fls_data,
@@ -158,13 +168,19 @@ scrape_fls_dtdd <- function(mygiddata = NULL, mylimit = 3, sleepseconds = 1, myc
           html_text2()
       )
 
-    } else if (fls_probe11==mydt_caption){
+    } else if (is.na(fls_probe11)==FALSE & fls_probe11==mydt_caption){
 
       fls_data <- c(
         fls_data,
         html_show %>%
           html_element("dd:nth-child(12)") %>%
           html_text2()
+      )
+
+    } else {
+
+      fls_data <- c(
+        fls_data, ""
       )
 
     }
@@ -186,8 +202,16 @@ scrape_fls_dtdd <- function(mygiddata = NULL, mylimit = 3, sleepseconds = 1, myc
   # changing the column names of the data frame before exporting it into CSV
   names(fls_id_data) <- c("fls_id", "fls_data")
 
-  gid <- as.data.frame(gid_url$gid)
-  gid <- gid[1:limit, ]
+  if(is.null(page_to_scrape)==TRUE){
+
+    gid <- as.data.frame(gid_url$gid)
+    gid <- gid[1:limit, ]
+
+  } else {
+
+    gid <- as.data.frame(page_to_scrape)
+
+  }
 
   # results including gid
   results <- cbind.data.frame(gid, fls_id_data)
