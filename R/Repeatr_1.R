@@ -995,6 +995,9 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
       mutate(played_with = ifelse(played_with=="Offspring", "The Offspring", played_with))
 
     played_with <- played_with %>%
+      mutate(played_with = ifelse(played_with=="Boom", "The Boom", played_with))
+
+    played_with <- played_with %>%
       filter(played_with!="?")
 
     played_with <- played_with %>%
