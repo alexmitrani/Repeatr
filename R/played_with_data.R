@@ -17,6 +17,8 @@
 #' \item{latitude}{latitude}
 #' \item{longitude}{longitude}
 #'
+#' }
+#'
 #' @examples
 #'   played_with_data
 "played_with_data"

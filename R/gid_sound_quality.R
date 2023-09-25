@@ -7,6 +7,7 @@
 #' \item{sound_quality}{Sound quality rating: Excellent, Very Good, Good, or Poor.}
 #'
 #' }
+#'
 #' @examples
 #'   gid_sound_quality
 "gid_sound_quality"

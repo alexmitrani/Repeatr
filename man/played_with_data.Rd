@@ -19,6 +19,8 @@ dataframe with one row for show and each band that Fugazi played with in the Fug
 \item{sound_quality}{Sound quality rating: Excellent, Very Good, Good, or Poor.}
 \item{latitude}{latitude}
 \item{longitude}{longitude}
+
+}
 }
 \source{
 https://www.dischord.com/fugazi_live_series
