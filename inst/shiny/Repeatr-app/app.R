@@ -1108,9 +1108,9 @@ server <- function(input, output, session) {
 
     df <- played_with_data() %>%
       mutate(daten = as.numeric(date)) %>%
-      mutate(mycolour = myx - (daten - max(daten)))
+      mutate(mycolour = played_with)
 
-    mypalette <- get_brewer_pal("Reds", contrast=c(0.5, 1.0))
+    mypalette <- get_brewer_pal("Set1", contrast=c(0.1, 1.0))
 
     colorData <- factor(df$mycolour)
     pal <- colorFactor(palette = mypalette, levels = levels(colorData), reverse = FALSE)
@@ -1136,27 +1136,57 @@ server <- function(input, output, session) {
     max_latitude <- max(df$latitude)+margin_value
     max_longitude <- max(df$longitude)+margin_value
 
+    if (is.null(input$bandsInput_with)==FALSE) {
 
-    leafletProxy("played_with_map", data = df) %>%
-      fitBounds(lng1 = min_longitude, lat1 = min_latitude, lng2 = max_longitude, lat2 = max_latitude) %>%
-      clearShapes() %>%
-      htmlwidgets::onRender("function(el, x) {
-        L.control.zoom({ position: 'bottomleft' }).addTo(this)
-      }") %>%
-      addCircles(
-        data = df,
-        radius = sqrt((df$attendance)/pi),
-        color = ~pal(colorData),
-        fillColor = ~pal(colorData),
-        fillOpacity = 0.5,
-        popup = paste0(
-          "<strong>Date: </strong>", df$date, "<br>",
-          "<strong>Venue: </strong>", df$venue, "<br>",
-          "<strong>City: </strong>", df$city, "<br>",
-          "<strong>Attendance: </strong>", df$attendance, "<br>",
-          "<strong>Coordinates: </strong>", paste0(df$latitude, ", ", df$longitude)
+      leafletProxy("played_with_map", data = df) %>%
+        fitBounds(lng1 = min_longitude, lat1 = min_latitude, lng2 = max_longitude, lat2 = max_latitude) %>%
+        clearShapes() %>%
+        htmlwidgets::onRender("function(el, x) {
+          L.control.zoom({ position: 'bottomleft' }).addTo(this)
+        }") %>%
+        addCircles(
+          data = df,
+          radius = sqrt((df$attendance)/pi),
+          color = ~pal(colorData),
+          fillColor = ~pal(colorData),
+          fillOpacity = 0.5,
+          popup = paste0(
+            "<strong>Date: </strong>", df$date, "<br>",
+            "<strong>Venue: </strong>", df$venue, "<br>",
+            "<strong>City: </strong>", df$city, "<br>",
+            "<strong>Played with: </strong>", df$played_with, "<br>",
+            "<strong>Attendance: </strong>", df$attendance, "<br>",
+            "<strong>Coordinates: </strong>", paste0(df$latitude, ", ", df$longitude)
+          )
+        ) %>%
+        addLegend("bottomright", pal = pal, values = ~colorData,
+                  title = "Played with",
+                  opacity = 1
         )
-      )
+    } else {
+
+      leafletProxy("played_with_map", data = df) %>%
+        fitBounds(lng1 = min_longitude, lat1 = min_latitude, lng2 = max_longitude, lat2 = max_latitude) %>%
+        clearShapes() %>%
+        htmlwidgets::onRender("function(el, x) {
+          L.control.zoom({ position: 'bottomleft' }).addTo(this)
+        }") %>%
+        addCircles(
+          data = df,
+          radius = sqrt((df$attendance)/pi),
+          color = ~pal(colorData),
+          fillColor = ~pal(colorData),
+          fillOpacity = 0.5,
+          popup = paste0(
+            "<strong>Date: </strong>", df$date, "<br>",
+            "<strong>Venue: </strong>", df$venue, "<br>",
+            "<strong>City: </strong>", df$city, "<br>",
+            "<strong>Attendance: </strong>", df$attendance, "<br>",
+            "<strong>Coordinates: </strong>", paste0(df$latitude, ", ", df$longitude)
+          )
+        )
+
+    }
 
   })
 

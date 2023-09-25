@@ -1359,6 +1359,14 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
     save(played_with_data, file = "played_with_data.rda")
 
+    played_with_summary <- played_with %>%
+      group_by(played_with) %>%
+      summarize(shows = n()) %>%
+      arrange(desc(shows)) %>%
+      ungroup()
+
+    save(played_with_summary, file = "played_with_summary.rda")
+
     setwd(mydir)
 
 
