@@ -1106,9 +1106,18 @@ server <- function(input, output, session) {
 
   output$played_with_plot <- renderPlot({
 
-    mydf <- played_with_summary_data() %>%
-      arrange(desc(shows)) %>%
-      filter(row_number()<20)
+    if (is.null(input$bandsInput_with)==TRUE) {
+
+      mydf <- played_with_summary_data() %>%
+        arrange(desc(shows)) %>%
+        filter(row_number()<20)
+
+    } else {
+
+      mydf <- played_with_summary_data() %>%
+        arrange(desc(shows))
+
+    }
 
     played_with_plot <- ggplot(mydf, aes(x = reorder(played_with, +shows),
                                                    y = shows,

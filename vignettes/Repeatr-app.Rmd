@@ -28,9 +28,9 @@ The [Repeatr-app](https://alexmitrani.shinyapps.io/Repeatr-app/) makes it easy t
 
 The app has 10 pages spread across 2 sections:
 
--   flow (6 pages) - includes top-level menus for 'year' and 'tour' which will filter the contents of all the pages in this section.
+-   flow (7 pages) - includes top-level menus for 'year' and 'tour' which will filter the contents of all the pages in this section.
 
-    ![](images/paste-C2182276.png)
+    ![](images/paste-74322788.png)
 
 -   stock (4 pages) - includes a top-level menu for 'release' which will filter the contents of all the pages in this section.
 
@@ -140,6 +140,22 @@ Each of the following columns can be sorted using the sort controls to the right
 -   minutes - duration of the show in minutes if a recording is available.
 
 -   sound_quality - Sound quality rating: Excellent, Very Good, Good, or Poor.
+
+## with
+
+This page offers information on the bands that Fugazi played with, as either a summary and a map:
+
+-   summary - shows the number of shows played with each band
+
+-   map - show locations with a different colour for each band
+
+### summary
+
+The summary option shows a bar chart and a simple data table. The information will be limited to the top 20 bands if no bands are specified. If you specify one or more bands, the bar chart and the table will show the data for these bands.
+
+![](images/paste-F1B83A68.png)
+
+### map
 
 ## attendance
 
