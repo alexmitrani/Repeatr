@@ -103,6 +103,12 @@
     <loc>/reference/played_with.html</loc>
   </url>
   <url>
+    <loc>/reference/played_with_data.html</loc>
+  </url>
+  <url>
+    <loc>/reference/played_with_summary.html</loc>
+  </url>
+  <url>
     <loc>/reference/rankr.html</loc>
   </url>
   <url>
@@ -164,6 +170,9 @@
   </url>
   <url>
     <loc>/reference/scrape_fls_data.html</loc>
+  </url>
+  <url>
+    <loc>/reference/scrape_fls_dtdd.html</loc>
   </url>
   <url>
     <loc>/reference/scrape_sound_quality.html</loc>

@@ -145,17 +145,29 @@ Each of the following columns can be sorted using the sort controls to the right
 
 This page offers information on the bands that Fugazi played with, as either a summary and a map:
 
+-   map - show locations with a different colour for each band
+
 -   summary - shows the number of shows played with each band
 
--   map - show locations with a different colour for each band
+### map
+
+The map will show the show locations, using a different colour for each band.
+
+![](images/paste-C8ACC63C.png)
+
+The data table accompanying the map shows details for each show and a link that can be used to navigate to the corresponding page of the Fugazi Live Series site.
+
+![](images/paste-C17B4091.png)
 
 ### summary
 
 The summary option shows a bar chart and a simple data table. The information will be limited to the top 20 bands if no bands are specified. If you specify one or more bands, the bar chart and the table will show the data for these bands.
 
-![](images/paste-F1B83A68.png)
+![](images/paste-1BB61A8E.png)
 
-### map
+The summary data table will detail the number of shows with each band in descending order.
+
+![](images/paste-69F8D526.png)
 
 ## attendance
 
