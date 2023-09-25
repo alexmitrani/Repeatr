@@ -48,7 +48,13 @@ played_with <- othervariables %>%
   left_join(played_with)
 
 played_with <- played_with %>%
-  select(fls_link, date, venue, city, country, played_with, x, y)
+  rename(latitude = y, longitude = x) %>%
+  mutate(attendance = round(attendance, 0))
+
+played_with <- played_with %>%
+  select(fls_link, year, tour, date, venue, city, country, played_with, attendance, sound_quality, latitude, longitude)
+
+
 
 # user interface ----------------------------------------------------------
 
@@ -198,6 +204,61 @@ tabPanel("flow",
 
                                # Create a new row for the table.
                                DT::dataTableOutput("showsdatatable")
+
+                        )
+
+                      )
+
+                    )
+
+           ),
+
+           # with -------------------------------------------------------------------
+
+           tabPanel("with",
+
+
+                    fluidPage(
+
+                      tags$br(),
+
+
+                      fluidRow(
+
+                        column(12, uiOutput("menuOptions_bands"))
+
+                      ),
+
+                      hr(),
+
+                      tags$br(),
+
+                      fluidRow(
+
+                        column(12,
+
+                               leafletOutput("played_with_map")
+
+                        )
+
+                      ),
+
+
+                      tags$br(),
+
+
+                      hr(),
+                      tags$br(),
+
+
+                      fluidRow(
+
+                        tags$br(),
+
+                        column(12,
+
+                               # Create a new row for the table.
+                               DT::dataTableOutput("played_with_datatable")
 
                         )
 
@@ -943,6 +1004,170 @@ server <- function(input, output, session) {
       arrange(date)},
     escape = c(-2),
     style = "bootstrap"))
+
+  # with -------------------------------------------------------------------
+
+
+  output$menuOptions_bands <- renderUI({
+
+    if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==FALSE) {
+      menudata <- played_with %>%
+        filter(year %in% input$yearInput_shows &
+                 tour %in% input$tourInput_shows) %>%
+        arrange(played_with)
+
+    } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==TRUE) {
+      menudata <- played_with %>%
+        filter(year %in% input$yearInput_shows) %>%
+        arrange(played_with)
+
+    } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==FALSE) {
+      menudata <- played_with %>%
+        filter(tour %in% input$tourInput_shows) %>%
+        arrange(played_with)
+
+    } else {
+      menudata <- played_with %>%
+        arrange(played_with)
+
+    }
+
+    selectizeInput("bandsInput_with", "bands:",
+                   choices = c(unique(menudata$played_with)), multiple =TRUE)
+
+  })
+
+
+  played_with_data <- reactive({
+
+    mydf <- played_with
+
+    if (is.null(input$yearInput_shows)==FALSE) {
+      mydf <- mydf %>%
+        filter(year %in% input$yearInput_shows)
+
+    }
+
+    if (is.null(input$tourInput_shows)==FALSE) {
+      mydf <- mydf %>%
+        filter(tour %in% input$tourInput_shows)
+
+    }
+
+    if (is.null(input$bandsInput_with)==FALSE) {
+      mydf <- mydf %>%
+        filter(played_with %in% input$bandsInput_with)
+
+    }
+
+    mydf
+
+  })
+
+  # map
+
+  output$played_with_map <- renderLeaflet({
+    df <- played_with_data()
+
+    ref_latitude <- mean(df$latitude)
+    ref_longitude <- mean(df$longitude)
+
+    min_latitude_raw <- min(df$latitude)
+    min_longitude_raw <- min(df$longitude)
+
+    max_latitude_raw <- max(df$latitude)
+    max_longitude_raw <- max(df$longitude)
+
+    diff_longitude <- abs(max_longitude_raw-min_longitude_raw)
+    diff_latitude <- abs(max_latitude_raw-min_latitude_raw)
+
+    diff <- mean(diff_longitude, diff_latitude)
+    margin_value <- ifelse(diff==0, 0.15, min(0.15*diff, 10))
+
+    min_latitude <- min(df$latitude)-margin_value
+    min_longitude <- min(df$longitude)-margin_value
+
+    max_latitude <- max(df$latitude)+margin_value
+    max_longitude <- max(df$longitude)+margin_value
+
+    m <- leaflet(data = df, options = leafletOptions(zoomControl = FALSE)) %>%
+      htmlwidgets::onRender("function(el, x) {
+        L.control.zoom({ position: 'bottomleft' }).addTo(this)
+      }") %>%
+      fitBounds(lng1 = min_longitude, lat1 = min_latitude, lng2 = max_longitude, lat2 = max_latitude) %>%
+      addProviderTiles("OpenStreetMap.Mapnik") %>%
+      addScaleBar()
+
+    m
+
+  })
+
+  observe({
+
+    myx <- nrow(played_with_data())
+
+    df <- played_with_data() %>%
+      mutate(daten = as.numeric(date)) %>%
+      mutate(mycolour = myx - (daten - max(daten)))
+
+    mypalette <- get_brewer_pal("Reds", contrast=c(0.5, 1.0))
+
+    colorData <- factor(df$mycolour)
+    pal <- colorFactor(palette = mypalette, levels = levels(colorData), reverse = FALSE)
+
+    ref_latitude <- mean(df$latitude)
+    ref_longitude <- mean(df$longitude)
+
+    min_latitude_raw <- min(df$latitude)
+    min_longitude_raw <- min(df$longitude)
+
+    max_latitude_raw <- max(df$latitude)
+    max_longitude_raw <- max(df$longitude)
+
+    diff_longitude <- abs(max_longitude_raw-min_longitude_raw)
+    diff_latitude <- abs(max_latitude_raw-min_latitude_raw)
+
+    diff <- mean(diff_longitude, diff_latitude)
+    margin_value <- ifelse(diff==0, 0.15, min(0.15*diff, 10))
+
+    min_latitude <- min(df$latitude)-margin_value
+    min_longitude <- min(df$longitude)-margin_value
+
+    max_latitude <- max(df$latitude)+margin_value
+    max_longitude <- max(df$longitude)+margin_value
+
+
+    leafletProxy("played_with_map", data = df) %>%
+      fitBounds(lng1 = min_longitude, lat1 = min_latitude, lng2 = max_longitude, lat2 = max_latitude) %>%
+      clearShapes() %>%
+      htmlwidgets::onRender("function(el, x) {
+        L.control.zoom({ position: 'bottomleft' }).addTo(this)
+      }") %>%
+      addCircles(
+        data = df,
+        radius = sqrt((df$attendance)/pi),
+        color = ~pal(colorData),
+        fillColor = ~pal(colorData),
+        fillOpacity = 0.5,
+        popup = paste0(
+          "<strong>Date: </strong>", df$date, "<br>",
+          "<strong>Venue: </strong>", df$venue, "<br>",
+          "<strong>City: </strong>", df$city, "<br>",
+          "<strong>Attendance: </strong>", df$attendance, "<br>",
+          "<strong>Coordinates: </strong>", paste0(df$latitude, ", ", df$longitude)
+        )
+      )
+
+  })
+
+  output$played_with_datatable <- DT::renderDataTable(DT::datatable({
+
+    data <- played_with_data() %>%
+      select(fls_link, date, venue, city, country, played_with, attendance, sound_quality) %>%
+      arrange(date)},
+    escape = c(-2),
+    style = "bootstrap"))
+
 
 # attendance -------------------------------------------------------------------
 

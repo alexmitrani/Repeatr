@@ -928,6 +928,18 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     played_with <- played_with %>%
       mutate(played_with = ifelse(gid=="belo-horizonte-brazil-81594", "Stigmata, Jorge Cabeleira, Daizy Down, Oz, Intense Manner of Living, Virna Lisi", played_with))
 
+    played_with<-played_with %>%
+      separate_rows(played_with, sep=",")
+
+    played_with<-played_with %>%
+      separate_rows(played_with, sep="&amp;")
+
+    played_with<-played_with %>%
+      separate_rows(played_with, sep="amp;")
+
+    played_with <- played_with %>%
+      mutate(played_with = str_trim(played_with))
+
     played_with <- played_with %>%
       mutate(played_with = ifelse(played_with=="Shudder To Think", "Shudder to Think", played_with))
 
@@ -979,17 +991,8 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     played_with <- played_with %>%
       mutate(played_with = ifelse(played_with=="Victim s Family", "Victim's Family", played_with))
 
-    played_with<-played_with %>%
-      separate_rows(played_with, sep=",")
-
-    played_with<-played_with %>%
-      separate_rows(played_with, sep="&amp;")
-
-    played_with<-played_with %>%
-      separate_rows(played_with, sep="amp;")
-
     played_with <- played_with %>%
-      mutate(played_with = str_trim(played_with))
+      mutate(played_with = ifelse(played_with=="Offspring", "The Offspring", played_with))
 
     played_with <- played_with %>%
       filter(played_with!="?")
@@ -1332,6 +1335,26 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
       filter(gid!="washington-dc-usa-73198" | song_number!=22 | minutes!=5.02)
 
     save(duration_data_da, file = "duration_data_da.rda")
+
+    othervariables <- othervariables %>%
+      left_join(gid_sound_quality) %>%
+      mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
+      mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>"))
+
+    played_with <- played_with %>%
+      select(gid, played_with)
+
+    played_with_data <- othervariables %>%
+      left_join(played_with)
+
+    played_with_data <- played_with_data %>%
+      rename(latitude = y, longitude = x) %>%
+      mutate(attendance = round(attendance, 0))
+
+    played_with_data <- played_with_data %>%
+      select(fls_link, year, tour, date, venue, city, country, played_with, attendance, sound_quality, latitude, longitude)
+
+    save(played_with_data, file = "played_with_data.rda")
 
     setwd(mydir)
 
