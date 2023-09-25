@@ -224,8 +224,11 @@ tabPanel("flow",
 
 
                       fluidRow(
-
-                        column(12, uiOutput("menuOptions_bands"))
+                        column(6,
+                               selectizeInput("with_choice", "show:",
+                                              c("summary", "map"),
+                                              selected="summary", multiple = FALSE)),
+                        column(6, uiOutput("menuOptions_bands"))
 
                       ),
 
@@ -233,11 +236,32 @@ tabPanel("flow",
 
                       tags$br(),
 
-                      fluidRow(
+                      conditionalPanel(
+                        condition = "input.with_choice=='summary'",
 
-                        column(12,
+                        fluidRow(
 
-                               leafletOutput("played_with_map")
+                          column(12,
+
+                                 uiOutput("played_with_plot_ui", width = "100%")
+
+                          )
+
+                        )
+
+                      ),
+
+                      conditionalPanel(
+                        condition = "input.with_choice=='map'",
+
+                        fluidRow(
+
+                          column(12,
+
+                                 leafletOutput("played_with_map"),
+                                 plotOutput("played_with_markers")
+
+                          )
 
                         )
 
@@ -1064,6 +1088,64 @@ server <- function(input, output, session) {
 
   })
 
+  played_with_summary_data <- reactive({
+
+    mydf <- played_with_summary
+
+    if (is.null(input$bandsInput_with)==FALSE) {
+      mydf <- mydf %>%
+        filter(played_with %in% input$bandsInput_with)
+
+    }
+
+    mydf
+
+  })
+
+  # summary plot
+
+  output$played_with_plot <- renderPlot({
+
+    mydf <- played_with_summary_data() %>%
+      arrange(desc(shows)) %>%
+      filter(row_number()<20)
+
+    played_with_plot <- ggplot(mydf, aes(x = reorder(played_with, +shows),
+                                                   y = shows,
+                                                   fill = played_with)) +
+        geom_bar(stat="identity") +
+        xlab("band") +
+        ylab("shows") +
+        coord_flip() +
+        theme(legend.position=input$legend_position)
+
+
+    print(played_with_plot)
+
+  })
+
+  with_plotheight <- reactive({
+
+    if (is.null(input$bandsInput_with)==TRUE) {
+
+      with_plotheight = 500
+
+    } else {
+
+      mybands <- input$bandsInput_with
+      mybands <- as.data.frame(mybands)
+      mybands <- nrow(mybands)
+
+      with_plotheight = 50 + 50*mybands
+
+    }
+
+  })
+
+  output$played_with_plot_ui <- renderUI({
+    plotOutput("played_with_plot", height = with_plotheight())
+  })
+
   # map
 
   output$played_with_map <- renderLeaflet({
@@ -1181,6 +1263,7 @@ server <- function(input, output, session) {
             "<strong>Date: </strong>", df$date, "<br>",
             "<strong>Venue: </strong>", df$venue, "<br>",
             "<strong>City: </strong>", df$city, "<br>",
+            "<strong>Played with: </strong>", df$played_with, "<br>",
             "<strong>Attendance: </strong>", df$attendance, "<br>",
             "<strong>Coordinates: </strong>", paste0(df$latitude, ", ", df$longitude)
           )
@@ -1190,13 +1273,89 @@ server <- function(input, output, session) {
 
   })
 
-  output$played_with_datatable <- DT::renderDataTable(DT::datatable({
+  output$played_with_markers <- renderPlot({
 
-    data <- played_with_data() %>%
-      select(fls_link, date, venue, city, country, played_with, attendance, sound_quality) %>%
-      arrange(date)},
+    df <- played_with_data() %>%
+      mutate(daten = as.numeric(date)) %>%
+      mutate(mycolour = played_with)
+
+    mypalette <- get_brewer_pal("Set1", contrast=c(0.1, 1.0))
+
+    colorData <- factor(df$mycolour)
+    pal <- colorFactor(palette = mypalette, levels = levels(colorData), reverse = FALSE)
+
+    if (is.null(input$bandsInput_with)==FALSE) {
+
+    leafletProxy("played_with_map", data = df) %>%
+      addCircles(
+        data = df,
+        lng = ~ longitude, lat = ~ latitude,
+        radius = sqrt((df$attendance)/pi),
+        color = ~pal(colorData),
+        fillColor = ~pal(colorData),
+        fillOpacity = 0.5,
+        popup = paste0(
+          "<strong>Date: </strong>", df$date, "<br>",
+          "<strong>Venue: </strong>", df$venue, "<br>",
+          "<strong>City: </strong>", df$city, "<br>",
+          "<strong>Played with: </strong>", df$played_with, "<br>",
+          "<strong>Attendance: </strong>", df$attendance, "<br>",
+          "<strong>Coordinates: </strong>", paste0(df$latitude, ", ", df$longitude)
+        )
+      ) %>%
+      addLegend("bottomright", pal = pal, values = ~colorData,
+                title = "Played with",
+                opacity = 1
+      )
+
+    } else {
+
+      leafletProxy("played_with_map", data = df) %>%
+        addCircles(
+          data = df,
+          lng = ~ longitude, lat = ~ latitude,
+          radius = sqrt((df$attendance)/pi),
+          color = ~pal(colorData),
+          fillColor = ~pal(colorData),
+          fillOpacity = 0.5,
+          popup = paste0(
+            "<strong>Date: </strong>", df$date, "<br>",
+            "<strong>Venue: </strong>", df$venue, "<br>",
+            "<strong>City: </strong>", df$city, "<br>",
+            "<strong>Played with: </strong>", df$played_with, "<br>",
+            "<strong>Attendance: </strong>", df$attendance, "<br>",
+            "<strong>Coordinates: </strong>", paste0(df$latitude, ", ", df$longitude)
+          )
+        )
+
+    }
+
+  })
+
+
+
+    output$played_with_datatable <- DT::renderDataTable(DT::datatable({
+
+      if(input$with_choice=="summary") {
+
+        data <- played_with_summary_data() %>%
+          select(played_with, shows) %>%
+          arrange(desc(shows))
+
+      } else {
+
+        data <- played_with_data() %>%
+          select(fls_link, date, venue, city, country, played_with, attendance, sound_quality) %>%
+          arrange(date)
+
+      }
+
+    },
     escape = c(-2),
     style = "bootstrap"))
+
+
+
 
 
 # attendance -------------------------------------------------------------------
