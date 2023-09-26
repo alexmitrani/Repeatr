@@ -1091,11 +1091,31 @@ server <- function(input, output, session) {
 
     mydf <- played_with_summary
 
+    if (is.null(input$yearInput_shows)==FALSE) {
+      mydf <- mydf %>%
+        filter(year %in% input$yearInput_shows)
+
+    }
+
+    if (is.null(input$tourInput_shows)==FALSE) {
+      mydf <- mydf %>%
+        filter(tour %in% input$tourInput_shows)
+
+    }
+
     if (is.null(input$bandsInput_with)==FALSE) {
       mydf <- mydf %>%
         filter(played_with %in% input$bandsInput_with)
 
     }
+
+    mydf <- mydf %>%
+      filter(is.na(played_with)==FALSE)
+
+    mydf <- mydf %>%
+      group_by(played_with) %>%
+      summarize(shows = sum(shows)) %>%
+      ungroup()
 
     mydf
 
@@ -1125,7 +1145,9 @@ server <- function(input, output, session) {
         xlab("band") +
         ylab("shows") +
         coord_flip() +
-        theme(legend.position=input$legend_position)
+        theme(legend.position=input$legend_position) +
+        theme(axis.text.x=element_text(size=10)) +
+        theme(axis.text.y=element_text(size=10))
 
 
     print(played_with_plot)
@@ -1904,7 +1926,9 @@ server <- function(input, output, session) {
                              limits = c(0, NA),
                              labels = comma) +
           coord_flip() +
-          theme(legend.position=input$legend_position)
+          theme(legend.position=input$legend_position) +
+          theme(axis.text.x=element_text(size=10)) +
+          theme(axis.text.y=element_text(size=10))
 
     } else if (input$Input_releases_var == "intensity") {
 
@@ -1919,7 +1943,9 @@ server <- function(input, output, session) {
                            limits = c(0, NA),
                            labels = comma) +
         coord_flip() +
-        theme(legend.position=input$legend_position)
+        theme(legend.position=input$legend_position) +
+        theme(axis.text.x=element_text(size=10)) +
+        theme(axis.text.y=element_text(size=10))
 
     } else {
 
@@ -1934,7 +1960,9 @@ server <- function(input, output, session) {
                              limits = c(0, NA),
                              labels = comma) +
           coord_flip() +
-          theme(legend.position=input$legend_position)
+          theme(legend.position=input$legend_position) +
+          theme(axis.text.x=element_text(size=10)) +
+          theme(axis.text.y=element_text(size=10))
 
     }
 
