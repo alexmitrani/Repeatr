@@ -1222,7 +1222,11 @@ server <- function(input, output, session) {
       mutate(daten = as.numeric(date)) %>%
       mutate(mycolour = played_with)
 
-    number_bands <- nrow(played_with_data() %>% group_by(played_with) %>% summarize(shows = n()) %>% ungroup())
+    number_bands <- nrow(played_with_data() %>%
+                           group_by(played_with) %>%
+                           summarize(shows = n()) %>%
+                           ungroup()
+                         )
 
     if(number_bands==1) {
 
