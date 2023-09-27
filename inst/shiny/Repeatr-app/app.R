@@ -258,7 +258,8 @@ tabPanel("flow",
 
                           column(12,
 
-                                 leafletOutput("played_with_map")
+                                 leafletOutput("played_with_map"),
+                                 plotOutput("played_with_markers", height = "1px")
 
                           )
 
@@ -1215,7 +1216,9 @@ server <- function(input, output, session) {
 
   })
 
-  observe({
+  # markers
+
+  output$played_with_markers <- renderPlot({
 
     myx <- nrow(played_with_data())
 
@@ -1227,7 +1230,7 @@ server <- function(input, output, session) {
                            group_by(played_with) %>%
                            summarize(shows = n()) %>%
                            ungroup()
-                         )
+    )
 
     if(number_bands==1) {
 
@@ -1265,10 +1268,10 @@ server <- function(input, output, session) {
 
     if (is.null(input$bandsInput_with)==TRUE) {
 
-    leafletProxy("played_with_map", data = df) %>%
-      fitBounds(lng1 = min_longitude, lat1 = min_latitude, lng2 = max_longitude, lat2 = max_latitude) %>%
-      clearShapes() %>%
-      htmlwidgets::onRender("function(el, x) {
+      leafletProxy("played_with_map", data = df) %>%
+        fitBounds(lng1 = min_longitude, lat1 = min_latitude, lng2 = max_longitude, lat2 = max_latitude) %>%
+        clearShapes() %>%
+        htmlwidgets::onRender("function(el, x) {
         L.control.zoom({ position: 'bottomleft' }).addTo(this)
       }") %>%
         addCircles(
@@ -1319,7 +1322,10 @@ server <- function(input, output, session) {
 
     }
 
+
   })
+
+  # datatable
 
 
     output$played_with_datatable <- DT::renderDataTable(DT::datatable({
