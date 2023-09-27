@@ -1142,6 +1142,7 @@ server <- function(input, output, session) {
                                                    y = shows,
                                                    fill = played_with)) +
         geom_bar(stat="identity") +
+        scale_y_continuous(breaks = function(x) unique(floor(pretty(seq(0, (max(x) + 1) * 1.1))))) +
         xlab("band") +
         ylab("shows") +
         coord_flip() +
