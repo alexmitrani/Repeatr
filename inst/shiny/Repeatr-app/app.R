@@ -1222,7 +1222,17 @@ server <- function(input, output, session) {
       mutate(daten = as.numeric(date)) %>%
       mutate(mycolour = played_with)
 
-    mypalette <- get_brewer_pal("Set1")
+    number_bands <- nrow(played_with_data() %>% group_by(played_with) %>% summarize(shows = n()) %>% ungroup())
+
+    if(number_bands==1) {
+
+      mypalette <- get_brewer_pal("Reds")
+
+    } else {
+
+      mypalette <- get_brewer_pal("Set1")
+
+    }
 
     colorData <- factor(df$mycolour)
     pal <- colorFactor(palette = mypalette, levels = levels(colorData), reverse = FALSE)
