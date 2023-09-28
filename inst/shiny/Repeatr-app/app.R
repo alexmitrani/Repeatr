@@ -161,13 +161,16 @@ tabPanel("flow",
 
                           fluidRow(
 
-                            column(6,
+                            column(5,
                                    numericInput("weeks", "period_weeks:", 792,
                                                 min = 1, max = 792)),
 
-                            column(6,
+                            column(5,
                                    numericInput("step_days", "step_days:", 1,
-                                                min = 1, max = 365))
+                                                min = 1, max = 365)),
+
+                            column(2, checkboxInput("shows_p_s", "PS",
+                                                    value = TRUE))
 
                           )
 
@@ -176,7 +179,7 @@ tabPanel("flow",
 
                         fluidRow(
 
-                          column(8,
+                          column(12,
 
                                  div(style="display: inline-block;vertical-align:top;",column(2, actionButton(
                                    "visit",
@@ -195,9 +198,7 @@ tabPanel("flow",
                                    icon("house")
                                  )))
 
-                                ),
-
-                          column(4, checkboxInput("shows_p_s", "period_step", value = FALSE, width = NULL))
+                                )
 
                         )
 
@@ -833,6 +834,7 @@ server <- function(input, output, session) {
     freezeReactiveValue(input, "step_days")
     updateNumericInput(session, "step_days", "step_days:", 1,
                        min = 1, max = 5542)
+    updateCheckboxInput(session, "shows_p_s", value = FALSE)
   })
 
   observeEvent(input$step_b, {
@@ -864,6 +866,7 @@ server <- function(input, output, session) {
     freezeReactiveValue(input, "step_days")
     updateNumericInput(session, "step_days", "step_days:", 1,
                        min = 1, max = 5542)
+    updateCheckboxInput(session, "shows_p_s", value = TRUE)
   })
 
   shows_data2 <- reactive({
