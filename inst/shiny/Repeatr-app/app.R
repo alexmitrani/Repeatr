@@ -170,7 +170,7 @@ tabPanel("flow",
                                                 min = 1, max = 365)),
 
                             column(2, checkboxInput("shows_p_s", "PS",
-                                                    value = TRUE))
+                                                    value = FALSE))
 
                           )
 
