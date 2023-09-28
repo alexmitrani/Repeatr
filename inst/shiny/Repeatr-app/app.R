@@ -156,17 +156,27 @@ tabPanel("flow",
 
                         ),
 
+                        conditionalPanel(
+                          condition = "input.shows_p_s==1",
+
+                          fluidRow(
+
+                            column(6,
+                                   numericInput("weeks", "period_weeks:", 792,
+                                                min = 1, max = 792)),
+
+                            column(6,
+                                   numericInput("step_days", "step_days:", 1,
+                                                min = 1, max = 365))
+
+                          )
+
+                        ),
+
+
                         fluidRow(
 
-                          column(3,
-                                 numericInput("weeks", "period_weeks:", 792,
-                                              min = 1, max = 792)),
-
-                          column(3,
-                                 numericInput("step_days", "step_days:", 1,
-                                              min = 1, max = 365)),
-
-                          column(6,
+                          column(8,
 
                                  div(style="display: inline-block;vertical-align:top;",column(2, actionButton(
                                    "visit",
@@ -185,10 +195,11 @@ tabPanel("flow",
                                    icon("house")
                                  )))
 
-                          )
+                                ),
 
-                        ),
+                          column(4, checkboxInput("shows_p_s", "period_step", value = FALSE, width = NULL))
 
+                        )
 
                       ),
 
