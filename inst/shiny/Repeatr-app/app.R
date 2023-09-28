@@ -169,7 +169,7 @@ tabPanel("flow",
                                    numericInput("step_days", "step_days:", 1,
                                                 min = 1, max = 365)),
 
-                            column(2, checkboxInput("shows_p_s", "PS",
+                            column(2, checkboxInput("shows_p_s", "show",
                                                     value = FALSE))
 
                           )
