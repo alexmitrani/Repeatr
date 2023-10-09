@@ -22,7 +22,7 @@ library(Repeatr)
 
 ## Introduction
 
-This is a list of shows that I plan to listen to again in future, based on what I have listened to so far. I will continue to add to this list as I make my way through the live series. 
+A list of recommended shows. I will continue to add to this list as I make my way through the live series. 
 
 ## Shows
 
