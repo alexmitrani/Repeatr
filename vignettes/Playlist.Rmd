@@ -224,5 +224,6 @@ A list of recommended shows. I will continue to add to this list as I make my wa
 [FLS0909, National Radio Building, Reykjavik, Iceland, 1999-04-27](https://dischord.com/fugazi_live_series/reykjavik-iceland-42799)<br>
 [FLS0912, Riverside, Newcastle, England, 1999-05-02](https://dischord.com/fugazi_live_series/newcastle-england-50299)<br>
 [FLS0918, Temple Bar Music Center, Dublin, Ireland, 1999-05-09](https://dischord.com/fugazi_live_series/dublin-ireland-50999)<br>
+[FLS0922, Brighton Centre, Brighton, England, 1999-05-14](https://dischord.com/fugazi_live_series/brighton-england-51499)<br>
 
 
