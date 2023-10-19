@@ -225,5 +225,5 @@ A list of recommended shows. I will continue to add to this list as I make my wa
 [FLS0912, Riverside, Newcastle, England, 1999-05-02](https://dischord.com/fugazi_live_series/newcastle-england-50299)<br>
 [FLS0918, Temple Bar Music Center, Dublin, Ireland, 1999-05-09](https://dischord.com/fugazi_live_series/dublin-ireland-50999)<br>
 [FLS0922, Brighton Centre, Brighton, England, 1999-05-14](https://dischord.com/fugazi_live_series/brighton-england-51499)<br>
-
+[FLS0923, Rex, London, England, 1999-05-15](https://dischord.com/fugazi_live_series/london-england-51599)<br>
 
