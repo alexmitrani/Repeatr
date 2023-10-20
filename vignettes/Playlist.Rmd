@@ -226,4 +226,5 @@ A list of recommended shows. I will continue to add to this list as I make my wa
 [FLS0918, Temple Bar Music Center, Dublin, Ireland, 1999-05-09](https://dischord.com/fugazi_live_series/dublin-ireland-50999)<br>
 [FLS0922, Brighton Centre, Brighton, England, 1999-05-14](https://dischord.com/fugazi_live_series/brighton-england-51499)<br>
 [FLS0923, Rex, London, England, 1999-05-15](https://dischord.com/fugazi_live_series/london-england-51599)<br>
+[FLS0924, Fort Reno, Washington, DC, USA, 1999-08-26](https://dischord.com/fugazi_live_series/washington-dc-usa-82699)<br>
 
