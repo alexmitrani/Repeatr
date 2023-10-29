@@ -54,7 +54,31 @@ played_with <- played_with %>%
 played_with <- played_with %>%
   select(fls_link, year, tour, date, venue, city, country, played_with, attendance, sound_quality, latitude, longitude)
 
+# number of players to include in the highscores table
+max_players <- 40
 
+quizdata <- gsheet2tbl('https://docs.google.com/spreadsheets/d/1-QGRAxeGRNBnx2ao7FXUjcK77uTfZ-_XnN3M7mqqjMc')
+
+colnames(quizdata)[47]="name"
+
+quizdata <- quizdata %>%
+  mutate(score1 = as.numeric(substring(Score, 1, regexpr("/", Score)-2)))
+
+quizdata <- quizdata %>%
+  mutate(score2 = as.numeric(substring(Score, regexpr("/", Score)+2)))
+
+quizdata <- quizdata %>%
+  mutate(score = round(100*round(score1/score2, 2)))
+
+quizdata <- quizdata %>%
+  mutate(name = ifelse(is.na(name)==FALSE, name, "Anon.")) %>%
+  mutate(include = ifelse(row_number()<=max_players, 1, 0)) %>%
+  filter(include == 1)
+
+quizdata <- quizdata %>%
+  select(name, Timestamp, score) %>%
+  rename(timestamp = Timestamp, percentage = score) %>%
+  arrange(desc(percentage))
 
 # user interface ----------------------------------------------------------
 
@@ -706,6 +730,39 @@ tabPanel("variation",
 
 
 
+
+           )
+
+         )
+
+),
+
+# start and end of 'quiz' tabset -------------------------------------------------------------------
+
+tabPanel("quiz",
+
+         fluidPage(
+
+           tags$br(),
+
+           tags$div(
+             "Test your knowledge with the",
+             tags$a(href="https://forms.gle/2qcz2giGXmZqEM9Q6", "Fugazi Live Series Quiz #1"),
+             tags$br()
+           ),
+
+           tags$br(),
+
+           h3("High Scores"),
+
+           tags$br(),
+
+           fluidRow(
+
+             column(12,
+                    DT::dataTableOutput("quiz_datatable")
+
+             )
 
            )
 
@@ -2283,6 +2340,22 @@ server <- function(input, output, session) {
   style = "bootstrap"))
 
 
+# quiz --------------------------------------------------------------------
+
+  quiz_data <- reactive({
+
+    quizdata
+
+  })
+
+  output$quiz_datatable <- DT::renderDataTable(DT::datatable({
+
+    data <- quiz_data()
+
+    data
+
+  }, escape = c(-2),
+  style = "bootstrap"))
 
 # end of server -----------------------------------------------------------
 
