@@ -24,9 +24,9 @@ library(Repeatr)
 
 The [Repeatr-app](https://alexmitrani.shinyapps.io/Repeatr-app/) makes it easy to get some insights and answer questions about the Fugazi Live Series. It also provides several new ways of finding shows to listen to.
 
-!['flow' and 'stock' sections.](images/paste-2A9DA4F4.png)
+![](images/paste-9291C1FF.png)
 
-The app has 10 pages spread across 2 sections:
+The app has 11 pages spread across 3 sections:
 
 -   flow (7 pages) - includes top-level menus for 'year' and 'tour' which will filter the contents of all the pages in this section.
 
@@ -35,6 +35,10 @@ The app has 10 pages spread across 2 sections:
 -   stock (4 pages) - includes a top-level menu for 'release' which will filter the contents of all the pages in this section.
 
     ![](images/paste-4B7E09FB.png)
+
+-   quiz (1 page) - links to Fugazi Live Series Quiz #1 and shows the high scores to date.
+
+    ![](images/paste-2AB64D9A.png)
 
 Most of the pages have a visualisation (map or graph) and a data table further down the page, with the exception of 'transition', 'duration' and 'search' which only have data tables.
 
@@ -490,5 +494,13 @@ The data table lists the shows that contain all of the specified songs, or none 
 If you filter by release but not songs the data will be limited to all shows containing songs from the specified release. This provides a neat way of finding shows with many songs from your favourite album, for instance if you like 'End Hits' sorting in descending order of hits gives you these results:
 
 ![](images/paste-2C49BE1C.png)
+
+# quiz
+
+![](images/paste-04B2C4FD.png)
+
+The top half of the scores will be included in the High Scores table. If you complete the quiz and place in the top half, your entry will be included, although you might need to re-load the page for the content to be refreshed with the latest responses data. The total points shown are the total points that were available at the time that each entry was completed - every now and then this total might change die to new questions being added, old questions being removed, or changes being made to the value of each question. The percentage is the score divided by the total available points in each case, and it is this value that is used to sort the table.
+
+For further information about the quiz, follow the link at the top of the quiz page. If you are ready for a challenge, give it a try!
 
 Thanks.
