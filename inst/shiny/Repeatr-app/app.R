@@ -69,7 +69,8 @@ quizdata <- quizdata %>%
   mutate(total = as.numeric(substring(Score, regexpr("/", Score)+2)))
 
 quizdata <- quizdata %>%
-  mutate(score = round(100*round(points/total, 3),1))
+  mutate(score = round(100*round(points/total, 3),1)) %>%
+  arrange(desc(score))
 
 quizdata <- quizdata %>%
   mutate(name = ifelse(is.na(name)==FALSE, name, "Anon.")) %>%
@@ -78,8 +79,7 @@ quizdata <- quizdata %>%
 
 quizdata <- quizdata %>%
   rename(timestamp = Timestamp, percentage = score) %>%
-  select(name, timestamp, points, total, percentage) %>%
-  arrange(desc(percentage))
+  select(name, timestamp, points, total, percentage)
 
 # user interface ----------------------------------------------------------
 
