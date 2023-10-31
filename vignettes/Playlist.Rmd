@@ -228,5 +228,6 @@ A list of recommended shows. I will continue to add to this list as I make my wa
 [FLS0923, Rex, London, England, 1999-05-15](https://dischord.com/fugazi_live_series/london-england-51599)<br>
 [FLS0924, Fort Reno, Washington, DC, USA, 1999-08-26](https://dischord.com/fugazi_live_series/washington-dc-usa-82699)<br>
 [FLS0926, Fabrik, Hamburg, Germany, 1999-09-18](https://dischord.com/fugazi_live_series/hamburg-germany-91899)<br>
+[FLS0938, CPA, Florence, Italy, 1999-10-01](https://dischord.com/fugazi_live_series/florence-italy-100199)<br>
 
 
