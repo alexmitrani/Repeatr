@@ -481,13 +481,13 @@ This page allows you to search for shows that contain a specific selection of so
 
 ![](images/paste-E01006AF.png)
 
-The data table lists the shows that contain all of the specified songs, or none if that is the case, including the following columns:
+The data table lists the shows that contain any of the specified songs (or all the shows if none were specified), including the following columns:
 
 -   fls_link provides a link to the corresponding page of the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) site
 
 -   date - date of the show
 
--   hits - the number of the specified songs included in the show
+-   hits - the number of the specified songs included in the show (or the number of songs if none were specified)
 
 -   sound_quality - Sound quality rating: Excellent, Very Good, Good, or Poor.
 
