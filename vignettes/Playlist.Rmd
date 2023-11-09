@@ -232,4 +232,6 @@ A list of recommended shows. I will continue to add to this list as I make my wa
 [FLS0941, Rote Fabrik, Zurich, Switzerland, 1999-10-05](https://dischord.com/fugazi_live_series/zurich-switzerland-100599)<br>
 [FLS0942, L'Usine, Geneva, Switzerland, 1999-10-06](https://dischord.com/fugazi_live_series/geneva-switzerland-100699)<br>
 [FLS0943, Theatre Du Moulin, Marseille, France, 1999-10-07](https://dischord.com/fugazi_live_series/marseille-france-100799)<br>
+[FLS0948, L'Olympic, Nantes, France, 1999-10-13](https://dischord.com/fugazi_live_series/nantes-france-101399)<br>
+[FLS0949, Le Cafe De la Danse, Paris, France, 1999-10-14](https://dischord.com/fugazi_live_series/paris-france-101499)<br>
 
