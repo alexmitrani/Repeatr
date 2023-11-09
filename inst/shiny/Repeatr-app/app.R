@@ -15,6 +15,8 @@ thematic_shiny(font = "auto")
 
 timestamptext <- paste0("Made with Repeatr version ", packageVersion("Repeatr"), ", updated ", packageDate("Repeatr"), ".")
 
+minfraction <- 0
+
 year_tour_release <- Repeatr1 %>%
   select(year, gid, release) %>%
   group_by(year, gid, release) %>%
@@ -2298,7 +2300,7 @@ server <- function(input, output, session) {
       mysearch <- as.data.frame(mysearch)
       names(mysearch)[1]<-"song"
       mysearch <- mysearch %>% mutate(hits = 1)
-      successcriteria <- nrow(mysearch)*0.8
+      successcriteria <- nrow(mysearch)*minfraction
 
       search_data_da_results <- duration_data_da %>%
         left_join(mysearch) %>%
@@ -2318,7 +2320,7 @@ server <- function(input, output, session) {
         left_join(gid_sound_quality) %>%
         group_by(fls_link, date, sound_quality) %>%
         summarize(hits = n()) %>%
-        arrange(date) %>%
+        arrange(desc(hits), date) %>%
         ungroup()
 
     } else {
@@ -2327,7 +2329,7 @@ server <- function(input, output, session) {
         left_join(gid_sound_quality) %>%
         group_by(fls_link, date, sound_quality) %>%
         summarize(hits = n()) %>%
-        arrange(date) %>%
+        arrange(desc(hits), date) %>%
         ungroup()
 
     }
