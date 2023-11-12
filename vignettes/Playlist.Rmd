@@ -235,4 +235,4 @@ A list of recommended shows. I will continue to add to this list as I make my wa
 [FLS0948, L'Olympic, Nantes, France, 1999-10-13](https://dischord.com/fugazi_live_series/nantes-france-101399)<br>
 [FLS0949, Le Cafe De la Danse, Paris, France, 1999-10-14](https://dischord.com/fugazi_live_series/paris-france-101499)<br>
 [FLS0950, Ancienne Belgique, Brussels, Belgium, 1999-10-15](https://dischord.com/fugazi_live_series/brussels-belgium-101599)<br>
-
+[FLS0954, Roxy, New York, NY, USA, 1999-12-03](https://dischord.com/fugazi_live_series/new-york-city-ny-usa-120399)<br>
