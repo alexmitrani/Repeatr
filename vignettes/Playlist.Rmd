@@ -239,3 +239,4 @@ A list of recommended shows. I will continue to add to this list as I make my wa
 [FLS0954, Roxy, New York, NY, USA, 1999-12-03](https://dischord.com/fugazi_live_series/new-york-city-ny-usa-120399)<br>
 [FLS0956, 9:30 Club, Washington, DC, USA, 1999-12-05](https://dischord.com/fugazi_live_series/washington-dc-usa-120599)<br>
 [FLS0959, 40 Watt, Athens, GA, USA, 1999-12-18](https://dischord.com/fugazi_live_series/athens-ga-usa-121899)<br>
+[FLS0963, Tremont Music Hall, Charlotte, NC, USA, 2000-01-13](https://dischord.com/fugazi_live_series/charlotte-nc-usa-11300)<br>
