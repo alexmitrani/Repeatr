@@ -242,4 +242,6 @@ A list of recommended shows. I will continue to add to this list as I make my wa
 [FLS0963, Tremont Music Hall, Charlotte, NC, USA, 2000-01-13](https://dischord.com/fugazi_live_series/charlotte-nc-usa-11300)<br>
 [FLS0969, Moon, Tallahassee, FL, USA, 2000-01-20](https://dischord.com/fugazi_live_series/tallahassee-fl-usa-12000)<br>
 [FLS0972, Fort Reno, Washington, DC,  2000-08-07](https://dischord.com/fugazi_live_series/washington-dc-usa-80700)<br>
+[FLS0974, Kolingsborg, Stockholm, Sweden, 2000-10-01](https://dischord.com/fugazi_live_series/stockholm-sweden-100100)<br>
 [FLS0980, Mejeriet, Lund, Sweden,  2000-10-08](https://dischord.com/fugazi_live_series/lund-sweden-100800)<br>
+
