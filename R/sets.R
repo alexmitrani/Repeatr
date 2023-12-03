@@ -1,13 +1,17 @@
 
 #' sets
 #' @title compares the setlists of two or more shows.
-#' @description sets returns a table with the list of shows in the rows and the shows in the columns, including a total column showing how many shows each song was played in. .
+#' @description sets returns a list with two dataframes
+#' @description the first is a table with the list of shows in the rows and the shows in the columns, including a total column showing how many shows each song was played in. .
+#' @description the second is a summary table of the number of shows in which songs appear, with one row per number of shows, the number of songs in each category, and the proportion of the total number of songs.
 #'
 #' @param shows a list of show ids
 #'
 #'
 #' @examples
 #' sets <- sets(shows = c("aalst-belgium-92390", "aberdeen-scotland-50499", "leeds-england-103102"))
+#' sets[[1]]
+#' sets[[2]]
 
 
 sets <- function(shows = NULL) {
@@ -48,7 +52,7 @@ sets <- function(shows = NULL) {
 
   }
 
-  sets <- list(shows, songs)
+  sets <- list(songs, shows)
 
   return(sets)
 
