@@ -28,15 +28,27 @@ sets <- function(shows = NULL) {
 
     sets <- sets %>% replace(is.na(.), 0)
 
-    sets <- sets  %>%
-      mutate(total = rowSums(across(where(is.numeric)), na.rm=TRUE))  %>%
-      arrange(desc(total), song)
+    songs <- sets  %>%
+      mutate(shows = rowSums(across(where(is.numeric)), na.rm=TRUE))  %>%
+      arrange(desc(shows), song)
+
+    total_songs <- nrow(songs)
+
+    shows <- songs %>%
+      group_by(shows) %>%
+      summarize(songs = n()) %>%
+      ungroup() %>%
+      arrange(shows) %>%
+      mutate(proportion = songs / total_songs)
 
   } else {
 
-    sets <- NULL
+    shows <- NULL
+    songs <- NULL
 
   }
+
+  sets <- list(shows, songs)
 
   return(sets)
 
