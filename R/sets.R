@@ -5,24 +5,25 @@
 #' @description the first is a table with the list of shows in the rows and the shows in the columns, including a total column showing how many shows each song was played in. .
 #' @description the second is a summary table of the number of shows in which songs appear, with one row per number of shows, the number of songs in each category, and the proportion of the total number of songs.
 #'
+#' @param mydf the dataframe to use. must contain the columns "gid" and "song".
 #' @param shows a list of show ids
 #'
 #'
 #' @examples
-#' sets <- sets(shows = c("aalst-belgium-92390", "aberdeen-scotland-50499", "leeds-england-103102"))
+#' sets <- sets(mydf = duration_data_da, shows = c("aalst-belgium-92390", "aberdeen-scotland-50499", "leeds-england-103102"))
 #' sets[[1]]
 #' sets[[2]]
 
 
-sets <- function(shows = NULL) {
+sets <- function(mydf = NULL, shows = NULL) {
 
 
   if(is.null(shows)==FALSE) {
 
-    duration_data_da <- duration_data_da %>%
+    mydf <- mydf %>%
       select(gid, song)
 
-    sets <- duration_data_da %>%
+    sets <- mydf %>%
       filter(gid %in% shows) %>%
       mutate(played = 1)
 
