@@ -10,26 +10,33 @@
 #' sets <- sets(shows = c("aalst-belgium-92390", "aberdeen-scotland-50499", "leeds-england-103102"))
 
 
-sets <- function(shows) {
+sets <- function(shows = NULL) {
 
 
-  duration_data_da <- duration_data_da %>%
-    select(gid, song)
+  if(is.null(shows)==FALSE) {
 
+    duration_data_da <- duration_data_da %>%
+      select(gid, song)
 
-  sets <- duration_data_da %>%
-    filter(gid %in% shows) %>%
-    mutate(played = 1)
+    sets <- duration_data_da %>%
+      filter(gid %in% shows) %>%
+      mutate(played = 1)
 
-  sets <- sets %>%
-    pivot_wider(names_from = gid, values_from = played) %>%
-    arrange(song)
+    sets <- sets %>%
+      pivot_wider(names_from = gid, values_from = played) %>%
+      arrange(song)
 
-  sets <- sets %>% replace(is.na(.), 0)
+    sets <- sets %>% replace(is.na(.), 0)
 
-  sets <- sets  %>%
-    mutate(total = rowSums(across(where(is.numeric)), na.rm=TRUE))  %>%
-    arrange(desc(total), song)
+    sets <- sets  %>%
+      mutate(total = rowSums(across(where(is.numeric)), na.rm=TRUE))  %>%
+      arrange(desc(total), song)
+
+  } else {
+
+    sets <- NULL
+
+  }
 
   return(sets)
 
