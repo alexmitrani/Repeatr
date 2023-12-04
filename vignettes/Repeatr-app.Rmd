@@ -24,17 +24,17 @@ library(Repeatr)
 
 The [Repeatr-app](https://alexmitrani.shinyapps.io/Repeatr-app/) makes it easy to get some insights and answer questions about the Fugazi Live Series. It also provides several new ways of finding shows to listen to.
 
-![](images/paste-9291C1FF.png)
+![](images/paste-4C36DE20.png)
 
-The app has 11 pages spread across 3 sections:
+The app has 12 pages spread across 3 sections:
 
--   flow (7 pages) - includes top-level menus for 'year' and 'tour' which will filter the contents of all the pages in this section.
+-   flow (8 pages) - includes top-level menus for 'year' and 'tour' which will filter the contents of all the pages in this section.
 
-    ![](images/paste-74322788.png)
+    ![](images/paste-A5844D2E.png)
 
 -   stock (4 pages) - includes a top-level menu for 'release' which will filter the contents of all the pages in this section.
 
-    ![](images/paste-4B7E09FB.png)
+    ![](images/paste-C9B59AB5.png)
 
 -   quiz (1 page) - links to Fugazi Live Series Quiz #1 and shows the high scores to date.
 
@@ -356,6 +356,24 @@ The data table includes:
 -   song1 - the first song in the transition
 
 -   song2 - the second song in the transition
+
+## sets
+
+Here you can compare two or more shows to find out which songs are played in each, how many unique songs there are, and how many songs are played only once or in 2 or more of the shows. You can pick shows from the full series or you can filter first by year and/or tour to pick shows from a shorter list. For example, we can compare the three Swedish shows from the 2000 North European tour.
+
+![](images/paste-653906B4.png)
+
+Note that the show identifiers are the same as those used on the Fugazi Live Series website and have the following format: city-country-(m)m-dd-yy. The month will be one or two digits depending on which month it is.
+
+Once shows have been selected, two results tables will appear. The first is a summary table.
+
+![](images/paste-8668F948.png)
+
+The summary table tells us that 52 unique songs were played: 32 songs were played only once, 12 songs were played twice, and 8 songs were played at all 3 shows. The three shows have 80 songs in total, including the repeated performances.
+
+The Details table shows the complete list of songs, and for each song which show or shows it was performed at. The table is sorted in descending order of the number of shows each song was performed at, so in this case the top part of the table lists the 8 songs that were performed at all 3 shows.
+
+![](images/paste-9AFEBC56.png)
 
 # stock
 
