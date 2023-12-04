@@ -46,7 +46,7 @@ sets <- function(mydf = NULL, shows = NULL) {
       summarize(songs = n()) %>%
       ungroup() %>%
       arrange(shows) %>%
-      mutate(proportion = songs / total_songs)
+      mutate(proportion = round((songs / total_songs), 3))
 
   } else {
 
