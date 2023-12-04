@@ -8,6 +8,8 @@
 #' @param mydf the dataframe to use. must contain the columns "gid" and "song".
 #' @param shows a list of show ids
 #'
+#' @return
+#' @export
 #'
 #' @examples
 #' sets <- sets(mydf = duration_data_da, shows = c("aalst-belgium-92390", "aberdeen-scotland-50499", "leeds-england-103102"))
