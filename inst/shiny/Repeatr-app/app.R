@@ -56,6 +56,9 @@ played_with <- played_with %>%
 played_with <- played_with %>%
   select(fls_link, year, tour, date, venue, city, country, played_with, attendance, sound_quality, latitude, longitude)
 
+year_tour_gid_song <- duration_data_da %>%
+  left_join(othervariables) %>%
+  select(year, tour, gid, song)
 
 quizdata <- gsheet2tbl('https://docs.google.com/spreadsheets/d/1-QGRAxeGRNBnx2ao7FXUjcK77uTfZ-_XnN3M7mqqjMc')
 
@@ -534,9 +537,33 @@ tabPanel("flow",
 
                     )
 
+           ),
+
+           # sets -------------------------------------------------------------
+
+           tabPanel("sets",
+
+                    fluidPage(
+
+                      tags$br(),
+
+                      # Create a new Row in the UI for selectInputs
+                      fluidRow(
+                        column(12, uiOutput("menuOptions_gid")),
+                      ),
+
+                      hr(),
+                      tags$br(),
+
+                      fluidRow(
+                        column(12,
+                               DT::dataTableOutput("sets_datatable")
+                        )
+                      )
+
+                    )
+
            )
-
-
 
 
 
@@ -1973,6 +2000,67 @@ server <- function(input, output, session) {
 
   }, escape = c(-4),
   style = "bootstrap"))
+
+  # sets -------------------------------------------------------------
+
+  sets_shows_data_filtered <- reactive({
+
+    if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==FALSE) {
+      year_tour_gid_song_filtered <- year_tour_gid_song %>%
+        filter(year %in% input$yearInput_shows &
+                 tour %in% input$tourInput_shows)
+
+    } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==TRUE) {
+      year_tour_gid_song_filtered <- year_tour_gid_song %>%
+        filter(year %in% input$yearInput_shows)
+
+    } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==FALSE) {
+      year_tour_gid_song_filtered <- year_tour_gid_song %>%
+        filter(tour %in% input$tourInput_shows)
+
+    } else {
+      year_tour_gid_song_filtered <- year_tour_gid_song
+
+    }
+
+    year_tour_gid_song_filtered
+
+  })
+
+
+  output$menuOptions_gid <- renderUI({
+
+
+    searchmenudata <- sets_shows_data_filtered() %>%
+      arrange(gid)
+
+
+    selectizeInput("search_shows", "gid:",
+                   choices = c(unique(searchmenudata$gid)), multiple =TRUE)
+
+  })
+
+
+  songs_data <- reactive({
+
+    sets <- sets(mydf = year_tour_gid_song, shows = input$search_shows)
+
+    songs <- sets[[1]]
+
+    songs
+
+  })
+
+
+  output$sets_datatable <- DT::renderDataTable(DT::datatable({
+
+    data <- songs_data()
+
+    data
+
+  },
+  style = "bootstrap"))
+
 
 
 # discography -------------------------------------------------------------------
