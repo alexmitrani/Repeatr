@@ -560,6 +560,12 @@ tabPanel("flow",
                         h3("Summary"),
                         tags$br(),
 
+                        tags$div(
+                          textOutput("number_shows", inline = TRUE), " ", textOutput("showorshows", inline = TRUE), " with a total of ",
+                          textOutput("number_unique_songs", inline = TRUE), " unique songs."
+                        ),
+
+                        tags$br(),
 
                         fluidRow(
                           column(12,
@@ -835,8 +841,7 @@ tabPanel("quiz",
 
         tags$div(
           tags$br(),
-          "Contact the developer on ",
-          tags$a(rel="me", href="https://mastodon.online/@alex_mitrani_es", "Mastodon"),
+          tags$a(rel="me", href="https://github.com/alexmitrani/Repeatr/", "Repeatr GitHub"),
           tags$br()
         )
 
@@ -2068,6 +2073,26 @@ server <- function(input, output, session) {
     songs <- sets[[1]]
 
     songs
+
+  })
+
+  output$number_unique_songs <- renderText({
+    number_unique_songs <- nrow(sets_songs_data())
+    number_unique_songs
+  })
+
+  output$number_shows <- renderText({
+    number_shows <- length(input$search_shows)
+    number_shows
+  })
+
+  output$showorshows <- renderText({
+
+    if(length(input$search_shows)>1) {
+      showorshows <- "shows"
+    } else {
+      showorshows <- "show"
+    }
 
   })
 
