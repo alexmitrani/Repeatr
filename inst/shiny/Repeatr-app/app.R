@@ -555,9 +555,19 @@ tabPanel("flow",
                       hr(),
                       tags$br(),
 
+
                       fluidRow(
                         column(12,
-                               DT::dataTableOutput("sets_datatable")
+                               DT::dataTableOutput("sets_shows_datatable")
+                        )
+                      ),
+
+                      hr(),
+                      tags$br(),
+
+                      fluidRow(
+                        column(12,
+                               DT::dataTableOutput("sets_songs_datatable")
                         )
                       )
 
@@ -2035,13 +2045,13 @@ server <- function(input, output, session) {
       arrange(gid)
 
 
-    selectizeInput("search_shows", "gid:",
+    selectizeInput("search_shows", "shows:",
                    choices = c(unique(searchmenudata$gid)), multiple =TRUE)
 
   })
 
 
-  songs_data <- reactive({
+  sets_songs_data <- reactive({
 
     sets <- sets(mydf = year_tour_gid_song, shows = input$search_shows)
 
@@ -2051,10 +2061,30 @@ server <- function(input, output, session) {
 
   })
 
+  sets_shows_data <- reactive({
 
-  output$sets_datatable <- DT::renderDataTable(DT::datatable({
+    sets <- sets(mydf = year_tour_gid_song, shows = input$search_shows)
 
-    data <- songs_data()
+    shows <- sets[[2]]
+
+    shows
+
+  })
+
+
+  output$sets_songs_datatable <- DT::renderDataTable(DT::datatable({
+
+    data <- sets_songs_data()
+
+    data
+
+  },
+  style = "bootstrap"))
+
+
+  output$sets_shows_datatable <- DT::renderDataTable(DT::datatable({
+
+    data <- sets_shows_data()
 
     data
 
