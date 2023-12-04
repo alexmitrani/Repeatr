@@ -552,23 +552,33 @@ tabPanel("flow",
                         column(12, uiOutput("menuOptions_gid")),
                       ),
 
-                      hr(),
-                      tags$br(),
+                      conditionalPanel(
+                        condition = "input.search_shows!=''",
+
+                        hr(),
+                        tags$br(),
+                        h3("Summary"),
+                        tags$br(),
 
 
-                      fluidRow(
-                        column(12,
-                               DT::dataTableOutput("sets_shows_datatable")
+                        fluidRow(
+                          column(12,
+                                 DT::dataTableOutput("sets_shows_datatable")
+                          )
+                        ),
+
+                        hr(),
+                        tags$br(),
+                        h3("Details"),
+                        tags$br(),
+
+
+                        fluidRow(
+                          column(12,
+                                 DT::dataTableOutput("sets_songs_datatable")
+                          )
                         )
-                      ),
 
-                      hr(),
-                      tags$br(),
-
-                      fluidRow(
-                        column(12,
-                               DT::dataTableOutput("sets_songs_datatable")
-                        )
                       )
 
                     )
