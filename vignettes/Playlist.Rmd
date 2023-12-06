@@ -245,4 +245,5 @@ A list of recommended shows. I will continue to add to this list as I make my wa
 [FLS0974, Kolingsborg, Stockholm, Sweden, 2000-10-01](https://dischord.com/fugazi_live_series/stockholm-sweden-100100)<br>
 [FLS0980, Mejeriet, Lund, Sweden,  2000-10-08](https://dischord.com/fugazi_live_series/lund-sweden-100800)<br>
 [FLS0982, Ogden Theater, Denver, CO, USA, 2001-04-05](https://dischord.com/fugazi_live_series/denver-co-usa-40501)<br>
+[FLS0983, Ogden Theater, Denver, CO, USA, 2001-04-06](https://dischord.com/fugazi_live_series/denver-co-usa-40601)<br>
 
