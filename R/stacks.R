@@ -7,8 +7,8 @@
 #'
 #'
 #' @param mydf dataframs of shows and songs containing the columns gid and song.
-#' @param mystack starting stack - a table with the columns gid and song.
-#' @param mynumberofsongs the number of unique songs that are required. the maximum is 94.
+#' @param mygid gig id of initial show as a string, for instance "washington-dc-usa-13196".
+#' @param mynumberofsongs the number of unique songs that are required. the maximum is 94 (the number of songs Fugazi played live  at least twice) and the number of songs in the initial show will be taken as a minimum.
 #'
 #' @return
 #' @export
@@ -17,21 +17,19 @@
 #' gid_song <- duration_data_da %>%
 #'   select(gid, song)
 #'
-#' stack <- gid_song %>%
-#'   filter(gid=="washington-dc-usa-13196") %>%
-#'   select(gid, song)
-#'
-#' results <- stacks(mydf = gid_song, mystack = stack, mynumberofsongs = 94)
+#' results <- stacks(mydf = gid_song, mygid = "washington-dc-usa-13196", mynumberofsongs = 94)
 #' stack1 <- results[[1]]
 #' stack2 <- results[[2]]
 #'
 #'
-stacks <- function(mydf = NULL, mystack = NULL, mynumberofsongs = NULL){
+stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL){
 
-  minimumsongs <- nrow(mystack)
-
-  stack_songs <- mystack %>%
+  stack_songs <- mydf %>%
+    filter(gid==mygid) %>%
+    select(gid, song) %>%
     mutate(stack=1)
+
+  minimumsongs <- nrow(stack_songs)
 
   if(mynumberofsongs > 94) {
 
