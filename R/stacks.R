@@ -1,10 +1,6 @@
 
-
-library(Repeatr)
-
-
 #' stacks
-#' @title stacks puts together a set of shows that will contain a specified number of unique songs.  .
+#' @title stacks puts together a set of shows that will contain a specified number of unique songs.
 #' @description sets returns a list with two dataframes
 #' @description the first is a table with the list of shows in the rows and the shows in the columns, including a total column showing how many shows each song was played in. .
 #' @description the second is a summary table of the number of shows in which songs appear, with one row per number of shows, the number of songs in each category, and the proportion of the total number of songs.
