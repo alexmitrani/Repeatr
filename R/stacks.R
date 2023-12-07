@@ -28,8 +28,22 @@
 #'
 stacks <- function(mydf = NULL, mystack = NULL, mynumberofsongs = NULL){
 
+  minimumsongs <- nrow(mystack)
+
   stack_songs <- mystack %>%
     mutate(stack=1)
+
+  if(mynumberofsongs > 94) {
+
+    mynumberofsongs <- 94
+
+  }
+
+  if(mynumberofsongs < minimumsongs) {
+
+    mynumberofsongs <- minimumsongs
+
+  }
 
   repeat{
 
@@ -78,7 +92,7 @@ stacks <- function(mydf = NULL, mystack = NULL, mynumberofsongs = NULL){
       summarize(songs = sum(selected)) %>%
       ungroup()
 
-    if(unique_songs==mynumberofsongs){
+    if(unique_songs>=mynumberofsongs){
       break
     }
 
