@@ -24,6 +24,31 @@
 #'
 stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL){
 
+  song_chosen <- summary %>%
+    select(song, chosen) %>%
+    arrange(chosen)
+
+  if(is.null(mydf)==TRUE){
+
+    mydf <- duration_data_da %>%
+      select(gid, song)
+
+  }
+
+  if(is.null(mygid)==TRUE){
+
+    gid_data <- mydf %>%
+      left_join(song_chosen) %>%
+      arrange(chosen) %>%
+      mutate(gid_chosen = ifelse(row_number()==1, 1, 0)) %>%
+      filter(gid_chosen==1)
+
+    mygid <- as.character(gid_data[1,1])
+
+    rm(gid_data)
+
+  }
+
   stack_songs <- mydf %>%
     filter(gid==mygid) %>%
     select(gid, song) %>%
@@ -31,11 +56,19 @@ stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL){
 
   minimumsongs <- nrow(stack_songs)
 
+  if(is.null(mynumberofsongs)==TRUE) {
+
+    mynumberofsongs <- 94
+
+  }
+
   if(mynumberofsongs > 94) {
 
     mynumberofsongs <- 94
 
   }
+
+
 
   if(mynumberofsongs < minimumsongs) {
 
@@ -50,11 +83,12 @@ stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL){
       rename(gid = gid.x) %>%
       select(gid, song, stack)
 
-    gid_song_stack <- gid_song_stack %>%
+    gid_song_new <- gid_song_stack %>%
       replace(is.na(.), 0)  %>%
-      mutate(new = 1-stack)
+      mutate(new = 1-stack)  %>%
+      select(gid, song, new)
 
-    gid_selected <- gid_song_stack %>%
+    gid_selected <- gid_song_new %>%
       group_by(gid) %>%
       summarize(new = sum(new)) %>%
       ungroup() %>%
@@ -62,7 +96,7 @@ stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL){
       mutate(selected = ifelse(row_number()==1,1,0)) %>%
       select(gid, selected)
 
-    stack2 <- gid_song %>%
+    stack2 <- mydf %>%
       left_join(gid_selected) %>%
       filter(selected==1) %>%
       rename(stack = selected)
