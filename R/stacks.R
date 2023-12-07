@@ -24,6 +24,10 @@
 #'
 stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL){
 
+
+# pre-processing to check that all required parameters are defined -----------------------------------------------------------
+
+
   song_chosen <- summary %>%
     select(song, chosen) %>%
     arrange(chosen)
@@ -68,13 +72,15 @@ stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL){
 
   }
 
-
-
   if(mynumberofsongs < minimumsongs) {
 
     mynumberofsongs <- minimumsongs
 
   }
+
+
+# while loop --------------------------------------------------------------------
+
 
   repeat{
 
@@ -88,10 +94,26 @@ stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL){
       mutate(new = 1-stack)  %>%
       select(gid, song, new)
 
-    gid_selected <- gid_song_new %>%
+    # restrict the data to shows with the next rarest song
+
+    gid_data <- gid_song_new %>%
+      left_join(song_chosen) %>%
+      filter(new==1)
+
+    lowest_play_count <- min(gid_data$chosen)
+
+    gid_data <- gid_data %>%
+      mutate(selected_song = ifelse(chosen == lowest_play_count, 1, 0))
+
+    gid_data <- gid_data %>%
       group_by(gid) %>%
-      summarize(new = sum(new)) %>%
-      ungroup() %>%
+      summarise(new = sum(new), selected_song = sum(selected_song)) %>%
+      filter(selected_song>0) %>%
+      ungroup()
+
+    # out of all the shows with the next rarest song, pick the show offering the most new songs
+
+    gid_selected <- gid_data %>%
       arrange(desc(new)) %>%
       mutate(selected = ifelse(row_number()==1,1,0)) %>%
       select(gid, selected)
@@ -123,6 +145,11 @@ stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL){
       group_by(gid) %>%
       summarize(songs = sum(selected)) %>%
       ungroup()
+
+    stack_shows_songs <- stack_shows_songs %>%
+      left_join(othervariables) %>%
+      select(flsid, gid, tour, date, venue, city, country, songs) %>%
+      arrange(date)
 
     if(unique_songs>=mynumberofsongs){
       break
