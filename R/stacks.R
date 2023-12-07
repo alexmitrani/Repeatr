@@ -148,7 +148,9 @@ stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL){
 
     stack_shows_songs <- stack_shows_songs %>%
       left_join(othervariables) %>%
-      select(flsid, gid, tour, date, venue, city, country, songs) %>%
+      mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
+      mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>")) %>%
+      select(fls_link, tour, date, venue, city, country, songs) %>%
       arrange(date)
 
     if(unique_songs>=mynumberofsongs){
