@@ -9,6 +9,7 @@
 #' @param mydf dataframs of shows and songs containing the columns gid and song.
 #' @param mygid gig id of initial show as a string, for instance "washington-dc-usa-13196".
 #' @param mynumberofsongs the number of unique songs that are required. the maximum is 94 (the number of songs Fugazi played live  at least twice) and the number of songs in the initial show will be taken as a minimum.
+#' @param exclude_poor_sound_quality set to TRUE to exclude shows with poor sound quality
 #'
 #' @return
 #' @export
@@ -22,11 +23,9 @@
 #' stack2 <- results[[2]]
 #'
 #'
-stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL){
-
+stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL, exclude_poor_sound_quality = FALSE){
 
 # pre-processing to check that all required parameters are defined -----------------------------------------------------------
-
 
   song_chosen <- summary %>%
     select(song, chosen) %>%
@@ -35,6 +34,19 @@ stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL){
   if(is.null(mydf)==TRUE){
 
     mydf <- duration_data_da %>%
+      select(gid, song)
+
+  }
+
+
+
+  if(exclude_poor_sound_quality==TRUE) {
+
+    mydf <- mydf %>%
+      left_join(gid_sound_quality)
+
+    mydf <- mydf %>%
+      filter(sound_quality!="Poor") %>%
       select(gid, song)
 
   }
@@ -107,15 +119,18 @@ stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL){
 
     gid_data <- gid_data %>%
       group_by(gid) %>%
-      summarise(new = sum(new), selected_song = sum(selected_song)) %>%
+      summarise(new = sum(new), selected_song = sum(selected_song), chosen = sum(chosen)) %>%
       filter(selected_song>0) %>%
       ungroup()
 
-    # out of all the shows with the next rarest song, pick the show offering the most new songs
+    # out of all the shows with the next rarest song, pick one of the shows offering the most new songs
+    # and out of those shows, pick the one with least played songs
 
     gid_selected <- gid_data %>%
-      arrange(desc(new)) %>%
-      mutate(selected = ifelse(row_number()==1,1,0)) %>%
+      arrange(desc(new), chosen) %>%
+      mutate(selected = ifelse(row_number()==1,1,0))
+
+    gid_selected <- gid_selected %>%
       select(gid, selected)
 
     stack2 <- mydf %>%
@@ -150,7 +165,8 @@ stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL){
       left_join(othervariables) %>%
       mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
       mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>")) %>%
-      select(fls_link, tour, date, venue, city, country, songs) %>%
+      left_join(gid_sound_quality) %>%
+      select(fls_link, tour, date, venue, city, country, sound_quality, songs) %>%
       arrange(date)
 
     if(unique_songs>=mynumberofsongs){
@@ -160,9 +176,9 @@ stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL){
 
   }
 
-  stacks <- list(stack_songs, stack_shows_songs)
+  mystacks <- list(stack_songs, stack_shows_songs)
 
-  return(stacks)
+  return(mystacks)
 
 }
 
