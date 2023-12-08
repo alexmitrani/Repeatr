@@ -587,6 +587,43 @@ tabPanel("flow",
 
                     )
 
+           ),
+
+           # stacks -------------------------------------------------------------
+
+           tabPanel("stacks",
+
+                    fluidPage(
+
+                      tags$br(),
+
+                      # Create a new Row in the UI for selectInputs
+                      fluidRow(
+                        column(12, uiOutput("menuOptions_gid_stacks")),
+                      ),
+
+                      conditionalPanel(
+                        condition = "input.search_shows_stacks!=''",
+
+                        hr(),
+                        tags$br(),
+
+                        tags$div(
+                          textOutput("number_shows_stacks", inline = TRUE), " ", textOutput("showorshows_stacks", inline = TRUE), "."
+                        ),
+
+                        tags$br(),
+
+                        fluidRow(
+                          column(12,
+                                 DT::dataTableOutput("stacks_shows_datatable")
+                          )
+                        )
+
+                      )
+
+                    )
+
            )
 
 
@@ -2122,6 +2159,85 @@ server <- function(input, output, session) {
     data
 
   },
+  style = "bootstrap"))
+
+
+
+  # stacks -------------------------------------------------------------
+
+  stacks_shows_data_filtered <- reactive({
+
+    if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==FALSE) {
+      year_tour_gid_song_filtered <- year_tour_gid_song %>%
+        filter(year %in% input$yearInput_shows &
+                 tour %in% input$tourInput_shows)
+
+    } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==TRUE) {
+      year_tour_gid_song_filtered <- year_tour_gid_song %>%
+        filter(year %in% input$yearInput_shows)
+
+    } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==FALSE) {
+      year_tour_gid_song_filtered <- year_tour_gid_song %>%
+        filter(tour %in% input$tourInput_shows)
+
+    } else {
+      year_tour_gid_song_filtered <- year_tour_gid_song
+
+    }
+
+    year_tour_gid_song_filtered
+
+  })
+
+
+  output$menuOptions_gid_stacks <- renderUI({
+
+
+    searchmenudata_stacks <- stacks_shows_data_filtered() %>%
+      arrange(gid)
+
+
+    selectizeInput("search_shows_stacks", "show:",
+                   choices = c(unique(searchmenudata_stacks$gid)), multiple =FALSE)
+
+  })
+
+  stacks_shows_data <- reactive({
+
+    stack_shows <- gid_initial_gid_sound_quality %>%
+      filter(gid_initial %in% input$search_shows_stacks)
+
+    stack_shows
+
+  })
+
+  output$number_shows_stacks <- renderText({
+    number_shows <- nrow(stacks_shows_data())
+    number_shows
+  })
+
+  output$showorshows_stacks <- renderText({
+
+    if(length(stacks_shows_data())>1) {
+      showorshows <- "shows"
+    } else {
+      showorshows <- "show"
+    }
+
+  })
+
+
+  output$stacks_shows_datatable <- DT::renderDataTable(DT::datatable({
+
+    data <- stacks_shows_data() %>%
+      select(gid, sound_quality) %>%
+      left_join(othervariables) %>%
+      select(fls_link, date, venue, city, country, sound_quality) %>%
+      arrange(date)
+
+    data
+
+  }, escape = c(-2),
   style = "bootstrap"))
 
 
