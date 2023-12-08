@@ -607,9 +607,11 @@ tabPanel("flow",
 
                         hr(),
                         tags$br(),
+                        h3("Summary"),
+                        tags$br(),
 
                         tags$div(
-                          textOutput("number_shows_stacks", inline = TRUE), " ", textOutput("showorshows_stacks", inline = TRUE), "."
+                          textOutput("number_shows_stacks", inline = TRUE), " ", textOutput("showorshows_stacks", inline = TRUE), " with a total of ", textOutput("number_unique_songs_stacks", inline = TRUE), " unique songs."
                         ),
 
                         tags$br(),
@@ -618,7 +620,19 @@ tabPanel("flow",
                           column(12,
                                  DT::dataTableOutput("stacks_shows_datatable")
                           )
+                        ),
+
+                        hr(),
+                        tags$br(),
+                        h3("Details"),
+                        tags$br(),
+
+                        fluidRow(
+                          column(12,
+                                 DT::dataTableOutput("stacks_songs_datatable")
+                          )
                         )
+
 
                       )
 
@@ -2144,7 +2158,9 @@ server <- function(input, output, session) {
 
   output$sets_songs_datatable <- DT::renderDataTable(DT::datatable({
 
-    data <- sets_songs_data()
+    data <- sets_songs_data() %>%
+      relocate(shows) %>%
+      relocate(song)
 
     data
 
@@ -2211,6 +2227,16 @@ server <- function(input, output, session) {
 
   })
 
+  stacks_songs_data <- reactive({
+
+    sets <- sets(mydf = year_tour_gid_song, shows = as.character(stacks_shows_data()$gid))
+
+    songs <- sets[[1]]
+
+    songs
+
+  })
+
   output$number_shows_stacks <- renderText({
     number_shows <- nrow(stacks_shows_data())
     number_shows
@@ -2226,6 +2252,11 @@ server <- function(input, output, session) {
 
   })
 
+  output$number_unique_songs_stacks <- renderText({
+    number_songs <- nrow(stacks_songs_data())
+    number_songs
+  })
+
 
   output$stacks_shows_datatable <- DT::renderDataTable(DT::datatable({
 
@@ -2238,6 +2269,17 @@ server <- function(input, output, session) {
     data
 
   }, escape = c(-2),
+  style = "bootstrap"))
+
+  output$stacks_songs_datatable <- DT::renderDataTable(DT::datatable({
+
+    data <- stacks_songs_data() %>%
+      relocate(shows) %>%
+      relocate(song)
+
+    data
+
+  },
   style = "bootstrap"))
 
 
