@@ -24,7 +24,7 @@ stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL, exclude_po
 
 # pre-processing to check that all required parameters are defined -----------------------------------------------------------
 
-  song_chosen <- summary %>%
+  song_chosen <- Repeatr::summary %>%
     select(song, chosen) %>%
     arrange(chosen)
 
