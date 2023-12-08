@@ -4,7 +4,12 @@
 \alias{stacks}
 \title{stacks puts together a set of shows that will contain a specified number of unique songs.}
 \usage{
-stacks(mydf = NULL, mygid = NULL, mynumberofsongs = NULL)
+stacks(
+  mydf = NULL,
+  mygid = NULL,
+  mynumberofsongs = NULL,
+  exclude_poor_sound_quality = FALSE
+)
 }
 \arguments{
 \item{mydf}{dataframs of shows and songs containing the columns gid and song.}
@@ -12,15 +17,10 @@ stacks(mydf = NULL, mygid = NULL, mynumberofsongs = NULL)
 \item{mygid}{gig id of initial show as a string, for instance "washington-dc-usa-13196".}
 
 \item{mynumberofsongs}{the number of unique songs that are required. the maximum is 94 (the number of songs Fugazi played live  at least twice) and the number of songs in the initial show will be taken as a minimum.}
+
+\item{exclude_poor_sound_quality}{set to TRUE to exclude shows with poor sound quality}
 }
 \description{
-sets returns a list with two dataframes
-
-the first is a table with the list of shows in the rows and the shows in the columns, including a total column showing how many shows each song was played in. .
-
-the second is a summary table of the number of shows in which songs appear, with one row per number of shows, the number of songs in each category, and the proportion of the total number of songs.
-}
-\details{
 stacks
 }
 \examples{

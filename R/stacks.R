@@ -1,9 +1,6 @@
 
 #' stacks
 #' @title stacks puts together a set of shows that will contain a specified number of unique songs.
-#' @description sets returns a list with two dataframes
-#' @description the first is a table with the list of shows in the rows and the shows in the columns, including a total column showing how many shows each song was played in. .
-#' @description the second is a summary table of the number of shows in which songs appear, with one row per number of shows, the number of songs in each category, and the proportion of the total number of songs.
 #'
 #'
 #' @param mydf dataframs of shows and songs containing the columns gid and song.
@@ -175,6 +172,10 @@ stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL, exclude_po
 
 
   }
+
+  stack_songs <- stack_songs %>%
+    select(gid, song)
+
 
   mystacks <- list(stack_songs, stack_shows_songs)
 
