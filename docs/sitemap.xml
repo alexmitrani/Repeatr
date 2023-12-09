@@ -85,6 +85,9 @@
     <loc>/reference/fugazi_song_performance_intensity.html</loc>
   </url>
   <url>
+    <loc>/reference/gid_initial_gid_sound_quality.html</loc>
+  </url>
+  <url>
     <loc>/reference/gid_sound_quality.html</loc>
   </url>
   <url>
@@ -190,7 +193,13 @@
     <loc>/reference/songvarslookup.html</loc>
   </url>
   <url>
+    <loc>/reference/stacks.html</loc>
+  </url>
+  <url>
     <loc>/reference/summary.html</loc>
+  </url>
+  <url>
+    <loc>/reference/sweepstack.html</loc>
   </url>
   <url>
     <loc>/reference/toursdata.html</loc>

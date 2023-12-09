@@ -26,11 +26,11 @@ The [Repeatr-app](https://alexmitrani.shinyapps.io/Repeatr-app/) makes it easy t
 
 ![](images/paste-4C36DE20.png)
 
-The app has 12 pages spread across 3 sections:
+The app has 13 pages spread across 3 sections:
 
--   flow (8 pages) - includes top-level menus for 'year' and 'tour' which will filter the contents of all the pages in this section.
+-   flow (9 pages) - includes top-level menus for 'year' and 'tour' which will filter the contents of all the pages in this section.
 
-    ![](images/paste-A5844D2E.png)
+    ![](images/paste-AB9A853B.png)
 
 -   stock (4 pages) - includes a top-level menu for 'release' which will filter the contents of all the pages in this section.
 
@@ -189,7 +189,7 @@ The contents of this page will vary depending on the filters specified.
 
 If one or more years or tours are selected, the graph will show the attendance of each show in the selected period.
 
-![Graph on 'attendance' page when filtered by year or tour.](images/paste-EEB1441F.png)
+![](images/paste-6D525C11.png)
 
 The data table will show information for the specific shows in the selected period.
 
@@ -361,7 +361,7 @@ The data table includes:
 
 Here you can compare two or more shows to find out which songs are played in each, how many unique songs there are, and how many songs are played only once or in 2 or more of the shows. You can pick shows from the full series or you can filter first by year and/or tour to pick shows from a shorter list. For example, we can compare the three Swedish shows from the 2000 North European tour.
 
-![](images/paste-653906B4.png)
+![](images/paste-EE3626A6.png)
 
 Note that the show identifiers are the same as those used on the Fugazi Live Series website and have the following format: city-country-(m)m-dd-yy. The month will be one or two digits depending on which month it is.
 
@@ -374,6 +374,22 @@ The summary table tells us that 52 unique songs were played: 32 songs were playe
 The Details table shows the complete list of songs, and for each song which show or shows it was performed at. The table is sorted in descending order of the number of shows each song was performed at, so in this case the top part of the table lists the 8 songs that were performed at all 3 shows.
 
 ![](images/paste-9AFEBC56.png)
+
+## stacks
+
+Here you can choose any starting show (out of the 899 shows with setlists available to date) and will get a short sequence of 10-12 shows including the starting show and covering all 94 songs that Fugazi played live at least twice.
+
+![](images/paste-1365A4A9.png)
+
+The results include links to the shows...
+
+![](images/409506309_328012526844972_4299896132923730145_n.jpg)
+
+...and also details of in which shows each song was played.
+
+![](images/409509380_328012576844967_6274882284302898325_n.jpg)
+
+There are 1.015378631 E+21 combinations of 9 shows sampled from 899 shows, so there may be combinations of 9 shows that cover all 94 songs but they haven't been found yet!
 
 # stock
 
