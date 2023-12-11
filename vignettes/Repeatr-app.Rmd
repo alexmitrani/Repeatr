@@ -361,7 +361,7 @@ The data table includes:
 
 Here you can compare two or more shows to find out which songs are played in each, how many unique songs there are, and how many songs are played only once or in 2 or more of the shows. You can pick shows from the full series or you can filter first by year and/or tour to pick shows from a shorter list. For example, we can compare the three Swedish shows from the 2000 North European tour.
 
-![](images/paste-EE3626A6.png)
+![](images/paste-0508F56B.png)
 
 Note that the show identifiers are the same as those used on the Fugazi Live Series website and have the following format: city-country-(m)m-dd-yy. The month will be one or two digits depending on which month it is.
 
@@ -375,19 +375,23 @@ The Details table shows the complete list of songs, and for each song which show
 
 ![](images/paste-9AFEBC56.png)
 
+The 'details' table can be downloaded as a CSV file using the 'Download' button.
+
 ## stacks
 
 Here you can choose any starting show (out of the 899 shows with setlists available to date) and will get a short sequence of 9-12 shows including the starting show and covering all 94 songs that Fugazi played live at least twice.
 
-![](images/paste-1365A4A9.png)
+![](images/paste-2023D4CF.png)
 
-The results include links to the shows...
+Once a show has been selected, two results tables will appear. The first is a summary table, including links to the shows.
 
-![](images/409506309_328012526844972_4299896132923730145_n.jpg)
+![](images/paste-FD566AEF.png)
 
-...and also details of in which shows each song was played.
+The second table provides details of the shows in which each song was played.
 
-![](images/409509380_328012576844967_6274882284302898325_n.jpg)
+![](images/paste-9D4C7C1C.png)
+
+The summary table can be downloaded to a CSV file using the 'Download' button.
 
 # stock
 
