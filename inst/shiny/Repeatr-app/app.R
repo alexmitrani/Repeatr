@@ -84,6 +84,9 @@ quizdata <- quizdata %>%
   rename(timestamp = Timestamp, percentage = score) %>%
   select(name, timestamp, points, total, percentage)
 
+discography <- Repeatr::summary %>%
+  select(song, release)
+
 # user interface ----------------------------------------------------------
 
 ui <- fluidPage(
@@ -2158,9 +2161,13 @@ server <- function(input, output, session) {
 
   output$sets_songs_datatable <- DT::renderDataTable(DT::datatable({
 
-    data <- sets_songs_data() %>%
+    data <- discography %>%
+      left_join(sets_songs_data()) %>%
       relocate(shows) %>%
-      relocate(song)
+      relocate(release) %>%
+      relocate(song) %>%
+      replace(is.na(.), 0) %>%
+      arrange(desc(shows), release, song)
 
     data
 
