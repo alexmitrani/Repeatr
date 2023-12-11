@@ -12,7 +12,7 @@
 #' @export
 #'
 #' @examples
-#' sets <- sets(mydf = duration_data_da, shows = c("aalst-belgium-92390", "aberdeen-scotland-50499", "leeds-england-103102"))
+#' sets <- sets(mydf = duration_data_da, shows = c("aalst-belgium-92390", "aberdeen-scotland-50499", "leeds-england-103102", "washington-dc-usa-73198"))
 #' sets[[1]]
 #' sets[[2]]
 
@@ -23,7 +23,13 @@ sets <- function(mydf = NULL, shows = NULL) {
   if(is.null(shows)==FALSE) {
 
     mydf <- mydf %>%
+      select(gid, song) %>%
+      group_by(gid, song) %>%
+      mutate(instance = row_number()) %>%
+      ungroup() %>%
+      filter(instance==1) %>%
       select(gid, song)
+
 
     sets <- mydf %>%
       filter(gid %in% shows) %>%
