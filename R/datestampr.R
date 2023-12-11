@@ -8,10 +8,6 @@
 #' @description datestampr is used to create the datestamps used to produce unique filenames for the output files.
 #' @details datestampr is used internally by the fsm package.
 #'
-#' @import tidyverse
-#' @import crayon
-#' @import rlang
-#'
 #' @param dateonly requests a simplified timestamp with only the date (no time).
 #' @param houronly requests a simplified timestamp with only the date and the hour (no minutes or seconds).
 #' @param minuteonly requests a simplified timestamp with only the date, the hour and the minutes (no seconds).
