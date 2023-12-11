@@ -550,7 +550,9 @@ tabPanel("flow",
 
                       # Create a new Row in the UI for selectInputs
                       fluidRow(
-                        column(12, uiOutput("menuOptions_gid")),
+                        column(6, uiOutput("menuOptions_gid")),
+                        # Button
+                        column(6, style = "margin-top: 29px;", downloadButton("downloadSetsData", "Download"))
                       ),
 
                       conditionalPanel(
@@ -602,7 +604,9 @@ tabPanel("flow",
 
                       # Create a new Row in the UI for selectInputs
                       fluidRow(
-                        column(12, uiOutput("menuOptions_gid_stacks")),
+                        column(6, uiOutput("menuOptions_gid_stacks")),
+                        # Button
+                        column(6, style = "margin-top: 29px;", downloadButton("downloadStacksData", "Download"))
                       ),
 
                       conditionalPanel(
@@ -2113,7 +2117,11 @@ server <- function(input, output, session) {
 
 
     selectizeInput("search_shows", "shows:",
-                   choices = c(unique(searchmenudata$gid)), multiple =TRUE)
+                   choices = c(unique(searchmenudata$gid)), multiple =TRUE,
+                   options = list(
+                     placeholder = '',
+                     onInitialize = I('function() { this.setValue(""); }')
+                   ))
 
   })
 
@@ -2123,6 +2131,15 @@ server <- function(input, output, session) {
     sets <- sets(mydf = year_tour_gid_song, shows = input$search_shows)
 
     songs <- sets[[1]]
+
+    if(is.null(songs)==FALSE){
+
+      songs <- songs %>%
+        arrange(song) %>%
+        relocate(shows) %>%
+        relocate(song)
+
+    }
 
     songs
 
@@ -2161,13 +2178,22 @@ server <- function(input, output, session) {
 
   output$sets_songs_datatable <- DT::renderDataTable(DT::datatable({
 
-    data <- discography %>%
-      left_join(sets_songs_data()) %>%
-      relocate(shows) %>%
-      relocate(release) %>%
-      relocate(song) %>%
-      replace(is.na(.), 0) %>%
-      arrange(desc(shows), release, song)
+
+    if(is.null(sets_songs_data())==FALSE) {
+
+      data <- discography %>%
+        left_join(sets_songs_data()) %>%
+        relocate(shows) %>%
+        relocate(release) %>%
+        relocate(song) %>%
+        replace(is.na(.), 0) %>%
+        arrange(desc(shows), release, song)
+
+    } else {
+
+      data <- sets_songs_data()
+
+    }
 
     data
 
@@ -2183,6 +2209,17 @@ server <- function(input, output, session) {
 
   },
   style = "bootstrap"))
+
+  # Downloadable csv of selected dataset
+
+  datestring <- datestampr(myusername=TRUE)
+
+  output$downloadSetsData <- downloadHandler(
+    filename = paste0(datestring, "_Repeatr-app_Sets.csv"),
+    content = function(file) {
+      write.csv(sets_songs_data(), file, row.names = FALSE)
+    }
+  )
 
 
 
@@ -2221,7 +2258,12 @@ server <- function(input, output, session) {
 
 
     selectizeInput("search_shows_stacks", "show:",
-                   choices = c(unique(searchmenudata_stacks$gid)), multiple =FALSE)
+                   choices = c(unique(searchmenudata_stacks$gid)), multiple =FALSE,
+                     options = list(
+                       placeholder = '',
+                       onInitialize = I('function() { this.setValue(""); }')
+                     )
+                   )
 
   })
 
@@ -2231,6 +2273,30 @@ server <- function(input, output, session) {
       filter(gid_initial %in% input$search_shows_stacks)
 
     stack_shows
+
+  })
+
+  stacks_shows_data2 <- reactive({
+
+    data <- stacks_shows_data() %>%
+      select(gid, sound_quality) %>%
+      left_join(othervariables) %>%
+      select(gid, date, venue, city, country, sound_quality) %>%
+      mutate(url = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
+      relocate(url) %>%
+      select(url, gid, date, venue, city, country, sound_quality) %>%
+      arrange(date)
+
+    data
+
+  })
+
+  stacks_shows_data3 <- reactive({
+
+    data <- stacks_shows_data2() %>%
+      select(-gid)
+
+    data
 
   })
 
@@ -2265,13 +2331,14 @@ server <- function(input, output, session) {
   })
 
 
+
+
   output$stacks_shows_datatable <- DT::renderDataTable(DT::datatable({
 
-    data <- stacks_shows_data() %>%
-      select(gid, sound_quality) %>%
-      left_join(othervariables) %>%
-      select(fls_link, date, venue, city, country, sound_quality) %>%
-      arrange(date)
+    data <- stacks_shows_data2() %>%
+      mutate(fls_link = paste0("<a href='",  url, "' target='_blank'>", gid, "</a>")) %>%
+      relocate(fls_link) %>%
+      select(-gid, -url)
 
     data
 
@@ -2288,6 +2355,15 @@ server <- function(input, output, session) {
 
   },
   style = "bootstrap"))
+
+  datestring <- datestampr(myusername=TRUE)
+
+  output$downloadStacksData <- downloadHandler(
+    filename = paste0(datestring, "_Repeatr-app_Stacks.csv"),
+    content = function(file) {
+      write.csv(stacks_shows_data3(), file, row.names = FALSE)
+    }
+  )
 
 
 

@@ -22,7 +22,7 @@ the second is a summary table of the number of shows in which songs appear, with
 sets
 }
 \examples{
-sets <- sets(mydf = duration_data_da, shows = c("aalst-belgium-92390", "aberdeen-scotland-50499", "leeds-england-103102"))
+sets <- sets(mydf = duration_data_da, shows = c("aalst-belgium-92390", "aberdeen-scotland-50499", "leeds-england-103102", "washington-dc-usa-73198"))
 sets[[1]]
 sets[[2]]
 }

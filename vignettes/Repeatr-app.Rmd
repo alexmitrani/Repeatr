@@ -377,7 +377,7 @@ The Details table shows the complete list of songs, and for each song which show
 
 ## stacks
 
-Here you can choose any starting show (out of the 899 shows with setlists available to date) and will get a short sequence of 10-12 shows including the starting show and covering all 94 songs that Fugazi played live at least twice.
+Here you can choose any starting show (out of the 899 shows with setlists available to date) and will get a short sequence of 9-12 shows including the starting show and covering all 94 songs that Fugazi played live at least twice.
 
 ![](images/paste-1365A4A9.png)
 
@@ -388,8 +388,6 @@ The results include links to the shows...
 ...and also details of in which shows each song was played.
 
 ![](images/409509380_328012576844967_6274882284302898325_n.jpg)
-
-There are 1.015378631 E+21 combinations of 9 shows sampled from 899 shows, so there may be combinations of 9 shows that cover all 94 songs but they haven't been found yet!
 
 # stock
 
