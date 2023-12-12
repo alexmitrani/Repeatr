@@ -2212,7 +2212,7 @@ server <- function(input, output, session) {
 
   # Downloadable csv of selected dataset
 
-  datestring <- datestampr(myusername=TRUE)
+  datestring <- datestampr()
 
   output$downloadSetsData <- downloadHandler(
     filename = paste0(datestring, "_Repeatr-app_Sets.csv"),
@@ -2356,7 +2356,7 @@ server <- function(input, output, session) {
   },
   style = "bootstrap"))
 
-  datestring <- datestampr(myusername=TRUE)
+  datestring <- datestampr()
 
   output$downloadStacksData <- downloadHandler(
     filename = paste0(datestring, "_Repeatr-app_Stacks.csv"),
