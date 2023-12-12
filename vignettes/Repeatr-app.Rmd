@@ -275,9 +275,13 @@ The remaining columns will vary depending on whether the option selected for 'va
 
 ## renditions
 
+Here you can select specific songs and see information on how the number of times they were played varied over time. For instance, here the selected songs were all played a limited number of times, often over a very limited period of time:
+
+![](images/paste-973341C3.png)
+
 The graph shows the cumulative rendition counts for a selection of songs that were played in the specified period. To avoid the graph getting cluttered the songs are sorted in descending order of growth rate over the period, and the song selection is limited to a maximum number of songs. The maximum number of songs to be shown can be varied using the slider control under the graph.
 
-![The top 10 songs with highest growth rates on the 1998 Spring USA tour.](images/paste-D5AAB02C.png)
+![](images/paste-204EC938.png)
 
 The data can be filtered by the following variables:
 
@@ -291,7 +295,7 @@ The graph shows a lot of detail on how each song fared across the live series, i
 
 The data table shows summary information for each song over the specified period.
 
-![](images/paste-4187689F.png)
+![](images/paste-5D982D39.png)
 
 The data table offers the following columns:
 
@@ -308,6 +312,8 @@ The data table offers the following columns:
 -   count - number of times performed (within the selected time period)
 
 The dates and performance counts correspond to the selected data, so these values will change whenever you change the filters for years or tours.
+
+The data table can be downloaded to a CSV file using the download button at the top of the page to the right of the 'songs' selection box.
 
 ## matrix
 
@@ -361,7 +367,7 @@ The data table includes:
 
 Here you can compare two or more shows to find out which songs are played in each, how many unique songs there are, and how many songs are played only once or in 2 or more of the shows. You can pick shows from the full series or you can filter first by year and/or tour to pick shows from a shorter list. For example, we can compare the three Swedish shows from the 2000 North European tour.
 
-![](images/paste-0508F56B.png)
+![](images/paste-71564DE5.png)
 
 Note that the show identifiers are the same as those used on the Fugazi Live Series website and have the following format: city-country-(m)m-dd-yy. The month will be one or two digits depending on which month it is.
 
@@ -375,13 +381,13 @@ The Details table shows the complete list of songs, and for each song which show
 
 ![](images/paste-9AFEBC56.png)
 
-The 'details' table can be downloaded as a CSV file using the 'Download' button.
+The 'details' table can be downloaded as a CSV file using the download button at the top of the page to the right of the 'shows' selection box. .
 
 ## stacks
 
 Here you can choose any starting show (out of the 899 shows with setlists available to date) and will get a short sequence of 9-12 shows including the starting show and covering all 94 songs that Fugazi played live at least twice.
 
-![](images/paste-2023D4CF.png)
+![](images/paste-D12EA80D.png)
 
 Once a show has been selected, two results tables will appear. The first is a summary table, including links to the shows.
 
@@ -391,7 +397,7 @@ The second table provides details of the shows in which each song was played.
 
 ![](images/paste-9D4C7C1C.png)
 
-The summary table can be downloaded to a CSV file using the 'Download' button.
+The summary table can be downloaded to a CSV file using the download button at the top of the page to the right of the 'show' selection box.
 
 # stock
 

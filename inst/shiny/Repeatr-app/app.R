@@ -15,6 +15,8 @@ thematic_shiny(font = "auto")
 
 timestamptext <- paste0("Made with Repeatr version ", packageVersion("Repeatr"), ", updated ", packageDate("Repeatr"), ".")
 
+datestring <- datestampr()
+
 year_tour_release <- Repeatr1 %>%
   select(year, gid, release) %>%
   group_by(year, gid, release) %>%
@@ -420,11 +422,11 @@ tabPanel("flow",
                       # Release and song selection controls
 
                       fluidRow(
-                        column(6,
+                        column(5,
                                uiOutput("releaseOptions")),
-                        column(6,
-                               uiOutput("menuOptions")
-                        )
+                        column(5,
+                               uiOutput("menuOptions")),
+                        column(2, style = "margin-top: 29px;", downloadButton("downloadRenditionsData", ""))
 
                       ),
 
@@ -550,9 +552,9 @@ tabPanel("flow",
 
                       # Create a new Row in the UI for selectInputs
                       fluidRow(
-                        column(6, uiOutput("menuOptions_gid")),
+                        column(10, uiOutput("menuOptions_gid")),
                         # Button
-                        column(6, style = "margin-top: 29px;", downloadButton("downloadSetsData", "Download"))
+                        column(2, style = "margin-top: 29px;", downloadButton("downloadSetsData", ""))
                       ),
 
                       conditionalPanel(
@@ -604,9 +606,9 @@ tabPanel("flow",
 
                       # Create a new Row in the UI for selectInputs
                       fluidRow(
-                        column(6, uiOutput("menuOptions_gid_stacks")),
+                        column(10, uiOutput("menuOptions_gid_stacks")),
                         # Button
-                        column(6, style = "margin-top: 29px;", downloadButton("downloadStacksData", "Download"))
+                        column(2, style = "margin-top: 29px;", downloadButton("downloadStacksData", ""))
                       ),
 
                       conditionalPanel(
@@ -1881,6 +1883,18 @@ server <- function(input, output, session) {
 
   })
 
+  songs_data4 <- reactive({
+
+    mydf <- songs_data3() %>%
+      group_by(release, song, from, to, released) %>%
+      summarize(renditions = max(count) - min(count) + 1) %>%
+      ungroup() %>%
+      arrange(desc(renditions))
+
+    mydf
+
+  })
+
   output$performance_count_plot <- renderPlotly({
 
     p <- ggplot(songs_data3(), aes(x = date, y = count, color = song)) +
@@ -1894,13 +1908,20 @@ server <- function(input, output, session) {
 
 
   output$songsdatatable <- DT::renderDataTable(DT::datatable({
-    data <- songs_data3() %>%
-      group_by(release, song, from, to, released) %>%
-      summarize(renditions = max(count) - min(count) + 1) %>%
-      ungroup() %>%
-      arrange(desc(renditions))
+
+    data <- songs_data4()
+
   },
   style = "bootstrap"))
+
+  # Downloadable csv of selected dataset
+
+  output$downloadRenditionsData <- downloadHandler(
+    filename = paste0(datestring, "_Repeatr-app_Renditions.csv"),
+    content = function(file) {
+      write.csv(songs_data4(), file, row.names = FALSE)
+    }
+  )
 
   # matrix -------------------------------------------------------------
 
@@ -2212,8 +2233,6 @@ server <- function(input, output, session) {
 
   # Downloadable csv of selected dataset
 
-  datestring <- datestampr()
-
   output$downloadSetsData <- downloadHandler(
     filename = paste0(datestring, "_Repeatr-app_Sets.csv"),
     content = function(file) {
@@ -2355,8 +2374,6 @@ server <- function(input, output, session) {
 
   },
   style = "bootstrap"))
-
-  datestring <- datestampr()
 
   output$downloadStacksData <- downloadHandler(
     filename = paste0(datestring, "_Repeatr-app_Stacks.csv"),
