@@ -606,13 +606,14 @@ tabPanel("flow",
 
                       # Create a new Row in the UI for selectInputs
                       fluidRow(
-                        column(10, uiOutput("menuOptions_gid_stacks")),
+                        column(4, uiOutput("menuOptions_gid_stacks")),
+                        column(4, uiOutput("menuOptions_gid_stacks2")),
                         # Button
                         column(2, style = "margin-top: 29px;", downloadButton("downloadStacksData", ""))
                       ),
 
                       conditionalPanel(
-                        condition = "input.search_shows_stacks!=''",
+                        condition = "input.search_shows_stacks2!=''",
 
                         hr(),
                         tags$br(),
@@ -2289,7 +2290,33 @@ server <- function(input, output, session) {
   stacks_shows_data <- reactive({
 
     stack_shows <- gid_initial_gid_sound_quality %>%
-      filter(gid_initial %in% input$search_shows_stacks)
+      filter(gid %in% input$search_shows_stacks)
+
+    stack_shows
+
+  })
+
+  output$menuOptions_gid_stacks2 <- renderUI({
+
+
+    searchmenudata_stacks2 <- stacks_shows_data() %>%
+      arrange(gid_initial)
+
+
+    selectizeInput("search_shows_stacks2", "stack:",
+                   choices = c(unique(searchmenudata_stacks2$gid_initial)), multiple =FALSE,
+                   options = list(
+                     placeholder = '',
+                     onInitialize = I('function() { this.setValue(""); }')
+                   )
+    )
+
+  })
+
+  stacks_shows_data1 <- reactive({
+
+    stack_shows <- gid_initial_gid_sound_quality %>%
+      filter(gid_initial %in% input$search_shows_stacks2)
 
     stack_shows
 
@@ -2297,7 +2324,7 @@ server <- function(input, output, session) {
 
   stacks_shows_data2 <- reactive({
 
-    data <- stacks_shows_data() %>%
+    data <- stacks_shows_data1() %>%
       select(gid, sound_quality) %>%
       left_join(othervariables) %>%
       select(gid, date, venue, city, country, sound_quality) %>%
@@ -2321,7 +2348,7 @@ server <- function(input, output, session) {
 
   stacks_songs_data <- reactive({
 
-    sets <- sets(mydf = year_tour_gid_song, shows = as.character(stacks_shows_data()$gid))
+    sets <- sets(mydf = year_tour_gid_song, shows = as.character(stacks_shows_data2()$gid))
 
     songs <- sets[[1]]
 
@@ -2330,13 +2357,13 @@ server <- function(input, output, session) {
   })
 
   output$number_shows_stacks <- renderText({
-    number_shows <- nrow(stacks_shows_data())
+    number_shows <- nrow(stacks_shows_data2())
     number_shows
   })
 
   output$showorshows_stacks <- renderText({
 
-    if(length(stacks_shows_data())>1) {
+    if(length(stacks_shows_data2())>1) {
       showorshows <- "shows"
     } else {
       showorshows <- "show"
