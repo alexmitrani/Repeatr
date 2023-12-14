@@ -385,11 +385,11 @@ The 'details' table can be downloaded as a CSV file using the download button at
 
 ## stacks
 
-Here you can choose any starting show (out of the 899 shows with setlists available to date) and will get a short sequence of 9-12 shows including the starting show and covering all 94 songs that Fugazi played live at least twice.
+Here you can choose any show (out of the 899 shows with set lists available to date) and then a stack that contains the selected show. The stacks are named after the initial show that was chosen when the stack was created. Many shows appear in only one stack but some shows appear in many stacks. Once you have chosen a show and a stack, you will get a short sequence of 9-12 shows including the selected shows and covering all 94 songs that Fugazi played live at least twice.
 
-![](images/paste-D12EA80D.png)
+![](images/paste-29DAE6BE.png)
 
-Once a show has been selected, two results tables will appear. The first is a summary table, including links to the shows.
+Once a stack has been selected, two results tables will appear. The first is a summary table, including links to the shows.
 
 ![](images/paste-FD566AEF.png)
 
@@ -397,7 +397,7 @@ The second table provides details of the shows in which each song was played.
 
 ![](images/paste-9D4C7C1C.png)
 
-The summary table can be downloaded to a CSV file using the download button at the top of the page to the right of the 'show' selection box.
+The summary table can be downloaded to a CSV file using the download button at the top of the page to the right of the 'stack' selection box.
 
 # stock
 
