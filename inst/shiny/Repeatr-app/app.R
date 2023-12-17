@@ -15,7 +15,7 @@ thematic_shiny(font = "auto")
 
 timestamptext <- paste0("Made with Repeatr version ", packageVersion("Repeatr"), ", updated ", packageDate("Repeatr"), ".")
 
-sourcestext = c("https://alexmitrani.shinyapps.io/Repeatr-app/","https://dischord.com/fugazi_live_series")
+sourcestext = c(timestamptext, "https://alexmitrani.shinyapps.io/Repeatr-app/","https://dischord.com/fugazi_live_series")
 
 datestring <- datestampr()
 
@@ -157,8 +157,9 @@ tabPanel("flow",
 
                       fluidRow(
 
-                        column(6, uiOutput("menuOptions_countries")),
-                        column(6, uiOutput("menuOptions_cities"))
+                        column(5, uiOutput("menuOptions_countries")),
+                        column(5, uiOutput("menuOptions_cities")),
+                        column(2, style = "margin-top: 29px;", downloadButton("downloadShowsData", ""))
 
                       ),
 
@@ -1215,13 +1216,47 @@ server <- function(input, output, session) {
 
   })
 
+  shows_data3 <- reactive({
+
+    mydf <- shows_data2() %>%
+      mutate(url = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
+      select(url, fls_link, date, venue, city, country, attendance, minutes, sound_quality) %>%
+      arrange(date)
+
+    mydf
+
+  })
+
+  shows_data4 <- reactive({
+
+    mydf <- shows_data3() %>%
+      select(-fls_link)
+
+    mydf <- download_table_footer(mydf = mydf, nblankrows = 1, textcolumnname = "sources", rowtext = sourcestext)
+
+    mydf[is.na(mydf)] <- ""
+
+    mydf
+
+  })
+
   output$showsdatatable <- DT::renderDataTable(DT::datatable({
 
-    data <- shows_data2() %>%
-      select(fls_link, date, venue, city, country, attendance, minutes, sound_quality) %>%
-      arrange(date)},
+      data <- shows_data3() %>%
+        select(-url)
+
+    },
     escape = c(-2),
     style = "bootstrap"))
+
+  # Downloadable csv of selected dataset
+
+  output$downloadShowsData <- downloadHandler(
+    filename = paste0(datestring, "_Repeatr-app_Shows.csv"),
+    content = function(file) {
+      write.csv(shows_data4(), file, row.names = FALSE)
+    }
+  )
 
   # with -------------------------------------------------------------------
 
