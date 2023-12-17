@@ -15,6 +15,8 @@ thematic_shiny(font = "auto")
 
 timestamptext <- paste0("Made with Repeatr version ", packageVersion("Repeatr"), ", updated ", packageDate("Repeatr"), ".")
 
+sourcestext = c("https://alexmitrani.shinyapps.io/Repeatr-app/","https://dischord.com/fugazi_live_series")
+
 datestring <- datestampr()
 
 year_tour_release <- Repeatr1 %>%
@@ -1896,6 +1898,17 @@ server <- function(input, output, session) {
 
   })
 
+  songs_data5 <- reactive({
+
+    mydf <- songs_data4()
+
+    mydf <- download_table_footer(mydf = mydf, nblankrows = 1, textcolumnname = "sources", rowtext = sourcestext)
+
+    mydf
+
+  })
+
+
   output$performance_count_plot <- renderPlotly({
 
     p <- ggplot(songs_data3(), aes(x = date, y = count, color = song)) +
@@ -1920,7 +1933,7 @@ server <- function(input, output, session) {
   output$downloadRenditionsData <- downloadHandler(
     filename = paste0(datestring, "_Repeatr-app_Renditions.csv"),
     content = function(file) {
-      write.csv(songs_data4(), file, row.names = FALSE)
+      write.csv(songs_data5(), file, row.names = FALSE)
     }
   )
 
