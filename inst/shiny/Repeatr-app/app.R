@@ -56,7 +56,7 @@ played_with <- played_with %>%
   mutate(attendance = round(attendance, 0))
 
 played_with <- played_with %>%
-  select(fls_link, year, tour, date, venue, city, country, played_with, attendance, sound_quality, latitude, longitude)
+  select(fls_link, gid, year, tour, date, venue, city, country, played_with, attendance, sound_quality, latitude, longitude)
 
 year_tour_gid_song <- duration_data_da %>%
   left_join(othervariables) %>%
@@ -272,11 +272,12 @@ tabPanel("flow",
 
 
                       fluidRow(
-                        column(6,
+                        column(5,
                                selectizeInput("with_choice", "show:",
                                               c("summary", "map"),
                                               selected="map", multiple = FALSE)),
-                        column(6, uiOutput("menuOptions_bands"))
+                        column(5, uiOutput("menuOptions_bands")),
+                        column(2, style = "margin-top: 29px;", downloadButton("downloadWithData", ""))
 
                       ),
 
@@ -1554,28 +1555,84 @@ server <- function(input, output, session) {
 
   })
 
+  with_data <- reactive({
+
+    if(input$with_choice=="summary") {
+
+      mydf <- played_with_summary_data() %>%
+        select(played_with, shows) %>%
+        arrange(desc(shows))
+
+    } else {
+
+      mydf <- played_with_data() %>%
+        mutate(url = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
+        select(url, fls_link, date, venue, city, country, played_with, attendance, sound_quality) %>%
+        arrange(date)
+
+    }
+
+    mydf
+
+  })
+
+  with_data2 <- reactive({
+
+    if(input$with_choice=="summary") {
+
+      mydf <- with_data()
+
+    } else {
+
+      mydf <- with_data() %>%
+        select(-url)
+
+    }
+
+    mydf
+
+  })
+
+  with_data3 <- reactive({
+
+    if(input$with_choice=="summary") {
+
+      mydf <- with_data()
+
+    } else {
+
+      mydf <- with_data() %>%
+        select(-fls_link)
+
+    }
+
+    mydf <- download_table_footer(mydf = mydf, nblankrows = 1, textcolumnname = "sources", rowtext = sourcestext)
+
+    mydf[is.na(mydf)] <- ""
+
+    mydf
+
+  })
+
   # datatable
 
 
     output$played_with_datatable <- DT::renderDataTable(DT::datatable({
 
-      if(input$with_choice=="summary") {
-
-        data <- played_with_summary_data() %>%
-          select(played_with, shows) %>%
-          arrange(desc(shows))
-
-      } else {
-
-        data <- played_with_data() %>%
-          select(fls_link, date, venue, city, country, played_with, attendance, sound_quality) %>%
-          arrange(date)
-
-      }
+        data <- with_data2()
 
     },
     escape = c(-2),
     style = "bootstrap"))
+
+    # Downloadable csv of selected dataset
+
+    output$downloadWithData <- downloadHandler(
+      filename = paste0(datestring, "_Repeatr-app_With.csv"),
+      content = function(file) {
+        write.csv(with_data3(), file, row.names = FALSE)
+      }
+    )
 
 
 
