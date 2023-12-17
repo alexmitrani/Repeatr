@@ -21,9 +21,15 @@ download_table_footer(
 \item{rowtext}{character vector of text to be added at bottom of table}
 }
 \description{
+All columns in the dataframe will be converted to character formaat to avoid blanks appearing as "NA".
+
+When the downloaded file is opened in Excel or a similar program, numeric columns should still be recognised as numeric.
+}
+\details{
 download_table_footer
 }
 \examples{
-mydf <- download_table_footer(mydf = Repeatr::summary, nblankrows = 1, textcolumnname = "sources", rowtext = c("https://alexmitrani.shinyapps.io/Repeatr-app/","https://dischord.com/fugazi_live_series"))
+sourcestext = c("https://alexmitrani.shinyapps.io/Repeatr-app/","https://dischord.com/fugazi_live_series")
+mydf <- download_table_footer(mydf = Repeatr::summary, nblankrows = 1, textcolumnname = "sources", rowtext = sourcestext)
 
 }
