@@ -2180,6 +2180,18 @@ server <- function(input, output, session) {
 
   })
 
+  sets_songs_data2 <- reactive({
+
+    mydf <- sets_songs_data()
+
+    mydf <- download_table_footer(mydf = mydf, nblankrows = 1, textcolumnname = "sources", rowtext = sourcestext)
+
+    mydf
+
+  })
+
+
+
   output$number_unique_songs <- renderText({
     number_unique_songs <- nrow(sets_songs_data())
     number_unique_songs
@@ -2209,6 +2221,8 @@ server <- function(input, output, session) {
     shows
 
   })
+
+
 
 
   output$sets_songs_datatable <- DT::renderDataTable(DT::datatable({
@@ -2250,7 +2264,7 @@ server <- function(input, output, session) {
   output$downloadSetsData <- downloadHandler(
     filename = paste0(datestring, "_Repeatr-app_Sets.csv"),
     content = function(file) {
-      write.csv(sets_songs_data(), file, row.names = FALSE)
+      write.csv(sets_songs_data2(), file, row.names = FALSE)
     }
   )
 
@@ -2359,6 +2373,16 @@ server <- function(input, output, session) {
 
   })
 
+  stacks_shows_data4 <- reactive({
+
+    mydf <- stacks_shows_data3()
+
+    mydf <- download_table_footer(mydf = mydf, nblankrows = 1, textcolumnname = "sources", rowtext = sourcestext)
+
+    mydf
+
+  })
+
   stacks_songs_data <- reactive({
 
     sets <- sets(mydf = year_tour_gid_song, shows = as.character(stacks_shows_data2()$gid))
@@ -2418,7 +2442,7 @@ server <- function(input, output, session) {
   output$downloadStacksData <- downloadHandler(
     filename = paste0(datestring, "_Repeatr-app_Stacks.csv"),
     content = function(file) {
-      write.csv(stacks_shows_data3(), file, row.names = FALSE)
+      write.csv(stacks_shows_data4(), file, row.names = FALSE)
     }
   )
 
