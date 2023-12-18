@@ -532,7 +532,7 @@ tabPanel("flow",
                       fluidRow(
                         column(5, uiOutput("menuOptions_searchfrom")),
                         column(5, uiOutput("menuOptions_search")),
-                        column(2, style = "margin-top: 29px;", downloadButton("downloadTransitionData", ""))
+                        column(2, style = "margin-top: 29px;", downloadButton("downloadTransitionsData", ""))
                       ),
 
                       hr(),
@@ -2047,6 +2047,8 @@ server <- function(input, output, session) {
 
     mydf <- download_table_footer(mydf = mydf, nblankrows = 1, textcolumnname = "sources", rowtext = sourcestext)
 
+    mydf[is.na(mydf)] <- ""
+
     mydf
 
   })
@@ -2259,6 +2261,19 @@ server <- function(input, output, session) {
 
   })
 
+  transitions_shows_data3 <- reactive({
+
+    mydf <- transitions_shows_data() %>%
+      select(-gid, -fls_link)
+
+    mydf <- download_table_footer(mydf = mydf, nblankrows = 1, textcolumnname = "sources", rowtext = sourcestext)
+
+    mydf[is.na(mydf)] <- ""
+
+    mydf
+
+  })
+
 
   output$transitions_shows_datatable <- DT::renderDataTable(DT::datatable({
 
@@ -2274,7 +2289,7 @@ server <- function(input, output, session) {
   output$downloadTransitionsData <- downloadHandler(
     filename = paste0(datestring, "_Repeatr-app_Transitions.csv"),
     content = function(file) {
-      write.csv(songs_data5(), file, row.names = FALSE)
+      write.csv(transitions_shows_data3(), file, row.names = FALSE)
     }
   )
 
