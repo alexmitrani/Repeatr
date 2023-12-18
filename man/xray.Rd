@@ -8,6 +8,8 @@
 dataframe with one row for each rendition of each show in the Fugazi Live Series data and each type of units (tracks and minutes)
 \describe{
 
+\item{gid}{gig id.  This is a concatenation of city, country, and date}
+\item{url}{url to the corresponding page of the Fugazi Live Series site.}
 \item{fls_link}{a link to the corresponding page of the Fugazi Live Series site.}
 \item{year}{The year of the show,}
 \item{tour}{The tour that the show belongs to.}
