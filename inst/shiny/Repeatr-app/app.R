@@ -380,14 +380,15 @@ tabPanel("flow",
                       tags$br(),
 
                       fluidRow(
-                        column(6,
+                        column(5,
                                selectizeInput("xrayGraph_choice", "graph:",
                                               c("releases", "unreleased", "other"),
                                               selected="releases", multiple =FALSE)),
-                        column(6,
+                        column(5,
                                selectizeInput("xrayGraph_units", "units:",
                                               c("tracks", "minutes"),
-                                              selected="minutes", multiple =FALSE))
+                                              selected="minutes", multiple =FALSE)),
+                        column(2, style = "margin-top: 29px;", downloadButton("downloadXrayData", ""))
 
                       ),
 
@@ -1783,6 +1784,9 @@ server <- function(input, output, session) {
       left_join(releaseid_variable_colour_code) %>%
       mutate(release = factor(variable, levels=(unique(variable))))
 
+    xray_data <- xray_data %>%
+      mutate_if(is.numeric, ~round(., 3))
+
   })
 
   xray_data2 <- reactive({
@@ -1809,6 +1813,9 @@ server <- function(input, output, session) {
         arrange(releaseid)
 
     }
+
+    xray_data2 <- xray_data2 %>%
+      mutate_if(is.numeric, ~round(., 3))
 
     xray_data2
 
@@ -1844,6 +1851,9 @@ server <- function(input, output, session) {
     data$songs <- rowSums(data[sapply(data, is.numeric)], na.rm = TRUE)
 
     data <- data %>%
+      mutate_if(is.numeric, ~round(., 3))
+
+    data <- data %>%
       relocate(c(fls_link, date, songs))
 
     data
@@ -1851,6 +1861,15 @@ server <- function(input, output, session) {
   },
   escape = c(-2),
   style = "bootstrap"))
+
+  # Downloadable csv of selected dataset
+
+  output$downloadXrayData <- downloadHandler(
+    filename = paste0(datestring, "_Repeatr-app_Xray.csv"),
+    content = function(file) {
+      write.csv(with_data3(), file, row.names = FALSE)
+    }
+  )
 
   # renditions -------------------------------------------------------------------
 

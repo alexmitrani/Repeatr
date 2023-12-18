@@ -1295,12 +1295,11 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
              incumbent = songs - debut - farewell)
 
     xray <- xray %>%
-      mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
-      mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>")) %>%
-      select(-gid, -urls)
+      mutate(url = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
+      mutate(fls_link = paste0("<a href='",  url, "' target='_blank'>", gid, "</a>"))
 
     xray <- xray %>%
-      relocate(fls_link, year, tour, date, units, songs, released, unreleased, other, debut, farewell, incumbent, other)
+      relocate(gid, url, fls_link, year, tour, date, units, songs, released, unreleased, other, debut, farewell, incumbent, other)
 
     rm(xray_minutes, xray_tracks, xray2)
 
