@@ -1821,6 +1821,49 @@ server <- function(input, output, session) {
 
   })
 
+  xray_data3 <- reactive({
+
+    data <- xray_data2()  %>%
+      select(-release, -colour_code, -releaseid, -units)  %>%
+      pivot_wider(names_from = variable, values_from = value) %>%
+      select(-year, -tour) %>%
+      arrange(date)
+
+    data$songs <- rowSums(data[sapply(data, is.numeric)], na.rm = TRUE)
+
+    data <- data %>%
+      mutate_if(is.numeric, ~round(., 3))
+
+    data <- data %>%
+      relocate(c(fls_link, date, songs))
+
+    data
+
+  })
+
+  xray_data4 <- reactive({
+
+    mydf <- xray_data3() %>%
+      select(-gid, -url)
+
+    mydf
+
+  })
+
+  xray_data5 <- reactive({
+
+    mydf <- xray_data3() %>%
+      select(-gid, -fls_link)
+
+
+    mydf <- download_table_footer(mydf = mydf, nblankrows = 1, textcolumnname = "sources", rowtext = sourcestext)
+
+    mydf[is.na(mydf)] <- ""
+
+    mydf
+
+  })
+
   output$xray_plot <- renderPlotly({
 
     colours <- unique(xray_data2()$colour_code)
@@ -1842,21 +1885,9 @@ server <- function(input, output, session) {
   })
 
   output$xraydatatable <- DT::renderDataTable(DT::datatable({
-    data <- xray_data2()  %>%
-      select(-release, -colour_code, -releaseid, -units)  %>%
-      pivot_wider(names_from = variable, values_from = value) %>%
-      select(-year, -tour) %>%
-      arrange(date)
 
-    data$songs <- rowSums(data[sapply(data, is.numeric)], na.rm = TRUE)
 
-    data <- data %>%
-      mutate_if(is.numeric, ~round(., 3))
-
-    data <- data %>%
-      relocate(c(fls_link, date, songs))
-
-    data
+    data <- xray_data4()
 
   },
   escape = c(-2),
@@ -1867,7 +1898,7 @@ server <- function(input, output, session) {
   output$downloadXrayData <- downloadHandler(
     filename = paste0(datestring, "_Repeatr-app_Xray.csv"),
     content = function(file) {
-      write.csv(with_data3(), file, row.names = FALSE)
+      write.csv(xray_data5(), file, row.names = FALSE)
     }
   )
 
