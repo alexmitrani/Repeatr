@@ -706,15 +706,16 @@ tabPanel("stock",
 
                              fluidRow(
 
-                               column(6,
+                               column(5,
                                       selectizeInput("Input_releases_var", "variable:",
                                                      c("count", "intensity", "rating"),
                                                      selected="rating", multiple =FALSE)
                                       ),
-                               column(6,
+                               column(5,
                                       selectizeInput("legend_position", "legend:",
                                                      c("right", "none"),
-                                                     selected="none", multiple =FALSE))
+                                                     selected="none", multiple =FALSE)),
+                               column(2, style = "margin-top: 29px;", downloadButton("downloadDiscographyData", ""))
 
                              ),
 
@@ -2362,6 +2363,8 @@ server <- function(input, output, session) {
 
     mydf <- download_table_footer(mydf = mydf, nblankrows = 1, textcolumnname = "sources", rowtext = sourcestext)
 
+    mydf[is.na(mydf)] <- ""
+
     mydf
 
   })
@@ -2554,6 +2557,8 @@ server <- function(input, output, session) {
     mydf <- stacks_shows_data3()
 
     mydf <- download_table_footer(mydf = mydf, nblankrows = 1, textcolumnname = "sources", rowtext = sourcestext)
+
+    mydf[is.na(mydf)] <- ""
 
     mydf
 
@@ -2762,6 +2767,18 @@ server <- function(input, output, session) {
 
   })
 
+  releases_data_table2 <- reactive({
+
+    mydf <- releases_data_table()
+
+    mydf <- download_table_footer(mydf = mydf, nblankrows = 1, textcolumnname = "sources", rowtext = sourcestext)
+
+    mydf[is.na(mydf)] <- ""
+
+    mydf
+
+  })
+
   output$releasesdatatable <- DT::renderDataTable(DT::datatable({
     data <- releases_data_table()
 
@@ -2769,6 +2786,13 @@ server <- function(input, output, session) {
 
   },
   style = "bootstrap"))
+
+  output$downloadDiscographyData <- downloadHandler(
+    filename = paste0(datestring, "_Repeatr-app_Discography.csv"),
+    content = function(file) {
+      write.csv(releases_data_table2(), file, row.names = FALSE)
+    }
+  )
 
 
   # variation -------------------------------------------------------------------
