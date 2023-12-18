@@ -530,8 +530,9 @@ tabPanel("flow",
 
                       # Create a new Row in the UI for selectInputs
                       fluidRow(
-                        column(6, uiOutput("menuOptions_searchfrom")),
-                        column(6, uiOutput("menuOptions_search"))
+                        column(5, uiOutput("menuOptions_searchfrom")),
+                        column(5, uiOutput("menuOptions_search")),
+                        column(2, style = "margin-top: 29px;", downloadButton("downloadTransitionData", ""))
                       ),
 
                       hr(),
@@ -2244,20 +2245,38 @@ server <- function(input, output, session) {
     }
 
     transitions_data_da_results %>%
-      select(tour, date, fls_link, transition, song1, song2) %>%
+      select(gid, url, fls_link, date, transition, song1, song2) %>%
       arrange(date)
+
+  })
+
+  transitions_shows_data2 <- reactive({
+
+    mydf <- transitions_shows_data() %>%
+      select(-gid, -url)
+
+    mydf
 
   })
 
 
   output$transitions_shows_datatable <- DT::renderDataTable(DT::datatable({
 
-    data <- transitions_shows_data()
+    data <- transitions_shows_data2()
 
     data
 
-  }, escape = c(-4),
+  }, escape = c(-2),
   style = "bootstrap"))
+
+  # Downloadable csv of selected dataset
+
+  output$downloadTransitionsData <- downloadHandler(
+    filename = paste0(datestring, "_Repeatr-app_Transitions.csv"),
+    content = function(file) {
+      write.csv(songs_data5(), file, row.names = FALSE)
+    }
+  )
 
   # sets -------------------------------------------------------------
 

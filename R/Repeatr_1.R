@@ -1041,9 +1041,9 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
       left_join(transitions_data_da2) %>%
       filter(is.na(song2)==FALSE) %>%
       rename(transition = song_number) %>%
-      mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
-      mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>")) %>%
-      select(fls_link, date, transition, song1, song2) %>%
+      mutate(url = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
+      mutate(fls_link = paste0("<a href='",  url, "' target='_blank'>", gid, "</a>")) %>%
+      select(gid, url, fls_link, date, transition, song1, song2) %>%
       mutate(transition = as.integer(transition))
 
     transitions_data_da$date <- format(transitions_data_da$date,'%Y-%m-%d')
