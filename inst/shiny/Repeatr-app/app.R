@@ -349,6 +349,19 @@ tabPanel("flow",
 
                     fluidPage(
 
+                      tags$br(),
+
+                      fluidRow(
+                        column(10,
+                               selectizeInput("AttendanceGraph_choice", "graph:",
+                                              c("summary", "details"),
+                                              selected="summary", multiple =FALSE)),
+                        column(2, style = "margin-top: 29px;", downloadButton("downloadAttendanceData", ""))
+
+                      ),
+
+                      hr(),
+
                       # Graph
 
                       tags$br(),
@@ -1681,13 +1694,13 @@ server <- function(input, output, session) {
 
   attendance_data2 <- reactive({
 
-    if (is.null(input$yearInput_shows)==FALSE | is.null(input$tourInput_shows)==FALSE) {
+    if (input$AttendanceGraph_choice=="details") {
 
       attendancedata2 <- attendance_data() %>%
         filter(is.na(date)==FALSE) %>%
         filter(tour!="Unknown") %>%
         arrange(date) %>%
-        select(tour, date, fls_link, attendance, sound_quality)
+        select(tour, gid, fls_link, date, attendance, sound_quality)
 
     } else {
 
@@ -1706,9 +1719,48 @@ server <- function(input, output, session) {
 
   })
 
+  attendance_data3 <- reactive({
+
+    if (input$AttendanceGraph_choice=="details") {
+
+      mydf <- attendance_data2() %>%
+        select(tour, fls_link, date, attendance, sound_quality)
+
+    } else {
+
+      mydf <- attendance_data2()
+
+    }
+
+    mydf
+
+  })
+
+  attendance_data4 <- reactive({
+
+    if (input$AttendanceGraph_choice=="details") {
+
+      mydf <- attendance_data2() %>%
+        mutate(url = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
+        select(tour, url, date, attendance, sound_quality)
+
+    } else {
+
+      mydf <- attendance_data2()
+
+    }
+
+    mydf <- download_table_footer(mydf = mydf, nblankrows = 1, textcolumnname = "sources", rowtext = sourcestext)
+
+    mydf[is.na(mydf)] <- ""
+
+    mydf
+
+  })
+
   output$attendance_count_plot <- renderPlotly({
 
-    if (is.null(input$yearInput_shows)==FALSE | is.null(input$tourInput_shows)==FALSE) {
+    if (input$AttendanceGraph_choice=="details") {
 
       attendance_plot <- ggplot(attendance_data(), aes(date, attendance, color = gid)) +
         geom_point() +
@@ -1734,13 +1786,22 @@ server <- function(input, output, session) {
   })
 
   output$toursdatatable <- DT::renderDataTable(DT::datatable({
-    data <- attendance_data2()
+    data <- attendance_data3()
 
     data
 
   },
-  escape = c(-4),
+  escape = c(-3),
   style = "bootstrap"))
+
+  # Downloadable csv of selected dataset
+
+  output$downloadAttendanceData <- downloadHandler(
+    filename = paste0(datestring, "_Repeatr-app_Attendance.csv"),
+    content = function(file) {
+      write.csv(attendance_data4(), file, row.names = FALSE)
+    }
+  )
 
 # xray -------------------------------------------------------------------
 
