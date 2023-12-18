@@ -42,6 +42,10 @@ The app has 13 pages spread across 3 sections:
 
 Most of the pages have a visualisation (map or graph) and a data table further down the page, with the exception of 'transition', 'duration' and 'search' which only have data tables.
 
+Most pages have a download button located to the right of the menu controls, which can be used to download the data table as a CSV file.
+
+![](images/paste-9F81855C.png)
+
 Most of the input boxes are 'selectize' controls - when you select the control a menu will appear, and if you start typing the menu will be filtered by what you type. You can select any number of items or none at all.
 
 !['Selectize' control for tours on the 'shows' page.](images/paste-ECE7F969.png)
@@ -50,7 +54,7 @@ A few of the input boxes are menus where you can only select one option - these 
 
 ![Selectize control for variable on the 'releases' page.](images/paste-1F7CA3DC.png)
 
-The data for songs is limited to songs that were played live at least twice in the Fugazi Live Series. That is 92 songs which feature in the Fugazi discography and one unreleased song - 'Preprovisional'.
+The data for songs is limited to songs that were played live at least twice in the Fugazi Live Series. That is 92 songs which feature in the Fugazi discography and two unreleased songs - 'Preprovisional' and 'World Beat'.
 
 The release dates are best estimates based on the available evidence. Actual release dates will have varied depending on the location.
 
@@ -89,7 +93,7 @@ The marker colours go from dark red to light red in chronological order, with th
 
 The data can be filtered by typing in the selection boxes for countries and cities.
 
-![Select controls on 'shows' page.](images/paste-4786CFA9.png)
+![](images/paste-3C34068D.png)
 
 The map has zoom controls and by clicking and dragging you can pan the map view. The area of the red circle for each show is proportional to the attendance of the show. If you click on the red circle for a show a pop-up will appear with the date, the venue, the city, the attendance, and the coordinates - in case you should want to look for a place using a different mapping application.
 
@@ -165,7 +169,7 @@ This page offers information on the bands that Fugazi played with, as either a s
 
 The map will show the show locations, using a different colour for each band.
 
-![](images/paste-C8ACC63C.png)
+![](images/paste-337FE285.png)
 
 The data table accompanying the map shows details for each show and a link that can be used to navigate to the corresponding page of the Fugazi Live Series site.
 
@@ -175,7 +179,7 @@ The data table accompanying the map shows details for each show and a link that 
 
 The summary option shows a bar chart and a simple data table. The information will be limited to the top 20 bands if no bands are specified. If you specify one or more bands, the bar chart and the table will show the data for these bands.
 
-![](images/paste-1BB61A8E.png)
+![](images/paste-9D4E78B1.png)
 
 The summary data table will detail the number of shows with each band in descending order.
 
@@ -183,43 +187,19 @@ The summary data table will detail the number of shows with each band in descend
 
 ## attendance
 
-The contents of this page will vary depending on the filters specified.
+This page offers a choice between 'summary' and 'details'.
 
-### filtered
+### summary
 
-If one or more years or tours are selected, the graph will show the attendance of each show in the selected period.
+If you choose 'summary' the graph will show cumulative attendance.
 
-![](images/paste-6D525C11.png)
-
-The data table will show information for the specific shows in the selected period.
-
-![](images/paste-E35877F1.png)
-
-Each of the following columns can be sorted using the sort controls to the right of the variable name:
-
--   tour
-
--   date
-
--   fls_link - a link to the corresponding page of the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) site
-
--   attendance - attendance of the show (some of these are rough estimates when no data provided on the FLS site)
-
--   sound_quality
-
-### unfiltered
-
-If no years or tours are selected, the graph will show the cumulative attendance for the whole [Fugazi Live Series](https://www.dischord.com/fugazi_live_series).
-
-![Graph on 'attendance' page when no years or tours specified.](images/paste-2103F36F.png)
+![](images/paste-4E645C95.png)
 
 The colours identify specific tours. The graph is interactive - if you hover over a point it will display details of the date, the cumulative attendance and the tour.
 
-![Example of interactive features of attendance graph.](images/paste-D25AFDB7.png)
+The 'summary' data table will show summary data for each tour.
 
-The data table will show summary data for the tours when no years or tours are specified.
-
-![Extract from attendance data table.](images/paste-3C6573F9.png)
+![Extract from attendance data table.](images/paste-3C6573F9.png){alt="Extract from attendance data table."}
 
 Each of the following columns can be sorted using the sort controls to the right of the variable name:
 
@@ -237,9 +217,33 @@ Each of the following columns can be sorted using the sort controls to the right
 
 -   cumulative_attendance - comulative attendance since the start of the Fugazi Live Series.
 
+### details
+
+If 'detailed' is chosen, the graph will show the attendance of each show in the selected period, this is most useful when you want to focus on a specific tour.
+
+![](images/paste-DF650D6D.png)
+
+The data table will show information for the specific shows in the selected period.
+
+![](images/paste-2CDA2754.png)
+
+Each of the following columns can be sorted using the sort controls to the right of the variable name:
+
+-   tour
+
+-   fls_link - a link to the corresponding page of the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) site
+
+-   date
+
+-   attendance - attendance of the show (some of these are rough estimates when no data provided on the FLS site)
+
+-   sound_quality
+
 ## xray
 
 This page offers a stacked bar chart designed to show the composition of each show in a variety of ways.
+
+![](images/paste-626A58E7.png)
 
 The 'graph' menu offers three options:
 
@@ -319,7 +323,7 @@ The data table can be downloaded to a CSV file using the download button at the 
 
 The heatmap shows the number of times each transition was performed. The graph is interactive - if you hover over a point, a pop-up will appear showing 'to' (song), 'from' (song) and 'count' - the number of times the transition was performed. The maximum number of transitions to be shown can be varied using the slider control beneath the graph.
 
-![](images/paste-69CC0AA3.png)
+![](images/paste-1DAC5087.png)
 
 The data table shows the number of times each transition featured in the specified period. The transitions are shown in descending order of plays.
 
@@ -345,11 +349,11 @@ There are two filters:
 
 The filters are applied sequentially from left to right, so for instance if you specify 'life and limb' in 'from', the menu for 'to' will only show songs which followed 'life and limb'.
 
-![Sequential filtering on the 'search' page.](images/paste-6B7BF9E7.png){alt="Sequential filtering on the 'search' page."}
+![](images/paste-7A7D16CF.png)
 
 Both filters are optional. If only one song is specified shows containing that song will be listed. If no song is specified all the shows will be listed. There is a subtle difference between searching for shows containing a single song using the 'from' box and the 'to' box: the 'from' box will omit shows where the song was the final one of the set, and the 'to' box will omit shows where the song was the first one of the set. This is why searching for 'glueman' with 'from' yields only 25 shows but searching for 'glueman' with 'to' yields 131 results - 'glueman' was a hard song to follow!
 
-![Extract from data table on 'transition' page.](images/paste-43C44042.png)
+![](images/paste-8936397B.png)
 
 The data table includes:
 
@@ -415,7 +419,7 @@ The bar chart shows summary data for each song of each Fugazi release, sorted in
 
 The legend can be turned on or off - you may prefer to have it off if you are using a device with a small screen.
 
-![](images/paste-C4DAE742.png)
+![](images/paste-7248EDBF.png)
 
 The 'variable' menu has three options:
 
@@ -505,7 +509,7 @@ The data table includes:
 
 On this page you can select a song and get a table listing all the shows containing the specified song and the duration of each specific rendition (in minutes). You can also select more than one song. The table headers can be used to sort the data, so for instance you can find the shows with the longest (or shortest) renditions of a particular song. The search box can be used to filter for a particular show so you can see the durations of all the songs played in that show.
 
-![](images/paste-4625ADE1.png)
+![](images/paste-D775DE2A.png)
 
 -   fls_link provides a link to the corresponding page of the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) site
 
@@ -521,7 +525,7 @@ On this page you can select a song and get a table listing all the shows contain
 
 This page allows you to search for shows that contain a specific selection of songs. For instance:
 
-![](images/paste-E01006AF.png)
+![](images/paste-0C1634D7.png)
 
 The data table lists the shows that contain any of the specified songs (or all the shows if none were specified), including the following columns:
 
@@ -535,7 +539,7 @@ The data table lists the shows that contain any of the specified songs (or all t
 
 If you filter by release but not songs the data will be limited to all shows containing songs from the specified release. This provides a neat way of finding shows with many songs from your favourite album, for instance if you like 'End Hits' sorting in descending order of hits gives you these results:
 
-![](images/paste-2C49BE1C.png)
+![](images/paste-41122B16.png)
 
 # quiz
 

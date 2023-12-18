@@ -353,7 +353,7 @@ tabPanel("flow",
 
                       fluidRow(
                         column(10,
-                               selectizeInput("AttendanceGraph_choice", "graph:",
+                               selectizeInput("AttendanceGraph_choice", "show:",
                                               c("summary", "details"),
                                               selected="summary", multiple =FALSE)),
                         column(2, style = "margin-top: 29px;", downloadButton("downloadAttendanceData", ""))

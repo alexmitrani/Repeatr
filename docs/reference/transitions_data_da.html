@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9172</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9173</span>
       </span>
     </div>
 
@@ -111,7 +111,13 @@
 
     <div id="format">
     <h2>Format</h2>
-    <p>dataframe with one row for each combination of show, first song and second song in the Fugazi Live Series data.</p><dl><dt>fls_link</dt>
+    <p>dataframe with one row for each combination of show, first song and second song in the Fugazi Live Series data.</p><dl><dt>gid</dt>
+<dd><p>gig id.  This is a concatenation of city, country, and date</p></dd>
+
+<dt>url</dt>
+<dd><p>url to the corresponding page of the Fugazi Live Series site.</p></dd>
+
+<dt>fls_link</dt>
 <dd><p>provides a link to the corresponding page of the Fugazi Live Series site</p></dd>
 
 <dt>date</dt>
@@ -137,19 +143,19 @@
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="va">transitions_data_da</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 12,025 × 5</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    fls_link                                         date  transition song1 song2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> &lt;a href='https://www.dischord.com/fugazi_live_s… 1990…          2 turn… bren…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> &lt;a href='https://www.dischord.com/fugazi_live_s… 1990…          3 bren… merc…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> &lt;a href='https://www.dischord.com/fugazi_live_s… 1990…          4 merc… siev…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> &lt;a href='https://www.dischord.com/fugazi_live_s… 1990…          5 siev… and …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> &lt;a href='https://www.dischord.com/fugazi_live_s… 1990…          8 bull… burn…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> &lt;a href='https://www.dischord.com/fugazi_live_s… 1990…         13 recl… blue…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> &lt;a href='https://www.dischord.com/fugazi_live_s… 1990…         14 blue… shut…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> &lt;a href='https://www.dischord.com/fugazi_live_s… 1990…         15 shut… two …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> &lt;a href='https://www.dischord.com/fugazi_live_s… 1990…         16 two … repr…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> &lt;a href='https://www.dischord.com/fugazi_live_s… 1990…         21 runa… repe…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 12,025 × 7</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    gid                 url                 fls_link date  transition song1 song2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> aalst-belgium-92390 https://www.discho… &lt;a href… 1990…          2 turn… bren…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> aalst-belgium-92390 https://www.discho… &lt;a href… 1990…          3 bren… merc…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> aalst-belgium-92390 https://www.discho… &lt;a href… 1990…          4 merc… siev…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> aalst-belgium-92390 https://www.discho… &lt;a href… 1990…          5 siev… and …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> aalst-belgium-92390 https://www.discho… &lt;a href… 1990…          8 bull… burn…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> aalst-belgium-92390 https://www.discho… &lt;a href… 1990…         13 recl… blue…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> aalst-belgium-92390 https://www.discho… &lt;a href… 1990…         14 blue… shut…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> aalst-belgium-92390 https://www.discho… &lt;a href… 1990…         15 shut… two …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> aalst-belgium-92390 https://www.discho… &lt;a href… 1990…         16 two … repr…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> aalst-belgium-92390 https://www.discho… &lt;a href… 1990…         21 runa… repe…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 12,015 more rows</span></span>
 </code></pre></div>
     </div>
