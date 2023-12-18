@@ -750,9 +750,10 @@ tabPanel("variation",
            tags$br(),
 
            fluidRow(
-             column(12,
+             column(10,
                     uiOutput("variation_songInput")
-             )
+             ),
+             column(2, style = "margin-top: 29px;", downloadButton("downloadVariationData", ""))
 
            ),
 
@@ -2866,6 +2867,31 @@ server <- function(input, output, session) {
 
   })
 
+  variation_data4 <- reactive({
+
+    mydf <- variation_data3() %>%
+      group_by(song) %>%
+      summarize(renditions = max(count)) %>%
+      ungroup() %>%
+      left_join(duration_summary) %>%
+      arrange(desc(minutes_sd))
+
+    mydf
+
+  })
+
+  variation_data5 <- reactive({
+
+    mydf <- variation_data4()
+
+    mydf <- download_table_footer(mydf = mydf, nblankrows = 1, textcolumnname = "sources", rowtext = sourcestext)
+
+    mydf[is.na(mydf)] <- ""
+
+    mydf
+
+  })
+
 
   output$variation_count_plot <- renderPlotly({
 
@@ -2881,14 +2907,16 @@ server <- function(input, output, session) {
 
 
   output$variationdatatable <- DT::renderDataTable(DT::datatable({
-    data <- variation_data3() %>%
-      group_by(song) %>%
-      summarize(renditions = max(count)) %>%
-      ungroup() %>%
-      left_join(duration_summary) %>%
-      arrange(desc(minutes_sd))
+    data <- variation_data4()
   },
   style = "bootstrap"))
+
+  output$downloadVariationData <- downloadHandler(
+    filename = paste0(datestring, "_Repeatr-app_Variation.csv"),
+    content = function(file) {
+      write.csv(variation_data5(), file, row.names = FALSE)
+    }
+  )
 
 
 # duration -------------------------------------------------------------
