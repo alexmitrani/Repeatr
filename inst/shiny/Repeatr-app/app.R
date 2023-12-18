@@ -500,11 +500,12 @@ tabPanel("flow",
                       # max transitions control
 
                       fluidRow(
-                        column(12,
+                        column(10,
                                sliderInput("max_transitions", "max_transitions:",
                                            min = 10, max = 100,
                                            value = 40, width = "100%")
-                        )
+                        ),
+                        column(2, style = "margin-top: 29px;", downloadButton("downloadMatrixData", ""))
                       ),
 
                       hr(),
@@ -802,7 +803,8 @@ tabPanel("variation",
 
                              # Create a new Row in the UI for selectInputs
                              fluidRow(
-                               column(12, uiOutput("menuOptions_duration_song"))
+                               column(10, uiOutput("menuOptions_duration_song")),
+                               column(2, style = "margin-top: 29px;", downloadButton("downloadDurationData", ""))
                              ),
 
                              hr(),
@@ -831,9 +833,10 @@ tabPanel("variation",
                              # Create a new Row in the UI for selectInputs
 
                              fluidRow(
-                               column(12,
+                               column(10,
                                       uiOutput("menuOptions_search_songs")
-                               )
+                               ),
+                               column(2, style = "margin-top: 29px;", downloadButton("downloadSearchData", ""))
                              ),
 
                              hr(),
@@ -2153,14 +2156,17 @@ server <- function(input, output, session) {
 
   })
 
-  output$transitionsdatatable <- DT::renderDataTable(DT::datatable({
+  transitions_data2 <- reactive({
 
-    data <- transitions_data()
+    mydf <- transitions_data()
 
-    data
+    mydf <- download_table_footer(mydf = mydf, nblankrows = 1, textcolumnname = "sources", rowtext = sourcestext)
 
-  },
-  style = "bootstrap"))
+    mydf[is.na(mydf)] <- ""
+
+    mydf
+
+  })
 
   output$transitions_heatmap <- renderPlotly({
 
@@ -2171,6 +2177,26 @@ server <- function(input, output, session) {
             aspect.ratio=1)
 
   })
+
+  output$transitionsdatatable <- DT::renderDataTable(DT::datatable({
+
+    data <- transitions_data()
+
+    data
+
+  },
+  style = "bootstrap"))
+
+  # Downloadable csv of selected dataset
+
+  output$downloadMatrixData <- downloadHandler(
+    filename = paste0(datestring, "_Repeatr-app_Matrix.csv"),
+    content = function(file) {
+      write.csv(transitions_data2(), file, row.names = FALSE)
+    }
+  )
+
+
 
   # transition -------------------------------------------------------------
 
@@ -2960,17 +2986,47 @@ server <- function(input, output, session) {
 
   })
 
+  duration_shows_data2 <- reactive({
+
+    mydf <- duration_shows_data() %>%
+      select(fls_link, date, song_number, song, minutes) %>%
+      arrange(date, song_number)
+
+    mydf
+
+  })
+
+  duration_shows_data3 <- reactive({
+
+    mydf <- duration_shows_data() %>%
+      mutate(url = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
+      select(url, date, song_number, song, minutes) %>%
+      arrange(date, song_number)
+
+    mydf <- download_table_footer(mydf = mydf, nblankrows = 1, textcolumnname = "sources", rowtext = sourcestext)
+
+    mydf[is.na(mydf)] <- ""
+
+    mydf
+
+  })
+
 
   output$duration_shows_datatable <- DT::renderDataTable(DT::datatable({
 
-    data <- duration_shows_data() %>%
-      select(fls_link, date, song_number, song, minutes) %>%
-      arrange(date, song_number)
+    data <- duration_shows_data2()
 
     data
 
   }, escape = c(-2),
   style = "bootstrap"))
+
+  output$downloadDurationData <- downloadHandler(
+    filename = paste0(datestring, "_Repeatr-app_Duration.csv"),
+    content = function(file) {
+      write.csv(duration_shows_data3(), file, row.names = FALSE)
+    }
+  )
 
 
 
@@ -3007,7 +3063,7 @@ server <- function(input, output, session) {
         left_join(gid_sound_quality)
 
       search_data_results <- search_data_da_results %>%
-        group_by(fls_link, date, sound_quality) %>%
+        group_by(gid, fls_link, date, sound_quality) %>%
         summarize(hits = sum(hits, na.rm = TRUE)) %>%
         arrange(desc(hits), date) %>%
         ungroup()
@@ -3017,7 +3073,7 @@ server <- function(input, output, session) {
       search_data_results <- duration_data_da %>%
         filter(release %in% input$Input_releases) %>%
         left_join(gid_sound_quality) %>%
-        group_by(fls_link, date, sound_quality) %>%
+        group_by(gid, fls_link, date, sound_quality) %>%
         summarize(hits = n()) %>%
         arrange(desc(hits), date) %>%
         ungroup()
@@ -3026,7 +3082,7 @@ server <- function(input, output, session) {
 
       search_data_results <- duration_data_da %>%
         left_join(gid_sound_quality) %>%
-        group_by(fls_link, date, sound_quality) %>%
+        group_by(gid, fls_link, date, sound_quality) %>%
         summarize(hits = n()) %>%
         arrange(desc(hits), date) %>%
         ungroup()
@@ -3037,17 +3093,56 @@ server <- function(input, output, session) {
 
   })
 
+  search_shows_data2 <- reactive({
+
+    mydf <- search_shows_data() %>%
+      mutate(url = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
+      select(url, fls_link, date, hits, sound_quality) %>%
+      filter(hits>0)
+
+    mydf
+
+  })
+
+  search_shows_data3 <- reactive({
+
+    mydf <- search_shows_data2() %>%
+      select(-url)
+
+    mydf
+
+  })
+
+  search_shows_data4 <- reactive({
+
+    mydf <- search_shows_data2() %>%
+      select(-fls_link)
+
+    mydf <- download_table_footer(mydf = mydf, nblankrows = 1, textcolumnname = "sources", rowtext = sourcestext)
+
+    mydf[is.na(mydf)] <- ""
+
+    mydf
+
+  })
+
+
 
   output$search_shows_datatable <- DT::renderDataTable(DT::datatable({
 
-    data <- search_shows_data() %>%
-      select(fls_link, date, hits, sound_quality) %>%
-      filter(hits>0)
+    data <- search_shows_data3()
 
     data
 
   }, escape = c(-2),
   style = "bootstrap"))
+
+  output$downloadSearchData <- downloadHandler(
+    filename = paste0(datestring, "_Repeatr-app_Search.csv"),
+    content = function(file) {
+      write.csv(search_shows_data4(), file, row.names = FALSE)
+    }
+  )
 
 
 # quiz --------------------------------------------------------------------
