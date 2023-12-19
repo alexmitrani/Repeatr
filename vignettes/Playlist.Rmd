@@ -250,3 +250,4 @@ A list of recommended shows. I will continue to add to this list as I make my wa
 [FLS0987, Rialto Theater, Tucson, AZ, USA, 2001-04-10](https://dischord.com/fugazi_live_series/tucson-az-usa-41001)<br>
 [FLS0993, El Torreon, Kansas City, MO, USA 2001-04-18](https://dischord.com/fugazi_live_series/kansas-city-mo-usa-41801)<br>
 [FLS0998, Sacred Heart Church, Washington, DC, USA, 2001-04-27](https://dischord.com/fugazi_live_series/washington-dc-usa-42701)<br>
+[FLS1001, Congress Theater, Chicago, IL, USA, 2001-06-24](https://dischord.com/fugazi_live_series/chicago-il-usa-62401)<br>
