@@ -253,3 +253,4 @@ A list of recommended shows. I will continue to add to this list as I make my wa
 [FLS1001, Congress Theater, Chicago, IL, USA, 2001-06-24](https://dischord.com/fugazi_live_series/chicago-il-usa-62401)<br>
 [FLS1003, First Avenue, Minneapolis, MN, USA, 2001-06-27](https://dischord.com/fugazi_live_series/minneapolis-mn-usa-62701)<br>
 [FLS1009, MacEwan Hall, Calgary, AB, Canada, 2001-07-03](https://dischord.com/fugazi_live_series/calgary-ab-canada-70301)<br>
+[FLS1011, Archie Browning Centre, Victoria, BC, Canada, 2001-07-06](https://dischord.com/fugazi_live_series/victoria-bc-canada-70601)<br>
