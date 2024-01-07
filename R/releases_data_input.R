@@ -1,4 +1,4 @@
-#' Summary
+#' Releases data input
 #'
 #' @source https://www.dischord.com/fugazi_live_series
 #' @format dataframe with one row for each song in the Fugazi discography, except those which never appear in the Fugazi Live Series data.
