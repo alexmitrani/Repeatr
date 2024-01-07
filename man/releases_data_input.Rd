@@ -3,7 +3,7 @@
 \docType{data}
 \name{releases_data_input}
 \alias{releases_data_input}
-\title{Summary}
+\title{Releases data input}
 \format{
 dataframe with one row for each song in the Fugazi discography, except those which never appear in the Fugazi Live Series data.
 \describe{
@@ -28,7 +28,7 @@ https://www.dischord.com/fugazi_live_series
 releases_data_input
 }
 \description{
-Summary
+Releases data input
 }
 \examples{
   releases_data_input
