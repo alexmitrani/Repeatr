@@ -1,7 +1,7 @@
 #' Releases Summary
 #'
 #' @source https://www.dischord.com/fugazi_live_series
-#' @format dataframe with one row for each song in the Fugazi discography, except those which never appear in the Fugazi Live Series data.
+#' @format dataframe with one row for each release in the Fugazi discography.
 #' \describe{
 #'
 #' \item{release}{The name of the release.}

@@ -91,9 +91,63 @@ quizdata <- quizdata %>%
 discography <- Repeatr::summary %>%
   select(song, release)
 
+song_duration_seconds <- Repeatr::songvarslookup %>%
+  select(song, duration_seconds)
+
 releases_data_input <- Repeatr::releases_data_input %>%
   left_join(song_tempo_bpm_data) %>%
-  arrange(releaseid, track_number)
+  left_join(song_duration_seconds) %>%
+  arrange(desc(releaseid), desc(track_number)) %>%
+  mutate(minutes = round(duration_seconds/60, 3)) %>%
+  mutate(song = factor(song, levels=unique(song)))
+
+release_tempo_bpm_minutes <- releases_data_input %>%
+  mutate(tempo_bpm_minutes = tempo_bpm*minutes) %>%
+  group_by(release) %>%
+  summarise(tempo_bpm_minutes = sum(tempo_bpm_minutes),
+            minutes = sum(minutes)) %>%
+  ungroup() %>%
+  mutate(tempo_bpm = round(tempo_bpm_minutes/minutes, 3)) %>%
+  mutate(release = as.character(release)) %>%
+  mutate(minutes = round(minutes, 3)) %>%
+  select(release, tempo_bpm, minutes)
+
+discography_tempo_bpm <- release_tempo_bpm_minutes %>%
+  mutate(tempo_bpm_minutes = tempo_bpm*minutes) %>%
+  group_by() %>%
+  summarise(tempo_bpm_minutes = sum(tempo_bpm_minutes), minutes = sum(minutes)) %>%
+  ungroup() %>%
+  mutate(tempo_bpm = round(tempo_bpm_minutes/minutes, 3)) %>%
+  select(tempo_bpm)
+
+releases_summary <- Repeatr::releases_summary %>%
+  left_join(release_tempo_bpm_minutes)
+
+gid_tempo_bpm_minutes <- duration_data_da %>%
+  left_join(song_tempo_bpm_data) %>%
+  mutate(tempo_bpm_minutes = tempo_bpm*minutes) %>%
+  filter(is.na(minutes)==FALSE) %>%
+  group_by(gid) %>%
+  summarise(tempo_bpm_minutes = sum(tempo_bpm_minutes),
+            minutes = sum(minutes)) %>%
+  ungroup() %>%
+  mutate(tempo_bpm = round(tempo_bpm_minutes/minutes, 3)) %>%
+  select(gid, tempo_bpm, minutes)
+
+shows_tempo_bpm <- gid_tempo_bpm_minutes %>%
+  mutate(tempo_bpm_minutes = tempo_bpm*minutes) %>%
+  group_by() %>%
+  summarise(tempo_bpm_minutes = sum(tempo_bpm_minutes), minutes = sum(minutes)) %>%
+  ungroup() %>%
+  mutate(tempo_bpm = round(tempo_bpm_minutes/minutes, 3)) %>%
+  select(tempo_bpm)
+
+gid_tempo_bpm <- gid_tempo_bpm_minutes %>%
+  select(gid, tempo_bpm)
+
+shows_data <- Repeatr::shows_data %>%
+  left_join(gid_tempo_bpm)
+
 
 # user interface ----------------------------------------------------------
 
@@ -726,7 +780,7 @@ tabPanel("stock",
 
                                column(5,
                                       selectizeInput("Input_releases_var", "variable:",
-                                                     c("count", "intensity", "rating", "tempo_bpm"),
+                                                     c("count", "intensity", "rating", "tempo_bpm", "minutes"),
                                                      selected="rating", multiple =FALSE)
                                       ),
                                column(5,
@@ -1245,7 +1299,7 @@ server <- function(input, output, session) {
 
     mydf <- shows_data2() %>%
       mutate(url = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
-      select(url, fls_link, date, venue, city, country, attendance, minutes, sound_quality) %>%
+      select(url, fls_link, date, venue, city, country, attendance, minutes, tempo_bpm, sound_quality) %>%
       arrange(date)
 
     mydf
@@ -2812,6 +2866,23 @@ server <- function(input, output, session) {
         theme(axis.text.x=element_text(size=10)) +
         theme(axis.text.y=element_text(size=10))
 
+    } else if (input$Input_releases_var == "minutes") {
+
+      releases_plot <- ggplot(releases_data(), aes(x = song,
+                                                   y = minutes,
+                                                   fill = release)) +
+        geom_bar(stat="identity") +
+        xlab("track") +
+        ylab("minutes") +
+        scale_fill_manual(values=colours) +
+        scale_y_continuous(expand = expansion(mult = c(0, 0.1)),
+                           limits = c(0, NA),
+                           labels = comma) +
+        coord_flip() +
+        theme(legend.position=input$legend_position) +
+        theme(axis.text.x=element_text(size=10)) +
+        theme(axis.text.y=element_text(size=10))
+
     } else {
 
         releases_plot <- ggplot(releases_data(), aes(x = song,
@@ -2862,7 +2933,7 @@ server <- function(input, output, session) {
     if (is.null(input$Input_releases)==FALSE) {
 
       releases_data_table <- releases_data() %>%
-        select(release, track_number, song, date, count, intensity, rating, tempo_bpm) %>%
+        select(release, track_number, song, date, count, intensity, rating, tempo_bpm, minutes) %>%
         rename(debut = date)
 
     } else {
