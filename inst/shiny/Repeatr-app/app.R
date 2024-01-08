@@ -91,6 +91,10 @@ quizdata <- quizdata %>%
 discography <- Repeatr::summary %>%
   select(song, release)
 
+releases_data_input <- Repeatr::releases_data_input %>%
+  left_join(song_tempo_bpm_data) %>%
+  arrange(releaseid, track_number)
+
 # user interface ----------------------------------------------------------
 
 ui <- fluidPage(
@@ -722,7 +726,7 @@ tabPanel("stock",
 
                                column(5,
                                       selectizeInput("Input_releases_var", "variable:",
-                                                     c("count", "intensity", "rating"),
+                                                     c("count", "intensity", "rating", "tempo_bpm"),
                                                      selected="rating", multiple =FALSE)
                                       ),
                                column(5,
@@ -2791,14 +2795,31 @@ server <- function(input, output, session) {
         theme(axis.text.x=element_text(size=10)) +
         theme(axis.text.y=element_text(size=10))
 
+    } else if (input$Input_releases_var == "count") {
+
+      releases_plot <- ggplot(releases_data(), aes(x = song,
+                                                   y = count,
+                                                   fill = release)) +
+        geom_bar(stat="identity") +
+        xlab("track") +
+        ylab("count") +
+        scale_fill_manual(values=colours) +
+        scale_y_continuous(expand = expansion(mult = c(0, 0.1)),
+                           limits = c(0, NA),
+                           labels = comma) +
+        coord_flip() +
+        theme(legend.position=input$legend_position) +
+        theme(axis.text.x=element_text(size=10)) +
+        theme(axis.text.y=element_text(size=10))
+
     } else {
 
         releases_plot <- ggplot(releases_data(), aes(x = song,
-                                                     y = count,
+                                                     y = tempo_bpm,
                                                      fill = release)) +
           geom_bar(stat="identity") +
           xlab("track") +
-          ylab("count") +
+          ylab("tempo_bpm") +
           scale_fill_manual(values=colours) +
           scale_y_continuous(expand = expansion(mult = c(0, 0.1)),
                              limits = c(0, NA),
@@ -2841,7 +2862,7 @@ server <- function(input, output, session) {
     if (is.null(input$Input_releases)==FALSE) {
 
       releases_data_table <- releases_data() %>%
-        select(release, track_number, song, date, count, intensity, rating) %>%
+        select(release, track_number, song, date, count, intensity, rating, tempo_bpm) %>%
         rename(debut = date)
 
     } else {
