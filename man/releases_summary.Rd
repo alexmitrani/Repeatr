@@ -5,7 +5,7 @@
 \alias{releases_summary}
 \title{Releases Summary}
 \format{
-dataframe with one row for each song in the Fugazi discography, except those which never appear in the Fugazi Live Series data.
+dataframe with one row for each release in the Fugazi discography.
 \describe{
 
 \item{release}{The name of the release.}

@@ -91,6 +91,9 @@
     <loc>/reference/fugazi_song_performance_intensity.html</loc>
   </url>
   <url>
+    <loc>/reference/fugazi_spotify_data.html</loc>
+  </url>
+  <url>
     <loc>/reference/gid_initial_gid_sound_quality.html</loc>
   </url>
   <url>
@@ -197,6 +200,9 @@
   </url>
   <url>
     <loc>/reference/songvarslookup.html</loc>
+  </url>
+  <url>
+    <loc>/reference/song_tempo_bpm_data.html</loc>
   </url>
   <url>
     <loc>/reference/stacks.html</loc>

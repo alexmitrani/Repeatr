@@ -137,7 +137,7 @@ Unticking the 'show' checkbox will hide the 'period_weeks' and 'step_days' contr
 
 The data table below the map and the timeline controls shows summary data for the selected shows.
 
-![](images/paste-B983779C.png)
+![](images/paste-62A3D4E1.png)
 
 Each of the following columns can be sorted using the sort controls to the right of the variable name:
 
@@ -153,7 +153,9 @@ Each of the following columns can be sorted using the sort controls to the right
 
 -   attendance
 
--   minutes - duration of the show in minutes if a recording is available.
+-   minutes - duration of the show in minutes.
+
+-   tempo_bpm - average tempo of the show in Beats Per Minute.
 
 -   sound_quality - Sound quality rating: Excellent, Very Good, Good, or Poor.
 
@@ -419,9 +421,9 @@ The bar chart shows summary data for each song of each Fugazi release, sorted in
 
 The legend can be turned on or off - you may prefer to have it off if you are using a device with a small screen.
 
-![](images/paste-7248EDBF.png)
+![](images/paste-AECA59DC.png)
 
-The 'variable' menu has three options:
+The 'variable' menu has five options:
 
 -   count - the number of times the song was performed in the Fugazi Live Series. All else being equal, older songs tend to have higher counts because they were available in the band's repertoire for more shows.
 
@@ -429,13 +431,17 @@ The 'variable' menu has three options:
 
 -   rating - the rating calculated for the song based on preferences implied by the choices of which songs to play.
 
+-   tempo_bpm - tempo in Beats Per Minute.
+
+-   minutes - duration in minutes
+
 The contents of the data table will vary depending on whether or not one or more releases have been specified.
 
 ### unfiltered
 
 If no release filter has been applied, the data table will show summary information for each release.
 
-![](images/paste-7F4EDE94.png)
+![](images/paste-7A5A3649.png)
 
 The data table includes the following columns, all of which can be sorted:
 
@@ -455,7 +461,11 @@ The data table includes the following columns, all of which can be sorted:
 
 -   intensity - the average of the intensities of the songs on the release
 
--   rating - the average of the ratings of the songs on the release
+-   rating - the average of the ratings o f the songs on the release
+
+-   tempo_bpm - the weighted average tempo of the release in Beats Per Minute (weighted by the duration of each song)
+
+-   minutes - the total duration in minutes
 
 The counts, intensities and ratings give different results if they are used to rank the releases. Repeater was the album that yielded more live performances than any other in Fugazi's catalogue, but The Argument had the highest performance rate in relation to the number of shows at which these songs were available. The top 3 places are the same in terms of rating and intensity, but further down the table there are differences - the Fugazi EP is ranked higher than Red Medicine and In on the Killtaker when the releases are ranked by rating. This is probably because the ratings take into account the age of the releases and separate the effects of age from the implied preferences.
 
@@ -463,7 +473,7 @@ The counts, intensities and ratings give different results if they are used to r
 
 If one or more releases are specified using the top-level menu, both the graph and the data table will adapt to focus on the selected releases.
 
-![](images/paste-2319C2A2.png)
+![](images/paste-E0A5044D.png)
 
 The data table includes the following columns, all of which can be sorted:
 
@@ -478,6 +488,10 @@ The data table includes the following columns, all of which can be sorted:
 -   intensity - the performance intensity of each song (renditions / potential shows)
 
 -   rating - the rating calculated for the song based on preferences implied by the choices of which songs to play.
+
+-   tempo_bpm - the tempo of the song in Beats Per Minute.
+
+-   minutes - the duration in minutes.
 
 ## variation
 
