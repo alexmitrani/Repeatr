@@ -1954,7 +1954,11 @@ server <- function(input, output, session) {
       select(-year, -tour) %>%
       arrange(date)
 
-    data$songs <- rowSums(data[sapply(data, is.numeric)], na.rm = TRUE)
+    if(input$xrayGraph_choice!="other") {
+
+      data$songs <- rowSums(data[sapply(data, is.numeric)], na.rm = TRUE)
+
+    }
 
     data <- data %>%
       mutate_if(is.numeric, ~round(., 3))
