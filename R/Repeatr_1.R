@@ -220,7 +220,10 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
            y = ifelse(country == "Brazil" & city=="Sao Paulo" & venue=="Aeroanta", -23.5651133, y),
            checked = ifelse(country == "Brazil" & city=="Sao Paulo" & venue=="Aeroanta", 1, checked),
            venue = ifelse(venue=="Zepplin Rock", "Zeppelin Rock", venue),
-           city = ifelse(city=="San.De Campostela", "Santiago de Compostela", city))
+           city = ifelse(city=="San.De Campostela", "Santiago de Compostela", city),
+           x = ifelse(city=="Huntington" & venue=="Stone Monkey", -82.4199941, x),
+           y = ifelse(city=="Huntington" & venue=="Stone Monkey", 38.4272035, y),
+           checked = ifelse(city=="Huntington" & venue=="Stone Monkey", 1, checked))
 
   # Correct country
   othervariables <- othervariables %>%
