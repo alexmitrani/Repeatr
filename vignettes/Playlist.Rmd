@@ -261,3 +261,4 @@ A list of recommended shows. I will continue to add to this list as I make my wa
 [FLS1015, Ritz, Raleigh, NC, USA, 2002-03-23](https://dischord.com/fugazi_live_series/raleigh-nc-usa-32302)<br>
 [FLS1018, Tipitina's, New Orleans, LA, USA, 2002-03-27](https://dischord.com/fugazi_live_series/new-orleans-la-usa-32702)<br>
 [FLS1027, James Madison U. Godwin Gym/MacRock, Harrisonburg, VA, USA, 2002-04-06](https://dischord.com/fugazi_live_series/harrisonburg-va-usa-40602)<br>
+[FLS1028, Holyoke War Memorial, Holyoke, MA, USA, 2002-04-18](https://dischord.com/fugazi_live_series/holyoke-ma-usa-51802)<br>
