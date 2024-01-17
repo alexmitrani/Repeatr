@@ -12,7 +12,7 @@ dataframe with one row for each song in the Fugazi discography, except those whi
 }
 }
 \source{
-Spotify for most songs, https://www.dischord.com/fugazi_live_series, and getsongbpm.com for Preprovisional and World Beat.
+Tempos of selected songs from https://www.dischord.com/fugazi_live_series measured with 'liveBPM' app for Android and also finger tapping with a timer.
 }
 \usage{
 song_tempo_bpm_data
