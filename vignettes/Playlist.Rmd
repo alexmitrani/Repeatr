@@ -264,3 +264,4 @@ A list of recommended shows. I will continue to add to this list as I make my wa
 [FLS1028, Holyoke War Memorial, Holyoke, MA, USA, 2002-04-18](https://dischord.com/fugazi_live_series/holyoke-ma-usa-51802)<br>
 [FLS1030, Mass Art Gymnasium, Boston, MA, USA, 2002-04-20](https://dischord.com/fugazi_live_series/boston-ma-usa-42002)<br>
 [FLS1031, Fort Reno, Washington, DC, USA, 2002-07-01](https://dischord.com/fugazi_live_series/washington-dc-usa-70102)<br>
+[FLS1033, University Lemon Grove, Exeter, England, 2002-10-21](https://dischord.com/fugazi_live_series/exeter-england-102102)<br>
