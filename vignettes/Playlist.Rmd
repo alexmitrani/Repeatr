@@ -262,3 +262,7 @@ A list of recommended shows. I will continue to add to this list as I make my wa
 [FLS1018, Tipitina's, New Orleans, LA, USA, 2002-03-27](https://dischord.com/fugazi_live_series/new-orleans-la-usa-32702)<br>
 [FLS1027, James Madison U. Godwin Gym/MacRock, Harrisonburg, VA, USA, 2002-04-06](https://dischord.com/fugazi_live_series/harrisonburg-va-usa-40602)<br>
 [FLS1028, Holyoke War Memorial, Holyoke, MA, USA, 2002-04-18](https://dischord.com/fugazi_live_series/holyoke-ma-usa-51802)<br>
+[FLS1030, Mass Art Gymnasium, Boston, MA, USA, 2002-04-20](https://dischord.com/fugazi_live_series/boston-ma-usa-42002)<br>
+[FLS1031, Fort Reno, Washington, DC, USA, 2002-07-01](https://dischord.com/fugazi_live_series/washington-dc-usa-70102)<br>
+[FLS1033, University Lemon Grove, Exeter, England, 2002-10-21](https://dischord.com/fugazi_live_series/exeter-england-102102)<br>
+[FLS1034, Sanctuary, Birmingham, UK, 2002-10-22](https://dischord.com/fugazi_live_series/birmingham-england-102202)<br>
