@@ -2,7 +2,7 @@
 % Please edit documentation in R/Repeatr_Updatr.R
 \name{Repeatr_Updatr}
 \alias{Repeatr_Updatr}
-\title{Runs the whole analysis process to update the site and the Repeatr-app from the input data files.}
+\title{Runs the whole analysis process to update the site and Fugazetteer web app from the input data files.}
 \usage{
 Repeatr_Updatr(really = "not_really")
 }

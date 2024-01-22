@@ -29,7 +29,7 @@ When the downloaded file is opened in Excel or a similar program, numeric column
 download_table_footer
 }
 \examples{
-sourcestext = c("https://alexmitrani.shinyapps.io/Repeatr-app/","https://dischord.com/fugazi_live_series")
+sourcestext = c("https://alexmitrani.shinyapps.io/Fugazetteer/","https://dischord.com/fugazi_live_series")
 mydf <- download_table_footer(mydf = Repeatr::summary, nblankrows = 1, textcolumnname = "sources", rowtext = sourcestext)
 
 }
