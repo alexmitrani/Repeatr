@@ -1020,7 +1020,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
     setwd(mydir)
 
-# prepare input data for Repeatr-app --------------------------------------
+# prepare input data for Fugazetteer --------------------------------------
 
     setwd(mydatadir)
 

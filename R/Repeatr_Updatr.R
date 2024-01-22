@@ -1,6 +1,6 @@
 
 #' @name Repeatr_Updatr
-#' @title Runs the whole analysis process to update the site and the Repeatr-app from the input data files.
+#' @title Runs the whole analysis process to update the site and Fugazetteer web app from the input data files.
 #' @description This can take a while which is why the parameter "really" is "not_really" by default.
 #' @description To run the full update: Repeatr_Updatr(really = "really")
 #'
