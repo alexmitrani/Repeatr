@@ -270,5 +270,6 @@ A list of recommended shows. I will continue to add to this list as I make my wa
 [FLS1037, Savoy, Limerick, Ireland, 2002-10-26](https://dischord.com/fugazi_live_series/limerick-ireland-102602)<br>
 [FLS1039, Barrowland Ballroom, Glasgow, Scotland, 2002-10-29](https://dischord.com/fugazi_live_series/glasgow-scotland-102902)<br>
 [FLS1041, Metropolitan University, Leeds, UK, 2002-10-31](https://dischord.com/fugazi_live_series/leeds-england-103102)<br>
+[FLS1045, Forum, London, UK, 2002-11-04](https://dischord.com/fugazi_live_series/london-england-110402)<br>
 
 
