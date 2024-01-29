@@ -22,7 +22,7 @@ library(Repeatr)
 
 ## Introduction
 
-A list of recommended shows. I will continue to add to this list as I make my way through the live series. 
+A list of recommended shows from the Fugazi Live Series.  
 
 ## Shows
 
