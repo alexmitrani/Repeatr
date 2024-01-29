@@ -24,7 +24,7 @@ library(Repeatr)
 
 A list of shows that are not presently available from the Fugazi Live Series site but are available elsewhere.  
 
-## Shows
+## Fugazi Live Series Shows
 
 [FLS0069, Juz Nagold, Nagold, Germany, 1988-11-04](https://www.youtube.com/watch?v=h-0J7Djzplo&list=PLXzdYKOUH6xj_x0Uz273TSbqMFrG80fBn&index=8&pp=iAQB)<br>
 [FLS0070, Bootleg Club, Augsburg, Germany, 1988-11-05](https://archive.org/details/fugazi1988-11-05)<br>
@@ -43,4 +43,7 @@ A list of shows that are not presently available from the Fugazi Live Series sit
 [FLS0972, Fort Reno, Washington, DC, USA, 2000-08-07 (part 2)](https://www.youtube.com/watch?v=YCniLqlEM7w&list=PLXzdYKOUH6xj_x0Uz273TSbqMFrG80fBn&index=198&pp=iAQB)<br>
 [FLS1028, Holyoke War Memorial Hall, MA, USA, 2002-04-18](https://archive.org/details/Fugazi2002-04-18.AKGC1000s)<br>
 
+## Original Fugazi Live Series Shows
+
+[FLS22, Triple J Radio, Sydney, Australia, 1991-10-14 (availability unclear)](https://dischord.com/release/FLS22/sydney-au-oct-14-1991)
 
