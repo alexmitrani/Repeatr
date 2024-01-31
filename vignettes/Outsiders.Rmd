@@ -22,7 +22,7 @@ library(Repeatr)
 
 ## Introduction
 
-A list of shows that are not presently available from the Fugazi Live Series site but are available elsewhere.  
+A list of shows that are not presently available from the Fugazi Live Series site but are available elsewhere. FLS22 Sydney, Australia, October 14 1991 is out of print and hard to find.    
 
 ## Fugazi Live Series Shows
 
