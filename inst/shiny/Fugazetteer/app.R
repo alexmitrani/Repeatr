@@ -2914,7 +2914,7 @@ server <- function(input, output, session) {
 
     if (is.null(input$Input_releases)==TRUE) {
 
-      plotheight = 1000
+      plotheight <- 1000
 
     } else {
 
@@ -2922,7 +2922,7 @@ server <- function(input, output, session) {
       myreleases <- as.data.frame(myreleases)
       myreleases <- nrow(myreleases)
 
-      plotheight = 100 + 100*myreleases
+      plotheight <- 100 + 100*myreleases
 
     }
 
@@ -2931,6 +2931,8 @@ server <- function(input, output, session) {
   output$releases_plot_ui <- renderUI({
     plotOutput("releases_plot", height = plotheight())
   })
+
+  outputOptions(output, "releases_plot_ui", suspendWhenHidden = FALSE)
 
   releases_data_table <- reactive({
 
