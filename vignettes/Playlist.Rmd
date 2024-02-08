@@ -37,6 +37,7 @@ A list of recommended shows from the Fugazi Live Series.
 [FLS0100, Maxwell's, Hoboken, NJ, USA, 1989-04-09](https://www.dischord.com/fugazi_live_series/hoboken-nj-usa-40989)<br>
 [FLS0175, Melkweg, Amsterdam, Netherlands, 1989-12-09](https://www.dischord.com/fugazi_live_series/amsterdam-netherlands-120989)<br>
 [FLS0176, Forum de Grenelle, Paris, France, 1989-12-11](https://dischord.com/fugazi_live_series/paris-france-121189)<br>
+[FLS0177, St. Augustine's Church Hall, Washington, DC, USA, 1990-01-27](https://dischord.com/fugazi_live_series/washington-dc-usa-12790)<br>
 [FLS0197, Pearl Street Ballroom, Northampton, MA, USA, 1990-04-14](https://www.dischord.com/fugazi_live_series/northampton-ma-usa-41490)<br>
 [FLS0203, 2301 Canton Warehouse, Dallas, TX, USA, 1990-05-04](https://www.dischord.com/fugazi_live_series/dallas-tx-usa-50490)<br>
 [FLS0225, Sokol Hall, Omaha, NE, USA, 1990-06-10](https://www.dischord.com/fugazi_live_series/omaha-ne-usa-61090)<br>
