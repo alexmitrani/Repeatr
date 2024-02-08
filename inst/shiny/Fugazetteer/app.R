@@ -77,7 +77,7 @@ quizdata <- quizdata %>%
 
 quizdata <- quizdata %>%
   mutate(score = round(100*round(points/total, 3),1)) %>%
-  arrange(desc(score))
+  arrange(desc(points))
 
 quizdata <- quizdata %>%
   mutate(name = ifelse(is.na(name)==FALSE, name, "Anon.")) %>%
