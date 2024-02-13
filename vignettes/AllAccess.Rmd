@@ -91,13 +91,9 @@ Fugazetteer is a web app based on the Fugazi Live Series data, it aims to make i
 
 ## Quiz
 
-I wrote a quiz about the Fugazi Live Series as a way of making use of the considerable amount of trivia knowledge I accumulated while making my way through the live series. There are 76 questions worth a total of 162 points. You can find it [here](https://forms.gle/cxWd38nPi6Dtk9ub8). It's a proper hard quiz, it'll be a good challenge for you. There is a high scores table included in the Fugazetteer app, you'll be included in the high scores table if your score places you in the top half.
+I wrote a quiz about the Fugazi Live Series as a way of making use of the considerable amount of trivia knowledge I accumulated while making my way through the live series. There are 76 questions worth a total of 162 points. You can find it [here](https://forms.gle/cxWd38nPi6Dtk9ub8). It's a proper hard quiz, it'll be a good challenge for you. There is a high scores table included in the Fugazetteer app, and you'll be included in the high scores table if your score places you in the top half.
 
 ![](images/paste-9F100001.png)
-
-Do it.
-
-Now.
 
 ## Practicalities
 
