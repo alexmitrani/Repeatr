@@ -22,7 +22,7 @@ library(Repeatr)
 
 ## Introduction
 
-A list of shows that are not presently available from the Fugazi Live Series site but are available elsewhere. FLS22 Sydney, Australia, October 14 1991 is out of print and hard to find.    
+A list of shows that are not presently available from the Fugazi Live Series site but are available elsewhere.  
 
 ## Fugazi Live Series Shows
 
@@ -38,6 +38,7 @@ A list of shows that are not presently available from the Fugazi Live Series sit
 [FLS0161, McGonagles, Dublin, Ireland, 1989-11-23](https://www.youtube.com/watch?v=gwIbWL55gio)<br>
 [FLS0176, Forum de Grenelle, Paris, France, 1989-12-11](https://www.youtube.com/watch?v=ChUGjHfodgA)<br>
 [FLS0177, St. Augustine's Church Hall, Washington, DC, USA, 1990-01-27](https://distortoakland.blogspot.com/2022/06/fugazi-january-27th-1990-st-augustines.html)<br>
+[FLS22, Triple J Radio, Sydney, Australia, 1991-10-14](https://archive.org/details/fugazi-sydney-australia-oct.-1991-triple-j-fm)
 [FLS0809, Sapphire Ballroom, Hobart, Tasmania, Australia, 1996-11-13](https://vimeo.com/65934803)<br>
 [FLS0846, Laberinto, Santiago, Chile, 1997-08-23](https://www.youtube.com/watch?v=nsl17PjJYXU&t=297s)<br>
 [FLS1053, Schlachthof, Bremen, Germany, 1999-09-17](https://www.youtube.com/watch?v=HgAJusbVqLU)<br>
@@ -46,8 +47,7 @@ A list of shows that are not presently available from the Fugazi Live Series sit
 [FLS0972, Fort Reno, Washington, DC, USA, 2000-08-07 (part 2)](https://www.youtube.com/watch?v=YCniLqlEM7w)<br>
 [FLS1028, Holyoke War Memorial Hall, MA, USA, 2002-04-18](https://archive.org/details/Fugazi2002-04-18.AKGC1000s)<br>
 
-## Original Fugazi Live Series Shows
 
-[FLS22, Triple J Radio, Sydney, Australia, 1991-10-14](https://archive.org/details/fugazi-sydney-australia-oct.-1991-triple-j-fm)
+
 
 
