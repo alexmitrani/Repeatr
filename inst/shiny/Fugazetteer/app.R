@@ -203,6 +203,48 @@ tabPanel("flow",
 
            tabsetPanel(type = "tabs",
 
+           # otd -------------------------------------------------------------------
+
+           tabPanel("otd",
+
+
+                    fluidPage(
+
+                      tags$br(),
+
+                      tags$br(),
+
+                      fluidRow(
+
+                        textOutput("otd_today")
+
+                      ),
+
+                      tags$br(),
+
+                      tags$br(),
+
+                      hr(),
+
+
+                      fluidRow(
+
+                        tags$br(),
+
+                        column(12,
+
+                               # Create a new row for the table.
+                               DT::dataTableOutput("otddatatable")
+
+                        )
+
+                      )
+
+                    )
+
+           ),
+
+
            # shows -------------------------------------------------------------------
 
            tabPanel("shows",
@@ -1018,6 +1060,85 @@ server <- function(input, output, session) {
                    choices = c(unique(menudata$tour)), multiple =TRUE)
 
   })
+
+  # otd -------------------------------------------------------------------
+
+
+  otd_today_string <- reactive({
+
+    today <- Sys.Date()
+    today_month <- month(today)
+    today_day <- day(today)
+    today_month_day <- today_month*100+today_day
+    today_weekday <- weekdays(today)
+    month_name <- month.name[today_month]
+
+    today_string <- paste0("Today is ", today_weekday, " ", today_day, " of ", month_name, ".")
+
+    today_string
+
+  })
+
+  output$otd_today <- renderText(otd_today_string())
+
+  otd_data2 <- reactive({
+
+    today <- Sys.Date()
+    today_month <- month(today)
+    today_day <- day(today)
+    today_month_day <- today_month*100+today_day
+
+    mydf <- shows_data %>%
+      mutate(month_day = month(date)*100+day(date)) %>%
+      filter(month_day == today_month_day)
+
+    mydf
+
+  })
+
+
+  otd_data3 <- reactive({
+
+    mydf <- otd_data2() %>%
+      mutate(url = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
+      select(url, fls_link, date, venue, city, country, attendance, minutes, tempo_bpm, sound_quality) %>%
+      arrange(date)
+
+    mydf
+
+  })
+
+  otd_data4 <- reactive({
+
+    mydf <- otd_data3() %>%
+      select(-fls_link)
+
+    mydf <- download_table_footer(mydf = mydf, nblankrows = 1, textcolumnname = "sources", rowtext = sourcestext)
+
+    mydf[is.na(mydf)] <- ""
+
+    mydf
+
+  })
+
+  output$otddatatable <- DT::renderDataTable(DT::datatable({
+
+    data <- otd_data3() %>%
+      select(-url)
+
+  },
+  escape = c(-2),
+  style = "bootstrap"))
+
+  # Downloadable csv of selected dataset
+
+  output$downloadShowsData <- downloadHandler(
+    filename = paste0(datestring, "_Fugazetteer_otd.csv"),
+    content = function(file) {
+      write.csv(otd_data4(), file, row.names = FALSE)
+    }
+  )
+
 
 # shows -------------------------------------------------------------------
 
