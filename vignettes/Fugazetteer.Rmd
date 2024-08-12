@@ -24,21 +24,25 @@ library(Repeatr)
 
 [Fugazetteer](https://alexmitrani.shinyapps.io/Fugazetteer/) makes it easy to get some insights and answer questions about the Fugazi Live Series. It also provides several new ways of finding shows to listen to.
 
-![](images/paste-F44D4904.png)
+![](images/paste-D8C6976A.png)
 
-The app has 14 pages spread across 4 sections:
+The app has 15 pages spread across 4 sections:
+
+-   today (1 page) - provides a summary of Fugazi shows on this day in history.
+
+    ![](images/paste-D1D5F233.png)
 
 -   flow (9 pages) - includes top-level menus for 'year' and 'tour' which will filter the contents of all the pages in this section.
 
-    ![](images/paste-AB9A853B.png)
+    ![](images/paste-FD8C3E91.png)
 
 -   stock (4 pages) - includes a top-level menu for 'release' which will filter the contents of all the pages in this section.
 
-    ![](images/paste-C9B59AB5.png)
+    ![](images/paste-A35D5C9F.png)
 
 -   quiz (1 page) - links to Fugazi Live Series Quiz #1 and shows the high scores to date.
 
-    ![](images/paste-2AB64D9A.png)
+    ![](images/paste-54BE6AC5.png)
 
 Most of the pages have a visualisation (map or graph) and a data table further down the page, with the exception of 'transition', 'duration' and 'search' which only have data tables.
 
@@ -65,6 +69,14 @@ The show locations have been determined as closely as possible using the availab
 ![Extract of Mudhoney poster by Ward Sutton that contains the address of the Twilight Terrace, Yakima, USA.](images/paste-5C2D1B16.png)
 
 There may still be "false positives" - cases where an address was found but the address might be wrong. Please let me know if you find anything that needs correcting.
+
+# today
+
+This page provides a summary of Fugazi shows on a day in history.
+
+By default your local date and time will be shown - today. If you wish, you can edit the date in the input box to see the Fugazi shows on another date.
+
+![](images/paste-F2EAE8DB.png)
 
 # flow
 

@@ -3,13 +3,15 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   94songs: 94songs.html
+  AllAccess: AllAccess.html
   CombinationLock: CombinationLock.html
   Fugazetteer: Fugazetteer.html
   LinkTracks: LinkTracks.html
+  Outsiders: Outsiders.html
   Playlist: Playlist.html
   polish with a small p: polish with a small p.html
   Ratings: Ratings.html
   Repeatr: Repeatr.html
   The Emperor's New Outfit: The Emperor's New Outfit.html
-last_built: 2024-01-22T00:08Z
+last_built: 2024-08-12T02:23Z
 

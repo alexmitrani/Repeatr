@@ -216,7 +216,7 @@ tabPanel("today",
                       target.trigger("change");
                       });
                       '),
-                    textInput("clientTime", "Local time", value = ""),
+                    textInput("clientTime", "Date", value = ""),
 
                     tags$br(),
 
@@ -1097,7 +1097,7 @@ server <- function(input, output, session) {
     today_weekday <- weekdays(today)
     month_name <- month.name[today_month]
 
-    today_string <- paste0("Today is ", today_weekday, " ", today_day, " of ", month_name, ".")
+    today_string <- paste0(today_day, " of ", month_name, ".")
 
     today_string
 
