@@ -208,6 +208,18 @@ tabPanel("today",
 
                     tags$br(),
 
+                    tags$script('
+                      $(document).ready(function(){
+                      var d = new Date();
+                      var target = $("#clientTime");
+                      target.val(d.toLocaleString());
+                      target.trigger("change");
+                      });
+                      '),
+                    textInput("clientTime", "Local time", value = ""),
+
+                    tags$br(),
+
                     fluidRow(
 
                       textOutput("today")
@@ -1070,32 +1082,15 @@ server <- function(input, output, session) {
 
   session$onSessionEnded(stopApp)
 
+  session$userData$time <- reactive({as.Date(lubridate::dmy_hms(input$clientTime))})
 
-# when --------------------------------------------------------------------
-
-
-  output$menuOptions_tours <- renderUI({
-
-    if (is.null(input$yearInput_shows)==FALSE) {
-      menudata <- shows_data %>%
-        filter(year %in% input$yearInput_shows) %>%
-        arrange(date)
-    } else {
-      menudata <- shows_data %>%
-        arrange(date)
-    }
-
-    selectizeInput("tourInput_shows", "tours:",
-                   choices = c(unique(menudata$tour)), multiple =TRUE)
-
-  })
 
   # today -------------------------------------------------------------------
 
 
   today_string <- reactive({
 
-    today <- Sys.Date()
+    today <- session$userData$time()
     today_month <- month(today)
     today_day <- day(today)
     today_month_day <- today_month*100+today_day
@@ -1112,7 +1107,7 @@ server <- function(input, output, session) {
 
   today_number_shows_string <- reactive({
 
-    today <- Sys.Date()
+    today <- session$userData$time()
     today_month <- month(today)
     today_day <- day(today)
     today_month_day <- today_month*100+today_day
@@ -1142,7 +1137,7 @@ server <- function(input, output, session) {
 
   today_data2 <- reactive({
 
-    today <- Sys.Date()
+    today <- session$userData$time()
     today_month <- month(today)
     today_day <- day(today)
     today_month_day <- today_month*100+today_day
@@ -1197,6 +1192,27 @@ server <- function(input, output, session) {
       write.csv(today_data4(), file, row.names = FALSE)
     }
   )
+
+# when --------------------------------------------------------------------
+
+
+  output$menuOptions_tours <- renderUI({
+
+    if (is.null(input$yearInput_shows)==FALSE) {
+      menudata <- shows_data %>%
+        filter(year %in% input$yearInput_shows) %>%
+        arrange(date)
+    } else {
+      menudata <- shows_data %>%
+        arrange(date)
+    }
+
+    selectizeInput("tourInput_shows", "tours:",
+                   choices = c(unique(menudata$tour)), multiple =TRUE)
+
+  })
+
+
 
 
 # shows -------------------------------------------------------------------
