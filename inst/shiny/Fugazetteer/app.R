@@ -183,6 +183,77 @@ ui <- fluidPage(
       tabsetPanel(type = "tabs",
 
 
+# start and end of 'today' tabset -------------------------------------------------------------------
+
+tabPanel("today",
+
+         # today -------------------------------------------------------------------
+
+         tabPanel("today",
+
+
+                  fluidPage(
+
+                    tags$br(),
+
+                    tags$div(
+
+                      "Anytime but now",
+                      tags$br(),
+                      "Anywhere but here",
+                      tags$br(),
+                      tags$a(href="https://fugazi.bandcamp.com/track/burning-too", "- Burning Too by Fugazi"),
+                      tags$br()
+                    ),
+
+                    tags$br(),
+
+                    fluidRow(
+
+                      textOutput("today")
+
+                    ),
+
+
+                    fluidRow(
+
+                      textOutput("today_number_shows")
+
+                    ),
+
+                    tags$br(),
+
+                    hr(),
+
+                    conditionalPanel(
+                      condition = "output.today_number_shows!='There were 0 Fugazi shows on this day in history.'",
+
+                      fluidRow(
+
+                        tags$br(),
+
+                        column(12,
+
+                               # Create a new row for the table.
+                               DT::dataTableOutput("todaydatatable")
+
+                        )
+
+                      ),
+
+                      fluidRow(
+                        column(12, style = "margin-top: 29px;", downloadButton("downloadTodayData", ""))
+                      ),
+
+                    ),
+
+                  )
+
+         )
+
+
+),
+
 # start of 'flow' tabset -------------------------------------------------------------------
 
 tabPanel("flow",
@@ -202,48 +273,6 @@ tabPanel("flow",
            ),
 
            tabsetPanel(type = "tabs",
-
-           # otd -------------------------------------------------------------------
-
-           tabPanel("otd",
-
-
-                    fluidPage(
-
-                      tags$br(),
-
-                      tags$br(),
-
-                      fluidRow(
-
-                        textOutput("otd_today")
-
-                      ),
-
-                      tags$br(),
-
-                      tags$br(),
-
-                      hr(),
-
-
-                      fluidRow(
-
-                        tags$br(),
-
-                        column(12,
-
-                               # Create a new row for the table.
-                               DT::dataTableOutput("otddatatable")
-
-                        )
-
-                      )
-
-                    )
-
-           ),
-
 
            # shows -------------------------------------------------------------------
 
@@ -1061,10 +1090,10 @@ server <- function(input, output, session) {
 
   })
 
-  # otd -------------------------------------------------------------------
+  # today -------------------------------------------------------------------
 
 
-  otd_today_string <- reactive({
+  today_string <- reactive({
 
     today <- Sys.Date()
     today_month <- month(today)
@@ -1079,9 +1108,39 @@ server <- function(input, output, session) {
 
   })
 
-  output$otd_today <- renderText(otd_today_string())
+  output$today <- renderText(today_string())
 
-  otd_data2 <- reactive({
+  today_number_shows_string <- reactive({
+
+    today <- Sys.Date()
+    today_month <- month(today)
+    today_day <- day(today)
+    today_month_day <- today_month*100+today_day
+
+    mydf <- shows_data %>%
+      mutate(month_day = month(date)*100+day(date)) %>%
+      filter(month_day == today_month_day)
+
+    number_shows <- nrow(mydf)
+
+    if(number_shows==1){
+
+      number_shows_string <- paste0("There was ", number_shows, " Fugazi show on this day in history.")
+
+    } else {
+
+      number_shows_string <- paste0("There were ", number_shows, " Fugazi shows on this day in history.")
+
+    }
+
+    number_shows_string
+
+  })
+
+  output$today_number_shows <- renderText(today_number_shows_string())
+
+
+  today_data2 <- reactive({
 
     today <- Sys.Date()
     today_month <- month(today)
@@ -1097,9 +1156,9 @@ server <- function(input, output, session) {
   })
 
 
-  otd_data3 <- reactive({
+  today_data3 <- reactive({
 
-    mydf <- otd_data2() %>%
+    mydf <- today_data2() %>%
       mutate(url = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
       select(url, fls_link, date, venue, city, country, attendance, minutes, tempo_bpm, sound_quality) %>%
       arrange(date)
@@ -1108,9 +1167,9 @@ server <- function(input, output, session) {
 
   })
 
-  otd_data4 <- reactive({
+  today_data4 <- reactive({
 
-    mydf <- otd_data3() %>%
+    mydf <- today_data3() %>%
       select(-fls_link)
 
     mydf <- download_table_footer(mydf = mydf, nblankrows = 1, textcolumnname = "sources", rowtext = sourcestext)
@@ -1121,9 +1180,9 @@ server <- function(input, output, session) {
 
   })
 
-  output$otddatatable <- DT::renderDataTable(DT::datatable({
+  output$todaydatatable <- DT::renderDataTable(DT::datatable({
 
-    data <- otd_data3() %>%
+    data <- today_data3() %>%
       select(-url)
 
   },
@@ -1132,10 +1191,10 @@ server <- function(input, output, session) {
 
   # Downloadable csv of selected dataset
 
-  output$downloadShowsData <- downloadHandler(
-    filename = paste0(datestring, "_Fugazetteer_otd.csv"),
+  output$downloadTodayData <- downloadHandler(
+    filename = paste0(datestring, "_Fugazetteer_today.csv"),
     content = function(file) {
-      write.csv(otd_data4(), file, row.names = FALSE)
+      write.csv(today_data4(), file, row.names = FALSE)
     }
   )
 

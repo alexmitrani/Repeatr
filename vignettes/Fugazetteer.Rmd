@@ -24,9 +24,9 @@ library(Repeatr)
 
 [Fugazetteer](https://alexmitrani.shinyapps.io/Fugazetteer/) makes it easy to get some insights and answer questions about the Fugazi Live Series. It also provides several new ways of finding shows to listen to.
 
-![](images/paste-0BC36421.png)
+![](images/paste-F44D4904.png)
 
-The app has 13 pages spread across 3 sections:
+The app has 14 pages spread across 4 sections:
 
 -   flow (9 pages) - includes top-level menus for 'year' and 'tour' which will filter the contents of all the pages in this section.
 
