@@ -1097,7 +1097,15 @@ server <- function(input, output, session) {
     today_weekday <- weekdays(today)
     month_name <- month.name[today_month]
 
-    today_string <- paste0(today_day, " of ", month_name, ".")
+    if(is.na(today_day)==FALSE) {
+
+      today_string <- paste0(today_day, " of ", month_name, ".")
+
+    } else (
+
+      today_string <- "That is not a valid date."
+
+    )
 
     today_string
 
@@ -1112,23 +1120,32 @@ server <- function(input, output, session) {
     today_day <- day(today)
     today_month_day <- today_month*100+today_day
 
-    mydf <- shows_data %>%
-      mutate(month_day = month(date)*100+day(date)) %>%
-      filter(month_day == today_month_day)
+    if(is.na(today_day)==FALSE) {
 
-    number_shows <- nrow(mydf)
+      mydf <- shows_data %>%
+        mutate(month_day = month(date)*100+day(date)) %>%
+        filter(month_day == today_month_day)
 
-    if(number_shows==1){
+      number_shows <- nrow(mydf)
 
-      number_shows_string <- paste0("There was ", number_shows, " Fugazi show on this day in history.")
+      if(number_shows==1){
 
-    } else {
+        number_shows_string <- paste0("There was ", number_shows, " Fugazi show on this day in history.")
 
-      number_shows_string <- paste0("There were ", number_shows, " Fugazi shows on this day in history.")
+      } else {
 
-    }
+        number_shows_string <- paste0("There were ", number_shows, " Fugazi shows on this day in history.")
 
-    number_shows_string
+      }
+
+      number_shows_string
+
+
+    } else (
+
+      number_shows_string <- ""
+
+    )
 
   })
 
@@ -1153,10 +1170,27 @@ server <- function(input, output, session) {
 
   today_data3 <- reactive({
 
+    today <- session$userData$time()
+    today_year <- year(today)
+
     mydf <- today_data2() %>%
+      mutate(yearsago = today_year - year(date)) %>%
+      mutate(day = day(date), dayname = weekdays(date), monthname = format(date, "%B")) %>%
+      mutate(suffix = case_when(day==1 ~ "st",
+                                day==2 ~ "nd",
+                                day==3 ~ "rd",
+                                day>3 & day <=20  ~ "th",
+                                day==21 ~ "st",
+                                day==22 ~ "nd",
+                                day==23 ~ "rd",
+                                day>23 & day <=30  ~ "th",
+                                day==31 ~ "st")) %>%
+      mutate(datestring = paste0(dayname, " the ", day, suffix, " of ", monthname, " ", year(date))) %>%
       mutate(url = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
-      select(url, fls_link, date, venue, city, country, attendance, minutes, tempo_bpm, sound_quality) %>%
-      arrange(date)
+      mutate(ctrl_c = paste0(yearsago, " years ago today, on ", datestring,", Fugazi played ",  venue," in ", city,", ", country ,". ", url)) %>%
+      arrange(date) %>%
+      select(ctrl_c, fls_link, attendance, minutes, sound_quality)
+
 
     mydf
 
@@ -1177,11 +1211,10 @@ server <- function(input, output, session) {
 
   output$todaydatatable <- DT::renderDataTable(DT::datatable({
 
-    data <- today_data3() %>%
-      select(-url)
+    data <- today_data3()
 
   },
-  escape = c(-2),
+  escape = c(-3),
   style = "bootstrap"))
 
   # Downloadable csv of selected dataset
