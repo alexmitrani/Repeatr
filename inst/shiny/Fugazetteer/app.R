@@ -148,6 +148,11 @@ gid_tempo_bpm <- gid_tempo_bpm_minutes %>%
 shows_data <- Repeatr::shows_data %>%
   left_join(gid_tempo_bpm)
 
+today_data <- shows_data %>%
+  left_join(fls_tags_show) %>%
+  mutate(where_played = ifelse(is.na(album)==FALSE, substring(album, 10),
+                               paste0(venue, ", ", city,", ", country))) %>%
+  select(date, where_played, gid, fls_link, attendance, minutes, sound_quality)
 
 # user interface ----------------------------------------------------------
 
@@ -1169,7 +1174,7 @@ server <- function(input, output, session) {
     today_day <- day(today)
     today_month_day <- today_month*100+today_day
 
-    mydf <- shows_data %>%
+    mydf <- today_data %>%
       mutate(month_day = month(date)*100+day(date)) %>%
       filter(month_day == today_month_day)
 
@@ -1197,9 +1202,9 @@ server <- function(input, output, session) {
                                 day==31 ~ "st")) %>%
       mutate(datestring = paste0(dayname, " the ", day, suffix, " of ", monthname, " ", year(date))) %>%
       mutate(url = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
-      mutate(ctrl_c = paste0(yearsago, " years ago today, on ", datestring,", Fugazi played ",  venue," in ", city,", ", country ,". ", url)) %>%
+      mutate(text = paste0(yearsago, " years ago today, on ", datestring,", Fugazi played ",  where_played ,". ", url)) %>%
       arrange(date) %>%
-      select(ctrl_c, fls_link, attendance, minutes, sound_quality)
+      select(text, fls_link, attendance, minutes, sound_quality)
 
 
     mydf
