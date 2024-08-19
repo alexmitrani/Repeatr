@@ -1097,9 +1097,19 @@ server <- function(input, output, session) {
     today_weekday <- weekdays(today)
     month_name <- month.name[today_month]
 
+    suffix <- case_when(today_day==1 ~ "st",
+                        today_day==2 ~ "nd",
+                        today_day==3 ~ "rd",
+                        today_day>3 & today_day <=20  ~ "th",
+                        today_day==21 ~ "st",
+                        today_day==22 ~ "nd",
+                        today_day==23 ~ "rd",
+                        today_day>23 & today_day <=30  ~ "th",
+                        today_day==31 ~ "st")
+
     if(is.na(today_day)==FALSE) {
 
-      today_string <- paste0(today_day, " of ", month_name, ".")
+      today_string <- paste0(today_day, suffix, " of ", month_name, ".")
 
     } else (
 

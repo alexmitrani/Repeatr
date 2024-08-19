@@ -76,7 +76,7 @@ This page provides a summary of Fugazi shows on a day in history.
 
 By default your local date and time will be shown - today. If you wish, you can edit the date in the input box to see the Fugazi shows on another date.
 
-![](images/paste-F2EAE8DB.png)
+![](images/paste-05283049.png)
 
 # flow
 
