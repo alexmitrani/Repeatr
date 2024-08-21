@@ -148,11 +148,16 @@ gid_tempo_bpm <- gid_tempo_bpm_minutes %>%
 shows_data <- Repeatr::shows_data %>%
   left_join(gid_tempo_bpm)
 
+played_with_flat <- played_with %>%
+  group_by(gid) %>%
+  summarise(played_with = str_flatten(played_with, ", "))
+
 today_data <- shows_data %>%
   left_join(fls_tags_show) %>%
+  left_join(played_with_flat) %>%
   mutate(where_played = ifelse(is.na(album)==FALSE, substring(album, 10),
                                paste0(venue, ", ", city,", ", country))) %>%
-  select(date, where_played, gid, fls_link, attendance, minutes, sound_quality)
+  select(date, where_played, gid, fls_link, played_with, attendance, minutes, sound_quality)
 
 # user interface ----------------------------------------------------------
 
@@ -221,7 +226,7 @@ tabPanel("today",
                       target.trigger("change");
                       });
                       '),
-                    textInput("clientTime", "Date", value = ""),
+                    textInput("clientTime", "Today's date (DD/MM/YYYY, HH:MM:SS)", value = ""),
 
                     tags$br(),
 
@@ -1096,6 +1101,7 @@ server <- function(input, output, session) {
   today_string <- reactive({
 
     today <- session$userData$time()
+    today_year <- year(today)
     today_month <- month(today)
     today_day <- day(today)
     today_month_day <- today_month*100+today_day
@@ -1112,15 +1118,15 @@ server <- function(input, output, session) {
                         today_day>23 & today_day <=30  ~ "th",
                         today_day==31 ~ "st")
 
-    if(is.na(today_day)==FALSE) {
+    if(is.na(today_day)==FALSE & today_year>2002) {
 
       today_string <- paste0(today_day, suffix, " of ", month_name, ".")
 
-    } else (
+    } else {
 
       today_string <- "That is not a valid date."
 
-    )
+    }
 
     today_string
 
@@ -1131,11 +1137,12 @@ server <- function(input, output, session) {
   today_number_shows_string <- reactive({
 
     today <- session$userData$time()
+    today_year <- year(today)
     today_month <- month(today)
     today_day <- day(today)
     today_month_day <- today_month*100+today_day
 
-    if(is.na(today_day)==FALSE) {
+    if(is.na(today_day)==FALSE & today_year>2002) {
 
       mydf <- shows_data %>%
         mutate(month_day = month(date)*100+day(date)) %>%
@@ -1170,15 +1177,20 @@ server <- function(input, output, session) {
   today_data2 <- reactive({
 
     today <- session$userData$time()
+    today_year <- year(today)
     today_month <- month(today)
     today_day <- day(today)
     today_month_day <- today_month*100+today_day
 
-    mydf <- today_data %>%
-      mutate(month_day = month(date)*100+day(date)) %>%
-      filter(month_day == today_month_day)
+    if(is.na(today_day)==FALSE & today_year>2002){
 
-    mydf
+      mydf <- today_data %>%
+        mutate(month_day = month(date)*100+day(date)) %>%
+        filter(month_day == today_month_day)
+
+      mydf
+
+    }
 
   })
 
@@ -1187,40 +1199,55 @@ server <- function(input, output, session) {
 
     today <- session$userData$time()
     today_year <- year(today)
+    today_day <- day(today)
 
-    mydf <- today_data2() %>%
-      mutate(yearsago = today_year - year(date)) %>%
-      mutate(day = day(date), dayname = weekdays(date), monthname = format(date, "%B")) %>%
-      mutate(suffix = case_when(day==1 ~ "st",
-                                day==2 ~ "nd",
-                                day==3 ~ "rd",
-                                day>3 & day <=20  ~ "th",
-                                day==21 ~ "st",
-                                day==22 ~ "nd",
-                                day==23 ~ "rd",
-                                day>23 & day <=30  ~ "th",
-                                day==31 ~ "st")) %>%
-      mutate(datestring = paste0(dayname, " the ", day, suffix, " of ", monthname, " ", year(date))) %>%
-      mutate(url = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
-      mutate(text = paste0(yearsago, " years ago today, on ", datestring,", Fugazi played ",  where_played ,". ", url)) %>%
-      arrange(date) %>%
-      select(text, fls_link, attendance, minutes, sound_quality)
+    if(is.na(today_day)==FALSE & today_year>2002){
+
+      mydf <- today_data2() %>%
+        mutate(yearsago = today_year - year(date)) %>%
+        mutate(day = day(date), dayname = weekdays(date), monthname = format(date, "%B")) %>%
+        mutate(suffix = case_when(day==1 ~ "st",
+                                  day==2 ~ "nd",
+                                  day==3 ~ "rd",
+                                  day>3 & day <=20  ~ "th",
+                                  day==21 ~ "st",
+                                  day==22 ~ "nd",
+                                  day==23 ~ "rd",
+                                  day>23 & day <=30  ~ "th",
+                                  day==31 ~ "st")) %>%
+        mutate(datestring = paste0(dayname, " the ", day, suffix, " of ", monthname, " ", year(date))) %>%
+        mutate(url = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
+        mutate(other_bands = ifelse(is.na(played_with),0,1)) %>%
+        mutate(with_who = ifelse(other_bands==1, paste0(" with ", played_with), "")) %>%
+        mutate(text = paste0(yearsago, " years ago today, on ", datestring,", Fugazi played ",  where_played, with_who, ". ", url)) %>%
+        arrange(date) %>%
+        select(text, fls_link, attendance, minutes, sound_quality)
 
 
-    mydf
+      mydf
+
+    }
 
   })
 
   today_data4 <- reactive({
 
-    mydf <- today_data3() %>%
-      select(-fls_link)
+    today <- session$userData$time()
+    today_year <- year(today)
+    today_day <- day(today)
 
-    mydf <- download_table_footer(mydf = mydf, nblankrows = 1, textcolumnname = "sources", rowtext = sourcestext)
+    if(is.na(today_day)==FALSE & today_year>2002){
 
-    mydf[is.na(mydf)] <- ""
+      mydf <- today_data3() %>%
+        select(-fls_link)
 
-    mydf
+      mydf <- download_table_footer(mydf = mydf, nblankrows = 1, textcolumnname = "sources", rowtext = sourcestext)
+
+      mydf[is.na(mydf)] <- ""
+
+      mydf
+
+    }
 
   })
 
