@@ -248,7 +248,7 @@ tabPanel("today",
                     hr(),
 
                     conditionalPanel(
-                      condition = "output.today_number_shows!='There were 0 Fugazi shows on this day in history.'",
+                      condition = "output.today_number_shows!='Fugazi played no shows on this day in history.'",
 
                       fluidRow(
 
