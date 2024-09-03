@@ -14,6 +14,8 @@ Process for updating coordinates on Shiny app:
 \enumerate{
 \item pull updated data from github
 \item run nscmov()
+\item run Repeatr_1
+\item Put updated rda files in the data folder
 \item push updates to github
 \item reinstall Repeatr package from github
 \item run shiny app from app.R
