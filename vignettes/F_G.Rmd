@@ -24,7 +24,7 @@ library(Repeatr)
 
 By Alex Mitrani
 
-1 September 2024
+8 September 2024
 
 ## Introduction
 
@@ -46,7 +46,37 @@ In some ways Fugazi and the Grateful Dead seem like polar opposites:
 
 -   Fugazi songs were often political while Grateful Dead songs tended to tell stories, they tried to avoid mixing music and politics.
 
-> The Dead\'s attitude about politics would stay consistent, if unique. They probably did more benefits than any band ever, and frequently for explicitly political groups, but they\'d sign nothing. They put their time where their beliefs were, but not their mouths. It was a policy designed to make \"Grateful Dead\" something separate, above life\'s daily shuffle. \"It\'s our responsibility to keep ourselves free of those connotations,\" said Garcia years later. \"I want the Grateful Dead experience to be one of those things that doesn\'t have a hook. We\'re all very antiauthoritarian. There\'s nothing that we believe so uniformly and so totally that we could use the Grateful Dead to advertise it.\" [@mcnally2003]
+> The Dead's attitude about politics would stay consistent, if unique. They probably did more benefits than any band ever, and frequently for explicitly political groups, but they'd sign nothing. They put their time where their beliefs were, but not their mouths. It was a policy designed to make "Grateful Dead" something separate, above life's daily shuffle. "It's our responsibility to keep ourselves free of those connotations," said Garcia years later. "I want the Grateful Dead experience to be one of those things that doesn't have a hook. We're all very antiauthoritarian. There's nothing that we believe so uniformly and so totally that we could use the Grateful Dead to advertise it." [@mcnally2003]
+
+## Quotes
+
+### Jerry Garcia on the Grateful Dead's Performance at the Monterey Pop Festival in 1967
+
+> [it] "was one of the classic bad scenes for us." Garcia described it this way for a television news interviewer: "We came onstage just after The Who finished smashing their equipment onstage for the first time in America. This is aahhh, the audience is devastated. The Who were beautifully theatrical, there's clouds of smoke and explosions and they're clearing away the debris. And so we came out and played our little act --- ding ching ding ding --- and then Jimi Hendrix comes on after us. We were erased from existence." [@livernois2019]
+
+### Jerry Garcia on Punk
+
+> DJ: "You're not into any disco or New Wave or anything?"
+>
+> JG: "Of those things, of those choices, the New Wave\... the whole punk rock trip, I like it best. I like it best, I think. I like it because it has some energy, it has some spirit."
+>
+> JK: "There's the thing of, new music, people are tyring to play [crosstalk] there's thing, in San Francisco, 'cause that's where I was then, when everybody was just learning to play, there was a thing that was missing \--"
+>
+> JG: "The thing of people tryin' real hard.
+>
+> JK: "Tryin' to figure out how to make it work."
+>
+> JG: "Yeah, yeah. It's got the spirit, y'know, that's the thing. The nature of the spirit, if you had to describe the spirit, you could describe the spirit as being a little bit edgy, y'know, maybe sort of a Violent spirit, y'know, sort of scaly and weird, maybe, but it's a spirit, and almost anything else lacks spirit of any sort." [@garcia1978]
+
+> "It's always nice for the kids to have music. Punk music at it's finest was music that the kids could dig, and it was thoroughly obnoxious to adults. It had that great quality of being able to communicate to the kids and give them something to talk about, something to love, and also alienating everybody else. For me, it's the thing of, when you see young musicians, playing in a way, three chord rock 'n' roll, you know there's only one place for them to go, they're either going to get better, and finally learn how to tune their instruments, and do that kind of stuff, and evolve more, or else they're gonna shed more blood. For me, commitment counts, when you're on stage, and whether you're bleeding over every note, whether you're wounding yourself physically on whatever level, that's real." - Jerry Garcia (1987) [@garcia1987]
+
+### Ian MacKaye on the Grateful Dead
+
+> "I thought it was interesting that they played 2,300-2,600 shows, and I was shocked. I thought they would have played around 5,000 shows, or something way beyond what they actually did."
+>
+> [interviewer] "Did you ever listen to them?"
+>
+> "No. But I think they\'re interesting structurally, in retrospect, for instance their business and the way they flexed their muscles in a good way. In the late 80s or early 90s, before Jerry died, they did these stadium shows, and they had their own ticketing system. They sold tickets directly, and at some point during this stadium tour, Ticketmaster didn\'t want them selling directly. They told The Dead that wasn\'t happening anymore, so the band told them, 'Okay, you\'re fired'. And then so Ticketmaster tried to backtrack. At least that\'s what I heard, I\'m not sure if that\'s necessarily true. But anyways, they operated well, they weren\'t bullied by the machine. You get that sort of power by saying 'No'.\" - Ian MacKaye (2013) [@mackaye2013]
 
 ## Head to Head
 
