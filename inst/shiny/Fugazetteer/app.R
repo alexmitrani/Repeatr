@@ -1075,9 +1075,9 @@ tabPanel("quiz",
 
         tags$div(
           tags$br(),
-          connectButton(link = "https://web.facebook.com/profile.php?id=61565512943866", position = "inline", link.out = FALSE, facebook = TRUE),
-          connectButton(link = "https://www.instagram.com/fugazetteer/", position = "inline", link.out = FALSE, instagram = TRUE),
-          tags$a(rel="me", href="https://github.com/alexmitrani/Repeatr/", "Repeatr GitHub"),
+          tags$a(rel="me", href="https://web.facebook.com/profile.php?id=61565512943866", "facebook"),
+          tags$a(rel="me", href="https://www.instagram.com/fugazetteer/", "instagram"),
+          tags$a(rel="me", href="https://github.com/alexmitrani/Repeatr/", "github"),
           tags$br()
         )
 
