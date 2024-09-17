@@ -1,11 +1,11 @@
 ---
-title: "F/G"
+title: "Fugazi and The Dead"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{F/G}
+  %\VignetteIndexEntry{Fugazi and The Dead}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-bibliography: references_F_G.bib
+bibliography: references_fugazi_and_the_dead.bib
 link-citations: true
 ---
 
@@ -28,27 +28,42 @@ By Alex Mitrani
 
 ## Introduction
 
-Between the 15 of November 2021 and the 4 of February 2024 I listened to all the shows that were available on the Fugazi Live Series site and whatever additional shows I could find - that was 915 Fugazi shows in 812 days [@mitrani2024b]. When I finished the Fugazi Live Series I soon started listening to the only other band I knew of that had a similarly large archive of live recordings - the Grateful Dead.
+Fugazi and the Grateful Dead are in some ways opposites but there are also many similarities between the two bands.
+
+Listening to the Fugazi Live Series got me into the Grateful Dead, which is ironic considering that Ian MacKaye co-authored 'Deadhead' with Mark Sullivan when they were in the Slinkees, a song which later appeared on The Teen Idles 'Minor Disturbance' EP, released as Dischord 1 [@mackaye1989].
+
+> Riding that train high on cocaine\
+> The music is really lousy, the fans are a pain\
+> Troubles behind, troubles ahead\
+> The only good deadhead is one that's dead
+>
+> - Deadhead by the Teen Idles [@theteenidles1980a]
 
 The Grateful Dead preceded Fugazi by about 20 years, they were young folk musicians when the Beatles changed everything. They started playing electric instruments and their early experiences as house band for the acid tests in San Francisco informed their musical style which made extensive use of improvisation.
 
-Fugazi are considered 'post-hardcore' in that their background was in hardcore punk but they deliberately made a different type of music that was slower and combined influences from several musical styles outside of punk. Fugazi were already a successful band on the independent record label Dischord Records when in 1991 Nirvana released Nevermind and a lot of things changed.
+Fugazi are considered 'post-hardcore' in that their background was in hardcore punk but they deliberately made a different type of music that was slower and combined influences from several musical styles outside of punk. Fugazi were already a successful band on the independent record label Dischord Records when in 1991 Nirvana released Nevermind.
 
 ## Opposites
 
-In some ways Fugazi and the Grateful Dead seem like polar opposites:
+In some ways Fugazi and the Grateful Dead seem like complete opposites:
 
--   Ian MacKaye wrote a series of songs for his previous bands that were critical of drug users: Deadhead [@theteenidles1980], Straight Edge [@minorthreat1981] and Out of Step [@minorthreat1983]. Fugazi generally refrained from using alcohol, tobacco and drugs, while members of the Grateful Dead used alcohol, tobacco, cannabis, LSD, cocaine and heroin.
+-   Ian MacKaye wrote a series of songs for his previous bands that were critical of drug users: Deadhead [@theteenidles1980], Straight Edge [@minorthreat1981] and Out of Step [@minorthreat1983]. Fugazi refrained from using alcohol, tobacco and ilegal drugs, while members of the Grateful Dead used alcohol, tobacco, cannabis, LSD, cocaine and heroin.
 
 -   Grateful Dead songs often feature long improvised guitar solos whereas Fugazi songs don't have guitar solos at all.
 
 -   Fugazi refused to play songs from their previous bands and they did not play cover versions (with a one-off exception when they covered a Bad Brains song), whereas Grateful Dead shows over the years included about 190 cover versions as well as 151 original songs.
 
--   Fugazi songs were often political while Grateful Dead songs tended to tell stories, they tried to avoid mixing music and politics.
+-   Fugazi songs were often topical and political, while Grateful Dead songs tended to tell stories, avoiding politics and current events.
+
+## Quotes
+
+### The Politics of The Dead
 
 > The Dead's attitude about politics would stay consistent, if unique. They probably did more benefits than any band ever, and frequently for explicitly political groups, but they'd sign nothing. They put their time where their beliefs were, but not their mouths. It was a policy designed to make "Grateful Dead" something separate, above life's daily shuffle. "It's our responsibility to keep ourselves free of those connotations," said Garcia years later. "I want the Grateful Dead experience to be one of those things that doesn't have a hook. We're all very antiauthoritarian. There's nothing that we believe so uniformly and so totally that we could use the Grateful Dead to advertise it." [@mcnally2003]
 
-## Quotes
+### Jerry Garcia on Rock and Politics
+
+> Rock and politics, it was sort of inevitable but I never thought it was a good idea. In the Bay Area at that time there were two big philosophical pillars. There was the San Francisco approach, and there was the Berkeley approach. The Berkeley approach was politics, the endless argument, the pro-con kind of dualism. The San Francisco approach was psychedelic in the largest possible sense which is everything that happens happens, and that's the way it is. It lacked the polemic quality of the Berkeley discussion. For the Grateful Dead, from our point of view and the Haight-Ashbury point of view, the war and anti-war thing was all war. If you were talking pro-war or against the war you were talking war, your energy was going into the war, you were creating more war noise. For us the alternative was 'Hey, fuck the war. We don't need it, the world doesn't need it, nobody likes it, it never was much fun and maybe something else is what's called for. That's the broad philosophical difference. [@garcia1987a]
 
 ### Jerry Garcia on the Grateful Dead's Performance at the Monterey Pop Festival in 1967
 
@@ -169,7 +184,7 @@ Both Fugazi and the Grateful Dead would play different sets each show with no pr
 
 ## Lyrics
 
-Both bands would often use lyrics that were open to interpretation and would be reluctant to explain the meaning of their songs.
+Both bands would often use lyrics that were open to interpretation and the songwriters were reluctant to explain the meaning of their songs.
 
 ### Fugazi
 
