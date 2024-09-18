@@ -24,11 +24,13 @@ library(Repeatr)
 
 By Alex Mitrani
 
-8 September 2024
+17 September 2024
 
-## Introduction
+## Introductions
 
-Fugazi and the Grateful Dead are in some ways opposites but there are also many similarities between the two bands. Let's have a close look at how these two ideosyncratic and pioneering American bands compare.
+Fugazi and the Grateful Dead are in some ways opposites but there are also many similarities between the two bands. Let's have a close look at how these two idiosyncratic and pioneering American bands compare.
+
+### Grateful Dead
 
 The Grateful Dead preceded Fugazi by about 20 years, they were young folk musicians when the Beatles changed everything. They started playing electric instruments and their early experiences as house band for the acid tests in San Francisco informed their musical style which made extensive use of improvisation.
 
@@ -36,12 +38,26 @@ The Grateful Dead preceded Fugazi by about 20 years, they were young folk musici
 >
 > \- Mickey Hart [@mcnally2003]
 
+The Grateful Dead played the Monterey Pop Festival in 1967, in the unenviable position of following The Who and preceding Jimi Hendrix.
+
+> [it] "was one of the classic bad scenes for us." Garcia described it this way for a television news interviewer: "We came onstage just after The Who finished smashing their equipment onstage for the first time in America. This is aahhh, the audience is devastated. The Who were beautifully theatrical, there's clouds of smoke and explosions and they're clearing away the debris. And so we came out and played our little act --- ding ching ding ding --- and then Jimi Hendrix comes on after us. We were erased from existence." [@livernois2019]
+
+Although he probably does not remember seeing The Grateful Dead, it seems likely that a young Ian MacKaye (who would have been about 5 years old) was in the audience - in interviews he recalls seeing both The Who and Jimi Hendrix at Monterey.
+
+> At some point, I thought I was gonna try to learn guitar because I was very much into Jimi Hendrix and loved rock & roll and I wanted to play guitars and I wanted to break guitars. I had seen the Who at Monterey Pop and Hendrix at Monterey Pop, and it just seemed like 'Wow, I wanna do that.'
+>
+> \- Ian MacKaye [@mackaye2012]
+
+### Fugazi
+
 Fugazi are considered 'post-hardcore' in that their background was in hardcore punk but they deliberately made a different type of music that was slower and combined influences from several musical styles outside of punk. Fugazi were already a successful band on the independent record label Dischord Records when in 1991 Nirvana released Nevermind.
 
 > For me punk was construction, I\'m a construction worker.
 > - Ian MacKaye [@mackaye2017]
 
-## Opposites
+## Alcohol, Tobacco and Narcotics
+
+### Fugazi
 
 Listening to the Fugazi Live Series got me into the Grateful Dead, which is ironic considering that Ian MacKaye co-authored 'Deadhead' with Mark Sullivan when they were in the Slinkees, a song which later appeared on The Teen Idles 'Minor Disturbance' EP, released as Dischord 1 [@mackaye1989].
 
@@ -57,23 +73,58 @@ Listening to the Fugazi Live Series got me into the Grateful Dead, which is iron
 >
 > \- 'Deadhead' by the Teen Idles [@theteenidles1980a]
 
-In some ways Fugazi and the Grateful Dead seem like complete opposites:
+Ian MacKaye wrote a series of songs for his previous bands that were critical of the use of alcohol, tobacco and recreational drugs, in particular 'Straight Edge' [@minorthreat1981] and 'Out of Step' [@minorthreat1983]. Fugazi refrained from using alcohol, tobacco and ilegal drugs.
 
--   Ian MacKaye wrote a series of songs for his previous bands that were critical of the use of alcohol, tobacco and recreational drugs, in particular 'Straight Edge' [@minorthreat1981] and 'Out of Step' [@minorthreat1983]. Fugazi refrained from using alcohol, tobacco and ilegal drugs, while members of the Grateful Dead used alcohol, tobacco, cannabis, LSD, cocaine and heroin.
+### Grateful Dead
 
--   Grateful Dead songs often feature long improvised guitar solos whereas Fugazi songs don't have guitar solos at all.
+Members of the Grateful Dead used alcohol, tobacco, cannabis, LSD, cocaine and heroin.
 
--   The Grateful Dead had 5 keyboard players who were full members and 2 keyboard players who were touring members. The names of the keyboard players are used by fans to refer to different eras of the band. Fugazi never had a keyboard player, although the piano was Ian Mackaye's first instrument and some Fugazi songs were initially composed on the piano.
+> **When it comes to drugs, I think the public perception of the Dead is that they are into pot and psychedelics --- sort of fun, mind-expansion drugs. Yet Brent died of a cocaine and morphine overdose, and you also had a long struggle with heroin. It seems to run counter to the image of the band.**\
+> Yeah, well, I don\'t know. I\'ve been round and round with the drug thing. People are always wanting me to take a stand on drugs, and I can\'t. To me, it\'s so relativistic, and it\'s also very personal. A person\'s relationship to drugs is like their relationship to sex. I mean, who is standing on such high ground that they can say: \"You\'re cool. You\'re not.\"
+>
+> For me, in my life, all kinds of drugs have been useful to me, and they have also definitely been a hindrance to me. So, as far as I\'m concerned, the results are not in. Psychedelics showed me a whole other universe, hundreds and millions of universes. So that was an incredibly positive experience. But on the other hand, I can\'t take psychedelics and perform as a professional. I might go out onstage and say, \"Hey, fuck this, I want to go chase butterflies!\"
+>
+> **Does anyone in the Dead still take psychedelics?**\
+> Oh, yeah. We all touch on them here and there. Mushrooms, things like that. It\'s one of those things where every once in a while you want to blow out the pipes. For me, I just like to know they\'re available, just because I don\'t think there\'s anything else in life apart from a near-death experience that shows you how extensive the mind is.
+>
+> And as far as the drugs that are dead enders, like cocaine and heroin and so forth, if you could figure out how to do them without being strung out on them, or without having them completely dominate your personality...I mean, if drugs are making your decisions for you, they\'re no fucking good. I can say that unequivocally. If you\'re far enough into whatever your drug of choice is, then you are a slave to the drug, and the drug isn\'t doing you any good. That\'s not a good space to be in.
+>
+> \- Jerry Garcia [@garcia1991]
 
--   Fugazi refused to play songs from their previous bands and they did not play cover versions (with a one-off exception when they covered a Bad Brains song), whereas Grateful Dead shows over the years included about 190 cover versions as well as 151 original songs.
+## Music
 
--   Fugazi songs were often topical and political, while Grateful Dead songs tended to tell stories, avoiding politics and current events.
+### Fugazi
 
--   Although all Fugazi songs are credited to Fugazi, the words to Fugazi songs were nearly always written by the person who would sing the song, mostly Ian MacKaye or Guy Picciotto with a few songs written and sung by Joe Lally. In contrast, most original Grateful Dead songs had lyrics written by full band members who did not perform on stage: Robert Hunter (104 songs) and John Perry Barlow (30 songs). Jerry Garcia wrote the lyrics to 5 songs, Bob Weir wrote the lyrics to 9 songs, Pigpen wrote the lyrics to 11 songs, Phil Lesh wrote the lyrics to 5 songs, Brent Mydland wrote the lyrics to 6 songs, Donna Godcheaux wrote the lyrics to 2 songs, and there are also 12 songs with lyrics credited to The Grateful Dead [@allan2024]
+Fugazi songs don't feature guitar solos.
+
+Fugazi never had a keyboard player, although the piano was Ian Mackaye's first instrument and some Fugazi songs were initially composed on the piano.
+
+Fugazi refused to play songs from their previous bands and they did not play cover versions (with a one-off exception when they covered a Bad Brains song).
+
+> If you look at my work, by and large, I take a position or approach on something and I stick with that to figure out how to make it work. Like in Fugazi, I used one guitar, one amp, one cord, and no pedals. The idea [being], what sounds can I get out of this instrument using only these few tools? How can I mimic an effect by using tone or volume or the way I finger things? I don't want more options. I want less options and more engagement.
+>
+> Back in 1979, I don't think I was particularly serious about having rules like "I'm not buying anything with keyboards on it," but [it] served as a good filter. An excellent way to avoid all of the yeses in the world when a simple "no" could suffice.
+>
+> \- Ian MacKaye [@mackaye2021]
+
+### Grateful Dead
+
+Grateful Dead songs often feature long improvised guitar solos, particularly when performed live.
+
+Grateful Dead shows over the years included 151 original songs [@amato2015] as well as about 190 cover versions [@amato2016a].
+
+The Grateful Dead had 5 keyboard players who were full members and 2 keyboard players who were touring members. The names of the keyboard players are used by fans to refer to different eras of the band.
+
+> "For me music is a full range of experience. In music there is room for space, there's room for quietness, for sorrow, violence."
+>
+> [Interviewer] I do agree. We still seem to be talking about different things though.\
+> "It's not my desire to say there is only this or that. For me it's a full range of experiences, and within that it includes things like boredom. Sometimes boredom is what is happening in life, that's what it's about sometimes. Sometimes the tension between boredom and discovery is like an interesting thing. The idea of noodling around aimlessly for 15 minutes, and we are notorious for that, but then hitting on some rich vein of something that we may never have got to any other way, and that's the reward. I want there to be a complete vertical experience. I want it to be the full range."
+>
+> \- Jerry Garcia [@garcia1981]
 
 ## Punk
 
-### Jerry Garcia on Punk
+### Grateful Dead
 
 > DJ: "You're not into any disco or New Wave or anything?"
 >
@@ -86,67 +137,18 @@ In some ways Fugazi and the Grateful Dead seem like complete opposites:
 > JK: "Tryin' to figure out how to make it work."
 >
 > JG: "Yeah, yeah. It's got the spirit, y'know, that's the thing. The nature of the spirit, if you had to describe the spirit, you could describe the spirit as being a little bit edgy, y'know, maybe sort of a violent spirit, y'know, sort of scaly and weird, maybe, but it's a spirit, and almost anything else lacks spirit of any sort." [@garcia1978]
-
+>
 > "It's always nice for the kids to have music. Punk music at it's finest was music that the kids could dig, and it was thoroughly obnoxious to adults. It had that great quality of being able to communicate to the kids and give them something to talk about, something to love, and also alienating everybody else. For me, it's the thing of, when you see young musicians, playing in a way, three chord rock 'n' roll, you know there's only one place for them to go, they're either going to get better, and finally learn how to tune their instruments, and do that kind of stuff, and evolve more, or else they're gonna shed more blood. For me, commitment counts, when you're on stage, and whether you're bleeding over every note, whether you're wounding yourself physically on whatever level, that's real."
 >
 > \- Jerry Garcia (1987) [@garcia1987]
 
-### Ian MacKaye on Punk
+### Fugazi
 
 > My definition of punk is the free space. It's an area in which new ideas can be presented without having to go through the filtration or perversion of profiteering. So, if we're not worried about selling things, then we can actually think. The problem with new ideas is that they don't have audiences. And in terms of the marketplace, an audience equals clientele. If you have no audience, it's not profitable.
 >
 > But punk was an area, for me at least, where it didn't seem to matter. I didn't know any punk rocker who thought, 'I'm gonna make a living out of this.' The ones that did quickly left. What I received from the counterculture was a gift; the permission to create freely. And my reaction was to take care of this gift and keep it alive because it continues to give. Of course, there were some people who thought, 'Wow. If I polish it, I can sell it.' And then it ceases to be a gift.
 >
 > \- Ian MacKaye [@mackaye2015]
-
-## Miscellaneous Quotes
-
-### The Politics of The Dead
-
-> The Dead's attitude about politics would stay consistent, if unique. They probably did more benefits than any band ever, and frequently for explicitly political groups, but they'd sign nothing. They put their time where their beliefs were, but not their mouths. It was a policy designed to make "Grateful Dead" something separate, above life's daily shuffle. "It's our responsibility to keep ourselves free of those connotations," said Garcia years later. "I want the Grateful Dead experience to be one of those things that doesn't have a hook. We're all very antiauthoritarian. There's nothing that we believe so uniformly and so totally that we could use the Grateful Dead to advertise it." [@mcnally2003]
-
-### Jerry Garcia on Rock and Politics
-
-> Rock and politics, it was sort of inevitable but I never thought it was a good idea. In the Bay Area at that time there were two big philosophical pillars. There was the San Francisco approach, and there was the Berkeley approach. The Berkeley approach was politics, the endless argument, the pro-con kind of dualism. The San Francisco approach was psychedelic in the largest possible sense which is everything that happens happens, and that's the way it is. It lacked the polemic quality of the Berkeley discussion. For the Grateful Dead, from our point of view and the Haight-Ashbury point of view, the war and anti-war thing was all war. If you were talking pro-war or against the war you were talking war, your energy was going into the war, you were creating more war noise. For us the alternative was 'Hey, fuck the war. We don't need it, the world doesn't need it, nobody likes it, it never was much fun and maybe something else is what's called for. That's the broad philosophical difference. [@garcia1987a]
-
-### Jerry Garcia on the Grateful Dead's Performance at the Monterey Pop Festival in 1967
-
-> [it] "was one of the classic bad scenes for us." Garcia described it this way for a television news interviewer: "We came onstage just after The Who finished smashing their equipment onstage for the first time in America. This is aahhh, the audience is devastated. The Who were beautifully theatrical, there's clouds of smoke and explosions and they're clearing away the debris. And so we came out and played our little act --- ding ching ding ding --- and then Jimi Hendrix comes on after us. We were erased from existence." [@livernois2019]
-
-### Jerry Garcia on Music
-
-> "For me music is a full range of experience. In music there is room for space, there's room for quietness, for sorrow, violence."
->
-> [Interviewer] I do agree. We still seem to be talking about different things though.\
-> "It's not my desire to say there is only this or that. For me it's a full range of experiences, and within that it includes things like boredom. Sometimes boredom is what is happening in life, that's what it's about sometimes. Sometimes the tension between boredom and discovery is like an interesting thing. The idea of noodling around aimlessly for 15 minutes, and we are notorious for that, but then hitting on some rich vein of something that we may never have got to any other way, and that's the reward. I want there to be a complete vertical experience. I want it to be the full range."
->
-> \- Jerry Garcia [@garcia1981]
-
-### Jerry Garcia on Time and Live Performances
-
-> "Fifteen-minute sets!" he marvels. "If I had to pay £8 for a 15-minute set I'd trip out\... The economics of it, I would feel so guilty. Even if I did a 45-minute show so packed with emotion and intensity and everything it needed to have I would still feel like, God it ain't fucking worth it. I don't want to burn anybody. People have to work to get their little money\... The best experiences I've had as an audience member is when I've seen a performer get excited and inspired and go over their time. Forget about time\...forget about time and then you can think hey! An hour and a half has gone by and it seems like ten minutes! That's the stuff!"
->
-> \- Jerry Garcia [@garcia1981]
-
-### 
-
-### Ian MacKaye on the Grateful Dead
-
-> "I thought it was interesting that they played 2,300-2,600 shows, and I was shocked. I thought they would have played around 5,000 shows, or something way beyond what they actually did."
->
-> [interviewer] "Did you ever listen to them?"
->
-> "No. But I think they're interesting structurally, in retrospect, for instance their business and the way they flexed their muscles in a good way. In the late 80s or early 90s, before Jerry died, they did these stadium shows, and they had their own ticketing system. They sold tickets directly, and at some point during this stadium tour, Ticketmaster didn't want them selling directly. They told The Dead that wasn't happening anymore, so the band told them, 'Okay, you're fired'. And then so Ticketmaster tried to backtrack. At least that's what I heard, I'm not sure if that's necessarily true. But anyways, they operated well, they weren't bullied by the machine. You get that sort of power by saying 'No'."
->
-> \- Ian MacKaye (2013) [@mackaye2013]
-
-### Ian MacKaye on Options
-
-> If you look at my work, by and large, I take a position or approach on something and I stick with that to figure out how to make it work. Like in Fugazi, I used one guitar, one amp, one cord, and no pedals. The idea [being], what sounds can I get out of this instrument using only these few tools? How can I mimic an effect by using tone or volume or the way I finger things? I don't want more options. I want less options and more engagement.
->
-> Back in 1979, I don't think I was particularly serious about having rules like "I'm not buying anything with keyboards on it," but [it] served as a good filter. An excellent way to avoid all of the yeses in the world when a simple "no" could suffice.
->
-> \- Ian MacKaye [@mackaye2021]
 
 ## Live Performances
 
@@ -170,11 +172,21 @@ Both Fugazi and the Grateful Dead would play different sets each show with no pr
 
 > 'Jerry Garcia and Bob Weir planned out only two things before each of the thousands of concerts they played together in the Grateful Dead: The song they would begin with and the song they would end with. Everything else was decided in the moment. "While Jerry was singing, I had plenty of time to think about the next tune that I was going to do," says Weir. "And while I was singing, he had plenty of time to think about what tune he was next going to do. We developed a feel for that."' [@doyle2020]
 
+In a 1981 interview Jerry Garcia was asked what he thought about bands that played short live sets.
+
+> "Fifteen-minute sets!" he marvels. "If I had to pay £8 for a 15-minute set I'd trip out\... The economics of it, I would feel so guilty. Even if I did a 45-minute show so packed with emotion and intensity and everything it needed to have I would still feel like, God it ain't fucking worth it. I don't want to burn anybody. People have to work to get their little money\... The best experiences I've had as an audience member is when I've seen a performer get excited and inspired and go over their time. Forget about time\...forget about time and then you can think hey! An hour and a half has gone by and it seems like ten minutes! That's the stuff!"
+>
+> \- Jerry Garcia [@garcia1981]
+
 ## Lyrics
 
 Both bands would often use lyrics that were open to interpretation and the songwriters were reluctant to explain the meaning of their songs.
 
 ### Fugazi
+
+Fugazi songs are often topical and political.
+
+Although all Fugazi songs are credited to Fugazi, the words to Fugazi songs were nearly always written by the person who would sing the song, mostly Ian MacKaye or Guy Picciotto with a few songs written and sung by Joe Lally.
 
 > "I really do feel that my songs are not as inscrutable as they seem, but that is one I can't really defend, maybe it's the exception that proves the rule ... I think a lot of it has to do with engagement but also because I wrote the songs ... I always have this feeling that 'isn't that perfectly clear?' ... a song like let's say 'Last Chance for a Slow Dance' I remember reading something where someone was like 'this is just some more word-salad' ... that song is so personal and I felt so clear ... the part that goes like 'Flare fakes a flower / A burnt-out shower'. Someone was like, just thought that was gobbledigook or something, like to me it's the image of a flare being shot into the sky as a signal for help and it makes the form of a flower in the sky and it makes a burned-out shower of sparks falling and no-body can see it, it seems like such an obvious lonely image, and then people are like 'I really don't know what the fuck that means', it feels like a failure on one hand because it didn't work, but on the other hand I get kind of like 'shit, really? come on!' When I listen to a band I really like I enjoy that engagement, why would anyone go up to Bob Dylan and say like you know 'It's all Over Now Baby Blue' what's that song about? What is that song not about?"
 >
@@ -182,11 +194,33 @@ Both bands would often use lyrics that were open to interpretation and the songw
 
 ### Grateful Dead
 
+Grateful Dead songs often tell stories, avoiding commentary on politics or current events.
+
+Most original Grateful Dead songs had lyrics written by full band members who did not perform on stage: Robert Hunter (104 songs) and John Perry Barlow (30 songs). Jerry Garcia wrote the lyrics to 5 songs, Bob Weir wrote the lyrics to 9 songs, Pigpen wrote the lyrics to 11 songs, Phil Lesh wrote the lyrics to 5 songs, Brent Mydland wrote the lyrics to 6 songs, Donna Godcheaux wrote the lyrics to 2 songs, and there are also 12 songs with lyrics credited to The Grateful Dead [@allan2024]
+
 > 'In "Long Strange Trip," there's a sequence in which Bar-Lev, after years of trying to get to Hunter, is granted an audience backstage after a solo gig. Hunter was always elusive and notoriously averse to discussing the meanings or sources of his compositions (though he was insistent about the songwriter's claim to royalties and credit, as the Internet undermined each). In the film, Hunter recites the lyrics to "Dark Star" ("Dark star crashes, pouring its light into ashes / Reason tatters, the forces tear loose from the axis / Searchlight casting for faults in the clouds of delusion / Shall we go, you and I while we can / Through the transitive nightfall of diamonds?") and says, "What's unclear about that?" Then he kicks Bar-Lev out of his dressing room.'
 >
 > '"Meaning is often a subterfuge to distract the listener's attention from a writer's lack of multiple resources," Hunter writes. Then he presents an exegesis of his 1975 song "Franklin's Tower," which became a great crowd-pleaser, in Garcia's hands. Hunter cites, among some of his references, Ben Franklin, the Constitution, Pete Seeger, the Bible, E. E. cummings, Bonnie Dobson, an Eastertide anthem called "Roll Away the Stone," and the birth of his son.
 >
 > "Well, now that you know what I meant by it, it's no great shakes, is it?" Hunter concludes. "Mystery gone, the magician's trick told, the gluttony for 'meaning' temporarily satisfied, one can now take issue with my intent and avoid the song itself."' [@paumgarten2019]
+
+## Politics
+
+### Grateful Dead
+
+> The Dead's attitude about politics would stay consistent, if unique. They probably did more benefits than any band ever, and frequently for explicitly political groups, but they'd sign nothing. They put their time where their beliefs were, but not their mouths. It was a policy designed to make "Grateful Dead" something separate, above life's daily shuffle. "It's our responsibility to keep ourselves free of those connotations," said Garcia years later. "I want the Grateful Dead experience to be one of those things that doesn't have a hook. We're all very antiauthoritarian. There's nothing that we believe so uniformly and so totally that we could use the Grateful Dead to advertise it." [@mcnally2003]
+>
+> Rock and politics, it was sort of inevitable but I never thought it was a good idea. In the Bay Area at that time there were two big philosophical pillars. There was the San Francisco approach, and there was the Berkeley approach. The Berkeley approach was politics, the endless argument, the pro-con kind of dualism. The San Francisco approach was psychedelic in the largest possible sense which is everything that happens happens, and that's the way it is. It lacked the polemic quality of the Berkeley discussion. For the Grateful Dead, from our point of view and the Haight-Ashbury point of view, the war and anti-war thing was all war. If you were talking pro-war or against the war you were talking war, your energy was going into the war, you were creating more war noise. For us the alternative was 'Hey, fuck the war. We don't need it, the world doesn't need it, nobody likes it, it never was much fun and maybe something else is what's called for. That's the broad philosophical difference. [@garcia1987a]
+
+## Business Practices
+
+> "I thought it was interesting that they played 2,300-2,600 shows, and I was shocked. I thought they would have played around 5,000 shows, or something way beyond what they actually did."
+>
+> [interviewer] "Did you ever listen to them?"
+>
+> "No. But I think they're interesting structurally, in retrospect, for instance their business and the way they flexed their muscles in a good way. In the late 80s or early 90s, before Jerry died, they did these stadium shows, and they had their own ticketing system. They sold tickets directly, and at some point during this stadium tour, Ticketmaster didn't want them selling directly. They told The Dead that wasn't happening anymore, so the band told them, 'Okay, you're fired'. And then so Ticketmaster tried to backtrack. At least that's what I heard, I'm not sure if that's necessarily true. But anyways, they operated well, they weren't bullied by the machine. You get that sort of power by saying 'No'."
+>
+> \- Ian MacKaye (2013) [@mackaye2013]
 
 ## Head to Head
 
