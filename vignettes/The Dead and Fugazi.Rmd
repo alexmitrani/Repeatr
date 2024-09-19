@@ -1,11 +1,11 @@
 ---
-title: "Fugazi and the Dead"
+title: "The Dead and Fugazi"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Fugazi and the Dead}
+  %\VignetteIndexEntry{The Dead and Fugazi}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-bibliography: references_fugazi_and_the_dead.bib
+bibliography: references_the_dead_and_fugazi.bib
 link-citations: true
 ---
 
@@ -28,7 +28,7 @@ By Alex Mitrani
 
 ## Introductions
 
-Fugazi and the Grateful Dead are in some ways opposites but there are also many similarities between the two bands. Let's have a close look at how these two idiosyncratic and pioneering American bands compare.
+The Grateful Dead and Fugazi are in some ways opposites but there are also similarities between the two bands. Let's have a close look at how these two idiosyncratic and pioneering American bands compare.
 
 ### Grateful Dead
 
@@ -55,6 +55,29 @@ Fugazi are considered 'post-hardcore' in that their background was in hardcore p
 > For me punk was construction, I'm a construction worker. - Ian MacKaye [@mackaye2017]
 
 ## Alcohol, Tobacco and Narcotics
+
+### Grateful Dead
+
+Members of the Grateful Dead used drugs including alcohol, tobacco, cannabis, LSD, nitrous oxide, cocaine and heroin. They did not all use all of these drugs, they were not always using, and some of them managed to overcome some addictions. However, it seems fair to say that the band consumed quite a lot of drugs.
+
+> Interviewer: When it comes to drugs, I think the public perception of the Dead is that they are into pot and psychedelics --- sort of fun, mind-expansion drugs. Yet Brent died of a cocaine and morphine overdose, and you also had a long struggle with heroin. It seems to run counter to the image of the band.\
+> JG: Yeah, well, I don't know. I've been round and round with the drug thing. People are always wanting me to take a stand on drugs, and I can't. To me, it's so relativistic, and it's also very personal. A person's relationship to drugs is like their relationship to sex. I mean, who is standing on such high ground that they can say: 'You're cool. You're not.' For me, in my life, all kinds of drugs have been useful to me, and they have also definitely been a hindrance to me. So, as far as I'm concerned, the results are not in. Psychedelics showed me a whole other universe, hundreds and millions of universes. So that was an incredibly positive experience. But on the other hand, I can't take psychedelics and perform as a professional. I might go out onstage and say, 'Hey, fuck this, I want to go chase butterflies!'
+>
+> Interviewer: Does anyone in the Dead still take psychedelics?\
+> JG: Oh, yeah. We all touch on them here and there. Mushrooms, things like that. It's one of those things where every once in a while you want to blow out the pipes. For me, I just like to know they're available, just because I don't think there's anything else in life apart from a near-death experience that shows you how extensive the mind is. And as far as the drugs that are dead enders, like cocaine and heroin and so forth, if you could figure out how to do them without being strung out on them, or without having them completely dominate your personality... I mean, if drugs are making your decisions for you, they're no fucking good. I can say that unequivocally. If you're far enough into whatever your drug of choice is, then you are a slave to the drug, and the drug isn't doing you any good. That's not a good space to be in.
+>
+> \- Jerry Garcia [@garcia1991]
+
+The stereotype of a deadhead is someone who takes drugs ('Deadhead, deadhead, take another toke'), but not all deadheads are like this. The Wharf Rats is a support group for 'concert-goers who have chosen to live drug and alcohol free' [@wharfrats2021] that has held meetings at concerts since the late 1970s, using yellow balloons to help people find them [@epstein1990]. The Wharf Rats is named after the Grateful Dead song Wharf Rat which is about a down-and-out alcoholic who hopes of one day recovering:
+
+> But I'll get back on my feet again someday\
+> The good lord willing, if he says I may\
+> I know that the life I'm living's no good\
+> I'll get a new start, live the life I should
+>
+> \- Wharf Rat by the Grateful Dead, words by Robert Hunter, music by Jerry Garcia [@hunter1971]
+
+The Wharf Rats still exist (there is a facebook group with 11,000 members at the time of writing) and there are similar support groups for fans of several other jam bands, such as the Phellowship for Phish fans [@wikipediacontributors2024].
 
 ### Fugazi
 
@@ -88,44 +111,7 @@ Fugazi tried to play all-ages venues as much as possible, which often meant venu
 
 > The band was now routinely committing rock & roll heresy by turning down big interviews with major national music magazines like Rolling Stone, Details, and Spin, partly because they carried tobacco and alcohol advertising. [@azerrad2001]
 
-### Grateful Dead
-
-Members of the Grateful Dead used drugs including alcohol, tobacco, cannabis, LSD, nitrous oxide, cocaine and heroin. They did not all use all of these drugs, they were not always using, and some of them managed to overcome some addictions. However, it seems fair to say that the band consumed quite a lot of drugs.
-
-> Interviewer: When it comes to drugs, I think the public perception of the Dead is that they are into pot and psychedelics --- sort of fun, mind-expansion drugs. Yet Brent died of a cocaine and morphine overdose, and you also had a long struggle with heroin. It seems to run counter to the image of the band.\
-> JG: Yeah, well, I don't know. I've been round and round with the drug thing. People are always wanting me to take a stand on drugs, and I can't. To me, it's so relativistic, and it's also very personal. A person's relationship to drugs is like their relationship to sex. I mean, who is standing on such high ground that they can say: 'You're cool. You're not.' For me, in my life, all kinds of drugs have been useful to me, and they have also definitely been a hindrance to me. So, as far as I'm concerned, the results are not in. Psychedelics showed me a whole other universe, hundreds and millions of universes. So that was an incredibly positive experience. But on the other hand, I can't take psychedelics and perform as a professional. I might go out onstage and say, 'Hey, fuck this, I want to go chase butterflies!'
->
-> Interviewer: Does anyone in the Dead still take psychedelics?\
-> JG: Oh, yeah. We all touch on them here and there. Mushrooms, things like that. It's one of those things where every once in a while you want to blow out the pipes. For me, I just like to know they're available, just because I don't think there's anything else in life apart from a near-death experience that shows you how extensive the mind is. And as far as the drugs that are dead enders, like cocaine and heroin and so forth, if you could figure out how to do them without being strung out on them, or without having them completely dominate your personality... I mean, if drugs are making your decisions for you, they're no fucking good. I can say that unequivocally. If you're far enough into whatever your drug of choice is, then you are a slave to the drug, and the drug isn't doing you any good. That's not a good space to be in.
->
-> \- Jerry Garcia [@garcia1991]
-
-The stereotype of a deadhead is someone who takes drugs ('Deadhead, deadhead, take another toke'), but not all deadheads are like this. The Wharf Rats is a support group for 'concert-goers who have chosen to live drug and alcohol free' [@wharfrats2021] that has held meetings at concerts since the late 1970s, using yellow balloons to help people find them [@epstein1990]. The Wharf Rats is named after the Grateful Dead song Wharf Rat which is about a down-and-out alcoholic who hopes of one day recovering:
-
-> But I'll get back on my feet again someday\
-> The good lord willing, if he says I may\
-> I know that the life I'm living's no good\
-> I'll get a new start, live the life I should
->
-> \- Wharf Rat by the Grateful Dead, words by Robert Hunter, music by Jerry Garcia [@hunter1971]
-
-The Wharf Rats still exist (there is a facebook group with 11,000 members at the time of writing) and there are similar support groups for fans of several other jam bands, such as the Phellowship for Phish fans [@wikipediacontributors2024].
-
 ## Music
-
-### Fugazi
-
-Fugazi songs don't feature guitar solos.
-
-Fugazi never had a keyboard player, although the piano was Ian Mackaye's first instrument and some Fugazi songs were initially composed on the piano.
-
-Fugazi refused to play songs from their previous bands and they did not play cover versions (with a one-off exception when they covered a Bad Brains song).
-
-> If you look at my work, by and large, I take a position or approach on something and I stick with that to figure out how to make it work. Like in Fugazi, I used one guitar, one amp, one cord, and no pedals. The idea [being], what sounds can I get out of this instrument using only these few tools? How can I mimic an effect by using tone or volume or the way I finger things? I don't want more options. I want less options and more engagement.
->
-> Back in 1979, I don't think I was particularly serious about having rules like "I'm not buying anything with keyboards on it," but [it] served as a good filter. An excellent way to avoid all of the yeses in the world when a simple "no" could suffice.
->
-> \- Ian MacKaye [@mackaye2021]
 
 ### Grateful Dead
 
@@ -141,6 +127,20 @@ The Grateful Dead had 5 keyboard players who were full members and 2 keyboard pl
 > JG: "It's not my desire to say there is only this or that. For me it's a full range of experiences, and within that it includes things like boredom. Sometimes boredom is what is happening in life, that's what it's about sometimes. Sometimes the tension between boredom and discovery is like an interesting thing. The idea of noodling around aimlessly for 15 minutes, and we are notorious for that, but then hitting on some rich vein of something that we may never have got to any other way, and that's the reward. I want there to be a complete vertical experience. I want it to be the full range."
 >
 > \- Jerry Garcia [@garcia1981]
+
+### Fugazi
+
+Fugazi songs don't feature guitar solos.
+
+Fugazi never had a keyboard player, although the piano was Ian Mackaye's first instrument and some Fugazi songs were initially composed on the piano.
+
+Fugazi refused to play songs from their previous bands and they did not play cover versions (with a one-off exception when they covered a Bad Brains song).
+
+> If you look at my work, by and large, I take a position or approach on something and I stick with that to figure out how to make it work. Like in Fugazi, I used one guitar, one amp, one cord, and no pedals. The idea [being], what sounds can I get out of this instrument using only these few tools? How can I mimic an effect by using tone or volume or the way I finger things? I don't want more options. I want less options and more engagement.
+>
+> Back in 1979, I don't think I was particularly serious about having rules like "I'm not buying anything with keyboards on it," but [it] served as a good filter. An excellent way to avoid all of the yeses in the world when a simple "no" could suffice.
+>
+> \- Ian MacKaye [@mackaye2021]
 
 ## Punk
 
@@ -174,16 +174,6 @@ The Grateful Dead had 5 keyboard players who were full members and 2 keyboard pl
 
 Both Fugazi and the Grateful Dead would play different sets each show with no pre-defined setlist except for perhaps agreeing on which songs to start on.
 
-### Fugazi
-
-> "We would get on stage with no setlist and then it was a freefall from there"
->
-> "We worked out this system of hand signals... the one thing we knew was that Ian and I would trade vocals... usually it was like, if I started a song on guitar, then they would just have to be listening, if Brendan had to start it, I had to get him the message" 
->
-> "The reason why it's a good idea and the reason why I'm shocked other bands don't do it is because it forces a level of attention on you and I kind of tightrope aspect to it that it doesn't let you relax in the set"
->
-> \- Guy Picciotto [@picciotto2019]
-
 ### Grateful Dead
 
 > 'We don't make up our sets beforehand. We'd rather work off the tops of our heads than off a piece of paper.'
@@ -198,9 +188,31 @@ In a 1981 interview Jerry Garcia was asked what he thought about bands that play
 >
 > \- Jerry Garcia [@garcia1981]
 
+### Fugazi
+
+> "We would get on stage with no setlist and then it was a freefall from there"
+>
+> "We worked out this system of hand signals... the one thing we knew was that Ian and I would trade vocals... usually it was like, if I started a song on guitar, then they would just have to be listening, if Brendan had to start it, I had to get him the message" 
+>
+> "The reason why it's a good idea and the reason why I'm shocked other bands don't do it is because it forces a level of attention on you and I kind of tightrope aspect to it that it doesn't let you relax in the set"
+>
+> \- Guy Picciotto [@picciotto2019]
+
 ## Lyrics
 
 Both bands would often use lyrics that were open to interpretation and the songwriters were reluctant to explain the meaning of their songs.
+
+### Grateful Dead
+
+Grateful Dead songs often tell stories, avoiding commentary on politics or current events.
+
+Most original Grateful Dead songs had lyrics written by full band members who did not perform on stage: Robert Hunter (104 songs) and John Perry Barlow (30 songs). Jerry Garcia wrote the lyrics to 5 songs, Bob Weir wrote the lyrics to 9 songs, Pigpen wrote the lyrics to 11 songs, Phil Lesh wrote the lyrics to 5 songs, Brent Mydland wrote the lyrics to 6 songs, Donna Godcheaux wrote the lyrics to 2 songs, and there are also 12 songs with lyrics credited to The Grateful Dead [@allan2024]
+
+> In 'Long Strange Trip', there's a sequence in which Bar-Lev, after years of trying to get to Hunter, is granted an audience backstage after a solo gig. Hunter was always elusive and notoriously averse to discussing the meanings or sources of his compositions (though he was insistent about the songwriter's claim to royalties and credit, as the Internet undermined each). In the film, Hunter recites the lyrics to 'Dark Star' ("Dark star crashes, pouring its light into ashes / Reason tatters, the forces tear loose from the axis / Searchlight casting for faults in the clouds of delusion / Shall we go, you and I while we can / Through the transitive nightfall of diamonds?") and says, "What's unclear about that?" Then he kicks Bar-Lev out of his dressing room.
+>
+> "Meaning is often a subterfuge to distract the listener's attention from a writer's lack of multiple resources," Hunter writes. Then he presents an exegesis of his 1975 song 'Franklin's Tower', which became a great crowd-pleaser, in Garcia's hands. Hunter cites, among some of his references, Ben Franklin, the Constitution, Pete Seeger, the Bible, E. E. cummings, Bonnie Dobson, an Eastertide anthem called 'Roll Away the Stone', and the birth of his son.
+>
+> "Well, now that you know what I meant by it, it's no great shakes, is it?" Hunter concludes. "Mystery gone, the magician's trick told, the gluttony for 'meaning' temporarily satisfied, one can now take issue with my intent and avoid the song itself." [@paumgarten2019]
 
 ### Fugazi
 
@@ -212,18 +224,6 @@ Although all Fugazi songs are credited to Fugazi, the words to Fugazi songs were
 >
 > \- Guy Picciotto. [@mackaye2022]
 
-### Grateful Dead
-
-Grateful Dead songs often tell stories, avoiding commentary on politics or current events.
-
-Most original Grateful Dead songs had lyrics written by full band members who did not perform on stage: Robert Hunter (104 songs) and John Perry Barlow (30 songs). Jerry Garcia wrote the lyrics to 5 songs, Bob Weir wrote the lyrics to 9 songs, Pigpen wrote the lyrics to 11 songs, Phil Lesh wrote the lyrics to 5 songs, Brent Mydland wrote the lyrics to 6 songs, Donna Godcheaux wrote the lyrics to 2 songs, and there are also 12 songs with lyrics credited to The Grateful Dead [@allan2024]
-
-> 'In "Long Strange Trip," there's a sequence in which Bar-Lev, after years of trying to get to Hunter, is granted an audience backstage after a solo gig. Hunter was always elusive and notoriously averse to discussing the meanings or sources of his compositions (though he was insistent about the songwriter's claim to royalties and credit, as the Internet undermined each). In the film, Hunter recites the lyrics to "Dark Star" ("Dark star crashes, pouring its light into ashes / Reason tatters, the forces tear loose from the axis / Searchlight casting for faults in the clouds of delusion / Shall we go, you and I while we can / Through the transitive nightfall of diamonds?") and says, "What's unclear about that?" Then he kicks Bar-Lev out of his dressing room.'
->
-> '"Meaning is often a subterfuge to distract the listener's attention from a writer's lack of multiple resources," Hunter writes. Then he presents an exegesis of his 1975 song "Franklin's Tower," which became a great crowd-pleaser, in Garcia's hands. Hunter cites, among some of his references, Ben Franklin, the Constitution, Pete Seeger, the Bible, E. E. cummings, Bonnie Dobson, an Eastertide anthem called "Roll Away the Stone," and the birth of his son.
->
-> "Well, now that you know what I meant by it, it's no great shakes, is it?" Hunter concludes. "Mystery gone, the magician's trick told, the gluttony for 'meaning' temporarily satisfied, one can now take issue with my intent and avoid the song itself."' [@paumgarten2019]
-
 ## Politics
 
 ### Grateful Dead
@@ -232,7 +232,13 @@ Most original Grateful Dead songs had lyrics written by full band members who di
 >
 > Rock and politics, it was sort of inevitable but I never thought it was a good idea. In the Bay Area at that time there were two big philosophical pillars. There was the San Francisco approach, and there was the Berkeley approach. The Berkeley approach was politics, the endless argument, the pro-con kind of dualism. The San Francisco approach was psychedelic in the largest possible sense which is everything that happens happens, and that's the way it is. It lacked the polemic quality of the Berkeley discussion. For the Grateful Dead, from our point of view and the Haight-Ashbury point of view, the war and anti-war thing was all war. If you were talking pro-war or against the war you were talking war, your energy was going into the war, you were creating more war noise. For us the alternative was 'Hey, fuck the war. We don't need it, the world doesn't need it, nobody likes it, it never was much fun and maybe something else is what's called for. That's the broad philosophical difference. [@garcia1987a]
 
+### Fugazi
+
+XX
+
 ## Business Practices
+
+### Grateful Dead
 
 > "I thought it was interesting that they played 2,300-2,600 shows, and I was shocked. I thought they would have played around 5,000 shows, or something way beyond what they actually did."
 >
@@ -241,6 +247,10 @@ Most original Grateful Dead songs had lyrics written by full band members who di
 > "No. But I think they're interesting structurally, in retrospect, for instance their business and the way they flexed their muscles in a good way. In the late 80s or early 90s, before Jerry died, they did these stadium shows, and they had their own ticketing system. They sold tickets directly, and at some point during this stadium tour, Ticketmaster didn't want them selling directly. They told The Dead that wasn't happening anymore, so the band told them, 'Okay, you're fired'. And then so Ticketmaster tried to backtrack. At least that's what I heard, I'm not sure if that's necessarily true. But anyways, they operated well, they weren't bullied by the machine. You get that sort of power by saying 'No'."
 >
 > \- Ian MacKaye (2013) [@mackaye2013]
+
+### Fugazi
+
+XX
 
 ## Head to Head
 
