@@ -32,7 +32,7 @@ The Grateful Dead and Fugazi are in some ways opposites but there are also simil
 
 ### Grateful Dead
 
-The Grateful Dead preceded Fugazi by about 20 years, they were young folk musicians when the Beatles changed everything. They started playing electric instruments and their early experiences as house band for the acid tests in San Francisco informed their musical style which made extensive use of improvisation.
+The Grateful Dead preceded Fugazi by about 20 years, they were young musicians when the Beatles changed everything. They started playing electric instruments and their early experiences as house band for the acid tests in San Francisco informed their musical style which made extensive use of improvisation.
 
 > We're in the transportation business. We move minds.
 >
@@ -68,7 +68,7 @@ Members of the Grateful Dead used drugs including alcohol, tobacco, cannabis, LS
 >
 > \- Jerry Garcia [@garcia1991]
 
-The stereotype of a deadhead is someone who takes drugs ('Deadhead, deadhead, take another toke'), but not all deadheads are like this. The Wharf Rats is a support group for 'concert-goers who have chosen to live drug and alcohol free' [@wharfrats2021] that has held meetings at concerts since the late 1970s, using yellow balloons to help people find them [@epstein1990]. The Wharf Rats is named after the Grateful Dead song Wharf Rat which is about a down-and-out alcoholic who hopes of one day recovering:
+The stereotype of a deadhead is someone who takes drugs, but not all deadheads are like this. The Wharf Rats is a support group for 'concert-goers who have chosen to live drug and alcohol free' [@wharfrats2021] that has held meetings at concerts since the late 1970s, using yellow balloons to help people find them [@epstein1990]. The Wharf Rats is named after the Grateful Dead song Wharf Rat which is about a down-and-out alcoholic who hopes of one day recovering:
 
 > But I'll get back on my feet again someday\
 > The good lord willing, if he says I may\
@@ -81,7 +81,7 @@ The Wharf Rats still exist (there is a facebook group with 11,000 members at the
 
 ### Fugazi
 
-Ian MacKaye co-authored 'Deadhead' with Mark Sullivan when they were in the Slinkees, a song which later appeared on the 'Minor Disturbance' EP by the Teen Idles, released as Dischord 1 [@mackaye1989].
+About 8 years before Fugazi formed, Ian MacKaye co-authored 'Deadhead' with Mark Sullivan when they were in the Slinkees, a song which later appeared on the 'Minor Disturbance' EP by the Teen Idles, released as Dischord 1 [@mackaye1989].
 
 > Riding that train high on cocaine\
 > The music is really lousy, the fans are a pain\
@@ -94,6 +94,8 @@ Ian MacKaye co-authored 'Deadhead' with Mark Sullivan when they were in the Slin
 > Friends of the devil are dead like Sid
 >
 > \- 'Deadhead' by the Teen Idles [@theteenidles1980a]
+
+The lyrics have a strong anti-drugs message and make fun of two Grateful Dead songs, 'Casey Jones' and 'Friend of the Devil'. Curiously, the song 'Casey Jones' itself had an anti-drugs message as it was about a locomotive driver who crashed his train while high on cocaine. It was based on a real historical incident where the driver was known to be teetotal - Robert Hunter changed the story to make it a cautionary tale about the perils of drug use [@dodd1998].
 
 Ian MacKaye wrote a series of songs for Minor Threat that were opposed to the use of alcohol, tobacco and recreational drugs, in particular 'Straight Edge' [@minorthreat1981] and 'Out of Step' [@minorthreat1983]. He later clarified that these songs were mainly about his point of view and his personal decisions, they were not intended to tell other people what to do or what not to do.
 
@@ -250,65 +252,69 @@ XX
 
 ### Fugazi
 
-XX
+Fugazi issued all of their recordings through the independent label Dischord Records which was founded by Ian MacKaye and Jeff Nelson in 1980 to put out records by Washington DC area bands. Fugazi have a corporation called Lunar Atrocities Limited [@brace1993].
 
 ## Head to Head
 
-+-----------------------------+---------------------------------------+-------------------------------------------------------+
-| Topic                       | Fugazi                                | Grateful Dead                                         |
-+:============================+:======================================+:======================================================+
-| Status                      | On indefinite hiatus                  | Disbanded                                             |
-+-----------------------------+---------------------------------------+-------------------------------------------------------+
-| Hometown                    | Washington, DC                        | Palo Alto, CA                                         |
-+-----------------------------+---------------------------------------+-------------------------------------------------------+
-| Period of Activity          | 16 years (1987 - 2002)                | 31 years (1965 - 1995)                                |
-+-----------------------------+---------------------------------------+-------------------------------------------------------+
-| Original songs played live  | 94 [@mitrani2024]                     | 151 [@amato2015]                                      |
-+-----------------------------+---------------------------------------+-------------------------------------------------------+
-| Cover versions played live  | 1                                     | 190 [@amato2016]                                      |
-+-----------------------------+---------------------------------------+-------------------------------------------------------+
-| Live performances           | 1048 [@mitrani2024]                   | 2325 [@gratefulseconds2016]                           |
-+-----------------------------+---------------------------------------+-------------------------------------------------------+
-| Benefit shows               | 80 [@klirs2018]                       | 99 [@fatemusic2018]                                   |
-+-----------------------------+---------------------------------------+-------------------------------------------------------+
-| Studio albums               | 6                                     | 13                                                    |
-+-----------------------------+---------------------------------------+-------------------------------------------------------+
-| Live albums                 | 896 [@dischordrecords2024]            | 167 [@guinnessworldrecords2024]                       |
-+-----------------------------+---------------------------------------+-------------------------------------------------------+
-| Live recordings             | 915 [@mitrani2023]                    | 2065 [@relisten2024]                                  |
-+-----------------------------+---------------------------------------+-------------------------------------------------------+
-| Members (past and present)  | 4                                     | 13                                                    |
-|                             |                                       |                                                       |
-|                             | [@dischordrecords2024a]               | [@thegratefuldead2023]                                |
-+-----------------------------+---------------------------------------+-------------------------------------------------------+
-| Touring musicians           | 1                                     | 2                                                     |
-+-----------------------------+---------------------------------------+-------------------------------------------------------+
-| Main instruments            | Vocals, Guitar, Bass, Drums           | Vocals, Guitar, Keyboards, Bass, Drums.               |
-+-----------------------------+---------------------------------------+-------------------------------------------------------+
-| Other instruments           | Trumpet, Clarinet, Soundboard effects | Harmonica, Trumpet, Saxophone,                        |
-|                             |                                       |                                                       |
-|                             |                                       | Clavichord, Synthesizer, Computer                     |
-+-----------------------------+---------------------------------------+-------------------------------------------------------+
-| USA States played           | 50 [@dischordrecords2024]             | 45 [@golsen2022]                                      |
-+-----------------------------+---------------------------------------+-------------------------------------------------------+
-| Countries played            | 36 [@mitrani2024a]                    | 12 [@twelvebarsoftwarellc2024]                        |
-+-----------------------------+---------------------------------------+-------------------------------------------------------+
-| Venues played               | 733 [@mitrani2024a]                   | 592 [@twelvebarsoftwarellc2024]                       |
-+-----------------------------+---------------------------------------+-------------------------------------------------------+
-| Average concert length      | 1 hour 17 minutes [@mitrani2024]      | 3 hours [@teachrock.org2021]                          |
-+-----------------------------+---------------------------------------+-------------------------------------------------------+
-| Length of longest concert   | 2 hours and 3 minutes [@mitrani2024]  | 4 hours 41 minutes [@internetarchivecontributors2014] |
-+-----------------------------+---------------------------------------+-------------------------------------------------------+
-| Average song length         | 3 minutes 34 seconds [@mitrani2024a]  | 9 minutes [@teachrock.org2021]                        |
-+-----------------------------+---------------------------------------+-------------------------------------------------------+
-| Longest live song rendition | 13 minutes 52 seconds [@mitrani2024]  | 46 minutes 59 seconds [@twelvebarsoftwarellc2024]     |
-+-----------------------------+---------------------------------------+-------------------------------------------------------+
-| Average attendance          | 938 [@mitrani2024]                    | 9604 [@gratefulseconds2016]                           |
-+-----------------------------+---------------------------------------+-------------------------------------------------------+
-| Largest live audience       | 15,000 [@mitrani2024]                 | 600,000 [@teachrock.org2021]                          |
-+-----------------------------+---------------------------------------+-------------------------------------------------------+
-| Total live audience         | 983,881 [@mitrani2024]                | 22,330,524 [@gratefulseconds2016]                     |
-+-----------------------------+---------------------------------------+-------------------------------------------------------+
++----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
+| Topic                                              | Grateful Dead                                         | Fugazi                                |
++:===================================================+:======================================================+:======================================+
+| Status                                             | Disbanded                                             | On indefinite hiatus                  |
++----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
+| Hometown                                           | Palo Alto, CA                                         | Washington, DC                        |
++----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
+| Period of Activity                                 | 31 years (1965 - 1995)                                | 16 years (1987 - 2002)                |
++----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
+| Original songs played live                         | 151 [@amato2015]                                      | 94 [@mitrani2024]                     |
++----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
+| Cover versions played live                         | 190 [@amato2016]                                      | 1                                     |
++----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
+| Live performances                                  | 2325 [@gratefulseconds2016]                           | 1048 [@mitrani2024]                   |
++----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
+| Benefit shows                                      | 99 [@fatemusic2018]                                   | 80 [@klirs2018]                       |
++----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
+| Studio albums                                      | 13                                                    | 6                                     |
++----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
+| Songs on studio albums never performed live        | 2 [@benitez-eves2024]                                 | 0                                     |
++----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
+| Original songs performed live not on studio albums | 23 [@allan2021]                                       | 2 [@mitrani2024]                      |
++----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
+| Live albums                                        | 167 [@guinnessworldrecords2024]                       | 896 [@dischordrecords2024]            |
++----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
+| Live recordings                                    | 2065 [@relisten2024]                                  | 915 [@mitrani2023]                    |
++----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
+| Members (past and present)                         | 13                                                    | 4                                     |
+|                                                    |                                                       |                                       |
+|                                                    | [@thegratefuldead2023]                                | [@dischordrecords2024a]               |
++----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
+| Touring musicians                                  | 2                                                     | 1                                     |
++----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
+| Main instruments                                   | Vocals, Guitar, Keyboards, Bass, Drums.               | Vocals, Guitar, Bass, Drums           |
++----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
+| Other instruments                                  | Harmonica, Trumpet, Saxophone,                        | Trumpet, Clarinet, Soundboard effects |
+|                                                    |                                                       |                                       |
+|                                                    | Clavichord, Synthesizer, Computer                     |                                       |
++----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
+| USA States played                                  | 45 [@golsen2022]                                      | 50 [@dischordrecords2024]             |
++----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
+| Countries played                                   | 12 [@twelvebarsoftwarellc2024]                        | 36 [@mitrani2024a]                    |
++----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
+| Venues played                                      | 592 [@twelvebarsoftwarellc2024]                       | 733 [@mitrani2024a]                   |
++----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
+| Average concert length                             | 3 hours [@teachrock.org2021]                          | 1 hour 17 minutes [@mitrani2024]      |
++----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
+| Length of longest concert                          | 4 hours 41 minutes [@internetarchivecontributors2014] | 2 hours and 3 minutes [@mitrani2024]  |
++----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
+| Average song length                                | 9 minutes [@teachrock.org2021]                        | 3 minutes 34 seconds [@mitrani2024a]  |
++----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
+| Longest live song rendition                        | 46 minutes 59 seconds [@twelvebarsoftwarellc2024]     | 13 minutes 52 seconds [@mitrani2024]  |
++----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
+| Average attendance                                 | 9604 [@gratefulseconds2016]                           | 938 [@mitrani2024]                    |
++----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
+| Largest live audience                              | 600,000 [@teachrock.org2021]                          | 15,000 [@mitrani2024]                 |
++----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
+| Total live audience                                | 22,330,524 [@gratefulseconds2016]                     | 983,881 [@mitrani2024]                |
++----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
 
 ## 
 
