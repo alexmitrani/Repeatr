@@ -59,11 +59,13 @@ Fugazi are considered 'post-hardcore' in that their background was in hardcore p
 
 > For me punk was construction, I'm a construction worker. - Ian MacKaye [@mackaye2017]
 
-## Alcohol, Tobacco and Narcotics
+## Lifestyle
+
+Perhaps the most glaring difference between the Grateful Dead and Fugazi is their attitudes to recreational drugs, with members of the Dead having used all sorts of drugs and Fugazi coming out of the Washington, DC music scene that gave rise to the term "straight-edge" [@kendall2024].
 
 ### Grateful Dead
 
-Members of the Grateful Dead used drugs including alcohol, tobacco, cannabis, LSD, nitrous oxide, cocaine and heroin. They did not all use all of these drugs, they were not always using, and some of them managed to overcome some addictions. However, it seems fair to say that the band consumed quite a lot of drugs.
+Members of the Grateful Dead used drugs including alcohol, tobacco, cannabis, LSD, magic mushrooms, nitrous oxide, cocaine and heroin. They did not all use all of these drugs, they were not always using, and some of them managed to overcome some addictions. However, it seems fair to say that the band consumed quite a lot of drugs.
 
 > Interviewer: When it comes to drugs, I think the public perception of the Dead is that they are into pot and psychedelics --- sort of fun, mind-expansion drugs. Yet Brent died of a cocaine and morphine overdose, and you also had a long struggle with heroin. It seems to run counter to the image of the band.\
 > JG: Yeah, well, I don't know. I've been round and round with the drug thing. People are always wanting me to take a stand on drugs, and I can't. To me, it's so relativistic, and it's also very personal. A person's relationship to drugs is like their relationship to sex. I mean, who is standing on such high ground that they can say: 'You're cool. You're not.' For me, in my life, all kinds of drugs have been useful to me, and they have also definitely been a hindrance to me. So, as far as I'm concerned, the results are not in. Psychedelics showed me a whole other universe, hundreds and millions of universes. So that was an incredibly positive experience. But on the other hand, I can't take psychedelics and perform as a professional. I might go out onstage and say, 'Hey, fuck this, I want to go chase butterflies!'
@@ -229,14 +231,12 @@ Although all Fugazi songs are credited to Fugazi, the words to Fugazi songs were
 
 ## Politics
 
-Both bands avoided linking themselves to specific political parties or candidates, with their political views being revealed by their lyrics, the way they operated, and the causes they supported with benefit shows.
+Both bands avoided linking themselves to specific political parties or candidates, with their political views being revealed by their lyrics, the ways they operated, and the causes they supported with benefit shows.
 
 ### Grateful Dead
 
 > The Dead's attitude about politics would stay consistent, if unique. They probably did more benefits than any band ever, and frequently for explicitly political groups, but they'd sign nothing. They put their time where their beliefs were, but not their mouths. It was a policy designed to make "Grateful Dead" something separate, above life's daily shuffle. "It's our responsibility to keep ourselves free of those connotations," said Garcia years later. "I want the Grateful Dead experience to be one of those things that doesn't have a hook. We're all very antiauthoritarian. There's nothing that we believe so uniformly and so totally that we could use the Grateful Dead to advertise it." [@mcnally2003]
-
-The Grateful Dead XX
-
+>
 > Rock and politics, it was sort of inevitable but I never thought it was a good idea. In the Bay Area at that time there were two big philosophical pillars. There was the San Francisco approach, and there was the Berkeley approach. The Berkeley approach was politics, the endless argument, the pro-con kind of dualism. The San Francisco approach was psychedelic in the largest possible sense which is everything that happens happens, and that's the way it is. It lacked the polemic quality of the Berkeley discussion. For the Grateful Dead, from our point of view and the Haight-Ashbury point of view, the war and anti-war thing was all war. If you were talking pro-war or against the war you were talking war, your energy was going into the war, you were creating more war noise. For us the alternative was 'Hey, fuck the war. We don't need it, the world doesn't need it, nobody likes it, it never was much fun and maybe something else is what's called for. That's the broad philosophical difference. [@garcia1987a]
 
 ### Fugazi
@@ -247,7 +247,11 @@ Fugazi is strongly against violence, both at their shows and other types of viol
 
 ## Business Practices
 
+Both the Grateful Dead and Fugazi are well-known exponents of particular ways of doing business as musicians.
+
 ### Grateful Dead
+
+Whole books have been written about the way the Grateful Dead did business so what follows here is a very brief summary.
 
 > "I thought it was interesting that they played 2,300-2,600 shows, and I was shocked. I thought they would have played around 5,000 shows, or something way beyond what they actually did."
 >
@@ -257,9 +261,37 @@ Fugazi is strongly against violence, both at their shows and other types of viol
 >
 > \- Ian MacKaye (2013) [@mackaye2013]
 
+> The Grateful Dead manner of writing songs is a very haphazard, hit-or-miss business. Nothing is nailed down. First they try their songs out in front of an audience. For most groups the song gets written and arranged, then it comes out on record and gets played on the radio. Only then does the band go out on the road and back up the record, basically lip-synching their own songs. The Dead, however, like to go out onstage and play a totally new song - something that they've just written or are still writing -long before it ever appears on an album.
+>
+> \- Rock Scully (former manager of the Grateful Dead) [@scully1996]
+
+> The Dead were the first band to sign with a major label (Warner Brothers) with the condition that all publishing rights be kept within their own organization. Though the battles over this issue were furious, the band eventually prevailed. Unlike artists desperate to break into the business, the Grateful Dead did not care for recording an album if this would mean assigning away artistic control and copyright to their music. [@drobnik2000]
+
+> Because the Dead had a tendency (especially in concert) to play extended jams in the middle of their songs, or to segue one song to the next via lengthy improvisational experimentation, they stood to receive lesser royalties for only recording two or three songs per album side. The answer to their problem came from the jazz world, where longer improvisational pieces are far more common. For years, jazz musicians' royalties were computed by the minute, not per song. The Dead took heed and convinced Warner Brothers to agree. [@drobnik2000]
+>
+> At the time (and still today), most artists would play for no longer than two hours, having written a performance limitation into their contracts with local promoters. But the Dead insisted that they be given at least four hours of stage time (many of their shows extended well beyond five hours in length). Furthermore, when major concert tour ticket prices began to skyrocket, the band refused to allow promoters to charge more than \$30 a ticket. [@drobnik2000]
+>
+> Whereas most bands hire independent crews for each tour, the Grateful Dead kept their employees on the payroll year-round. During the height of the band's success, crewmembers earned six figure salaries, were entitled to profit sharing, health benefit and retirement plans, and even were provided backstage daycare for their families. The loyalty that such treatment inspired undoubtedly resulted in high performance by their crew. [@drobnik2000]
+>
+> The Dead began this entire process of "own(ing) the marketing function themselves" in 1971, when the band inserted a notice in its Grateful Dead album, signed by Garcia and reading "DEAD FREAKS UNITE: Who are you? Where are you? How are you? Send us your name and address and we'll keep you informed." What followed were thousands of responses, leading later that year to the publication of a fan newsletter providing information on tour dates and requesting feedback about various quality concerns. In essence, the band adopted database marketing long before mainstream marketers took notice of this technique. [@drobnik2000]
+>
+> The band incorporated in 1973, the same year they launched Grateful Dead Productions and Round Records (which in itself was a radical decision for the time). Each band member became a CEO and obtained a seat on their board of directors, owning an equal share in profits and an equal vote in all decisions. Sam Hill and Glenn Rifkin comment that, "As collective CEOs of the business, [the Dead] owned the marketing function themselves. They never handed it off to a publicity firm or pushed it down into layers of a bureaucratic organization." In order to ensure that the band would continue to enjoy the benefits of artistic freedom and total control over its business direction and decisions, the Dead agreed that upon the death of any member, that person's shares would be reabsorbed by the organization and redistributed among the remaining CEOs. [@drobnik2000]
+>
+> Intellectual property law in the United States purports to maintain a balance between the interests of authors and those of the public. Necessarily, this objective implies that there is a barrier between the two. But since intellectual property is by its nature intangible property, the legal barriers defining its parameters are shifty at best. The Grateful Dead's philosophy was to eliminate many of these barriers, or at least to minimize their intrusiveness into the relationship the band shared with its fans. They accomplished this by first maintaining control over their legal rights in their property, and then by allowing near-complete access to it for those who wanted access. [@drobnik2000]
+>
+> ... audience members taped their shows from the start, and, until recently, copyright law has had little to say about bootleggers. But while other artists sought to sue bootleggers out of business under causes such as unfair competition, the Dead began to welcome them. Understanding that their bootleg albums were commanding a price on the market, the Dead opened their doors to every bootlegger who wanted to tape them, provided only that the tapes be bartered for other tapes. Sam Hill and Glenn Rifkin comment that "those with the most extensive tape collections became masters of their universe, and thus the open-taping decision fueled ticket sales." More than this, by flooding the market with their live product, the Dead eliminated the market in which for-profit bootleggers thrived. Furthermore, such an extension of trust magnified fan devotion, while the presence of countless bootlegs on the market created greater demand for touring. [@drobnik2000]
+>
+> The Grateful Dead's creed has always been, "When we are done with the music, [the fans] can have it." The extreme of this philosophy was the fact that the Dead often broadcast their concerts. Contrary to popular industry wisdom, the Dead customarily sent their live shows over empty airwaves. On any given night, audiences ranging in size from the people in the parking lot who could not get tickets to 20 million northern Europeans could hear what they were not able to see. [@drobnik2000]
+>
+> Though the Dead certainly have not overlooked their publicity interests, their stance is as relaxed and open as it is in regard to copyright and trademark control. Again, they function within the paradox of being in control of their affairs, and yet allowing outsiders to determine to a great degree the course of these. The band members have allowed their pictures to grace everything from Tshirts to ice cream. Aside from negotiating a licensing agreement and retaining rights to quality approval, they have allowed their fans to conduct the bulk of their publicity work. [@drobnik2000]
+
 ### Fugazi
 
-Fugazi issued all of their recordings through the independent label Dischord Records which was founded by Ian MacKaye and Jeff Nelson in 1980 to put out records by Washington DC area bands. Fugazi have a corporation called Lunar Atrocities Limited [@brace1993].
+Fugazi issued all of their recordings through the independent label Dischord Records which was founded by Ian MacKaye and Jeff Nelson in 1980 to put out records by Washington DC area bands. Dischord records are distributed either by mail order or by direct deals with local record shops, and are available anywhere in the world.
+
+Fugazi have a corporation called Lunar Atrocities Limited.
+
+> There's a Fugazi corporation which is called Lunar Atrocities Limited ... Protection from liability is the main reason to form a corporation, and for these guys it makes sense. If someone got hurt stage-diving and decided to sue, it would be a little harder to go after their personal assets." - Seth Martin [@brace1993].
 
 ## Head to Head
 
