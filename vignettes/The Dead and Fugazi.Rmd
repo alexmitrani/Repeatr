@@ -24,7 +24,12 @@ library(Repeatr)
 
 By Alex Mitrani
 
-18 September 2024
+20 September 2024
+
+> Ahistorical\
+> You think this shit just dropped right out of the sky\
+> \
+> - Bulldog Front by Fugazi [@fugazi1988]
 
 ## Introductions
 
@@ -32,7 +37,7 @@ The Grateful Dead and Fugazi are in some ways opposites but there are also simil
 
 ### Grateful Dead
 
-The Grateful Dead preceded Fugazi by about 20 years, they were young musicians when the Beatles changed everything. They started playing electric instruments and their early experiences as house band for the acid tests in San Francisco informed their musical style which made extensive use of improvisation.
+The Grateful Dead preceded Fugazi by about 20 years, they were young musicians with backgrounds in folk and classical music when the Beatles changed everything. They started playing electric instruments and their early experiences as house band for the acid tests in San Francisco informed their musical style which made extensive use of improvisation.
 
 > We're in the transportation business. We move minds.
 >
@@ -206,8 +211,6 @@ Both bands would often use lyrics that were open to interpretation and the songw
 
 ### Grateful Dead
 
-Grateful Dead songs often tell stories, avoiding commentary on politics or current events.
-
 Most original Grateful Dead songs had lyrics written by full band members who did not perform on stage: Robert Hunter (104 songs) and John Perry Barlow (30 songs). Jerry Garcia wrote the lyrics to 5 songs, Bob Weir wrote the lyrics to 9 songs, Pigpen wrote the lyrics to 11 songs, Phil Lesh wrote the lyrics to 5 songs, Brent Mydland wrote the lyrics to 6 songs, Donna Godcheaux wrote the lyrics to 2 songs, and there are also 12 songs with lyrics credited to The Grateful Dead [@allan2024]
 
 > In 'Long Strange Trip', there's a sequence in which Bar-Lev, after years of trying to get to Hunter, is granted an audience backstage after a solo gig. Hunter was always elusive and notoriously averse to discussing the meanings or sources of his compositions (though he was insistent about the songwriter's claim to royalties and credit, as the Internet undermined each). In the film, Hunter recites the lyrics to 'Dark Star' ("Dark star crashes, pouring its light into ashes / Reason tatters, the forces tear loose from the axis / Searchlight casting for faults in the clouds of delusion / Shall we go, you and I while we can / Through the transitive nightfall of diamonds?") and says, "What's unclear about that?" Then he kicks Bar-Lev out of his dressing room.
@@ -218,8 +221,6 @@ Most original Grateful Dead songs had lyrics written by full band members who di
 
 ### Fugazi
 
-Fugazi songs are often topical and political.
-
 Although all Fugazi songs are credited to Fugazi, the words to Fugazi songs were nearly always written by the person who would sing the song, mostly Ian MacKaye or Guy Picciotto with a few songs written and sung by Joe Lally.
 
 > "I really do feel that my songs are not as inscrutable as they seem, but that is one I can't really defend, maybe it's the exception that proves the rule ... I think a lot of it has to do with engagement but also because I wrote the songs ... I always have this feeling that 'isn't that perfectly clear?' ... a song like let's say 'Last Chance for a Slow Dance' I remember reading something where someone was like 'this is just some more word-salad' ... that song is so personal and I felt so clear ... the part that goes like 'Flare fakes a flower / A burnt-out shower'. Someone was like, just thought that was gobbledigook or something, like to me it's the image of a flare being shot into the sky as a signal for help and it makes the form of a flower in the sky and it makes a burned-out shower of sparks falling and no-body can see it, it seems like such an obvious lonely image, and then people are like 'I really don't know what the fuck that means', it feels like a failure on one hand because it didn't work, but on the other hand I get kind of like 'shit, really? come on!' When I listen to a band I really like I enjoy that engagement, why would anyone go up to Bob Dylan and say like you know 'It's all Over Now Baby Blue' what's that song about? What is that song not about?"
@@ -228,15 +229,21 @@ Although all Fugazi songs are credited to Fugazi, the words to Fugazi songs were
 
 ## Politics
 
+Both bands avoided linking themselves to specific political parties or candidates, with their political views being revealed by their lyrics, the way they operated, and the causes they supported with benefit shows.
+
 ### Grateful Dead
 
 > The Dead's attitude about politics would stay consistent, if unique. They probably did more benefits than any band ever, and frequently for explicitly political groups, but they'd sign nothing. They put their time where their beliefs were, but not their mouths. It was a policy designed to make "Grateful Dead" something separate, above life's daily shuffle. "It's our responsibility to keep ourselves free of those connotations," said Garcia years later. "I want the Grateful Dead experience to be one of those things that doesn't have a hook. We're all very antiauthoritarian. There's nothing that we believe so uniformly and so totally that we could use the Grateful Dead to advertise it." [@mcnally2003]
->
+
+The Grateful Dead XX
+
 > Rock and politics, it was sort of inevitable but I never thought it was a good idea. In the Bay Area at that time there were two big philosophical pillars. There was the San Francisco approach, and there was the Berkeley approach. The Berkeley approach was politics, the endless argument, the pro-con kind of dualism. The San Francisco approach was psychedelic in the largest possible sense which is everything that happens happens, and that's the way it is. It lacked the polemic quality of the Berkeley discussion. For the Grateful Dead, from our point of view and the Haight-Ashbury point of view, the war and anti-war thing was all war. If you were talking pro-war or against the war you were talking war, your energy was going into the war, you were creating more war noise. For us the alternative was 'Hey, fuck the war. We don't need it, the world doesn't need it, nobody likes it, it never was much fun and maybe something else is what's called for. That's the broad philosophical difference. [@garcia1987a]
 
 ### Fugazi
 
-XX
+Fugazi is strongly against violence, both at their shows and other types of violence such as war. They would stop playing if people started fighting at shows, and if necessary would give violent or abusive individuals a refund and escort them to the door personally.
+
+> Fugazi has maintained their own unique brand of relativism, and non-dogmatic ideology, embodying the "principled anarchism" long adhered to by some of the best and generally forgotten musical outfits of recent history. They have been called elitist and humorless and yet have also been the recepients of an intense and broad fan loyalty unparalleled for such a strongly local entity. Most important, they embody the historically recognized anarchistic principles of individual and group autonomy, non-coercive relations, mutual aid, voluntary cooperation, and non-coercive advocacy. [@fairchild1995]
 
 ## Business Practices
 
@@ -314,6 +321,8 @@ Fugazi issued all of their recordings through the independent label Dischord Rec
 | Largest live audience                              | 600,000 [@teachrock.org2021]                          | 15,000 [@mitrani2024]                 |
 +----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
 | Total live audience                                | 22,330,524 [@gratefulseconds2016]                     | 983,881 [@mitrani2024]                |
++----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
+| Funds raised for grass-roots organisations (USD)   | \$10,017,706 [@rexfoundation2024]                     | \$250,000 [@klirs2018a]               |
 +----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
 
 ## 
