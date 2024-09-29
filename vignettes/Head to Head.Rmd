@@ -1,11 +1,11 @@
 ---
-title: "The Dead and Fugazi"
+title: "Head to Head"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{The Dead and Fugazi}
+  %\VignetteIndexEntry{Head to Head}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-bibliography: references_the_dead_and_fugazi.bib
+bibliography: references_head_to_head.bib
 link-citations: true
 ---
 
@@ -59,13 +59,13 @@ Fugazi are considered 'post-hardcore' in that their background was in hardcore p
 
 > For me punk was construction, I'm a construction worker. - Ian MacKaye [@mackaye2017]
 
-## Lifestyle
+## Drugs
 
 Perhaps the most glaring difference between the Grateful Dead and Fugazi is their attitudes to recreational drugs, with members of the Dead having used all sorts of drugs and Fugazi coming out of the Washington, DC music scene that gave rise to the term "straight-edge" [@kendall2024].
 
 ### Grateful Dead
 
-Members of the Grateful Dead used drugs including alcohol, tobacco, cannabis, LSD, magic mushrooms, STP, mescaline, nitrous oxide, cocaine and heroin. They did not all use all of these drugs, they were not always using, and some of them managed to overcome some addictions. However, it seems fair to say that the band consumed quite a lot of drugs.
+Members of the Grateful Dead used drugs including alcohol, tobacco, cannabis, LSD, magic mushrooms, nitrous oxide, cocaine and heroin. They did not all use all of these drugs, they were not always using, and some of them managed to overcome some addictions. However, it seems fair to say that the band consumed quite a lot of drugs.
 
 > Interviewer: When it comes to drugs, I think the public perception of the Dead is that they are into pot and psychedelics --- sort of fun, mind-expansion drugs. Yet Brent died of a cocaine and morphine overdose, and you also had a long struggle with heroin. It seems to run counter to the image of the band.\
 > JG: Yeah, well, I don't know. I've been round and round with the drug thing. People are always wanting me to take a stand on drugs, and I can't. To me, it's so relativistic, and it's also very personal. A person's relationship to drugs is like their relationship to sex. I mean, who is standing on such high ground that they can say: 'You're cool. You're not.' For me, in my life, all kinds of drugs have been useful to me, and they have also definitely been a hindrance to me. So, as far as I'm concerned, the results are not in. Psychedelics showed me a whole other universe, hundreds and millions of universes. So that was an incredibly positive experience. But on the other hand, I can't take psychedelics and perform as a professional. I might go out onstage and say, 'Hey, fuck this, I want to go chase butterflies!'
@@ -293,14 +293,14 @@ Fugazi have a corporation called Lunar Atrocities Limited.
 
 > There's a Fugazi corporation which is called Lunar Atrocities Limited ... Protection from liability is the main reason to form a corporation, and for these guys it makes sense. If someone got hurt stage-diving and decided to sue, it would be a little harder to go after their personal assets." - Seth Martin [@brace1993].
 
-## Head to Head
+## Summary
 
 +----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
 | Topic                                              | Grateful Dead                                         | Fugazi                                |
 +:===================================================+:======================================================+:======================================+
 | Status                                             | Disbanded                                             | On indefinite hiatus                  |
 +----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
-| Hometown                                           | Palo Alto, CA                                         | Washington, DC                        |
+| Hometown                                           | San Francisco Bay Area, CA                            | Washington, DC                        |
 +----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
 | Period of Activity                                 | 31 years (1965 - 1995)                                | 16 years (1987 - 2002)                |
 +----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
