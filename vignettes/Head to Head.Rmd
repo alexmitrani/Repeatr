@@ -146,13 +146,13 @@ The Grateful Dead had 5 keyboard players who were full members and 2 keyboard pl
 
 XX
 
-> My favorite band was always and still is the Grateful Dead, and they always had that element to their set and I really liked that. There\'s an element to their sets where it goes off the anchor and just gets into sound more than a groove or a riff.
+> My favorite band was always and still is the Grateful Dead, and they always had that element to their set and I really liked that. There's an element to their sets where it goes off the anchor and just gets into sound more than a groove or a riff.
 >
-> - Greg Ginn [@ginn2013]
+> \- Greg Ginn [@ginn2013]
 
 XX
 
-> I always thought Jerry Garcia was a musician whose talent was under mentioned. Having been lucky enough to have seen him perform a few times, I always walked away thinking he was a complete player, a musician\'s musician. He had the whole thing: voice, chops, great looking axe. He had a perfect instinct, amazing skill and something that only the truly great guitarists ever achieve -- Jerry Garcia had tone. Damn, what a sound he had. There is nothing like it anywhere. That for me, was the best part of his immense talent; the warm, intimate glow that surrounded the notes he played and the way they hung in the air. Sometimes you would almost forget to breathe, you were listening so intently.
+> I always thought Jerry Garcia was a musician whose talent was under mentioned. Having been lucky enough to have seen him perform a few times, I always walked away thinking he was a complete player, a musician's musician. He had the whole thing: voice, chops, great looking axe. He had a perfect instinct, amazing skill and something that only the truly great guitarists ever achieve -- Jerry Garcia had tone. Damn, what a sound he had. There is nothing like it anywhere. That for me, was the best part of his immense talent; the warm, intimate glow that surrounded the notes he played and the way they hung in the air. Sometimes you would almost forget to breathe, you were listening so intently.
 >
 > \- Henry Rollins [@rollins2012]
 
@@ -250,7 +250,7 @@ Although all Fugazi songs are credited to Fugazi, the words to Fugazi songs were
 
 ## Politics
 
-Both bands avoided linking themselves to specific political parties or candidates, with their political views being revealed by their lyrics, the ways they operated, and the causes they supported with benefit shows.
+Both bands avoided linking themselves to specific political parties or candidates, with their political views being revealed by their lyrics, the ways they operated, the causes they supported with benefit shows, and to some extent their interactions with the audience at live shows.
 
 ### Grateful Dead
 
@@ -258,11 +258,25 @@ Both bands avoided linking themselves to specific political parties or candidate
 >
 > Rock and politics, it was sort of inevitable but I never thought it was a good idea. In the Bay Area at that time there were two big philosophical pillars. There was the San Francisco approach, and there was the Berkeley approach. The Berkeley approach was politics, the endless argument, the pro-con kind of dualism. The San Francisco approach was psychedelic in the largest possible sense which is everything that happens happens, and that's the way it is. It lacked the polemic quality of the Berkeley discussion. For the Grateful Dead, from our point of view and the Haight-Ashbury point of view, the war and anti-war thing was all war. If you were talking pro-war or against the war you were talking war, your energy was going into the war, you were creating more war noise. For us the alternative was 'Hey, fuck the war. We don't need it, the world doesn't need it, nobody likes it, it never was much fun and maybe something else is what's called for. That's the broad philosophical difference. [@garcia1987a]
 
+Jerry Garcia would deliberately avoid talking to the audience at Grateful Dead concerts.
+
+> Barbara Meier: You don't impose any political message.
+>
+> Jerry Garcia: I couldn't do it. The power is frightening.
+>
+> Barbara Meier: Are you ever tempted?
+>
+> Jerry Garcia: No. I thought, if I'm going to be onstage I'm not going to say anything to anybody or address the crowd, because it doesn't matter what you say, sometimes just the sound of your voice might inadvertently set somebody off. The situation with psychedelics is so highly charged that you never know what's leaking in. I don't mind doing it in the music, because that's where I divest myself of ego. It's egoless, something I trust. If the band has something to protect, it's the integrity of the experience, which remains shapeless and formless. As long as it stays that way, everything's okay.
+>
+> [@garcia1992]
+
 ### Fugazi
 
-Fugazi is strongly against violence, both at their shows and other types of violence such as war. They would stop playing if people started fighting at shows, and if necessary would give violent or abusive individuals a refund and escort them to the door personally.
+Fugazi is strongly against violence, both at their shows and other types of violence such as war.
 
 > Fugazi has maintained their own unique brand of relativism, and non-dogmatic ideology, embodying the "principled anarchism" long adhered to by some of the best and generally forgotten musical outfits of recent history. They have been called elitist and humorless and yet have also been the recepients of an intense and broad fan loyalty unparalleled for such a strongly local entity. Most important, they embody the historically recognized anarchistic principles of individual and group autonomy, non-coercive relations, mutual aid, voluntary cooperation, and non-coercive advocacy. [@fairchild1995]
+
+They would stop playing if people started fighting at shows, and if necessary would give violent or abusive individuals a refund and escort them to the door.
 
 ## Business Practices
 
@@ -314,67 +328,69 @@ Fugazi have a corporation called Lunar Atrocities Limited.
 
 ## Summary
 
-+----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
-| Topic                                              | Grateful Dead                                         | Fugazi                                |
-+:===================================================+:======================================================+:======================================+
-| Status                                             | Disbanded                                             | On indefinite hiatus                  |
-+----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
-| Hometown                                           | San Francisco Bay Area, CA                            | Washington, DC                        |
-+----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
-| Period of Activity                                 | 31 years (1965 - 1995)                                | 16 years (1987 - 2002)                |
-+----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
-| Original songs played live                         | 151 [@amato2015]                                      | 94 [@mitrani2024]                     |
-+----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
-| Cover versions played live                         | 190 [@amato2016]                                      | 1                                     |
-+----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
-| Live performances                                  | 2325 [@gratefulseconds2016]                           | 1048 [@mitrani2024]                   |
-+----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
-| Benefit shows                                      | 99 [@fatemusic2018]                                   | 80 [@klirs2018]                       |
-+----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
-| Studio albums                                      | 13                                                    | 6                                     |
-+----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
-| Songs on studio albums never performed live        | 2 [@benitez-eves2024]                                 | 0                                     |
-+----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
-| Original songs performed live not on studio albums | 23 [@allan2021]                                       | 2 [@mitrani2024]                      |
-+----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
-| Live albums                                        | 167 [@guinnessworldrecords2024]                       | 896 [@dischordrecords2024]            |
-+----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
-| Live recordings                                    | 2065 [@relisten2024]                                  | 915 [@mitrani2023]                    |
-+----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
-| Members (past and present)                         | 13                                                    | 4                                     |
-|                                                    |                                                       |                                       |
-|                                                    | [@thegratefuldead2023]                                | [@dischordrecords2024a]               |
-+----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
-| Touring musicians                                  | 2                                                     | 1                                     |
-+----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
-| Main instruments                                   | Vocals, Guitar, Keyboards, Bass, Drums.               | Vocals, Guitar, Bass, Drums           |
-+----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
-| Other instruments                                  | Harmonica, Trumpet, Saxophone,                        | Trumpet, Clarinet, Soundboard effects |
-|                                                    |                                                       |                                       |
-|                                                    | Clavichord, Synthesizer, Computer                     |                                       |
-+----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
-| USA States played                                  | 45 [@golsen2022]                                      | 50 [@dischordrecords2024]             |
-+----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
-| Countries played                                   | 12 [@twelvebarsoftwarellc2024]                        | 36 [@mitrani2024a]                    |
-+----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
-| Venues played                                      | 592 [@twelvebarsoftwarellc2024]                       | 733 [@mitrani2024a]                   |
-+----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
-| Average concert length                             | 3 hours [@teachrock.org2021]                          | 1 hour 17 minutes [@mitrani2024]      |
-+----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
-| Length of longest concert                          | 4 hours 41 minutes [@internetarchivecontributors2014] | 2 hours and 3 minutes [@mitrani2024]  |
-+----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
-| Average song length                                | 9 minutes [@teachrock.org2021]                        | 3 minutes 34 seconds [@mitrani2024a]  |
-+----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
-| Longest live song rendition                        | 46 minutes 59 seconds [@twelvebarsoftwarellc2024]     | 13 minutes 52 seconds [@mitrani2024]  |
-+----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
-| Average attendance                                 | 9604 [@gratefulseconds2016]                           | 938 [@mitrani2024]                    |
-+----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
-| Largest live audience                              | 600,000 [@teachrock.org2021]                          | 15,000 [@mitrani2024]                 |
-+----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
-| Total live audience                                | 22,330,524 [@gratefulseconds2016]                     | 983,881 [@mitrani2024]                |
-+----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
-| Funds raised for grass-roots organisations (USD)   | \$10,017,706 [@rexfoundation2024]                     | \$250,000 [@klirs2018a]               |
-+----------------------------------------------------+-------------------------------------------------------+---------------------------------------+
++---------------------------------------------------------------------+---------------------------------------------------------------+----------------------------------------------------------------------+
+| Topic                                                               | Grateful Dead                                                 | Fugazi                                                               |
++:====================================================================+:==============================================================+:=====================================================================+
+| Status                                                              | Disbanded                                                     | On indefinite hiatus                                                 |
++---------------------------------------------------------------------+---------------------------------------------------------------+----------------------------------------------------------------------+
+| Hometown                                                            | San Francisco Bay Area, CA                                    | Washington, DC                                                       |
++---------------------------------------------------------------------+---------------------------------------------------------------+----------------------------------------------------------------------+
+| Period of Activity                                                  | 31 years (1965 - 1995)                                        | 16 years (1987 - 2002)                                               |
++---------------------------------------------------------------------+---------------------------------------------------------------+----------------------------------------------------------------------+
+| Original songs played live                                          | 151 [@amato2015]                                              | 94 [@mitrani2024]                                                    |
++---------------------------------------------------------------------+---------------------------------------------------------------+----------------------------------------------------------------------+
+| Cover versions played live                                          | 190 [@amato2016]                                              | 1                                                                    |
++---------------------------------------------------------------------+---------------------------------------------------------------+----------------------------------------------------------------------+
+| Live performances                                                   | 2325 [@gratefulseconds2016]                                   | 1048 [@mitrani2024]                                                  |
++---------------------------------------------------------------------+---------------------------------------------------------------+----------------------------------------------------------------------+
+| Benefit shows                                                       | 99 [@fatemusic2018]                                           | 80 [@klirs2018]                                                      |
++---------------------------------------------------------------------+---------------------------------------------------------------+----------------------------------------------------------------------+
+| Studio albums                                                       | 13                                                            | 6                                                                    |
++---------------------------------------------------------------------+---------------------------------------------------------------+----------------------------------------------------------------------+
+| Songs on studio albums never performed live                         | 2 [@benitez-eves2024]                                         | 0                                                                    |
++---------------------------------------------------------------------+---------------------------------------------------------------+----------------------------------------------------------------------+
+| Original songs performed live not on studio albums                  | 23 [@allan2021]                                               | 2 [@mitrani2024]                                                     |
++---------------------------------------------------------------------+---------------------------------------------------------------+----------------------------------------------------------------------+
+| Live albums                                                         | 167 [@guinnessworldrecords2024]                               | 896 [@dischordrecords2024]                                           |
++---------------------------------------------------------------------+---------------------------------------------------------------+----------------------------------------------------------------------+
+| Live recordings                                                     | 2065 [@relisten2024]                                          | 915 [@mitrani2023]                                                   |
++---------------------------------------------------------------------+---------------------------------------------------------------+----------------------------------------------------------------------+
+| Members (past and present)                                          | 13                                                            | 4                                                                    |
+|                                                                     |                                                               |                                                                      |
+|                                                                     | [@thegratefuldead2023]                                        | [@dischordrecords2024a]                                              |
++---------------------------------------------------------------------+---------------------------------------------------------------+----------------------------------------------------------------------+
+| Touring musicians                                                   | 2                                                             | 1                                                                    |
++---------------------------------------------------------------------+---------------------------------------------------------------+----------------------------------------------------------------------+
+| Main instruments                                                    | Vocals, Guitar, Keyboards, Bass, Drums.                       | Vocals, Guitar, Bass, Drums                                          |
++---------------------------------------------------------------------+---------------------------------------------------------------+----------------------------------------------------------------------+
+| Other instruments                                                   | Harmonica, Trumpet, Saxophone,                                | Trumpet, Clarinet, Soundboard effects                                |
+|                                                                     |                                                               |                                                                      |
+|                                                                     | Clavichord, Synthesizer, Computer                             |                                                                      |
++---------------------------------------------------------------------+---------------------------------------------------------------+----------------------------------------------------------------------+
+| USA States played                                                   | 45 [@golsen2022]                                              | 50 [@dischordrecords2024]                                            |
++---------------------------------------------------------------------+---------------------------------------------------------------+----------------------------------------------------------------------+
+| Countries played                                                    | 12 [@twelvebarsoftwarellc2024]                                | 36 [@mitrani2024a]                                                   |
++---------------------------------------------------------------------+---------------------------------------------------------------+----------------------------------------------------------------------+
+| Venues played                                                       | 592 [@twelvebarsoftwarellc2024]                               | 733 [@mitrani2024a]                                                  |
++---------------------------------------------------------------------+---------------------------------------------------------------+----------------------------------------------------------------------+
+| Average concert length                                              | 3 hours [@teachrock.org2021]                                  | 1 hour 17 minutes [@mitrani2024]                                     |
++---------------------------------------------------------------------+---------------------------------------------------------------+----------------------------------------------------------------------+
+| Length of longest concert                                           | 4 hours 41 minutes [@internetarchivecontributors2014]         | 2 hours and 3 minutes [@mitrani2024]                                 |
++---------------------------------------------------------------------+---------------------------------------------------------------+----------------------------------------------------------------------+
+| Average song length                                                 | 9 minutes [@teachrock.org2021]                                | 3 minutes 34 seconds [@mitrani2024a]                                 |
++---------------------------------------------------------------------+---------------------------------------------------------------+----------------------------------------------------------------------+
+| Longest live song rendition                                         | 46 minutes 59 seconds [@twelvebarsoftwarellc2024]             | 13 minutes 52 seconds [@mitrani2024]                                 |
++---------------------------------------------------------------------+---------------------------------------------------------------+----------------------------------------------------------------------+
+| Average attendance                                                  | 9604 [@gratefulseconds2016]                                   | 938 [@mitrani2024]                                                   |
++---------------------------------------------------------------------+---------------------------------------------------------------+----------------------------------------------------------------------+
+| Largest live audience                                               | 600,000 [@teachrock.org2021]                                  | 15,000 [@mitrani2024]                                                |
++---------------------------------------------------------------------+---------------------------------------------------------------+----------------------------------------------------------------------+
+| Total live audience                                                 | 22,330,524 [@gratefulseconds2016]                             | 983,881 [@mitrani2024]                                               |
++---------------------------------------------------------------------+---------------------------------------------------------------+----------------------------------------------------------------------+
+| Funds raised for grass-roots organisations (USD)                    | \$10,017,706 [@rexfoundation2024]                             | \$250,000 [@klirs2018a]                                              |
++---------------------------------------------------------------------+---------------------------------------------------------------+----------------------------------------------------------------------+
+| Recommended live recording on Internet Archive's Live Music Archive | 1972-09-03 Folsom Field, Boulder, CO, USA [@gratefuldead1972] | 2002-04-18 Holyoke War Memorial Hall, Holyoke, MA, USA [@fugazi2002] |
++---------------------------------------------------------------------+---------------------------------------------------------------+----------------------------------------------------------------------+
 
 ## 
 
