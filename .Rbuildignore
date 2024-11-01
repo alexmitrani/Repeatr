@@ -3,5 +3,6 @@
 ^LICENSE\.md$
 ^_pkgdown\.yml$
 ^docs$
+^drafts$
 ^pkgdown$
 ^\.httr-oauth$
