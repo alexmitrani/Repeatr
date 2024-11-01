@@ -159,6 +159,19 @@ today_data <- shows_data %>%
                                paste0(venue, ", ", city,", ", country))) %>%
   select(date, where_played, gid, fls_link, played_with, attendance, minutes, sound_quality)
 
+linktracksindexdata <- gsheet2tbl('https://docs.google.com/spreadsheets/d/160kJEHPmL_WcF25SQv5J2GztBg1wTft4QLVQ1fhLxsE')
+
+colnames(linktracksindexdata)[1]="timestamp"
+colnames(linktracksindexdata)[2]="url"
+colnames(linktracksindexdata)[3]="track"
+colnames(linktracksindexdata)[4]="track_name"
+colnames(linktracksindexdata)[5]="linktrack_name"
+
+linktracksindexdata <- linktracksindexdata %>%
+  mutate(gid =  gsub('https://dischord.com/fugazi_live_series/','', url)) %>%
+  mutate(fls_link = paste0("<a href='",  url, "' target='_blank'>", gid, "</a>")) %>%
+  select(timestamp, fls_link, track, track_name, linktrack_name)
+
 # user interface ----------------------------------------------------------
 
 ui <- fluidPage(
@@ -1065,7 +1078,48 @@ tabPanel("quiz",
 
          )
 
+),
+
+# start and end of 'linktracks' tabset -------------------------------------------------------------------
+
+tabPanel("index",
+
+         fluidPage(
+
+           tags$br(),
+
+           tags$div(
+             "Hey",
+             tags$br(),
+             "What's your name?",
+             tags$br(),
+             tags$a(href="https://fugazi.bandcamp.com/track/no-surprise", "- No Surprise by Fugazi"),
+             tags$br(),
+             tags$br(),
+             "Add a name for your discovery to the ",
+             tags$a(href="https://forms.gle/6kjXnddiCBFMhiLz8", "Link Track Index"),
+             tags$br()
+           ),
+
+           tags$br(),
+
+           h3("Link Track Index"),
+
+           tags$br(),
+
+           fluidRow(
+
+             column(12,
+                    DT::dataTableOutput("linktracksindex_datatable")
+
+             )
+
+           )
+
+         )
+
 )
+
 
 # end -------------------------------------------------------------
 
@@ -3592,6 +3646,23 @@ server <- function(input, output, session) {
     data
 
   }, escape = c(-2),
+  style = "bootstrap"))
+
+# linktracksindex --------------------------------------------------------------------
+
+  linktracksindex_data <- reactive({
+
+    linktracksindexdata
+
+  })
+
+  output$linktracksindex_datatable <- DT::renderDataTable(DT::datatable({
+
+    data <- linktracksindex_data()
+
+    data
+
+  }, escape = c(-3),
   style = "bootstrap"))
 
 # end of server -----------------------------------------------------------
