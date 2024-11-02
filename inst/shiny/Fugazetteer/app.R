@@ -1080,7 +1080,7 @@ tabPanel("quiz",
 
 ),
 
-# start and end of 'linktracks' tabset -------------------------------------------------------------------
+# start and end of 'index' tabset -------------------------------------------------------------------
 
 tabPanel("index",
 
@@ -1096,7 +1096,7 @@ tabPanel("index",
              tags$a(href="https://fugazi.bandcamp.com/track/no-surprise", "- No Surprise by Fugazi"),
              tags$br(),
              tags$br(),
-             "Add a name for your discovery to the ",
+             "Add an entry to the ",
              tags$a(href="https://forms.gle/6kjXnddiCBFMhiLz8", "Link Track Index"),
              tags$br()
            ),
