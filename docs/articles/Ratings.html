@@ -50,7 +50,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9178</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9183</span>
       </span>
     </div>
 
@@ -157,7 +157,7 @@ that were performed live, using data from … how many shows?</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">one_row_per_show</span> <span class="op">&lt;-</span> <span class="va">Repeatr1</span> <span class="op">%&gt;%</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">gid</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">slice</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">one_row_per_show</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 899</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 900</span></span></code></pre></div>
 <p>These frequency counts do not necessarily measure the band’s
 preferences for the songs, as more recently released songs were
 available for fewer shows than older songs.</p>
@@ -179,7 +179,7 @@ count, are as follows:</p>
 <td align="right">92</td>
 <td align="left">waiting room</td>
 <td align="left">1987-09-03</td>
-<td align="right">632</td>
+<td align="right">633</td>
 </tr>
 <tr class="even">
 <td align="right">69</td>
@@ -191,7 +191,7 @@ count, are as follows:</p>
 <td align="right">9</td>
 <td align="left">blueprint</td>
 <td align="left">1989-11-25</td>
-<td align="right">583</td>
+<td align="right">584</td>
 </tr>
 <tr class="even">
 <td align="right">53</td>
@@ -209,25 +209,25 @@ count, are as follows:</p>
 <td align="right">54</td>
 <td align="left">margin walker</td>
 <td align="left">1988-08-01</td>
-<td align="right">429</td>
+<td align="right">430</td>
 </tr>
 <tr class="odd">
 <td align="right">76</td>
 <td align="left">sieve-fisted find</td>
 <td align="left">1989-03-24</td>
-<td align="right">417</td>
+<td align="right">418</td>
 </tr>
 <tr class="even">
 <td align="right">71</td>
 <td align="left">repeater</td>
 <td align="left">1989-07-20</td>
-<td align="right">409</td>
+<td align="right">410</td>
 </tr>
 <tr class="odd">
 <td align="right">89</td>
 <td align="left">turnover</td>
 <td align="left">1989-04-09</td>
-<td align="right">394</td>
+<td align="right">395</td>
 </tr>
 <tr class="even">
 <td align="right">65</td>
@@ -239,19 +239,19 @@ count, are as follows:</p>
 <td align="right">2</td>
 <td align="left">and the same</td>
 <td align="left">1987-09-26</td>
-<td align="right">375</td>
+<td align="right">376</td>
 </tr>
 <tr class="even">
 <td align="right">90</td>
 <td align="left">two beats off</td>
 <td align="left">1989-05-03</td>
-<td align="right">370</td>
+<td align="right">371</td>
 </tr>
 <tr class="odd">
 <td align="right">37</td>
 <td align="left">give me the cure</td>
 <td align="left">1988-03-30</td>
-<td align="right">368</td>
+<td align="right">369</td>
 </tr>
 <tr class="even">
 <td align="right">70</td>
@@ -263,19 +263,19 @@ count, are as follows:</p>
 <td align="right">83</td>
 <td align="left">suggestion</td>
 <td align="left">1987-12-03</td>
-<td align="right">339</td>
+<td align="right">340</td>
 </tr>
 <tr class="even">
 <td align="right">75</td>
 <td align="left">shut the door</td>
 <td align="left">1989-03-24</td>
-<td align="right">322</td>
+<td align="right">323</td>
 </tr>
 <tr class="odd">
 <td align="right">78</td>
 <td align="left">song #1</td>
 <td align="left">1987-09-03</td>
-<td align="right">321</td>
+<td align="right">322</td>
 </tr>
 <tr class="even">
 <td align="right">7</td>
@@ -299,18 +299,18 @@ count, are as follows:</p>
 <td align="right">6</td>
 <td align="left">bad mouth</td>
 <td align="left">1987-10-16</td>
-<td align="right">279</td>
+<td align="right">280</td>
 </tr>
 <tr class="even">
-<td align="right">27</td>
-<td align="left">exit only</td>
-<td align="left">1990-07-06</td>
-<td align="right">275</td>
-</tr>
-<tr class="odd">
 <td align="right">72</td>
 <td align="left">reprovisional</td>
 <td align="left">1988-12-29</td>
+<td align="right">276</td>
+</tr>
+<tr class="odd">
+<td align="right">27</td>
+<td align="left">exit only</td>
+<td align="left">1990-07-06</td>
 <td align="right">275</td>
 </tr>
 <tr class="even">
@@ -353,7 +353,7 @@ count, are as follows:</p>
 <td align="right">77</td>
 <td align="left">smallpox champion</td>
 <td align="left">1992-10-23</td>
-<td align="right">252</td>
+<td align="right">253</td>
 </tr>
 <tr class="odd">
 <td align="right">84</td>
@@ -371,18 +371,18 @@ count, are as follows:</p>
 <td align="right">13</td>
 <td align="left">bulldog front</td>
 <td align="left">1988-06-15</td>
-<td align="right">225</td>
+<td align="right">226</td>
 </tr>
 <tr class="even">
-<td align="right">14</td>
-<td align="left">burning</td>
-<td align="left">1988-02-06</td>
-<td align="right">214</td>
-</tr>
-<tr class="odd">
 <td align="right">15</td>
 <td align="left">burning too</td>
 <td align="left">1988-08-01</td>
+<td align="right">215</td>
+</tr>
+<tr class="odd">
+<td align="right">14</td>
+<td align="left">burning</td>
+<td align="left">1988-02-06</td>
 <td align="right">214</td>
 </tr>
 <tr class="even">
@@ -419,7 +419,7 @@ count, are as follows:</p>
 <td align="right">10</td>
 <td align="left">break</td>
 <td align="left">1996-08-15</td>
-<td align="right">171</td>
+<td align="right">172</td>
 </tr>
 <tr class="even">
 <td align="right">18</td>
@@ -431,7 +431,7 @@ count, are as follows:</p>
 <td align="right">51</td>
 <td align="left">lockdown</td>
 <td align="left">1987-12-03</td>
-<td align="right">164</td>
+<td align="right">165</td>
 </tr>
 <tr class="even">
 <td align="right">20</td>
@@ -521,7 +521,7 @@ count, are as follows:</p>
 <td align="right">45</td>
 <td align="left">joe #1</td>
 <td align="left">1987-09-03</td>
-<td align="right">131</td>
+<td align="right">132</td>
 </tr>
 <tr class="odd">
 <td align="right">29</td>
@@ -599,7 +599,7 @@ count, are as follows:</p>
 <td align="right">17</td>
 <td align="left">cashout</td>
 <td align="left">2000-09-30</td>
-<td align="right">61</td>
+<td align="right">62</td>
 </tr>
 <tr class="even">
 <td align="right">19</td>
@@ -677,7 +677,7 @@ count, are as follows:</p>
 <td align="right">35</td>
 <td align="left">full disclosure</td>
 <td align="left">2001-04-05</td>
-<td align="right">25</td>
+<td align="right">26</td>
 </tr>
 <tr class="odd">
 <td align="right">43</td>
@@ -776,9 +776,9 @@ it was performed.</p>
 <td align="right">17</td>
 <td align="left">cashout</td>
 <td align="left">2000-09-30</td>
-<td align="right">61</td>
+<td align="right">62</td>
 <td align="right">66</td>
-<td align="right">0.9242424</td>
+<td align="right">0.9393939</td>
 </tr>
 <tr class="even">
 <td align="right">20</td>
@@ -805,20 +805,20 @@ it was performed.</p>
 <td align="right">0.7586207</td>
 </tr>
 <tr class="odd">
+<td align="right">10</td>
+<td align="left">break</td>
+<td align="left">1996-08-15</td>
+<td align="right">172</td>
+<td align="right">229</td>
+<td align="right">0.7510917</td>
+</tr>
+<tr class="even">
 <td align="right">69</td>
 <td align="left">reclamation</td>
 <td align="left">1990-05-05</td>
 <td align="right">594</td>
 <td align="right">795</td>
 <td align="right">0.7471698</td>
-</tr>
-<tr class="even">
-<td align="right">10</td>
-<td align="left">break</td>
-<td align="left">1996-08-15</td>
-<td align="right">171</td>
-<td align="right">229</td>
-<td align="right">0.7467249</td>
 </tr>
 <tr class="odd">
 <td align="right">4</td>
@@ -840,17 +840,17 @@ it was performed.</p>
 <td align="right">9</td>
 <td align="left">blueprint</td>
 <td align="left">1989-11-25</td>
-<td align="right">583</td>
-<td align="right">825</td>
-<td align="right">0.7066667</td>
+<td align="right">584</td>
+<td align="right">826</td>
+<td align="right">0.7070218</td>
 </tr>
 <tr class="even">
 <td align="right">92</td>
 <td align="left">waiting room</td>
 <td align="left">1987-09-03</td>
-<td align="right">632</td>
-<td align="right">899</td>
-<td align="right">0.7030033</td>
+<td align="right">633</td>
+<td align="right">900</td>
+<td align="right">0.7033333</td>
 </tr>
 <tr class="odd">
 <td align="right">68</td>
@@ -897,8 +897,8 @@ it was performed.</p>
 <td align="left">long division</td>
 <td align="left">1989-04-09</td>
 <td align="right">498</td>
-<td align="right">847</td>
-<td align="right">0.5879575</td>
+<td align="right">848</td>
+<td align="right">0.5872642</td>
 </tr>
 <tr class="odd">
 <td align="right">60</td>
@@ -929,8 +929,8 @@ it was performed.</p>
 <td align="left">merchandise</td>
 <td align="left">1987-09-03</td>
 <td align="right">477</td>
-<td align="right">899</td>
-<td align="right">0.5305895</td>
+<td align="right">900</td>
+<td align="right">0.5300000</td>
 </tr>
 <tr class="odd">
 <td align="right">34</td>
@@ -960,9 +960,9 @@ it was performed.</p>
 <td align="right">54</td>
 <td align="left">margin walker</td>
 <td align="left">1988-08-01</td>
-<td align="right">429</td>
-<td align="right">871</td>
-<td align="right">0.4925373</td>
+<td align="right">430</td>
+<td align="right">872</td>
+<td align="right">0.4931193</td>
 </tr>
 <tr class="odd">
 <td align="right">25</td>
@@ -973,36 +973,36 @@ it was performed.</p>
 <td align="right">0.4923077</td>
 </tr>
 <tr class="even">
+<td align="right">77</td>
+<td align="left">smallpox champion</td>
+<td align="left">1992-10-23</td>
+<td align="right">253</td>
+<td align="right">516</td>
+<td align="right">0.4903101</td>
+</tr>
+<tr class="odd">
 <td align="right">76</td>
 <td align="left">sieve-fisted find</td>
 <td align="left">1989-03-24</td>
-<td align="right">417</td>
-<td align="right">852</td>
-<td align="right">0.4894366</td>
+<td align="right">418</td>
+<td align="right">853</td>
+<td align="right">0.4900352</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">71</td>
 <td align="left">repeater</td>
 <td align="left">1989-07-20</td>
-<td align="right">409</td>
-<td align="right">837</td>
-<td align="right">0.4886499</td>
+<td align="right">410</td>
+<td align="right">838</td>
+<td align="right">0.4892601</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">16</td>
 <td align="left">by you</td>
 <td align="left">1993-04-24</td>
 <td align="right">233</td>
 <td align="right">477</td>
 <td align="right">0.4884696</td>
-</tr>
-<tr class="odd">
-<td align="right">77</td>
-<td align="left">smallpox champion</td>
-<td align="left">1992-10-23</td>
-<td align="right">252</td>
-<td align="right">516</td>
-<td align="right">0.4883721</td>
 </tr>
 <tr class="even">
 <td align="right">28</td>
@@ -1048,9 +1048,9 @@ it was performed.</p>
 <td align="right">89</td>
 <td align="left">turnover</td>
 <td align="left">1989-04-09</td>
-<td align="right">394</td>
-<td align="right">847</td>
-<td align="right">0.4651712</td>
+<td align="right">395</td>
+<td align="right">848</td>
+<td align="right">0.4658019</td>
 </tr>
 <tr class="even">
 <td align="right">39</td>
@@ -1061,6 +1061,14 @@ it was performed.</p>
 <td align="right">0.4581197</td>
 </tr>
 <tr class="odd">
+<td align="right">35</td>
+<td align="left">full disclosure</td>
+<td align="left">2001-04-05</td>
+<td align="right">26</td>
+<td align="right">58</td>
+<td align="right">0.4482759</td>
+</tr>
+<tr class="even">
 <td align="right">26</td>
 <td align="left">ex-spectator</td>
 <td align="left">1999-08-26</td>
@@ -1068,7 +1076,7 @@ it was performed.</p>
 <td align="right">101</td>
 <td align="right">0.4455446</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">84</td>
 <td align="left">sweet and low</td>
 <td align="left">1992-05-15</td>
@@ -1076,23 +1084,23 @@ it was performed.</p>
 <td align="right">563</td>
 <td align="right">0.4422735</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">90</td>
 <td align="left">two beats off</td>
 <td align="left">1989-05-03</td>
-<td align="right">370</td>
-<td align="right">845</td>
-<td align="right">0.4378698</td>
+<td align="right">371</td>
+<td align="right">846</td>
+<td align="right">0.4385343</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">65</td>
 <td align="left">promises</td>
 <td align="left">1988-10-15</td>
 <td align="right">380</td>
-<td align="right">868</td>
-<td align="right">0.4377880</td>
+<td align="right">869</td>
+<td align="right">0.4372842</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">57</td>
 <td align="left">nightshop</td>
 <td align="left">1999-08-26</td>
@@ -1100,29 +1108,21 @@ it was performed.</p>
 <td align="right">101</td>
 <td align="right">0.4356436</td>
 </tr>
-<tr class="even">
-<td align="right">35</td>
-<td align="left">full disclosure</td>
-<td align="left">2001-04-05</td>
-<td align="right">25</td>
-<td align="right">58</td>
-<td align="right">0.4310345</td>
-</tr>
 <tr class="odd">
 <td align="right">2</td>
 <td align="left">and the same</td>
 <td align="left">1987-09-26</td>
-<td align="right">375</td>
-<td align="right">898</td>
-<td align="right">0.4175947</td>
+<td align="right">376</td>
+<td align="right">899</td>
+<td align="right">0.4182425</td>
 </tr>
 <tr class="even">
 <td align="right">37</td>
 <td align="left">give me the cure</td>
 <td align="left">1988-03-30</td>
-<td align="right">368</td>
-<td align="right">886</td>
-<td align="right">0.4153499</td>
+<td align="right">369</td>
+<td align="right">887</td>
+<td align="right">0.4160090</td>
 </tr>
 <tr class="odd">
 <td align="right">58</td>
@@ -1136,17 +1136,17 @@ it was performed.</p>
 <td align="right">83</td>
 <td align="left">suggestion</td>
 <td align="left">1987-12-03</td>
-<td align="right">339</td>
-<td align="right">894</td>
-<td align="right">0.3791946</td>
+<td align="right">340</td>
+<td align="right">895</td>
+<td align="right">0.3798883</td>
 </tr>
 <tr class="odd">
 <td align="right">75</td>
 <td align="left">shut the door</td>
 <td align="left">1989-03-24</td>
-<td align="right">322</td>
-<td align="right">852</td>
-<td align="right">0.3779343</td>
+<td align="right">323</td>
+<td align="right">853</td>
+<td align="right">0.3786635</td>
 </tr>
 <tr class="even">
 <td align="right">27</td>
@@ -1176,9 +1176,9 @@ it was performed.</p>
 <td align="right">78</td>
 <td align="left">song #1</td>
 <td align="left">1987-09-03</td>
-<td align="right">321</td>
-<td align="right">899</td>
-<td align="right">0.3570634</td>
+<td align="right">322</td>
+<td align="right">900</td>
+<td align="right">0.3577778</td>
 </tr>
 <tr class="even">
 <td align="right">81</td>
@@ -1200,17 +1200,17 @@ it was performed.</p>
 <td align="right">72</td>
 <td align="left">reprovisional</td>
 <td align="left">1988-12-29</td>
-<td align="right">275</td>
-<td align="right">853</td>
-<td align="right">0.3223916</td>
+<td align="right">276</td>
+<td align="right">854</td>
+<td align="right">0.3231850</td>
 </tr>
 <tr class="odd">
 <td align="right">6</td>
 <td align="left">bad mouth</td>
 <td align="left">1987-10-16</td>
-<td align="right">279</td>
-<td align="right">896</td>
-<td align="right">0.3113839</td>
+<td align="right">280</td>
+<td align="right">897</td>
+<td align="right">0.3121516</td>
 </tr>
 <tr class="even">
 <td align="right">30</td>
@@ -1272,9 +1272,9 @@ it was performed.</p>
 <td align="right">13</td>
 <td align="left">bulldog front</td>
 <td align="left">1988-06-15</td>
-<td align="right">225</td>
-<td align="right">875</td>
-<td align="right">0.2571429</td>
+<td align="right">226</td>
+<td align="right">876</td>
+<td align="right">0.2579909</td>
 </tr>
 <tr class="even">
 <td align="right">49</td>
@@ -1288,17 +1288,17 @@ it was performed.</p>
 <td align="right">15</td>
 <td align="left">burning too</td>
 <td align="left">1988-08-01</td>
-<td align="right">214</td>
-<td align="right">871</td>
-<td align="right">0.2456946</td>
+<td align="right">215</td>
+<td align="right">872</td>
+<td align="right">0.2465596</td>
 </tr>
 <tr class="even">
 <td align="right">14</td>
 <td align="left">burning</td>
 <td align="left">1988-02-06</td>
 <td align="right">214</td>
-<td align="right">889</td>
-<td align="right">0.2407199</td>
+<td align="right">890</td>
+<td align="right">0.2404494</td>
 </tr>
 <tr class="odd">
 <td align="right">79</td>
@@ -1313,8 +1313,8 @@ it was performed.</p>
 <td align="left">greed</td>
 <td align="left">1989-03-24</td>
 <td align="right">188</td>
-<td align="right">852</td>
-<td align="right">0.2206573</td>
+<td align="right">853</td>
+<td align="right">0.2203986</td>
 </tr>
 <tr class="odd">
 <td align="right">47</td>
@@ -1345,8 +1345,8 @@ it was performed.</p>
 <td align="left">kyeo</td>
 <td align="left">1987-10-07</td>
 <td align="right">173</td>
-<td align="right">897</td>
-<td align="right">0.1928651</td>
+<td align="right">898</td>
+<td align="right">0.1926503</td>
 </tr>
 <tr class="odd">
 <td align="right">33</td>
@@ -1361,16 +1361,16 @@ it was performed.</p>
 <td align="left">brendan #1</td>
 <td align="left">1989-03-24</td>
 <td align="right">158</td>
-<td align="right">852</td>
-<td align="right">0.1854460</td>
+<td align="right">853</td>
+<td align="right">0.1852286</td>
 </tr>
 <tr class="odd">
 <td align="right">51</td>
 <td align="left">lockdown</td>
 <td align="left">1987-12-03</td>
-<td align="right">164</td>
-<td align="right">894</td>
-<td align="right">0.1834452</td>
+<td align="right">165</td>
+<td align="right">895</td>
+<td align="right">0.1843575</td>
 </tr>
 <tr class="even">
 <td align="right">56</td>
@@ -1385,24 +1385,24 @@ it was performed.</p>
 <td align="left">glueman</td>
 <td align="left">1988-05-12</td>
 <td align="right">133</td>
-<td align="right">883</td>
-<td align="right">0.1506229</td>
+<td align="right">884</td>
+<td align="right">0.1504525</td>
 </tr>
 <tr class="even">
 <td align="right">11</td>
 <td align="left">break-in</td>
 <td align="left">1987-10-16</td>
 <td align="right">134</td>
-<td align="right">896</td>
-<td align="right">0.1495536</td>
+<td align="right">897</td>
+<td align="right">0.1493868</td>
 </tr>
 <tr class="odd">
 <td align="right">45</td>
 <td align="left">joe #1</td>
 <td align="left">1987-09-03</td>
-<td align="right">131</td>
-<td align="right">899</td>
-<td align="right">0.1457175</td>
+<td align="right">132</td>
+<td align="right">900</td>
+<td align="right">0.1466667</td>
 </tr>
 <tr class="even">
 <td align="right">41</td>
@@ -1417,8 +1417,8 @@ it was performed.</p>
 <td align="left">furniture</td>
 <td align="left">1987-09-03</td>
 <td align="right">94</td>
-<td align="right">899</td>
-<td align="right">0.1045606</td>
+<td align="right">900</td>
+<td align="right">0.1044444</td>
 </tr>
 <tr class="even">
 <td align="right">48</td>
@@ -1473,32 +1473,32 @@ it was performed.</p>
 <td align="left">the word</td>
 <td align="left">1987-09-03</td>
 <td align="right">31</td>
-<td align="right">899</td>
-<td align="right">0.0344828</td>
+<td align="right">900</td>
+<td align="right">0.0344444</td>
 </tr>
 <tr class="odd">
 <td align="right">43</td>
 <td align="left">in defense of humans</td>
 <td align="left">1987-09-03</td>
 <td align="right">25</td>
-<td align="right">899</td>
-<td align="right">0.0278087</td>
+<td align="right">900</td>
+<td align="right">0.0277778</td>
 </tr>
 <tr class="even">
 <td align="right">88</td>
 <td align="left">turn off your guns</td>
 <td align="left">1987-09-03</td>
 <td align="right">15</td>
-<td align="right">899</td>
-<td align="right">0.0166852</td>
+<td align="right">900</td>
+<td align="right">0.0166667</td>
 </tr>
 <tr class="odd">
 <td align="right">66</td>
 <td align="left">provisional</td>
 <td align="left">1988-11-14</td>
 <td align="right">8</td>
-<td align="right">862</td>
-<td align="right">0.0092807</td>
+<td align="right">863</td>
+<td align="right">0.0092700</td>
 </tr>
 <tr class="even">
 <td align="right">63</td>
@@ -1521,8 +1521,8 @@ it was performed.</p>
 <td align="left">preprovisional</td>
 <td align="left">1988-10-31</td>
 <td align="right">6</td>
-<td align="right">865</td>
-<td align="right">0.0069364</td>
+<td align="right">866</td>
+<td align="right">0.0069284</td>
 </tr>
 </tbody>
 </table>
@@ -1549,7 +1549,7 @@ shows this sort of analysis probably would not be possible.</p>
 by the band during their live shows?</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">Repeatr1</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 23261</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 23279</span></span></code></pre></div>
 <p>This data was used to estimate the strength of preference for each of
 the songs in their live music repertoire.</p>
 <p>Song availability was considered at both repertoire and gig level.
@@ -2490,8 +2490,8 @@ intervals.</p>
 </tr>
 <tr class="even">
 <td align="left">turnover</td>
-<td align="right">393</td>
-<td align="right">0.4639906</td>
+<td align="right">394</td>
+<td align="right">0.4651712</td>
 <td align="right">0.8475050</td>
 </tr>
 <tr class="odd">
@@ -2856,8 +2856,8 @@ intervals.</p>
 </tr>
 <tr class="odd">
 <td align="left">furniture</td>
-<td align="right">95</td>
-<td align="right">0.1056730</td>
+<td align="right">94</td>
+<td align="right">0.1045606</td>
 <td align="right">0.5182761</td>
 </tr>
 <tr class="even">
@@ -2973,10 +2973,10 @@ preferred over “Reclamation”?</p>
 <tbody><tr class="odd">
 <td align="left">waiting room</td>
 <td align="left">bulldog front</td>
-<td align="right">3.154</td>
-<td align="right">1.9</td>
+<td align="right">3.153</td>
+<td align="right">1.899</td>
 <td align="right">1.254</td>
-<td align="right">1.727</td>
+<td align="right">1.726</td>
 </tr></tbody>
 </table>
 <p>A z-statistic of 1.96 or greater indicates a difference that is
@@ -3017,34 +3017,34 @@ below.</p>
 <tr class="odd">
 <td align="left">waiting room</td>
 <td align="left">and the same</td>
-<td align="right">3.154</td>
-<td align="right">2.548</td>
+<td align="right">3.153</td>
+<td align="right">2.547</td>
 <td align="right">0.606</td>
 <td align="right">0.840</td>
 </tr>
 <tr class="even">
 <td align="left">and the same</td>
 <td align="left">turnover</td>
-<td align="right">2.548</td>
-<td align="right">2.749</td>
-<td align="right">-0.201</td>
-<td align="right">-0.761</td>
+<td align="right">2.547</td>
+<td align="right">2.752</td>
+<td align="right">-0.205</td>
+<td align="right">-0.777</td>
 </tr>
 <tr class="odd">
 <td align="left">turnover</td>
 <td align="left">styrofoam</td>
-<td align="right">2.749</td>
-<td align="right">2.277</td>
-<td align="right">0.472</td>
-<td align="right">1.338</td>
+<td align="right">2.752</td>
+<td align="right">2.276</td>
+<td align="right">0.476</td>
+<td align="right">1.348</td>
 </tr>
 <tr class="even">
 <td align="left">styrofoam</td>
 <td align="left">steady diet</td>
-<td align="right">2.277</td>
+<td align="right">2.276</td>
 <td align="right">0.347</td>
 <td align="right">1.930</td>
-<td align="right">7.437</td>
+<td align="right">7.436</td>
 </tr>
 <tr class="odd">
 <td align="left">steady diet</td>
@@ -3052,7 +3052,7 @@ below.</p>
 <td align="right">0.347</td>
 <td align="right">1.781</td>
 <td align="right">-1.434</td>
-<td align="right">-6.133</td>
+<td align="right">-6.134</td>
 </tr>
 <tr class="even">
 <td align="left">returning the screw</td>
@@ -3060,7 +3060,7 @@ below.</p>
 <td align="right">1.781</td>
 <td align="right">2.501</td>
 <td align="right">-0.720</td>
-<td align="right">-4.199</td>
+<td align="right">-4.198</td>
 </tr>
 <tr class="odd">
 <td align="left">instrument</td>
@@ -3068,39 +3068,39 @@ below.</p>
 <td align="right">2.501</td>
 <td align="right">1.890</td>
 <td align="right">0.611</td>
-<td align="right">5.118</td>
+<td align="right">5.115</td>
 </tr>
 <tr class="even">
 <td align="left">fell, destroyed</td>
 <td align="left">place position</td>
 <td align="right">1.890</td>
 <td align="right">3.228</td>
-<td align="right">-1.337</td>
-<td align="right">-11.291</td>
+<td align="right">-1.338</td>
+<td align="right">-11.297</td>
 </tr>
 <tr class="odd">
 <td align="left">place position</td>
 <td align="left">arpeggiator</td>
 <td align="right">3.228</td>
-<td align="right">2.876</td>
-<td align="right">0.352</td>
+<td align="right">2.877</td>
+<td align="right">0.351</td>
 <td align="right">2.714</td>
 </tr>
 <tr class="even">
 <td align="left">arpeggiator</td>
 <td align="left">the kill</td>
-<td align="right">2.876</td>
-<td align="right">2.663</td>
-<td align="right">0.213</td>
-<td align="right">0.905</td>
+<td align="right">2.877</td>
+<td align="right">2.665</td>
+<td align="right">0.212</td>
+<td align="right">0.901</td>
 </tr>
 <tr class="odd">
 <td align="left">the kill</td>
 <td align="left">hello morning</td>
-<td align="right">2.663</td>
-<td align="right">-0.288</td>
+<td align="right">2.665</td>
+<td align="right">-0.286</td>
 <td align="right">2.951</td>
-<td align="right">12.655</td>
+<td align="right">12.654</td>
 </tr>
 </tbody>
 </table>
@@ -3150,9 +3150,9 @@ The results are shown below.</p>
 <td align="left">2001-06-21</td>
 <td align="left">2001-10-16</td>
 <td align="right">10</td>
-<td align="right">428</td>
+<td align="right">430</td>
 <td align="right">79</td>
-<td align="right">0.5380</td>
+<td align="right">0.5412</td>
 <td align="right">0.8000</td>
 </tr>
 <tr class="even">
@@ -3162,9 +3162,9 @@ The results are shown below.</p>
 <td align="left">1998-05-01</td>
 <td align="left">1998-04-24</td>
 <td align="right">13</td>
-<td align="right">1360</td>
+<td align="right">1361</td>
 <td align="right">221</td>
-<td align="right">0.4792</td>
+<td align="right">0.4795</td>
 <td align="right">0.7961</td>
 </tr>
 <tr class="odd">
@@ -3174,9 +3174,9 @@ The results are shown below.</p>
 <td align="left">1990-05-17</td>
 <td align="left">1990-03-01</td>
 <td align="right">11</td>
-<td align="right">3879</td>
+<td align="right">3887</td>
 <td align="right">846</td>
-<td align="right">0.4171</td>
+<td align="right">0.4175</td>
 <td align="right">0.7784</td>
 </tr>
 <tr class="even">
@@ -3186,9 +3186,9 @@ The results are shown below.</p>
 <td align="left">1988-06-15</td>
 <td align="left">1988-11-19</td>
 <td align="right">7</td>
-<td align="right">2190</td>
-<td align="right">888</td>
-<td align="right">0.3514</td>
+<td align="right">2195</td>
+<td align="right">889</td>
+<td align="right">0.3519</td>
 <td align="right">0.7357</td>
 </tr>
 <tr class="odd">
@@ -3210,9 +3210,9 @@ The results are shown below.</p>
 <td align="left">1993-02-05</td>
 <td align="left">1993-06-18</td>
 <td align="right">12</td>
-<td align="right">2558</td>
+<td align="right">2559</td>
 <td align="right">565</td>
-<td align="right">0.3760</td>
+<td align="right">0.3762</td>
 <td align="right">0.7305</td>
 </tr>
 <tr class="odd">
@@ -3222,9 +3222,9 @@ The results are shown below.</p>
 <td align="left">1988-11-14</td>
 <td align="left">1989-06-15</td>
 <td align="right">6</td>
-<td align="right">1570</td>
-<td align="right">876</td>
-<td align="right">0.2981</td>
+<td align="right">1574</td>
+<td align="right">878</td>
+<td align="right">0.2985</td>
 <td align="right">0.6989</td>
 </tr>
 <tr class="even">
@@ -3234,10 +3234,10 @@ The results are shown below.</p>
 <td align="left">1987-10-16</td>
 <td align="left">1989-12-01</td>
 <td align="right">3</td>
-<td align="right">586</td>
-<td align="right">897</td>
-<td align="right">0.2177</td>
-<td align="right">0.6446</td>
+<td align="right">588</td>
+<td align="right">898</td>
+<td align="right">0.2182</td>
+<td align="right">0.6445</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
@@ -3248,7 +3248,7 @@ The results are shown below.</p>
 <td align="right">11</td>
 <td align="right">2455</td>
 <td align="right">752</td>
-<td align="right">0.2859</td>
+<td align="right">0.2858</td>
 <td align="right">0.6305</td>
 </tr>
 <tr class="even">
@@ -3258,10 +3258,10 @@ The results are shown below.</p>
 <td align="left">2001-04-27</td>
 <td align="left">2001-10-16</td>
 <td align="right">3</td>
-<td align="right">207</td>
+<td align="right">206</td>
 <td align="right">363</td>
-<td align="right">0.3029</td>
-<td align="right">0.5748</td>
+<td align="right">0.3025</td>
+<td align="right">0.5753</td>
 </tr>
 <tr class="odd">
 <td align="right">11</td>
@@ -3271,9 +3271,9 @@ The results are shown below.</p>
 <td align="left">2014-11-18</td>
 <td align="right">3</td>
 <td align="right">71</td>
-<td align="right">898</td>
+<td align="right">899</td>
 <td align="right">0.0263</td>
-<td align="right">0.2374</td>
+<td align="right">0.2414</td>
 </tr>
 <tr class="even">
 <td align="right">13</td>
@@ -3285,7 +3285,7 @@ The results are shown below.</p>
 <td align="right">8</td>
 <td align="right">560</td>
 <td align="right">0.0074</td>
-<td align="right">0.0229</td>
+<td align="right">0.0228</td>
 </tr>
 </tbody>
 </table>

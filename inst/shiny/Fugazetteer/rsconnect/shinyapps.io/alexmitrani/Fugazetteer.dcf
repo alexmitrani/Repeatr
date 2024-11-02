@@ -5,7 +5,7 @@ account: alexmitrani
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 10986042
-bundleId: 9106031
+bundleId: 9304222
 url: https://alexmitrani.shinyapps.io/Fugazetteer/
 version: 1
 asMultiple: FALSE

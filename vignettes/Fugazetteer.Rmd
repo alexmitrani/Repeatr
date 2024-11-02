@@ -24,25 +24,29 @@ library(Repeatr)
 
 [Fugazetteer](https://alexmitrani.shinyapps.io/Fugazetteer/) makes it easy to get some insights and answer questions about the Fugazi Live Series. It also provides several new ways of finding shows to listen to.
 
-![](images/paste-D8C6976A.png)
+![](images/paste-4B1DA5E2.png)
 
-The app has 15 pages spread across 4 sections:
+The app has 15 pages spread across 5 sections:
 
 -   today (1 page) - provides a summary of Fugazi shows on this day in history.
 
-    ![](images/paste-D1D5F233.png)
+    ![](images/paste-AA94891E.png)
 
 -   flow (9 pages) - includes top-level menus for 'year' and 'tour' which will filter the contents of all the pages in this section.
 
-    ![](images/paste-FD8C3E91.png)
+    ![](images/paste-B24A6D35.png)
 
 -   stock (4 pages) - includes a top-level menu for 'release' which will filter the contents of all the pages in this section.
 
-    ![](images/paste-A35D5C9F.png)
+    ![](images/paste-50A7389F.png)
 
 -   quiz (1 page) - links to Fugazi Live Series Quiz #1 and shows the high scores to date.
 
-    ![](images/paste-54BE6AC5.png)
+    ![](images/paste-DC822963.png)
+
+-   index (1 page) - links to Fugazi Live Series Link Track Index and shows the contents of the index.
+
+    ![](images/paste-CC15C5E6.png)
 
 Most of the pages have a visualisation (map or graph) and a data table further down the page, with the exception of 'transition', 'duration' and 'search' which only have data tables.
 
@@ -569,10 +573,16 @@ If you filter by release but not songs the data will be limited to all shows con
 
 # quiz
 
+For further information about the quiz, follow the link at the top of the quiz page. If you are ready for a challenge, give it a try!
+
 ![](images/paste-04B2C4FD.png)
 
 The top half of the scores will be included in the High Scores table. If you complete the quiz and place in the top half, your entry will be included, although you might need to re-load the page for the content to be refreshed with the latest responses data. The total points shown are the total points that were available at the time that each entry was completed - every now and then this total might change die to new questions being added, old questions being removed, or changes being made to the value of each question. The percentage is the score divided by the total available points in each case, and it is this value that is used to sort the table.
 
-For further information about the quiz, follow the link at the top of the quiz page. If you are ready for a challenge, give it a try!
+# index
+
+Fugazi used to play "link tracks" in practices, sound checks, and sometimes as introductions or interludes at shows. Some of them feature in the live series but they are hard to find because they often have generic names like "intro", "interlude", "encore", or "link track". I noticed there are a few of these that get played repeatedly, sometimes over a period of years, so I started giving them index numbers to make it easier to find and compare these pieces of music. So far I have found 3 different link tracks that got played live at least twice - see the image. I've given them the same index number if they seem to be the same piece of music. The idea is to add new numbers to the link track index for other link tracks that are different from the ones that have been found so far. Please add to the link track index if you come across any other ones - using the 'Link Track Index' link will take you to a form where you can enter information. Any link track information you add will be included in the link track index shown on this page.
+
+![](images/paste-2DA1108C.png)
 
 Thanks.
