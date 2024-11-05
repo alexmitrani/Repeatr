@@ -166,14 +166,15 @@ colnames(linktracksindexdata)[2]="url"
 colnames(linktracksindexdata)[3]="track"
 colnames(linktracksindexdata)[4]="track_name"
 colnames(linktracksindexdata)[5]="linktrack_name"
+colnames(linktracksindexdata)[6]="contributor_name"
+colnames(linktracksindexdata)[7]="comments"
 
 linktracksindexdata <- linktracksindexdata %>%
   mutate(gid =  gsub('https://dischord.com/fugazi_live_series/','', url)) %>%
   mutate(fls_link = paste0("<a href='",  url, "' target='_blank'>", gid, "</a>")) %>%
-  select(timestamp, fls_link, track, track_name, linktrack_name)
+  select(timestamp, gid, fls_link, track, track_name, linktrack_name, contributor_name, comments)
 
 # user interface ----------------------------------------------------------
-
 ui <- fluidPage(
 
   theme = my_theme,
@@ -242,6 +243,7 @@ tabPanel("today",
                     textInput("clientTime", "Today's date (DD/MM/YYYY, HH:MM:SS)", value = ""),
 
                     tags$br(),
+
 
                     fluidRow(
 
@@ -1074,6 +1076,10 @@ tabPanel("quiz",
 
              )
 
+           ),
+
+           fluidRow(
+             column(12, style = "margin-top: 29px;", downloadButton("downloadQuizData", ""))
            )
 
          )
@@ -1114,6 +1120,10 @@ tabPanel("index",
 
              )
 
+           ),
+
+           fluidRow(
+             column(12, style = "margin-top: 29px;", downloadButton("downloadIndexData", ""))
            )
 
          )
@@ -3639,6 +3649,18 @@ server <- function(input, output, session) {
 
   })
 
+  quiz_data2 <- reactive({
+
+      mydf <- quiz_data()
+
+      mydf <- download_table_footer(mydf = mydf, nblankrows = 1, textcolumnname = "sources", rowtext = sourcestext)
+
+      mydf[is.na(mydf)] <- ""
+
+      mydf
+
+  })
+
   output$quiz_datatable <- DT::renderDataTable(DT::datatable({
 
     data <- quiz_data()
@@ -3648,11 +3670,41 @@ server <- function(input, output, session) {
   }, escape = c(-2),
   style = "bootstrap"))
 
+  # Downloadable csv of selected dataset
+
+  output$downloadQuizData <- downloadHandler(
+    filename = paste0(datestring, "_Fugazetteer_quiz.csv"),
+    content = function(file) {
+      write.csv(quiz_data2(), file, row.names = FALSE)
+    }
+  )
+
 # linktracksindex --------------------------------------------------------------------
 
   linktracksindex_data <- reactive({
 
-    linktracksindexdata
+    linktracksindexdata %>%
+      select(-gid)
+
+  })
+
+  linktracksindex_data2 <- reactive({
+
+    linktracksindexdata %>%
+      mutate(url = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
+      select(timestamp, url,	track,	track_name,	linktrack_name,	contributor_name,	comments)
+
+  })
+
+  linktracksindex_data3 <- reactive({
+
+    mydf <- linktracksindex_data2()
+
+    mydf <- download_table_footer(mydf = mydf, nblankrows = 1, textcolumnname = "sources", rowtext = sourcestext)
+
+    mydf[is.na(mydf)] <- ""
+
+    mydf
 
   })
 
@@ -3664,6 +3716,15 @@ server <- function(input, output, session) {
 
   }, escape = c(-3),
   style = "bootstrap"))
+
+  # Downloadable csv of selected dataset
+
+  output$downloadIndexData <- downloadHandler(
+    filename = paste0(datestring, "_Fugazetteer_index.csv"),
+    content = function(file) {
+      write.csv(linktracksindex_data3(), file, row.names = FALSE)
+    }
+  )
 
 # end of server -----------------------------------------------------------
 
