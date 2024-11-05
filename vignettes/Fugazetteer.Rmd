@@ -50,7 +50,7 @@ The app has 15 pages spread across 5 sections:
 
 Most of the pages have a visualisation (map or graph) and a data table further down the page, with the exception of 'transition', 'duration' and 'search' which only have data tables.
 
-Most pages have a download button located to the right of the menu controls, which can be used to download the data table as a CSV file.
+Most pages have a download button located to the right of the menu controls, or at the bottom of the page if there are no menu controls, which can be used to download the data table as a CSV file.
 
 ![](images/paste-9F81855C.png)
 
@@ -581,8 +581,8 @@ The top half of the scores will be included in the High Scores table. If you com
 
 # index
 
-Fugazi used to play "link tracks" in practices, sound checks, and sometimes as introductions or interludes at shows. Some of them feature in the live series but they are hard to find because they often have generic names like "intro", "interlude", "encore", or "link track". I noticed there are a few of these that get played repeatedly, sometimes over a period of years, so I started giving them index numbers to make it easier to find and compare these pieces of music. So far I have found 3 different link tracks that got played live at least twice - see the image. I've given them the same index number if they seem to be the same piece of music. The idea is to add new numbers to the link track index for other link tracks that are different from the ones that have been found so far. Please add to the link track index if you come across any other ones - using the 'Link Track Index' link will take you to a form where you can enter information. Any link track information you add will be included in the link track index shown on this page.
+Fugazi used to play "link tracks" in practices, sound checks, and sometimes as introductions or interludes at shows. Some of them feature in the live series but they are hard to find because they often have generic names like "intro", "interlude", "encore", or "link track". I noticed there are a few of these that get played repeatedly, sometimes over a period of years, so I started giving them index numbers to make it easier to find and compare these pieces of music. So far I have found 3 different link tracks that got played live at least twice - see the image. I've given them the same index number if they seem to be the same piece of music. The idea is to add new numbers to the link track index for other link tracks that are different from the ones that have been found so far. Please add to the link track index if you come across any other ones - using the 'Link Track Index' link will take you to a form where you can enter information. Any link track information you add using the form will be included in the link track index shown on this page of the Fugazetteer site.
 
-![](images/paste-2DA1108C.png)
+![](images/paste-37A45C32.png)
 
 Thanks.
