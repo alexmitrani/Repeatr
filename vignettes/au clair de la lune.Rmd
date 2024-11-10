@@ -1,0 +1,112 @@
+---
+title: "au clair de la lune"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{au clair de la lune}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+bibliography: references_au_clair_de_la_lune.bib
+link-citations: true
+autosize: true
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  fig.width=7,
+  fig.height=5,
+  comment = "#>"
+)
+```
+
+```{r, include = FALSE}
+library(Repeatr)
+```
+
+By Alex Mitrani
+
+10 November 2024
+
+## Introduction
+
+On 7 November 1990 Fugazi and The Ex played a benefit for Steunpunt Zetten (support point Zetten) at Paradiso in Amsterdam, Netherlands. Steunpunt Zetten was a support group and activist group working on behalf of young people who complained that they suffered abuse of various kinds from a psychiatrist in charge of the residential youth care institution (Heldringstichting) in Zetten.\
+Complaints were originally published in 1974 but it took until 1990 for the psychiatrist Theo Finkensieper to be investigated, charged and sentenced to 6 years in prison. He was sentenced on 30 May 1990. Finkensieper's appeal was heard in October 1990 and rejected.\
+'When Steunpunt Zetten sought publicity from 24 April 1990, other reports of sexual abuse within youth care institutions came in almost immediately, such as in the youth care institution De Dreef in Wapenveld, where there was sexual abuse of boys. Ultimately, seven employees were also convicted here in 1993' [@vanderlans2012].
+
+> I'm sure most of you know this is a benefit, and for a very important cause indeed. In Washington DC we have similar problems with youth care, everybody's children think other children are crazy apparently, and they put them away in little psychiatric prisons where they are mistreated, abused, molested... So, anyway, I think it is a rather worthy cause. - Ian MacKaye, 7 November 1990 [@fugazi1990]
+
+Guy Picciotto sang something in French as part of an extended introduction to Two Beats Off [@fugazi1990].
+
+> Au clair de la lune
+>
+> Je suis tombé dans l'eau
+>
+> Ça se fait des bulles
+>
+> C'est très rigolo
+>
+> Voilà mon amour
+>
+> Avec des ciseaux
+>
+> Elle va couper mon coeur
+>
+> En trois mille morceaux
+
+## Lyrics
+
+Here the lyrics of Two Beats Off will be used as headings and commented in detail. The lyrics from the studio recording will be referred to here [@fugazi1990a] - there are some variations in live recordings.
+
+### I cut my nails to the quick
+
+XX
+
+### But still I was caught with my hands in the till
+
+XX
+
+### Red-handed
+
+XX
+
+### Give me something, give me anything
+
+XX
+
+### The threat of everything is when it becomes nothing at all
+
+XX
+
+### My fingers reaching, the trophy swelling
+
+XX
+
+### That's when desire trips me up...
+
+XX
+
+### Got a new technique, money lets the pieces fit where they fall
+
+XX
+
+### Privilege - it sanctions everything
+
+XX
+
+### Security - a net under it all
+
+XX
+
+### Once there was a body to see, now just the biggest mouth to feed of them all
+
+XX
+
+## Discussion
+
+XX
+
+## Conclusion
+
+XX
+
+## References
