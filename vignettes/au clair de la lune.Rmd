@@ -25,11 +25,15 @@ library(Repeatr)
 
 By Alex Mitrani
 
-17 November 2024
+24 November 2024
 
 ## Introduction
 
-Two Beats Off was debuted as an instrumental at the 40 Watt in Athens, Georgia on 3 May1989. The first rendition with lyrics was at the 9:30 Club in Washington DC on 20 July 1989. This show seems to be the source of the photo by Jim Saah that featured on the cover of Repeater, the album on which Two Beats Off got it's official release on 19 April 1990. Fugazi played Two Beats Off at least 371 times with the last recorded version being on the 6 July 2001 in Victoria, BC, Canada.
+Two Beats Off was launched as an instrumental at the 40 Watt in Athens, Georgia on 3 May1989. The first rendition with lyrics was at the 9:30 Club in Washington DC on 20 July 1989. This show seems to be the source of the photo by Jim Saah that featured on the cover of Repeater, the album on which Two Beats Off got it's official release on 19 April 1990. Fugazi played Two Beats Off at least 371 times with the last recorded version being on the 6 July 2001 in Victoria, BC, Canada.
+
+## Title
+
+I only have speculation to offer here. My guess is that 'two beats off' was a working title that became permanent. Like many Fugazi songs, 'two beats off' started off as an instrumental, and it seems likely that the title is a reference to something about the music. 'Two beats off' could imply that something about the music falls out of step with the preceding rhythm. If that is right it is probably the five heavy chords that come after 'caught with my hand in the till' and before 'red handed'. You know, the bit that goes DAA DUU DEE DII DUU. It's one of many highlights of the song.
 
 ## Lyrics
 
@@ -71,7 +75,18 @@ Someone who tries to be good but gets led astray by their desire. Similar langua
 
 Something broken but not cleaned up or fixed, just normalised and made to look like there is nothing wrong. "Move along, there is nothing to see here".
 
-In particular, this bit makes me think of pedophile priests and how they were dealt with by the church. In 1990 there was a TV documentary drama film called 'Judgement' about the case of a pedophile priest in Louisiana that first made headlines in 1985 [@chicagotribune1990].
+In particular, this bit makes me think of how cases of sexual abuse were dealt with by church authorities.
+
+> Loyola University of Chicago psychologist Eugene Kennedy, a former priest and writer on church
+> affairs, faults bishops for taking "advice of lawyers on issues that cannot be resolved merely by making the church legally defensible. It's the sweating surface of a culture that is corrupting. The church has failed to examine conflicts about human sexuality which throb within it. Cover-ups are impossible; where there is darkness we need light."
+>
+> ...overall, a cover-up pattern persists. Too often, bishops have simply recycled accused priests to a new parish, while the afflicted families were held at arm's length. Because judges have sealed the records of many civil settlements, there is no way to know exactly how much has been paid. But there are clear signs of heavy losses. In a Minneapolis case, the plaintiff's sister testified that he had rejected a \$1.5-million offer. The plaintiff's attorney, Jeffrey Anderson of St. Paul, says he has 30 suits pending for other clients, involving 16 priests in seven states. One Louisiana diocese and its insurers have paid \$15 million to victims of a parish priest. In all at least \$30 million is known to have been paid nationwide.
+>
+> \- The Washington Post, 1989-09-16. [@berry1989]
+
+In 1990 there was a TV documentary drama film called 'Judgement' about the case of a pedophile priest in Louisiana that first made headlines in 1985 [@chicagotribune1990].
+
+> The recent sexual abuse scandal in the Catholic Church has put the enforceability of confidentiality agreements in settlement under the microscope. For years, the Church used confidential settlements to silence abuse victims. Although these agreements protected the identity of the victim, they also concealed the identities of the priests who often continued to serve at their parishes or other ministries. For example, in 1997, the Roman Catholic Diocese of Albany paid a confidential settlement of just under one million dollars to a man who alleged that "he had been sexually abused for six years" by a priest "who regularly plied him with drugs and alcohol." The settlement fell just below the diocese's one million dollar ceiling; above that amount it must seek the consent of its finance counsel, an eight-member board composed of the diocesan bishop and seven lay people, designed to provide accountability for the diocese's decisions. Thus, the settlement was entirely insulated from any public scrutiny, allowing the abusive priest to remain anonymous and perhaps continue in his position. [@philp2002]
 
 ### privilege - it sanctions everything.
 
@@ -289,27 +304,43 @@ As seen in the summaries of live performances, this song went on evolving after 
 
 A series of potentially relevant news stories was published at around the time Two Beats Off was in the process of being written, and the story of one particular person, the DC area priest George Augustus Stallings Jr., seems to incorporate many of the themes of the song.
 
+> Stallings's dealings with young men in his parish were the subject of scrutiny in the late 1980s, when a series of front-page articles in The Washington Post quoted two unnamed former altar boys as saying that he had abused them. Stallings's former pastoral assistant, who was 22 at the time, spoke publicly about having a two-year sexual relationship with him.
+>
+> Stallings denied all of the allegations and had left the Catholic Church by the time the articles were published in 1989. He was excommunicated in 1990.
+>
+> \- The Washington Post, 2009-10-14 [@wan2009]
+
+It is not possible to say for sure that this person was a subject of the song but there are many aspects of his story that seem to coincide with parts of the song, especially considering some of the variations that were performed live.
+
 ### swing low, sweet chariot
 
 > Stallings, 41, a convert to Catholicism, attracted national attention as pastor of St. Teresa of Avila parish in Southeast Washington by melding the gospel music and preaching and worship styles familiar to blacks with the traditional mass. According to the priest, in his 12 years at St. Teresa's, membership increased from 200 to 2,000.
 >
 > \- The Washington Post, 1989-06-20. [@hyer1989]
 
+### fingers reaching, trophy swelling that's when desire trips me up....
+
+> The man, whom The Washington Post agreed not to identify, said the first incident occurred in the rectory on a summer afternoon when Stallings, whom he respected and considered "a great role model," asked the 16 year-old to kneel next to him on the carpet and share a loaf of bread. "He started touching my ear. And one thing led to another and we ended up upstairs in his room," the man, now 28, said in an interview Friday. "And, you know, that was the start of the relationship right there, at least the sexual relationship."
+>
+> "He talked about how the breaking of bread between two people is a very, how do you say it, a very special thing, a very caring thing," the man said. He said he and Stallings had oral sex that day and two or three times a week over the next three or four months. "He was saying things along the line that this was okay and that this was fine, this is something very special between two friends, and that it was nothing to be ashamed of or afraid of . . . . I thought it was wrong because this man was a priest and he was supposed to have this vow of chastity." They had sexual relations only in the church rectory, he said, although sometimes, "after mass, he would pull me aside, like into the side room there. He would kiss me, which I thought was awfully bold."
+>
+> \- The Washington Post, 1989-09-04 [@sessionsstepp1989]
+
 ### take a stand against the world
 
-> The Rev. George A. Stallings Jr., the dissident Catholic priest, went on national television yesterday to say that he is innocent of the allegation that he had sex with a 16-year-old altar boy. "Read my lips: I am innocent," Stallings said on CNN's "Larry King Live." Stallings went on to say, "What else do you want to know?" but declined to answer questions. He would not say if he has ever had sex with a minor or any man. He also would not state his views on pedophilia or the vow of celibacy. The Washington Post reported Monday that the former altar boy, now 28, swore in a signed statement that he repeatedly had sexual relations with the priest in the rectory of St. Teresa of Avila Catholic Church in Southeast Washington in a three- to four-month period in 1977. The man, whom The Post agreed not to identify, said he broke off the relationship and never reported it to authorities. The Post also reported that the Archdiocese of Washington had received a separate complaint three years ago but had not been able to substantiate it. This summer, The Post reported, Cardinal James A. Hickey confronted Stallings about his lifestyle and asked him to seek treatment at a church-owned facility specializing in treating pedophilia. Soon after the meeting with Hickey, Stallings defied church authorities by founding the Imani Temple, an independent black Catholic congregation. He said he was prompted by racism in the church. - The Washington Post, 1989-09-06. [@dedman1989]
+> The Rev. George A. Stallings Jr., the dissident Catholic priest, went on national television yesterday to say that he is innocent of the allegation that he had sex with a 16-year-old altar boy. "Read my lips: I am innocent," Stallings said on CNN's "Larry King Live." Stallings went on to say, "What else do you want to know?" but declined to answer questions. He would not say if he has ever had sex with a minor or any man. He also would not state his views on pedophilia or the vow of celibacy. The Washington Post reported Monday that the former altar boy, now 28, swore in a signed statement that he repeatedly had sexual relations with the priest in the rectory of St. Teresa of Avila Catholic Church in Southeast Washington in a three- to four-month period in 1977. The man, whom The Post agreed not to identify, said he broke off the relationship and never reported it to authorities. The Post also reported that the Archdiocese of Washington had received a separate complaint three years ago but had not been able to substantiate it. This summer, The Post reported, Cardinal James A. Hickey confronted Stallings about his lifestyle and asked him to seek treatment at a church-owned facility specializing in treating pedophilia. Soon after the meeting with Hickey, Stallings defied church authorities by founding the Imani Temple, an independent black Catholic congregation. He said he was prompted by racism in the church.
+>
+> \- The Washington Post, 1989-09-06. [@dedman1989]
 
 > Although Hickey couldn't establish whether Stallings was breaking his vow of celibacy, he could see that Stallings was breaking another vow - of obedience. In 1987, for instance, Stallings hired without permission a priest who had been suspended from his order in another city because of allegations that he made sexual advances to teenage boys. It is unclear what disturbed Hickey most about Stallings: the questions about his homosexual activity or his repeated challenges in many areas to the bishop's authority. After years of such challenges, Hickey last summer gave Stallings an ultimatum. In a dramatic confrontation, according to Stallings, Hickey ordered him to seek psychiatric treatment for an "excessive ego" at a church hospital known for treating priests with sexual disorders.
 >
 > \- The Washington Post, 1990-04-30. [@sessionsstepp1990]
 
-### money lets the pieces fit where they fall
-
-> ...overall, a cover-up pattern persists. Too often, bishops have simply recycled accused priests to a new parish, while the afflicted families were held at arm's length. Because judges have sealed the records of many civil settlements, there is no way to know exactly how much has been paid. But there are clear signs of heavy losses. In a Minneapolis case, the plaintiff's sister testified that he had rejected a \$1.5-million offer. The plaintiff's attorney, Jeffrey Anderson of St. Paul, says he has 30 suits pending for other clients, involving 16 priests in seven states. One Louisiana diocese and its insurers have paid \$15 million to victims of a parish priest. In all at least \$30 million is known to have been paid nationwide. - The Washington Post, 1989-09-16. [@berry1989]
-
 ### the place I love
 
-> In the summer of 1985, a Roman Catholic priest named George Augustus Stallings Jr. bought his independence for \$60,000 and named it Augustus Manor. The 80-year-old house, just up the hill from his St. Teresa of Avila Church, didn't look like much. But in the next two years Stallings restored it and adorned it with European and Oriental antiques, a Japanese garden and an Italian marble bathroom. The "jewel of Anacostia," as Washingtonian magazine called Augustus Manor, became a sign of Stallings's success as a parish priest and a preacher of national renown. His congregation was on its way to a tenfold increase in membership, a major renovation of its historic sanctuary and a leading role in the adaptation of Roman Catholicism for black believers. But Augustus Manor was more than a symbol. It was an act of defiance: Cardinal James A. Hickey, the archbishop of Washington, has a firm rule that parish priests live in rectories. [@dedman1990]
+> In the summer of 1985, a Roman Catholic priest named George Augustus Stallings Jr. bought his independence for \$60,000 and named it Augustus Manor. The 80-year-old house, just up the hill from his St. Teresa of Avila Church, didn't look like much. But in the next two years Stallings restored it and adorned it with European and Oriental antiques, a Japanese garden and an Italian marble bathroom. The "jewel of Anacostia," as Washingtonian magazine called Augustus Manor, became a sign of Stallings's success as a parish priest and a preacher of national renown. His congregation was on its way to a tenfold increase in membership, a major renovation of its historic sanctuary and a leading role in the adaptation of Roman Catholicism for black believers. But Augustus Manor was more than a symbol. It was an act of defiance: Cardinal James A. Hickey, the archbishop of Washington, has a firm rule that parish priests live in rectories.
+>
+> \- The Washington Post, 1990-04-29. [@dedman1990]
 
 ### I cut my nails to the quick
 
@@ -319,9 +350,9 @@ A series of potentially relevant news stories was published at around the time T
 
 ### but still I got caught with my hand in the till
 
-> Church officials said they were aware, for example, that since 1979 there had been scattered complaints from some parishioners at St. Teresa who questioned Stallings's stewardship of church funds. When Stallings bought Augustus Manor and began renovating it, some parishioners raised questions as to how he could afford it on his \$10,000 salary, according to a church official. Stallings has said he paid for the renovation with his earnings from preaching revivals around the country. Documents reviewed by The Washington Post show that Stallings wrote a \$4,478 check on a St. Teresa account for a cedar fence that surrounds Augustus Manor. Parish lay leaders and archdiocesan officials said recently they did not know of any expenditure of parish funds for the priest's home. A spokesman for Stallings declined to say why Stallings used the parish account or whether he reimbursed St. Teresa. [@dedman1990]
-
-It is not possible to say for sure that this person was a subject of the song but there are many aspects of his story that seem to coincide with parts of the song, especially considering some of the variations that were performed live.
+> Church officials said they were aware, for example, that since 1979 there had been scattered complaints from some parishioners at St. Teresa who questioned Stallings's stewardship of church funds. When Stallings bought Augustus Manor and began renovating it, some parishioners raised questions as to how he could afford it on his \$10,000 salary, according to a church official. Stallings has said he paid for the renovation with his earnings from preaching revivals around the country. Documents reviewed by The Washington Post show that Stallings wrote a \$4,478 check on a St. Teresa account for a cedar fence that surrounds Augustus Manor. Parish lay leaders and archdiocesan officials said recently they did not know of any expenditure of parish funds for the priest's home. A spokesman for Stallings declined to say why Stallings used the parish account or whether he reimbursed St. Teresa.
+>
+> \- The Washington Post, 1990-04-29. [@dedman1990]
 
 ## Discussion
 
@@ -332,8 +363,6 @@ It is notable how Two Beats Off is sung in the first person as if the singer is 
 It seems likely that one of the subjects of this song was sexual abuse by priests and how these crimes were covered up by church authorities. This had already become a scandal in the US at the time the song was written, although the scandal grew much bigger over the following years and broadened in scope to other countries around the world.
 
 Much of the content can be readily adapted to deal with other types of abuse in the context of institutions, as seems to have been done in the case of the 7 November 1990 benefit show at the Paradiso in Amsterdam, when the special extended introduction made Two Beats Off a highlight of the show. Two Beats Off was already an established song in the Fugazi repertoire at this point, so while it wasn't written for this show it seems likely that the introduction was added as a way of making it more specific to the occasion.
-
-Two Beats Off was previously featured on the Alphabetical Fugazi podcast [@wright2022].
 
 ## Conclusion
 
