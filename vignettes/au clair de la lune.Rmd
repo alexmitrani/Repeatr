@@ -91,7 +91,19 @@ The subject was young and perhaps attractive once, but not anymore - now they st
 
 ## Live variations
 
-Two Beats Off probably has more live variations than any other Fugazi song, at least in terms of the use of samples of other songs and variations to the main lyrics of the song. On several occasions the intro to Two Beats Off contained parts of several other songs threaded together. To reduce repetition of the same lines over and over again, the summary of each rendition will focus on the parts that are different, omitting lines that are the same as elsewhere.
+Two Beats Off probably has more live variations than any other Fugazi song, at least in terms of the use of samples of other songs and variations to the main lyrics of the song. Some of this will be due to practical considerations:
+
+> you'd be looking around the stage going like 'oh no, Ian's broken a string'
+>
+> so is there a song like Two Beats Off where I can play the opening chord for like 5 minutes
+>
+> and Brendan and I, we can vamp while Ian gets his guitar sorted out
+>
+> you know, a lot of it was based on practical considerations and how songs began
+>
+> \- Guy Picciotto [@mackaye2022]
+
+On several occasions the intro to Two Beats Off contained parts of several other songs threaded together. To reduce repetition of the same lines over and over again, the summary of each rendition will focus on the parts that are different, omitting lines that are the same as elsewhere.
 
 ### FLS0105 Athens, GA USA 5/3/1989
 
@@ -273,23 +285,43 @@ The extended introduction that was added to Two Beats Off made me wonder why thi
 
 ## Press Cuttings
 
-A series of potentially relevant news stories was published at around the time Two Beats Off was in the process of being written. As seen in the summaries of live performances, this song went on evolving after the album version had been published and almost every performance was different in some way from previous versions.
+As seen in the summaries of live performances, this song went on evolving after Repeater had been released and almost every performance was different in some way from previous versions.
 
-One particular person, the DC area Catholic priest George Augustus Stallings Jr., seems to embody many of the themes of the song. It is not possible to say for sure that this person was a subject of the song but there are many aspects of his story that seem to coincide with parts of the song, especially considering some of the variations that were performed live.
+A series of potentially relevant news stories was published at around the time Two Beats Off was in the process of being written, and the story of one particular person, the DC area priest George Augustus Stallings Jr., seems to incorporate many of the themes of the song.
 
-> Stallings, 41, a convert to Catholicism, attracted national attention as pastor of St. Teresa of Avila parish in Southeast Washington by melding the gospel music and preaching and worship styles familiar to blacks with the traditional mass. According to the priest, in his 12 years at St. Teresa\'s, membership increased from 200 to 2,000. - The Washington Post, 1989-06-20. [@hyer1989]
+### swing low, sweet chariot
+
+> Stallings, 41, a convert to Catholicism, attracted national attention as pastor of St. Teresa of Avila parish in Southeast Washington by melding the gospel music and preaching and worship styles familiar to blacks with the traditional mass. According to the priest, in his 12 years at St. Teresa's, membership increased from 200 to 2,000.
 >
+> \- The Washington Post, 1989-06-20. [@hyer1989]
+
+### take a stand against the world
+
 > The Rev. George A. Stallings Jr., the dissident Catholic priest, went on national television yesterday to say that he is innocent of the allegation that he had sex with a 16-year-old altar boy. "Read my lips: I am innocent," Stallings said on CNN's "Larry King Live." Stallings went on to say, "What else do you want to know?" but declined to answer questions. He would not say if he has ever had sex with a minor or any man. He also would not state his views on pedophilia or the vow of celibacy. The Washington Post reported Monday that the former altar boy, now 28, swore in a signed statement that he repeatedly had sexual relations with the priest in the rectory of St. Teresa of Avila Catholic Church in Southeast Washington in a three- to four-month period in 1977. The man, whom The Post agreed not to identify, said he broke off the relationship and never reported it to authorities. The Post also reported that the Archdiocese of Washington had received a separate complaint three years ago but had not been able to substantiate it. This summer, The Post reported, Cardinal James A. Hickey confronted Stallings about his lifestyle and asked him to seek treatment at a church-owned facility specializing in treating pedophilia. Soon after the meeting with Hickey, Stallings defied church authorities by founding the Imani Temple, an independent black Catholic congregation. He said he was prompted by racism in the church. - The Washington Post, 1989-09-06. [@dedman1989]
+
+> Although Hickey couldn't establish whether Stallings was breaking his vow of celibacy, he could see that Stallings was breaking another vow - of obedience. In 1987, for instance, Stallings hired without permission a priest who had been suspended from his order in another city because of allegations that he made sexual advances to teenage boys. It is unclear what disturbed Hickey most about Stallings: the questions about his homosexual activity or his repeated challenges in many areas to the bishop's authority. After years of such challenges, Hickey last summer gave Stallings an ultimatum. In a dramatic confrontation, according to Stallings, Hickey ordered him to seek psychiatric treatment for an "excessive ego" at a church hospital known for treating priests with sexual disorders.
 >
+> \- The Washington Post, 1990-04-30. [@sessionsstepp1990]
+
+### money lets the pieces fit where they fall
+
 > ...overall, a cover-up pattern persists. Too often, bishops have simply recycled accused priests to a new parish, while the afflicted families were held at arm's length. Because judges have sealed the records of many civil settlements, there is no way to know exactly how much has been paid. But there are clear signs of heavy losses. In a Minneapolis case, the plaintiff's sister testified that he had rejected a \$1.5-million offer. The plaintiff's attorney, Jeffrey Anderson of St. Paul, says he has 30 suits pending for other clients, involving 16 priests in seven states. One Louisiana diocese and its insurers have paid \$15 million to victims of a parish priest. In all at least \$30 million is known to have been paid nationwide. - The Washington Post, 1989-09-16. [@berry1989]
->
+
+### the place I love
+
 > In the summer of 1985, a Roman Catholic priest named George Augustus Stallings Jr. bought his independence for \$60,000 and named it Augustus Manor. The 80-year-old house, just up the hill from his St. Teresa of Avila Church, didn't look like much. But in the next two years Stallings restored it and adorned it with European and Oriental antiques, a Japanese garden and an Italian marble bathroom. The "jewel of Anacostia," as Washingtonian magazine called Augustus Manor, became a sign of Stallings's success as a parish priest and a preacher of national renown. His congregation was on its way to a tenfold increase in membership, a major renovation of its historic sanctuary and a leading role in the adaptation of Roman Catholicism for black believers. But Augustus Manor was more than a symbol. It was an act of defiance: Cardinal James A. Hickey, the archbishop of Washington, has a firm rule that parish priests live in rectories. [@dedman1990]
+
+### I cut my nails to the quick
+
+> Brown, now 25, said he and Stallings, 42, were lovers for the next two years, during which time he lived in Augustus Manor, the priest's house in Anacostia. For nine months of that time, Stallings employed Brown as a pastoral assistant at St. Teresa of Avila parish. Brown and other employees said that much of the time he was out of the parish on trips with Stallings. Brown and Stallings were consenting adults, but Stallings was sworn to celibacy in a church that considers homosexual activity a sin. Brown said Stallings knew parishioners were whispering about their relationship. "It bothered him, but all people could do was insinuate," Brown said. "He didn't think it would catch up with him."
 >
+> \- The Washington Post, 1990-04-30. [@sessionsstepp1990]
+
+### but still I got caught with my hand in the till
+
 > Church officials said they were aware, for example, that since 1979 there had been scattered complaints from some parishioners at St. Teresa who questioned Stallings's stewardship of church funds. When Stallings bought Augustus Manor and began renovating it, some parishioners raised questions as to how he could afford it on his \$10,000 salary, according to a church official. Stallings has said he paid for the renovation with his earnings from preaching revivals around the country. Documents reviewed by The Washington Post show that Stallings wrote a \$4,478 check on a St. Teresa account for a cedar fence that surrounds Augustus Manor. Parish lay leaders and archdiocesan officials said recently they did not know of any expenditure of parish funds for the priest's home. A spokesman for Stallings declined to say why Stallings used the parish account or whether he reimbursed St. Teresa. [@dedman1990]
->
-> Brown, now 25, said he and Stallings, 42, were lovers for the next two years, during which time he lived in Augustus Manor, the priest's house in Anacostia. For nine months of that time, Stallings employed Brown as a pastoral assistant at St. Teresa of Avila parish. Brown and other employees said that much of the time he was out of the parish on trips with Stallings. Brown and Stallings were consenting adults, but Stallings was sworn to celibacy in a church that considers homosexual activity a sin. Brown said Stallings knew parishioners were whispering about their relationship. "It bothered him, but all people could do was insinuate," Brown said. "He didn't think it would catch up with him." - The Washington Post, 1990-04-30. [@sessionsstepp1990]
->
-> Although Hickey couldn't establish whether Stallings was breaking his vow of celibacy, he could see that Stallings was breaking another vow - of obedience. In 1987, for instance, Stallings hired without permission a priest who had been suspended from his order in another city because of allegations that he made sexual advances to teenage boys. It is unclear what disturbed Hickey most about Stallings: the questions about his homosexual activity or his repeated challenges in many areas to the bishop's authority. After years of such challenges, Hickey last summer gave Stallings an ultimatum. In a dramatic confrontation, according to Stallings, Hickey ordered him to seek psychiatric treatment for an "excessive ego" at a church hospital known for treating priests with sexual disorders. - The Washington Post, 1990-04-30. [@sessionsstepp1990]
+
+It is not possible to say for sure that this person was a subject of the song but there are many aspects of his story that seem to coincide with parts of the song, especially considering some of the variations that were performed live.
 
 ## Discussion
 
