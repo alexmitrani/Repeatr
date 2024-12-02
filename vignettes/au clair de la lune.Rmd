@@ -1,8 +1,8 @@
 ---
-title: "au clair de la lune"
+title: "Au Clair de la Lune"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{au clair de la lune}
+  %\VignetteIndexEntry{Au Clair de la Lune}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 bibliography: references_au_clair_de_la_lune.bib
