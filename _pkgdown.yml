@@ -1,6 +1,4 @@
-url: ~
+url: https://alexmitrani.github.io/Repeatr/
 template:
-  package: preferably
-  params:
-    toggle: manual
+  bootstrap: 5
 

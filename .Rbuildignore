@@ -6,3 +6,4 @@
 ^drafts$
 ^pkgdown$
 ^\.httr-oauth$
+^\.github$
