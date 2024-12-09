@@ -79,9 +79,8 @@ Pieces could be pieces of a jigsaw puzzle, pieces of a game such as chess, or pi
 
 -   chess pieces represent a strict hierarchy that alludes to a traditional social hierarchy with the king being the most important piece, then the queen, the rooks, the bishops, the knights, and the pawns. The reference to money here implies power and hierarchy.
 
-```{=html}
 <!-- -->
-```
+
 -   something broken but not cleaned up or fixed, just normalised and made to look like there is nothing wrong.
 
 In particular, this bit makes me think of how cases of sexual abuse were dealt with by church authorities.
@@ -392,6 +391,19 @@ It is not possible to say for sure that this person was a subject of the song bu
 >
 > \- The Washington Post, 1990-04-29. [@dedman1990]
 
+### others
+
+The recorded version of 'Two Beats Off' was written about three years before Sinead O'Connor protested about sexual abuse in the Catholic church by ripping up a picture of the pope on Saturday Night Live.
+
+> The song, a chantlike a cappella protest of racism and other forms of injustice, says in part: "Until the philosophy which holds one race superior and another inferior is finally and permanently discredited and abandoned, everywhere is war. \... Until the color of a man's skin is of no more significance than the color of his eyes, I've got to say war!" It concludes with the line "We have confidence in the victory of good over evil."
+> After she intoned those words Saturday night, O'Connor, 26, wearing a long white lace dress, very close-cropped hair, a nose stud and a silver necklace with a Star of David, held up a color photo of the pope, began tearing it and said, "Fight the real enemy." [@carmody1992]
+
+Sinead O'Connor suffered a significant backlash following this protest, being banned, mocked and booed on various occasions.
+
+> Speaking with the New York *Times* in 2021, O'Connor said she had no regrets, though the backlash was overwhelming. "I'm not sorry I did it. It was brilliant. But it was very traumatizing. It was open season on treating me like a crazy bitch." [@gajanan2023]
+
+So, it is possible to protest or speak out about uncomfortable issues and powerful individuals openly but doing so can be costly and risky. Other cases which might have deterred a more open approach include the backlash experienced by The Beatles in the US to John Lennon's "more popular than Jesus" remark, which led to several incidents and the band deciding to not tour any more [@upi1966].
+
 ## Discussion
 
 I had literally heard this song hundreds of times and it never made much sense to me until the "au clair de la lune" introduction grabbed my attention and made me wonder why this had been added as an introduction. The benefit for victims of sexual abuse by a psychiatrist at a children's home made me wonder if Two Beats Off might be about similar cases of abuse and seen from this point of view the meaning of the lyrics seemed to become much clearer.
@@ -404,7 +416,7 @@ It's very hard to reach definite conclusions about this song because it doesn't 
 
 There are a lot of hints and clues, both in the lyrics themselves and considering the context of the time when the song was written, some of which I have explored in detail. The news stories in the Press Cuttings section may or may not have been used as source material. The number of coincidences with parts of the song make it seem likely that there is a connection but it is impossible to be sure.
 
-The challenge of reaching definite conclusions about the lyrics remind me of the saying 'there's no smoke without fire' that is used in cases where there is no hard evidence but such a quantity of rumors, speculatation and anecdotal evidence that it seems unlikely that these are all baseless. This seems fitting if the song is about what I think it is about.
+The challenge of reaching definite conclusions about the lyrics reminds me of the saying 'there's no smoke without fire' that is used in cases where there is no hard evidence but such a quantity of rumors, speculatation and anecdotal evidence that it seems unlikely that these are all baseless. This seems fitting if the song is about what I think it is about.
 
 ## Acknowledgements
 
