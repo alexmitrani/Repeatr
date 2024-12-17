@@ -25,7 +25,7 @@ library(Repeatr)
 
 By Alex Mitrani
 
-15 December 2024
+17 December 2024
 
 ## Introduction
 
@@ -212,6 +212,8 @@ This performance at Unitas features the following introduction:
 > salad is the first course
 >
 > what shall I choose for the main? [@fugazi1990c]
+
+These lines coincide with part of the lyrics of the song 'First Course' by Fire Party, from the EP 'New Orleans Opera' which was released as Dischord 037 in 1989 [@fireparty1989].
 
 It also features some variations to other lines:
 
