@@ -1139,9 +1139,7 @@ tabPanel("index",
 
         tags$div(
           tags$br(),
-          tags$a(rel="me", href="https://web.facebook.com/profile.php?id=61565512943866", "facebook"),
-          tags$a(rel="me", href="https://www.instagram.com/fugazetteer/", "instagram"),
-          tags$a(rel="me", href="https://github.com/alexmitrani/Repeatr/", "github"),
+          tags$a(rel="me", href="https://linktr.ee/fugazetteer", "fugazetteer links"),
           tags$br()
         )
 
