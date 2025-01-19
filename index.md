@@ -38,7 +38,7 @@ A web app that presents some of the data from the Repeatr package with interacti
 
 [The Emperor's New Outfit](articles/The%20Emperor's%20New%20Outfit.html) A discussion of the song Nice New Outfit from the album Steady Diet of Nothing. 
 
-[Au Clair de la Lune](articles/Au%20Clair%20de%20la%20Lune.html) A discussion of the song Two Beats Off from the album Repeater. 
+[Au Clair de la Lune](articles/au%20clair%20de%20la%20lune.html) A discussion of the song Two Beats Off from the album Repeater. 
 
 ## Acknowledgements
 
