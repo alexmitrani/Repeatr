@@ -4,7 +4,7 @@
 
 Exploring the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series). 
 
-## Repeatr package for R
+## Repeatr R package
 
 The Repeatr package can be installed from RStudio using the following command:
 
@@ -37,6 +37,8 @@ A web app that presents some of the data from the Repeatr package with interacti
 [polish with a small p](articles/polish%20with%20a%20small%20p.html) A discussion of the song Polish from the album Steady Diet of Nothing. 
 
 [The Emperor's New Outfit](articles/The%20Emperor's%20New%20Outfit.html) A discussion of the song Nice New Outfit from the album Steady Diet of Nothing. 
+
+[Au Clair de la Lune](articles/Au%20Clair%20de%20la%20Lune.html) A discussion of the song Two Beats Off from the album Repeater. 
 
 ## Acknowledgements
 
