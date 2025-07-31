@@ -1,0 +1,94 @@
+---
+title: "in your memory"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{in your memory}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+bibliography: references_in_your_memory.bib
+link-citations: true
+autosize: true
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  fig.width=7,
+  fig.height=5,
+  comment = "#>"
+)
+```
+
+```{r, include = FALSE}
+library(Repeatr)
+```
+
+By Alex Mitrani
+
+30 July 2025
+
+## Introduction
+
+Forensic Scene was played live for the first time at Colégio Leão XIII in Itaboraí, RJ, Brazil on 19 August 1994 [@fugazi1994], introduced by Guy with the comment "you're probably going to hate this song but we're going to play it anyway". The song got it's official release on Red Medicine which was released around the 12 May 1995 [@fugazi1995]. It was one of the later songs to debut that would be released on Repeater.
+
+```{r echo=FALSE}
+releases_data_input %>%
+  filter(release=="red medicine") %>%
+  select(song, date) %>%
+  rename(debut = date) %>%
+  arrange(debut)
+
+```
+
+Fugazi played Forensic Scene at least 201 times with the last recorded version being on the 4 November 2002 in London, England - the final Fugazi show to date. It was the 5th most played song from Red Medicine. In live shows Forensic Scene tended to be used later in the set, it was often followed by Promises (31 times) or by Long Division (21 times).
+
+> "Guy Picciotto: Brendan actually wrote the verse chords and I wrote the chorus chords... the verse chords seem simple but it's actually a very complicated thing. Brendan writes some very complicated guitar shit. His chordings are so wild and it's one of my favourite things that he ever wrote. The pleasure of learning to play that and then figuring out how to sing to it and then coming up with some big chorus ... it's one of my favourite things that Brendan and I worked on together, and it really came from those initial chordings that Brendan came up with, that are so interesting." [@picciotto2025]
+
+## Title
+
+## Lyrics
+
+> "Brian Gathy: What do you recall or feel comfortable sharing about the lyrics of Forensic Scene? - they are pretty intense.\
+> Guy Picciotto: It was a very sad moment that produced that song, I don't really have anything more specific to say to it than that, ... it was kind of like that forensic analysis post-fact of the horrible thing that had just happened, that's kind of like what it was." [@picciotto2025]
+
+The lyrics from the studio recording will be referred to here [@fugazi1995] - there are some variations in live recordings. The lyric sheet uses all lower case with no line breaks, here I'm going to use lower case and line breaks based on how it is sung.
+
+### in your memory not so gentle
+
+### perversify slash sentimental
+
+### caught between and caught without
+
+### i'm a failure not your failure now
+
+### in and out just like a knife would
+
+### tax the flesh and leave a cheap wound
+
+### fucked and fucking love and lay
+
+### congenitally fractured anyway
+
+### unclipped unclean
+
+### this forensic scene's all played out
+
+### the defense rests and sorry's just a no shit sherlock mouth talk con job
+
+### from your memory to this instant
+
+### worked so hard for working distance
+
+### like a mouth too late to shut
+
+### i'm a failure not your failure now
+
+## Live variations
+
+## Press Cuttings
+
+## Discussion
+
+## Acknowledgements
+
+## References
