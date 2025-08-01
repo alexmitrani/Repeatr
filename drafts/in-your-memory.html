@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>in your memory</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+
+
+
+<style type="text/css">
+
+div.csl-bib-body { }
+div.csl-entry {
+clear: both;
+margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+margin-left:2em;
+text-indent:-2em;
+}
+div.csl-left-margin {
+min-width:2em;
+float:left;
+}
+div.csl-right-inline {
+margin-left:2em;
+padding-left:1em;
+}
+div.csl-indent {
+margin-left: 2em;
+}
+</style>
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">in your memory</h1>
+
+
+
+<p>By Alex Mitrani</p>
+<p>31 July 2025</p>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>Forensic Scene was played live for the first time at Colégio Leão
+XIII in Itaboraí, RJ, Brazil on 19 August 1994 <span class="citation">(<a href="#ref-fugazi1994">Fugazi 1994</a>)</span>,
+introduced by Guy with the comment “you’re probably going to hate this
+song but we’re going to play it anyway”. The song got it’s official
+release on Red Medicine which was released around the 12 May 1995 <span class="citation">(<a href="#ref-fugazi1995">Fugazi 1995</a>)</span>. It
+was one of the later songs to debut that would be released on
+Repeater.</p>
+<pre><code>#&gt; # A tibble: 13 × 2
+#&gt;    song                 debut     
+#&gt;    &lt;fct&gt;                &lt;date&gt;    
+#&gt;  1 by you               1993-04-24
+#&gt;  2 fell, destroyed      1993-08-16
+#&gt;  3 target               1994-08-15
+#&gt;  4 birthday pony        1994-08-15
+#&gt;  5 forensic scene       1994-08-19
+#&gt;  6 version              1994-08-27
+#&gt;  7 downed city          1994-11-20
+#&gt;  8 back to base         1994-11-20
+#&gt;  9 latest disgrace      1994-11-20
+#&gt; 10 bed for the scraping 1994-11-20
+#&gt; 11 do you like me       1994-11-20
+#&gt; 12 long distance runner 1994-11-27
+#&gt; 13 combination lock     1994-11-27</code></pre>
+<p>Fugazi played Forensic Scene at least 201 times with the last
+recorded version being on the 4 November 2002 in London, England - the
+final Fugazi show to date. It was the 5th most played song from Red
+Medicine. In live shows Forensic Scene tended to be used later in the
+set, it was often followed by Promises (31 times) or by Long Division
+(21 times).</p>
+<p>There are several interviews where Guy Picciotto has commented on the
+song. In 1995 he only commented in outline:</p>
+<blockquote>
+<p>I don’t normally discuss what songs are actually specifically about.
+I feel like that the work that was put into creating the song is the
+expression and that people who listen to the song, if they’re interested
+in the song, create their own interpretations. I feel like, if it
+doesn’t make any sense, then I didn’t succeed when I wrote the song. I’m
+willing to accept that as a failure, but in general… Sometimes I’ll
+discuss a song like Cassavetes on In on the Kill Taker. I can say that
+that’s a song about the filmmaker John Cassavetes, because it seems to
+be fairly obvious, but Forensic scene… It’s like a less… It’s a more
+personal song. You can’t say that it’s about a specific person or
+something like that. It’s more about a situation. And I think it’s up to
+people to figure it out for themselves. <span class="citation">(<a href="#ref-mackaye1995">MacKaye and Picciotto 1995</a>)</span></p>
+</blockquote>
+<p>In a 2025 interview with Brian Gathy for the End on End podcast he
+went into more detail:</p>
+<blockquote>
+<p>Brendan actually wrote the verse chords and I wrote the chorus
+chords… the verse chords seem simple but it’s actually a very
+complicated thing. Brendan writes some very complicated guitar shit. His
+chordings are so wild and it’s one of my favourite things that he ever
+wrote. The pleasure of learning to play that and then figuring out how
+to sing to it and then coming up with some big chorus … it’s one of my
+favourite things that Brendan and I worked on together, and it really
+came from those initial chordings that Brendan came up with, that are so
+interesting.” <span class="citation">(<a href="#ref-picciotto2025">Picciotto 2025</a>)</span></p>
+</blockquote>
+<blockquote>
+<p>It was a very sad moment that produced that song, I don’t really have
+anything more specific to say to it than that, … it was kind of like
+that forensic analysis post-fact of the horrible thing that had just
+happened, that’s kind of like what it was.” <span class="citation">(<a href="#ref-picciotto2025">Picciotto 2025</a>)</span></p>
+</blockquote>
+<p>The first time the song was recorded live, in August 1994, it was
+fully formed with both lyrics and music being more or less identical to
+the studio version that would be recorded in early 1995. This strongly
+suggests it had been written, rehearsed and possibly performed live some
+time earlier. The 1993 Japan / Australia / New Zealand Tour ended in
+Honolulu, Hawaii on the 14 December 1993 and the next show after that
+was Brendan’s Going Away Party at Pirate House on 3 June 1994 (no
+recording exists). After that Brendan went to live in Seattle for
+several months, which means Forensic Scene was probably written sometime
+between December 1993 and May 1994. What happened in that time period
+that could be described as a ‘horrible thing’ and might have prompted
+the composition of this song? One event in particular comes to mind. To
+this day I remember where I was when I heard the news, which even on the
+first telling involved some forensic details - it stuck in my mind that
+they had to identify him from his fingerprints.</p>
+<blockquote>
+<p>NIRVANA SINGER FOUND DEAD By Richard Harrington and Richard Lei.
+April 9, 1994. Kurt Cobain, who led the grunge band Nirvana to
+superstardom yet reviled his own success, was found shot in the head in
+his Seattle home yesterday, an apparent suicide. <span class="citation">(<a href="#ref-harrington1994">Harrington and Leiby
+1994</a>)</span></p>
+</blockquote>
+<p>There are other possible interpretations. Several discussions of the
+song have characterized it as being about the break-up of a relationship
+<span class="citation">(<a href="#ref-wright">Wright and Berman,
+n.d.</a>)</span> and <span class="citation">(<a href="#ref-gathy">Gathy,
+n.d.</a>)</span>. Both of these discussions were prior to Guy
+Picciotto’s most recent remarks, which strongly suggest that it is about
+something much more unpleasant than a break-up.</p>
+<p>Patrick Foster’s 1995 review of Red Medicine linked the song to the
+O.J. Simpson trial but this is clearly impossible because the trial took
+place in 1995 and the song was already being performed live in August
+1994.</p>
+<blockquote>
+<p>“Forensic Scene” is driven by disgust at the circuslike O.J. Simpson
+trial, its singsong, nearly Lennonesque vocal fraught with hold-release
+momentum. <span class="citation">(<a href="#ref-foster1995">Foster
+1995</a>)</span></p>
+</blockquote>
+</div>
+<div id="title" class="section level2">
+<h2>Title</h2>
+<p>The American Academy of Forensic Sciences has this to say about the
+word ‘forensic’:</p>
+<blockquote>
+<p>The word forensic comes from the Latin word forensis: public, to the
+forum or public discussion; argumentative, rhetorical, belonging to
+debate or discussion. A relevant, modern definition of forensic is:
+relating to, used in, or suitable to a court of law. Any science used
+for the purposes of the law is a forensic science. … Forensic scientists
+may be involved anytime an objective, scientific analysis is needed to
+find the truth and to seek justice in a legal proceeding. <span class="citation">(<a href="#ref-aafs2022">AAFS 2022</a>)</span></p>
+</blockquote>
+<p>‘Scene’ has several possible meanings <span class="citation">(<a href="#ref-merriam-webster2008">Merriam-Webster 2008</a>)</span>:</p>
+<ul>
+<li><p>one of the subdivisions of a play</p></li>
+<li><p>a stage setting, or a real / imaginary view suggesting a stage
+setting</p></li>
+<li><p>the place of an occurrence or action</p></li>
+<li><p>an exhibition of anger or indecorous behavior</p></li>
+<li><p>a sphere of activity or situation</p></li>
+</ul>
+</div>
+<div id="lyrics" class="section level2">
+<h2>Lyrics</h2>
+<p>The lyrics from the studio recording will be referred to here <span class="citation">(<a href="#ref-fugazi1995">Fugazi 1995</a>)</span> -
+there are some variations in live recordings. The lyric sheet uses all
+lower case with no line breaks, here I’m going to use lower case and
+line breaks based on how it is sung.</p>
+<div id="in-your-memory-not-so-gentle" class="section level3">
+<h3>in your memory not so gentle</h3>
+</div>
+<div id="perversify-slash-sentimental" class="section level3">
+<h3>perversify slash sentimental</h3>
+</div>
+<div id="caught-between-and-caught-without" class="section level3">
+<h3>caught between and caught without</h3>
+</div>
+<div id="im-a-failure-not-your-failure-now" class="section level3">
+<h3>i’m a failure not your failure now</h3>
+</div>
+<div id="in-and-out-just-like-a-knife-would" class="section level3">
+<h3>in and out just like a knife would</h3>
+</div>
+<div id="tax-the-flesh-and-leave-a-cheap-wound" class="section level3">
+<h3>tax the flesh and leave a cheap wound</h3>
+</div>
+<div id="fucked-and-fucking-love-and-lay" class="section level3">
+<h3>fucked and fucking love and lay</h3>
+</div>
+<div id="congenitally-fractured-anyway" class="section level3">
+<h3>congenitally fractured anyway</h3>
+</div>
+<div id="unclipped-unclean" class="section level3">
+<h3>unclipped unclean</h3>
+</div>
+<div id="this-forensic-scenes-all-played-out" class="section level3">
+<h3>this forensic scene’s all played out</h3>
+</div>
+<div id="the-defense-rests-and-sorrys-just-a-no-shit-sherlock-mouth-talk-con-job" class="section level3">
+<h3>the defense rests and sorry’s just a no shit sherlock mouth talk con
+job</h3>
+</div>
+<div id="from-your-memory-to-this-instant" class="section level3">
+<h3>from your memory to this instant</h3>
+</div>
+<div id="worked-so-hard-for-working-distance" class="section level3">
+<h3>worked so hard for working distance</h3>
+</div>
+<div id="like-a-mouth-too-late-to-shut" class="section level3">
+<h3>like a mouth too late to shut</h3>
+</div>
+<div id="im-a-failure-not-your-failure-now-1" class="section level3">
+<h3>i’m a failure not your failure now</h3>
+</div>
+</div>
+<div id="live-variations" class="section level2">
+<h2>Live variations</h2>
+</div>
+<div id="press-cuttings" class="section level2">
+<h2>Press Cuttings</h2>
+</div>
+<div id="discussion" class="section level2">
+<h2>Discussion</h2>
+</div>
+<div id="acknowledgements" class="section level2">
+<h2>Acknowledgements</h2>
+</div>
+<div id="refences" class="section level2 unnumbered">
+<h2 class="unnumbered">Refences</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-aafs2022" class="csl-entry">
+AAFS. 2022. <span>“What Is Forensic Science?”</span> <a href="https://www.aafs.org/careers-forensic-science/what-forensic-science">https://www.aafs.org/careers-forensic-science/what-forensic-science</a>.
+</div>
+<div id="ref-foster1995" class="csl-entry">
+Foster, Patrick. 1995. <span>“Powerful Medicine.”</span> <a href="https://washingtoncitypaper.com/article/296470/powerful-medicine/">https://washingtoncitypaper.com/article/296470/powerful-medicine/</a>.
+</div>
+<div id="ref-fugazi1994" class="csl-entry">
+Fugazi. 1994. <span>“FLS0630 Itaborai Brazil 8/19/1994,”</span> August.
+<a href="https://dischord.com/fugazi_live_series/itaborai-brazil-81994">https://dischord.com/fugazi_live_series/itaborai-brazil-81994</a>.
+</div>
+<div id="ref-fugazi1995" class="csl-entry">
+———. 1995. <span>“Forensic Scene,”</span> June. <a href="https://fugazi.bandcamp.com/track/forensic-scene">https://fugazi.bandcamp.com/track/forensic-scene</a>.
+</div>
+<div id="ref-gathy" class="csl-entry">
+Gathy, Brian. n.d. <span>“FUGAZI Red Medicine Part One.”</span> <a href="https://castbox.fm/episode/FUGAZI-%22Red-Medicine%22-Part-one-id2660458-id824804643">https://castbox.fm/episode/FUGAZI-%22Red-Medicine%22-Part-one-id2660458-id824804643</a>.
+</div>
+<div id="ref-harrington1994" class="csl-entry">
+Harrington, Richard, and Richard Leiby. 1994. <span>“Nirvana Singer
+Found Dead,”</span> April. <a href="https://www.washingtonpost.com/archive/politics/1994/04/09/nirvana-singer-found-dead/d960b58a-c6a4-4270-9ea0-bb3ccc1fda34/">https://www.washingtonpost.com/archive/politics/1994/04/09/nirvana-singer-found-dead/d960b58a-c6a4-4270-9ea0-bb3ccc1fda34/</a>.
+</div>
+<div id="ref-mackaye1995" class="csl-entry">
+MacKaye, Ian, and Guy Picciotto. 1995. <span>“INTERVIEW w/ IAN MACKAYE
+&amp; GUY PICCIOTTO, Oslo, Norway, JULY 14, 1995,”</span> July. <a href="https://www.tumblr.com/anothersievefistedfind/124041639714/interview-w-ian-mackaye-guy-picciotto-oslo">https://www.tumblr.com/anothersievefistedfind/124041639714/interview-w-ian-mackaye-guy-picciotto-oslo</a>.
+</div>
+<div id="ref-merriam-webster2008" class="csl-entry">
+Merriam-Webster. 2008. <span>“Scene.”</span> <a href="https://www.merriam-webster.com/dictionary/scene">https://www.merriam-webster.com/dictionary/scene</a>.
+</div>
+<div id="ref-picciotto2025" class="csl-entry">
+Picciotto, Guy. 2025. <span>“FUGAZI Red Medicine Pt 2 w/ Guy
+Picciotto,”</span> July. <a href="https://castbox.fm/episode/FUGAZI-%22Red-Medicine%22-Pt-2-w-Guy-Picciotto-id2660458-id830734701">https://castbox.fm/episode/FUGAZI-%22Red-Medicine%22-Pt-2-w-Guy-Picciotto-id2660458-id830734701</a>.
+</div>
+<div id="ref-wright" class="csl-entry">
+Wright, Ian James, and Stuart Berman. n.d. <span>“Forensic Scene with
+Stuart Berman.”</span> <a href="https://castbox.fm/episode/%22Forensic-Scene%22-with-Stuart-Berman-id2812574-id335592966">https://castbox.fm/episode/%22Forensic-Scene%22-with-Stuart-Berman-id2812574-id335592966</a>.
+</div>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
