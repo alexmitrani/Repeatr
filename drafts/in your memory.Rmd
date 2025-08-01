@@ -25,7 +25,7 @@ library(Repeatr)
 
 By Alex Mitrani
 
-30 July 2025
+31 July 2025
 
 ## Introduction
 
@@ -42,18 +42,45 @@ releases_data_input %>%
 
 Fugazi played Forensic Scene at least 201 times with the last recorded version being on the 4 November 2002 in London, England - the final Fugazi show to date. It was the 5th most played song from Red Medicine. In live shows Forensic Scene tended to be used later in the set, it was often followed by Promises (31 times) or by Long Division (21 times).
 
-> "Guy Picciotto: Brendan actually wrote the verse chords and I wrote the chorus chords... the verse chords seem simple but it's actually a very complicated thing. Brendan writes some very complicated guitar shit. His chordings are so wild and it's one of my favourite things that he ever wrote. The pleasure of learning to play that and then figuring out how to sing to it and then coming up with some big chorus ... it's one of my favourite things that Brendan and I worked on together, and it really came from those initial chordings that Brendan came up with, that are so interesting." [@picciotto2025]
+There are several interviews where Guy Picciotto has commented on the song. In 1995 he only commented in outline:
+
+> I don’t normally discuss what songs are actually specifically about. I feel like that the work that was put into creating the song is the expression and that people who listen to the song, if they’re interested in the song, create their own interpretations. I feel like, if it doesn’t make any sense, then I didn’t succeed when I wrote the song. I’m willing to accept that as a failure, but in general… Sometimes I’ll discuss a song like Cassavetes on In on the Kill Taker. I can say that that’s a song about the filmmaker John Cassavetes, because it seems to be fairly obvious, but Forensic scene… It’s like a less… It’s a more personal song. You can’t say that it’s about a specific person or something like that. It’s more about a situation. And I think it’s up to people to figure it out for themselves. [@mackaye1995]
+
+In a 2025 interview with Brian Gathy for the End on End podcast he went into more detail:
+
+> Brendan actually wrote the verse chords and I wrote the chorus chords... the verse chords seem simple but it's actually a very complicated thing. Brendan writes some very complicated guitar shit. His chordings are so wild and it's one of my favourite things that he ever wrote. The pleasure of learning to play that and then figuring out how to sing to it and then coming up with some big chorus ... it's one of my favourite things that Brendan and I worked on together, and it really came from those initial chordings that Brendan came up with, that are so interesting." [@picciotto2025]
+
+> It was a very sad moment that produced that song, I don't really have anything more specific to say to it than that, ... it was kind of like that forensic analysis post-fact of the horrible thing that had just happened, that's kind of like what it was." [@picciotto2025]
+
+The first time the song was recorded live, in August 1994, it was fully formed with both lyrics and music being more or less identical to the studio version that would be recorded in early 1995. This strongly suggests it had been written, rehearsed and possibly performed live some time earlier. The 1993 Japan / Australia / New Zealand Tour ended in Honolulu, Hawaii on the 14 December 1993 and the next show after that was Brendan's Going Away Party at Pirate House on 3 June 1994 (no recording exists). After that Brendan went to live in Seattle for several months, which means Forensic Scene was probably written sometime between December 1993 and May 1994. What happened in that time period that could be described as a 'horrible thing' and might have prompted the composition of this song? One event in particular comes to mind. To this day I remember where I was when I heard the news, which even on the first telling involved some forensic details - it stuck in my mind that they had to identify him from his fingerprints.
+
+> NIRVANA SINGER FOUND DEAD By Richard Harrington and Richard Lei. April 9, 1994. Kurt Cobain, who led the grunge band Nirvana to superstardom yet reviled his own success, was found shot in the head in his Seattle home yesterday, an apparent suicide. [@harrington1994]
+
+There are other possible interpretations. Several discussions of the song have characterized it as being about the break-up of a relationship [@wright] and [@gathy]. Both of these discussions were prior to Guy Picciotto's most recent remarks, which strongly suggest that it is about something much more unpleasant than a break-up.
+
+Patrick Foster's 1995 review of Red Medicine linked the song to the O.J. Simpson trial but this is clearly impossible because the trial took place in 1995 and the song was already being performed live in August 1994.
+
+> “Forensic Scene” is driven by disgust at the circuslike O.J. Simpson trial, its singsong, nearly Lennonesque vocal fraught with hold-release momentum. [@foster1995]
 
 ## Title
 
+The American Academy of Forensic Sciences has this to say about the word 'forensic':
+
+> The word forensic comes from the Latin word forensis: public, to the forum or public discussion; argumentative, rhetorical, belonging to debate or discussion. A relevant, modern definition of forensic is: relating to, used in, or suitable to a court of law. Any science used for the purposes of the law is a forensic science. ... Forensic scientists may be involved anytime an objective, scientific analysis is needed to find the truth and to seek justice in a legal proceeding. [@aafs2022]
+
+'Scene' has several possible meanings [@merriam-webster2008]:
+
+-   one of the subdivisions of a play
+
+-   a stage setting, or a real / imaginary view suggesting a stage setting
+
+-   the place of an occurrence or action
+
+-   an exhibition of anger or indecorous behavior
+
+-   a sphere of activity or situation
+
 ## Lyrics
-
-> "Brian Gathy: What do you recall or feel comfortable sharing about the lyrics of Forensic Scene? - they are pretty intense.\
-> Guy Picciotto: It was a very sad moment that produced that song, I don't really have anything more specific to say to it than that, ... it was kind of like that forensic analysis post-fact of the horrible thing that had just happened, that's kind of like what it was." [@picciotto2025]
-
-> Petter: The first thing I wanted to ask you about is the song Forensic scene. What is it all about?
-Guy: That particular song? I don’t normally discuss what songs are actually specifically about. I feel like that the work that was put into creating the song is the expression and that people who listen to the song, if they’re interested in the song, create their own interpretations. I feel like, if it doesn’t make any sense, then I didn’t succeed when I wrote the song. I’m willing to accept that as a failure, but in general… Sometimes I’ll discuss a song like Cassavetes on In on the Kill Taker. I can say that that’s a song about the filmmaker John Cassavetes, because it seems to be fairly obvious, but Forensic scene… It’s like a less… It’s a more personal song. You can’t say that it’s about a specific person or something like that. It’s more about a situation. And I think it’s up to people to figure it out for themselves. 
-
 
 The lyrics from the studio recording will be referred to here [@fugazi1995] - there are some variations in live recordings. The lyric sheet uses all lower case with no line breaks, here I'm going to use lower case and line breaks based on how it is sung.
 
@@ -95,4 +122,4 @@ The lyrics from the studio recording will be referred to here [@fugazi1995] - th
 
 ## Acknowledgements
 
-## References
+## Refences
