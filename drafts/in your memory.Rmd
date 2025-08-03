@@ -25,7 +25,7 @@ library(Repeatr)
 
 By Alex Mitrani
 
-31 July 2025
+3 August 2025
 
 ## Introduction
 
@@ -52,15 +52,11 @@ In a 2025 interview with Brian Gathy for the End on End podcast he went into mor
 
 > It was a very sad moment that produced that song, I don't really have anything more specific to say to it than that, ... it was kind of like that forensic analysis post-fact of the horrible thing that had just happened, that's kind of like what it was." [@picciotto2025]
 
-The first time the song was recorded live, in August 1994, it was fully formed with both lyrics and music being more or less identical to the studio version that would be recorded in early 1995. This strongly suggests it had been written, rehearsed and possibly performed live some time earlier. The 1993 Japan / Australia / New Zealand Tour ended in Honolulu, Hawaii on the 14 December 1993 and the next show after that was Brendan's Going Away Party at Pirate House on 3 June 1994 (no recording exists). After that Brendan went to live in Seattle for several months, which means Forensic Scene was probably written sometime between December 1993 and May 1994. What happened in that time period that could be described as a 'horrible thing' and might have prompted the composition of this song? One event in particular comes to mind. To this day I remember where I was when I heard the news, which even on the first telling involved some forensic details - it stuck in my mind that they had to identify him from his fingerprints.
+The first time the song was recorded live, in August 1994, it was fully formed with both lyrics and music being more or less identical to the studio version that would be recorded in early 1995. This strongly suggests it had been written, rehearsed and possibly performed live some time earlier. The 1993 Japan / Australia / New Zealand Tour ended in Honolulu, Hawaii on the 14 December 1993 and the next show after that was Brendan's Going Away Party at Pirate House on 3 June 1994 (no recording exists). After that Brendan went to live in Seattle for several months, which means Forensic Scene was probably written sometime between December 1993 and May 1994.
 
-> NIRVANA SINGER FOUND DEAD By Richard Harrington and Richard Lei. April 9, 1994. Kurt Cobain, who led the grunge band Nirvana to superstardom yet reviled his own success, was found shot in the head in his Seattle home yesterday, an apparent suicide. [@harrington1994]
-
-There are other possible interpretations. Several discussions of the song have characterized it as being about the break-up of a relationship [@wright] and [@gathy]. Both of these discussions were prior to Guy Picciotto's most recent remarks, which strongly suggest that it is about something much more unpleasant than a break-up.
-
-Patrick Foster's 1995 review of Red Medicine linked the song to the O.J. Simpson trial but this is impossible because the trial took place in 1995 and the song was already being performed live in August 1994.
-
-> “Forensic Scene” is driven by disgust at the circuslike O.J. Simpson trial, its singsong, nearly Lennonesque vocal fraught with hold-release momentum. [@foster1995]
+> Did you ever have a couple of days where like everything you do is some incredibly stupid-ass mistake? Well, I've had a couple of days like that and this is a song for me, called Forensic Scene.
+>
+> Guy Picciotto [@fugazi1995a]
 
 ## Title
 
@@ -186,9 +182,23 @@ Outside of the chorus, this is the only line that is repeats, which gives it emp
 
 ## Live variations
 
+The 1995 show at Queen's Hall, Belfast contains a grungy extended ending with Ian and Guy singing "over and over and over and over and over and over and over and over and over and over..." [@fugazi1995a]
+
+Many live performances of Forensic Scene include an additional line just before the instrumental break, some of these are easier to make out than others, for instance "take a walk, sister" [@fugazi1996], [@fugazi1996a].
+
 ## Press Cuttings
 
+What happened between December 1993 and May 1994 that could be described as a 'horrible thing' and might have prompted the composition of this song? One event in particular comes to mind. To this day I remember where I was when I heard the news, which even on the first telling involved some forensic details - it stuck in my mind that they had to identify him from his fingerprints.
+
+> NIRVANA SINGER FOUND DEAD By Richard Harrington and Richard Lei. April 9, 1994. Kurt Cobain, who led the grunge band Nirvana to superstardom yet reviled his own success, was found shot in the head in his Seattle home yesterday, an apparent suicide. [@harrington1994]
+
 ## Discussion
+
+There are other possible interpretations. Several discussions of the song have characterized it as being about the break-up of a relationship [@wright] and [@gathy]. Both of these discussions were prior to Guy Picciotto's most recent remarks, which strongly suggest that it is about something much more unpleasant than a break-up.
+
+Patrick Foster's 1995 review of Red Medicine linked the song to the O.J. Simpson trial but this is impossible because the trial took place in 1995 and the song was already being performed live in August 1994.
+
+> “Forensic Scene” is driven by disgust at the circuslike O.J. Simpson trial, its singsong, nearly Lennonesque vocal fraught with hold-release momentum. [@foster1995]
 
 ## Acknowledgements
 
