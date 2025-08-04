@@ -29,7 +29,7 @@ By Alex Mitrani
 
 ## Introduction
 
-Forensic Scene was played live for the first time at Colégio Leão XIII in Itaboraí, RJ, Brazil on 19 August 1994 [@fugazi1994], introduced by Guy with the comment "you're probably going to hate this song but we're going to play it anyway". The song got it's official release on Red Medicine which was released around the 12 May 1995 [@fugazi1995]. It was one of the later songs to debut that would be released on Repeater.
+Forensic Scene was played live for the first time at Colégio Leão XIII in Itaboraí, RJ, Brazil on 19 August 1994 [@fugazi1994], introduced by Guy with the comment "you're probably going to hate this song but we're going to play it anyway". The song got it's official release on Red Medicine which was released around the 12 May 1995 [@fugazi1995]. 
 
 ```{r echo=FALSE}
 releases_data_input %>%
