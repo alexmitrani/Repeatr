@@ -4,140 +4,74 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Inform modern browsers that this page supports both dark and light color schemes,
-  and the page author prefers light. --><meta name="color-scheme" content="dark light">
-<script>
-  // If `prefers-color-scheme` is not supported, fall back to light mode.
-  // i.e. In this case, inject the `light` CSS before the others, with
-  // no media filter so that it will be downloaded with highest priority.
-  if (window.matchMedia("(prefers-color-scheme: dark)").media === "not all") {
-    document.documentElement.style.display = "none";
-    document.head.insertAdjacentHTML(
-      "beforeend",
-      "<link id=\"css\" rel=\"stylesheet\" href=\"https://bootswatch.com/3/flatly/bootstrap.css\" onload=\"document.documentElement.style.display = ''\">"
-    );
-  }
-</script><title>All Access • Repeatr</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="All Access">
-<meta property="og:description" content="Repeatr">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]--><!-- Flatly Theme - Light  --><link id="css-light" rel="stylesheet" href="https://bootswatch.com/3/flatly/bootstrap.css" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)">
-<!-- Darkly Theme - Dark --><link id="css-dark" rel="stylesheet" href="https://bootswatch.com/3/darkly/bootstrap.css" media="(prefers-color-scheme: dark)">
-<!-- preferably CSS --><link rel="stylesheet" href="../preferably.css">
-<link id="css-code-light" rel="stylesheet" href="../code-color-scheme-light.css" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)">
-<link id="css-code-dark" rel="stylesheet" href="../code-color-scheme-dark.css" media="(prefers-color-scheme: dark)">
-<script src="../darkswitch.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>All Access • Repeatr</title>
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="All Access">
 </head>
-<body data-spy="scroll" data-target="#toc">
-    
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9183</span>
-      </span>
-    </div>
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../articles/Repeatr.html">Get started</a>
-</li>
-<li>
-  <a href="../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/94songs.html">94 SONGS</a>
-    </li>
-    <li>
-      <a href="../articles/AllAccess.html">All Access</a>
-    </li>
-    <li>
-      <a href="../articles/CombinationLock.html">Combination Lock</a>
-    </li>
-    <li>
-      <a href="../articles/Fugazetteer.html">Fugazetteer</a>
-    </li>
-    <li>
-      <a href="../articles/LinkTracks.html">Link Tracks</a>
-    </li>
-    <li>
-      <a href="../articles/Outsiders.html">Outsiders</a>
-    </li>
-    <li>
-      <a href="../articles/Playlist.html">Playlist</a>
-    </li>
-    <li>
-      <a href="../articles/polish%20with%20a%20small%20p.html">polish with a small p</a>
-    </li>
-    <li>
-      <a href="../articles/Ratings.html">Ratings</a>
-    </li>
-    <li>
-      <a href="../articles/The%20Emperor's%20New%20Outfit.html">The Emperor's New Outfit</a>
-    </li>
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+
+    <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
+
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9183</small>
+
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="../articles/Repeatr.html">Get started</a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="active nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/94songs.html">94 SONGS</a></li>
+    <li><a class="dropdown-item" href="../articles/AllAccess.html">All Access</a></li>
+    <li><a class="dropdown-item" href="../articles/au%20clair%20de%20la%20lune.html">Au Clair de la Lune</a></li>
+    <li><a class="dropdown-item" href="../articles/CombinationLock.html">Combination Lock</a></li>
+    <li><a class="dropdown-item" href="../articles/Fugazetteer.html">Fugazetteer</a></li>
+    <li><a class="dropdown-item" href="../articles/in%20your%20memory.html">in your memory</a></li>
+    <li><a class="dropdown-item" href="../articles/LinkTracks.html">Link Tracks</a></li>
+    <li><a class="dropdown-item" href="../articles/Outsiders.html">Outsiders</a></li>
+    <li><a class="dropdown-item" href="../articles/Playlist.html">Playlist</a></li>
+    <li><a class="dropdown-item" href="../articles/polish%20with%20a%20small%20p.html">polish with a small p</a></li>
+    <li><a class="dropdown-item" href="../articles/Ratings.html">Ratings</a></li>
+    <li><a class="dropdown-item" href="../articles/The%20Emperor's%20New%20Outfit.html">The Emperor's New Outfit</a></li>
   </ul>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-          <a href="#" id="css-toggle-btn">
-            <span class="fas fa-adjust fa-lg"></span>
-          </a>
-        </li>
-        
-        <li>
-  <a href="https://github.com/alexmitrani/Repeatr/" class="external-link">
-    <span class="fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
-        
-        
-
-
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/alexmitrani/Repeatr/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
-<!--/.nav-collapse -->
+
+
   </div>
-<!--/.container -->
-</div>
-<!--/.navbar -->
+</nav><div class="container template-article">
 
-      
 
-      </header><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>All Access</h1>
+
+
+<div class="row">
+  <main id="main" class="col-md-9"><div class="page-header">
+
+      <h1>All Access</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/alexmitrani/Repeatr/blob/HEAD/vignettes/AllAccess.Rmd" class="external-link"><code>vignettes/AllAccess.Rmd</code></a></small>
-      <div class="hidden name"><code>AllAccess.Rmd</code></div>
-
+      <div class="d-none name"><code>AllAccess.Rmd</code></div>
     </div>
 
     
@@ -159,7 +93,7 @@ whatever additional shows I could find. I listened to 915 Fugazi shows
 in 812 days - I tried to limit myself to 1 show a day but there were a
 few days when I listened to more than one. I went through the series in
 chronological order from FLS0001 (1987-09-03) to FLS1045 (2002-11-04)
-and then did a search for <a href="https://alexmitrani.github.io/Repeatr/articles/Outsiders.html" class="external-link">additional
+and then did a search for <a href="https://alexmitrani.github.io/Repeatr/articles/Outsiders.html">additional
 shows not yet available on the Fugazi Live Series site</a> and listened
 to those as well. The show I ended on was FLS0177 (1990-01-27),
 St. Augustine’s Church Hall, the first show of 1990 and a fitting
@@ -197,7 +131,7 @@ hear a song played for what would have been the first time.</p>
 page, read other people’s comments and add a few of my own if it seemed
 that there was something else to be said. If I really liked the show and
 felt I would want to listen to it again in future I would add it to my
-<a href="https://alexmitrani.github.io/Repeatr/articles/Playlist.html" class="external-link">playlist</a>.
+<a href="https://alexmitrani.github.io/Repeatr/articles/Playlist.html">playlist</a>.
 If I wrote something that seemed worth sharing I would share my notes on
 the <a href="https://web.facebook.com/groups/Fugazi.appreciation.group/" class="external-link">Facebook
 group</a> - one of the limitations of the Fugazi Live Series site is
@@ -215,7 +149,7 @@ of what would become the <a href="https://alexmitrani.shinyapps.io/Fugazetteer/"
 app. It was also one of my first experiences of Fugazi’s tendency to
 defy expectations. One of my assumptions was that the band would play
 each song only once on any given night. I soon heard back that there
-were several exceptions to this, and found that <a href="https://alexmitrani.github.io/Repeatr/articles/LinkTracks.html#three-repeats-but-only-one-two-for-tuesdays" class="external-link">Fugazi
+were several exceptions to this, and found that <a href="https://alexmitrani.github.io/Repeatr/articles/LinkTracks.html#three-repeats-but-only-one-two-for-tuesdays">Fugazi
 played a song twice on at least three occasions</a>.</p>
 <p><a href="https://alexmitrani.shinyapps.io/Fugazetteer/" class="external-link"><img src="images/descarga.png" alt="Fugazi song ratings from Fugazetteer."></a></p>
 </div>
@@ -260,7 +194,7 @@ in their time off.</p>
 </h2>
 <p>As I made my way through the series I took note of the shows I would
 probably want to come back to and listen to again in future. The result
-was a playlist of 246 shows which can be found <a href="https://alexmitrani.github.io/Repeatr/articles/Playlist.html" class="external-link">here</a>.
+was a playlist of 246 shows which can be found <a href="https://alexmitrani.github.io/Repeatr/articles/Playlist.html">here</a>.
 This is not an exhaustive list of good shows, these are just the shows
 that stood out to me. I was trying to be selective so if there was a run
 of shows that all sounded good I would try to just pick a few and not
@@ -286,10 +220,12 @@ with a creative solution to deal with a few anti-social but extremely
 persistent crowd surfers. Then there is <a href="https://www.dischord.com/fugazi_live_series/san-antonio-tx-usa-111895" class="external-link">FLS0761,
 Showcase Special Events, San Antonio, TX, USA, 1995-11-18</a> which
 probably holds the record for the highest number of expulsions.</p>
-<p>Later on I made another, much shorter list which I call the
-‘miniseries’ - 9 shows that include at least one rendition of all 94
-songs that were played at least twice in the Fugazi Live Series,
-including all the rare ones:</p>
+<div class="section level3">
+<h3 id="miniseries">Miniseries<a class="anchor" aria-label="anchor" href="#miniseries"></a>
+</h3>
+<p>Here is a much shorter list that I call the ‘miniseries’ - 9 shows
+that include at least one rendition of all 94 songs that were played at
+least twice in the Fugazi Live Series, including all the rare ones:</p>
 <p><a href="https://www.dischord.com/fugazi_live_series/linz-austria-111088" class="external-link">FLS0073,
 Kapu, Linz, Austria 1988-10-11</a></p>
 <p><a href="https://www.dischord.com/fugazi_live_series/new-york-ny-usa-100989" class="external-link">FLS0149,
@@ -313,6 +249,35 @@ as well, so I feel confident in recommending the miniseries to those who
 might want a short, reasonably representative sample of the Fugazi Live
 Series.</p>
 </div>
+<div class="section level3">
+<h3 id="top-10">Top 10<a class="anchor" aria-label="anchor" href="#top-10"></a>
+</h3>
+<p>I was asked to share a list of 10 favourite shows without worrying
+too much about the choices. This is what I came up with, in
+chronological order. I didn’t go to any of these. The shows on this list
+all have memorable recordings that I enjoyed listening to very much.</p>
+<p><a href="https://dischord.com/fugazi_live_series/hoboken-nj-usa-63088" class="external-link">FLS0044,
+Maxwell’s, Hoboken, NJ, USA, 1988-06-30</a></p>
+<p><a href="https://dischord.com/fugazi_live_series/washington-dc-usa-11291" class="external-link">FLS0308,
+Lafayette Park, Washington, DC, USA, 1991-01-12</a></p>
+<p><a href="https://dischord.com/fugazi_live_series/munich-germany-61692" class="external-link">FLS0468,
+Theaterfabrik, Munich, Germany, 1992-06-16</a></p>
+<p><a href="https://dischord.com/fugazi_live_series/berlin-germany-62892" class="external-link">FLS0478,
+Tempodrom, Berlin, Germany, 1992-06-28</a></p>
+<p><a href="https://dischord.com/fugazi_live_series/fitchburg-ma-usa-91793" class="external-link">FLS0587,
+Wallace Civic Center, Fitchburg, MA, USA, 1993-09-17</a></p>
+<p><a href="https://dischord.com/fugazi_live_series/belfast-northern-ireland-50995" class="external-link">FLS0659,
+Queen’s Hall, Belfast, Northern Ireland, 1995-05-09</a></p>
+<p><a href="https://dischord.com/fugazi_live_series/kingersheim-france-61095" class="external-link">FLS0685,
+Salle Des Fetes, Kingersheim, France, 1995-06-10</a></p>
+<p><a href="https://dischord.com/fugazi_live_series/florence-italy-61495" class="external-link">FLS0688,
+CPA, Florence, Italy, 1995-06-14</a></p>
+<p><a href="https://dischord.com/fugazi_live_series/okayama-japan-102296" class="external-link">FLS0795,
+Pepperland, Okayama, Japan, 1996-10-22</a></p>
+<p><a href="https://dischord.com/fugazi_live_series/leeds-england-103102" class="external-link">FLS1041,
+Metropolitan University, Leeds, UK, 2002-10-31</a></p>
+</div>
+</div>
 <div class="section level2">
 <h2 id="fugazetteer">Fugazetteer<a class="anchor" aria-label="anchor" href="#fugazetteer"></a>
 </h2>
@@ -324,7 +289,7 @@ maps, graphs, information on the durations of shows and renditions, and
 a variety of different ways of searching for shows. Where appropriate,
 Fugazetteer provides links back to the corresponding show pages on the
 Fugazi Live Series site. You can find the Fugazetteer app <a href="https://alexmitrani.shinyapps.io/Fugazetteer/" class="external-link">here</a> and the
-documentation <a href="https://alexmitrani.github.io/Repeatr/articles/Fugazetteer.html" class="external-link">here</a>.</p>
+documentation <a href="https://alexmitrani.github.io/Repeatr/articles/Fugazetteer.html">here</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="quiz">Quiz<a class="anchor" aria-label="anchor" href="#quiz"></a>
@@ -373,7 +338,7 @@ lot of great music, lively banter, and was in general an interesting
 experience. I learned a lot in the process, for instance I learned to
 appreciate live music and live music recordings a lot more than I did
 before. I took notes of the shows that stood out to me as I went through
-the series and ended up with <a href="https://alexmitrani.github.io/Repeatr/articles/Playlist.html" class="external-link">a
+the series and ended up with <a href="https://alexmitrani.github.io/Repeatr/articles/Playlist.html">a
 list of 246 shows</a>, which was me trying to be selective. An All
 Access Pass is definitely worth considering if you can afford it and
 like Fugazi’s music.</p>
@@ -389,7 +354,7 @@ break.</p>
 <div class="section level2 unnumbered">
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-friedman2019" class="csl-entry">
 Friedman, Glen E., and Guy Picciotto. 2019. <span>“Glen e. Friedman +
 Guy Picciotto at Rough Trade, Brooklyn,”</span> June. <a href="https://www.youtube.com/watch?v=dQ--r7dmtR4" class="external-link">https://www.youtube.com/watch?v=dQ--r7dmtR4</a>.
@@ -400,36 +365,26 @@ May. <a href="https://www.loc.gov/item/2021689112/" class="external-link">https:
 </div>
 </div>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
-
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
 
-      <footer><div class="copyright">
-  <p></p>
-<p>Developed by Alex Mitrani.</p>
+    <footer><div class="pkgdown-footer-left">
+  <p>Developed by Alex Mitrani.</p>
 </div>
 
-<div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
-  <p class="preferably">Using <a href="https://preferably.amirmasoudabdol.name/?source=footer" class="external-link">preferably</a> template.</p>
+<div class="pkgdown-footer-right">
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
-  
 
 
-  
+
 
   </body>
 </html>

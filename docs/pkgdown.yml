@@ -1,11 +1,13 @@
-pandoc: '2.18'
-pkgdown: 2.0.7
+pandoc: '3.2'
+pkgdown: 2.1.2
 pkgdown_sha: ~
 articles:
   94songs: 94songs.html
   AllAccess: AllAccess.html
+  au clair de la lune: au clair de la lune.html
   CombinationLock: CombinationLock.html
   Fugazetteer: Fugazetteer.html
+  in your memory: in your memory.html
   LinkTracks: LinkTracks.html
   Outsiders: Outsiders.html
   Playlist: Playlist.html
@@ -13,5 +15,7 @@ articles:
   Ratings: Ratings.html
   Repeatr: Repeatr.html
   The Emperor's New Outfit: The Emperor's New Outfit.html
-last_built: 2024-11-02T00:24Z
-
+last_built: 2025-08-04T05:18Z
+urls:
+  reference: https://alexmitrani.github.io/Repeatr/reference
+  article: https://alexmitrani.github.io/Repeatr/articles

@@ -1,240 +1,84 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/articles/94songs.html</loc>
-  </url>
-  <url>
-    <loc>/articles/AllAccess.html</loc>
-  </url>
-  <url>
-    <loc>/articles/CombinationLock.html</loc>
-  </url>
-  <url>
-    <loc>/articles/Fugazetteer.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/articles/LinkTracks.html</loc>
-  </url>
-  <url>
-    <loc>/articles/Outsiders.html</loc>
-  </url>
-  <url>
-    <loc>/articles/Playlist.html</loc>
-  </url>
-  <url>
-    <loc>/articles/polish with a small p.html</loc>
-  </url>
-  <url>
-    <loc>/articles/Polish.html</loc>
-  </url>
-  <url>
-    <loc>/articles/Ratings.html</loc>
-  </url>
-  <url>
-    <loc>/articles/Repeatr-app.html</loc>
-  </url>
-  <url>
-    <loc>/articles/Repeatr.html</loc>
-  </url>
-  <url>
-    <loc>/articles/The Emperor's New Outfit.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>/reference/attendancedata.html</loc>
-  </url>
-  <url>
-    <loc>/reference/compressr.html</loc>
-  </url>
-  <url>
-    <loc>/reference/cumulative_duration_counts.html</loc>
-  </url>
-  <url>
-    <loc>/reference/cumulative_song_counts.html</loc>
-  </url>
-  <url>
-    <loc>/reference/datestampr.html</loc>
-  </url>
-  <url>
-    <loc>/reference/diffr.html</loc>
-  </url>
-  <url>
-    <loc>/reference/download_table_footer.html</loc>
-  </url>
-  <url>
-    <loc>/reference/duration_data_da.html</loc>
-  </url>
-  <url>
-    <loc>/reference/duration_summary.html</loc>
-  </url>
-  <url>
-    <loc>/reference/fls_tags.html</loc>
-  </url>
-  <url>
-    <loc>/reference/fls_tags_importer.html</loc>
-  </url>
-  <url>
-    <loc>/reference/fls_tags_show.html</loc>
-  </url>
-  <url>
-    <loc>/reference/fugazi_song_counts.html</loc>
-  </url>
-  <url>
-    <loc>/reference/fugazi_song_performance_intensity.html</loc>
-  </url>
-  <url>
-    <loc>/reference/fugazi_spotify_data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/gid_initial_gid_sound_quality.html</loc>
-  </url>
-  <url>
-    <loc>/reference/gid_sound_quality.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/last_performance_data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/nscmov.html</loc>
-  </url>
-  <url>
-    <loc>/reference/othervariables.html</loc>
-  </url>
-  <url>
-    <loc>/reference/played_with.html</loc>
-  </url>
-  <url>
-    <loc>/reference/played_with_data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/played_with_summary.html</loc>
-  </url>
-  <url>
-    <loc>/reference/rankr.html</loc>
-  </url>
-  <url>
-    <loc>/reference/rawdata.html</loc>
-  </url>
-  <url>
-    <loc>/reference/releaseid_variable_colour_code.html</loc>
-  </url>
-  <url>
-    <loc>/reference/releasesdatalookup.html</loc>
-  </url>
-  <url>
-    <loc>/reference/releases_data_input.html</loc>
-  </url>
-  <url>
-    <loc>/reference/releases_menu_list.html</loc>
-  </url>
-  <url>
-    <loc>/reference/releases_summary.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Repeatr0.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Repeatr1.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Repeatr2.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Repeatr3.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Repeatr_1.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Repeatr_2.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Repeatr_3.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Repeatr_4.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Repeatr_5.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Repeatr_Updatr.html</loc>
-  </url>
-  <url>
-    <loc>/reference/results_ml_Repeatr4.html</loc>
-  </url>
-  <url>
-    <loc>/reference/results_ml_Repeatr4_fs.html</loc>
-  </url>
-  <url>
-    <loc>/reference/results_ml_Repeatr4_os.html</loc>
-  </url>
-  <url>
-    <loc>/reference/scrape_fls_data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/scrape_fls_dtdd.html</loc>
-  </url>
-  <url>
-    <loc>/reference/scrape_sound_quality.html</loc>
-  </url>
-  <url>
-    <loc>/reference/sets.html</loc>
-  </url>
-  <url>
-    <loc>/reference/shows_data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/songidlookup.html</loc>
-  </url>
-  <url>
-    <loc>/reference/songvarslookup.html</loc>
-  </url>
-  <url>
-    <loc>/reference/song_tempo_bpm_data.html</loc>
-  </url>
-  <url>
-    <loc>/reference/stacks.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summary.html</loc>
-  </url>
-  <url>
-    <loc>/reference/sweepstack.html</loc>
-  </url>
-  <url>
-    <loc>/reference/toursdata.html</loc>
-  </url>
-  <url>
-    <loc>/reference/transitions.html</loc>
-  </url>
-  <url>
-    <loc>/reference/transitions_data_da.html</loc>
-  </url>
-  <url>
-    <loc>/reference/venuesdata.html</loc>
-  </url>
-  <url>
-    <loc>/reference/xray.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://alexmitrani.github.io/Repeatr/404.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/articles/94songs.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/articles/AllAccess.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/articles/au clair de la lune.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/articles/CombinationLock.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/articles/Fugazetteer.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/articles/in your memory.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/articles/index.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/articles/LinkTracks.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/articles/Outsiders.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/articles/Playlist.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/articles/polish with a small p.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/articles/Polish.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/articles/Ratings.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/articles/Repeatr-app.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/articles/Repeatr.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/articles/The Emperor's New Outfit.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/authors.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/index.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/LICENSE-text.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/LICENSE.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/attendancedata.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/compressr.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/cumulative_duration_counts.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/cumulative_song_counts.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/datestampr.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/diffr.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/download_table_footer.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/duration_data_da.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/duration_summary.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/fls_tags.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/fls_tags_importer.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/fls_tags_show.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/fugazi_song_counts.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/fugazi_song_performance_intensity.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/fugazi_spotify_data.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/gid_initial_gid_sound_quality.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/gid_sound_quality.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/index.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/last_performance_data.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/nscmov.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/othervariables.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/played_with.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/played_with_data.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/played_with_summary.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/rankr.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/rawdata.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/releaseid_variable_colour_code.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/releasesdatalookup.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/releases_data_input.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/releases_menu_list.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/releases_summary.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/Repeatr0.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/Repeatr1.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/Repeatr2.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/Repeatr3.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/Repeatr_2.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/Repeatr_3.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/Repeatr_4.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/Repeatr_5.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/Repeatr_Updatr.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/results_ml_Repeatr4.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/results_ml_Repeatr4_fs.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/results_ml_Repeatr4_os.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/scrape_fls_data.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/scrape_fls_dtdd.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/scrape_sound_quality.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/sets.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/shows_data.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/songidlookup.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/songvarslookup.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/song_tempo_bpm_data.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/stacks.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/summary.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/sweepstack.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/toursdata.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/transitions.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/transitions_data_da.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/venuesdata.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/xray.html</loc></url>
 </urlset>
+

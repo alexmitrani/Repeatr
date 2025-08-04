@@ -4,149 +4,80 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Inform modern browsers that this page supports both dark and light color schemes,
-  and the page author prefers light. --><meta name="color-scheme" content="dark light">
-<script>
-  // If `prefers-color-scheme` is not supported, fall back to light mode.
-  // i.e. In this case, inject the `light` CSS before the others, with
-  // no media filter so that it will be downloaded with highest priority.
-  if (window.matchMedia("(prefers-color-scheme: dark)").media === "not all") {
-    document.documentElement.style.display = "none";
-    document.head.insertAdjacentHTML(
-      "beforeend",
-      "<link id=\"css\" rel=\"stylesheet\" href=\"https://bootswatch.com/3/flatly/bootstrap.css\" onload=\"document.documentElement.style.display = ''\">"
-    );
-  }
-</script><title>au clair de la lune • Repeatr</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="au clair de la lune">
-<meta property="og:description" content="Repeatr">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]--><!-- Flatly Theme - Light  --><link id="css-light" rel="stylesheet" href="https://bootswatch.com/3/flatly/bootstrap.css" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)">
-<!-- Darkly Theme - Dark --><link id="css-dark" rel="stylesheet" href="https://bootswatch.com/3/darkly/bootstrap.css" media="(prefers-color-scheme: dark)">
-<!-- preferably CSS --><link rel="stylesheet" href="../preferably.css">
-<link id="css-code-light" rel="stylesheet" href="../code-color-scheme-light.css" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)">
-<link id="css-code-dark" rel="stylesheet" href="../code-color-scheme-dark.css" media="(prefers-color-scheme: dark)">
-<script src="../darkswitch.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Au Clair de la Lune • Repeatr</title>
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Au Clair de la Lune">
 </head>
-<body data-spy="scroll" data-target="#toc">
-    
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9183</span>
-      </span>
-    </div>
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../articles/Repeatr.html">Get started</a>
-</li>
-<li>
-  <a href="../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/94songs.html">94 SONGS</a>
-    </li>
-    <li>
-      <a href="../articles/AllAccess.html">All Access</a>
-    </li>
-    <li>
-      <a href="../articles/au%20clair%20de%20la%20lune.html">au clair de la lune</a>
-    </li>
-    <li>
-      <a href="../articles/CombinationLock.html">Combination Lock</a>
-    </li>
-    <li>
-      <a href="../articles/Fugazetteer.html">Fugazetteer</a>
-    </li>
-    <li>
-      <a href="../articles/LinkTracks.html">Link Tracks</a>
-    </li>
-    <li>
-      <a href="../articles/Outsiders.html">Outsiders</a>
-    </li>
-    <li>
-      <a href="../articles/Playlist.html">Playlist</a>
-    </li>
-    <li>
-      <a href="../articles/polish%20with%20a%20small%20p.html">polish with a small p</a>
-    </li>
-    <li>
-      <a href="../articles/Ratings.html">Ratings</a>
-    </li>
-    <li>
-      <a href="../articles/The%20Emperor's%20New%20Outfit.html">The Emperor's New Outfit</a>
-    </li>
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+
+    <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
+
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9183</small>
+
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="../articles/Repeatr.html">Get started</a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/94songs.html">94 SONGS</a></li>
+    <li><a class="dropdown-item" href="../articles/AllAccess.html">All Access</a></li>
+    <li><a class="dropdown-item" href="../articles/au%20clair%20de%20la%20lune.html">Au Clair de la Lune</a></li>
+    <li><a class="dropdown-item" href="../articles/CombinationLock.html">Combination Lock</a></li>
+    <li><a class="dropdown-item" href="../articles/Fugazetteer.html">Fugazetteer</a></li>
+    <li><a class="dropdown-item" href="../articles/in%20your%20memory.html">in your memory</a></li>
+    <li><a class="dropdown-item" href="../articles/LinkTracks.html">Link Tracks</a></li>
+    <li><a class="dropdown-item" href="../articles/Outsiders.html">Outsiders</a></li>
+    <li><a class="dropdown-item" href="../articles/Playlist.html">Playlist</a></li>
+    <li><a class="dropdown-item" href="../articles/polish%20with%20a%20small%20p.html">polish with a small p</a></li>
+    <li><a class="dropdown-item" href="../articles/Ratings.html">Ratings</a></li>
+    <li><a class="dropdown-item" href="../articles/The%20Emperor's%20New%20Outfit.html">The Emperor's New Outfit</a></li>
   </ul>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-          <a href="#" id="css-toggle-btn">
-            <span class="fas fa-adjust fa-lg"></span>
-          </a>
-        </li>
-        
-        <li>
-  <a href="https://github.com/alexmitrani/Repeatr/" class="external-link">
-    <span class="fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
-        
-        
-
-
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/alexmitrani/Repeatr/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
-<!--/.nav-collapse -->
+
+
   </div>
-<!--/.container -->
-</div>
-<!--/.navbar -->
+</nav><div class="container template-article">
 
-      
 
-      </header><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>au clair de la lune</h1>
+
+
+<div class="row">
+  <main id="main" class="col-md-9"><div class="page-header">
+
+      <h1>Au Clair de la Lune</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/alexmitrani/Repeatr/blob/HEAD/vignettes/au%20clair%20de%20la%20lune.Rmd" class="external-link"><code>vignettes/au clair de la lune.Rmd</code></a></small>
-      <div class="hidden name"><code>au clair de la lune.Rmd</code></div>
-
+      <div class="d-none name"><code>au clair de la lune.Rmd</code></div>
     </div>
 
     
     
 <p>By Alex Mitrani</p>
-<p>1 December 2024</p>
+<p>20 December 2024</p>
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
@@ -154,9 +85,27 @@
 Athens, Georgia on 3 May 1989. The first rendition with vocals was at
 the 9:30 Club in Washington DC on 20 July 1989. The song got it’s
 official release on Repeater which was released around the 1 March 1990
-<span class="citation">(<a href="#ref-fugazi1990e" role="doc-biblioref">Fugazi 1990a</a>)</span>. Fugazi played Two Beats
-Off at least 371 times with the last recorded version being on the 6
-July 2001 in Victoria, BC, Canada.</p>
+<span class="citation">(<a href="#ref-fugazi1990e">Fugazi
+1990a</a>)</span>. It was one of the later songs to debut that would be
+released on Repeater.</p>
+<pre><code><span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 11 × 2</span></span></span>
+<span><span class="co">#&gt;    song              debut     </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> merchandise       1987-09-03</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> reprovisional     1988-12-29</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> shut the door     1989-03-24</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> greed             1989-03-24</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> sieve-fisted find 1989-03-24</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> brendan #1        1989-03-24</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> turnover          1989-04-09</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> two beats off     1989-05-03</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> repeater          1989-07-20</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> blueprint         1989-11-25</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> styrofoam         1990-05-17</span></span></code></pre>
+<p>Fugazi played Two Beats Off at least 371 times with the last recorded
+version being on the 6 July 2001 in Victoria, BC, Canada. Two Beats Off
+was followed by the song Repeater 109 times which makes this by far the
+most common transition featuring the song.</p>
 </div>
 <div class="section level2">
 <h2 id="title">Title<a class="anchor" aria-label="anchor" href="#title"></a>
@@ -174,10 +123,10 @@ many highlights of the song.</p>
 <div class="section level2">
 <h2 id="lyrics">Lyrics<a class="anchor" aria-label="anchor" href="#lyrics"></a>
 </h2>
-<p>The lyrics from the studio recording will be referred to here <span class="citation">(<a href="#ref-fugazi1990a" role="doc-biblioref">Fugazi
-1990b</a>)</span> - there are some variations in live recordings. The
-lyric sheet uses all caps so capitalization is not clear. Here I’m going
-with all lower case.</p>
+<p>The lyrics from the studio recording will be referred to here <span class="citation">(<a href="#ref-fugazi1990a">Fugazi 1990b</a>)</span> -
+there are some variations in live recordings. The lyric sheet uses all
+caps so capitalization is not clear. Here I’m going with all lower
+case.</p>
 <div class="section level3">
 <h3 id="i-cut-my-nails-to-the-quick">I cut my nails to the quick<a class="anchor" aria-label="anchor" href="#i-cut-my-nails-to-the-quick"></a>
 </h3>
@@ -209,10 +158,11 @@ something.</p>
 <h3 id="fingers-reaching-trophy-swelling">fingers reaching, trophy swelling<a class="anchor" aria-label="anchor" href="#fingers-reaching-trophy-swelling"></a>
 </h3>
 <p>Trophies are normally won or captured through sport, hunting or war
-<span class="citation">(<a href="#ref-cambridgeuniversitypress2024" role="doc-biblioref">Cambridge University Press 2024b</a>)</span>. All
-of these involve taking through force or some other form of exertion
-something which is not freely given. The way the word trophy is used
-here as part of a sexual innuendo hints at abuse.</p>
+<span class="citation">(<a href="#ref-cambridgeuniversitypress2024">Cambridge University Press
+2024b</a>)</span>. All of these involve taking through force or some
+other form of exertion something which is not freely given. The way the
+word trophy is used here as part of a sexual innuendo hints at
+abuse.</p>
 </div>
 <div class="section level3">
 <h3 id="thats-when-desire-trips-me-up-">that’s when desire trips me up….<a class="anchor" aria-label="anchor" href="#thats-when-desire-trips-me-up-"></a>
@@ -222,8 +172,7 @@ Similar language is used in the Bible.</p>
 <blockquote>
 <p>All of us get tripped up in many ways. Suppose someone is never wrong
 in what they say. Then they are perfect. They are able to keep their
-whole body under control. <span class="citation">(<a href="#ref-james3:1996" role="doc-biblioref"><span>“James 3:1-3”</span>
-1996</a>)</span></p>
+whole body under control. <span class="citation">(<a href="#ref-james3:1996"><span>“James 3:1-3”</span> 1996</a>)</span></p>
 </blockquote>
 </div>
 <div class="section level3">
@@ -232,8 +181,20 @@ whole body under control. <span class="citation">(<a href="#ref-james3:1996" rol
 <p>‘Got a new technique’ speaks to recent developments, perhaps
 newsworthy events at the time the song was written. Scandals and how
 people or organisations with money and power adapted to manage them.</p>
-<p>Something broken but not cleaned up or fixed, just normalised and
-made to look like there is nothing wrong.</p>
+<p>Pieces could be pieces of a jigsaw puzzle, pieces of a game such as
+chess, or pieces of something broken.</p>
+<ul>
+<li><p>‘pieces fit’ brings to mind a jigsaw puzzle where pieces should
+only fit in one location and nowhere else</p></li>
+<li><p>chess pieces represent a strict hierarchy that alludes to a
+traditional social hierarchy with the king being the most important
+piece, then the queen, the rooks, the bishops, the knights, and the
+pawns. The reference to money here implies power and hierarchy.</p></li>
+</ul>
+<!-- --><ul>
+<li>something broken but not cleaned up or fixed, just normalised and
+made to look like there is nothing wrong.</li>
+</ul>
 <p>In particular, this bit makes me think of how cases of sexual abuse
 were dealt with by church authorities.</p>
 <blockquote>
@@ -256,12 +217,11 @@ St. Paul, says he has 30 suits pending for other clients, involving 16
 priests in seven states. One Louisiana diocese and its insurers have
 paid $15 million to victims of a parish priest. In all at least $30
 million is known to have been paid nationwide.</p>
-<p>- The Washington Post, 1989-09-16. <span class="citation">(<a href="#ref-berry1989" role="doc-biblioref">Berry 1989</a>)</span></p>
+<p>- The Washington Post, 1989-09-16. <span class="citation">(<a href="#ref-berry1989">Berry 1989</a>)</span></p>
 </blockquote>
 <p>In 1990 there was a TV documentary drama film called ‘Judgement’
 about the case of a pedophile priest in Louisiana that first made
-headlines in 1985 <span class="citation">(<a href="#ref-chicagotribune1990" role="doc-biblioref">Chicago Tribune
-1990</a>)</span>.</p>
+headlines in 1985 <span class="citation">(<a href="#ref-chicagotribune1990">Chicago Tribune 1990</a>)</span>.</p>
 <blockquote>
 <p>The recent sexual abuse scandal in the Catholic Church has put the
 enforceability of confidentiality agreements in settlement under the
@@ -278,16 +238,15 @@ it must seek the consent of its finance counsel, an eight-member board
 composed of the diocesan bishop and seven lay people, designed to
 provide accountability for the diocese’s decisions. Thus, the settlement
 was entirely insulated from any public scrutiny, allowing the abusive
-priest to remain anonymous and perhaps continue in his position. <span class="citation">(<a href="#ref-philp2002" role="doc-biblioref">Philp
-2002</a>)</span></p>
+priest to remain anonymous and perhaps continue in his position. <span class="citation">(<a href="#ref-philp2002">Philp 2002</a>)</span></p>
 </blockquote>
 </div>
 <div class="section level3">
 <h3 id="privilege---it-sanctions-everything-">privilege - it sanctions everything.<a class="anchor" aria-label="anchor" href="#privilege---it-sanctions-everything-"></a>
 </h3>
 <p>Sanction here is used in the sense of ‘to formally give permission
-for something’ <span class="citation">(<a href="#ref-cambridgeuniversitypress2024a" role="doc-biblioref">Cambridge
-University Press 2024a</a>)</span>.</p>
+for something’ <span class="citation">(<a href="#ref-cambridgeuniversitypress2024a">Cambridge University Press
+2024a</a>)</span>.</p>
 <p>In many cases church authorities tried to deal with cases of abuse as
 an internal matter, not reporting the alleged crimes to the police and
 moving the offenders to other locations where they could continue
@@ -297,7 +256,7 @@ abusing.</p>
 backstage look at the scandal, graphically detailing the patterns of
 serial abuse by dozens of priests who were systematically rotated to new
 assignments as church officials kept criminal behavior secret from civil
-authority. <span class="citation">(<a href="#ref-editorialboard2013" role="doc-biblioref">Editorial Board 2013</a>)</span></p>
+authority. <span class="citation">(<a href="#ref-editorialboard2013">Editorial Board 2013</a>)</span></p>
 </blockquote>
 </div>
 <div class="section level3">
@@ -312,7 +271,10 @@ falling from a height - possibly falling from grace.</p>
 them all<a class="anchor" aria-label="anchor" href="#once-there-was-a-body-to-see-now-just-the-biggest-mouth-to-feed-of-them-all"></a>
 </h3>
 <p>The subject was young and perhaps attractive once, but not anymore -
-now they still have desire but are undesirable.</p>
+now they still have desire but are undesirable. This line is not on the
+lyrics sheet but was confirmed by Guy Picciotto in correspondence that
+was reported in the Alphabetical Fugazi podcast <span class="citation">(<a href="#ref-wright2022">Wright, Rickard, and Rickard
+2022</a>)</span>.</p>
 </div>
 </div>
 <div class="section level2">
@@ -320,18 +282,26 @@ now they still have desire but are undesirable.</p>
 </h2>
 <p>Two Beats Off probably has more live variations than any other Fugazi
 song, at least in terms of the use of samples of other songs and
-variations to the main lyrics of the song. Some of this will be due to
-practical considerations:</p>
+variations to the main lyrics of the song. The practice of singing
+samples of songs by other artists is something that was probably
+inspired by sampling in hip-hop and seems to pre-date Fugazi. The 13
+September 1987 show by one of Guy Picciotto and Brendan Canty’s earlier
+bands, Happy Go Licky, at the 9:30 club is mentioned in the book ‘Dance
+of Days’:</p>
+<blockquote>
+<p>Such cut-up lyrics as “every day is like nirvana” and “wooly bully” -
+both from ’60s songs - seemed a form of sampling without machines. <span class="citation">(<a href="#ref-andersen2009">Andersen and Jenkins
+2009a</a>)</span></p>
+</blockquote>
+<p>Some of the variations might have been due to practical
+considerations:</p>
 <blockquote>
 <p>you’d be looking around the stage going like ‘oh no, Ian’s broken a
-string’</p>
-<p>so is there a song like Two Beats Off where I can play the opening
-chord for like 5 minutes</p>
-<p>and Brendan and I, we can vamp while Ian gets his guitar sorted
-out</p>
-<p>you know, a lot of it was based on practical considerations and how
-songs began</p>
-<p>- Guy Picciotto <span class="citation">(<a href="#ref-mackaye2022" role="doc-biblioref">MacKaye and Picciotto 2022</a>)</span></p>
+string’ so is there a song like Two Beats Off where I can play the
+opening chord for like 5 minutes and Brendan and I, we can vamp while
+Ian gets his guitar sorted out, you know, a lot of it was based on
+practical considerations and how songs began.</p>
+<p>- Guy Picciotto <span class="citation">(<a href="#ref-mackaye2022">MacKaye and Picciotto 2022</a>)</span></p>
 </blockquote>
 <p>On several occasions the intro to Two Beats Off contained parts of
 several other songs threaded together. To reduce repetition of the same
@@ -344,10 +314,10 @@ elsewhere.</p>
 <p>The music of Two Beats Off was performed as an instrumental, and it
 seems that at this time the song did not have a title, it was introduced
 by Ian MacKaye as “and now, part two of this great instrumental” (part
-one was Joe #1) <span class="citation">(<a href="#ref-fugazi1989" role="doc-biblioref">Fugazi 1989a</a>)</span>. This rendition is an
-important starting point for a detailed look at the song because the
-absence of vocal part and lyrics gives clues about when these might have
-been written.</p>
+one was Joe #1) <span class="citation">(<a href="#ref-fugazi1989">Fugazi
+1989a</a>)</span>. This rendition is an important starting point for a
+detailed look at the song because the absence of vocal part and lyrics
+gives clues about when these might have been written.</p>
 </div>
 <div class="section level3">
 <h3 id="fls0133-washington-dc-usa-1989-07-20">FLS0133 Washington, DC USA 1989-07-20<a class="anchor" aria-label="anchor" href="#fls0133-washington-dc-usa-1989-07-20"></a>
@@ -371,24 +341,23 @@ only a limited set of lyrics and used a lot of repetition.</p>
 <p>(inaudible)</p>
 <p>I gotta pick it up</p>
 <p>I want it</p>
-<p>up against it all <span class="citation">(<a href="#ref-fugazi1989a" role="doc-biblioref">Fugazi 1989b</a>)</span></p>
+<p>up against it all <span class="citation">(<a href="#ref-fugazi1989a">Fugazi 1989b</a>)</span></p>
 </blockquote>
 </div>
 <div class="section level3">
 <h3 id="fls0148-hoboken-nj-usa-1989-10-08">FLS0148 Hoboken, NJ USA 1989-10-08<a class="anchor" aria-label="anchor" href="#fls0148-hoboken-nj-usa-1989-10-08"></a>
 </h3>
 <p>If the information on Wikipedia is correct, recording for Repeater
-finished in September 1989 <span class="citation">(<a href="#ref-wikipediacontributors2024b" role="doc-biblioref">Wikipedia
-Contributors 2024b</a>)</span>. If that is right the lyrics used on the
-album version had already been written and sung but were not used in
-their entirety on this occasion. This rendition at Maxwell’s featured
-lyrics close to the album version, but not the same. In particular, the
-lines about something, anything, everything and security / privilege
-were omitted. ‘Body sweating’ appears as an alternative to ‘trophy
-swelling’.</p>
+finished in September 1989 <span class="citation">(<a href="#ref-wikipediacontributors2024b">Wikipedia Contributors
+2024b</a>)</span>. If that is right the lyrics used on the album version
+had already been written and sung but were not used in their entirety on
+this occasion. This rendition at Maxwell’s featured lyrics close to the
+album version, but not the same. In particular, the lines about
+something, anything, everything and security / privilege were omitted.
+‘Body sweating’ appears as an alternative to ‘trophy swelling’.</p>
 <blockquote>
 <p>fingers reaching</p>
-<p>body sweating <span class="citation">(<a href="#ref-fugazi1989b" role="doc-biblioref">Fugazi 1989c</a>)</span></p>
+<p>body sweating <span class="citation">(<a href="#ref-fugazi1989b">Fugazi 1989c</a>)</span></p>
 </blockquote>
 </div>
 <div class="section level3">
@@ -399,12 +368,12 @@ version, but still with a few variations, here for instance there is
 taking instead of ‘give me’:</p>
 <blockquote>
 <p>taking</p>
-<p>taking everything <span class="citation">(<a href="#ref-fugazi1989c" role="doc-biblioref">Fugazi 1989d</a>)</span></p>
+<p>taking everything <span class="citation">(<a href="#ref-fugazi1989c">Fugazi 1989d</a>)</span></p>
 </blockquote>
 <p>This performance also features love instead of money:</p>
 <blockquote>
 <p>I’ve got a new technique</p>
-<p>love will make the pieces fit where they fall <span class="citation">(<a href="#ref-fugazi1989c" role="doc-biblioref">Fugazi
+<p>love will make the pieces fit where they fall <span class="citation">(<a href="#ref-fugazi1989c">Fugazi
 1989d</a>)</span></p>
 </blockquote>
 <p>What might be a new technique is to have lots of interchangeable
@@ -417,12 +386,12 @@ album version.</p>
 <h3 id="fls0224-denver-co-usa-1990-06-08">FLS0224 Denver, CO, USA, 1990-06-08<a class="anchor" aria-label="anchor" href="#fls0224-denver-co-usa-1990-06-08"></a>
 </h3>
 <p>One of the first renditions featuring a sample of ‘Summertime’ by
-Gershwin <span class="citation">(<a href="#ref-gershwin1935" role="doc-biblioref">Gershwin 1935</a>)</span> as part of the
-introduction.</p>
+Gershwin <span class="citation">(<a href="#ref-gershwin1935">Gershwin
+1935</a>)</span> as part of the introduction.</p>
 <blockquote>
 <p>summertime and the living is easy</p>
 <p>summertime and the living is good</p>
-<p>your daddy’s rich and your ma’ is good looking <span class="citation">(<a href="#ref-fugazi1990f" role="doc-biblioref">Fugazi
+<p>your daddy’s rich and your ma’ is good looking <span class="citation">(<a href="#ref-fugazi1990f">Fugazi
 1990c</a>)</span></p>
 </blockquote>
 <p>Early June might have felt like summer already in Denver although it
@@ -438,13 +407,15 @@ variations to the wording.</p>
 <p>salad is the first course</p>
 <p>what shall I choose for the main?</p>
 <p>salad is the first course</p>
-<p>what shall I choose for the main? <span class="citation">(<a href="#ref-fugazi1990c" role="doc-biblioref">Fugazi
-1990d</a>)</span></p>
+<p>what shall I choose for the main? <span class="citation">(<a href="#ref-fugazi1990c">Fugazi 1990d</a>)</span></p>
 </blockquote>
-<p>It also features some variations to other lines:</p>
+<p>These lines are from ‘First Course’ by Fire Party, on the EP ‘New
+Orleans Opera’, released as Dischord 037 in 1989 <span class="citation">(<a href="#ref-fireparty1989">Fire Party
+1989</a>)</span>.</p>
+<p>This rendition also features some variations to other lines:</p>
 <blockquote>
 <p>I want a body to be seen</p>
-<p>not just the biggest mouth to feed of them all <span class="citation">(<a href="#ref-fugazi1990c" role="doc-biblioref">Fugazi
+<p>not just the biggest mouth to feed of them all <span class="citation">(<a href="#ref-fugazi1990c">Fugazi
 1990d</a>)</span></p>
 </blockquote>
 </div>
@@ -452,22 +423,22 @@ variations to the wording.</p>
 <h3 id="fls0272-linkoping-sweden-1990-10-02">FLS0272 Linkoping, Sweden 1990-10-02<a class="anchor" aria-label="anchor" href="#fls0272-linkoping-sweden-1990-10-02"></a>
 </h3>
 <blockquote>
-<p>Swing low, sweet chariot, coming for to carry me home <span class="citation">(<a href="#ref-fugazi1990b" role="doc-biblioref">Fugazi
+<p>Swing low, sweet chariot, coming for to carry me home <span class="citation">(<a href="#ref-fugazi1990b">Fugazi
 1990e</a>)</span>.</p>
 </blockquote>
 <p>Unusually, this intro to Two Beats Off is sung by Ian MacKaye. This
 is from an old gospel song that has been performed by many artists
 including Louis Armstrong, Screamin’ Jay Hawkins, Sam Cooke, B. B. King,
-and Joan Baez, who sang it at Woodstock in 1969 <span class="citation">(<a href="#ref-wikipediacontributors2024a" role="doc-biblioref">Wikipedia Contributors 2024c</a>)</span>.</p>
+and Joan Baez, who sang it at Woodstock in 1969 <span class="citation">(<a href="#ref-wikipediacontributors2024a">Wikipedia
+Contributors 2024c</a>)</span>.</p>
 <p>Following on from this, Guy Picciotto takes up the lead vocals with a
-few lines that are clearly based on ‘The Place I Love’ by The Jam <span class="citation">(<a href="#ref-thejam1978" role="doc-biblioref">The Jam
-1978</a>)</span>, with a few changes to wording and sequence.</p>
+few lines that are clearly based on ‘The Place I Love’ by The Jam <span class="citation">(<a href="#ref-thejam1978">The Jam 1978</a>)</span>,
+with a few changes to wording and sequence.</p>
 <blockquote>
 <p>The place I love is nowhere near here</p>
 <p>Not within a mile of those trendy do’s</p>
 <p>Beautiful moss and colourful flowers</p>
-<p>Let’s take a stand against the world <span class="citation">(<a href="#ref-fugazi1990b" role="doc-biblioref">Fugazi
-1990e</a>)</span></p>
+<p>Let’s take a stand against the world <span class="citation">(<a href="#ref-fugazi1990b">Fugazi 1990e</a>)</span></p>
 </blockquote>
 <p>The main part of the song features some lines that did not make it
 into the album version but feature in many live renditions.</p>
@@ -475,8 +446,7 @@ into the album version but feature in many live renditions.</p>
 <p>you want it?</p>
 <p>you gotta pick it up</p>
 <p>and take it</p>
-<p>up against the wall <span class="citation">(<a href="#ref-fugazi1990b" role="doc-biblioref">Fugazi
-1990e</a>)</span></p>
+<p>up against the wall <span class="citation">(<a href="#ref-fugazi1990b">Fugazi 1990e</a>)</span></p>
 </blockquote>
 <p>The end of the song also features Ian MacKaye, who sings something
 that sounds like this:</p>
@@ -484,7 +454,7 @@ that sounds like this:</p>
 <p>he got in</p>
 <p>and disappeared</p>
 <p>he got here</p>
-<p>and disappeared <span class="citation">(<a href="#ref-fugazi1990b" role="doc-biblioref">Fugazi 1990e</a>)</span></p>
+<p>and disappeared <span class="citation">(<a href="#ref-fugazi1990b">Fugazi 1990e</a>)</span></p>
 </blockquote>
 </div>
 <div class="section level3">
@@ -498,7 +468,7 @@ cause indeed. In Washington DC we have similar problems with youth care,
 everybody’s children think other children are crazy apparently, and they
 put them away in little psychiatric prisons where they are mistreated,
 abused, molested… So, anyway, I think it is a rather worthy cause. - Ian
-MacKaye, 7 November 1990 <span class="citation">(<a href="#ref-fugazi1990" role="doc-biblioref">Fugazi 1990f</a>)</span></p>
+MacKaye, 7 November 1990 <span class="citation">(<a href="#ref-fugazi1990">Fugazi 1990f</a>)</span></p>
 </blockquote>
 <p>Steunpunt Zetten was a support group and activist group working on
 behalf of young people who complained that they suffered abuse of
@@ -511,7 +481,8 @@ heard in October 1990 and rejected. ‘When Steunpunt Zetten sought
 publicity from 24 April 1990, other reports of sexual abuse within youth
 care institutions came in almost immediately, such as in the youth care
 institution De Dreef in Wapenveld, where there was sexual abuse of boys.
-Ultimately, seven employees were also convicted here in 1993’ <span class="citation">(<a href="#ref-vanderlans2012" role="doc-biblioref">Lans 2012</a>)</span>.</p>
+Ultimately, seven employees were also convicted here in 1993’ <span class="citation">(<a href="#ref-vanderlans2012">Lans
+2012</a>)</span>.</p>
 <p>Guy Picciotto sang something in French as part of an extended
 introduction to Two Beats Off.</p>
 <blockquote>
@@ -522,21 +493,22 @@ introduction to Two Beats Off.</p>
 <p>Voilà mon amour</p>
 <p>Avec des ciseaux</p>
 <p>Elle va couper mon coeur</p>
-<p>En trois mille morceaux<span class="citation">(<a href="#ref-fugazi1990" role="doc-biblioref">Fugazi 1990f</a>)</span></p>
+<p>En trois mille morceaux<span class="citation">(<a href="#ref-fugazi1990">Fugazi 1990f</a>)</span></p>
 </blockquote>
-<p>This is a modified version of a rude nursery rhyme <span class="citation">(<a href="#ref-bouteloup2003" role="doc-biblioref">Bouteloup 2003</a>)</span> that is sang to the tune
-of an older, traditional 18th century folk song. The folk song has many
-innuendos or ‘sexual undertones’ and is the subject of the oldest known
-audio recording (1860) <span class="citation">(<a href="#ref-wikipediacontributors2024" role="doc-biblioref">Wikipedia
-Contributors 2024a</a>)</span>. Compared to the rude nursery rhyme, Guy
-mainly changed the second verse, what he sings is “Here is my love /
-with scissors / she is going to cut my heart / into three thousand
-pieces”, whereas in the nursery rhyme it translates roughly as “My
-grandmother is coming / with scissors / she cuts my buttocks / in three
-thousand pieces” <span class="citation">(<a href="#ref-bouteloup2003" role="doc-biblioref">Bouteloup 2003</a>)</span>. Guy Picciotto wasn’t
-the first punk rocker to have made use of “au clare de la lune” -
-Siouxsie Sioux sang the first verse or two (in French) in ‘The Lord’s
-Prayer’ (1979) <span class="citation">(<a href="#ref-siouxsieandthebanshees1979" role="doc-biblioref">Siouxsie and
+<p>This is a modified version of a rude nursery rhyme <span class="citation">(<a href="#ref-bouteloup2003">Bouteloup
+2003</a>)</span> that is sang to the tune of an older, traditional 18th
+century folk song. The folk song has many innuendos or ‘sexual
+undertones’ and is the subject of the oldest known audio recording
+(1860) <span class="citation">(<a href="#ref-wikipediacontributors2024">Wikipedia Contributors
+2024a</a>)</span>. Compared to the rude nursery rhyme, Guy mainly
+changed the second verse, what he sings is “Here is my love / with
+scissors / she is going to cut my heart / into three thousand pieces”,
+whereas in the nursery rhyme it translates roughly as “My grandmother is
+coming / with scissors / she cuts my buttocks / in three thousand
+pieces” <span class="citation">(<a href="#ref-bouteloup2003">Bouteloup
+2003</a>)</span>. Guy Picciotto wasn’t the first punk rocker to have
+made use of “au clare de la lune” - Siouxsie Sioux sang the first verse
+or two (in French) in ‘The Lord’s Prayer’ (1979) <span class="citation">(<a href="#ref-siouxsieandthebanshees1979">Siouxsie and
 Banshees 1979</a>)</span>.</p>
 <p>On this occasion Guy also made significant changes to the lyrics of
 the song, making it into more of a protest song.</p>
@@ -548,17 +520,16 @@ the song, making it into more of a protest song.</p>
 <p>the fingers reaching</p>
 <p>your heart is breaking</p>
 <p>my friends</p>
-<p>take it to the streets <span class="citation">(<a href="#ref-fugazi1990" role="doc-biblioref">Fugazi 1990f</a>)</span></p>
+<p>take it to the streets <span class="citation">(<a href="#ref-fugazi1990">Fugazi 1990f</a>)</span></p>
 </blockquote>
 <p>The extended introduction that was added to Two Beats Off made me
 wonder why this was done, and in particular it got me thinking that
 maybe there was a connection between Two Beats Off and the nature of
 this particular benefit concert. It wouldn’t be the first time that
 something special had been performed by Fugazi at a benefit concert -
-Guy commented in an interview <span class="citation">(<a href="#ref-picciotto2021" role="doc-biblioref">Picciotto and Niceley
-2021</a>)</span> that ‘Give Me The Cure’ was written for and performed
-for the first time at a benefit for AIDS research at Columbia University
-in New York <span class="citation">(<a href="#ref-fugazi1988" role="doc-biblioref">Fugazi 1988</a>)</span>.</p>
+Guy commented in an interview <span class="citation">(<a href="#ref-picciotto2021">Picciotto and Niceley 2021</a>)</span> that
+‘Give Me The Cure’ was written for and performed for the first time at a
+benefit for AIDS research at Columbia University in New York <span class="citation">(<a href="#ref-fugazi1988">Fugazi 1988</a>)</span>.</p>
 <p>“Au clair de la lune” from the earliest versions in the 18th century
 seems to have hidden sexual innuendos but nevertheless it is considered
 a song for children. The rude nursery rhyme that is sung to the same
@@ -579,7 +550,7 @@ introduction.</p>
 <p>young and handsome too</p>
 <p>I’m in love, in love</p>
 <p>with the old world</p>
-<p>(and hand-) and handsome too <span class="citation">(<a href="#ref-fugazi1992" role="doc-biblioref">Fugazi 1992</a>)</span></p>
+<p>(and hand-) and handsome too <span class="citation">(<a href="#ref-fugazi1992">Fugazi 1992</a>)</span></p>
 </blockquote>
 </div>
 <div class="section level3">
@@ -591,12 +562,10 @@ original compositions, improvisations, samples of other songs, or some
 combination of these. There may be others, but these are the ones I have
 on my list.</p>
 <ul>
-<li><p>FLS0491 Virginia Beach, VA USA 2/4/1993 <span class="citation">(<a href="#ref-fugazi1993" role="doc-biblioref">Fugazi
+<li><p>FLS0491 Virginia Beach, VA USA 2/4/1993 <span class="citation">(<a href="#ref-fugazi1993">Fugazi
 1993</a>)</span></p></li>
-<li><p>FLS0765 Washington, DC USA 1/31/1996 <span class="citation">(<a href="#ref-fugazi1996" role="doc-biblioref">Fugazi
-1996a</a>)</span></p></li>
-<li><p>FLS0772 Athens, GA USA 3/26/1996 <span class="citation">(<a href="#ref-fugazi1996a" role="doc-biblioref">Fugazi
-1996b</a>)</span></p></li>
+<li><p>FLS0765 Washington, DC USA 1/31/1996 <span class="citation">(<a href="#ref-fugazi1996">Fugazi 1996a</a>)</span></p></li>
+<li><p>FLS0772 Athens, GA USA 3/26/1996 <span class="citation">(<a href="#ref-fugazi1996a">Fugazi 1996b</a>)</span></p></li>
 </ul>
 </div>
 </div>
@@ -620,7 +589,7 @@ with him.</p>
 <p>Stallings denied all of the allegations and had left the Catholic
 Church by the time the articles were published in 1989. He was
 excommunicated in 1990.</p>
-<p>- The Washington Post, 2009-10-14 <span class="citation">(<a href="#ref-wan2009" role="doc-biblioref">Wan 2009</a>)</span></p>
+<p>- The Washington Post, 2009-10-14 <span class="citation">(<a href="#ref-wan2009">Wan 2009</a>)</span></p>
 </blockquote>
 <p>It is not possible to say for sure that this person was a subject of
 the song but there are many aspects of his story that seem to coincide
@@ -635,7 +604,7 @@ as pastor of St. Teresa of Avila parish in Southeast Washington by
 melding the gospel music and preaching and worship styles familiar to
 blacks with the traditional mass. According to the priest, in his 12
 years at St. Teresa’s, membership increased from 200 to 2,000.</p>
-<p>- The Washington Post, 1989-06-20. <span class="citation">(<a href="#ref-hyer1989" role="doc-biblioref">Hyer 1989</a>)</span></p>
+<p>- The Washington Post, 1989-06-20. <span class="citation">(<a href="#ref-hyer1989">Hyer 1989</a>)</span></p>
 </blockquote>
 </div>
 <div class="section level3">
@@ -662,8 +631,8 @@ man was a priest and he was supposed to have this vow of chastity.” They
 had sexual relations only in the church rectory, he said, although
 sometimes, “after mass, he would pull me aside, like into the side room
 there. He would kiss me, which I thought was awfully bold.”</p>
-<p>- The Washington Post, 1989-09-04 <span class="citation">(<a href="#ref-sessionsstepp1989" role="doc-biblioref">Sessions Stepp and
-Dedman 1989</a>)</span></p>
+<p>- The Washington Post, 1989-09-04 <span class="citation">(<a href="#ref-sessionsstepp1989">Sessions Stepp and Dedman
+1989</a>)</span></p>
 </blockquote>
 </div>
 <div class="section level3">
@@ -691,7 +660,7 @@ facility specializing in treating pedophilia. Soon after the meeting
 with Hickey, Stallings defied church authorities by founding the Imani
 Temple, an independent black Catholic congregation. He said he was
 prompted by racism in the church.</p>
-<p>- The Washington Post, 1989-09-06. <span class="citation">(<a href="#ref-dedman1989" role="doc-biblioref">Dedman 1989</a>)</span></p>
+<p>- The Washington Post, 1989-09-06. <span class="citation">(<a href="#ref-dedman1989">Dedman 1989</a>)</span></p>
 </blockquote>
 <blockquote>
 <p>Although Hickey couldn’t establish whether Stallings was breaking his
@@ -706,8 +675,8 @@ gave Stallings an ultimatum. In a dramatic confrontation, according to
 Stallings, Hickey ordered him to seek psychiatric treatment for an
 “excessive ego” at a church hospital known for treating priests with
 sexual disorders.</p>
-<p>- The Washington Post, 1990-04-30. <span class="citation">(<a href="#ref-sessionsstepp1990" role="doc-biblioref">Sessions Stepp and
-Dedman 1990</a>)</span></p>
+<p>- The Washington Post, 1990-04-30. <span class="citation">(<a href="#ref-sessionsstepp1990">Sessions Stepp and Dedman
+1990</a>)</span></p>
 </blockquote>
 </div>
 <div class="section level3">
@@ -728,8 +697,7 @@ leading role in the adaptation of Roman Catholicism for black believers.
 But Augustus Manor was more than a symbol. It was an act of defiance:
 Cardinal James A. Hickey, the archbishop of Washington, has a firm rule
 that parish priests live in rectories.</p>
-<p>- The Washington Post, 1990-04-29. <span class="citation">(<a href="#ref-dedman1990" role="doc-biblioref">Dedman and Sessions Stepp
-1990</a>)</span></p>
+<p>- The Washington Post, 1990-04-29. <span class="citation">(<a href="#ref-dedman1990">Dedman and Sessions Stepp 1990</a>)</span></p>
 </blockquote>
 </div>
 <div class="section level3">
@@ -747,8 +715,8 @@ activity a sin. Brown said Stallings knew parishioners were whispering
 about their relationship. “It bothered him, but all people could do was
 insinuate,” Brown said. “He didn’t think it would catch up with
 him.”</p>
-<p>- The Washington Post, 1990-04-30. <span class="citation">(<a href="#ref-sessionsstepp1990" role="doc-biblioref">Sessions Stepp and
-Dedman 1990</a>)</span></p>
+<p>- The Washington Post, 1990-04-30. <span class="citation">(<a href="#ref-sessionsstepp1990">Sessions Stepp and Dedman
+1990</a>)</span></p>
 </blockquote>
 </div>
 <div class="section level3">
@@ -768,9 +736,42 @@ Parish lay leaders and archdiocesan officials said recently they did not
 know of any expenditure of parish funds for the priest’s home. A
 spokesman for Stallings declined to say why Stallings used the parish
 account or whether he reimbursed St. Teresa.</p>
-<p>- The Washington Post, 1990-04-29. <span class="citation">(<a href="#ref-dedman1990" role="doc-biblioref">Dedman and Sessions Stepp
-1990</a>)</span></p>
+<p>- The Washington Post, 1990-04-29. <span class="citation">(<a href="#ref-dedman1990">Dedman and Sessions Stepp 1990</a>)</span></p>
 </blockquote>
+</div>
+<div class="section level3">
+<h3 id="others">others<a class="anchor" aria-label="anchor" href="#others"></a>
+</h3>
+<p>The recorded version of ‘Two Beats Off’ was written about three years
+before Sinead O’Connor protested about sexual abuse in the Catholic
+church by ripping up a picture of the pope on Saturday Night Live.</p>
+<blockquote>
+<p>The song, a chantlike a cappella protest of racism and other forms of
+injustice, says in part: “Until the philosophy which holds one race
+superior and another inferior is finally and permanently discredited and
+abandoned, everywhere is war. ... Until the color of a man’s skin is of
+no more significance than the color of his eyes, I’ve got to say war!”
+It concludes with the line “We have confidence in the victory of good
+over evil.” After she intoned those words Saturday night, O’Connor, 26,
+wearing a long white lace dress, very close-cropped hair, a nose stud
+and a silver necklace with a Star of David, held up a color photo of the
+pope, began tearing it and said, “Fight the real enemy.” <span class="citation">(<a href="#ref-carmody1992">Carmody
+1992</a>)</span></p>
+</blockquote>
+<p>Sinead O’Connor suffered a significant backlash following this
+protest, being banned, mocked and booed on various occasions.</p>
+<blockquote>
+<p>Speaking with the New York <em>Times</em> in 2021, O’Connor said she
+had no regrets, though the backlash was overwhelming. “I’m not sorry I
+did it. It was brilliant. But it was very traumatizing. It was open
+season on treating me like a crazy bitch.” <span class="citation">(<a href="#ref-gajanan2023">Gajanan 2023</a>)</span></p>
+</blockquote>
+<p>It is possible to protest or speak out about uncomfortable issues and
+powerful individuals openly, but doing so can be costly and risky.
+Sometimes just causing offense can lead to big problems for a band, for
+instance the backlash experienced by The Beatles to John Lennon’s “more
+popular than Jesus” remark, which eventually resulted in the band
+deciding to stop touring <span class="citation">(<a href="#ref-upi1966">UPI 1966</a>)</span>.</p>
 </div>
 </div>
 <div class="section level2">
@@ -783,41 +784,85 @@ The benefit for victims of sexual abuse by a psychiatrist at a
 children’s home made me wonder if Two Beats Off might be about similar
 cases of abuse and seen from this point of view the meaning of the
 lyrics seemed to become much clearer.</p>
-<p>It is notable how Two Beats Off is sung in the first person as if the
-singer is playing a role in a film or a work of theatre. It isn’t the
-only Fugazi song that uses this device of playing a role, the other one
-that immediately comes to mind is Suggestion, which is sung from a
-female point of view. Another one is perhaps Give Me The Cure, written
-from the point of view of someone with HIV/AIDS. In the case of Two
-Beats Off the effect is more subtle and it took me a long time to notice
-it.</p>
 <p>It seems likely that one of the subjects of this song was sexual
 abuse and how it often gets covered up. Sexual abuse in the Roman
 Catholic Church had already become a scandal in the US at the time the
 song was written, although much more evidence emerged over the following
-years.</p>
-<p>Much of the content can be readily adapted to deal with other types
-of abuse in the context of institutions, as seems to have been done in
-the case of the 7 November 1990 benefit show at the Paradiso in
-Amsterdam, when the special extended introduction made Two Beats Off a
-highlight of the show. Two Beats Off was already an established song in
-the Fugazi repertoire at this point, so while it wasn’t written for this
-show it seems likely that the introduction was added as a way of making
-it more specific to the occasion.</p>
+years. Unfortunately other institutions that work with children also
+have cases of sexual abuse, including protestant churches <span class="citation">(<a href="#ref-denney2023">Denney 2023</a>)</span>, Boy
+Scouts of America <span class="citation">(<a href="#ref-cubellis2015">Cubellis 2015</a>)</span>, and others.
+Therefore, much of the content of this song could be adapted to deal
+with abuse in other institutions, as seems to have been done in the case
+of the 7 November 1990 benefit show at the Paradiso in Amsterdam, when
+the special extended introduction made Two Beats Off a highlight of the
+show. Two Beats Off was already an established song in the Fugazi
+repertoire at this point, so while it wasn’t written for this show it
+seems likely that the introduction was added as a way of making it more
+specific to the occasion.</p>
+<p>It is notable how Two Beats Off is sung in the first person as if the
+singer is playing a role in a film or a work of theater. It isn’t the
+only Fugazi song that uses this device of playing a role, the other ones
+that immediately comes to mind are Suggestion, which is sung from a
+female point of view, and Give Me The Cure, which seems to be written
+from the point of view of someone with HIV/AIDS. In the case of Two
+Beats Off the effect is more subtle and it took me a long time to notice
+it.</p>
+<p>It’s very hard to reach definite conclusions about this song because
+it doesn’t give us names, or dates, or locations. There is nothing that
+can be used to pin it down to some definite meaning or subject, and that
+was probably intentional on behalf of the songwriter. Guy Picciotto
+seemed to purposely leave his songs open to many different meanings or
+interpretations.</p>
+<blockquote>
+<p>MacKaye would occasionally explain one of Picciotto’s lyrics to the
+crowd, not always to the writer’s satisfaction. At the AIDS benefit,
+MacKaye described “Cure” as “a song about AIDS,” while at the Mayday
+show said “Break-In” was “about teenage pregnancy.” In an interview
+after the show with the fanzine Nomadic Underground, Picciotto clarified
+that “when Ian said ‘Break In” was about teenage pregnancy, he probably
+should have said, ’This could be about teenage pregnancy’ because it
+could be about a lot of things. It certainly means a lot of different
+things to me.” <span class="citation">(<a href="#ref-andersen2009a">Andersen and Jenkins 2009b</a>)</span></p>
+</blockquote>
+<p>This doesn’t seem to be one of Guy’s people songs like Cassavettes or
+Dear Justice Letter that openly references a specific person - these
+tended to be about people that Guy admired or valued. This song might be
+about a specific person but that person is not identifiable - this is
+not a tribute song.</p>
+<p>There are a lot of hints and clues, both in the lyrics themselves and
+considering the context of the time when the song was written, some of
+which I have explored in detail. The news stories in the Press Cuttings
+section may or may not have been used as source material. The number of
+coincidences with parts of the song make it seem likely that there is a
+connection but it is impossible to be sure.</p>
+<p>The challenge of reaching definite conclusions about the lyrics
+reminds me of the saying ‘there’s no smoke without fire’ that is used in
+cases where there is no hard evidence but such a quantity of rumors,
+speculatation and anecdotal evidence that it seems unlikely that these
+are all baseless. This seems fitting if the song is about what I think
+it is about.</p>
 </div>
 <div class="section level2">
 <h2 id="acknowledgements">Acknowledgements<a class="anchor" aria-label="anchor" href="#acknowledgements"></a>
 </h2>
 <p>Thanks to everyone from ‘This is Not a Fugazi Appreciation Group’
-<span class="citation">(<a href="#ref-variousauthors2024" role="doc-biblioref">Various Authors 2024</a>)</span> who helped
-transcribe parts of songs that I could not understand by myself, in
-particular Laure Bertrand, Gunter Habets and Mat Sharp for help with the
-French.</p>
+<span class="citation">(<a href="#ref-variousauthors2024">Various
+Authors 2024</a>)</span> who helped transcribe parts of songs that I
+could not understand by myself, in particular Laure Bertrand, Gunter
+Habets and Mat Sharp for help with the French.</p>
 </div>
 <div class="section level2 unnumbered">
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-andersen2009" class="csl-entry">
+Andersen, Mark, and Mark Jenkins. 2009a. <em>Dance of Days: Two Decades
+of Punk in the Nation’s Capital</em>. Akashic Books.
+</div>
+<div id="ref-andersen2009a" class="csl-entry">
+———. 2009b. <em>Dance of Days: Two Decades of Punk in the Nation’s
+Capital</em>. Akashic Books.
+</div>
 <div id="ref-berry1989" class="csl-entry">
 Berry, Jason. 1989. <span>“Is the Church Ignoring a Sexual Crisis in Its
 Ranks?”</span> <em>The Washington Post</em>, September. <a href="https://web.archive.org/web/20170827222112/https://www.washingtonpost.com/web/20170827222112/https://www.washingtonpost.com/archive/opinions/1989/09/17/is-the-church-ignoring-a-sexual-crisis-in-its-ranks/3b929fd4-f509-475a-8334-eca7df4faec4/?utm_term=.51b39cd0edbb" class="external-link">https://web.archive.org/web/20170827222112/https://www.washingtonpost.com/web/20170827222112/https://www.washingtonpost.com/archive/opinions/1989/09/17/is-the-church-ignoring-a-sexual-crisis-in-its-ranks/3b929fd4-f509-475a-8334-eca7df4faec4/?utm_term=.51b39cd0edbb</a>.
@@ -832,9 +877,18 @@ Cambridge University Press. 2024a. <span>“Sanction.”</span> <a href="https:/
 <div id="ref-cambridgeuniversitypress2024" class="csl-entry">
 ———. 2024b. <span>“Trophy.”</span> <a href="https://dictionary.cambridge.org/dictionary/english/trophy" class="external-link">https://dictionary.cambridge.org/dictionary/english/trophy</a>.
 </div>
+<div id="ref-carmody1992" class="csl-entry">
+Carmody, John. 1992. <span>“SINGER STUNS ’SNL’ VIEWERS.”</span>
+<em>Washington Post</em>, October. <a href="https://www.washingtonpost.com/archive/lifestyle/1992/10/05/singer-stuns-snl-viewers/52197c31-e592-4af5-bc74-8602abe37f99/" class="external-link">https://www.washingtonpost.com/archive/lifestyle/1992/10/05/singer-stuns-snl-viewers/52197c31-e592-4af5-bc74-8602abe37f99/</a>.
+</div>
 <div id="ref-chicagotribune1990" class="csl-entry">
 Chicago Tribune. 1990. <span>“Docudrama Tells of Priest’s
 Pedophilia.”</span> <em>Chicago Tribune</em>, October. <a href="https://www.chicagotribune.com/1990/10/11/docudrama-tells-of-priests-pedophilia/" class="external-link">https://www.chicagotribune.com/1990/10/11/docudrama-tells-of-priests-pedophilia/</a>.
+</div>
+<div id="ref-cubellis2015" class="csl-entry">
+Cubellis, Michelle Anne. 2015. <span>“Sexual Victimization, Disclosure,
+and Accountability: Organizational Responses of the Boy Scouts of
+America to Child Sexual Abuse.”</span> PhD thesis.
 </div>
 <div id="ref-dedman1989" class="csl-entry">
 Dedman, Bill. 1989. <span>“Stallings, in TV Show, Denies Sex
@@ -844,26 +898,34 @@ Allegation.”</span> <em>The Washington Post</em>, September. <a href="https://
 Dedman, Bill, and Laura Sessions Stepp. 1990. <span>“Years of Defiance
 Roots of Stallings’s Rebellion,”</span> April. <a href="https://web.archive.org/web/20160822101518/https://www.washingtonpost.com/archive/politics/1990/04/29/years-of-defiance-roots-of-stallingss-rebellion/7fd61664-90d2-45c5-8313-1cdc704e6210/" class="external-link">https://web.archive.org/web/20160822101518/https://www.washingtonpost.com/archive/politics/1990/04/29/years-of-defiance-roots-of-stallingss-rebellion/7fd61664-90d2-45c5-8313-1cdc704e6210/</a>.
 </div>
+<div id="ref-denney2023" class="csl-entry">
+Denney, Andrew S. 2023. <span>“Child Sex Abusers in Protestant Christian
+Churches: An Offender Typology.”</span> <em>Journal of Qualitative
+Criminal Justice &amp; Criminology</em>, January. <a href="https://doi.org/10.21428/88de04a1.000ff84d" class="external-link">https://doi.org/10.21428/88de04a1.000ff84d</a>.
+</div>
 <div id="ref-editorialboard2013" class="csl-entry">
 Editorial Board. 2013. <span>“Cardinal Dolan and the Sexual Abuse
 Scandal.”</span> <em>The New York Times</em>, July. <a href="https://web.archive.org/web/20180928003409/https://www.nytimes.com/2013/07/04/opinion/cardinal-dolan-and-the-sex-abuse-scandal.html?src=recg" class="external-link">https://web.archive.org/web/20180928003409/https://www.nytimes.com/2013/07/04/opinion/cardinal-dolan-and-the-sex-abuse-scandal.html?src=recg</a>.
 </div>
+<div id="ref-fireparty1989" class="csl-entry">
+Fire Party. 1989. <span>“First Course.”</span> <a href="https://fireparty.bandcamp.com/track/first-course" class="external-link">https://fireparty.bandcamp.com/track/first-course</a>.
+</div>
 <div id="ref-fugazi1988" class="csl-entry">
-Fugazi. 1988. <span>“Fls0016 New York, NY USA 3/25/1988.”</span> <a href="https://dischord.com/fugazi_live_series/new-york-ny-usa-32588" class="external-link">https://dischord.com/fugazi_live_series/new-york-ny-usa-32588</a>.
+Fugazi. 1988. <span>“FLS0016 New York, NY USA 3/25/1988.”</span> <a href="https://dischord.com/fugazi_live_series/new-york-ny-usa-32588" class="external-link">https://dischord.com/fugazi_live_series/new-york-ny-usa-32588</a>.
 </div>
 <div id="ref-fugazi1989" class="csl-entry">
-———. 1989a. <span>“Fls0105 Athens, GA USA 5/3/1989,”</span> May. <a href="https://dischord.com/fugazi_live_series/athens-ga-usa-50389" class="external-link">https://dischord.com/fugazi_live_series/athens-ga-usa-50389</a>.
+———. 1989a. <span>“FLS0105 Athens, GA USA 5/3/1989,”</span> May. <a href="https://dischord.com/fugazi_live_series/athens-ga-usa-50389" class="external-link">https://dischord.com/fugazi_live_series/athens-ga-usa-50389</a>.
 </div>
 <div id="ref-fugazi1989a" class="csl-entry">
-———. 1989b. <span>“Fls0133 Washington, DC USA 7/20/1989,”</span> July.
+———. 1989b. <span>“FLS0133 Washington, DC USA 7/20/1989,”</span> July.
 <a href="https://dischord.com/fugazi_live_series/washington-dc-usa-72089" class="external-link">https://dischord.com/fugazi_live_series/washington-dc-usa-72089</a>.
 </div>
 <div id="ref-fugazi1989b" class="csl-entry">
-———. 1989c. <span>“Fls0148 Hoboken, NJ USA 10/8/1989,”</span> October.
+———. 1989c. <span>“FLS0148 Hoboken, NJ USA 10/8/1989,”</span> October.
 <a href="https://dischord.com/fugazi_live_series/hoboken-nj-usa-100889" class="external-link">https://dischord.com/fugazi_live_series/hoboken-nj-usa-100889</a>.
 </div>
 <div id="ref-fugazi1989c" class="csl-entry">
-———. 1989d. <span>“Fls0151 Amsterdam, Netherlands 11/3/1989,”</span>
+———. 1989d. <span>“FLS0151 Amsterdam, Netherlands 11/3/1989,”</span>
 November. <a href="https://dischord.com/fugazi_live_series/amsterdam-netherlands-110389" class="external-link">https://dischord.com/fugazi_live_series/amsterdam-netherlands-110389</a>.
 </div>
 <div id="ref-fugazi1990e" class="csl-entry">
@@ -873,32 +935,36 @@ November. <a href="https://dischord.com/fugazi_live_series/amsterdam-netherlands
 ———. 1990b. <span>“Two Beats Off,”</span> March. <a href="https://fugazi.bandcamp.com/track/two-beats-off" class="external-link">https://fugazi.bandcamp.com/track/two-beats-off</a>.
 </div>
 <div id="ref-fugazi1990f" class="csl-entry">
-———. 1990c. <span>“Fls0224 Denver, CO, USA, 06/08/1990,”</span> June. <a href="https://dischord.com/fugazi_live_series/denver-co-usa-60890" class="external-link">https://dischord.com/fugazi_live_series/denver-co-usa-60890</a>.
+———. 1990c. <span>“FLS0224 Denver, CO, USA, 06/08/1990,”</span> June. <a href="https://dischord.com/fugazi_live_series/denver-co-usa-60890" class="external-link">https://dischord.com/fugazi_live_series/denver-co-usa-60890</a>.
 </div>
 <div id="ref-fugazi1990c" class="csl-entry">
-———. 1990d. <span>“Fls0251 Wageningen, Netherlands 9/8/1990,”</span>
+———. 1990d. <span>“FLS0251 Wageningen, Netherlands 9/8/1990,”</span>
 September. <a href="https://dischord.com/fugazi_live_series/wageningen-netherlands-90890" class="external-link">https://dischord.com/fugazi_live_series/wageningen-netherlands-90890</a>.
 </div>
 <div id="ref-fugazi1990b" class="csl-entry">
 ———. 1990e. <span>“Linkoping, Sweden 10/2/1990,”</span> October. <a href="https://dischord.com/fugazi_live_series/linkoping-sweden-100290" class="external-link">https://dischord.com/fugazi_live_series/linkoping-sweden-100290</a>.
 </div>
 <div id="ref-fugazi1990" class="csl-entry">
-———. 1990f. <span>“Fls0304 Amsterdam, Netherlands 11/7/1990,”</span>
+———. 1990f. <span>“FLS0304 Amsterdam, Netherlands 11/7/1990,”</span>
 November. <a href="https://dischord.com/fugazi_live_series/amsterdam-netherlands-110790" class="external-link">https://dischord.com/fugazi_live_series/amsterdam-netherlands-110790</a>.
 </div>
 <div id="ref-fugazi1992" class="csl-entry">
-———. 1992. <span>“Fls0437 Nottingham, England 5/8/1992,”</span> May. <a href="https://dischord.com/fugazi_live_series/nottingham-england-50892" class="external-link">https://dischord.com/fugazi_live_series/nottingham-england-50892</a>.
+———. 1992. <span>“FLS0437 Nottingham, England 5/8/1992,”</span> May. <a href="https://dischord.com/fugazi_live_series/nottingham-england-50892" class="external-link">https://dischord.com/fugazi_live_series/nottingham-england-50892</a>.
 </div>
 <div id="ref-fugazi1993" class="csl-entry">
-———. 1993. <span>“Fls0491 Virginia Beach, VA USA 2/4/1993,”</span>
+———. 1993. <span>“FLS0491 Virginia Beach, VA USA 2/4/1993,”</span>
 February. <a href="https://dischord.com/fugazi_live_series/virginia-beach-va-usa-20493" class="external-link">https://dischord.com/fugazi_live_series/virginia-beach-va-usa-20493</a>.
 </div>
 <div id="ref-fugazi1996" class="csl-entry">
-———. 1996a. <span>“Fls0765 Washington, DC USA 1/31/1996,”</span>
+———. 1996a. <span>“FLS0765 Washington, DC USA 1/31/1996,”</span>
 January. <a href="https://dischord.com/fugazi_live_series/washington-dc-usa-13196" class="external-link">https://dischord.com/fugazi_live_series/washington-dc-usa-13196</a>.
 </div>
 <div id="ref-fugazi1996a" class="csl-entry">
-———. 1996b. <span>“Fls0772 Athens, GA USA 3/26/1996,”</span> March. <a href="https://dischord.com/fugazi_live_series/athens-ga-usa-32696" class="external-link">https://dischord.com/fugazi_live_series/athens-ga-usa-32696</a>.
+———. 1996b. <span>“FLS0772 Athens, GA USA 3/26/1996,”</span> March. <a href="https://dischord.com/fugazi_live_series/athens-ga-usa-32696" class="external-link">https://dischord.com/fugazi_live_series/athens-ga-usa-32696</a>.
+</div>
+<div id="ref-gajanan2023" class="csl-entry">
+Gajanan, Mahita. 2023. <span>“The Controversial SNL Performance That
+Made Sinéad O’Connor an Icon.”</span> <em>TIME</em>, July. <a href="https://time.com/6298448/the-controversial-saturday-night-live-performance-that-made-sinead-oconnor-an-icon/" class="external-link">https://time.com/6298448/the-controversial-saturday-night-live-performance-that-made-sinead-oconnor-an-icon/</a>.
 </div>
 <div id="ref-gershwin1935" class="csl-entry">
 Gershwin, George. 1935. <span>“Summertime.”</span> <a href="https://genius.com/George-gershwin-summertime-lyrics" class="external-link">https://genius.com/George-gershwin-summertime-lyrics</a>.
@@ -943,6 +1009,10 @@ September. <a href="https://genius.com/Siouxsie-and-the-banshees-the-lords-praye
 <div id="ref-thejam1978" class="csl-entry">
 The Jam. 1978. <span>“The Place i Love,”</span> November. <a href="https://genius.com/The-jam-the-place-i-love-lyrics" class="external-link">https://genius.com/The-jam-the-place-i-love-lyrics</a>.
 </div>
+<div id="ref-upi1966" class="csl-entry">
+UPI. 1966. <span>“Beatles Still Supported in Columbus.”</span>
+<em>Ledger-Enquirer</em>, August, 9. <a href="https://www.newspapers.com/article/ledger-enquirer-beatles-still-supported/158117329/" class="external-link">https://www.newspapers.com/article/ledger-enquirer-beatles-still-supported/158117329/</a>.
+</div>
 <div id="ref-variousauthors2024" class="csl-entry">
 Various Authors. 2024. <span>“This Is Not a Fugazi Appreciation
 Group.”</span> <a href="https://web.facebook.com/groups/Fugazi.appreciation.group/" class="external-link">https://web.facebook.com/groups/Fugazi.appreciation.group/</a>.
@@ -960,38 +1030,33 @@ Wikipedia Contributors. 2024a. <span>“Au Clair de La Lune.”</span> <a href="
 <div id="ref-wikipediacontributors2024a" class="csl-entry">
 ———. 2024c. <span>“Swing Low, Sweet Chariot.”</span> <a href="https://en.wikipedia.org/w/index.php?title=Swing_Low,_Sweet_Chariot&amp;oldid=1254987772" class="external-link">https://en.wikipedia.org/w/index.php?title=Swing_Low,_Sweet_Chariot&amp;oldid=1254987772</a>.
 </div>
+<div id="ref-wright2022" class="csl-entry">
+Wright, Ian James, Benjy Rickard, and Stephen Rickard. 2022.
+<span>“<span>"</span>Two Beats Off<span>"</span> with Benjy and Stephen
+Rickard,”</span> January. <a href="https://open.spotify.com/episode/0OJyX7CgxXbEIJ1qkY8ngG" class="external-link">https://open.spotify.com/episode/0OJyX7CgxXbEIJ1qkY8ngG</a>.
 </div>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
 </div>
-
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
 
-      <footer><div class="copyright">
-  <p></p>
-<p>Developed by Alex Mitrani.</p>
+    <footer><div class="pkgdown-footer-left">
+  <p>Developed by Alex Mitrani.</p>
 </div>
 
-<div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
-  <p class="preferably">Using <a href="https://preferably.amirmasoudabdol.name/?source=footer" class="external-link">preferably</a> template.</p>
+<div class="pkgdown-footer-right">
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
-  
 
 
-  
+
 
   </body>
 </html>

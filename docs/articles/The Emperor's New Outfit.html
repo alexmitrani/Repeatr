@@ -4,140 +4,74 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Inform modern browsers that this page supports both dark and light color schemes,
-  and the page author prefers light. --><meta name="color-scheme" content="dark light">
-<script>
-  // If `prefers-color-scheme` is not supported, fall back to light mode.
-  // i.e. In this case, inject the `light` CSS before the others, with
-  // no media filter so that it will be downloaded with highest priority.
-  if (window.matchMedia("(prefers-color-scheme: dark)").media === "not all") {
-    document.documentElement.style.display = "none";
-    document.head.insertAdjacentHTML(
-      "beforeend",
-      "<link id=\"css\" rel=\"stylesheet\" href=\"https://bootswatch.com/3/flatly/bootstrap.css\" onload=\"document.documentElement.style.display = ''\">"
-    );
-  }
-</script><title>The Emperor's New Outfit • Repeatr</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="The Emperor's New Outfit">
-<meta property="og:description" content="Repeatr">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]--><!-- Flatly Theme - Light  --><link id="css-light" rel="stylesheet" href="https://bootswatch.com/3/flatly/bootstrap.css" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)">
-<!-- Darkly Theme - Dark --><link id="css-dark" rel="stylesheet" href="https://bootswatch.com/3/darkly/bootstrap.css" media="(prefers-color-scheme: dark)">
-<!-- preferably CSS --><link rel="stylesheet" href="../preferably.css">
-<link id="css-code-light" rel="stylesheet" href="../code-color-scheme-light.css" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)">
-<link id="css-code-dark" rel="stylesheet" href="../code-color-scheme-dark.css" media="(prefers-color-scheme: dark)">
-<script src="../darkswitch.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>The Emperor's New Outfit • Repeatr</title>
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="The Emperor's New Outfit">
 </head>
-<body data-spy="scroll" data-target="#toc">
-    
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">Repeatr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9183</span>
-      </span>
-    </div>
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../articles/Repeatr.html">Get started</a>
-</li>
-<li>
-  <a href="../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/94songs.html">94 SONGS</a>
-    </li>
-    <li>
-      <a href="../articles/AllAccess.html">All Access</a>
-    </li>
-    <li>
-      <a href="../articles/CombinationLock.html">Combination Lock</a>
-    </li>
-    <li>
-      <a href="../articles/Fugazetteer.html">Fugazetteer</a>
-    </li>
-    <li>
-      <a href="../articles/LinkTracks.html">Link Tracks</a>
-    </li>
-    <li>
-      <a href="../articles/Outsiders.html">Outsiders</a>
-    </li>
-    <li>
-      <a href="../articles/Playlist.html">Playlist</a>
-    </li>
-    <li>
-      <a href="../articles/polish%20with%20a%20small%20p.html">polish with a small p</a>
-    </li>
-    <li>
-      <a href="../articles/Ratings.html">Ratings</a>
-    </li>
-    <li>
-      <a href="../articles/The%20Emperor's%20New%20Outfit.html">The Emperor's New Outfit</a>
-    </li>
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+
+    <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
+
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9183</small>
+
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="../articles/Repeatr.html">Get started</a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/94songs.html">94 SONGS</a></li>
+    <li><a class="dropdown-item" href="../articles/AllAccess.html">All Access</a></li>
+    <li><a class="dropdown-item" href="../articles/au%20clair%20de%20la%20lune.html">Au Clair de la Lune</a></li>
+    <li><a class="dropdown-item" href="../articles/CombinationLock.html">Combination Lock</a></li>
+    <li><a class="dropdown-item" href="../articles/Fugazetteer.html">Fugazetteer</a></li>
+    <li><a class="dropdown-item" href="../articles/in%20your%20memory.html">in your memory</a></li>
+    <li><a class="dropdown-item" href="../articles/LinkTracks.html">Link Tracks</a></li>
+    <li><a class="dropdown-item" href="../articles/Outsiders.html">Outsiders</a></li>
+    <li><a class="dropdown-item" href="../articles/Playlist.html">Playlist</a></li>
+    <li><a class="dropdown-item" href="../articles/polish%20with%20a%20small%20p.html">polish with a small p</a></li>
+    <li><a class="dropdown-item" href="../articles/Ratings.html">Ratings</a></li>
+    <li><a class="dropdown-item" href="../articles/The%20Emperor's%20New%20Outfit.html">The Emperor's New Outfit</a></li>
   </ul>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-          <a href="#" id="css-toggle-btn">
-            <span class="fas fa-adjust fa-lg"></span>
-          </a>
-        </li>
-        
-        <li>
-  <a href="https://github.com/alexmitrani/Repeatr/" class="external-link">
-    <span class="fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
-        
-        
-
-
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/alexmitrani/Repeatr/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
-<!--/.nav-collapse -->
+
+
   </div>
-<!--/.container -->
-</div>
-<!--/.navbar -->
+</nav><div class="container template-article">
 
-      
 
-      </header><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>The Emperor’s New Outfit</h1>
+
+
+<div class="row">
+  <main id="main" class="col-md-9"><div class="page-header">
+
+      <h1>The Emperor's New Outfit</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/alexmitrani/Repeatr/blob/HEAD/vignettes/The%20Emperor" s new outfit.rmd class="external-link"><code>vignettes/The Emperor's New Outfit.Rmd</code></a></small>
-      <div class="hidden name"><code>The Emperor's New Outfit.Rmd</code></div>
-
+      <div class="d-none name"><code>The Emperor's New Outfit.Rmd</code></div>
     </div>
 
     
@@ -148,7 +82,7 @@
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
 <p>Nice New Outfit is the third track on Fugazi’s Steady Diet of Nothing
-album which was recorded at Inner Ear studios in January 1991 <span class="citation">(<a href="#ref-fugazi1991" role="doc-biblioref">Fugazi
+album which was recorded at Inner Ear studios in January 1991 <span class="citation">(<a href="#ref-fugazi1991">Fugazi
 1991b</a>)</span>.</p>
 <p>Judging from the dates of debut live performances in the Fugazi Live
 Series, the songs on Steady Diet of Nothing were written at different
@@ -171,7 +105,8 @@ January 1991.</p>
 <p>On the 12th January 1991 the US Congress authorized the use of force
 to eject Iraq from Kuwait, and ‘Operation Desert Storm’ started on the
 16th of January with US warplanes attacking targets in Iraq and Kuwait
-<span class="citation">(<a href="#ref-instituteofmedicine1997" role="doc-biblioref">Institute of Medicine 1997</a>)</span>.</p>
+<span class="citation">(<a href="#ref-instituteofmedicine1997">Institute
+of Medicine 1997</a>)</span>.</p>
 <p>Fugazi played at a protest at Lafayette Park, in front of the White
 House, on the 12th January 1991:</p>
 <blockquote>
@@ -181,7 +116,8 @@ days before it,” recalled Ian MacKaye, frontman of Fugazi, the
 headliners of the show. The city’s punk dissenters arrived en masse,
 braving bracing temperatures. “Not only was it cold, but it was raining
 and snowing. It was a miserable day, and yet thousands of people came
-out. It was a pretty incredible show.” - Ian MacKaye <span class="citation">(<a href="#ref-anderson2015" role="doc-biblioref">Anderson 2015</a>)</span></p>
+out. It was a pretty incredible show.” - Ian MacKaye <span class="citation">(<a href="#ref-anderson2015">Anderson
+2015</a>)</span></p>
 </blockquote>
 <p>The Fugazi show in front of the White House did not include either
 Nice New Outfit or Polish, and neither had been performed previously,
@@ -198,16 +134,16 @@ two songs.</p>
 <blockquote>
 <p>[a]s the Gulf War went well for the US, initial public skepticism
 became what Rollins called ‘getting high on war’ - a virus that infected
-even the punk scene. <span class="citation">(<a href="#ref-andersen2009" role="doc-biblioref">M. Andersen and Jenkins 2009</a>)</span></p>
+even the punk scene. <span class="citation">(<a href="#ref-andersen2009">M. Andersen and Jenkins 2009</a>)</span></p>
 </blockquote>
 <p>The debut performance of Nice New Outfit was at Twisters in Richmond,
-VA on the 20 of February 1991 <span class="citation">(<a href="#ref-fugazi1991a" role="doc-biblioref">Fugazi 1991c</a>)</span>,
-where there was some conflict:</p>
+VA on the 20 of February 1991 <span class="citation">(<a href="#ref-fugazi1991a">Fugazi 1991c</a>)</span>, where there was some
+conflict:</p>
 <blockquote>
 <p>At a Fugazi show at a club in Richmond, Virginia, Positive Force
 activists handing out anti-war fliers were physically intimidated and
 nearly ejected from the premises; only the band’s intervention stopped
-the confrontation. <span class="citation">(<a href="#ref-andersen2013" role="doc-biblioref">M. Andersen 2013</a>)</span></p>
+the confrontation. <span class="citation">(<a href="#ref-andersen2013">M. Andersen 2013</a>)</span></p>
 </blockquote>
 <p>The show featured some comments about the war in the interlude
 between And The Same and KYEO:</p>
@@ -220,7 +156,8 @@ you that if you’re opposed to war, then that meant that you were trying
 to undermine or betray the people who happen to be over there, but don’t
 let people bullshit you, if you’re opposed to the war, be opposed to the
 war, it’s a good thing to be, who wants to be killed? - Ian MacKaye
-<span class="citation">(<a href="#ref-fugazi1991a" role="doc-biblioref">Fugazi 1991c</a>)</span></p>
+<span class="citation">(<a href="#ref-fugazi1991a">Fugazi
+1991c</a>)</span></p>
 </blockquote>
 <p>Nice New Outfit was played a total of 114 times, which was more than
 Steady Diet and Polish, but less than all of the other songs on Steady
@@ -240,8 +177,8 @@ and trim at the hip, that’s a language I speak, like fluently, but for
 some reason the anger attached to that set of phrases and the sentiment,
 the general sentiment in this song made me think that it was someone who
 was like a killing machine or involved in some sort of, I don’t know,
-crimes against humanity or something - Buick Audra <span class="citation">(<a href="#ref-wright2021" role="doc-biblioref">Wright
-and Audra 2021</a>)</span>.</p>
+crimes against humanity or something - Buick Audra <span class="citation">(<a href="#ref-wright2021">Wright and Audra
+2021</a>)</span>.</p>
 </blockquote>
 </div>
 <div class="section level2">
@@ -261,12 +198,11 @@ around the time the war started:</p>
 <blockquote>
 <p>When the President’s call came in to Representative Thomas S. Foley,
 Democrat of Washington, the Speaker of the House, at 5:30 P.M.,
-Mr. Foley was shopping for shirts <span class="citation">(<a href="#ref-dowd1991" role="doc-biblioref">Dowd 1991</a>)</span></p>
+Mr. Foley was shopping for shirts <span class="citation">(<a href="#ref-dowd1991">Dowd 1991</a>)</span></p>
 </blockquote>
 <p>However, Foley does not seem to deserve to be the subject of all the
 anger expressed in this song as he was consistently against the
-resolution on Authorization for Use of Military Force Against Iraq <span class="citation">(<a href="#ref-clymer1991" role="doc-biblioref">Clymer
-1991</a>)</span>.</p>
+resolution on Authorization for Use of Military Force Against Iraq <span class="citation">(<a href="#ref-clymer1991">Clymer 1991</a>)</span>.</p>
 </div>
 <div class="section level3">
 <h3 id="theres-blood-in-your-mouth-but-not-in-mine-">There’s blood in your mouth, but not in mine.<a class="anchor" aria-label="anchor" href="#theres-blood-in-your-mouth-but-not-in-mine-"></a>
@@ -291,7 +227,7 @@ your adventure.<a class="anchor" aria-label="anchor" href="#the-place-im-offered
 <p>President W.H. Bush deployed troops in the Persian Gulf region on 9
 August 1990, a week after the Iraqi invasion of Kuwait, and by the end
 of the year approximately 350,000 US troops had been deployed to the
-area - without the authorization of Congress. <span class="citation">(<a href="#ref-weed2015" role="doc-biblioref">Weed 2015</a>)</span></p>
+area - without the authorization of Congress. <span class="citation">(<a href="#ref-weed2015">Weed 2015</a>)</span></p>
 <blockquote>
 <p>In a press conference on January 9, 1991, President Bush reinforced
 this distinction in response to questions about the use of force
@@ -302,7 +238,7 @@ I feel that I have the authority to fully implement the United Nations
 resolutions.” He added that he felt that he had “the constitutional
 authority—many attorneys having so advised me.” On January 12, 1991,
 both houses passed the “Authorization for Use of Military Force Against
-Iraq Resolution” (P.L. 102-1). <span class="citation">(<a href="#ref-weed2015" role="doc-biblioref">Weed 2015</a>)</span></p>
+Iraq Resolution” (P.L. 102-1). <span class="citation">(<a href="#ref-weed2015">Weed 2015</a>)</span></p>
 </blockquote>
 <p>The use of military force was eventually authorized by Congress but
 it seems likely that the president would have pushed ahead with the
@@ -313,8 +249,9 @@ powerlessness of someone railroaded into something they are opposed to -
 a war - without being offered any real choice.</p>
 <p>“a worthless sightsee of your adventure” probably alludes to the
 extensive TV coverage of the war which is also explored in the song
-Polish <span class="citation">(<a href="#ref-fugazi1991b" role="doc-biblioref">Fugazi 1991a</a>)</span> and is discussed in more
-detail in “polish with a small p” <span class="citation">(<a href="#ref-mitrani2023" role="doc-biblioref">Mitrani
+Polish <span class="citation">(<a href="#ref-fugazi1991b">Fugazi
+1991a</a>)</span> and is discussed in more detail in “polish with a
+small p” <span class="citation">(<a href="#ref-mitrani2023">Mitrani
 2023</a>)</span>.</p>
 <p>“Your adventure” is similar to “your nice new outfit” and suggests
 bitter separation and opposition between the author and the subject of
@@ -325,8 +262,8 @@ the song.</p>
 your mouth, dressed to the nines.<a class="anchor" aria-label="anchor" href="#in-your-nice-new-outfit-all-straight-clean-lines--theres-blood-in-your-mouth-dressed-to-the-nines-"></a>
 </h3>
 <p>According to the dictionary, “dressed to the nines” means “to be
-wearing fashionable or formal clothes for a special occasion” <span class="citation">(<a href="#ref-cambridgedictionary2023" role="doc-biblioref">Cambridge Dictionary 2023a</a>)</span>. This
-suggests civilian clothes.</p>
+wearing fashionable or formal clothes for a special occasion” <span class="citation">(<a href="#ref-cambridgedictionary2023">Cambridge
+Dictionary 2023a</a>)</span>. This suggests civilian clothes.</p>
 <p>“all straight clean lines” indicates that everything is nice as tidy,
 no disorder - perhaps an allusion to lack of effective protest, dissent
 or obstacles in Congress despite a Democrat majority in both
@@ -342,7 +279,7 @@ symbol.</p>
 <p>the phrase “number one with a bullet” refers to a Hot 100 innovation,
 a small symbol indicating that a song is on its way up. To be “number
 one with a bullet” means you’re at the top and still rising, thus not
-likely to vacate the penthouse anytime soon. <span class="citation">(<a href="#ref-giaimo2015" role="doc-biblioref">Giaimo 2015</a>)</span>.</p>
+likely to vacate the penthouse anytime soon. <span class="citation">(<a href="#ref-giaimo2015">Giaimo 2015</a>)</span>.</p>
 </blockquote>
 <p>Therefore, the subject is probably someone who is at the top of their
 area or on the rise. One possible interpretation would be that this
@@ -371,21 +308,22 @@ interest and benefit. “address” is used for formal speeches, as in
 <p>When we are successful, and we will be, we have a real chance at this
 new world order, an order in which a credible United Nations can use its
 peace-keeping role to fulfill the promise and vision of the U.N.’s
-founders. <span class="citation">(<a href="#ref-bush1991" role="doc-biblioref">Bush 1991</a>)</span></p>
+founders. <span class="citation">(<a href="#ref-bush1991">Bush
+1991</a>)</span></p>
 </blockquote>
-<p>“address yourself success” also hints at “dress for success” <span class="citation">(<a href="#ref-entwistle2023" role="doc-biblioref">Entwistle 2023</a>)</span>, which would link back
-to the “nice new outfit” theme.</p>
+<p>“address yourself success” also hints at “dress for success” <span class="citation">(<a href="#ref-entwistle2023">Entwistle
+2023</a>)</span>, which would link back to the “nice new outfit”
+theme.</p>
 <p>Perhaps there is also an echo of Dylan here, who sang on Subterranean
 Homesick Blues:</p>
 <blockquote>
-<p>Learn to dance, get dressed Get blessed, try to be a success <span class="citation">(<a href="#ref-bobdylan1965" role="doc-biblioref">Bob
-Dylan 1965</a>)</span></p>
+<p>Learn to dance, get dressed Get blessed, try to be a success <span class="citation">(<a href="#ref-bobdylan1965">Bob Dylan
+1965</a>)</span></p>
 </blockquote>
 <p>This was one of the first popular songs to be accompanied by a video
 (part of a documentary film), in which Dylan shows a series of prompt
 cards with words often varying from the lyrics - in the case of
-“success” the prompt card says “suck-cess” <span class="citation">(<a href="#ref-pennebaker1967" role="doc-biblioref">Pennebaker
-1967</a>)</span>.</p>
+“success” the prompt card says “suck-cess” <span class="citation">(<a href="#ref-pennebaker1967">Pennebaker 1967</a>)</span>.</p>
 </div>
 <div class="section level3">
 <h3 id="you-can-pinpoint-your-chimney-and-drop-one-down-its-length-">You can pinpoint your chimney and drop one down its length.<a class="anchor" aria-label="anchor" href="#you-can-pinpoint-your-chimney-and-drop-one-down-its-length-"></a>
@@ -398,7 +336,7 @@ sight on the pilot’s computer display. To send a 2,000-pound bomb
 hurtling through the ventilation shaft of a hardened bunker, a pilot has
 only to head his airplane in approximately the right direction, release
 his bomb, fix the FLIR cross-hairs on the target, and order his laser
-designator to remain locked on the target. <span class="citation">(<a href="#ref-browne1991" role="doc-biblioref">Browne 1991</a>)</span></p>
+designator to remain locked on the target. <span class="citation">(<a href="#ref-browne1991">Browne 1991</a>)</span></p>
 </blockquote>
 </div>
 <div class="section level3">
@@ -428,7 +366,8 @@ last; and the Emperor’s flesh crept, for it seemed to him they were
 right. “But all the same,” he thought to himself, “I must go through
 with the procession.” So he held himself more proudly than before, and
 the lords in waiting walked on bearing the train—the train that wasn’t
-there at all. <span class="citation">(<a href="#ref-andersen1930" role="doc-biblioref">H. C. Andersen 1930</a>)</span></p>
+there at all. <span class="citation">(<a href="#ref-andersen1930">H. C.
+Andersen 1930</a>)</span></p>
 </blockquote>
 </div>
 </div>
@@ -447,9 +386,9 @@ military force with or without authorization by Congress</p></li>
 <li><p>“number one with a bullet, that’s money well spent” - the
 presidency is the top job in the USA, and presidential campaigns require
 raising a lot of money which would imply future commitments to donors.
-President Bush had links to oil, defense, and intelligence <span class="citation">(<a href="#ref-baker2013" role="doc-biblioref">Baker
-2013</a>)</span>, and his 1988 presidential campaign received
-significant support from the NRA <span class="citation">(<a href="#ref-kopel1996" role="doc-biblioref">Kopel
+President Bush had links to oil, defense, and intelligence <span class="citation">(<a href="#ref-baker2013">Baker 2013</a>)</span>, and
+his 1988 presidential campaign received significant support from the NRA
+<span class="citation">(<a href="#ref-kopel1996">Kopel
 1996</a>)</span>.</p></li>
 <li><p>“your mouth plastered like poster, address yourself success” -
 seems to allude to the TV broadcast of the presidential address
@@ -475,10 +414,11 @@ broadens the focus of the song making it critical not just of the
 president but also of everyone who contributed to the military action
 being authorized. Both House and Senate resolutions were sponsored and
 voted for by both Democrats and Republicans, and the Democrats had
-majorities in both chambers <span class="citation">(<a href="#ref-clymer1991" role="doc-biblioref">Clymer 1991</a>)</span>. The
-significant bipartisan support for the war in Congress hints at a double
-meaning considering another, informal meaning of “outfit” - “an
-organization, company, team, military unit, etc.” <span class="citation">(<a href="#ref-cambridgedictionary2023a" role="doc-biblioref">Cambridge Dictionary 2023b</a>)</span></p>
+majorities in both chambers <span class="citation">(<a href="#ref-clymer1991">Clymer 1991</a>)</span>. The significant
+bipartisan support for the war in Congress hints at a double meaning
+considering another, informal meaning of “outfit” - “an organization,
+company, team, military unit, etc.” <span class="citation">(<a href="#ref-cambridgedictionary2023a">Cambridge Dictionary
+2023b</a>)</span></p>
 </div>
 <div class="section level2">
 <h2 id="conclusion">Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"></a>
@@ -495,7 +435,7 @@ despite Democrat majorities in both chambers.</p>
 <div class="section level2 unnumbered">
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-andersen1930" class="csl-entry">
 Andersen, Hans Christian. 1930. <span>“The Emperor’s New
 Clothes.”</span> In. <a href="https://gutenberg.ca/ebooks/andersen-emperor/andersen-emperor-00-h.html" class="external-link">https://gutenberg.ca/ebooks/andersen-emperor/andersen-emperor-00-h.html</a>.
@@ -570,7 +510,7 @@ Kopel, Dave. 1996. <span>“George Bush and the NRA.”</span> <em>Gun
 World</em>. <a href="https://davekopel.org/2A/Mags/George-Bush-and-the-NRA.htm" class="external-link">https://davekopel.org/2A/Mags/George-Bush-and-the-NRA.htm</a>.
 </div>
 <div id="ref-mitrani2023" class="csl-entry">
-Mitrani, Alex. 2023. <span>“Polish with a Small p.”</span> <a href="https://alexmitrani.github.io/Repeatr/articles/polish%20with%20a%20small%20p.html" class="external-link">https://alexmitrani.github.io/Repeatr/articles/polish%20with%20a%20small%20p.html</a>.
+Mitrani, Alex. 2023. <span>“Polish with a Small p.”</span> <a href="https://alexmitrani.github.io/Repeatr/articles/polish%20with%20a%20small%20p.html">https://alexmitrani.github.io/Repeatr/articles/polish%20with%20a%20small%20p.html</a>.
 </div>
 <div id="ref-pennebaker1967" class="csl-entry">
 Pennebaker, D. A. 1967. <span>“Subterranean Homesick Blues.”</span> <a href="https://www.youtube.com/watch?v=MGxjIBEZvx0" class="external-link">https://www.youtube.com/watch?v=MGxjIBEZvx0</a>.
@@ -585,36 +525,26 @@ Outfit<span>"</span> with Buick Audra,”</span> May. <a href="https://open.spot
 </div>
 </div>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
-
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
 
-      <footer><div class="copyright">
-  <p></p>
-<p>Developed by Alex Mitrani.</p>
+    <footer><div class="pkgdown-footer-left">
+  <p>Developed by Alex Mitrani.</p>
 </div>
 
-<div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
-  <p class="preferably">Using <a href="https://preferably.amirmasoudabdol.name/?source=footer" class="external-link">preferably</a> template.</p>
+<div class="pkgdown-footer-right">
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
-  
 
 
-  
+
 
   </body>
 </html>
