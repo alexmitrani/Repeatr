@@ -29,7 +29,7 @@ By Alex Mitrani
 
 ## Introduction
 
-Forensic Scene was played live for the first time at Colégio Leão XIII in Itaboraí, RJ, Brazil on 19 August 1994 [@fugazi1994], introduced by Guy with the comment "you're probably going to hate this song but we're going to play it anyway". The song got it's official release on Red Medicine which was released around the 12 May 1995 [@fugazi1995]. 
+Forensic Scene was played live for the first time at Colégio Leão XIII in Itaboraí, RJ, Brazil on 19 August 1994 [@fugazi1994], introduced by Guy with the comment "you're probably going to hate this song but we're going to play it anyway". Forensic Scene was one of 6 songs to debut on that 1994 tour of Brazil - including the full version of 'By You',  which had been played 5 times in 1993 as an instrumental. 
 
 ```{r echo=FALSE}
 releases_data_input %>%
@@ -40,7 +40,7 @@ releases_data_input %>%
 
 ```
 
-Fugazi played Forensic Scene at least 201 times with the last recorded version being on the 4 November 2002 in London, England - the final Fugazi show to date. It was the 5th most played song from Red Medicine. In live shows Forensic Scene tended to be used later in the set, it was often followed by Promises (31 times) or by Long Division (21 times).
+The song got it's official release on Red Medicine which was released around the 12 May 1995 [@fugazi1995]. Fugazi played Forensic Scene at least 201 times with the last recorded version being on the 4 November 2002 in London, England - the final Fugazi show to date. It was the 5th most played song from Red Medicine. In live shows Forensic Scene tended to be used later in the set, it was often followed by Promises (31 times) or by Long Division (21 times).
 
 There are several interviews where Guy Picciotto has commented on the song. In 1995 he only commented in outline:
 
