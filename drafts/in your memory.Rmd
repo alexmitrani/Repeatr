@@ -84,8 +84,6 @@ The lyrics from the studio recording will be referred to here [@fugazi1995] - th
 
 Notice how many of the lines are couplets and some of them rhyme although the rhymes seem forced at times: gentle / sentimental; without / now; would / wound; lay / anyway; unclean / scene; instant / distance.
 
-Guy's comment that "It’s a more personal song" [@mackaye1995] suggests that the lyrics should be interpreted as being sung from a first-person point of view.
-
 ### in your memory not so gentle
 
 "in your memory, not so gentle": something not so gentle in memory of someone.
@@ -110,15 +108,13 @@ Several sayings come to mind:
 
 ### i'm a failure not your failure now
 
-"I'm a failure, not your failure now" - now it's me, not you anymore.
+This is on me, it's not your responsibility anymore. Taking responsibility for a bad situation or for having done something wrong. Expresses humility and perhaps also regret.
 
-Taking responsibility for a bad situation or for having done something wrong. Expresses humility and perhaps also regret.
+'Not your failure now' hints at a family or intergenerational aspect to the situation, for instance a person with a troubled childhood whose parents might have felt that they failed in giving them a good upbringing.
 
 ### in and out just like a knife would
 
-Something that is not a knife that penetrates like a knife - maybe a needle.
-
-If it is a needle this could refer to drug use.
+Something that is not a knife that penetrates like a knife - maybe a needle, an insect sting or bite. This could refer to drug use.
 
 ### tax the flesh and leave a cheap wound
 
@@ -130,7 +126,7 @@ Unusual usage of tax. The only similar usage I could find was in an academic pap
 
 ### fucked and fucking love and lay
 
-'fucked and fucking, love and lay' - brings to mind press coverage of celebrities, in particular their misfortunes and their sexual relationships, which may or may not involve love.
+This brings to mind press coverage of celebrities, in particular their misfortunes and their sexual relationships, which may or may not involve love.
 
 ### congenitally fractured anyway
 
@@ -172,7 +168,7 @@ From thinking about someone in the past to the present moment.
 
 This alludes to being too close to something, and perhaps trying to get more distance in order to get a better perspective.
 
-'working distance' in photography refers to the distance between the lens and the object being photographed [@carnathan2014]. The greater the working distance, the easier things are in terms of lighting and composition.
+'working distance' in photography refers to the distance between the lens and the subject being photographed [@carnathan2014]. The greater the working distance, the easier things are in terms of lighting and composition. If the distance between the lens and the subject is shorter than the working distance, the subject will be out of focus.
 
 ### like a mouth too late to shut
 
@@ -199,6 +195,8 @@ There is a painting made in 2004 called 'Untitled (forensic scene)' by Jordan Ka
 > *Untitled (forensic scene)* (2004), is a painting of a zoomed-in view of what you might see if the policeman were to move aside. It’s the only painting in the cluster, and, on the one hand, a fragmentary recasting of Manet’s *The Dead Toreador*, on the other hand, a commentary on how the artist sees his subject. I like to think the kneeling figure is Kantor himself, winking off camera at the viewer: *This is what we do*. [@rader2017]
 
 ## Discussion
+
+Guy's comment that "it’s a more personal song" [@mackaye1995] is helpful for understanding the lyrics. With this in mind I understand "in your memory" as about the memory of someone, it's not about somebody else remembering something. Furthermore, "from your memory to this instant" suggests that the person only exists in memories - in other words, that they are dead.
 
 There are other possible interpretations. Several discussions of the song have characterized it as being about the break-up of a relationship [@wright] and [@gathy]. Both of these discussions were prior to Guy Picciotto's most recent remarks, which strongly suggest that it is about something much more unpleasant than a break-up.
 
