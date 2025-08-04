@@ -126,7 +126,9 @@ Unusual usage of tax. The only similar usage I could find was in an academic pap
 
 ### fucked and fucking love and lay
 
-This brings to mind press coverage of celebrities, in particular their misfortunes and their sexual relationships, which may or may not involve love.
+This brings to mind press coverage of celebrities, in particular their misfortunes and relationships. For instance, from the 1992 Vanity Fair article 'Strange Love':
+
+> Are Courtney Love, lead diva of the postpunk band Hole, and her husband, Nirvana heartthrob Kurt Cobain, the grunge John and Yoko? Or the next Sid and Nancy? [@hirschberg1992]
 
 ### congenitally fractured anyway
 
@@ -186,17 +188,45 @@ Many live performances of Forensic Scene include an additional line just before 
 
 ## Press Cuttings
 
-What happened between December 1993 and May 1994 that could be described as a 'horrible thing' and might have prompted the composition of this song? One event in particular comes to mind. To this day I remember where I was when I heard the news, which even on the first telling involved some forensic details - it stuck in my mind that they had to identify him from his fingerprints.
+What happened between December 1993 and May 1994 that could be described as a 'horrible thing' and might have prompted the composition of this song? One event in particular comes to mind.
 
 > NIRVANA SINGER FOUND DEAD By Richard Harrington and Richard Lei. April 9, 1994. Kurt Cobain, who led the grunge band Nirvana to superstardom yet reviled his own success, was found shot in the head in his Seattle home yesterday, an apparent suicide. [@harrington1994]
 
-There is a painting made in 2004 called 'Untitled (forensic scene)' by Jordan Kantor [@kantor2004], an artist whose "painting practice is fueled by breakdowns or gaps in perception, often caused by the intermediary presence of the camera". The painting is part of a series where "he has relied on the spotty photographic record of the scene of Kurt Cobain's suicide to piece together impressions of the place and event, drawn by the intense public interest in it as well as the compelling privacy and lack of access that discouraged further knowledge."
+> With his untimely death, Cobain enters a sad rock pantheon that includes Jim Morrison and Janis Joplin, along with Seattle musicians Jimi Hendrix, Stephanie Sargent of the band 7 Year Bitch, and Anthony Wood of Mother Love Bone. "Now he's gone and joined that stupid club," Cobain's mother, Wendy O'Connor, told reporters yesterday. "I told him not to join that stupid club." [@harrington1994]
 
-> *Untitled (forensic scene)* (2004), is a painting of a zoomed-in view of what you might see if the policeman were to move aside. It’s the only painting in the cluster, and, on the one hand, a fragmentary recasting of Manet’s *The Dead Toreador*, on the other hand, a commentary on how the artist sees his subject. I like to think the kneeling figure is Kantor himself, winking off camera at the viewer: *This is what we do*. [@rader2017]
+> All three members of Nirvana came from broken homes. Cobain, son of an auto mechanic and secretary who divorced when he was 8, did not speak to his father for eight years -- until signing his breakthrough contract with Geffen in 1990. As a shy teenager, he became enthralled with punk rock and began collecting records and playing guitar, though he saw himself as a rhythm guitarist -- out of the limelight. When Cobain was still a teenager, his father had forced him to pawn his guitar and join the Navy; instead Cobain reclaimed the guitar and left home. [@harrington1994]
+
+> "Cobain's suicide does send a message, certainly, particularly for youth on the edge. These musicians are kids' role models. They find their identity in the music. It's an angry-tone music, angst filled, hopeless to a certain degree. But Nirvana's not suggesting everybody go out and shoot themselves. The main thing is to focus on what's causing suicidal feelings, what the issues are. Suicide is a permanent solution to a temporary problem. The intensity is real subjective, the feeling that it will never change. But this is what not to do. If you're feeling overwhelmed, use the phone as a tool. Reach out and get help." [@anders1994]
+
+> "When we see this popular person, we tend to think that they have everything. And yet something about that still doesn't make their life okay -- so the message is that nothing makes you happy enough to make you want to live. Young people may think, 'He did it. That means that I could also do it.' This reminds me of when Magic Johnson announced he was HIV-positive: It creates more intensity of vulnerability. Like, 'My God, it can also happen to me.' [@anders1994]
+
+> "I think there's a lot of anger in a suicide, generally. And I always think that the anger is turned against the self. For kids who are so turned on by him, maybe it would help them to know that they are not the object of his anger -- probably his wife or his mother or father are."
+>
+> Gene Gordon, professor of psychiatry, George Washington University Medical School [@anders1994]
+
+> *This note should be pretty easy to understand. All the warnings from the punk rock 101 courses over the years since my first introduction to the, shall we say, ethics involved with independence and embracement of your community, has proven to be very true. I haven't felt the excitement of listening to, as well as creating music, along with really writing something, for too many years now. I feel guilty beyond words about these things - for example, when we're backstage and the lights go out and the roar of the crowd begins, it doesn't affect me the way in which it did for Freddie Mercury, who seemed to love and relish the love and adoration of the crowd.* [@cobain1994]
+>
+> Well, Kurt, so fucking what - then don't be a rock star you asshole. [@love1994]
+>
+> *Which is something I totally admire and envy. The fact, I can't fool you, any one of you, it simply isn't fair to you or to me. The worst crime I could think of would be to put people off by faking it, pretending as if I'm having 100% fun.* [@cobain1994]
+>
+> No Kurt, the worst crime I can think of is for you to just continue being a rock star when you fucking hate it, just fucking stop. [@love1994]
+
+> On behalf of Dave, Pat, and I, I would like to thank you all for your concern at this time. We remember Kurt for what he was: caring, generous, and sweet. Let's keep the music with us. We'll always have it... Forever. Kurt had an ethic towards his fans that was rooted in the punk rock way of thinking. No band is special, no player royalty. But if you've got a guitar and a lot of soul just bang something out and mean it. You're the superstar. Plugged in the tones and rhythms that are uniquely and universally human: music. Heck... use your guitar as a drum, just catch the groove and let it flow out of your heart. That's the level Kurt spoke to us on: in our hearts, and that's where he, and the music, will always be, forever. [@novoselic1994]
+
+> Love reconstructed the rest of the tragedy for MTV: Cobain drew a chair up to a window overlooking the Puget Sound, sat down, took some more drugs (most likely heroin), pressed the barrel of the 20-gauge shotgun to his head and — evidently using his thumb — pulled the trigger. [@strauss1994]
+
+> The days after Cobain’s death were filled with grief, confusion and finger pointing for all concerned. “Everyone who feels guilty, raise your hand,” Love told MTV the morning after Cobain was found. She said she was wearing Cobain’s jeans and socks and carrying a lock of her husband’s blond hair. According to Billig, a doctor was summoned to stay with Love at all times. [@strauss1994]
+
+> It has been 2 years, 2 months and 15 days since Cobain, the leader of Nirvana, was found dead in a small room above his garage, and songs influenced by his suicide continue to stream out of songwriters' pens from Seattle to Dublin. There are scores of songs known to be about Kurt Cobain – among them ones by Neil Young, Pearl Jam, the Cranberries, R.E.M., Julian Cope, Vernon Reid and the Tragically Hip -- and dozens more believed to be about Cobain, though the bands aren't telling (the Foo Fighters, Filter). [@strauss1996]
 
 ## Discussion
 
 Guy's comment that "it’s a more personal song" [@mackaye1995] is helpful for understanding the lyrics. With this in mind I understand "in your memory" as about the memory of someone, it's not about somebody else remembering something. Furthermore, "from your memory to this instant" suggests that the person only exists in memories - in other words, that they are dead.
+
+There is a painting made in 2004 called 'Untitled (forensic scene)' by Jordan Kantor [@kantor2004], an artist whose "painting practice is fueled by breakdowns or gaps in perception, often caused by the intermediary presence of the camera". The painting is part of a series where "he has relied on the spotty photographic record of the scene of Kurt Cobain's suicide to piece together impressions of the place and event, drawn by the intense public interest in it as well as the compelling privacy and lack of access that discouraged further knowledge."
+
+> *Untitled (forensic scene)* (2004), is a painting of a zoomed-in view of what you might see if the policeman were to move aside. It’s the only painting in the cluster, and, on the one hand, a fragmentary recasting of Manet’s *The Dead Toreador*, on the other hand, a commentary on how the artist sees his subject. I like to think the kneeling figure is Kantor himself, winking off camera at the viewer: *This is what we do*. [@rader2017]
 
 There are other possible interpretations. Several discussions of the song have characterized it as being about the break-up of a relationship [@wright] and [@gathy]. Both of these discussions were prior to Guy Picciotto's most recent remarks, which strongly suggest that it is about something much more unpleasant than a break-up.
 
