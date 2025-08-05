@@ -29,7 +29,7 @@ By Alex Mitrani
 
 ## Introduction
 
-Forensic Scene was played live for the first time at Colégio Leão XIII in Itaboraí, RJ, Brazil on 19 August 1994 [@fugazi1994], introduced by Guy with the comment "you're probably going to hate this song but we're going to play it anyway". Forensic Scene was one of 6 songs to debut on that 1994 tour of Brazil - including the full version of 'By You',  which had been played 5 times in 1993 as an instrumental. 
+Forensic Scene was played live for the first time at Colégio Leão XIII in Itaboraí, RJ, Brazil on 19 August 1994 [@fugazi1994], introduced by Guy with the comment "you're probably going to hate this song but we're going to play it anyway". Forensic Scene was one of 6 songs from the forthcoming Red Medicine album to be launched on that 1994 tour of Brazil - including the full version of 'By You' (with vocals) - first played on 15 August 1994 in Belo Horizonte - which had been played 5 times in 1993 as an instrumental. 'Fell, Destroyed' was played as an instrumental at least 10 times starting in August 1993 before finally being performed with vocals on 2 March 1995, after it was recorded and not long before the release of Red Medicine.
 
 ```{r echo=FALSE}
 releases_data_input %>%
@@ -176,11 +176,19 @@ This is a metaphor for having done or said something wrong, implies some degree 
 
 Outside of the chorus, this is the only line that is repeats, which gives it emphasis.
 
+## Music
+
+Forensic Scene is probably one of the saddest Fugazi songs if not the saddest, although it transmits other emotions as well, in particular anger and frustration. At about 80 beats per minute, it is one of the slowest songs in the Fugazi repertoire, although there are several changes to pace and volume which make it interesting. The song is structured verse 1 - chorus - verse 2 - instrumental break - chorus. It starts abruptly, is sung softly softly up to about the middle, gets a bit faster and more energetic in the instrumental break, and then gets louder and heavier towards the end, which is often stretched out a bit. There is crescendo effect over the length of the song before it grinds to a halt.
+
 ## Live variations
+
+The tempo varies quite a bit across different renditions, for instance the 1996 show at the 40 Watt in Athens, GA seems particularly slow, and on top of that Guy seems to sing something completely different for the most of the second verse [@fugazi1996b].
 
 The 1995 show at Queen's Hall, Belfast contains a grungy extended ending with Ian and Guy singing "over and over and over and over and over and over and over and over and over and over..." [@fugazi1995a]
 
-Many live performances of Forensic Scene include an additional line just before the instrumental break, some of these are easier to make out than others, for instance "take a walk, sister" [@fugazi1996], [@fugazi1996a].
+Many live performances of Forensic Scene include an additional line just before the instrumental break, some of these are easier to make out than others, for instance "take a walk, sister" [@fugazi1996], [@fugazi1996a], or "get a load of it" [@fugazi1995b].
+
+At least twice Guy omitted the 'con' from 'congenital', singing "fucked and fucking, love and lay, genitally fractured anyway" - for instance at TU Mensa, Berlin in 1995 [@fugazi1995b].
 
 ## Press Cuttings
 
@@ -234,7 +242,7 @@ There is a painting made in 2004 called 'Untitled (forensic scene)' by Jordan Ka
 
 Guy's comment that "it’s a more personal song" [@mackaye1995] is helpful for understanding the lyrics. With this in mind I understand "in your memory" as about the memory of someone, it's not about somebody else remembering something. Furthermore, "from your memory to this instant" suggests that the person only exists in memories - they are dead.
 
-Guy noted that "You can’t say that it’s about a specific person or something like that. It’s more about a situation." [@mackaye1995]. However, considering the time interval in which Forensic Scene would have been written, and Guy's comment that "it was a very sad moment that produced that song ... it was kind of like that forensic analysis post-fact of the horrible thing that had just happened" [@picciotto2025], it seems likely that the lyrics to Forensic Scene were written about the aftermath of Kurt Cobain's suicide. Fugazi were certainly aware of Nirvana and probably had met Kurt Cobain in person on a number of occasions, as well as being part of an extended scene of bands and musicians. They would have had shared interests and friends in common, so they would probably have been affected by his death. 
+Guy noted that "You can’t say that it’s about a specific person or something like that. It’s more about a situation." [@mackaye1995]. However, considering the time interval in which Forensic Scene would have been written, and Guy's comment that "it was a very sad moment that produced that song ... it was kind of like that forensic analysis post-fact of the horrible thing that had just happened" [@picciotto2025], it seems likely that the lyrics to Forensic Scene were written about the aftermath of Kurt Cobain's suicide. Fugazi were certainly aware of Nirvana and probably had met Kurt Cobain in person on a number of occasions, as well as being part of an extended scene of bands and musicians. They would have had shared interests and friends in common, so they would probably have been affected by his death.
 
 > If baby boomer cultural dominance was like a dam holding back the generation after it, that dam finally burst the day of Nevermind’s release in September of 1991. At the time, Fugazi was on tour in Australia promoting Steady Diet of Nothing. “It was like our record could have been a hobo pissing in the forest for the amount of impact it had,” says Guy Picciotto. “Nevermind was so huge, and people were so fucking blown away. We were just like, ‘What the fuck is going on here?’ It was so crazy. On one hand, the shows were bigger, but on the other hand, it felt like we were playing ukuleles all of a sudden because of the disparity of the impact of what they did.” [@azerrad2012]
 
