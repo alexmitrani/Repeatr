@@ -931,6 +931,9 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     played_with <- played_with %>%
       mutate(played_with = ifelse(gid=="belo-horizonte-brazil-81594", "Stigmata, Jorge Cabeleira, Daizy Down, Oz, Intense Manner of Living, Virna Lisi", played_with))
 
+    played_with <- played_with %>%
+      mutate(played_with = ifelse(gid=="winnipeg-mb-canada-81491", "Carpe Diem, Propagandhi", played_with))
+
     played_with<-played_with %>%
       separate_rows(played_with, sep=",")
 
