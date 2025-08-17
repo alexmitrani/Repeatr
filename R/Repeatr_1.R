@@ -163,6 +163,9 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   othervariables <- othervariables %>%
     mutate(venue = ifelse(flsid=="FLS0050", "Frankford YWCA", venue))
 
+  othervariables <- othervariables %>%
+    mutate(venue = ifelse(flsid=="FLS0478", "Tempodrom", venue))
+
   # correct values where necessary
 
   othervariables <- othervariables %>%
