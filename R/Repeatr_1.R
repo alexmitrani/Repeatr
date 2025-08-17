@@ -143,6 +143,9 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
            checked = ifelse(flsid=="FLS0970", 1, checked))
 
   othervariables <- othervariables %>%
+    mutate(city = ifelse(city=="Wesleyan", "Middletown", city))
+
+  othervariables <- othervariables %>%
     filter(is.na(x)==FALSE)
 
   othervariables <- rbind.data.frame(othervariables, othervariables_patchfile)
