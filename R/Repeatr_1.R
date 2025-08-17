@@ -159,6 +159,10 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
            x = ifelse(country=="USA" & city=="Washington" & venue=="9:30 Club (1980-1995)" & year<=1995, -77.0255867, x),
            y = ifelse(country=="USA" & city=="Washington" & venue=="9:30 Club (1980-1995)" & year<=1995, 38.8971517, y))
 
+
+  othervariables <- othervariables %>%
+    mutate(venue = ifelse(flsid=="FLS0050", "Frankford YWCA", venue))
+
   # correct values where necessary
 
   othervariables <- othervariables %>%
