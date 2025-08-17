@@ -941,6 +941,9 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     played_with <- played_with %>%
       mutate(played_with = ifelse(gid=="winnipeg-mb-canada-81491", "Carpe Diem, Propagandhi", played_with))
 
+    played_with <- played_with %>%
+      mutate(played_with = ifelse(gid=="savannah-ga-usa-11400", "Faraquet, The Flam", played_with))
+
     played_with<-played_with %>%
       separate_rows(played_with, sep=",")
 
