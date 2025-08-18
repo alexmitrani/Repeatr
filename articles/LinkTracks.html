@@ -344,7 +344,7 @@ of shows at each venue.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"\n \n There are "</span>, <span class="va">number_venues</span>, <span class="st">" venues in the Fugazi Live Series data. \n \n"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;  </span></span>
-<span><span class="co">#&gt;  There are 754 venues in the Fugazi Live Series data. </span></span>
+<span><span class="co">#&gt;  There are 753 venues in the Fugazi Live Series data. </span></span>
 <span><span class="co">#&gt; </span></span>
 <span></span>
 <span><span class="va">overview_venuesdata</span> <span class="op">&lt;-</span> <span class="va">venuesdata</span> <span class="op">%&gt;%</span></span>
@@ -360,14 +360,14 @@ of shows at each venue.</p>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span>    12      1      0.133</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span>     9      1      0.133</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     8      5      0.663</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span>     8      5      0.664</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span>     7      1      0.133</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span>     6      3      0.398</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     5      5      0.663</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span>     5      5      0.664</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     4     16      2.12 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     3     27      3.58 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     3     27      3.59 </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     2     97     12.9  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>     1    598     79.3</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>     1    597     79.3</span></span></code></pre></div>
 <p>Fugazi played at 733 venues but played at 79.4% of them only once,
 twice at 12.7% of venues, 3 shows at 3.4% of venues, and 4 shows at 2.3%
 of venues. Only 2.2% of venues had 5 or more shows.</p>
@@ -395,7 +395,7 @@ of venues. Only 2.2% of venues had 5 or more shows.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 406 × 2</span></span></span>
 <span><span class="co">#&gt;    city          venues</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Washington        22</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Washington        21</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> New York          10</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Sydney             8</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Chicago            7</span></span>
@@ -447,7 +447,7 @@ was played.</p>
 <span><span class="co">#&gt; <span style="color: #949494;">#   `interlude 4` &lt;int&gt;, outro &lt;int&gt;, `interlude 5` &lt;int&gt;, `interlude 6` &lt;int&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   kyeo &lt;int&gt;, `bad mouth` &lt;int&gt;, `break-in` &lt;int&gt;, `opening remarks` &lt;int&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   encore &lt;int&gt;, lockdown &lt;int&gt;, suggestion &lt;int&gt;, `lock dug` &lt;int&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   `interlude 7` &lt;int&gt;, burning &lt;int&gt;, `encore 1` &lt;int&gt;, …</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;">#   `interlude 7` &lt;int&gt;, burning &lt;int&gt;, `give me the cure` &lt;int&gt;, …</span></span></span></code></pre></div>
 <p>Next, let’s transform the variable for each song into a cumulative
 count of the number of times the song was played.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -476,7 +476,7 @@ count of the number of times the song was played.</p>
 <span><span class="co">#&gt; <span style="color: #949494;">#   `interlude 4` &lt;int&gt;, outro &lt;int&gt;, `interlude 5` &lt;int&gt;, `interlude 6` &lt;int&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   kyeo &lt;int&gt;, `bad mouth` &lt;int&gt;, `break-in` &lt;int&gt;, `opening remarks` &lt;int&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   encore &lt;int&gt;, lockdown &lt;int&gt;, suggestion &lt;int&gt;, `lock dug` &lt;int&gt;,</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;">#   `interlude 7` &lt;int&gt;, burning &lt;int&gt;, `encore 1` &lt;int&gt;, …</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;">#   `interlude 7` &lt;int&gt;, burning &lt;int&gt;, `give me the cure` &lt;int&gt;, …</span></span></span></code></pre></div>
 <p>Now, we can reformat the data again to make it a long list of song
 counts that show how the number of times each song was performed built
 up over time.</p>
@@ -603,10 +603,10 @@ level on the scale from Poor to Excellent.</p>
 <span><span class="va">sound_quality_ratings</span></span>
 <span><span class="co">#&gt;   index sound_quality shows percentage</span></span>
 <span><span class="co">#&gt; 1     1     Excellent    47        5.2</span></span>
-<span><span class="co">#&gt; 2     2     Very Good   443       49.3</span></span>
-<span><span class="co">#&gt; 3     3          Good   344       38.3</span></span>
-<span><span class="co">#&gt; 4     4          Poor    64        7.1</span></span>
-<span><span class="co">#&gt; 5     5         Total   898      100.0</span></span></code></pre></div>
+<span><span class="co">#&gt; 2     2     Very Good   443       49.4</span></span>
+<span><span class="co">#&gt; 3     3          Good   344       38.4</span></span>
+<span><span class="co">#&gt; 4     4          Poor    63        7.0</span></span>
+<span><span class="co">#&gt; 5     5         Total   897      100.0</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="three-repeats-but-only-one-two-for-tuesdays">Three Repeats, but Only One Two for Tuesdays<a class="anchor" aria-label="anchor" href="#three-repeats-but-only-one-two-for-tuesdays"></a>
