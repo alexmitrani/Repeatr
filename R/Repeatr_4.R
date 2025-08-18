@@ -39,7 +39,7 @@ Repeatr_4 <- function(mydf = NULL) {
   Repeatr4$alt <- as.factor(Repeatr4$alt)
   Repeatr4$choice <- as.logical(Repeatr4$choice)
 
-  Repeatr4 <- dfidx(Repeatr4, idx = c("case", "alt"), drop.index = FALSE)
+  Repeatr4 <- dfidx(Repeatr4, idx = c("case", "alt"), drop.index = TRUE)
 
   ml.Repeatr4 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5
                          + yearsold_6 + yearsold_7 + yearsold_8 , data = Repeatr4)
