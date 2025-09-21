@@ -40,10 +40,20 @@ song_release <- summary %>%
 duration_data_da <- duration_data_da %>%
   left_join(song_release)
 
+# venue coordinates taken from online spreadsheet "fls_venue_geocoding_v2" to enable easy updating of the locations.
+fls_venue_geocoding <- gsheet2tbl('https://docs.google.com/spreadsheets/d/1Q8QHMM6LoPdlX0wpSJPyngEeVtFqzaoYQ9Jl_y302Cs')
+
+fls_venue_geocoding <- fls_venue_geocoding %>%
+  select(country, city, venue, x, y)
+
 othervariables <- othervariables %>%
   left_join(gid_sound_quality) %>%
   mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
   mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>"))
+
+othervariables <- othervariables %>%
+  select(-x, -y) %>%
+  left_join(fls_venue_geocoding)
 
 played_with <- played_with %>%
   select(gid, played_with)
