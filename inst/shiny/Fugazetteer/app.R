@@ -158,6 +158,11 @@ gid_tempo_bpm <- gid_tempo_bpm_minutes %>%
 shows_data <- Repeatr::shows_data %>%
   left_join(gid_tempo_bpm)
 
+shows_data <- shows_data %>%
+  select(-longitude, -latitude) %>%
+  left_join(fls_venue_geocoding) %>%
+  rename(latitude = y, longitude = x)
+
 played_with_flat <- played_with %>%
   group_by(gid) %>%
   summarise(played_with = str_flatten(played_with, ", "))
