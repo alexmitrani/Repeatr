@@ -1,0 +1,38 @@
+# Repeatr
+
+The Repeatr package contains [Fugazi Live
+Series](https://www.dischord.com/fugazi_live_series) metadata and some
+functions for using this data.
+
+The package documentation contains details of the main dataframes, and
+the other vignettes include some examples of what can be done with the
+data.
+
+The main analysis process is split across 5 functions:
+
+- Repeatr_1 imports raw data in CSV format (1 row per show), cleans the
+  data, and reshapes it long so that the rows are identified by
+  combinations of gid and song_number.
+
+- Repeatr_2 takes a dataframe with one row per show-song and reshapes it
+  long again so that the rows are identified by combinations of gid,
+  song_number, and songid.
+
+- Repeatr_3 takes a dataframe with gid, song_number, and songid, and
+  modifies it to make it suitable for choice modelling.
+
+- Repeatr_4 prepares data for choice modelling with mlogit, and
+  estimates a basic choice model with mlogit.
+
+- Repeatr_5 produces results using a coefficient table for a choice
+  model estimated with mlogit.
+
+Most of the useful data files are produced with Repeatr_1. The other 4
+functions are used to calculate ratings for the songs based on the
+choices of songs in the Fugazi Live Series data.
+
+[Fugazetteer](https://alexmitrani.shinyapps.io/Fugazetteer/) provides
+several interactive visualisations of the Fugazi Live Series data
+processed using the code in this package, and also lists of shows which
+link back to the main [Fugazi Live
+Series](https://www.dischord.com/fugazi_live_series) site.

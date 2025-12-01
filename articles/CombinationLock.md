@@ -1,0 +1,481 @@
+# Combination Lock
+
+> [“Wait a minute  
+> I forgot my
+> combination”](https://fugazi.bandcamp.com/track/combination-lock)
+
+## Transitions between songs in the Fugazi Live Series
+
+> “We never used set lists, so the shows were always organically grown,
+> there was a flow, and a song like Combination Lock, sometimes it would
+> work as an opener… something about it was hard to drop in to it,
+> something about it… I don’t know … it just didn’t seem to fit into the
+> general movement of the set …” - [Ian Mackaye,
+> 12/2/2022](https://open.spotify.com/episode/49dpXoFyQZJSGA2nGmjb9s?si=qN_u9NcfRCutyXVjVnPFZQ)
+
+This article offers a visualisation of the transitions between songs
+that Fugazi performed live using metadata from the [Fugazi Live
+Series](https://www.dischord.com/fugazi_live_series). For every pair of
+songs that are performed in sequence there is a transition from the
+first song to the second song. For instance, a show with 20 songs will
+have 19 transitions between pairs of songs. After listening to the
+Fugazi Live Series for a while, it seems that some transitions were much
+more common than others, but it is hard to tell for sure without
+listening to the whole series or looking into the data. Let’s have a
+quick look at the data and see what we find.
+
+The raw data was processed previously and here we will use data with one
+row per song performance from the Repeatr1 dataframe of the
+[Repeatr](https://github.com/alexmitrani/Repeatr) package.
+
+## Transition counts
+
+Let’s get the data, limit it to the columns that we will be using, and
+have a look at the first few rows.
+
+``` r
+
+mydf1 <- Repeatr1 %>%
+  select(gid,song_number,song) %>%
+  rename(song1 = song)
+
+print(paste0("There are ", nrow(mydf1), " rows in this dataframe."))
+#> [1] "There are 23280 rows in this dataframe."
+
+head(mydf1)
+#> # A tibble: 6 × 3
+#>   gid                 song_number song1            
+#>   <chr>                     <dbl> <chr>            
+#> 1 aalst-belgium-92390           1 intro            
+#> 2 aalst-belgium-92390           2 turnover         
+#> 3 aalst-belgium-92390           3 brendan #1       
+#> 4 aalst-belgium-92390           4 merchandise      
+#> 5 aalst-belgium-92390           5 sieve-fisted find
+#> 6 aalst-belgium-92390           6 and the same
+```
+
+In order to look at the transitions between songs, let’s get the list of
+songs that were performed at each show and match each song onto the song
+that was performed next at the same show. This way we will have one row
+of data for each transition between songs.
+
+``` r
+
+mydf2 <- Repeatr1 %>%
+  select(gid,song_number,song) %>%
+  mutate(song_number = song_number-1) %>%
+  rename(song2 = song)
+
+mydf3 <- mydf1 %>%
+  left_join(mydf2) %>%
+  filter(is.na(song2)==FALSE) %>%
+  rename(transition_number = song_number)
+#> Joining with `by = join_by(gid, song_number)`
+
+print(paste0("There are ", nrow(mydf3), " rows in this dataframe."))
+#> [1] "There are 22376 rows in this dataframe."
+
+head(mydf3)
+#> # A tibble: 6 × 4
+#>   gid                 transition_number song1             song2            
+#>   <chr>                           <dbl> <chr>             <chr>            
+#> 1 aalst-belgium-92390                 1 intro             turnover         
+#> 2 aalst-belgium-92390                 2 turnover          brendan #1       
+#> 3 aalst-belgium-92390                 3 brendan #1        merchandise      
+#> 4 aalst-belgium-92390                 4 merchandise       sieve-fisted find
+#> 5 aalst-belgium-92390                 5 sieve-fisted find and the same     
+#> 6 aalst-belgium-92390                 6 and the same      interlude 1
+```
+
+There is a simple check to see if the number of rows in this second
+dataframe is correct. The number of transitions should be equal to the
+number of songs minus one for each show, and the total number of
+transitions in the series should be equal to the total number of songs
+in the series minus the total number of shows in the series.
+
+``` r
+
+checknumberofshows <- Repeatr1 %>%
+  group_by(gid) %>%
+  summarise(songs = n()) %>%
+  ungroup()
+
+numberofshows <- nrow(checknumberofshows)
+
+print(paste0("There are ", numberofshows, " rows in this dataframe."))
+#> [1] "There are 902 rows in this dataframe."
+
+head(checknumberofshows)
+#> # A tibble: 6 × 2
+#>   gid                          songs
+#>   <chr>                        <int>
+#> 1 aalst-belgium-92390             23
+#> 2 aberdeen-scotland-50499         27
+#> 3 adelaide-australia-111193       17
+#> 4 adelaide-australia-111296       29
+#> 5 adelaide-sa-australia-102291    26
+#> 6 akron-oh-usa-62890              26
+
+numberofsongs <- sum(checknumberofshows$songs)
+
+numberoftransitions <- numberofsongs - numberofshows
+
+print(paste0("There are ", numberofsongs, " songs, ", numberofshows, " shows, and ", numberoftransitions, " transitions between songs in the Fugazi Live Series data."  ))
+#> [1] "There are 23280 songs, 902 shows, and 22378 transitions between songs in the Fugazi Live Series data."
+```
+
+Now let’s summarise the data to count how many times each transition
+occurs.
+
+``` r
+
+transitions <- mydf3 %>%
+  select(song1, song2) %>%
+  rename(from = song1) %>%
+  rename(to = song2)
+
+transitions <- transitions %>%
+  group_by(from, to) %>%
+  summarize(count = n()) %>%
+  ungroup()
+#> `summarise()` has grouped output by 'from'. You can override using the
+#> `.groups` argument.
+
+transitions <- transitions %>%
+  arrange(desc(count))
+
+head(transitions)
+#> # A tibble: 6 × 3
+#>   from              to               count
+#>   <chr>             <chr>            <int>
+#> 1 long division     blueprint          176
+#> 2 suggestion        give me the cure   157
+#> 3 reprovisional     outro              116
+#> 4 repeater          reprovisional      114
+#> 5 sieve-fisted find reclamation        112
+#> 6 sweet and low     outro              109
+```
+
+## Probabilities of transitions between songs given availability of both songs
+
+This already gives us a good idea of what the most common transitions
+were. However, it probably gives too much weight to transitions between
+older songs and not enough to transitions involving newer songs. In
+order to correct for this we need to consider how many shows each
+transition was available to be used. This can be done simply using an
+availability variable that was calculated previously. The count of
+available shows for each song is matched on from a lookup table, and the
+number of shows for which each transition was available is assumed to be
+the smaller of the two numbers of shows. The frequency count for each
+transition is divided by the number of available shows to get a scaled
+count that should be comparable across all the transitions. The scaled
+counts can be interpreted as probabilities of the given transitions
+being played, given the availability of both songs in the band’s
+repertoire.
+
+``` r
+
+transitions$song <- transitions$from
+
+mylookup <- fugazi_song_performance_intensity %>%
+  select(song, available_rl)
+
+transitions <- transitions %>%
+  left_join(mylookup) %>%
+  rename(from_available_rl = available_rl)
+#> Joining with `by = join_by(song)`
+
+transitions$song <- transitions$to
+
+transitions <- transitions %>%
+  left_join(mylookup) %>%
+  rename(to_available_rl = available_rl) %>%
+  mutate(available_rl = ifelse(from_available_rl < to_available_rl, from_available_rl, to_available_rl)) %>%
+  mutate(count_scaled = count/available_rl) %>%
+  select(from, to, from_available_rl, to_available_rl, available_rl, count, count_scaled) %>%
+  arrange(desc(count_scaled))
+#> Joining with `by = join_by(song)`
+
+head(transitions)
+#> # A tibble: 6 × 7
+#>   from   to    from_available_rl to_available_rl available_rl count count_scaled
+#>   <chr>  <chr>             <dbl>           <dbl>        <dbl> <int>        <dbl>
+#> 1 long … blue…               848             826          826   176        0.213
+#> 2 sugge… give…               895             887          887   157        0.177
+#> 3 break  plac…               229             229          229    35        0.153
+#> 4 argum… blue…               101             826          101    15        0.149
+#> 5 sieve… recl…               853             795          795   112        0.141
+#> 6 life … clos…                44             199           44     6        0.136
+
+transitions <- transitions %>%
+  select(from, to, count, count_scaled)
+```
+
+It is pleasing to see that using the scaled counts of the transitions,
+some transitions featuring more recent songs appear in the list of the
+top transitions, for instance the transition from “break” to “place
+position”. Now we are in a position to get an overview of all the
+transitions by graphing the data.
+
+## Transitions between songs
+
+Let’s use a heatmap to give an overview of all of the transitions and
+their relative frequencies. The songs on both axes are sorted in order
+of the date they were first performed, with the earliest songs close to
+the origin.
+
+``` r
+
+launchdateindex_from <- fugazi_song_counts %>%
+  arrange(launchdate) %>%
+  mutate(launchdateindex_from = row_number()) %>%
+  rename(from = song) %>%
+  select(from, launchdateindex_from)
+
+launchdateindex_to <- launchdateindex_from %>%
+  rename(to = from, launchdateindex_to = launchdateindex_from)
+
+transitions2 <- transitions %>%
+  left_join(launchdateindex_from) %>%
+  left_join(launchdateindex_to) %>%
+  arrange(launchdateindex_from, launchdateindex_to) %>%
+  mutate(to = paste0("to_", sprintf("%02d", launchdateindex_to), "_", to)) %>%
+  mutate(from = paste0("from_", sprintf("%02d", launchdateindex_from), "_", from)) %>%
+  select(from, to, count_scaled)
+#> Joining with `by = join_by(from)`
+#> Joining with `by = join_by(to)`
+
+heatmapdata <- pivot_wider(transitions2, names_from = to, values_from = count_scaled, names_sort=TRUE)
+
+heatmapdata[is.na(heatmapdata)] <- 0
+
+heatmapdata <- heatmapdata %>%
+  arrange(desc(from))
+heatmapdata <- data.frame(heatmapdata, row.names = 1)
+heatmapdata <- heatmapdata[ , order(names(heatmapdata))]
+heatmapdata <- as.matrix(heatmapdata)
+
+heatmaply(
+  as.matrix(heatmapdata),
+  seriate="none",
+  Rowv=FALSE,
+  Colv=FALSE,
+  show_dendrogram=FALSE,
+  plot_method = "plotly"
+)
+```
+
+The graph shows that Fugazi played a broad selection of transitions
+between songs, with a few favourite transitions that were played again
+and again. However, the band did not play all the possible transitions.
+With 92 songs there are 8372 possible transitions, and in this data
+Fugazi played 3053 of those (36.5%) at least once. The Fugazi Live
+Series data includes 16402 transitions between songs, with some of them
+used repeatedly. The band played enough shows to potentially cover all
+the possible transitions. It is likely that some of the possible
+transitions just did not seem to work and so were never used.
+
+## Transitions between groups of songs
+
+> “The only methodology we had was that we alternated singing. Once Ian
+> was wrapping up his song, I knew that I had to have a song ready to go
+> for my thing.” - [Guy Picciotto,
+> 25/5/2018](https://www.abc.net.au/doublej/music-reads/features/fugazi-the-past-the-future-and-the-ethos-that-drove-them/10265848)
+
+Finally, let’s have a quick look at the transitions between Fugazi songs
+grouped according to the person who sang lead vocals. There are four
+groups of songs:
+
+``` r
+
+mysongvarslookup <- songvarslookup %>%
+  left_join(songidlookup)
+#> Joining with `by = join_by(song, songid)`
+
+mysongvarslookup <- mysongvarslookup %>%
+  mutate(vocals = ifelse(vocals_lally==1,"lally",0)) %>%
+  mutate(vocals = ifelse(vocals_mackaye==1,"mackaye",vocals)) %>%
+  mutate(vocals = ifelse(vocals_picciotto==1,"picciotto",vocals)) %>%
+  mutate(vocals = ifelse(instrumental==1,"instrumental",vocals)) %>%
+  select(song, vocals)
+
+head(mysongvarslookup)
+#>           song       vocals
+#> 1 23 beats off      mackaye
+#> 2 and the same      mackaye
+#> 3     argument      mackaye
+#> 4  arpeggiator instrumental
+#> 5 back to base      mackaye
+#> 6    bad mouth      mackaye
+
+checkvocals <- mysongvarslookup %>%
+  group_by(vocals) %>%
+  summarise(count = n()) %>%
+  ungroup() %>%
+  arrange(desc(count)) %>%
+  mutate(group = row_number())
+
+checkvocals
+#> # A tibble: 4 × 3
+#>   vocals       count group
+#>   <chr>        <int> <int>
+#> 1 picciotto       43     1
+#> 2 mackaye         39     2
+#> 3 instrumental     9     3
+#> 4 lally            3     4
+```
+
+Transitions between some of these groups were probably much more common
+than others. To look into this, we need to add the information on the
+group of each song to the data on transitions between songs.
+
+``` r
+
+mysongvarslookup1 <- mysongvarslookup %>% rename(from = song, from_vocals = vocals)
+
+mysongvarslookup2 <- mysongvarslookup %>% rename(to = song, to_vocals = vocals)
+
+transitions3 <- transitions %>%
+  left_join(mysongvarslookup1) %>%
+  left_join(mysongvarslookup2) %>%
+  select(from, to, from_vocals, to_vocals, count)
+#> Joining with `by = join_by(from)`
+#> Joining with `by = join_by(to)`
+
+totaltransitions <- sum(transitions$count)
+
+transitions_by_group <- transitions3 %>%
+  group_by(from_vocals, to_vocals) %>%
+  summarise(count = sum(count)) %>%
+  ungroup() %>%
+  arrange(desc(count)) %>%
+  mutate(proportion = round((count / totaltransitions), digits = 2))
+#> `summarise()` has grouped output by 'from_vocals'. You can override using the
+#> `.groups` argument.
+
+transitions_by_group
+#> # A tibble: 25 × 4
+#>    from_vocals  to_vocals    count proportion
+#>    <chr>        <chr>        <int>      <dbl>
+#>  1 mackaye      picciotto     4943       0.22
+#>  2 picciotto    mackaye       4784       0.21
+#>  3 NA           mackaye       2500       0.11
+#>  4 mackaye      NA            2412       0.11
+#>  5 picciotto    NA            2332       0.1 
+#>  6 NA           picciotto     2149       0.1 
+#>  7 mackaye      mackaye        552       0.02
+#>  8 NA           instrumental   418       0.02
+#>  9 instrumental mackaye        355       0.02
+#> 10 mackaye      instrumental   277       0.01
+#> # ℹ 15 more rows
+```
+
+With four groups of songs there are 16 possible transitions between
+these groups and all of these were used in the live shows, although some
+more than others. Transitions between Mackaye and Picciotto songs
+represent approximately 80% of the cases.
+
+Now let’s do another heatmap, this time grouping the transitions
+according to the four groups of songs we just looked into. The
+transitions on each axis of the graph will be ordered by the four groups
+of songs (Picciotto, Mackaye, Instrumental, and Lally) and within each
+group by the launch date of the song (older songs to newer songs).
+
+``` r
+
+transitions4 <- transitions %>%
+  left_join(mysongvarslookup1) %>%
+  left_join(mysongvarslookup2) %>%
+  select(from, to, from_vocals, to_vocals, count_scaled)
+#> Joining with `by = join_by(from)`
+#> Joining with `by = join_by(to)`
+
+checkvocals_from <- checkvocals %>%
+  select(vocals, group) %>%
+  rename(from_vocals = vocals, from_group = group)
+
+checkvocals_to <- checkvocals %>%
+  select(vocals, group) %>%
+  rename(to_vocals = vocals, to_group = group)
+
+launchdateindex_from <- fugazi_song_counts %>%
+  arrange(launchdate) %>%
+  mutate(launchdateindex_from = row_number()) %>%
+  rename(from = song) %>%
+  select(from, launchdateindex_from)
+
+launchdateindex_to <- launchdateindex_from %>%
+  rename(to = from, launchdateindex_to = launchdateindex_from)
+
+transitions5 <- transitions4 %>%
+  left_join(launchdateindex_from) %>%
+  left_join(launchdateindex_to) %>%
+  left_join(checkvocals_from) %>%
+  left_join(checkvocals_to) %>%
+  mutate(index_from=from_group*100+launchdateindex_from) %>%
+  mutate(index_to=to_group*100+launchdateindex_to) %>%
+  arrange(index_from, index_to) %>%
+  mutate(to = paste0("to_", sprintf("%03d", index_to), "_", to)) %>%
+  mutate(from = paste0("from_", sprintf("%03d", index_from), "_", from)) %>%
+  select(from, to, count_scaled)
+#> Joining with `by = join_by(from)`
+#> Joining with `by = join_by(to)`
+#> Joining with `by = join_by(from_vocals)`
+#> Joining with `by = join_by(to_vocals)`
+
+heatmapdata <- pivot_wider(transitions5, names_from = to, values_from = count_scaled, names_sort=TRUE)
+
+heatmapdata[is.na(heatmapdata)] <- 0
+
+heatmapdata <- heatmapdata %>%
+  arrange(desc(from))
+heatmapdata <- data.frame(heatmapdata, row.names = 1)
+heatmapdata <- heatmapdata[ , order(names(heatmapdata))]
+heatmapdata <- as.matrix(heatmapdata)
+
+heatmaply(
+  as.matrix(heatmapdata),
+  seriate="none",
+  Rowv=FALSE,
+  Colv=FALSE,
+  show_dendrogram=FALSE,
+  plot_method = "plotly"
+)
+```
+
+The graph shows in a visual way the relative scarcity of some types of
+transitions, and the relative abundance of others. It seems that Fugazi
+tended to avoid playing consecutive songs from the same group, probably
+for practical reasons such as giving each vocalist regular breaks from
+singing and keeping the show as dynamic and interesting as possible.
+
+> [No CIA  
+> No NSA  
+> No satellite  
+> Could map our veins](https://fugazi.bandcamp.com/track/no-surprise)
+
+## How to use the graphs
+
+The graphs may appear hard to read at first. Fortunately the graphs are
+interactive and are made easier to read by tools for zooming and
+panning.
+
+- hover over a point on the graph to see specific details about the
+  transition.
+
+When you hover over the graph a toolbar will appear at the top right.
+This offers several ways of interacting with the graph:
+
+- camera: download plot as a PNG file
+
+- magnifying glass: zoom in on a specific area by clicking and dragging
+  to select the area
+
+- pan: move around
+
+- zoom in and zoom out do just that
+
+- autoscale and reset axes are useful to get the graph back to how it
+  was initially, removing any zoom that might have been applied.
+
+Thanks.

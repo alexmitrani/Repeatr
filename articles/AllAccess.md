@@ -1,0 +1,322 @@
+# All Access
+
+By Alex Mitrani
+
+12 February 2024
+
+## Introduction
+
+On Sunday the 24 of October 2021 I spoke with Ian James Wright for the
+‘Steady Diet’ episode of the Alphabetical Fugazi podcast, and Ian kindly
+shared with me his Fugazi Live Series data. I found the Fugazi Live
+Series data fascinating and I already knew I liked the music as I had
+been a Fugazi fan for over 30 years, so before long I had bought myself
+an ‘All Access’ subscription.
+
+Between the 15 of November 2021 and the 4 of February 2024 I listened to
+all the shows that were available on the Fugazi Live Series site and
+whatever additional shows I could find. I listened to 915 Fugazi shows
+in 812 days - I tried to limit myself to 1 show a day but there were a
+few days when I listened to more than one. I went through the series in
+chronological order from FLS0001 (1987-09-03) to FLS1045 (2002-11-04)
+and then did a search for [additional shows not yet available on the
+Fugazi Live Series
+site](https://alexmitrani.github.io/Repeatr/articles/Outsiders.html) and
+listened to those as well. The show I ended on was FLS0177 (1990-01-27),
+St. Augustine’s Church Hall, the first show of 1990 and a fitting
+conclusion to what had been an interesting and enjoyable journey.
+
+## Listening
+
+Fugazi used to play without a pre-determined set list, they would agree
+on the first song, then Ian MacKaye and Guy Picciotto would take turns
+singing (with Joe Lally singing some songs as well from 1993 onwards),
+but other than that no-one knew exactly what song would come next until
+they started playing it (Friedman and Picciotto 2019). This randomness
+and spontaneity resulted in each show being unique - they never played
+exactly the same set twice (yes, I checked), and also Fugazi would often
+play the same songs differently, in particular Suggestion, Glue Man,
+Promises, Reprovisional and Shut the Door would often include extended
+improvisations which would mean even the same song would be different
+from one show to the next.
+
+One of the things I really enjoyed about the All Access pass and
+listening to the shows in chronological order was that it freed me from
+picking shows. I would just listen to the next one in the series and I
+would make a point of not checking the tracklist or the comments on the
+Fugazi Live Series site before listening to the show. This way the
+listening experience would be as close as it could be to the experience
+of attending a live show, where you would never know what was coming
+next. I would often close my eyes, pogo a bit, dance around and wave my
+arms - this would get the blood pumping and make it more enjoyable. This
+is not music for sitting down. I recommend trying to have a few
+expectations as possible - let the band surprise you. Fugazi would start
+playing new songs as soon as they were ready so the band’s repertoire
+was always evolving, and it was always a particularly nice surprise to
+hear a song played for what would have been the first time.
+
+After listening to the show I would check the Fugazi Live Series page,
+read other people’s comments and add a few of my own if it seemed that
+there was something else to be said. If I really liked the show and felt
+I would want to listen to it again in future I would add it to my
+[playlist](https://alexmitrani.github.io/Repeatr/articles/Playlist.html).
+If I wrote something that seemed worth sharing I would share my notes on
+the [Facebook
+group](https://web.facebook.com/groups/Fugazi.appreciation.group/) - one
+of the limitations of the Fugazi Live Series site is that if you reply
+to someone else’s comments they won’t automatically get a notification.
+That said, the site is actively moderated and I found that the moderator
+would occasionally send an e-mail if they saw that someone was replying
+to something someone else had written.
+
+## Ratings
+
+My first use of the data was to estimate implied song ratings based on
+the band’s choices of which songs to perform. This was the beginning of
+what would become the
+[Fugazetteer](https://alexmitrani.shinyapps.io/Fugazetteer/) web app. It
+was also one of my first experiences of Fugazi’s tendency to defy
+expectations. One of my assumptions was that the band would play each
+song only once on any given night. I soon heard back that there were
+several exceptions to this, and found that [Fugazi played a song twice
+on at least three
+occasions](https://alexmitrani.github.io/Repeatr/articles/LinkTracks.html#three-repeats-but-only-one-two-for-tuesdays).
+
+[![Fugazi song ratings from
+Fugazetteer.](images/descarga.png)](https://alexmitrani.shinyapps.io/Fugazetteer/)
+
+## Map
+
+I got into the habit of listening to a show in the morning while I was
+getting up and doing exercises, this way I could fit in one show a day
+without it affecting my other activities too much. Listening to the
+shows in chronological order produced a pleasant feeling of travelling,
+and I enjoyed imagining and finding out about the different places the
+tours would take the band, as well as the different bands that would
+accompany Fugazi.
+
+My curiosity kept leading me to other ways of using the Fugazi Live
+Series data, some of which involved adding new variables to the data. I
+added the coordinates of the venues because I wanted a map that would
+help me to visualize where each show was and where the band was going to
+next. Locating the venues was easier said than done in some cases as
+many venues no longer exist so I had to look through flyers, old
+fanzines, and ask people who had been to the shows. People I reached out
+to on social media or by e-mail almost invariably replied and were
+friendly and helpful. This small project of locating the venues of the
+Fugazi Live Series is probably the closest I ever got to doing
+historical research.
+
+[![Ad for the Bootleg Augsburg venue in Howl 02-89 (Muenchen)
+Fanzine](images/paste-784A0D87-01.png)](http://subkultur-ost.de/Howl%2002-89%20%28Muenchen%29%20Fanzine%20%6089OCRkl.pdf)
+
+Locating the venues took time but I got quite a lot of use out of the
+resulting maps, because Fugazi would go to far-flung places and would
+make tours that would not fit neatly on maps. For instance, they played
+Tromso in Norway in 1990 (350 km north of the Arctic Circle); Anchorage,
+Alaska in 1995; Darwin, Australia in 1997; and when they went to Brazil
+they did a proper tour visiting some smaller places as well as several
+of the big cities. I found that being able to follow each tour on a map
+made listening to the Fugazi Live Series more interesting and enjoyable.
+Sometimes the maps would also help understand the band’s on-stage
+banter, which would sometimes refer to the drive they just made to get
+to the show, the ferry that they had missed, or the trip they had made
+in their time off.
+
+[![Overview of the Fugazi Live Series
+map.](images/paste-DD62F29A.png)](https://alexmitrani.shinyapps.io/Fugazetteer/)
+
+## Playlists
+
+As I made my way through the series I took note of the shows I would
+probably want to come back to and listen to again in future. The result
+was a playlist of 246 shows which can be found
+[here](https://alexmitrani.github.io/Repeatr/articles/Playlist.html).
+This is not an exhaustive list of good shows, these are just the shows
+that stood out to me. I was trying to be selective so if there was a run
+of shows that all sounded good I would try to just pick a few and not
+all of them. The sound quality and the availability of recordings both
+tend to improve as the series progresses, so there are relatively fewer
+shows from the early part of the series, for most of the middle part of
+the series I was picking approximately 1 in 5 shows, and towards the end
+of the series I was picking more because most of the shows sounded
+really good. Overall 246 from 915 is about 27% - a bit more than 1 in 4.
+
+Some of the shows on the playlist are not there because they sound
+great, some of them are there because they are interesting or unusual
+for other reasons. For instance there is [FLS0203, 2301 Canton
+Warehouse, Dallas, TX, USA,
+1990-05-04](https://www.dischord.com/fugazi_live_series/dallas-tx-usa-50490)
+where a fire warden wanted to shut down the show and the band ended up
+playing to an empty warehouse with the audience outside in the street.
+Ian MacKaye tells the story much better than me (Mackaye 2013).
+[FLS0396, Silver Dollar, Phoenix, AZ, USA,
+1991-09-09](https://www.dischord.com/fugazi_live_series/phoenix-az-usa-90991)
+was so eventful it seems almost cinematic. Another one that comes to
+mind is [FLS0731, Expo Gardens, Peoria, IL, USA,
+1995-10-09](https://www.dischord.com/fugazi_live_series/peoria-il-usa-100995)
+where the band comes up with a creative solution to deal with a few
+anti-social but extremely persistent crowd surfers. Then there is
+[FLS0761, Showcase Special Events, San Antonio, TX, USA,
+1995-11-18](https://www.dischord.com/fugazi_live_series/san-antonio-tx-usa-111895)
+which probably holds the record for the highest number of expulsions.
+
+### Miniseries
+
+Here is a much shorter list that I call the ‘miniseries’ - 9 shows that
+include at least one rendition of all 94 songs that were played at least
+twice in the Fugazi Live Series, including all the rare ones:
+
+[FLS0073, Kapu, Linz, Austria
+1988-10-11](https://www.dischord.com/fugazi_live_series/linz-austria-111088)
+
+[FLS0149, Barnard College Cafeteria, New York, NY, USA,
+1989-10-09](https://www.dischord.com/fugazi_live_series/new-york-ny-usa-100989)
+
+[FLS0327, Sacred Heart Church Hall, Washington, DC, USA,
+1991-04-12](https://www.dischord.com/fugazi_live_series/washington-dc-usa-41291)
+
+[FLS0505, 40 Watt, Athens, GA, USA,
+1993-02-19](https://www.dischord.com/fugazi_live_series/athens-ga-usa-21993)
+
+[FLS0664, Metropolitan University, Leeds, England,
+1995-05-15](https://www.dischord.com/fugazi_live_series/leeds-england-51595)
+
+[FLS0764, Black Cat, Washington, DC, USA,
+1996-01-30](https://www.dischord.com/fugazi_live_series/washington-dc-usa-13096)
+
+[FLS0870, Maxwell’s, Hoboken, NJ, USA,
+1998-07-27](https://www.dischord.com/fugazi_live_series/hoboken-nj-usa-72798)
+
+[FLS0998, Sacred Heart Church, Washington, DC, USA,
+2001-04-27](https://dischord.com/fugazi_live_series/washington-dc-usa-42701)
+
+[FLS1041, Metropolitan University, Leeds, UK,
+2002-10-31](https://dischord.com/fugazi_live_series/leeds-england-103102)
+
+Nearly all (8 of the 9) shows on the short list are on the long list as
+well, so I feel confident in recommending the miniseries to those who
+might want a short, reasonably representative sample of the Fugazi Live
+Series.
+
+### Top 10
+
+I was asked to share a list of 10 favourite shows without worrying too
+much about the choices. This is what I came up with, in chronological
+order. I didn’t go to any of these. The shows on this list all have
+memorable recordings that I enjoyed listening to very much.
+
+[FLS0044, Maxwell’s, Hoboken, NJ, USA,
+1988-06-30](https://dischord.com/fugazi_live_series/hoboken-nj-usa-63088)
+
+[FLS0308, Lafayette Park, Washington, DC, USA,
+1991-01-12](https://dischord.com/fugazi_live_series/washington-dc-usa-11291)
+
+[FLS0468, Theaterfabrik, Munich, Germany,
+1992-06-16](https://dischord.com/fugazi_live_series/munich-germany-61692)
+
+[FLS0478, Tempodrom, Berlin, Germany,
+1992-06-28](https://dischord.com/fugazi_live_series/berlin-germany-62892)
+
+[FLS0587, Wallace Civic Center, Fitchburg, MA, USA,
+1993-09-17](https://dischord.com/fugazi_live_series/fitchburg-ma-usa-91793)
+
+[FLS0659, Queen’s Hall, Belfast, Northern Ireland,
+1995-05-09](https://dischord.com/fugazi_live_series/belfast-northern-ireland-50995)
+
+[FLS0685, Salle Des Fetes, Kingersheim, France,
+1995-06-10](https://dischord.com/fugazi_live_series/kingersheim-france-61095)
+
+[FLS0688, CPA, Florence, Italy,
+1995-06-14](https://dischord.com/fugazi_live_series/florence-italy-61495)
+
+[FLS0795, Pepperland, Okayama, Japan,
+1996-10-22](https://dischord.com/fugazi_live_series/okayama-japan-102296)
+
+[FLS1041, Metropolitan University, Leeds, UK,
+2002-10-31](https://dischord.com/fugazi_live_series/leeds-england-103102)
+
+## Fugazetteer
+
+Fugazetteer is a web app based on the Fugazi Live Series data, it aims
+to make it easier to answer questions about the series and to find
+interesting shows to listen to. If you enjoy listening to shows from the
+Fugazi Live Series you might find it interesting and useful. It includes
+maps, graphs, information on the durations of shows and renditions, and
+a variety of different ways of searching for shows. Where appropriate,
+Fugazetteer provides links back to the corresponding show pages on the
+Fugazi Live Series site. You can find the Fugazetteer app
+[here](https://alexmitrani.shinyapps.io/Fugazetteer/) and the
+documentation
+[here](https://alexmitrani.github.io/Repeatr/articles/Fugazetteer.html).
+
+## Quiz
+
+I wrote a quiz about the Fugazi Live Series as a way of making use of
+the considerable amount of trivia knowledge I accumulated while making
+my way through the live series. There are 76 questions worth a total of
+162 points. You can find it [here](https://forms.gle/cxWd38nPi6Dtk9ub8).
+It’s a proper hard quiz, it’ll be a good challenge for you. There is a
+high scores table included in the Fugazetteer app, and you’ll be
+included in the high scores table if your score places you in the top
+half.
+
+![](images/paste-9F100001.png)
+
+## Practicalities
+
+An All Access pass allows you to download all the shows from the Fugazi
+Live Series website via a ‘Fugazi Live Series’ button that appears at
+the top of your ‘My Account’ page. You need to download the shows one by
+one. I used to download shows about once a week, at the weekend I’d
+download the shows for the next week or so.
+
+I ended up spending a few minutes editing the metadata and filenames of
+each show to make sure that each MP3 file had a unique filename and it
+would be easy to find any show based on the date. I renamed each album
+starting with the date in format YYYYMMDD and each file with the date
+and the 2-digit track number (with leading zero if necessary) so the
+files end up named like YYYYMMDDTT and can be sorted in chronological
+order. This makes shows easy to find by just typing in the date of the
+show, and specific renditions of songs can be found by typing in the
+date and track number.
+
+The Fugazi Live Series takes up about 160 GB of disk space - that is
+including embedded images for album art. It fits on a pendrive. I wanted
+to be able to listen to any show in the series from my phone via Wi-Fi
+and the way I found to do this was to buy cloud storage and to use a
+mobile app that allows playing or downloading music from cloud storage.
+At the time of writing there are some providers offering lifetime deals
+on cloud storage, I got one of those because that way the cost of the
+cloud storage seemed proportional and is never going to be more than the
+price I paid for the Fugazi Live Series All Access pass.
+
+## Conclusion
+
+I really enjoyed listening to the Fugazi Live Series, it includes a lot
+of great music, lively banter, and was in general an interesting
+experience. I learned a lot in the process, for instance I learned to
+appreciate live music and live music recordings a lot more than I did
+before. I took notes of the shows that stood out to me as I went through
+the series and ended up with [a list of 246
+shows](https://alexmitrani.github.io/Repeatr/articles/Playlist.html),
+which was me trying to be selective. An All Access Pass is definitely
+worth considering if you can afford it and like Fugazi’s music.
+
+There’s an anecdote about painting the Forth Bridge (near Edinburgh,
+Scotland) which is that by the time they finished painting the bridge
+they would have to start painting it again at the other end. An All
+Access pass to the Fugazi Live Series is a lifetime supply of Fugazi
+live recordings because even if you listen to all of them, by the time
+you reach the end you will have forgotten the ones at the beginning. So
+I could just start at the beginning again, but not now. I need to take a
+break.
+
+## References
+
+Friedman, Glen E., and Guy Picciotto. 2019. “Glen e. Friedman + Guy
+Picciotto at Rough Trade, Brooklyn,” June.
+<https://www.youtube.com/watch?v=dQ--r7dmtR4>.
+
+Mackaye, Ian. 2013. “NDIIIPP Special Event: Ian MacKaye,” May.
+<https://www.loc.gov/item/2021689112/>.

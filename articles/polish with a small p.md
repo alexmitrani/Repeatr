@@ -1,0 +1,533 @@
+# polish with a small p
+
+By Alex Mitrani
+
+2 September 2023
+
+## Introduction
+
+Polish is the ninth track on Fugazi’s Steady Diet of Nothing album which
+was recorded at Inner Ear studios in January 1991 ([Fugazi
+1991b](#ref-fugazi1991)) .
+
+> “My journals report that I was considering the title ‘Steady Diet’ for
+> a song that had the working title ‘Big Choppy Chord’ in late February
+> of 1991. That song ended up being ‘Polish’. In March of 1991, we
+> decided to call the album ‘Steady Diet of Nothing’ and then in April
+> we decided to include the instrumental and called that ‘Steady Diet.’”
+> ([MacKaye 2022](#ref-mackaye2022))
+
+The original title of the track was Steady Diet and it was introduced as
+such by Ian MacKaye the second time it was performed, at the University
+of Connecticut ([Fugazi 1991c](#ref-fugazi1991a)).
+
+> “it was i that introduced the song as ‘steady diet’. it was the
+> original title of the song (i wrote the lyrics), but we decided to use
+> it for the instrumental that we wrote around the same time. ‘steady
+> diet of nothing’ was at first just an allusion to television, but the
+> concept grew in scope while we were writing the songs that ended up
+> becoming the ‘steady diet of nothing’ album.” - Ian MacKaye ([Wright
+> and Lalonde 2021](#ref-wright2021))
+
+Judging from the dates of debut live performances in the Fugazi Live
+Series, the songs on Steady Diet of Nothing were written at different
+times in a period of about 3 years and 3 months, from October 1987 to
+January 1991.
+
+    #> # A tibble: 11 × 2
+    #>    song                debut     
+    #>    <fct>               <date>    
+    #>  1 kyeo                1987-10-07
+    #>  2 long division       1989-04-09
+    #>  3 runaway return      1990-02-11
+    #>  4 reclamation         1990-05-05
+    #>  5 exit only           1990-07-06
+    #>  6 latin roots         1990-10-01
+    #>  7 dear justice letter 1991-01-02
+    #>  8 stacks              1991-02-15
+    #>  9 nice new outfit     1991-02-20
+    #> 10 polish              1991-03-06
+    #> 11 steady diet         1991-04-12
+
+On the 12th January 1991 the US congress authorized the use of force to
+eject Iraq from Kuwait, and ‘Operation Desert Storm’ started on the 16th
+of January with US warplanes attacking targets in Iraq and Kuwait
+([Institute of Medicine 1997](#ref-instituteofmedicine1997)).
+
+On that same day Fugazi played at a protest at Lafayette Park, in front
+of the White House:
+
+> “The timing of this was unbelievable. Suddenly, they’d set a date to
+> bomb Iraq, and the date we had the permit for the park was a couple of
+> days before it,” recalled Ian MacKaye, frontman of Fugazi, the
+> headliners of the show. The city’s punk dissenters arrived en masse,
+> braving bracing temperatures. “Not only was it cold, but it was
+> raining and snowing. It was a miserable day, and yet thousands of
+> people came out. It was a pretty incredible show.” - Ian MacKaye
+> ([Anderson 2015](#ref-anderson2015))
+
+The Fugazi show in front of the White House did not include either Nice
+New Outfit or Polish, and neither had been performed previously,
+suggesting that those songs probably hadn’t been finished yet. It seems
+highly likely that the unfolding events of the US involvement in the
+Gulf war may have influenced those two songs, which were probably among
+the last songs to be written for the album.
+
+Nice New Outfit contains the lines:
+
+> You can pinpoint your chimney and drop one down its length. In your
+> nice new outfit, sorry about the mess ([Fugazi
+> 1991a](#ref-fugazi1991c))
+
+Laser-guided bombs were initially developed during the Vietnam war but
+their first large-scale use was during the Gulf war ([Browne
+1991](#ref-browne1991)). The Alphabetical Fugazi episode on Nice New
+Outfit noted the reference to the laser-guided bombs, the context of the
+Gulf war, and the way the war was sold to the public ([Wright and Audra
+2021](#ref-wright2021a)).
+
+The Gulf war was nicknamed the “video-game war” due to the pervasive
+television coverage of bombing raids and targets apparently being hit:
+
+> This superiority was exercised by televising the high-end war
+> technology the US and its allies used during the war. However, in all
+> this reporting about war, TV provided an extremely limited view of the
+> fighting. In fact, it was a “bird-view” of the fighting as the Defense
+> Department supplied most of the video of the air war. Recorded at
+> night and with night vision equipment, the images resembled a video
+> game (“Television – The Persian Gulf War”), hence the war being
+> nicknamed – The Video Game War ([Žigić 2023](#ref-zigic2023)).
+
+> The uneasy relationship between war and video games has been an issue
+> at least since the first Gulf War. At a press conference in February,
+> 1991 General Norman Schwartzkopf felt compelled to remind Americans
+> that “This \[Operation Desert Storm\] is not a video game” ([Stahl
+> 2006](#ref-stahl2006))
+
+> TV presented the Gulf War primarily as entertainment, complete with
+> dramatic titles, graphics, and music. ([Kellner
+> 1992](#ref-kellner1992))
+
+The White House protest show and the apparent reference to laser-guided
+bombs in Nice New Outfit strongly suggest that both Polish and Nice New
+Outfit were still being worked on when the Gulf war had already started,
+perhaps while Fugazi were in the studio at Inner Ear recording the
+album. Given that the album was recorded in January 1991 this narrows
+down the period in which these 2 songs were probably finished to the
+last 19 days of January.
+
+## Lyrics
+
+Here the lyrics of Polish will be used as headings and commented in
+detail.
+
+### Got with the program, swallowed it whole, sugar made it easy, ice made it cold.
+
+This probably refers to the way in which television news was used by
+politicians and military leaders to make the case for the US going to
+war against Iraq and the way in which many people were easily persuaded.
+“Sugar” brings to mind “sugar-coated mindless garbage” from MTV-Get Off
+the Air ([Dead Kennedys 1985](#ref-deadkennedys1985)).
+
+“Ice” could be a seasonal reference as it was probably winter when the
+song was written, and perhaps a specific reference to the protest in
+front of the White House:
+
+> Of the hundreds of raucous punk protest concerts organized by Positive
+> Force, the enduring Washington DC youth activist collective, only one
+> gave President George HW Bush insomnia and Fugazi near-frostbite.
+> Called the Punk Percussion Protest and War On Poverty Not In the
+> Middle East, the now-infamous demonstration was staged directly in
+> front of the White House on 12 January 1991. Long planned as a
+> multi-artist rally that would draw attention to homelessness in
+> America, the event took a hairpin turn as Operation Desert Storm grew
+> imminent. ([Anderson 2015](#ref-anderson2015))
+
+Ice could also refer to forward-looking infrared radar (FLIR), a
+guidance system for bombs that requires the sensor to be very cold:
+
+> One of the principal airborne devices used to assist attacks with
+> Paveway-equipped bombs is the forward-looking, infrared radar, or
+> FLIR, which is fitted to the noses of many of the American fighters
+> and attack aircraft in the gulf region. The heart of the FLIR is a
+> special camera with a sensor chilled to minus 320 degrees Fahrenheit.
+> The very low temperature of this device enables it to detect the faint
+> infrared radiation given off by warmer objects, including tanks and
+> warm human beings. ([Browne 1991](#ref-browne1991))
+
+Minus 320 degrees Fahrenheit is approximately minus 195 degrees
+Celsius - much colder than freezing. “Ice made it cold” may also allude
+to the emotional detachment implied in the planning and execution of
+military operations.
+
+### Reached out and touched them on a TV screen
+
+The Gulf war was televised more than any war had been up to that time,
+due to the use of satellite communications.
+
+> “We swamped the region with as many people and pieces of high
+> technology we could afford and get permission for. It produced
+> on-the-day war reporting on a scale never seen before. People will
+> argue about which was the first ‘television war’. Vietnam? The Israeli
+> invasion of Lebanon? The Falklands? I have no doubt that the Gulf was
+> the first war in which the full potential of satellite technology was
+> used, bringing with it new technical and ethical challenges for
+> broadcasters” ([Purvis 1991](#ref-purvis1991))
+
+Video was used a part of the targeting systems for laser-guided missiles
+and this footage was re-used in press briefings.
+
+“Reach out and touch someone” was a well-known TV commercial for the
+Bell and AT&T telephone companies that was used from about 1979 to 1989
+([Anand 2021](#ref-anand2021)). Later, the phrase started being used in
+a darker way to refer to long-distance acts of terrorism:
+
+> “‘During the Vietnam War,’ a top Bush adviser said about the menace of
+> terrorism, ‘people never thought there was the remotest chance that
+> the North Vietnamese could actually reach out and touch someone.’”
+> ([Dowd 1991](#ref-dowd1991))
+
+Therefore, “reached out and touched them on a TV screen” sounds like
+MacKaye is using the language that the Bush administration would use to
+refer to terrorism to describe the actions of their own coalition in the
+Gulf war.
+
+### broke out the polish, scrubbed it clean, scrubbed it clean, that dirty machine.
+
+People use polish to make something shine - but it should be clean
+first. The idea of polishing seems dissonant which comes next -
+scrubbing clean a dirty machine. The polish is likely a visual metaphor
+for the blackness that characterised a lot of the videos of bombing
+raids that were used in press briefings by General Norman Schwarzkopf
+and others ([Sterling Rutherford 1991a](#ref-sterlingrutherford1991a),
+[1991b](#ref-sterlingrutherford1991b)). The videos were generally filmed
+from the viewpoint of either the laser designator, in which case there
+would be a plume of black smoke after impact, or the missile itself, in
+which case the screen would briefly go black after impact.
+
+“Scrubbed it clean” could be a metaphor for a missile destroying its
+target. The repetition of the phrase could be for emphasis but could
+also imply a double meaning, bringing to mind Lady Macbeth trying to get
+the blood stain off her hands:
+
+> Out, damned spot; out, I say. One, two,—why, then ’tis time to do’t.
+> Hell is murky. Fie, my lord, fie, a soldier and afeard? What need we
+> fear who knows it when none can call our power to account? Yet who
+> would have thought the old man to have had so much blood in him?
+> ([Shakespeare 1606](#ref-shakespeare1606))
+
+This wouldn’t be the first time or the last time this Shakespeare
+reference appears in MacKaye’s songs, there is ‘Don’t you know ink
+washes out / Easier than blood’ ([Fugazi 1990](#ref-fugazi1990)) and
+also the clearest case ‘Soap and water will never get rid of that spot’
+([Coriky 2020](#ref-coriky2020)).
+
+“that dirty machine” suggests the machinery of war. The way in which
+television journalists tend to present war has been the subject of
+research:
+
+> “In ‘our’ war coverage, television journalists tend to excise the
+> opposite side, sanitize the suffering inflicted on it, attribute equal
+> strength to both sides, personalize ‘our’ side, demonize ‘their’ side,
+> and decontextualize its aggressive actions.” ([Liebes
+> 2009](#ref-liebes2009))
+
+### This is your portion, please don’t share, the only answer, your only prayer, your reflection, please don’t stare, nothing is going on in…
+
+“This is your portion” compares TV news to food and hints at how someone
+is deciding what gets served up to TV audiences, how much and in what
+way.
+
+The list here relates to thought and perception: “the only answer, your
+only prayer, your reflection, please don’t stare”
+
+“Please don’t share” suggests individuals are expected to receive what
+they are being served in isolation.
+
+The tone and the type of message here – a series of short statements and
+requests – wrapped up in a catchy, repetitive chorus seems to allude to
+the type of content used in TV advertising.
+
+The omission of the ending to the phrase “Nothing is going on in…” hints
+at how censorship and editing decisions may shape the perceptions of
+people relying on the television to inform themselves about the world.
+
+### There is your manner, what you wear, your diseases and your repairs, all your belongings, please don’t share, nothing is going on in there.
+
+Here the list seems to refer to behaviour and needs: “your manner, what
+you wear, your diseases and your repairs, all your belongings”
+
+“nothing is going on in” is repeated but this time the phrase is
+finished – “nothing is going on in there”. The repeated use of
+‘nothing’, as well as being related to the original song title and the
+name of the album, recalls ‘She Watch Channel Zero’: ‘2, 7, 5, 4, 8, she
+watched, she said / All added up to zero, and nothing in her head’,
+which featured notable use of repetition to make a point – ‘she watch’ x
+36 ([Public Enemy 1988](#ref-publicenemy1988)).
+
+### Update the cleanser, never mind the stain, we’ll take the package, let the contents remain, contents remain as yet unnamed.
+
+This seems to speak of technological change or political change linked
+to sanitization. Again, the image of someone trying to clean something
+that cannot be cleaned or is very difficult to clean. Package versus
+contents contrasts the superficial appearance of things, how they are
+presented, how they are sold, with what they really are on a deeper more
+intrinsic level – which is not shared with the viewer and may not be
+seen at all.
+
+### Came home flat busted only to be saved; everything comes down to you in a world concave, world concave
+
+“Came home flat busted only to be saved” suggests someone getting home
+and slumping in front of the television, but that is not necessarily the
+only meaning, it could also refer to someone using their time and energy
+to do something else more worthwhile than watching television.
+
+“everything comes down to you in a world concave” sounds like a call to
+action, to engage with the world and with other people – unlike the TV
+screen which is convex (or it would have been at the time this song was
+written), we are immersed in and surrounded by the real world.
+
+This part of the song echoes TV Party: ‘We’ve got nothing better to do /
+Than watch TV and have a couple of brews’ contrasted with ‘Hey, wait a
+minute! My TV set doesn’t work (It’s broken!) / What are we gonna do
+tonight, this isn’t fair! (We’re hurtin’!)’ ([Black Flag
+1981](#ref-blackflag1981)).
+
+### so well behaved, we still turn on, thirty minutes long, we still turn on
+
+The song ends with a criticism of passivity, “so well behaved” echoing
+the starting line “got with the program”.
+
+“We still turn on” sounds like a weary acknowledgement that despite
+everything, it is hard to ignore the television coverage of the
+unfolding war.
+
+“Thirty minutes long” probably refers to what used to be a typical
+duration of TV news broadcasts ([Schultz 2005](#ref-schultz2005)).
+
+## Discussion
+
+It isn’t always clear who is doing what in this song. Who reaches out
+and touches who? Who breaks out the polish? Who scrubs clean the dirty
+machine? Who came home flat busted, and who saved them? Some of this
+vagueness might be deliberate, echoing the nature of television war
+coverage where it isn’t clear who is doing what, or what is really
+happening.
+
+“You” is clearer - “everything comes down to you in a world concave”
+sounds like a direct appeal to the listener, perhaps echoing the
+sentiment of The Revolution Will Not Be Televised ([Scott-Heron
+1971](#ref-scott-heron1971)).
+
+The use of “we” seems to indicate the community formed by band and
+audience.
+
+A recent discussion about this song on the podcast The Alphabetical
+Fugazi focused on this being a song about television:
+
+> The stakes are higher with Reclamation and it seems like a topic that
+> needs a plain-spoken, on-the nose statement, whereas maybe disliking
+> television programming is not one of those topics, and that’s the main
+> difference ([Wright and Lalonde 2021](#ref-wright2021)).
+
+There have been many previous songs critical of the use of television,
+for instance The Revolution will not be Televised ([Scott-Heron
+1971](#ref-scott-heron1971)), TV Party ([Black Flag
+1981](#ref-blackflag1981)), MTV-Get Off the Air ([Dead Kennedys
+1985](#ref-deadkennedys1985)), She Watch Channel Zero?! ([Public Enemy
+1988](#ref-publicenemy1988)) and (Welcome) Television ([The Beatnigs
+1988](#ref-thebeatnigs1988)) – to name some likely points of reference
+for the present song. What makes this song different is the focus on how
+television was used in the context of the build-up to the Gulf war and
+perhaps the early stages of the war itself. This song is also notable in
+how it uses a range of different literary devices: repetition, omission,
+euphemism, double meanings, allusions, metaphors, slang and contextual
+references. Even the title, ‘Polish’, is tricky as depending on
+capitalization and pronunciation it could mean two completely different
+things, one of which seems to be a red herring. The language used is not
+excessively cryptic but it isn’t very direct either, compared to others
+such as ‘(Welcome) Television’ ([The Beatnigs
+1988](#ref-thebeatnigs1988)) which come right out and say what they want
+to say without requiring much effort of interpretation from the
+listener. The elusiveness of the lyrics brings to mind the type of
+language used to evade censorship, which seems appropriate to the
+context because during wartime the military censor all communications to
+and from the war zone ([O’Mara 1991](#ref-omara1991)).
+
+Considering the specific context helps to make sense of the strength of
+feeling and urgency expressed by the song, and returning to the Fugazi
+show in front of the White House on the 12th of January 1991 is a good
+way to do this.
+
+> The day before the event, a heavy snowstorm hit the city. The next
+> day, temperatures nudged into the 40s and the snow melted, but is was
+> cold and rainy. With the country preparing for war, police blanketed
+> the White House area. Despite the weather, around 3000 people showed
+> up, including rarely seen old allies like Squip. As the protesters
+> beat on oil barrels, drums, tin cans, and kettles, the organizers
+> wondered what to do about the show. Playing on an unprotected stage in
+> the rain could expose musicians and crew to potential electrocution.
+> At one point the rain stopped, only to begin again just as the band
+> was ready to go. Organizers and musicians huddled on the stage, trying
+> to decide what to do. Finally, feeling the gravity of the political
+> moment, MacKaye said simply, ‘Let’s fucking do it!’ All available
+> hands scrambled to uncover the gear and prepare for the chancy
+> performance. ([Andersen and Jenkins 2009](#ref-andersen2009))
+
+The willingness of the band to play in the rain on an outdoor stage on a
+cold day, risking potential electrocution, clearly illustrates how
+strongly they felt about all that was at stake. By way of an
+introduction to KYEO Ian MacKaye spoke the following words:
+
+> I gotta tell you I’m kinda terrified, it’s definitely looking like a
+> situation where you can’t turn around and worst of all it’s a decision
+> that none of us can even make, except for the fact that we didn’t say
+> anything in the first place about it, so because we didn’t, it’s time
+> to get even more louder and make more volume make more noise ([“FUGAZI
+> Live in Front of THE WHITE HOUSE, January 12, 1991 (Gulf War 1
+> Protest)” 1991](#ref-fugazil1991); [Fugazi 1991a](#ref-fugazi1991c))
+
+The ‘punk percussion protest’ started at the beginning of the war and
+went on around the clock for several weeks at least.
+
+> After the tocsin of war come the drums of war. “Those damned drums are
+> keeping me up all night,” the President told a gathering of
+> Republicans on Friday. The antiwar protesters camped in Lafayette Park
+> across the street from the White House have been beating a drum round
+> the clock since the war began, like an Edgar Allan Poe heartbeat
+> intended to pierce the President’s conscience as he sleeps in a room
+> above Pennsylvania Avenue ([Dowd 1991](#ref-dowd1991)).
+
+President Bush tried and failed to get the drums silenced:
+
+> During the Gulf War, President George H.W. Bush was annoyed with an
+> anti-war demonstration in Lafayette Park. An ‘incessant’ drumbeat used
+> by protestors was so loud he ordered the drums silenced. ‘Those damn
+> drums are keeping me up all night,’ Mr. Bush told a group of visiting
+> congressmen. But a federal court held the park was a public place. The
+> whole point of free speech was to get the attention of the President.
+> The beat went on. - Roger McDaniel ([Yesterday’s America Editorial
+> Team 2020](#ref-yesterdaysamericaeditorialteam2020))
+
+Polish seems to be strongly related to several other songs on the Steady
+Diet of Nothing album, in particular Nice New Outfit and KYEO, perhaps
+also Stacks. Keep Your Eyes Open (KYEO) emphasises the importance of
+awareness complementing the concern about superficiality in Polish, with
+specific reference to the military: “The troops are quiet tonight, but
+it’s not alright, because we know they’re planning something”. Stacks
+would probably also have been finished in January 1991, and several
+lines from this song could be interpreted as an expression of profound
+discontent and disagreement with the participation of the USA in the
+Gulf war: “I see them spinning on / So I spin out / America is just a
+word but I use it.” The Coriky song ‘Clean Kill’ revisited similar
+themes to those explored in ‘Nice New Outfit’ and ‘Polish’, almost
+thirty years later ([Coriky 2020](#ref-coriky2020)).
+
+## Conclusion
+
+This song is about the use of television in a very specific context -
+the participation of the US in the Gulf war (1990 - 1991). There is a
+lot more depth and richness to the lyrics than first impressions might
+suggest. The music sounds like a protest song, and the lyrics read as if
+they had been written to get past military censorship.
+
+## References
+
+Anand, Vejay. 2021. “Iconic Ads: AT&t - Reach Out and Touch Someone
+Point of View.”
+<https://onlykutts.com/index.php/2021/10/04/att-reach-out-and-touch-someone/>.
+
+Andersen, Mark, and Mark Jenkins. 2009. *Dance of Days: Two Decades of
+Punk in the Nation’s Capital*. Akashic Books.
+
+Anderson, Stacey. 2015. “Positive Force: The Film That Remembers When
+Punk Took on the White House.” *The Guardian*, August.
+<https://www.theguardian.com/music/2015/aug/21/positive-force-punk-activism-washington-dc-documentary>.
+
+Black Flag. 1981. “TV Party,” December.
+
+Browne, Malcolm W. 1991. “Invention That Shaped the Gulf War: The
+Laser-Guided Bomb.” *The New York Times*, February.
+<https://www.nytimes.com/1991/02/26/science/invention-that-shaped-the-gulf-war-the-laser-guided-bomb.html>.
+
+Coriky. 2020. “Clean Kill.”
+<https://www.dischord.com/release/190/st-54>.
+
+Dead Kennedys. 1985. “MTV-Get Off the Air.”
+
+Dowd, Maureen. 1991. “WAR IN THE GULF: THE WHITE HOUSE; Storm’s Eye:
+Bush Decides to Go to War.” *The New York Times*, January.
+<https://www.nytimes.com/1991/01/17/world/war-in-the-gulf-the-white-house-storm-s-eye-bush-decides-to-go-to-war.html>.
+
+Fugazi. 1990. “Repeater.”
+<https://www.dischord.com/release/044/repeater>.
+
+———. 1991a. “Nice New Outfit.”
+<https://www.dischord.com/release/060/steady-diet-of-nothing>.
+
+———. 1991b. “Steady Diet of Nothing.”
+<https://www.dischord.com/release/060/steady-diet-of-nothing>.
+
+———. 1991c. “Storrs, CT USA 3/07/91,” March.
+<https://www.dischord.com/fugazi_live_series/storrs-ct-usa-30791>.
+
+“FUGAZI Live in Front of THE WHITE HOUSE, January 12, 1991 (Gulf War 1
+Protest).” 1991, January. <https://www.youtube.com/watch?v=c_5OZOwAhas>.
+
+Institute of Medicine. 1997. “Persian Gulf War-Related Events:
+Timeline.” In. National Academies Press (US).
+<https://www.ncbi.nlm.nih.gov/books/NBK233468/>.
+
+Kellner, Douglas. 1992. *The Persian Gulf TV War*. Westview Press.
+<http://www.gseis.ucla.edu/faculty/kellner/essays/gulfwarbook.pdf>.
+
+Liebes, Tamar. 2009. “Our War/Their War: Comparing the Intifadeh and the
+Gulf War on U.S. And Israeli Television.” *Critical Studies in Media
+Communication*, May. <https://doi.org/10.1080/15295039209366814>.
+
+MacKaye, Ian. 2022. “Reappraising Steady Diet of Nothing,” February.
+<https://thebattleground.eu/2022/02/02/reappraising-steady-diet-of-nothing/>.
+
+O’Mara, Richard. 1991. “In a Gulf of Darkness.” *Index on Censorship* 20
+(4-5): 30–31. <https://doi.org/10.1080/03064229108535102>.
+
+Public Enemy. 1988. “She Watch Channel Zero?!” June.
+
+Purvis, Stewart. 1991. “The Media and the Gulf War.” *RSA Journal* 139
+(5423): 735744.
+
+Schultz, Brad. 2005. *Broadcast News Producing*. 2455 Teller
+Road, Thousand Oaks California 91320 United States: SAGE Publications,
+Inc. <https://doi.org/10.4135/9781452233093>.
+
+Scott-Heron, Gil. 1971. “The Revolution Will Not Be Televised.”
+
+Shakespeare, William. 1606. *The Tragedy of Macbeth*. The Complete
+Oxford Shakespeare. Vol. 3. Oxford University Press.
+
+Stahl, Roger. 2006. “Have You Played the War on Terror?” *Critical
+Studies in Media Communication* 23 (2): 112130.
+
+Sterling Rutherford. 1991a. “General Norman Schwarzkopf Briefing from
+Saudi Arabia, January 27, 1991,” January.
+<https://www.youtube.com/watch?v=u6jncfvbJVI>.
+
+———. 1991b. “General Norman Schwarzkopf Gives Press Briefing on War
+Progress,” January. <https://www.youtube.com/watch?v=4R6Z_jwP9qk>.
+
+The Beatnigs. 1988. “(Welcome) Television.”
+
+Wright, Ian James, and Buick Audra. 2021. “"Nice New Outfit" with Buick
+Audra,” May. <https://open.spotify.com/episode/5UwIC8JHrvIBac71enEkKP>.
+
+Wright, Ian James, and Robert Lalonde. 2021. “"Polish" with Robert
+Lalonde,” July.
+<https://open.spotify.com/episode/4ZfA4IVWpWj4rdKUlIEXOr>.
+
+Yesterday’s America Editorial Team. 2020. “Lafayette Park’s Long History
+of Protests.”
+<https://yesterdaysamerica.com/lafayettes-parks-long-history-of-protests/>.
+
+Žigić, Katarina. 2023. “Media Representations of the Gulf War: What
+Transpired on the Battlefront?” PhD thesis.
+<https://repozitorij.ffzg.unizg.hr/islandora/object/ffzg:7592>.

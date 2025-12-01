@@ -1,0 +1,974 @@
+# Au Clair de la Lune
+
+By Alex Mitrani
+
+20 December 2024
+
+## Introduction
+
+Two Beats Off was launched as an instrumental at the 40 Watt in Athens,
+Georgia on 3 May 1989. The first rendition with vocals was at the 9:30
+Club in Washington DC on 20 July 1989. The song got it’s official
+release on Repeater which was released around the 1 March 1990 ([Fugazi
+1990a](#ref-fugazi1990e)). It was one of the later songs to debut that
+would be released on Repeater.
+
+    #> # A tibble: 11 × 2
+    #>    song              debut     
+    #>    <fct>             <date>    
+    #>  1 merchandise       1987-09-03
+    #>  2 reprovisional     1988-12-29
+    #>  3 shut the door     1989-03-24
+    #>  4 greed             1989-03-24
+    #>  5 sieve-fisted find 1989-03-24
+    #>  6 brendan #1        1989-03-24
+    #>  7 turnover          1989-04-09
+    #>  8 two beats off     1989-05-03
+    #>  9 repeater          1989-07-20
+    #> 10 blueprint         1989-11-25
+    #> 11 styrofoam         1990-05-17
+
+Fugazi played Two Beats Off at least 371 times with the last recorded
+version being on the 6 July 2001 in Victoria, BC, Canada. Two Beats Off
+was followed by the song Repeater 109 times which makes this by far the
+most common transition featuring the song.
+
+## Title
+
+I only have speculation to offer here. My guess is that ‘two beats off’
+was a working title that became permanent. Like many Fugazi songs, ‘two
+beats off’ started off as an instrumental, and it seems likely that the
+title is a reference to something about the music. ‘Two beats off’ could
+imply that something about the music falls out of step with the
+preceding rhythm. If that is right it is probably the five heavy chords
+that come after ‘caught with my hand in the till’ and before ‘red
+handed’. You know, the bit that goes DAA DUU DEE DII DUU. It’s one of
+many highlights of the song.
+
+## Lyrics
+
+The lyrics from the studio recording will be referred to here ([Fugazi
+1990b](#ref-fugazi1990a)) - there are some variations in live
+recordings. The lyric sheet uses all caps so capitalization is not
+clear. Here I’m going with all lower case.
+
+### I cut my nails to the quick
+
+Dirt. Fear of getting caught. Evasion. Pain.
+
+### but still I was caught with my hand in the till
+
+This sounds confessional. Stealing (or some other crime) in the
+workplace.
+
+### red-handed.
+
+Caught in the act.
+
+### give me something, give me anything
+
+Begging, suggests the subject is destitute or chronically deprived of
+something.
+
+### the threat of everything is when it becomes nothing at all
+
+Fear of losing everything.
+
+### fingers reaching, trophy swelling
+
+Trophies are normally won or captured through sport, hunting or war
+([Cambridge University Press 2024b](#ref-cambridgeuniversitypress2024)).
+All of these involve taking through force or some other form of exertion
+something which is not freely given. The way the word trophy is used
+here as part of a sexual innuendo hints at abuse.
+
+### that’s when desire trips me up….
+
+Someone who tries to be good but gets led astray by their desire.
+Similar language is used in the Bible.
+
+> All of us get tripped up in many ways. Suppose someone is never wrong
+> in what they say. Then they are perfect. They are able to keep their
+> whole body under control. ([“James 3:1-3” 1996](#ref-james3:1996))
+
+### got a new technique money lets the pieces fit where they fall.
+
+‘Got a new technique’ speaks to recent developments, perhaps newsworthy
+events at the time the song was written. Scandals and how people or
+organisations with money and power adapted to manage them.
+
+Pieces could be pieces of a jigsaw puzzle, pieces of a game such as
+chess, or pieces of something broken.
+
+- ‘pieces fit’ brings to mind a jigsaw puzzle where pieces should only
+  fit in one location and nowhere else
+
+- chess pieces represent a strict hierarchy that alludes to a
+  traditional social hierarchy with the king being the most important
+  piece, then the queen, the rooks, the bishops, the knights, and the
+  pawns. The reference to money here implies power and hierarchy.
+
+&nbsp;
+
+- something broken but not cleaned up or fixed, just normalised and made
+  to look like there is nothing wrong.
+
+In particular, this bit makes me think of how cases of sexual abuse were
+dealt with by church authorities.
+
+> Loyola University of Chicago psychologist Eugene Kennedy, a former
+> priest and writer on church affairs, faults bishops for taking “advice
+> of lawyers on issues that cannot be resolved merely by making the
+> church legally defensible.
+>
+> **It’s the sweating surface of a culture that is corrupting. The
+> church has failed to examine conflicts about human sexuality which
+> throb within it.**
+>
+> Cover-ups are impossible; where there is darkness we need light.”
+>
+> …overall, a cover-up pattern persists. Too often, bishops have simply
+> recycled accused priests to a new parish, while the afflicted families
+> were held at arm’s length. Because judges have sealed the records of
+> many civil settlements, there is no way to know exactly how much has
+> been paid. But there are clear signs of heavy losses. In a Minneapolis
+> case, the plaintiff’s sister testified that he had rejected a
+> \$1.5-million offer. The plaintiff’s attorney, Jeffrey Anderson of
+> St. Paul, says he has 30 suits pending for other clients, involving 16
+> priests in seven states. One Louisiana diocese and its insurers have
+> paid \$15 million to victims of a parish priest. In all at least \$30
+> million is known to have been paid nationwide.
+>
+> \- The Washington Post, 1989-09-16. ([Berry 1989](#ref-berry1989))
+
+In 1990 there was a TV documentary drama film called ‘Judgement’ about
+the case of a pedophile priest in Louisiana that first made headlines in
+1985 ([Chicago Tribune 1990](#ref-chicagotribune1990)).
+
+> The recent sexual abuse scandal in the Catholic Church has put the
+> enforceability of confidentiality agreements in settlement under the
+> microscope. For years, the Church used confidential settlements to
+> silence abuse victims. Although these agreements protected the
+> identity of the victim, they also concealed the identities of the
+> priests who often continued to serve at their parishes or other
+> ministries. For example, in 1997, the Roman Catholic Diocese of Albany
+> paid a confidential settlement of just under one million dollars to a
+> man who alleged that “he had been sexually abused for six years” by a
+> priest “who regularly plied him with drugs and alcohol.” The
+> settlement fell just below the diocese’s one million dollar ceiling;
+> above that amount it must seek the consent of its finance counsel, an
+> eight-member board composed of the diocesan bishop and seven lay
+> people, designed to provide accountability for the diocese’s
+> decisions. Thus, the settlement was entirely insulated from any public
+> scrutiny, allowing the abusive priest to remain anonymous and perhaps
+> continue in his position. ([Philp 2002](#ref-philp2002))
+
+### privilege - it sanctions everything.
+
+Sanction here is used in the sense of ‘to formally give permission for
+something’ ([Cambridge University Press
+2024a](#ref-cambridgeuniversitypress2024a)).
+
+In many cases church authorities tried to deal with cases of abuse as an
+internal matter, not reporting the alleged crimes to the police and
+moving the offenders to other locations where they could continue
+abusing.
+
+> The release of about 6,000 pages of documents provided a grim
+> backstage look at the scandal, graphically detailing the patterns of
+> serial abuse by dozens of priests who were systematically rotated to
+> new assignments as church officials kept criminal behavior secret from
+> civil authority. ([Editorial Board 2013](#ref-editorialboard2013))
+
+### security - a net under it all.
+
+The image of a net seems significant, it brings to mind a tightrope
+walker, trapeze artist or someone else doing something risky, who risks
+falling from a height - possibly falling from grace.
+
+### once there was a body to see, now just the biggest mouth to feed of them all
+
+The subject was young and perhaps attractive once, but not anymore - now
+they still have desire but are undesirable. This line is not on the
+lyrics sheet but was confirmed by Guy Picciotto in correspondence that
+was reported in the Alphabetical Fugazi podcast ([Wright, Rickard, and
+Rickard 2022](#ref-wright2022)).
+
+## Live variations
+
+Two Beats Off probably has more live variations than any other Fugazi
+song, at least in terms of the use of samples of other songs and
+variations to the main lyrics of the song. The practice of singing
+samples of songs by other artists is something that was probably
+inspired by sampling in hip-hop and seems to pre-date Fugazi. The 13
+September 1987 show by one of Guy Picciotto and Brendan Canty’s earlier
+bands, Happy Go Licky, at the 9:30 club is mentioned in the book ‘Dance
+of Days’:
+
+> Such cut-up lyrics as “every day is like nirvana” and “wooly bully” -
+> both from ’60s songs - seemed a form of sampling without machines.
+> ([Andersen and Jenkins 2009a](#ref-andersen2009))
+
+Some of the variations might have been due to practical considerations:
+
+> you’d be looking around the stage going like ‘oh no, Ian’s broken a
+> string’ so is there a song like Two Beats Off where I can play the
+> opening chord for like 5 minutes and Brendan and I, we can vamp while
+> Ian gets his guitar sorted out, you know, a lot of it was based on
+> practical considerations and how songs began.
+>
+> \- Guy Picciotto ([MacKaye and Picciotto 2022](#ref-mackaye2022))
+
+On several occasions the intro to Two Beats Off contained parts of
+several other songs threaded together. To reduce repetition of the same
+lines over and over again, the summary of each rendition will focus on
+the parts that are different, omitting lines that are the same as
+elsewhere.
+
+### FLS0105 Athens, GA USA 1989-05-03
+
+The music of Two Beats Off was performed as an instrumental, and it
+seems that at this time the song did not have a title, it was introduced
+by Ian MacKaye as “and now, part two of this great instrumental” (part
+one was Joe \#1) ([Fugazi 1989a](#ref-fugazi1989)). This rendition is an
+important starting point for a detailed look at the song because the
+absence of vocal part and lyrics gives clues about when these might have
+been written.
+
+### FLS0133 Washington, DC USA 1989-07-20
+
+By the time of this show at the 9:30 Club, Two Beats Off had been named
+and had vocals with an initial set of lyrics. The sound-quality is rated
+‘poor’ and there are parts where something is being sung that I couldn’t
+make out, but from what I could hear, this initial version had only a
+limited set of lyrics and used a lot of repetition.
+
+> I cut my nails to the quick
+>
+> but still I was caught with my hand in the till
+>
+> red-handed x 2
+>
+> you want it? you gotta pick it up x 3
+>
+> you gotta pick it up
+>
+> (inaudible)
+>
+> I want it. I gotta pick it up x 2
+>
+> I want it
+>
+> (inaudible)
+>
+> up against it all
+>
+> (inaudible)
+>
+> I gotta pick it up
+>
+> I want it
+>
+> up against it all ([Fugazi 1989b](#ref-fugazi1989a))
+
+### FLS0148 Hoboken, NJ USA 1989-10-08
+
+If the information on Wikipedia is correct, recording for Repeater
+finished in September 1989 ([Wikipedia Contributors
+2024b](#ref-wikipediacontributors2024b)). If that is right the lyrics
+used on the album version had already been written and sung but were not
+used in their entirety on this occasion. This rendition at Maxwell’s
+featured lyrics close to the album version, but not the same. In
+particular, the lines about something, anything, everything and security
+/ privilege were omitted. ‘Body sweating’ appears as an alternative to
+‘trophy swelling’.
+
+> fingers reaching
+>
+> body sweating ([Fugazi 1989c](#ref-fugazi1989b))
+
+### FLS0151 Amsterdam, Netherlands 1989-11-03
+
+This rendition features lyrics that are very close to the album version,
+but still with a few variations, here for instance there is taking
+instead of ‘give me’:
+
+> taking
+>
+> taking everything ([Fugazi 1989d](#ref-fugazi1989c))
+
+This performance also features love instead of money:
+
+> I’ve got a new technique
+>
+> love will make the pieces fit where they fall ([Fugazi
+> 1989d](#ref-fugazi1989c))
+
+What might be a new technique is to have lots of interchangeable parts
+and vary them with every rendition - it is hard to find any two live
+renditions of this song that are the same, and it is also a challenge to
+find a live version with exactly the same lyrics as the album version.
+
+### FLS0224 Denver, CO, USA, 1990-06-08
+
+One of the first renditions featuring a sample of ‘Summertime’ by
+Gershwin ([Gershwin 1935](#ref-gershwin1935)) as part of the
+introduction.
+
+> summertime and the living is easy
+>
+> summertime and the living is good
+>
+> your daddy’s rich and your ma’ is good looking ([Fugazi
+> 1990c](#ref-fugazi1990f))
+
+Early June might have felt like summer already in Denver although it
+would have been a few weeks ahead of the summer solstice. ‘Summertime’
+would appear many more times as part of the intro to Two Beats Off, with
+variations to the wording.
+
+### FLS0251 Wageningen, Netherlands 1990-09-08
+
+This performance at Unitas features the following introduction:
+
+> salad is the first course
+>
+> what shall I choose for the main?
+>
+> salad is the first course
+>
+> what shall I choose for the main? ([Fugazi 1990d](#ref-fugazi1990c))
+
+These lines are from ‘First Course’ by Fire Party, on the EP ‘New
+Orleans Opera’, released as Dischord 037 in 1989 ([Fire Party
+1989](#ref-fireparty1989)).
+
+This rendition also features some variations to other lines:
+
+> I want a body to be seen
+>
+> not just the biggest mouth to feed of them all ([Fugazi
+> 1990d](#ref-fugazi1990c))
+
+### FLS0272 Linkoping, Sweden 1990-10-02
+
+> Swing low, sweet chariot, coming for to carry me home ([Fugazi
+> 1990e](#ref-fugazi1990b)).
+
+Unusually, this intro to Two Beats Off is sung by Ian MacKaye. This is
+from an old gospel song that has been performed by many artists
+including Louis Armstrong, Screamin’ Jay Hawkins, Sam Cooke, B. B. King,
+and Joan Baez, who sang it at Woodstock in 1969 ([Wikipedia Contributors
+2024c](#ref-wikipediacontributors2024a)).
+
+Following on from this, Guy Picciotto takes up the lead vocals with a
+few lines that are clearly based on ‘The Place I Love’ by The Jam ([The
+Jam 1978](#ref-thejam1978)), with a few changes to wording and sequence.
+
+> The place I love is nowhere near here
+>
+> Not within a mile of those trendy do’s
+>
+> Beautiful moss and colourful flowers
+>
+> Let’s take a stand against the world ([Fugazi
+> 1990e](#ref-fugazi1990b))
+
+The main part of the song features some lines that did not make it into
+the album version but feature in many live renditions.
+
+> you want it?
+>
+> you gotta pick it up
+>
+> and take it
+>
+> up against the wall ([Fugazi 1990e](#ref-fugazi1990b))
+
+The end of the song also features Ian MacKaye, who sings something that
+sounds like this:
+
+> he got in
+>
+> and disappeared
+>
+> he got here
+>
+> and disappeared ([Fugazi 1990e](#ref-fugazi1990b))
+
+### FLS0304 Amsterdam, Netherlands 1990-11-07
+
+On 7 November 1990 Fugazi and The Ex played a benefit for Steunpunt
+Zetten (support point Zetten) at Paradiso in Amsterdam, Netherlands.
+
+> I’m sure most of you know this is a benefit, and for a very important
+> cause indeed. In Washington DC we have similar problems with youth
+> care, everybody’s children think other children are crazy apparently,
+> and they put them away in little psychiatric prisons where they are
+> mistreated, abused, molested… So, anyway, I think it is a rather
+> worthy cause. - Ian MacKaye, 7 November 1990 ([Fugazi
+> 1990f](#ref-fugazi1990))
+
+Steunpunt Zetten was a support group and activist group working on
+behalf of young people who complained that they suffered abuse of
+various kinds from a psychiatrist in charge of the residential youth
+care institution (Heldringstichting) in Zetten. Complaints were
+originally published in 1974 but it took until 1990 for the psychiatrist
+Theo Finkensieper to be investigated, charged and sentenced to 6 years
+in prison. He was sentenced on 30 May 1990. Finkensieper’s appeal was
+heard in October 1990 and rejected. ‘When Steunpunt Zetten sought
+publicity from 24 April 1990, other reports of sexual abuse within youth
+care institutions came in almost immediately, such as in the youth care
+institution De Dreef in Wapenveld, where there was sexual abuse of boys.
+Ultimately, seven employees were also convicted here in 1993’ ([Lans
+2012](#ref-vanderlans2012)).
+
+Guy Picciotto sang something in French as part of an extended
+introduction to Two Beats Off.
+
+> Au clair de la lune
+>
+> Je suis tombé dans l’eau
+>
+> Ça se fait des bulles
+>
+> C’est très rigolo
+>
+> Voilà mon amour
+>
+> Avec des ciseaux
+>
+> Elle va couper mon coeur
+>
+> En trois mille morceaux([Fugazi 1990f](#ref-fugazi1990))
+
+This is a modified version of a rude nursery rhyme ([Bouteloup
+2003](#ref-bouteloup2003)) that is sang to the tune of an older,
+traditional 18th century folk song. The folk song has many innuendos or
+‘sexual undertones’ and is the subject of the oldest known audio
+recording (1860) ([Wikipedia Contributors
+2024a](#ref-wikipediacontributors2024)). Compared to the rude nursery
+rhyme, Guy mainly changed the second verse, what he sings is “Here is my
+love / with scissors / she is going to cut my heart / into three
+thousand pieces”, whereas in the nursery rhyme it translates roughly as
+“My grandmother is coming / with scissors / she cuts my buttocks / in
+three thousand pieces” ([Bouteloup 2003](#ref-bouteloup2003)). Guy
+Picciotto wasn’t the first punk rocker to have made use of “au clare de
+la lune” - Siouxsie Sioux sang the first verse or two (in French) in
+‘The Lord’s Prayer’ (1979) ([Siouxsie and Banshees
+1979](#ref-siouxsieandthebanshees1979)).
+
+On this occasion Guy also made significant changes to the lyrics of the
+song, making it into more of a protest song.
+
+> you want it?
+>
+> you’ve got to pick it up
+>
+> then take it
+>
+> out into the streets
+>
+> the fingers reaching
+>
+> your heart is breaking
+>
+> my friends
+>
+> take it to the streets ([Fugazi 1990f](#ref-fugazi1990))
+
+The extended introduction that was added to Two Beats Off made me wonder
+why this was done, and in particular it got me thinking that maybe there
+was a connection between Two Beats Off and the nature of this particular
+benefit concert. It wouldn’t be the first time that something special
+had been performed by Fugazi at a benefit concert - Guy commented in an
+interview ([Picciotto and Niceley 2021](#ref-picciotto2021)) that ‘Give
+Me The Cure’ was written for and performed for the first time at a
+benefit for AIDS research at Columbia University in New York ([Fugazi
+1988](#ref-fugazi1988)).
+
+“Au clair de la lune” from the earliest versions in the 18th century
+seems to have hidden sexual innuendos but nevertheless it is considered
+a song for children. The rude nursery rhyme that is sung to the same
+tune as the original juxtaposes childish activities with violent
+punishment. Guy’s version takes the rude nursery rhyme and makes it more
+romantic, or at least sexual, but no less violent - here comes my lover,
+with scissors, to cut my heart in three thousand pieces.
+
+### FLS0437 Nottingham, England 1992-05-08
+
+This one features what might have been a completely improvised
+introduction.
+
+> I’m in love
+>
+> with the old world
+>
+> I’m in love
+>
+> young and handsome too
+>
+> I’m in love, in love
+>
+> with the old world
+>
+> (and hand-) and handsome too ([Fugazi 1992](#ref-fugazi1992))
+
+### Unidentified Introductions
+
+There are several other shows with extended introductions to Two Beats
+Off, I haven’t transcribed them and I’m not sure whether they are
+original compositions, improvisations, samples of other songs, or some
+combination of these. There may be others, but these are the ones I have
+on my list.
+
+- FLS0491 Virginia Beach, VA USA 2/4/1993 ([Fugazi
+  1993](#ref-fugazi1993))
+
+- FLS0765 Washington, DC USA 1/31/1996 ([Fugazi 1996a](#ref-fugazi1996))
+
+- FLS0772 Athens, GA USA 3/26/1996 ([Fugazi 1996b](#ref-fugazi1996a))
+
+## Press Cuttings
+
+As seen in the summaries of live performances, this song went on
+evolving after Repeater had been released and almost every performance
+was different in some way from previous versions.
+
+A series of potentially relevant news stories was published at around
+the time Two Beats Off was in the process of being written, and the
+story of one particular person, the DC area priest George Augustus
+Stallings Jr., seems to incorporate many of the themes of the song.
+
+> Stallings’s dealings with young men in his parish were the subject of
+> scrutiny in the late 1980s, when a series of front-page articles in
+> The Washington Post quoted two unnamed former altar boys as saying
+> that he had abused them. Stallings’s former pastoral assistant, who
+> was 22 at the time, spoke publicly about having a two-year sexual
+> relationship with him.
+>
+> Stallings denied all of the allegations and had left the Catholic
+> Church by the time the articles were published in 1989. He was
+> excommunicated in 1990.
+>
+> \- The Washington Post, 2009-10-14 ([Wan 2009](#ref-wan2009))
+
+It is not possible to say for sure that this person was a subject of the
+song but there are many aspects of his story that seem to coincide with
+parts of the song, including some of the variations that were performed
+live.
+
+### swing low, sweet chariot
+
+> Stallings, 41, a convert to Catholicism, attracted national attention
+> as pastor of St. Teresa of Avila parish in Southeast Washington by
+> melding the gospel music and preaching and worship styles familiar to
+> blacks with the traditional mass. According to the priest, in his 12
+> years at St. Teresa’s, membership increased from 200 to 2,000.
+>
+> \- The Washington Post, 1989-06-20. ([Hyer 1989](#ref-hyer1989))
+
+### fingers reaching, trophy swelling that’s when desire trips me up….
+
+> The man, whom The Washington Post agreed not to identify, said the
+> first incident occurred in the rectory on a summer afternoon when
+> Stallings, whom he respected and considered “a great role model,”
+> asked the 16 year-old to kneel next to him on the carpet and share a
+> loaf of bread. “He started touching my ear. And one thing led to
+> another and we ended up upstairs in his room,” the man, now 28, said
+> in an interview Friday. “And, you know, that was the start of the
+> relationship right there, at least the sexual relationship.”
+>
+> “He talked about how the breaking of bread between two people is a
+> very, how do you say it, a very special thing, a very caring thing,”
+> the man said. He said he and Stallings had oral sex that day and two
+> or three times a week over the next three or four months. “He was
+> saying things along the line that this was okay and that this was
+> fine, this is something very special between two friends, and that it
+> was nothing to be ashamed of or afraid of . . . . I thought it was
+> wrong because this man was a priest and he was supposed to have this
+> vow of chastity.” They had sexual relations only in the church
+> rectory, he said, although sometimes, “after mass, he would pull me
+> aside, like into the side room there. He would kiss me, which I
+> thought was awfully bold.”
+>
+> \- The Washington Post, 1989-09-04 ([Sessions Stepp and Dedman
+> 1989](#ref-sessionsstepp1989))
+
+### take a stand against the world
+
+> The Rev. George A. Stallings Jr., the dissident Catholic priest, went
+> on national television yesterday to say that he is innocent of the
+> allegation that he had sex with a 16-year-old altar boy. “Read my
+> lips: I am innocent,” Stallings said on CNN’s “Larry King Live.”
+> Stallings went on to say, “What else do you want to know?” but
+> declined to answer questions. He would not say if he has ever had sex
+> with a minor or any man. He also would not state his views on
+> pedophilia or the vow of celibacy. The Washington Post reported Monday
+> that the former altar boy, now 28, swore in a signed statement that he
+> repeatedly had sexual relations with the priest in the rectory of
+> St. Teresa of Avila Catholic Church in Southeast Washington in a
+> three- to four-month period in 1977. The man, whom The Post agreed not
+> to identify, said he broke off the relationship and never reported it
+> to authorities. The Post also reported that the Archdiocese of
+> Washington had received a separate complaint three years ago but had
+> not been able to substantiate it. This summer, The Post reported,
+> Cardinal James A. Hickey confronted Stallings about his lifestyle and
+> asked him to seek treatment at a church-owned facility specializing in
+> treating pedophilia. Soon after the meeting with Hickey, Stallings
+> defied church authorities by founding the Imani Temple, an independent
+> black Catholic congregation. He said he was prompted by racism in the
+> church.
+>
+> \- The Washington Post, 1989-09-06. ([Dedman 1989](#ref-dedman1989))
+
+> Although Hickey couldn’t establish whether Stallings was breaking his
+> vow of celibacy, he could see that Stallings was breaking another
+> vow - of obedience. In 1987, for instance, Stallings hired without
+> permission a priest who had been suspended from his order in another
+> city because of allegations that he made sexual advances to teenage
+> boys. It is unclear what disturbed Hickey most about Stallings: the
+> questions about his homosexual activity or his repeated challenges in
+> many areas to the bishop’s authority. After years of such challenges,
+> Hickey last summer gave Stallings an ultimatum. In a dramatic
+> confrontation, according to Stallings, Hickey ordered him to seek
+> psychiatric treatment for an “excessive ego” at a church hospital
+> known for treating priests with sexual disorders.
+>
+> \- The Washington Post, 1990-04-30. ([Sessions Stepp and Dedman
+> 1990](#ref-sessionsstepp1990))
+
+### the place I love
+
+> In the summer of 1985, a Roman Catholic priest named George Augustus
+> Stallings Jr. bought his independence for \$60,000 and named it
+> Augustus Manor. The 80-year-old house, just up the hill from his
+> St. Teresa of Avila Church, didn’t look like much. But in the next two
+> years Stallings restored it and adorned it with European and Oriental
+> antiques, a Japanese garden and an Italian marble bathroom. The “jewel
+> of Anacostia,” as Washingtonian magazine called Augustus Manor, became
+> a sign of Stallings’s success as a parish priest and a preacher of
+> national renown. His congregation was on its way to a tenfold increase
+> in membership, a major renovation of its historic sanctuary and a
+> leading role in the adaptation of Roman Catholicism for black
+> believers. But Augustus Manor was more than a symbol. It was an act of
+> defiance: Cardinal James A. Hickey, the archbishop of Washington, has
+> a firm rule that parish priests live in rectories.
+>
+> \- The Washington Post, 1990-04-29. ([Dedman and Sessions Stepp
+> 1990](#ref-dedman1990))
+
+### I cut my nails to the quick
+
+> Brown, now 25, said he and Stallings, 42, were lovers for the next two
+> years, during which time he lived in Augustus Manor, the priest’s
+> house in Anacostia. For nine months of that time, Stallings employed
+> Brown as a pastoral assistant at St. Teresa of Avila parish. Brown and
+> other employees said that much of the time he was out of the parish on
+> trips with Stallings. Brown and Stallings were consenting adults, but
+> Stallings was sworn to celibacy in a church that considers homosexual
+> activity a sin. Brown said Stallings knew parishioners were whispering
+> about their relationship. “It bothered him, but all people could do
+> was insinuate,” Brown said. “He didn’t think it would catch up with
+> him.”
+>
+> \- The Washington Post, 1990-04-30. ([Sessions Stepp and Dedman
+> 1990](#ref-sessionsstepp1990))
+
+### but still I got caught with my hand in the till
+
+> Church officials said they were aware, for example, that since 1979
+> there had been scattered complaints from some parishioners at
+> St. Teresa who questioned Stallings’s stewardship of church funds.
+> When Stallings bought Augustus Manor and began renovating it, some
+> parishioners raised questions as to how he could afford it on his
+> \$10,000 salary, according to a church official. Stallings has said he
+> paid for the renovation with his earnings from preaching revivals
+> around the country. Documents reviewed by The Washington Post show
+> that Stallings wrote a \$4,478 check on a St. Teresa account for a
+> cedar fence that surrounds Augustus Manor. Parish lay leaders and
+> archdiocesan officials said recently they did not know of any
+> expenditure of parish funds for the priest’s home. A spokesman for
+> Stallings declined to say why Stallings used the parish account or
+> whether he reimbursed St. Teresa.
+>
+> \- The Washington Post, 1990-04-29. ([Dedman and Sessions Stepp
+> 1990](#ref-dedman1990))
+
+### others
+
+The recorded version of ‘Two Beats Off’ was written about three years
+before Sinead O’Connor protested about sexual abuse in the Catholic
+church by ripping up a picture of the pope on Saturday Night Live.
+
+> The song, a chantlike a cappella protest of racism and other forms of
+> injustice, says in part: “Until the philosophy which holds one race
+> superior and another inferior is finally and permanently discredited
+> and abandoned, everywhere is war. ... Until the color of a man’s skin
+> is of no more significance than the color of his eyes, I’ve got to say
+> war!” It concludes with the line “We have confidence in the victory of
+> good over evil.” After she intoned those words Saturday night,
+> O’Connor, 26, wearing a long white lace dress, very close-cropped
+> hair, a nose stud and a silver necklace with a Star of David, held up
+> a color photo of the pope, began tearing it and said, “Fight the real
+> enemy.” ([Carmody 1992](#ref-carmody1992))
+
+Sinead O’Connor suffered a significant backlash following this protest,
+being banned, mocked and booed on various occasions.
+
+> Speaking with the New York *Times* in 2021, O’Connor said she had no
+> regrets, though the backlash was overwhelming. “I’m not sorry I did
+> it. It was brilliant. But it was very traumatizing. It was open season
+> on treating me like a crazy bitch.” ([Gajanan 2023](#ref-gajanan2023))
+
+It is possible to protest or speak out about uncomfortable issues and
+powerful individuals openly, but doing so can be costly and risky.
+Sometimes just causing offense can lead to big problems for a band, for
+instance the backlash experienced by The Beatles to John Lennon’s “more
+popular than Jesus” remark, which eventually resulted in the band
+deciding to stop touring ([UPI 1966](#ref-upi1966)).
+
+## Discussion
+
+I had literally heard this song hundreds of times and it never made much
+sense to me until the “au clair de la lune” introduction grabbed my
+attention and made me wonder why this had been added as an introduction.
+The benefit for victims of sexual abuse by a psychiatrist at a
+children’s home made me wonder if Two Beats Off might be about similar
+cases of abuse and seen from this point of view the meaning of the
+lyrics seemed to become much clearer.
+
+It seems likely that one of the subjects of this song was sexual abuse
+and how it often gets covered up. Sexual abuse in the Roman Catholic
+Church had already become a scandal in the US at the time the song was
+written, although much more evidence emerged over the following years.
+Unfortunately other institutions that work with children also have cases
+of sexual abuse, including protestant churches ([Denney
+2023](#ref-denney2023)), Boy Scouts of America ([Cubellis
+2015](#ref-cubellis2015)), and others. Therefore, much of the content of
+this song could be adapted to deal with abuse in other institutions, as
+seems to have been done in the case of the 7 November 1990 benefit show
+at the Paradiso in Amsterdam, when the special extended introduction
+made Two Beats Off a highlight of the show. Two Beats Off was already an
+established song in the Fugazi repertoire at this point, so while it
+wasn’t written for this show it seems likely that the introduction was
+added as a way of making it more specific to the occasion.
+
+It is notable how Two Beats Off is sung in the first person as if the
+singer is playing a role in a film or a work of theater. It isn’t the
+only Fugazi song that uses this device of playing a role, the other ones
+that immediately comes to mind are Suggestion, which is sung from a
+female point of view, and Give Me The Cure, which seems to be written
+from the point of view of someone with HIV/AIDS. In the case of Two
+Beats Off the effect is more subtle and it took me a long time to notice
+it.
+
+It’s very hard to reach definite conclusions about this song because it
+doesn’t give us names, or dates, or locations. There is nothing that can
+be used to pin it down to some definite meaning or subject, and that was
+probably intentional on behalf of the songwriter. Guy Picciotto seemed
+to purposely leave his songs open to many different meanings or
+interpretations.
+
+> MacKaye would occasionally explain one of Picciotto’s lyrics to the
+> crowd, not always to the writer’s satisfaction. At the AIDS benefit,
+> MacKaye described “Cure” as “a song about AIDS,” while at the Mayday
+> show said “Break-In” was “about teenage pregnancy.” In an interview
+> after the show with the fanzine Nomadic Underground, Picciotto
+> clarified that “when Ian said ‘Break In” was about teenage pregnancy,
+> he probably should have said, ’This could be about teenage pregnancy’
+> because it could be about a lot of things. It certainly means a lot of
+> different things to me.” ([Andersen and Jenkins
+> 2009b](#ref-andersen2009a))
+
+This doesn’t seem to be one of Guy’s people songs like Cassavettes or
+Dear Justice Letter that openly references a specific person - these
+tended to be about people that Guy admired or valued. This song might be
+about a specific person but that person is not identifiable - this is
+not a tribute song.
+
+There are a lot of hints and clues, both in the lyrics themselves and
+considering the context of the time when the song was written, some of
+which I have explored in detail. The news stories in the Press Cuttings
+section may or may not have been used as source material. The number of
+coincidences with parts of the song make it seem likely that there is a
+connection but it is impossible to be sure.
+
+The challenge of reaching definite conclusions about the lyrics reminds
+me of the saying ‘there’s no smoke without fire’ that is used in cases
+where there is no hard evidence but such a quantity of rumors,
+speculatation and anecdotal evidence that it seems unlikely that these
+are all baseless. This seems fitting if the song is about what I think
+it is about.
+
+## Acknowledgements
+
+Thanks to everyone from ‘This is Not a Fugazi Appreciation Group’
+([Various Authors 2024](#ref-variousauthors2024)) who helped transcribe
+parts of songs that I could not understand by myself, in particular
+Laure Bertrand, Gunter Habets and Mat Sharp for help with the French.
+
+## References
+
+Andersen, Mark, and Mark Jenkins. 2009a. *Dance of Days: Two Decades of
+Punk in the Nation’s Capital*. Akashic Books.
+
+———. 2009b. *Dance of Days: Two Decades of Punk in the Nation’s
+Capital*. Akashic Books.
+
+Berry, Jason. 1989. “Is the Church Ignoring a Sexual Crisis in Its
+Ranks?” *The Washington Post*, September.
+<https://web.archive.org/web/20170827222112/https://www.washingtonpost.com/web/20170827222112/https://www.washingtonpost.com/archive/opinions/1989/09/17/is-the-church-ignoring-a-sexual-crisis-in-its-ranks/3b929fd4-f509-475a-8334-eca7df4faec4/?utm_term=.51b39cd0edbb>.
+
+Bouteloup, Philippe. 2003. “Folklore obscène.” *Spirale - La grande
+aventure de bébé* 27 (3): 169–72.
+<https://doi.org/10.3917/spi.027.0169>.
+
+Cambridge University Press. 2024a. “Sanction.”
+<https://dictionary.cambridge.org/dictionary/english/sanction>.
+
+———. 2024b. “Trophy.”
+<https://dictionary.cambridge.org/dictionary/english/trophy>.
+
+Carmody, John. 1992. “SINGER STUNS ’SNL’ VIEWERS.” *Washington Post*,
+October.
+<https://www.washingtonpost.com/archive/lifestyle/1992/10/05/singer-stuns-snl-viewers/52197c31-e592-4af5-bc74-8602abe37f99/>.
+
+Chicago Tribune. 1990. “Docudrama Tells of Priest’s Pedophilia.”
+*Chicago Tribune*, October.
+<https://www.chicagotribune.com/1990/10/11/docudrama-tells-of-priests-pedophilia/>.
+
+Cubellis, Michelle Anne. 2015. “Sexual Victimization, Disclosure, and
+Accountability: Organizational Responses of the Boy Scouts of America to
+Child Sexual Abuse.” PhD thesis.
+
+Dedman, Bill. 1989. “Stallings, in TV Show, Denies Sex Allegation.” *The
+Washington Post*, September.
+<https://web.archive.org/web/20160911161953/https://www.washingtonpost.com/archive/local/1989/09/07/stallings-in-tv-show-denies-sex-allegation/0cadb2da-d63e-4bf2-82a9-dcd94d4ec45c/>.
+
+Dedman, Bill, and Laura Sessions Stepp. 1990. “Years of Defiance Roots
+of Stallings’s Rebellion,” April.
+<https://web.archive.org/web/20160822101518/https://www.washingtonpost.com/archive/politics/1990/04/29/years-of-defiance-roots-of-stallingss-rebellion/7fd61664-90d2-45c5-8313-1cdc704e6210/>.
+
+Denney, Andrew S. 2023. “Child Sex Abusers in Protestant Christian
+Churches: An Offender Typology.” *Journal of Qualitative Criminal
+Justice & Criminology*, January.
+<https://doi.org/10.21428/88de04a1.000ff84d>.
+
+Editorial Board. 2013. “Cardinal Dolan and the Sexual Abuse Scandal.”
+*The New York Times*, July.
+<https://web.archive.org/web/20180928003409/https://www.nytimes.com/2013/07/04/opinion/cardinal-dolan-and-the-sex-abuse-scandal.html?src=recg>.
+
+Fire Party. 1989. “First Course.”
+<https://fireparty.bandcamp.com/track/first-course>.
+
+Fugazi. 1988. “FLS0016 New York, NY USA 3/25/1988.”
+<https://dischord.com/fugazi_live_series/new-york-ny-usa-32588>.
+
+———. 1989a. “FLS0105 Athens, GA USA 5/3/1989,” May.
+<https://dischord.com/fugazi_live_series/athens-ga-usa-50389>.
+
+———. 1989b. “FLS0133 Washington, DC USA 7/20/1989,” July.
+<https://dischord.com/fugazi_live_series/washington-dc-usa-72089>.
+
+———. 1989c. “FLS0148 Hoboken, NJ USA 10/8/1989,” October.
+<https://dischord.com/fugazi_live_series/hoboken-nj-usa-100889>.
+
+———. 1989d. “FLS0151 Amsterdam, Netherlands 11/3/1989,” November.
+<https://dischord.com/fugazi_live_series/amsterdam-netherlands-110389>.
+
+———. 1990a. “Repeater,” March.
+<https://fugazi.bandcamp.com/album/repeater-3-songs>.
+
+———. 1990b. “Two Beats Off,” March.
+<https://fugazi.bandcamp.com/track/two-beats-off>.
+
+———. 1990c. “FLS0224 Denver, CO, USA, 06/08/1990,” June.
+<https://dischord.com/fugazi_live_series/denver-co-usa-60890>.
+
+———. 1990d. “FLS0251 Wageningen, Netherlands 9/8/1990,” September.
+<https://dischord.com/fugazi_live_series/wageningen-netherlands-90890>.
+
+———. 1990e. “Linkoping, Sweden 10/2/1990,” October.
+<https://dischord.com/fugazi_live_series/linkoping-sweden-100290>.
+
+———. 1990f. “FLS0304 Amsterdam, Netherlands 11/7/1990,” November.
+<https://dischord.com/fugazi_live_series/amsterdam-netherlands-110790>.
+
+———. 1992. “FLS0437 Nottingham, England 5/8/1992,” May.
+<https://dischord.com/fugazi_live_series/nottingham-england-50892>.
+
+———. 1993. “FLS0491 Virginia Beach, VA USA 2/4/1993,” February.
+<https://dischord.com/fugazi_live_series/virginia-beach-va-usa-20493>.
+
+———. 1996a. “FLS0765 Washington, DC USA 1/31/1996,” January.
+<https://dischord.com/fugazi_live_series/washington-dc-usa-13196>.
+
+———. 1996b. “FLS0772 Athens, GA USA 3/26/1996,” March.
+<https://dischord.com/fugazi_live_series/athens-ga-usa-32696>.
+
+Gajanan, Mahita. 2023. “The Controversial SNL Performance That Made
+Sinéad O’Connor an Icon.” *TIME*, July.
+<https://time.com/6298448/the-controversial-saturday-night-live-performance-that-made-sinead-oconnor-an-icon/>.
+
+Gershwin, George. 1935. “Summertime.”
+<https://genius.com/George-gershwin-summertime-lyrics>.
+
+Hyer, Marjorie. 1989. “Black d.c. Priest Plans Separate Catholic
+Church.” *The Washington Post*, June.
+<https://web.archive.org/web/20171028122011/https://www.washingtonpost.com/local/black-dc-priest-plans-separate-catholic-church/2012/10/12/f8e929ee-149e-11e2-bf18-a8a596df4bee_story.html>.
+
+“James 3:1-3.” 1996. In. Biblica.
+<https://www.biblegateway.com/passage/?search=James%203%3A1-3&version=NIRV>.
+
+Lans, Jos van der. 2012. “1990 Finkensieper En Steunpunt Zetten.”
+<https://www.canonsociaalwerk.eu/nl/details.php?cps=0&canon_id=168>.
+
+MacKaye, Ian, and Guy Picciotto. 2022. “Wrapping up with Ian MacKaye and
+Guy Picciotto,” February.
+<https://open.spotify.com/episode/49dpXoFyQZJSGA2nGmjb9s>.
+
+Philp, Ryan M. 2002. “Silence at Our Expense: Balancing Safety and
+Secrecy in Non-Disclosure Agreements.” *Seton Hall Law Review* 33: 845.
+<https://heinonline.org/HOL/Page?handle=hein.journals/shlr33&id=855&div=&collection=>.
+
+Picciotto, Guy, and Ted Niceley. 2021. “FUGAZI "s/t",” February.
+<https://podcasts.apple.com/us/podcast/fugazi-s-t-guy-picciotto-and-ted-niceley/id1500702253?i=1000523869572>.
+
+Sessions Stepp, Laura, and Bill Dedman. 1989. “Ex-Altar Boy Says He Had
+Sex with Stallings.” *Washington Post*, September.
+<https://www.washingtonpost.com/archive/politics/1989/09/04/ex-altar-boy-says-he-had-sex-with-stallings/dba37e52-3ada-4f68-8b4b-c1294b54bc42/>.
+
+———. 1990. “Concerns about Stallings’s Lifestyle Fueled Conflict,”
+April.
+<https://www.bishop-accountability.org/news3/1990_04_30_Stepp_ConcernsAbout_George_A_Stallings_4.htm>.
+
+Siouxsie, and the Banshees. 1979. “The Lord’s Prayer,” September.
+<https://genius.com/Siouxsie-and-the-banshees-the-lords-prayer-lyrics>.
+
+The Jam. 1978. “The Place i Love,” November.
+<https://genius.com/The-jam-the-place-i-love-lyrics>.
+
+UPI. 1966. “Beatles Still Supported in Columbus.” *Ledger-Enquirer*,
+August, 9.
+<https://www.newspapers.com/article/ledger-enquirer-beatles-still-supported/158117329/>.
+
+Various Authors. 2024. “This Is Not a Fugazi Appreciation Group.”
+<https://web.facebook.com/groups/Fugazi.appreciation.group/>.
+
+Wan, William. 2009. “Washington Archdiocese Reaches Settlement in Abuse
+Lawsuit.” *The Washington Post*, October.
+<https://web.archive.org/web/20190926200358/https://www.washingtonpost.com/wp-dyn/content/article/2009/10/13/AR2009101303288.html>.
+
+Wikipedia Contributors. 2024a. “Au Clair de La Lune.”
+<https://fr.wikipedia.org/w/index.php?title=Au_clair_de_la_lune&oldid=214361434>.
+
+———. 2024b. “Repeater (Album).”
+<https://en.wikipedia.org/w/index.php?title=Repeater_(album)&oldid=1244980563>.
+
+———. 2024c. “Swing Low, Sweet Chariot.”
+<https://en.wikipedia.org/w/index.php?title=Swing_Low,_Sweet_Chariot&oldid=1254987772>.
+
+Wright, Ian James, Benjy Rickard, and Stephen Rickard. 2022. “"Two Beats
+Off" with Benjy and Stephen Rickard,” January.
+<https://open.spotify.com/episode/0OJyX7CgxXbEIJ1qkY8ngG>.
