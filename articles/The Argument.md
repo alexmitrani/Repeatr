@@ -72,14 +72,17 @@ pauses, and very prominent use of bass guitar where the bass becomes the
 protagonist and the guitars play rhythm. The Argument extends this
 playfulness in new ways with contrasting moods and rhythms, abrupt
 twists and turns, things going off in unexpected directions. Many of the
-songs sound tuneful, upbeat and - dare I say it - happy - but the
-lyrical themes explored are critical and heavy as ever. Ian MacKaye
-described the album as an ‘anti-war manifesto’, which applies in
-particular to the title track, sadly as topical as ever - “It’s all
-about strikes now / So here’s what’s striking me / That some punk could
-argue / Some moral ABC’s / When people are catching / What bombers
-release / I’m on a mission / To never agree”. It ends abruptly and far
-too soon.
+songs sound tuneful, upbeat and - dare I say it - happy, while the
+lyrics comment on current issues including housing, corruption, the
+death penalty, the dot com bubble, corporate greed, activism, personal
+responsibility and war. Most of the lyrics remain relevant and make
+sense over 25 years later, although “pissing on your modems” is specific
+to the time when it was written. Ian MacKaye described the album as an
+‘anti-war manifesto’, which applies in particular to the title track,
+sadly as topical as ever - “It’s all about strikes now / So here’s
+what’s striking me / That some punk could argue / Some moral ABC’s /
+When people are catching / What bombers release / I’m on a mission / To
+never agree”. It ends abruptly and far too soon.
 
 ## References
 
