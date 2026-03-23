@@ -138,8 +138,12 @@ transitions <- transitions %>%
   group_by(from, to) %>%
   summarize(count = n()) %>%
   ungroup()
-#> `summarise()` has grouped output by 'from'. You can override using the
-#> `.groups` argument.
+#> `summarise()` has regrouped the output.
+#> ℹ Summaries were computed grouped by from and to.
+#> ℹ Output is grouped by from.
+#> ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+#> ℹ Use `summarise(.by = c(from, to))` for per-operation grouping
+#>   (`?dplyr::dplyr_by`) instead.
 
 transitions <- transitions %>%
   arrange(desc(count))
@@ -350,8 +354,12 @@ transitions_by_group <- transitions3 %>%
   ungroup() %>%
   arrange(desc(count)) %>%
   mutate(proportion = round((count / totaltransitions), digits = 2))
-#> `summarise()` has grouped output by 'from_vocals'. You can override using the
-#> `.groups` argument.
+#> `summarise()` has regrouped the output.
+#> ℹ Summaries were computed grouped by from_vocals and to_vocals.
+#> ℹ Output is grouped by from_vocals.
+#> ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+#> ℹ Use `summarise(.by = c(from_vocals, to_vocals))` for per-operation grouping
+#>   (`?dplyr::dplyr_by`) instead.
 
 transitions_by_group
 #> # A tibble: 25 × 4

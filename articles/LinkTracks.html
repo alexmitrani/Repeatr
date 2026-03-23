@@ -45,6 +45,7 @@
     <li><a class="dropdown-item" href="../articles/Playlist.html">Playlist</a></li>
     <li><a class="dropdown-item" href="../articles/polish%20with%20a%20small%20p.html">polish with a small p</a></li>
     <li><a class="dropdown-item" href="../articles/Ratings.html">Ratings</a></li>
+    <li><a class="dropdown-item" href="../articles/The%20Argument.html">The Argument</a></li>
     <li><a class="dropdown-item" href="../articles/The%20Emperor's%20New%20Outfit.html">The Emperor's New Outfit</a></li>
   </ul>
 </li>
@@ -289,8 +290,12 @@ at the venues with the largest numbers of Fugazi shows.</p>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="va">venue</span>, <span class="va">city</span>, <span class="va">country</span>, <span class="va">shows</span>, <span class="va">from</span>, <span class="va">to</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">shows</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; `summarise()` has grouped output by 'venue', 'city'. You can override using the</span></span>
-<span><span class="co">#&gt; `.groups` argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has regrouped the output.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Summaries were computed grouped by <span style="color: #0000BB;">venue</span>, <span style="color: #0000BB;">city</span>, and <span style="color: #0000BB;">country</span>.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Output is grouped by <span style="color: #0000BB;">venue</span> and <span style="color: #0000BB;">city</span>.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use `summarise(.groups = "drop_last")` to silence this message.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use `summarise(.by = c(venue, city, country))` for per-operation grouping</span></span>
+<span><span class="co">#&gt;   (`?dplyr::dplyr_by`) instead.</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">venuesdata</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 6</span></span></span>
@@ -382,8 +387,12 @@ of venues. Only 2.2% of venues had 5 or more shows.</p>
 <span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">city</span>, <span class="va">venue</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">summarize</span><span class="op">(</span>shows <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; `summarise()` has grouped output by 'city'. You can override using the</span></span>
-<span><span class="co">#&gt; `.groups` argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has regrouped the output.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Summaries were computed grouped by <span style="color: #0000BB;">city</span> and <span style="color: #0000BB;">venue</span>.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Output is grouped by <span style="color: #0000BB;">city</span>.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use `summarise(.groups = "drop_last")` to silence this message.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use `summarise(.by = c(city, venue))` for per-operation grouping</span></span>
+<span><span class="co">#&gt;   (`?dplyr::dplyr_by`) instead.</span></span>
 <span></span>
 <span><span class="va">venues_per_city</span> <span class="op">&lt;-</span> <span class="va">venues</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">city</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
@@ -425,8 +434,12 @@ was played.</p>
 <span><span class="va">mydf</span> <span class="op">&lt;-</span> <span class="va">mydf</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">date</span>, <span class="va">song</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">summarize</span><span class="op">(</span>count<span class="op">=</span><span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; `summarise()` has grouped output by 'date'. You can override using the</span></span>
-<span><span class="co">#&gt; `.groups` argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has regrouped the output.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Summaries were computed grouped by <span style="color: #0000BB;">date</span> and <span style="color: #0000BB;">song</span>.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Output is grouped by <span style="color: #0000BB;">date</span>.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use `summarise(.groups = "drop_last")` to silence this message.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use `summarise(.by = c(date, song))` for per-operation grouping</span></span>
+<span><span class="co">#&gt;   (`?dplyr::dplyr_by`) instead.</span></span>
 <span></span>
 <span><span class="va">mydf_wide</span> <span class="op">&lt;-</span> <span class="va">mydf</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">song</span>, values_from <span class="op">=</span> <span class="va">count</span>, values_fill <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
@@ -506,7 +519,7 @@ cluttered to plot all the songs at once!</p>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">song</span><span class="op">==</span><span class="st">"furniture"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"waiting room"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"shut the door"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"kyeo"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"polish"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"steady diet"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"smallpox champion"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"birthday pony"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"break"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"nightshop"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">date</span>, <span class="va">count</span>, color <span class="op">=</span> <span class="va">song</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="LinkTracks_files/figure-html/unnamed-chunk-16-1.png" class="r-plt" width="672"></p>
+<p><img src="LinkTracks_files/figure-html/unnamed-chunk-16-1.png" class="r-plt" alt="" width="672"></p>
 <p>Another approach is to group the songs by release.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">releases_lookup</span> <span class="op">&lt;-</span> <span class="va">Repeatr1</span> <span class="op">%&gt;%</span></span>
@@ -514,8 +527,12 @@ cluttered to plot all the songs at once!</p>
 <span>  <span class="fu">summarize</span><span class="op">(</span>count <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">select</span><span class="op">(</span><span class="va">song</span>, <span class="va">release</span><span class="op">)</span></span>
-<span><span class="co">#&gt; `summarise()` has grouped output by 'song'. You can override using the</span></span>
-<span><span class="co">#&gt; `.groups` argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has regrouped the output.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Summaries were computed grouped by <span style="color: #0000BB;">song</span> and <span style="color: #0000BB;">release</span>.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Output is grouped by <span style="color: #0000BB;">song</span>.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use `summarise(.groups = "drop_last")` to silence this message.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use `summarise(.by = c(song, release))` for per-operation grouping</span></span>
+<span><span class="co">#&gt;   (`?dplyr::dplyr_by`) instead.</span></span>
 <span></span>
 <span><span class="va">mydf_long</span> <span class="op">&lt;-</span> <span class="va">mydf_long</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">releases_lookup</span><span class="op">)</span></span>
@@ -525,7 +542,7 @@ cluttered to plot all the songs at once!</p>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">release</span><span class="op">==</span><span class="st">"steady diet of nothing"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">date</span>, <span class="va">count</span>, color <span class="op">=</span> <span class="va">song</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="LinkTracks_files/figure-html/unnamed-chunk-17-1.png" class="r-plt" width="672"></p>
+<p><img src="LinkTracks_files/figure-html/unnamed-chunk-17-1.png" class="r-plt" alt="" width="672"></p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">cumulative_song_counts</span> <span class="op">&lt;-</span> <span class="va">mydf_long</span> <span class="op">%&gt;%</span></span>
@@ -621,8 +638,12 @@ there are a few false positives. Let’s have a look, shall we?</p>
 <span>  <span class="fu">summarize</span><span class="op">(</span>count <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">count</span><span class="op">&gt;=</span><span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; `summarise()` has grouped output by 'date', 'gid'. You can override using the</span></span>
-<span><span class="co">#&gt; `.groups` argument.</span></span>
+<span><span class="co">#&gt; `summarise()` has regrouped the output.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Summaries were computed grouped by <span style="color: #0000BB;">date</span>, <span style="color: #0000BB;">gid</span>, and <span style="color: #0000BB;">song</span>.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Output is grouped by <span style="color: #0000BB;">date</span> and <span style="color: #0000BB;">gid</span>.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use `summarise(.groups = "drop_last")` to silence this message.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use `summarise(.by = c(date, gid, song))` for per-operation grouping</span></span>
+<span><span class="co">#&gt;   (`?dplyr::dplyr_by`) instead.</span></span>
 <span></span>
 <span><span class="va">two_for_tuesdays</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 4</span></span></span>

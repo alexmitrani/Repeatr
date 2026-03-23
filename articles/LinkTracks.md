@@ -228,8 +228,12 @@ venuesdata <- othervariables %>%
   select(venue, city, country, shows, from, to) %>%
   arrange(desc(shows)) %>%
   ungroup()
-#> `summarise()` has grouped output by 'venue', 'city'. You can override using the
-#> `.groups` argument.
+#> `summarise()` has regrouped the output.
+#> ℹ Summaries were computed grouped by venue, city, and country.
+#> ℹ Output is grouped by venue and city.
+#> ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+#> ℹ Use `summarise(.by = c(venue, city, country))` for per-operation grouping
+#>   (`?dplyr::dplyr_by`) instead.
 
 head(venuesdata, n = 10)
 #> # A tibble: 10 × 6
@@ -330,8 +334,12 @@ venues <- mydf %>%
   group_by(city, venue) %>% 
   summarize(shows = n()) %>% 
   ungroup()
-#> `summarise()` has grouped output by 'city'. You can override using the
-#> `.groups` argument.
+#> `summarise()` has regrouped the output.
+#> ℹ Summaries were computed grouped by city and venue.
+#> ℹ Output is grouped by city.
+#> ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+#> ℹ Use `summarise(.by = c(city, venue))` for per-operation grouping
+#>   (`?dplyr::dplyr_by`) instead.
 
 venues_per_city <- venues %>% 
   group_by(city) %>% 
@@ -374,8 +382,12 @@ mydf <- Repeatr1 %>% select(date, song)
 mydf <- mydf %>% 
   group_by(date, song) %>% 
   summarize(count=n()) %>% ungroup()
-#> `summarise()` has grouped output by 'date'. You can override using the
-#> `.groups` argument.
+#> `summarise()` has regrouped the output.
+#> ℹ Summaries were computed grouped by date and song.
+#> ℹ Output is grouped by date.
+#> ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+#> ℹ Use `summarise(.by = c(date, song))` for per-operation grouping
+#>   (`?dplyr::dplyr_by`) instead.
 
 mydf_wide <- mydf %>% 
   pivot_wider(names_from = song, values_from = count, values_fill = 0)
@@ -477,8 +489,12 @@ releases_lookup <- Repeatr1 %>%
   summarize(count = n()) %>%
   ungroup() %>%
   select(song, release)
-#> `summarise()` has grouped output by 'song'. You can override using the
-#> `.groups` argument.
+#> `summarise()` has regrouped the output.
+#> ℹ Summaries were computed grouped by song and release.
+#> ℹ Output is grouped by song.
+#> ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+#> ℹ Use `summarise(.by = c(song, release))` for per-operation grouping
+#>   (`?dplyr::dplyr_by`) instead.
 
 mydf_long <- mydf_long %>%
   left_join(releases_lookup)
@@ -594,8 +610,12 @@ two_for_tuesdays <- Repeatr1 %>%
   summarize(count = n()) %>% 
   ungroup() %>% 
   filter(count>=2)
-#> `summarise()` has grouped output by 'date', 'gid'. You can override using the
-#> `.groups` argument.
+#> `summarise()` has regrouped the output.
+#> ℹ Summaries were computed grouped by date, gid, and song.
+#> ℹ Output is grouped by date and gid.
+#> ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+#> ℹ Use `summarise(.by = c(date, gid, song))` for per-operation grouping
+#>   (`?dplyr::dplyr_by`) instead.
 
 two_for_tuesdays
 #> # A tibble: 6 × 4
