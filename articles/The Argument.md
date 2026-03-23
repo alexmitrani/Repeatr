@@ -46,13 +46,11 @@ inspired by listening to drum & bass and jungle music at parties at the
 Pirate House (where Brendan and Guy were living at the time). Bridget
 Cross (Unrest) sang backing vocals on ‘life and limb’ and ‘full
 disclosure’ and was joined by Kathi Wilcox (Bikini Kill) who sang
-additional backing vocals on ‘full disclosure’. Amy Dominguez (Garland
-of Hours) played cello on several tracks - the untitled intro track,
-‘cashout’ and ‘strangelight’, although on one of these the cello part
-ended up being replaced by a guitar played to sound like a cello. The
-piano on ‘the kill’ and ‘strangelight’ was probably played by Ian
-MacKaye, who has said in interviews that he considers it to be his main
-instrument.
+additional backing vocals on ‘full disclosure’. Amy Domingues (Garland
+of Hours) played cello on the untitled intro track, ‘cashout’ and
+‘strangelight’. The piano on ‘the kill’ and ‘strangelight’ was probably
+played by Ian MacKaye, who has said in interviews that he considers it
+to be his main instrument.
 
 As with other Fugazi albums, all songs are credited to the band as a
 whole because while people would have brought in parts, all songs were
