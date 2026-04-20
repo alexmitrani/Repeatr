@@ -23,12 +23,12 @@ head(mygraphdata)
 #> # A tibble: 6 × 5
 #>   song             launchdate chosen release rating
 #>   <chr>            <date>      <int> <chr>    <dbl>
-#> 1 waiting room     1987-09-03    633 fugazi   0.919
-#> 2 bulldog front    1988-06-15    226 fugazi   0.698
-#> 3 bad mouth        1987-10-16    280 fugazi   0.748
-#> 4 burning          1988-02-06    214 fugazi   0.680
-#> 5 give me the cure 1988-03-30    369 fugazi   0.783
-#> 6 suggestion       1987-12-03    340 fugazi   0.763
+#> 1 waiting room     1987-09-03    633 fugazi   0.916
+#> 2 bulldog front    1988-06-15    226 fugazi   0.696
+#> 3 bad mouth        1987-10-16    280 fugazi   0.747
+#> 4 burning          1988-02-06    214 fugazi   0.678
+#> 5 give me the cure 1988-03-25    370 fugazi   0.781
+#> 6 suggestion       1987-12-03    340 fugazi   0.762
 ```
 
 A few of the columns need explanation.

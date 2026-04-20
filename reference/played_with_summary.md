@@ -41,7 +41,7 @@ https://arquivomotor.wordpress.com/1994/08/12/bhrif-programacao/
 
 ``` r
   played_with_summary
-#> # A tibble: 1,294 × 4
+#> # A tibble: 1,304 × 4
 #>     year tour                                   played_with       shows
 #>    <dbl> <chr>                                  <chr>             <int>
 #>  1  1992 1992 Spring European Tour              Tech Ahead           18
@@ -54,5 +54,5 @@ https://arquivomotor.wordpress.com/1994/08/12/bhrif-programacao/
 #>  8  1989 1989 Fall European Tour                Visions of Change    12
 #>  9  1990 1990 Spring/Summer USA Tour            Beat Happening       12
 #> 10  1995 1995 Spring/Summer European Tour       NA                   12
-#> # ℹ 1,284 more rows
+#> # ℹ 1,294 more rows
 ```

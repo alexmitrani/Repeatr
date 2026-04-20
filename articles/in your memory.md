@@ -22,7 +22,7 @@ release of Red Medicine.
     #> # A tibble: 13 × 2
     #>    song                 debut     
     #>    <fct>                <date>    
-    #>  1 by you               1993-04-24
+    #>  1 by you               1993-04-28
     #>  2 fell, destroyed      1993-08-16
     #>  3 target               1994-08-15
     #>  4 birthday pony        1994-08-15

@@ -72,7 +72,7 @@ https://arquivomotor.wordpress.com/1994/08/12/bhrif-programacao/
 
 ``` r
   played_with_data
-#> # A tibble: 1,753 × 12
+#> # A tibble: 1,763 × 12
 #>    fls_link     year tour  date       venue city  country played_with attendance
 #>    <chr>       <dbl> <chr> <date>     <chr> <chr> <chr>   <chr>            <dbl>
 #>  1 <a href='h…  1990 1990… 1990-09-23 Netw… Aalst Belgium Alice Donut        600
@@ -85,6 +85,6 @@ https://arquivomotor.wordpress.com/1994/08/12/bhrif-programacao/
 #>  8 <a href='h…  1990 1990… 1990-06-28 Jack… Akron USA     Hyper as H…        700
 #>  9 <a href='h…  1993 1993… 1993-09-20 S.U.… Alba… USA     Spinanes          1000
 #> 10 <a href='h…  1993 1993… 1993-09-20 S.U.… Alba… USA     Very Pleas…       1000
-#> # ℹ 1,743 more rows
+#> # ℹ 1,753 more rows
 #> # ℹ 3 more variables: sound_quality <chr>, latitude <dbl>, longitude <dbl>
 ```

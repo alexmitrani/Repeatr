@@ -129,7 +129,7 @@ https://web.archive.org/web/20201112000517/http://en.wikipedia.org/wiki/Fugazi_d
 
 ``` r
   Repeatr2
-#> # A tibble: 879,038 × 24
+#> # A tibble: 878,971 × 24
 #>     case gid        date        year launchdate yearsold song_number   alt song 
 #>    <int> <chr>      <date>     <dbl> <date>        <dbl>       <dbl> <dbl> <chr>
 #>  1     1 washingto… 1987-09-03  1987 1987-09-03        0           1    36 furn…
@@ -142,7 +142,7 @@ https://web.archive.org/web/20201112000517/http://en.wikipedia.org/wiki/Fugazi_d
 #>  8     1 washingto… 1987-09-03  1987 1987-09-03        0           1    92 wait…
 #>  9     3 washingto… 1987-09-03  1987 1987-09-03        0           3    36 furn…
 #> 10     3 washingto… 1987-09-03  1987 1987-09-03        0           3    43 in d…
-#> # ℹ 879,028 more rows
+#> # ℹ 878,961 more rows
 #> # ℹ 15 more variables: choice <dbl>, played <dbl>, available_rl <dbl>,
 #> #   available_gl <dbl>, first_song <dbl>, last_song <dbl>, releaseid <int>,
 #> #   release <chr>, track_number <int>, instrumental <int>,

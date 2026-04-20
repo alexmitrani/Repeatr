@@ -166,7 +166,7 @@ https://web.archive.org/web/20201112000517/http://en.wikipedia.org/wiki/Fugazi_d
 
 ``` r
   Repeatr3
-#> # A tibble: 879,038 × 34
+#> # A tibble: 878,971 × 34
 #>    gid    case song_number   alt choice yearsold vocals_mackaye vocals_picciotto
 #>    <chr> <int>       <int> <dbl>  <dbl>    <int>          <int>            <int>
 #>  1 wash…     1           1    36      0        0              0                0
@@ -179,7 +179,7 @@ https://web.archive.org/web/20201112000517/http://en.wikipedia.org/wiki/Fugazi_d
 #>  8 wash…     1           1    92      0        0              0                0
 #>  9 wash…     3           3    36      0        0              1                0
 #> 10 wash…     3           3    43      0        0              1                0
-#> # ℹ 879,028 more rows
+#> # ℹ 878,961 more rows
 #> # ℹ 26 more variables: vocals_lally <int>, instrumental <int>,
 #> #   first_song <dbl>, last_song <dbl>, duration_seconds <int>,
 #> #   yearsold_0 <int>, yearsold_1 <int>, yearsold_2 <int>, yearsold_3 <int>,

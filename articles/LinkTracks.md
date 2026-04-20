@@ -78,7 +78,7 @@ head(toursdata, n=10)
 #> # A tibble: 10 × 9
 #>    tour           start      end        shows duration attendance meanattendance
 #>    <chr>          <date>     <date>     <int>    <int>      <int>          <int>
-#>  1 1990 Fall Eur… 1990-09-01 1990-11-07    60       67      43476            724
+#>  1 1990 Fall Eur… 1990-09-01 1990-11-07    59       67      42825            725
 #>  2 1995 Spring/S… 1995-05-04 1995-07-14    59       71      72134           1222
 #>  3 1992 Spring E… 1992-05-01 1992-07-11    56       71      55412            989
 #>  4 1995 Fall USA… 1995-09-16 1995-11-20    50       65      68903           1378
@@ -351,7 +351,7 @@ venues_per_city
 #> # A tibble: 406 × 2
 #>    city          venues
 #>    <chr>          <int>
-#>  1 Washington        21
+#>  1 Washington        22
 #>  2 New York          10
 #>  3 Sydney             8
 #>  4 Chicago            7
@@ -592,8 +592,8 @@ sound_quality_ratings
 #>   index sound_quality shows percentage
 #> 1     1     Excellent    47        5.2
 #> 2     2     Very Good   443       49.4
-#> 3     3          Good   344       38.4
-#> 4     4          Poor    63        7.0
+#> 3     3          Good   343       38.2
+#> 4     4          Poor    64        7.1
 #> 5     5         Total   897      100.0
 ```
 

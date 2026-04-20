@@ -154,7 +154,7 @@ head(transitions)
 #>   <chr>             <chr>            <int>
 #> 1 long division     blueprint          176
 #> 2 suggestion        give me the cure   157
-#> 3 reprovisional     outro              116
+#> 3 reprovisional     outro              115
 #> 4 repeater          reprovisional      114
 #> 5 sieve-fisted find reclamation        112
 #> 6 sweet and low     outro              109
@@ -205,7 +205,7 @@ head(transitions)
 #>   from   to    from_available_rl to_available_rl available_rl count count_scaled
 #>   <chr>  <chr>             <dbl>           <dbl>        <dbl> <int>        <dbl>
 #> 1 long … blue…               848             826          826   176        0.213
-#> 2 sugge… give…               895             887          887   157        0.177
+#> 2 sugge… give…               896             888          888   157        0.177
 #> 3 break  plac…               229             229          229    35        0.153
 #> 4 argum… blue…               101             826          101    15        0.149
 #> 5 sieve… recl…               853             795          795   112        0.141

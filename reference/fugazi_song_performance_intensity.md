@@ -58,6 +58,6 @@ https://www.dischord.com/fugazi_live_series
 #>  7      4 arpeggiator          1997-05-02    154          208     0.740
 #>  8     23 do you like me       1994-11-20    272          377     0.721
 #>  9      9 blueprint            1989-11-25    584          826     0.707
-#> 10     92 waiting room         1987-09-03    633          900     0.703
+#> 10     92 waiting room         1987-09-03    633          901     0.703
 #> # ℹ 84 more rows
 ```
