@@ -134,7 +134,7 @@ x,y,date,city,country,venue,tour,year
 -0.139498,50.828399,1995-05-06 00:00:00+00,Brighton,England,Sussex University Nelson Mandela Hall,1995 Spring/Summer European Tour,1995
 -0.139498,50.828399,1989-11-14 00:00:00+00,Brighton,England,Zap Club,1989 Fall European Tour,1989
 -2.596698,51.455196,2002-11-01 00:00:00+00,Bristol,England,Academy,2002 Fall UK/Ireland Tour,2002
--2.596698,51.455196,1990-09-10 00:00:00+00,Bristol,England,Bierkellar,1990 Fall European Tour,1990
+-2.596698,51.455196,1990-09-10 00:00:00+00,Bristol,England,Bierkeller,1990 Fall European Tour,1990
 -2.596698,51.455196,1989-11-22 00:00:00+00,Bristol,England,Bierkeller,1989 Fall European Tour,1989
 0.116704,52.199999,1992-05-06 00:00:00+00,Cambridge,England,Junction,1992 Spring European Tour,1992
 1.079896,51.278995,1988-12-02 00:00:00+00,Canterbury,England,Technical College,1988 Fall European Tour,1988
@@ -520,7 +520,7 @@ x,y,date,city,country,venue,tour,year
 -72.650699,41.5623,1988-04-15 00:00:00+00,Wesleyan,USA,Wesleyan University Eclectic House,1988 Spring USA Tour,1988
 -72.650699,41.5623,1989-04-08 00:00:00+00,Wesleyan,USA,Wesleyan University Eclectic House,1989 Spring USA Tour,1989
 -72.650699,41.5623,1987-12-04 00:00:00+00,Wesleyan,USA,Wesleyan University Eclectic House,1987 Fall/Winter Regional Dates,1987
--77.036397,38.895097,1993-03-21 00:00:00+00,Washington,USA,Freedom Plaza,1993 Winter/Spring Regional Dates,1993
+-77.036397,38.895097,1993-03-08 00:00:00+00,Washington,USA,Freedom Plaza,1993 Winter/Spring Regional Dates,1993
 -77.036397,38.895097,1987-09-03 00:00:00+00,Washington,USA,Wilson Center,1987 Fall/Winter Regional Dates,1987
 -77.036397,38.895097,1993-08-07 00:00:00+00,Washington,USA,Sylvan Theater,1993 Fall/Winter Regional Dates,1993
 -77.036397,38.895097,1993-08-09 00:00:00+00,Washington,USA,Fort Reno,1993 Fall/Winter Regional Dates,1993
