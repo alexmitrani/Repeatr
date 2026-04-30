@@ -2,7 +2,7 @@
 
 By Alex Mitrani
 
-22 March 2026
+29 April 2026
 
 The Argument was recorded january and february 2001 at Inner Ear with
 piano parts on ‘the kill’ and ‘strangelight’ recorded at Dischord House.
@@ -52,6 +52,21 @@ of Hours) played cello on the untitled intro track, ‘cashout’ and
 played by Ian MacKaye, who has said in interviews that he considers it
 to be his main instrument.
 
+It’s interesting to hear how the songs from the Argument are performed
+live without all the benefits of the recording studio. Allow me to
+recommend two shows which have particularly good live recordings and
+which between them cover all 10 songs from The Argument. FLS0998 was
+recorded at Sacred Heart Church in Washington DC and has 7 songs from
+The Argument including ‘strangelight’ as well as a very rare live
+performance of ‘hello morning’ from the Furniture EP ([Fugazi
+2001](#ref-fugazi2001)). ‘Strangelight’ is performed without the piano
+part that can be heard in the studio version. FLS1041 was recorded at
+the Metropolitan University in Leeds, England and has 8 songs from The
+Argument plus ‘number 5’ and ‘furniture’ from the Furniture EP ([Fugazi
+2002](#ref-fugazi2002)). This show features Jerry Busher playing trumpet
+on ‘full disclosure’ - the trumpet in the live performance replaces the
+backing vocals that can be heard on the studio album.
+
 As with other Fugazi albums, all songs are credited to the band as a
 whole because while people would have brought in parts, all songs were
 put together in practice by the band working together. Lead vocals
@@ -60,33 +75,65 @@ alternate, like in the live shows: cashout (Ian) - full disclosure
 strangelight (Guy) - oh (Guy) - ex-spectator (Ian) - nightshop (Guy) -
 argument (Ian).
 
-I love this album, every time I listen to it I enjoy it again and notice
-things that I had not noticed previously. It retains all the elements
-that I liked from the band’s previous work and at the same time it is
-much more adventurous, sounds more interesting, has several significant
-shifts in mood and tempo, and plenty of nice surprises. On previous
-albums Fugazi made notable use of quiet / loud dynamics, unexpected
-pauses, and very prominent use of bass guitar where the bass becomes the
-protagonist and the guitars play rhythm. The Argument extends this
-playfulness in new ways with contrasting moods and rhythms, abrupt
-twists and turns, things going off in unexpected directions. Many of the
-songs sound tuneful, upbeat and - dare I say it - happy, while the
-lyrics comment on current issues including housing, corruption, the
-death penalty, the dot com bubble, corporate greed, activism, personal
-responsibility and war. Most of the lyrics remain relevant and make
-sense over 25 years later, although “pissing on your modems” is specific
-to the time when it was written. Ian MacKaye described the album as an
-‘anti-war manifesto’, which applies in particular to the title track,
-sadly as topical as ever - “It’s all about strikes now / So here’s
-what’s striking me / That some punk could argue / Some moral ABC’s /
-When people are catching / What bombers release / I’m on a mission / To
-never agree”. It ends abruptly and far too soon.
+Every time I listen to this album I enjoy it again and notice things
+that I had not noticed previously. When I was listening to it today it
+gave me the tingles despite me having listened to it countless times
+before. It retains all the elements that I liked from the band’s
+previous work and at the same time it is much more adventurous, sounds
+more interesting, has several significant shifts in mood and tempo, and
+plenty of nice surprises. On previous albums Fugazi made notable use of
+quiet / loud dynamics, unexpected pauses, and very prominent use of bass
+guitar where the bass becomes the protagonist and the guitars play
+rhythm. The Argument extends this playfulness in new ways with
+contrasting moods and rhythms, abrupt twists and turns, things going off
+in unexpected directions. Many of the songs sound tuneful, upbeat and -
+dare I say it - happy, while the lyrics comment on current issues
+including housing, corruption, the death penalty, the dot com bubble,
+corporate greed, activism, personal responsibility and war.
+
+Most of the lyrics remain relevant and make sense over 25 years later,
+although not always in the way they were originally intended. In ‘oh’
+the lines “pissing on your modems” and “shredding all the stocks” sound
+a bit dated, but the concept of a tech bubble seems as relevant as ever.
+‘Oh’ features a nice Mondegreen - it was probably 20 years before I
+realised that Guy sings “color for your ceiling” and not “California
+sealion”. ‘Oh’ is the only Fugazi song that features all 3 singers - Guy
+sings the lead vocals, Joe sings backing vocals on the choruses and Ian
+sings “Thank you sir, may I have another” at the end. That line is a
+direct quote from the film ‘Animal House’ ([Landis
+1979](#ref-landis1979)) although until recently Ian had thought he was
+referring to ‘please sir, can I have some more’ from ‘Oliver!’ ([Reed
+1968](#ref-reed1968)) - check out the episode of the Alphabetical Fugazi
+with Ian and Guy where the true origin of the line was confirmed live on
+the air ([MacKaye and Picciotto 2022](#ref-mackaye2022)).
+
+Ian MacKaye described the album as an ‘anti-war manifesto’, which
+applies in particular to the title track, sadly as topical as ever -
+“It’s all about strikes now / So here’s what’s striking me / That some
+punk could argue / Some moral ABC’s / When people are catching / What
+bombers release / I’m on a mission / To never agree”. It ends abruptly
+and far too soon.
 
 ## References
 
 Fugazi. 1995. “FLS0659 Queen’s Hall, Belfast, Northern Ireland
 5/9/1995,” May.
 <https://dischord.com/fugazi_live_series/belfast-northern-ireland-50995>.
+
+———. 2001. “FLS0998 Washington, DC, USA 4/27/2001,” April.
+<https://dischord.com/fugazi_live_series/washington-dc-usa-42701>.
+
+———. 2002. “FLS1041 Metropolitan University, Leeds, England 10/31/2002,”
+October. <https://dischord.com/fugazi_live_series/leeds-england-103102>.
+
+Landis, John. 1979. “National Lampoon’s Animal House,” March.
+<https://www.youtube.com/watch?v=bIZoVO8ZyyQ>.
+
+MacKaye, Ian, and Guy Picciotto. 2022. “Wrapping up with Ian MacKaye and
+Guy Picciotto,” February.
+<https://open.spotify.com/episode/49dpXoFyQZJSGA2nGmjb9s>.
+
+Reed, Carol. 1968. “Oliver!” September.
 
 Taft, Loredo. 1941. “Heald Square Monument, Chicago, IL, USA.”
 <https://upload.wikimedia.org/wikipedia/commons/b/b3/Heald_Monument_%283%29.JPG>.
