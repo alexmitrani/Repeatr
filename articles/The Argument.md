@@ -4,7 +4,7 @@ By Alex Mitrani
 
 29 April 2026
 
-The Argument was recorded january and february 2001 at Inner Ear with
+The Argument was recorded January and February 2001 at Inner Ear with
 piano parts on The Kill and Strangelight recorded at Dischord House. It
 was released in October 2001, despite everything, together with the
 Furniture single which contained 3 songs recorded in the same sessions
