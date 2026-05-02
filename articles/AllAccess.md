@@ -314,9 +314,9 @@ break.
 
 ## References
 
-Friedman, Glen E., and Guy Picciotto. 2019. “Glen e. Friedman + Guy
-Picciotto at Rough Trade, Brooklyn,” June.
+Friedman, Glen E., and Guy Picciotto. 2019. *Glen e. Friedman + Guy
+Picciotto at Rough Trade, Brooklyn*. June 30.
 <https://www.youtube.com/watch?v=dQ--r7dmtR4>.
 
-Mackaye, Ian. 2013. “NDIIIPP Special Event: Ian MacKaye,” May.
+Mackaye, Ian. 2013. *NDIIIPP Special Event: Ian MacKaye*. May 7.
 <https://www.loc.gov/item/2021689112/>.

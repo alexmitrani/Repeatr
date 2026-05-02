@@ -115,27 +115,28 @@ too soon.
 
 ## References
 
-Fugazi. 1995. “FLS0659 Queen’s Hall, Belfast, Northern Ireland
-5/9/1995,” May.
+Fugazi. 1995. *FLS0659 Queen’s Hall, Belfast, Northern Ireland
+5/9/1995*. May 9.
 <https://dischord.com/fugazi_live_series/belfast-northern-ireland-50995>.
 
-———. 2001. “FLS0998 Washington, DC, USA 4/27/2001,” April.
+Fugazi. 2001. *FLS0998 Washington, DC, USA 4/27/2001*. April 27.
 <https://dischord.com/fugazi_live_series/washington-dc-usa-42701>.
 
-———. 2002. “FLS1041 Metropolitan University, Leeds, England 10/31/2002,”
-October. <https://dischord.com/fugazi_live_series/leeds-england-103102>.
+Fugazi. 2002. *FLS1041 Metropolitan University, Leeds, England
+10/31/2002*. October 31.
+<https://dischord.com/fugazi_live_series/leeds-england-103102>.
 
-Landis, John. 1979. “National Lampoon’s Animal House,” March.
+Landis, John. 1979. *National Lampoon’s Animal House*. March 1.
 <https://www.youtube.com/watch?v=bIZoVO8ZyyQ>.
 
-MacKaye, Ian, and Guy Picciotto. 2022. “Wrapping up with Ian MacKaye and
-Guy Picciotto,” February.
+MacKaye, Ian, and Guy Picciotto. 2022. *Wrapping up with Ian MacKaye and
+Guy Picciotto*. February.
 <https://open.spotify.com/episode/49dpXoFyQZJSGA2nGmjb9s>.
 
-Reed, Carol. 1968. “Oliver!” September.
+Reed, Carol. 1968. *Oliver!* September 27.
 
-Taft, Loredo. 1941. “Heald Square Monument, Chicago, IL, USA.”
+Taft, Loredo. 1941. *Heald Square Monument, Chicago, IL, USA*.
 <https://upload.wikimedia.org/wikipedia/commons/b/b3/Heald_Monument_%283%29.JPG>.
 
-Wikipedia Contributors. 2026. “Sandra Lee Scheuer.”
+Wikipedia Contributors. 2026. *Sandra Lee Scheuer*.
 <https://en.wikipedia.org/w/index.php?title=Sandra_Lee_Scheuer&oldid=1343003930>.

@@ -383,9 +383,9 @@ introduction to KYEO Ian MacKaye spoke the following words:
 > situation where you can’t turn around and worst of all it’s a decision
 > that none of us can even make, except for the fact that we didn’t say
 > anything in the first place about it, so because we didn’t, it’s time
-> to get even more louder and make more volume make more noise ([“FUGAZI
+> to get even more louder and make more volume make more noise ([*FUGAZI
 > Live in Front of THE WHITE HOUSE, January 12, 1991 (Gulf War 1
-> Protest)” 1991](#ref-fugazil1991); [Fugazi 1991a](#ref-fugazi1991c))
+> Protest)* 1991](#ref-fugazil1991); [Fugazi 1991a](#ref-fugazi1991c))
 
 The ‘punk percussion protest’ started at the beginning of the war and
 went on around the clock for several weeks at least.
@@ -433,74 +433,76 @@ they had been written to get past military censorship.
 
 ## References
 
-Anand, Vejay. 2021. “Iconic Ads: AT&t - Reach Out and Touch Someone
-Point of View.”
+Anand, Vejay. 2021. *Iconic Ads: AT&t - Reach Out and Touch Someone
+Point of View*.
 <https://onlykutts.com/index.php/2021/10/04/att-reach-out-and-touch-someone/>.
 
 Andersen, Mark, and Mark Jenkins. 2009. *Dance of Days: Two Decades of
 Punk in the Nation’s Capital*. Akashic Books.
 
 Anderson, Stacey. 2015. “Positive Force: The Film That Remembers When
-Punk Took on the White House.” *The Guardian*, August.
+Punk Took on the White House.” *The Guardian*, August 21.
 <https://www.theguardian.com/music/2015/aug/21/positive-force-punk-activism-washington-dc-documentary>.
 
-Black Flag. 1981. “TV Party,” December.
+Black Flag. 1981. *TV Party*. December.
 
 Browne, Malcolm W. 1991. “Invention That Shaped the Gulf War: The
-Laser-Guided Bomb.” *The New York Times*, February.
+Laser-Guided Bomb.” *The New York Times*, February 26.
 <https://www.nytimes.com/1991/02/26/science/invention-that-shaped-the-gulf-war-the-laser-guided-bomb.html>.
 
-Coriky. 2020. “Clean Kill.”
+Coriky. 2020. *Clean Kill*.
 <https://www.dischord.com/release/190/st-54>.
 
-Dead Kennedys. 1985. “MTV-Get Off the Air.”
+Dead Kennedys. 1985. *MTV-Get Off the Air*.
 
 Dowd, Maureen. 1991. “WAR IN THE GULF: THE WHITE HOUSE; Storm’s Eye:
-Bush Decides to Go to War.” *The New York Times*, January.
+Bush Decides to Go to War.” *The New York Times*, January 17.
 <https://www.nytimes.com/1991/01/17/world/war-in-the-gulf-the-white-house-storm-s-eye-bush-decides-to-go-to-war.html>.
 
-Fugazi. 1990. “Repeater.”
+Fugazi. 1990. *Repeater*.
 <https://www.dischord.com/release/044/repeater>.
 
-———. 1991a. “Nice New Outfit.”
+Fugazi. 1991a. *Nice New Outfit*.
 <https://www.dischord.com/release/060/steady-diet-of-nothing>.
 
-———. 1991b. “Steady Diet of Nothing.”
+Fugazi. 1991b. *Steady Diet of Nothing*.
 <https://www.dischord.com/release/060/steady-diet-of-nothing>.
 
-———. 1991c. “Storrs, CT USA 3/07/91,” March.
+Fugazi. 1991c. *Storrs, CT USA 3/07/91*. (University of Connecticut),
+March 7.
 <https://www.dischord.com/fugazi_live_series/storrs-ct-usa-30791>.
 
-“FUGAZI Live in Front of THE WHITE HOUSE, January 12, 1991 (Gulf War 1
-Protest).” 1991, January. <https://www.youtube.com/watch?v=c_5OZOwAhas>.
+*FUGAZI Live in Front of THE WHITE HOUSE, January 12, 1991 (Gulf War 1
+Protest)*. 1991. January 12.
+<https://www.youtube.com/watch?v=c_5OZOwAhas>.
 
-Institute of Medicine. 1997. “Persian Gulf War-Related Events:
-Timeline.” In. National Academies Press (US).
+Institute of Medicine. 1997. *Persian Gulf War-Related Events:
+Timeline*. National Academies Press (US).
 <https://www.ncbi.nlm.nih.gov/books/NBK233468/>.
 
 Kellner, Douglas. 1992. *The Persian Gulf TV War*. Westview Press.
 <http://www.gseis.ucla.edu/faculty/kellner/essays/gulfwarbook.pdf>.
 
 Liebes, Tamar. 2009. “Our War/Their War: Comparing the Intifadeh and the
-Gulf War on U.S. And Israeli Television.” *Critical Studies in Media
-Communication*, May. <https://doi.org/10.1080/15295039209366814>.
+Gulf War on u.s. And Israeli Television.” *Critical Studies in Media
+Communication*, ahead of print, May 18.
+<https://doi.org/10.1080/15295039209366814>.
 
-MacKaye, Ian. 2022. “Reappraising Steady Diet of Nothing,” February.
+MacKaye, Ian. 2022. *Reappraising Steady Diet of Nothing*. February 2.
 <https://thebattleground.eu/2022/02/02/reappraising-steady-diet-of-nothing/>.
 
 O’Mara, Richard. 1991. “In a Gulf of Darkness.” *Index on Censorship* 20
 (4-5): 30–31. <https://doi.org/10.1080/03064229108535102>.
 
-Public Enemy. 1988. “She Watch Channel Zero?!” June.
+Public Enemy. 1988. *She Watch Channel Zero?!* June 28.
 
 Purvis, Stewart. 1991. “The Media and the Gulf War.” *RSA Journal* 139
 (5423): 735744.
 
-Schultz, Brad. 2005. *Broadcast News Producing*. 2455 Teller
-Road, Thousand Oaks California 91320 United States: SAGE Publications,
-Inc. <https://doi.org/10.4135/9781452233093>.
+Schultz, Brad. 2005. *Broadcast News Producing*. SAGE Publications, Inc.
+<https://doi.org/10.4135/9781452233093>.
 
-Scott-Heron, Gil. 1971. “The Revolution Will Not Be Televised.”
+Scott-Heron, Gil. 1971. *The Revolution Will Not Be Televised*.
 
 Shakespeare, William. 1606. *The Tragedy of Macbeth*. The Complete
 Oxford Shakespeare. Vol. 3. Oxford University Press.
@@ -508,24 +510,25 @@ Oxford Shakespeare. Vol. 3. Oxford University Press.
 Stahl, Roger. 2006. “Have You Played the War on Terror?” *Critical
 Studies in Media Communication* 23 (2): 112130.
 
-Sterling Rutherford. 1991a. “General Norman Schwarzkopf Briefing from
-Saudi Arabia, January 27, 1991,” January.
+Sterling Rutherford. 1991a. *General Norman Schwarzkopf Briefing from
+Saudi Arabia, January 27, 1991*. January 27.
 <https://www.youtube.com/watch?v=u6jncfvbJVI>.
 
-———. 1991b. “General Norman Schwarzkopf Gives Press Briefing on War
-Progress,” January. <https://www.youtube.com/watch?v=4R6Z_jwP9qk>.
+Sterling Rutherford. 1991b. *General Norman Schwarzkopf Gives Press
+Briefing on War Progress*. January 31.
+<https://www.youtube.com/watch?v=4R6Z_jwP9qk>.
 
-The Beatnigs. 1988. “(Welcome) Television.”
+The Beatnigs. 1988. *(Welcome) Television*.
 
-Wright, Ian James, and Buick Audra. 2021. “"Nice New Outfit" with Buick
-Audra,” May. <https://open.spotify.com/episode/5UwIC8JHrvIBac71enEkKP>.
+Wright, Ian James, and Buick Audra. 2021. *"Nice New Outfit" with Buick
+Audra*. May. <https://open.spotify.com/episode/5UwIC8JHrvIBac71enEkKP>.
 
-Wright, Ian James, and Robert Lalonde. 2021. “"Polish" with Robert
-Lalonde,” July.
+Wright, Ian James, and Robert Lalonde. 2021. *"Polish" with Robert
+Lalonde*. July.
 <https://open.spotify.com/episode/4ZfA4IVWpWj4rdKUlIEXOr>.
 
-Yesterday’s America Editorial Team. 2020. “Lafayette Park’s Long History
-of Protests.”
+Yesterday’s America Editorial Team. 2020. *Lafayette Park’s Long History
+of Protests*.
 <https://yesterdaysamerica.com/lafayettes-parks-long-history-of-protests/>.
 
 Žigić, Katarina. 2023. “Media Representations of the Gulf War: What

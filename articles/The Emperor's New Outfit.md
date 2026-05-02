@@ -8,7 +8,7 @@ By Alex Mitrani
 
 Nice New Outfit is the third track on Fugazi’s Steady Diet of Nothing
 album which was recorded at Inner Ear studios in January 1991 ([Fugazi
-1991b](#ref-fugazi1991)).
+1991c](#ref-fugazi1991)).
 
 Judging from the dates of debut live performances in the Fugazi Live
 Series, the songs on Steady Diet of Nothing were written at different
@@ -62,17 +62,17 @@ two songs.
 
 > \[a\]s the Gulf War went well for the US, initial public skepticism
 > became what Rollins called ‘getting high on war’ - a virus that
-> infected even the punk scene. ([M. Andersen and Jenkins
+> infected even the punk scene. ([Andersen and Jenkins
 > 2009](#ref-andersen2009))
 
 The debut performance of Nice New Outfit was at Twisters in Richmond, VA
-on the 20 of February 1991 ([Fugazi 1991c](#ref-fugazi1991a)), where
+on the 20 of February 1991 ([Fugazi 1991b](#ref-fugazi1991a)), where
 there was some conflict:
 
 > At a Fugazi show at a club in Richmond, Virginia, Positive Force
 > activists handing out anti-war fliers were physically intimidated and
 > nearly ejected from the premises; only the band’s intervention stopped
-> the confrontation. ([M. Andersen 2013](#ref-andersen2013))
+> the confrontation. ([Andersen 2013](#ref-andersen2013))
 
 The show featured some comments about the war in the interlude between
 And The Same and KYEO:
@@ -85,7 +85,7 @@ And The Same and KYEO:
 > trying to undermine or betray the people who happen to be over there,
 > but don’t let people bullshit you, if you’re opposed to the war, be
 > opposed to the war, it’s a good thing to be, who wants to be killed? -
-> Ian MacKaye ([Fugazi 1991c](#ref-fugazi1991a))
+> Ian MacKaye ([Fugazi 1991b](#ref-fugazi1991a))
 
 Nice New Outfit was played a total of 114 times, which was more than
 Steady Diet and Polish, but less than all of the other songs on Steady
@@ -289,7 +289,7 @@ and substance (a mess) is reminiscent of The Emperor’s New Clothes:
 > they were right. “But all the same,” he thought to himself, “I must go
 > through with the procession.” So he held himself more proudly than
 > before, and the lords in waiting walked on bearing the train—the train
-> that wasn’t there at all. ([H. C. Andersen 1930](#ref-andersen1930))
+> that wasn’t there at all. ([Andersen 1930](#ref-andersen1930))
 
 ## Discussion
 
@@ -353,79 +353,79 @@ despite Democrat majorities in both chambers.
 
 ## References
 
-Andersen, Hans Christian. 1930. “The Emperor’s New Clothes.” In.
+Andersen, Hans Christian. 1930. *The Emperor’s New Clothes*.
 <https://gutenberg.ca/ebooks/andersen-emperor/andersen-emperor-00-h.html>.
 
-Andersen, Mark. 2013. “The Clash and Fugazi: Punk Paths Toward
-Revolution.” In, 1st ed. Routledge.
+Andersen, Mark. 2013. *The Clash and Fugazi: Punk Paths Toward
+Revolution*. 1st ed. Routledge.
 <https://bpb-us-e1.wpmucdn.com/sites.psu.edu/dist/d/36177/files/2016/05/Andersen_on_Political_Punk.pdf>.
 
 Andersen, Mark, and Mark Jenkins. 2009. *Dance of Days: Two Decades of
 Punk in the Nation’s Capital*. Akashic Books.
 
 Anderson, Stacey. 2015. “Positive Force: The Film That Remembers When
-Punk Took on the White House.” *The Guardian*, August.
+Punk Took on the White House.” *The Guardian*, August 21.
 <https://www.theguardian.com/music/2015/aug/21/positive-force-punk-activism-washington-dc-documentary>.
 
-Baker, Russ. 2013. “Bush and the JFK Hit, Part 2: Skull and Bones
-Forever.”
+Baker, Russ. 2013. *Bush and the JFK Hit, Part 2: Skull and Bones
+Forever*.
 <https://whowhatwhy.org/culture/journalism-media/part-2-viva-zapata-3/>.
 
-Bob Dylan. 1965. “Subterranean Homesick Blues.”
+Bob Dylan. 1965. *Subterranean Homesick Blues*.
 
 Browne, Malcolm W. 1991. “Invention That Shaped the Gulf War: The
-Laser-Guided Bomb.” *The New York Times*, February.
+Laser-Guided Bomb.” *The New York Times*, February 26.
 <https://www.nytimes.com/1991/02/26/science/invention-that-shaped-the-gulf-war-the-laser-guided-bomb.html>.
 
-Bush, George. 1991. “Persian Gulf Air War Begins,” January.
+Bush, George. 1991. *Persian Gulf Air War Begins*. January 16.
 <https://www.c-span.org/video/?15723-1/persian-gulf-air-war-begins>.
 
-Cambridge Dictionary. 2023a. “Dressed (up) to the Nines.”
+Cambridge Dictionary. 2023a. *Dressed (up) to the Nines*.
 <https://dictionary.cambridge.org/dictionary/english/dressed-up-to-the-nines>.
 
-———. 2023b. “Outfit.”
+Cambridge Dictionary. 2023b. *Outfit*.
 <https://dictionary.cambridge.org/dictionary/english/outfit>.
 
 Clymer, Adam. 1991. “CONFRONTATION IN THE GULF; CONGRESS ACTS TO
 AUTHORIZE WAR IN GULF; MARGINS ARE 5 VOTES IN SENATE, 67 IN HOUSE.” *The
-New York Times*, January.
+New York Times*, January 13.
 <https://www.nytimes.com/1991/01/13/world/confrontation-gulf-congress-acts-authorize-war-gulf-margins-are-5-votes-senate.html>.
 
 Dowd, Maureen. 1991. “WAR IN THE GULF: THE WHITE HOUSE; Storm’s Eye:
-Bush Decides to Go to War.” *The New York Times*, January.
+Bush Decides to Go to War.” *The New York Times*, January 17.
 <https://www.nytimes.com/1991/01/17/world/war-in-the-gulf-the-white-house-storm-s-eye-bush-decides-to-go-to-war.html>.
 
-Entwistle, Joanne. 2023. “Dress for Success.”
+Entwistle, Joanne. 2023. *Dress for Success*.
 <https://www.encyclopedia.com/fashion/encyclopedias-almanacs-transcripts-and-maps/dress-success>.
 
-Fugazi. 1991a. “Polish.”
+Fugazi. 1991a. *Polish*.
 <https://www.dischord.com/release/060/steady-diet-of-nothing>.
 
-———. 1991b. “Steady Diet of Nothing.”
-<https://www.dischord.com/release/060/steady-diet-of-nothing>.
-
-———. 1991c. “Richmond, VA USA 2/20/1991,” February.
+Fugazi. 1991b. *Richmond, VA USA 2/20/1991*. (Twisters), February 20.
 <https://www.dischord.com/fugazi_live_series/richmond-va-usa-22091>.
 
-Giaimo, Cara. 2015. “Number One With A Bullet: The Rise of the Billboard
-Hot 100.”
+Fugazi. 1991c. *Steady Diet of Nothing*.
+<https://www.dischord.com/release/060/steady-diet-of-nothing>.
+
+Giaimo, Cara. 2015. *Number One with a Bullet: The Rise of the Billboard
+Hot 100*.
 <http://www.atlasobscura.com/articles/number-one-with-a-bullet-the-rise-of-the-billboard-hot-100>.
 
-Institute of Medicine. 1997. “Persian Gulf War-Related Events:
-Timeline.” In. National Academies Press (US).
+Institute of Medicine. 1997. *Persian Gulf War-Related Events:
+Timeline*. National Academies Press (US).
 <https://www.ncbi.nlm.nih.gov/books/NBK233468/>.
 
 Kopel, Dave. 1996. “George Bush and the NRA.” *Gun World*.
 <https://davekopel.org/2A/Mags/George-Bush-and-the-NRA.htm>.
 
-Mitrani, Alex. 2023. “Polish with a Small p.”
+Mitrani, Alex. 2023. *Polish with a Small p*.
 <https://alexmitrani.github.io/Repeatr/articles/polish%20with%20a%20small%20p.html>.
 
-Pennebaker, D. A. 1967. “Subterranean Homesick Blues.”
+Pennebaker, D. A. 1967. *Subterranean Homesick Blues*.
 <https://www.youtube.com/watch?v=MGxjIBEZvx0>.
 
-Weed, Matthew C. 2015. “The War Powers Resolution: Concepts and
-Practice.” <https://core.ac.uk/reader/71136800>.
+Weed, Matthew C. 2015. *The War Powers Resolution: Concepts and
+Practice*. <https://core.ac.uk/reader/71136800>.
 
-Wright, Ian James, and Buick Audra. 2021. “"Nice New Outfit" with Buick
-Audra,” May. <https://open.spotify.com/episode/5UwIC8JHrvIBac71enEkKP>.
+Wright, Ian James, and Buick Audra. 2021. *"Nice New Outfit" with Buick
+Audra*. May. <https://open.spotify.com/episode/5UwIC8JHrvIBac71enEkKP>.

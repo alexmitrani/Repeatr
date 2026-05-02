@@ -35,6 +35,7 @@ have a look at the first few rows.
 
 ``` r
 
+
 mydf1 <- Repeatr1 %>%
   select(gid,song_number,song) %>%
   rename(song1 = song)
@@ -60,6 +61,7 @@ that was performed next at the same show. This way we will have one row
 of data for each transition between songs.
 
 ``` r
+
 
 mydf2 <- Repeatr1 %>%
   select(gid,song_number,song) %>%
@@ -95,6 +97,7 @@ in the series minus the total number of shows in the series.
 
 ``` r
 
+
 checknumberofshows <- Repeatr1 %>%
   group_by(gid) %>%
   summarise(songs = n()) %>%
@@ -128,6 +131,7 @@ Now let’s summarise the data to count how many times each transition
 occurs.
 
 ``` r
+
 
 transitions <- mydf3 %>%
   select(song1, song2) %>%
@@ -179,6 +183,7 @@ repertoire.
 
 ``` r
 
+
 transitions$song <- transitions$from
 
 mylookup <- fugazi_song_performance_intensity %>%
@@ -229,6 +234,7 @@ of the date they were first performed, with the earliest songs close to
 the origin.
 
 ``` r
+
 
 launchdateindex_from <- fugazi_song_counts %>%
   arrange(launchdate) %>%
@@ -292,6 +298,7 @@ groups of songs:
 
 ``` r
 
+
 mysongvarslookup <- songvarslookup %>%
   left_join(songidlookup)
 #> Joining with `by = join_by(song, songid)`
@@ -334,6 +341,7 @@ than others. To look into this, we need to add the information on the
 group of each song to the data on transitions between songs.
 
 ``` r
+
 
 mysongvarslookup1 <- mysongvarslookup %>% rename(from = song, from_vocals = vocals)
 
@@ -390,6 +398,7 @@ of songs (Picciotto, Mackaye, Instrumental, and Lally) and within each
 group by the launch date of the song (older songs to newer songs).
 
 ``` r
+
 
 transitions4 <- transitions %>%
   left_join(mysongvarslookup1) %>%

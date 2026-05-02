@@ -61,27 +61,27 @@ time.
 
 ## References
 
-Aitch, Iain. 2001. “The Story of Ex-Punks Trying to Save Their Rural
-Cottage.”
+Aitch, Iain. 2001. *The Story of Ex-Punks Trying to Save Their Rural
+Cottage*.
 <https://www.theguardian.com/friday_review/story/0,3605,417770,00.html>.
 
 Blainey, Geoffrey. 1966. *The tyranny of distance; how distance shaped
 Australia’s history*. Melbourne, Sun Books.
 <http://archive.org/details/tyrannyofdistanc00blai>.
 
-Leo, Ted, and the Pharmacists. 2001. “Ted Leo and the Pharmacists Live
-at Brownies on 2001-09-02,” September.
+Leo, Ted, and the Pharmacists. 2001. *Ted Leo and the Pharmacists Live
+at Brownies on 2001-09-02*. September 2.
 <http://archive.org/details/tedleo2001-09-02.pvdv401.flac16>.
 
-———. 2024. “Ted Leo and the Pharmacists.”
+Leo, Ted, and the Pharmacists. 2024. *Ted Leo and the Pharmacists*.
 <https://archive.org/details/TedLeoandthePharmacists>.
 
-Split Enz. 1982. “Six Months in a Leaky Boat.”
+Split Enz. 1982. *Six Months in a Leaky Boat*.
 <https://genius.com/Split-enz-six-months-in-a-leaky-boat-lyrics>.
 
-Ted Leo / Pharmacists. 2001. “The Tyranny Of Distance.”
+Ted Leo / Pharmacists. 2001. *The Tyranny Of Distance*.
 <https://www.discogs.com/release/2132340-Ted-Leo-Pharmacists-The-Tyranny-Of-Distance>.
 
-Vettese, John. 2016. “The Making of Ted Leo and the Pharmacists’ "the
-Tyranny of Distance".”
+Vettese, John. 2016. *The Making of Ted Leo and the Pharmacists’ "the
+Tyranny of Distance"*.
 <https://magnetmagazine.com/2016/04/25/magnet-classics-ted-leo-and-the-pharmacists-the-tyranny-of-distance/>.

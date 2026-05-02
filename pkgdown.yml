@@ -1,4 +1,4 @@
-pandoc: 3.1.11
+pandoc: 3.8.3
 pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
@@ -17,7 +17,7 @@ articles:
   The Argument: The Argument.html
   The Emperor's New Outfit: The Emperor's New Outfit.html
   The Tyranny of Distance: The Tyranny of Distance.html
-last_built: 2026-04-30T05:33Z
+last_built: 2026-05-02T08:46Z
 urls:
   reference: https://alexmitrani.github.io/Repeatr/reference
   article: https://alexmitrani.github.io/Repeatr/articles

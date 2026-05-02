@@ -12,6 +12,7 @@ Performance counts were calculated for all the released Fugazi songs
 that were performed live, using data from … how many shows?
 
 ``` r
+
 one_row_per_show <- Repeatr1 %>% group_by(gid) %>% slice(1) %>% ungroup()
 nrow(one_row_per_show)
 #> [1] 902
@@ -25,6 +26,7 @@ The results of this analysis, in descending order of performance count,
 are as follows:
 
 ``` r
+
 fugazi_song_counts <- fugazi_song_counts %>%
   arrange(desc(count))
 knitr::kable(fugazi_song_counts, "pipe")
@@ -141,6 +143,7 @@ was performed.
 The results of this analysis look like this:
 
 ``` r
+
 knitr::kable(fugazi_song_performance_intensity, "pipe")
 ```
 
@@ -262,6 +265,7 @@ The Fugazi Live Series data includes … how many choices of songs made by
 the band during their live shows?
 
 ``` r
+
 nrow(Repeatr1)
 #> [1] 23280
 ```
@@ -347,6 +351,7 @@ The implied preferences for each song are shown here in descending order
 of preference:
 
 ``` r
+
 
 myresults <- fugazi_song_preferences %>%
   arrange(desc(Estimate))
@@ -480,6 +485,7 @@ scale these values for comparison with ratings defined on other
 intervals.
 
 ``` r
+
 knitr::kable(summary %>% select(song, chosen, intensity, rating) %>% arrange(desc(rating)), "pipe")
 ```
 
@@ -591,6 +597,7 @@ instance, do the results really indicate that “Bed for the Scraping” was
 preferred over “Reclamation”?
 
 ``` r
+
 songstobecompared <- songstobecompared <- summary %>% slice(seq(from=1, to=2, by=1))
 mycomparisons <- rankr(coeftable = results_ml_Repeatr4, vcovmat = vcovmat_ml_Repeatr4, mysongidlist = songstobecompared)
 #> Joining with `by = join_by(songid1)`
@@ -601,6 +608,7 @@ mycomparisons <- mycomparisons %>%
 ```
 
 ``` r
+
 knitr::kable(mycomparisons, format = "pipe", digits = 3)
 ```
 
@@ -616,6 +624,7 @@ statistically significant. However, some of the differences between
 songs further apart on the table are significant, as can be seen below.
 
 ``` r
+
 songstobecompared <- songstobecompared <- songstobecompared <- summary %>% slice(seq(from=1, to=92, by=8))
 mycomparisons <- rankr(coeftable = results_ml_Repeatr4, vcovmat = vcovmat_ml_Repeatr4, mysongidlist = songstobecompared)
 #> Joining with `by = join_by(songid1)`
@@ -626,6 +635,7 @@ mycomparisons <- mycomparisons %>%
 ```
 
 ``` r
+
 knitr::kable(mycomparisons, format = "pipe", digits = 3)
 ```
 
@@ -654,21 +664,22 @@ used to calculate average ratings for the band’s studio releases. The
 results are shown below.
 
 ``` r
+
 releases_data <- releases_summary 
 knitr::kable(releases_data %>% arrange(desc(rating)), "pipe")
 ```
 
-| releaseid | release                | first_debut | last_debut | release_date | songs | count | shows | intensity | rating |
-|----------:|:-----------------------|:------------|:-----------|:-------------|------:|------:|------:|----------:|-------:|
-|         9 | the argument           | 1998-11-29  | 2001-06-21 | 2001-10-16   |    10 |   430 |    79 |    0.5412 | 0.8012 |
-|         8 | end hits               | 1996-01-30  | 1998-05-01 | 1998-04-24   |    13 |  1361 |   221 |    0.4795 | 0.7954 |
-|         4 | repeater               | 1987-09-03  | 1990-05-17 | 1990-03-01   |    11 |  3887 |   847 |    0.4175 | 0.7762 |
-|         7 | red medicine           | 1993-04-28  | 1994-11-27 | 1995-05-12   |    13 |  2054 |   392 |    0.4025 | 0.7342 |
-|         1 | fugazi                 | 1987-09-03  | 1988-06-15 | 1988-11-19   |     7 |  2196 |   890 |    0.3517 | 0.7335 |
-|         6 | in on the killtaker    | 1991-07-28  | 1993-02-05 | 1993-06-18   |    12 |  2560 |   565 |    0.3763 | 0.7292 |
-|         2 | margin walker          | 1987-09-26  | 1988-11-14 | 1989-06-15   |     6 |  1574 |   878 |    0.2984 | 0.6962 |
-|         3 | 3 songs                | 1987-09-03  | 1987-10-16 | 1989-12-01   |     3 |   588 |   899 |    0.2180 | 0.6428 |
-|         5 | steady diet of nothing | 1987-10-07  | 1991-04-12 | 1991-08-01   |    11 |  2455 |   752 |    0.2858 | 0.6289 |
-|        10 | furniture              | 1987-09-03  | 2001-04-27 | 2001-10-16   |     3 |   206 |   363 |    0.3025 | 0.5740 |
-|        11 | first demo             | 1987-09-03  | 1987-09-03 | 2014-11-18   |     3 |    71 |   900 |    0.0263 | 0.2404 |
-|        13 | unreleased             | 1988-10-31  | 1996-01-30 | NA           |     2 |     8 |   560 |    0.0074 | 0.0238 |
+| releaseid | release | first_debut | last_debut | release_date | songs | count | shows | intensity | rating |
+|---:|:---|:---|:---|:---|---:|---:|---:|---:|---:|
+| 9 | the argument | 1998-11-29 | 2001-06-21 | 2001-10-16 | 10 | 430 | 79 | 0.5412 | 0.8012 |
+| 8 | end hits | 1996-01-30 | 1998-05-01 | 1998-04-24 | 13 | 1361 | 221 | 0.4795 | 0.7954 |
+| 4 | repeater | 1987-09-03 | 1990-05-17 | 1990-03-01 | 11 | 3887 | 847 | 0.4175 | 0.7762 |
+| 7 | red medicine | 1993-04-28 | 1994-11-27 | 1995-05-12 | 13 | 2054 | 392 | 0.4025 | 0.7342 |
+| 1 | fugazi | 1987-09-03 | 1988-06-15 | 1988-11-19 | 7 | 2196 | 890 | 0.3517 | 0.7335 |
+| 6 | in on the killtaker | 1991-07-28 | 1993-02-05 | 1993-06-18 | 12 | 2560 | 565 | 0.3763 | 0.7292 |
+| 2 | margin walker | 1987-09-26 | 1988-11-14 | 1989-06-15 | 6 | 1574 | 878 | 0.2984 | 0.6962 |
+| 3 | 3 songs | 1987-09-03 | 1987-10-16 | 1989-12-01 | 3 | 588 | 899 | 0.2180 | 0.6428 |
+| 5 | steady diet of nothing | 1987-10-07 | 1991-04-12 | 1991-08-01 | 11 | 2455 | 752 | 0.2858 | 0.6289 |
+| 10 | furniture | 1987-09-03 | 2001-04-27 | 2001-10-16 | 3 | 206 | 363 | 0.3025 | 0.5740 |
+| 11 | first demo | 1987-09-03 | 1987-09-03 | 2014-11-18 | 3 | 71 | 900 | 0.0263 | 0.2404 |
+| 13 | unreleased | 1988-10-31 | 1996-01-30 | NA | 2 | 8 | 560 | 0.0074 | 0.0238 |

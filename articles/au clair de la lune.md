@@ -10,7 +10,7 @@ Two Beats Off was launched as an instrumental at the 40 Watt in Athens,
 Georgia on 3 May 1989. The first rendition with vocals was at the 9:30
 Club in Washington DC on 20 July 1989. The song got it’s official
 release on Repeater which was released around the 1 March 1990 ([Fugazi
-1990a](#ref-fugazi1990e)). It was one of the later songs to debut that
+1990e](#ref-fugazi1990e)). It was one of the later songs to debut that
 would be released on Repeater.
 
     #> # A tibble: 11 × 2
@@ -48,7 +48,7 @@ many highlights of the song.
 ## Lyrics
 
 The lyrics from the studio recording will be referred to here ([Fugazi
-1990b](#ref-fugazi1990a)) - there are some variations in live
+1990f](#ref-fugazi1990a)) - there are some variations in live
 recordings. The lyric sheet uses all caps so capitalization is not
 clear. Here I’m going with all lower case.
 
@@ -89,7 +89,7 @@ Similar language is used in the Bible.
 
 > All of us get tripped up in many ways. Suppose someone is never wrong
 > in what they say. Then they are perfect. They are able to keep their
-> whole body under control. ([“James 3:1-3” 1996](#ref-james3:1996))
+> whole body under control. ([*James 3* 1996](#ref-james3:1996))
 
 ### got a new technique money lets the pieces fit where they fall.
 
@@ -191,8 +191,8 @@ falling from a height - possibly falling from grace.
 The subject was young and perhaps attractive once, but not anymore - now
 they still have desire but are undesirable. This line is not on the
 lyrics sheet but was confirmed by Guy Picciotto in correspondence that
-was reported in the Alphabetical Fugazi podcast ([Wright, Rickard, and
-Rickard 2022](#ref-wright2022)).
+was reported in the Alphabetical Fugazi podcast ([Wright et al.
+2022](#ref-wright2022)).
 
 ## Live variations
 
@@ -320,7 +320,7 @@ introduction.
 > summertime and the living is good
 >
 > your daddy’s rich and your ma’ is good looking ([Fugazi
-> 1990c](#ref-fugazi1990f))
+> 1990a](#ref-fugazi1990f))
 
 Early June might have felt like summer already in Denver although it
 would have been a few weeks ahead of the summer solstice. ‘Summertime’
@@ -337,7 +337,7 @@ This performance at Unitas features the following introduction:
 >
 > salad is the first course
 >
-> what shall I choose for the main? ([Fugazi 1990d](#ref-fugazi1990c))
+> what shall I choose for the main? ([Fugazi 1990b](#ref-fugazi1990c))
 
 These lines are from ‘First Course’ by Fire Party, on the EP ‘New
 Orleans Opera’, released as Dischord 037 in 1989 ([Fire Party
@@ -348,12 +348,12 @@ This rendition also features some variations to other lines:
 > I want a body to be seen
 >
 > not just the biggest mouth to feed of them all ([Fugazi
-> 1990d](#ref-fugazi1990c))
+> 1990b](#ref-fugazi1990c))
 
 ### FLS0272 Linkoping, Sweden 1990-10-02
 
 > Swing low, sweet chariot, coming for to carry me home ([Fugazi
-> 1990e](#ref-fugazi1990b)).
+> 1990d](#ref-fugazi1990b)).
 
 Unusually, this intro to Two Beats Off is sung by Ian MacKaye. This is
 from an old gospel song that has been performed by many artists
@@ -372,7 +372,7 @@ Jam 1978](#ref-thejam1978)), with a few changes to wording and sequence.
 > Beautiful moss and colourful flowers
 >
 > Let’s take a stand against the world ([Fugazi
-> 1990e](#ref-fugazi1990b))
+> 1990d](#ref-fugazi1990b))
 
 The main part of the song features some lines that did not make it into
 the album version but feature in many live renditions.
@@ -383,7 +383,7 @@ the album version but feature in many live renditions.
 >
 > and take it
 >
-> up against the wall ([Fugazi 1990e](#ref-fugazi1990b))
+> up against the wall ([Fugazi 1990d](#ref-fugazi1990b))
 
 The end of the song also features Ian MacKaye, who sings something that
 sounds like this:
@@ -394,7 +394,7 @@ sounds like this:
 >
 > he got here
 >
-> and disappeared ([Fugazi 1990e](#ref-fugazi1990b))
+> and disappeared ([Fugazi 1990d](#ref-fugazi1990b))
 
 ### FLS0304 Amsterdam, Netherlands 1990-11-07
 
@@ -407,7 +407,7 @@ Zetten (support point Zetten) at Paradiso in Amsterdam, Netherlands.
 > and they put them away in little psychiatric prisons where they are
 > mistreated, abused, molested… So, anyway, I think it is a rather
 > worthy cause. - Ian MacKaye, 7 November 1990 ([Fugazi
-> 1990f](#ref-fugazi1990))
+> 1990c](#ref-fugazi1990))
 
 Steunpunt Zetten was a support group and activist group working on
 behalf of young people who complained that they suffered abuse of
@@ -440,7 +440,7 @@ introduction to Two Beats Off.
 >
 > Elle va couper mon coeur
 >
-> En trois mille morceaux([Fugazi 1990f](#ref-fugazi1990))
+> En trois mille morceaux([Fugazi 1990c](#ref-fugazi1990))
 
 This is a modified version of a rude nursery rhyme ([Bouteloup
 2003](#ref-bouteloup2003)) that is sang to the tune of an older,
@@ -475,7 +475,7 @@ song, making it into more of a protest song.
 >
 > my friends
 >
-> take it to the streets ([Fugazi 1990f](#ref-fugazi1990))
+> take it to the streets ([Fugazi 1990c](#ref-fugazi1990))
 
 The extended introduction that was added to Two Beats Off made me wonder
 why this was done, and in particular it got me thinking that maybe there
@@ -813,29 +813,29 @@ Laure Bertrand, Gunter Habets and Mat Sharp for help with the French.
 Andersen, Mark, and Mark Jenkins. 2009a. *Dance of Days: Two Decades of
 Punk in the Nation’s Capital*. Akashic Books.
 
-———. 2009b. *Dance of Days: Two Decades of Punk in the Nation’s
-Capital*. Akashic Books.
+Andersen, Mark, and Mark Jenkins. 2009b. *Dance of Days: Two Decades of
+Punk in the Nation’s Capital*. Akashic Books.
 
 Berry, Jason. 1989. “Is the Church Ignoring a Sexual Crisis in Its
-Ranks?” *The Washington Post*, September.
+Ranks?” *The Washington Post*, September 16.
 <https://web.archive.org/web/20170827222112/https://www.washingtonpost.com/web/20170827222112/https://www.washingtonpost.com/archive/opinions/1989/09/17/is-the-church-ignoring-a-sexual-crisis-in-its-ranks/3b929fd4-f509-475a-8334-eca7df4faec4/?utm_term=.51b39cd0edbb>.
 
 Bouteloup, Philippe. 2003. “Folklore obscène.” *Spirale - La grande
 aventure de bébé* 27 (3): 169–72.
 <https://doi.org/10.3917/spi.027.0169>.
 
-Cambridge University Press. 2024a. “Sanction.”
+Cambridge University Press. 2024a. *Sanction*.
 <https://dictionary.cambridge.org/dictionary/english/sanction>.
 
-———. 2024b. “Trophy.”
+Cambridge University Press. 2024b. *Trophy*.
 <https://dictionary.cambridge.org/dictionary/english/trophy>.
 
 Carmody, John. 1992. “SINGER STUNS ’SNL’ VIEWERS.” *Washington Post*,
-October.
+October 5.
 <https://www.washingtonpost.com/archive/lifestyle/1992/10/05/singer-stuns-snl-viewers/52197c31-e592-4af5-bc74-8602abe37f99/>.
 
 Chicago Tribune. 1990. “Docudrama Tells of Priest’s Pedophilia.”
-*Chicago Tribune*, October.
+*Chicago Tribune*, October 11.
 <https://www.chicagotribune.com/1990/10/11/docudrama-tells-of-priests-pedophilia/>.
 
 Cubellis, Michelle Anne. 2015. “Sexual Victimization, Disclosure, and
@@ -843,132 +843,132 @@ Accountability: Organizational Responses of the Boy Scouts of America to
 Child Sexual Abuse.” PhD thesis.
 
 Dedman, Bill. 1989. “Stallings, in TV Show, Denies Sex Allegation.” *The
-Washington Post*, September.
+Washington Post*, September 6.
 <https://web.archive.org/web/20160911161953/https://www.washingtonpost.com/archive/local/1989/09/07/stallings-in-tv-show-denies-sex-allegation/0cadb2da-d63e-4bf2-82a9-dcd94d4ec45c/>.
 
-Dedman, Bill, and Laura Sessions Stepp. 1990. “Years of Defiance Roots
-of Stallings’s Rebellion,” April.
+Dedman, Bill, and Laura Sessions Stepp. 1990. *Years of Defiance Roots
+of Stallings’s Rebellion*. April 29.
 <https://web.archive.org/web/20160822101518/https://www.washingtonpost.com/archive/politics/1990/04/29/years-of-defiance-roots-of-stallingss-rebellion/7fd61664-90d2-45c5-8313-1cdc704e6210/>.
 
 Denney, Andrew S. 2023. “Child Sex Abusers in Protestant Christian
 Churches: An Offender Typology.” *Journal of Qualitative Criminal
-Justice & Criminology*, January.
+Justice & Criminology*, ahead of print, January 2.
 <https://doi.org/10.21428/88de04a1.000ff84d>.
 
 Editorial Board. 2013. “Cardinal Dolan and the Sexual Abuse Scandal.”
-*The New York Times*, July.
+*The New York Times*, July 3.
 <https://web.archive.org/web/20180928003409/https://www.nytimes.com/2013/07/04/opinion/cardinal-dolan-and-the-sex-abuse-scandal.html?src=recg>.
 
-Fire Party. 1989. “First Course.”
+Fire Party. 1989. *First Course*.
 <https://fireparty.bandcamp.com/track/first-course>.
 
-Fugazi. 1988. “FLS0016 New York, NY USA 3/25/1988.”
+Fugazi. 1988. *FLS0016 New York, NY USA 3/25/1988*.
 <https://dischord.com/fugazi_live_series/new-york-ny-usa-32588>.
 
-———. 1989a. “FLS0105 Athens, GA USA 5/3/1989,” May.
+Fugazi. 1989a. *FLS0105 Athens, GA USA 5/3/1989*. May 3.
 <https://dischord.com/fugazi_live_series/athens-ga-usa-50389>.
 
-———. 1989b. “FLS0133 Washington, DC USA 7/20/1989,” July.
+Fugazi. 1989b. *FLS0133 Washington, DC USA 7/20/1989*. July 20.
 <https://dischord.com/fugazi_live_series/washington-dc-usa-72089>.
 
-———. 1989c. “FLS0148 Hoboken, NJ USA 10/8/1989,” October.
+Fugazi. 1989c. *FLS0148 Hoboken, NJ USA 10/8/1989*. October 8.
 <https://dischord.com/fugazi_live_series/hoboken-nj-usa-100889>.
 
-———. 1989d. “FLS0151 Amsterdam, Netherlands 11/3/1989,” November.
+Fugazi. 1989d. *FLS0151 Amsterdam, Netherlands 11/3/1989*. November 3.
 <https://dischord.com/fugazi_live_series/amsterdam-netherlands-110389>.
 
-———. 1990a. “Repeater,” March.
-<https://fugazi.bandcamp.com/album/repeater-3-songs>.
-
-———. 1990b. “Two Beats Off,” March.
-<https://fugazi.bandcamp.com/track/two-beats-off>.
-
-———. 1990c. “FLS0224 Denver, CO, USA, 06/08/1990,” June.
+Fugazi. 1990a. *FLS0224 Denver, CO, USA, 06/08/1990*. June 8.
 <https://dischord.com/fugazi_live_series/denver-co-usa-60890>.
 
-———. 1990d. “FLS0251 Wageningen, Netherlands 9/8/1990,” September.
+Fugazi. 1990b. *FLS0251 Wageningen, Netherlands 9/8/1990*. September 8.
 <https://dischord.com/fugazi_live_series/wageningen-netherlands-90890>.
 
-———. 1990e. “Linkoping, Sweden 10/2/1990,” October.
-<https://dischord.com/fugazi_live_series/linkoping-sweden-100290>.
-
-———. 1990f. “FLS0304 Amsterdam, Netherlands 11/7/1990,” November.
+Fugazi. 1990c. *FLS0304 Amsterdam, Netherlands 11/7/1990*. November 7.
 <https://dischord.com/fugazi_live_series/amsterdam-netherlands-110790>.
 
-———. 1992. “FLS0437 Nottingham, England 5/8/1992,” May.
+Fugazi. 1990d. *Linkoping, Sweden 10/2/1990*. (Rock Lamour), October 2.
+<https://dischord.com/fugazi_live_series/linkoping-sweden-100290>.
+
+Fugazi. 1990e. *Repeater*. March 1.
+<https://fugazi.bandcamp.com/album/repeater-3-songs>.
+
+Fugazi. 1990f. *Two Beats Off*. March 1.
+<https://fugazi.bandcamp.com/track/two-beats-off>.
+
+Fugazi. 1992. *FLS0437 Nottingham, England 5/8/1992*. May 8.
 <https://dischord.com/fugazi_live_series/nottingham-england-50892>.
 
-———. 1993. “FLS0491 Virginia Beach, VA USA 2/4/1993,” February.
+Fugazi. 1993. *FLS0491 Virginia Beach, VA USA 2/4/1993*. February 4.
 <https://dischord.com/fugazi_live_series/virginia-beach-va-usa-20493>.
 
-———. 1996a. “FLS0765 Washington, DC USA 1/31/1996,” January.
+Fugazi. 1996a. *FLS0765 Washington, DC USA 1/31/1996*. January 31.
 <https://dischord.com/fugazi_live_series/washington-dc-usa-13196>.
 
-———. 1996b. “FLS0772 Athens, GA USA 3/26/1996,” March.
+Fugazi. 1996b. *FLS0772 Athens, GA USA 3/26/1996*. March 26.
 <https://dischord.com/fugazi_live_series/athens-ga-usa-32696>.
 
 Gajanan, Mahita. 2023. “The Controversial SNL Performance That Made
-Sinéad O’Connor an Icon.” *TIME*, July.
+Sinéad o’connor an Icon.” *TIME*, July 26.
 <https://time.com/6298448/the-controversial-saturday-night-live-performance-that-made-sinead-oconnor-an-icon/>.
 
-Gershwin, George. 1935. “Summertime.”
+Gershwin, George. 1935. *Summertime*.
 <https://genius.com/George-gershwin-summertime-lyrics>.
 
 Hyer, Marjorie. 1989. “Black d.c. Priest Plans Separate Catholic
-Church.” *The Washington Post*, June.
+Church.” *The Washington Post*, June 20.
 <https://web.archive.org/web/20171028122011/https://www.washingtonpost.com/local/black-dc-priest-plans-separate-catholic-church/2012/10/12/f8e929ee-149e-11e2-bf18-a8a596df4bee_story.html>.
 
-“James 3:1-3.” 1996. In. Biblica.
+*James 3:1-3*. 1996. Biblica.
 <https://www.biblegateway.com/passage/?search=James%203%3A1-3&version=NIRV>.
 
-Lans, Jos van der. 2012. “1990 Finkensieper En Steunpunt Zetten.”
+Lans, Jos van der. 2012. *1990 Finkensieper En Steunpunt Zetten*.
 <https://www.canonsociaalwerk.eu/nl/details.php?cps=0&canon_id=168>.
 
-MacKaye, Ian, and Guy Picciotto. 2022. “Wrapping up with Ian MacKaye and
-Guy Picciotto,” February.
+MacKaye, Ian, and Guy Picciotto. 2022. *Wrapping up with Ian MacKaye and
+Guy Picciotto*. February.
 <https://open.spotify.com/episode/49dpXoFyQZJSGA2nGmjb9s>.
 
 Philp, Ryan M. 2002. “Silence at Our Expense: Balancing Safety and
 Secrecy in Non-Disclosure Agreements.” *Seton Hall Law Review* 33: 845.
 <https://heinonline.org/HOL/Page?handle=hein.journals/shlr33&id=855&div=&collection=>.
 
-Picciotto, Guy, and Ted Niceley. 2021. “FUGAZI "s/t",” February.
+Picciotto, Guy, and Ted Niceley. 2021. *FUGAZI "s/t"*. February 6.
 <https://podcasts.apple.com/us/podcast/fugazi-s-t-guy-picciotto-and-ted-niceley/id1500702253?i=1000523869572>.
 
 Sessions Stepp, Laura, and Bill Dedman. 1989. “Ex-Altar Boy Says He Had
-Sex with Stallings.” *Washington Post*, September.
+Sex with Stallings.” *Washington Post*, September 4.
 <https://www.washingtonpost.com/archive/politics/1989/09/04/ex-altar-boy-says-he-had-sex-with-stallings/dba37e52-3ada-4f68-8b4b-c1294b54bc42/>.
 
-———. 1990. “Concerns about Stallings’s Lifestyle Fueled Conflict,”
-April.
+Sessions Stepp, Laura, and Bill Dedman. 1990. *Concerns about
+Stallings’s Lifestyle Fueled Conflict*. April 30.
 <https://www.bishop-accountability.org/news3/1990_04_30_Stepp_ConcernsAbout_George_A_Stallings_4.htm>.
 
-Siouxsie, and the Banshees. 1979. “The Lord’s Prayer,” September.
+Siouxsie, and the Banshees. 1979. *The Lord’s Prayer*. September 7.
 <https://genius.com/Siouxsie-and-the-banshees-the-lords-prayer-lyrics>.
 
-The Jam. 1978. “The Place i Love,” November.
+The Jam. 1978. *The Place i Love*. November 3.
 <https://genius.com/The-jam-the-place-i-love-lyrics>.
 
 UPI. 1966. “Beatles Still Supported in Columbus.” *Ledger-Enquirer*,
-August, 9.
+August 6, 9.
 <https://www.newspapers.com/article/ledger-enquirer-beatles-still-supported/158117329/>.
 
-Various Authors. 2024. “This Is Not a Fugazi Appreciation Group.”
+Various Authors. 2024. *This Is Not a Fugazi Appreciation Group*.
 <https://web.facebook.com/groups/Fugazi.appreciation.group/>.
 
 Wan, William. 2009. “Washington Archdiocese Reaches Settlement in Abuse
-Lawsuit.” *The Washington Post*, October.
+Lawsuit.” *The Washington Post*, October 14.
 <https://web.archive.org/web/20190926200358/https://www.washingtonpost.com/wp-dyn/content/article/2009/10/13/AR2009101303288.html>.
 
-Wikipedia Contributors. 2024a. “Au Clair de La Lune.”
+Wikipedia Contributors. 2024a. *Au Clair de La Lune*.
 <https://fr.wikipedia.org/w/index.php?title=Au_clair_de_la_lune&oldid=214361434>.
 
-———. 2024b. “Repeater (Album).”
+Wikipedia Contributors. 2024b. *Repeater (Album)*.
 <https://en.wikipedia.org/w/index.php?title=Repeater_(album)&oldid=1244980563>.
 
-———. 2024c. “Swing Low, Sweet Chariot.”
+Wikipedia Contributors. 2024c. *Swing Low, Sweet Chariot*.
 <https://en.wikipedia.org/w/index.php?title=Swing_Low,_Sweet_Chariot&oldid=1254987772>.
 
-Wright, Ian James, Benjy Rickard, and Stephen Rickard. 2022. “"Two Beats
-Off" with Benjy and Stephen Rickard,” January.
+Wright, Ian James, Benjy Rickard, and Stephen Rickard. 2022. *"Two Beats
+Off" with Benjy and Stephen Rickard*. January 8.
 <https://open.spotify.com/episode/0OJyX7CgxXbEIJ1qkY8ngG>.

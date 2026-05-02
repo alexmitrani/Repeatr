@@ -37,7 +37,7 @@ release of Red Medicine.
     #> 13 combination lock     1994-11-27
 
 The song got it’s official release on Red Medicine which was released
-around the 12 May 1995 ([Fugazi 1995a](#ref-fugazi1995)). Fugazi played
+around the 12 May 1995 ([Fugazi 1995c](#ref-fugazi1995)). Fugazi played
 Forensic Scene at least 201 times with the last recorded version being
 on the 4 November 2002 in London, England - the final Fugazi show to
 date. It was the 5th most played song from Red Medicine. In live shows
@@ -105,7 +105,7 @@ The American Academy of Forensic Sciences has this to say about the word
 > ([AAFS 2022](#ref-aafs2022))
 
 ‘Scene’ has several possible meanings ([Merriam-Webster
-2025a](#ref-merriam-webster2025)):
+2025b](#ref-merriam-webster2025)):
 
 - one of the subdivisions of a play
 
@@ -120,7 +120,7 @@ The American Academy of Forensic Sciences has this to say about the word
 ## Lyrics
 
 The lyrics from the studio recording will be referred to here ([Fugazi
-1995a](#ref-fugazi1995)) - there are some variations in live recordings.
+1995c](#ref-fugazi1995)) - there are some variations in live recordings.
 The lyric sheet uses all lower case with no line breaks, here I’m going
 to use lower case and line breaks based on how it is sung.
 
@@ -206,7 +206,7 @@ article ‘Strange Love’:
 
 Congenital in this context would mean ‘existing at or dating from
 birth’, ‘an essential characteristic’, or ‘being such by nature’
-([Merriam-Webster 2025b](#ref-merriam-webster2025a)).
+([Merriam-Webster 2025a](#ref-merriam-webster2025a)).
 
 A continuation of the previous line, alluding to commentary and
 speculation about other people’s lives and what made them do what they
@@ -300,17 +300,17 @@ most of the second verse ([Fugazi 1996b](#ref-fugazi1996b)).
 The 1995 show at Queen’s Hall, Belfast contains a grungy extended ending
 with Ian and Guy singing “over and over and over and over and over and
 over and over and over and over and over…” ([Fugazi
-1995b](#ref-fugazi1995a))
+1995a](#ref-fugazi1995a))
 
 Many live performances of Forensic Scene include an additional line just
 before the instrumental break, some of these are easier to make out than
 others, for instance “take a walk, sister” ([Fugazi
 1996a](#ref-fugazi1996)), ([Fugazi 1996c](#ref-fugazi1996a)), or “get a
-load of it” ([Fugazi 1995c](#ref-fugazi1995b)).
+load of it” ([Fugazi 1995b](#ref-fugazi1995b)).
 
 At least twice Guy omitted the ‘con’ from ‘congenital’, singing “fucked
 and fucking, love and lay, genitally fractured anyway” - for instance at
-TU Mensa, Berlin in 1995 ([Fugazi 1995c](#ref-fugazi1995b)).
+TU Mensa, Berlin in 1995 ([Fugazi 1995b](#ref-fugazi1995b)).
 
 ## Press Cuttings
 
@@ -537,98 +537,101 @@ following introduction:
 > Did you ever have a couple of days where like everything you do is
 > some incredibly stupid-ass mistake? Well, I’ve had a couple of days
 > like that and this is a song for me, called Forensic Scene. ([Fugazi
-> 1995b](#ref-fugazi1995a))
+> 1995a](#ref-fugazi1995a))
 
 ## References
 
-AAFS. 2022. “What Is Forensic Science?”
+AAFS. 2022. *What Is Forensic Science?*
 <https://www.aafs.org/careers-forensic-science/what-forensic-science>.
 
-Anders, Gigi. 1994. “THIS IS WHAT NOT TO DO’ - COUNSELORS IMPLORE
-SUICIDAL YOUTHS: REACH OUT,” April.
+Anders, Gigi. 1994. *THIS IS WHAT NOT TO DO’ - COUNSELORS IMPLORE
+SUICIDAL YOUTHS: REACH OUT*. April 9.
 <https://www.washingtonpost.com/archive/lifestyle/1994/04/09/this-is-what-not-to-do/ca2f0d39-6373-485d-82d4-5c0a80019ee5/>.
 
 Azerrad, Michael. 2012. *Our Band Could Be Your Life: Scenes from the
 American Indie Underground, 1981-1991*. Hachette UK.
 <https://books.google.com/books?hl=en&lr=&id=6Q07AQAAQBAJ&oi=fnd&pg=PT462&dq=our+band+could+be+your+life>.
 
-Carnathan, Bryan. 2014. “How to Calculate Lens Working Distance.”
+Carnathan, Bryan. 2014. *How to Calculate Lens Working Distance*.
 <https://www.the-digital-picture.com/Photography-Tips/How-to-Calculate-Lens-Working-Distance.aspx>.
 
-Cobain, Kurt. 1994. “Untitled.”
+Cobain, Kurt. 1994. *Untitled*.
 <https://nirvana.fandom.com/wiki/Kurt%27s_Suicide_Note>.
 
-Fugazi. 1994. “FLS0630 Itaborai Brazil 8/19/1994,” August.
+Fugazi. 1994. *FLS0630 Itaborai Brazil 8/19/1994*. August 19.
 <https://dischord.com/fugazi_live_series/itaborai-brazil-81994>.
 
-———. 1995a. “Forensic Scene,” June.
-<https://fugazi.bandcamp.com/track/forensic-scene>.
-
-———. 1995b. “FLS0646 Vassar College Walker Fieldhouse, Poughkeepsie, NY
-USA 4/6/1995,” June.
+Fugazi. 1995a. *FLS0646 Vassar College Walker Fieldhouse, Poughkeepsie,
+NY USA 4/6/1995*. June 4.
 <https://dischord.com/fugazi_live_series/poughkeepsie-ny-usa-40695>.
 
-———. 1995c. “FLS0704 TU Mensa, Berlin, Germany 7/2/1995,” July.
+Fugazi. 1995b. *FLS0704 TU Mensa, Berlin, Germany 7/2/1995*. July 2.
 <https://dischord.com/fugazi_live_series/berlin-germany-70295>.
 
-———. 1996a. “FLS0765 9:30 Club, Washington, DC USA 1/31/1996,” January.
+Fugazi. 1995c. *Forensic Scene*. June 1.
+<https://fugazi.bandcamp.com/track/forensic-scene>.
+
+Fugazi. 1996a. *FLS0765 9:30 Club, Washington, DC USA 1/31/1996*.
+January 31.
 <https://dischord.com/fugazi_live_series/washington-dc-usa-13196>.
 
-———. 1996b. “FLS0772 Athens, GA USA 3/26/1996,” March.
+Fugazi. 1996b. *FLS0772 Athens, GA USA 3/26/1996*. March 26.
 <https://dischord.com/fugazi_live_series/athens-ga-usa-32696>.
 
-———. 1996c. “FLS0791 Groove, Honolulu, HI USA 10/16/1996,” October.
-<https://dischord.com/fugazi_live_series/honolulu-hi-usa-101696>.
+Fugazi. 1996c. *FLS0791 Groove, Honolulu, HI USA 10/16/1996*. October
+16. <https://dischord.com/fugazi_live_series/honolulu-hi-usa-101696>.
 
-Gathy, Brian. 2025. “FUGAZI Red Medicine Part One,” July.
+Gathy, Brian. 2025. *FUGAZI Red Medicine Part One*. July 4.
 <https://castbox.fm/episode/FUGAZI-%22Red-Medicine%22-Part-one-id2660458-id824804643>.
 
-Harrington, Richard, and Richard Leiby. 1994. “Nirvana Singer Found
-Dead,” April.
+Harrington, Richard, and Richard Leiby. 1994. *Nirvana Singer Found
+Dead*. April 9.
 <https://www.washingtonpost.com/archive/politics/1994/04/09/nirvana-singer-found-dead/d960b58a-c6a4-4270-9ea0-bb3ccc1fda34/>.
 
 Hirschberg, Lynn. 1992. “Strange Love.” *Vanity Fair*, September.
 <https://archive.vanityfair.com/article/1992/9/strange-love>.
 
-Kantor, Jordan. 2004. “Untitled (Forensic Scene).”
+Kantor, Jordan. 2004. *Untitled (Forensic Scene)*.
 [http://www.jordankantor.net/exhibitions_2010Kurt.html](http://www.jordankantor.net/exhibitions_2010Kurt.md).
 
-Love, Courtney. 1994. “Eulogy, 10 April 1994, Seattle Center, Seattle,
-Washington, USA.”
+Love, Courtney. 1994. *Eulogy, 10 April 1994, Seattle Center, Seattle,
+Washington, USA*.
 <https://www.livenirvana.com/digitalnirvana/songguide/body1056.html?songid=263>.
 
-MacKaye, Ian, and Guy Picciotto. 1995. “INTERVIEW w/ IAN MACKAYE & GUY
-PICCIOTTO, Oslo, Norway, JULY 14, 1995,” July.
+MacKaye, Ian, and Guy Picciotto. 1995. *INTERVIEW w/ IAN MACKAYE & GUY
+PICCIOTTO, Oslo, Norway, JULY 14, 1995*. July 14.
 <https://www.tumblr.com/anothersievefistedfind/124041639714/interview-w-ian-mackaye-guy-picciotto-oslo>.
 
-Merriam-Webster. 2025a. “Definition of SCENE.”
-<https://www.merriam-webster.com/dictionary/scene>.
-
-———. 2025b. “Definition of CONGENITAL.”
+Merriam-Webster. 2025a. *Definition of CONGENITAL*.
 <https://www.merriam-webster.com/dictionary/congenital>.
 
-Novoselic, Krist. 1994. “Eulogy, 10 April 1994, Seattle Center, Seattle,
-Washington, USA.”
+Merriam-Webster. 2025b. *Definition of SCENE*.
+<https://www.merriam-webster.com/dictionary/scene>.
+
+Novoselic, Krist. 1994. *Eulogy, 10 April 1994, Seattle Center, Seattle,
+Washington, USA*.
 <https://www.livenirvana.com/songguide/krist-novoselics-eulogy.html>.
 
-Picciotto, Guy. 2025. “FUGAZI Red Medicine Pt 2 w/ Guy Picciotto,” July.
+Picciotto, Guy. 2025. *FUGAZI Red Medicine Pt 2 w/ Guy Picciotto*. July
+24.
 <https://castbox.fm/episode/FUGAZI-%22Red-Medicine%22-Pt-2-w-Guy-Picciotto-id2660458-id830734701>.
 
-Rader, Dean. 2017. “Jordan Kantor by Dean Rader.”
+Rader, Dean. 2017. *Jordan Kantor by Dean Rader*.
 <https://bombmagazine.org/articles/2017/07/15/jordan-kantor/>.
 
-Spearhead. 1994. “Caught Without an Umbrella.”
+Spearhead. 1994. *Caught Without an Umbrella*.
 <https://www.discogs.com/master/32189-Spearhead-Home>.
 
 Spitzer, Leo. 1942. “Eng. Dismal==o.f.\*dism-Al.” *Modern Language
 Notes* 57 (7): 602–13. <https://doi.org/10.2307/2910638>.
 
-Strauss, Neil. 1994. “Kurt Cobain’s Downward Spiral and Last Days.”
+Strauss, Neil. 1994. *Kurt Cobain’s Downward Spiral and Last Days*.
 <https://www.rollingstone.com/music/music-news/kurt-cobains-downward-spiral-the-last-days-of-nirvanas-leader-99797/>.
 
-———. 1996. “First His Death, Then the Songs.” *New York Times*, June.
+Strauss, Neil. 1996. “First His Death, Then the Songs.” *New York
+Times*, June.
 <https://www.nytimes.com/1996/06/23/arts/pop-view-first-his-death-then-the-songs.html>.
 
-Wright, Ian James, and Stuart Berman. 2020. “Forensic Scene with Stuart
-Berman,” December.
+Wright, Ian James, and Stuart Berman. 2020. *Forensic Scene with Stuart
+Berman*. December 12.
 <https://castbox.fm/episode/%22Forensic-Scene%22-with-Stuart-Berman-id2812574-id335592966>.

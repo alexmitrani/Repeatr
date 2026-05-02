@@ -16,6 +16,7 @@ have a look at the first few rows.
 
 ``` r
 
+
 mygraphdata <- summary %>%
   select(song, launchdate, chosen, release, rating)
 
@@ -56,6 +57,7 @@ indicate the associated release in the band’s discography. There will be
 a lot of information packed into this graph!
 
 ``` r
+
 
 p <- mygraphdata %>%
   ggplot( aes(x=launchdate, y=rating, size = chosen, color=release, label=song)) +

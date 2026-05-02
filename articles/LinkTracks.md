@@ -7,6 +7,7 @@ A series of brief explorations of the Fugazi Live Series data.
 ## What was Fugazi’s biggest show?
 
 ``` r
+
 attendancedata <- othervariables %>%
   filter(is.na(attendance)==FALSE) %>%
   mutate(attendance = as.integer(attendance)) %>%
@@ -38,6 +39,7 @@ youtube](https://www.youtube.com/watch?v=0qYvHzS7v-Q).
 ## What was Fugazi’s longest tour?
 
 ``` r
+
 
 meanattendance <- othervariables %>%
   filter(is.na(tour)==FALSE) %>%
@@ -108,6 +110,7 @@ dates? To find out, let’s start by getting the data on the releases and
 the corresponding release dates.
 
 ``` r
+
 releasedates <- releasesdatalookup %>% 
   select(releaseid, releasedate) %>%
   mutate(releasedate = as.Date(releasedate, "%d/%m/%Y"))
@@ -134,6 +137,7 @@ Now let’s calculate leads and lags by getting summary data on the songs
 and comparing the song launch dates to the corresponding release dates.
 
 ``` r
+
 mysummary <- Repeatr::summary %>% 
   left_join(mydf) %>%
   mutate(lead = releasedate - launchdate) %>%
@@ -164,6 +168,7 @@ first played live 4 days after the launch of End Hits. What was the
 average lead time for all Fugazi songs with a corresponding release?
 
 ``` r
+
 mean(mysummary$lead)
 #> Time difference of NA days
 ```
@@ -172,6 +177,7 @@ That is over 2 years, but perhaps the mean is biased upwards by a few
 extreme values…
 
 ``` r
+
 mysummary <- mysummary %>%
   select(song, launchdate, releasedate, lead) %>%
   arrange(desc(lead))
@@ -197,6 +203,7 @@ Fugazi would tend to play a song live before it featuring on a
 discographical release.
 
 ``` r
+
 median(mysummary$lead)
 #> Time difference of NA days
 ```
@@ -218,6 +225,7 @@ returns to some venues again and again over the years. Let’s have a look
 at the venues with the largest numbers of Fugazi shows.
 
 ``` r
+
 venuesdata <- othervariables %>%
   mutate(year = year(date)) %>%
   mutate(city = ifelse(flsid=="FLS1053", "Bremen", city)) %>%
@@ -260,6 +268,7 @@ more than 10 shows. In the case of Fort Reno, Fugazi played shows there
 Let’s have a look at the top 10 overseas venues.
 
 ``` r
+
 overseas_venuesdata <- venuesdata %>%
   filter(country!="USA" & shows>=4) %>%
   arrange(desc(shows))
@@ -290,6 +299,7 @@ Let’s have a quick look at the frequency distribution of the number of
 shows at each venue.
 
 ``` r
+
 number_venues <- nrow(venuesdata)
 
 cat(paste0("\n \n There are ", number_venues, " venues in the Fugazi Live Series data. \n \n"))
@@ -328,6 +338,7 @@ venues. Only 2.2% of venues had 5 or more shows.
 ## In which city did Fugazi play at the most venues?
 
 ``` r
+
 mydf <- othervariables
 
 venues <- mydf %>% 
@@ -377,6 +388,7 @@ will be easy to count the number of times each song was played.
 
 ``` r
 
+
 mydf <- Repeatr1 %>% select(date, song)
 
 mydf <- mydf %>% 
@@ -416,6 +428,7 @@ of the number of times the song was played.
 
 ``` r
 
+
 mydf_wide2 <- mydf_wide
 
 for(colindex in 2:94) {
@@ -449,6 +462,7 @@ up over time.
 
 ``` r
 
+
 mydf_long <- mydf_wide2 %>%
   pivot_longer(!date, names_to = "song", values_to = "count") %>%
   filter(count>0)
@@ -473,6 +487,7 @@ cluttered to plot all the songs at once!
 
 ``` r
 
+
 mydf_long %>%
   filter(song=="furniture" | song=="waiting room" | song=="shut the door" | song=="kyeo" | song=="polish" | song=="steady diet" | song=="smallpox champion" | song=="birthday pony" | song=="break" | song=="nightshop") %>%
   ggplot(aes(date, count, color = song)) +
@@ -484,6 +499,7 @@ mydf_long %>%
 Another approach is to group the songs by release.
 
 ``` r
+
 releases_lookup <- Repeatr1 %>%
   group_by(song, release) %>%
   summarize(count = n()) %>%
@@ -509,6 +525,7 @@ mydf_long %>%
 ![](LinkTracks_files/figure-html/unnamed-chunk-17-1.png)
 
 ``` r
+
 
 cumulative_song_counts <- mydf_long %>%
   select(date, song, release, count)
@@ -559,6 +576,7 @@ site at this time. The Fort Reno shows include recordings for every
 level on the scale from Poor to Excellent.
 
 ``` r
+
 sound_quality_ratings <- shows_data %>% 
   filter(is.na(sound_quality)==FALSE) %>% 
   group_by(sound_quality) %>% 
@@ -604,6 +622,7 @@ twice, for different reasons. Some are easier to find than others and
 there are a few false positives. Let’s have a look, shall we?
 
 ``` r
+
 two_for_tuesdays <- Repeatr1 %>% 
   filter(tracktype==1) %>% 
   group_by(date, gid, song) %>% 
