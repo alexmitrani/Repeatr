@@ -7,3 +7,5 @@
 ^pkgdown$
 ^\.httr-oauth$
 ^\.github$
+^\.positai$
+^\.claude$
