@@ -200,6 +200,22 @@ fls_scrape_show <- function(gid, base_url, user_agent) {
     if (is.na(sq)) NA_character_ else stringr::str_trim(sq)
   }
 
+  # Official notes, when present, sit in a div.trix-content between Sound
+  # Quality and the sample-track player. The source wraps it in a <p
+  # class='information'> that HTML5 parsing auto-closes before the <div> (a
+  # <p> can't legally contain a block element), so the div ends up as a
+  # sibling rather than nested inside that <p> - hence targeting the div
+  # directly rather than "p.information div.trix-content".
+  fls_notes <- html_show %>%
+    rvest::html_element("div.trix-content") %>%
+    rvest::html_text2()
+
+  fls_notes <- if (is.na(fls_notes) || nchar(stringr::str_trim(fls_notes)) == 0) {
+    NA_character_
+  } else {
+    stringr::str_trim(fls_notes)
+  }
+
   tracks <- html_show %>%
     rvest::html_elements("div.mp3_list td.track_name") %>%
     rvest::html_text2() %>%
@@ -217,6 +233,7 @@ fls_scrape_show <- function(gid, base_url, user_agent) {
     original_source = get_field("Original Source:"),
     sound_quality = sound_quality,
     played_with = get_field("Played with:"),
+    fls_notes = fls_notes,
     tracks = tracks
   )
 
@@ -320,9 +337,10 @@ fls_shows_to_dataframe <- function(shows) {
 #' @import lubridate
 #' @return A data frame with one row per show and columns `gid`, `fls_id`,
 #'   `show_date`, `venue`, `door_price`, `attendance`, `recorded_by`,
-#'   `mastered_by`, `original_source`, `sound_quality`, `played_with`, and
-#'   `track_1` ... `track_n` (as many track columns as the widest tracklist in
-#'   the result).
+#'   `mastered_by`, `original_source`, `sound_quality`, `played_with`,
+#'   `fls_notes` (any official note shown on the show's page, e.g. "Previously
+#'   released on CD (FLS29)"; `NA` when the show has none), and `track_1` ...
+#'   `track_n` (as many track columns as the widest tracklist in the result).
 #' @export
 #'
 #' @examples

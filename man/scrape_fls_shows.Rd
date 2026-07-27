@@ -54,9 +54,10 @@ returned, not written to disk.}
 \value{
 A data frame with one row per show and columns \code{gid}, \code{fls_id},
 \code{show_date}, \code{venue}, \code{door_price}, \code{attendance}, \code{recorded_by},
-\code{mastered_by}, \code{original_source}, \code{sound_quality}, \code{played_with}, and
-\code{track_1} ... \code{track_n} (as many track columns as the widest tracklist in
-the result).
+\code{mastered_by}, \code{original_source}, \code{sound_quality}, \code{played_with},
+\code{fls_notes} (any official note shown on the show's page, e.g. "Previously
+released on CD (FLS29)"; \code{NA} when the show has none), and \code{track_1} ...
+\code{track_n} (as many track columns as the widest tracklist in the result).
 }
 \description{
 Discovers the full, current list of shows directly from the
