@@ -1,0 +1,826 @@
+# Documentation for all the datasets shipped with the Repeatr package.
+# See vignette("Updating the Data") for how each of these gets rebuilt.
+
+# Core show data --------------------------------------------------------
+
+#' Fugazi Live Series data
+#'
+#' This data was originally scraped from the Fugazi Live Series website by Carni Klirs for his project "Visualizing the History of Fugazi", and is now kept up to date via \code{\link{scrape_fls_shows}}.
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format dataframe with one row for each show.
+#' \describe{
+#' \item{gid}{show id}
+#' \item{fls_id}{Fugazi Live Series id}
+#' \item{show_date}{Show date}
+#' \item{venue}{Venue}
+#' \item{door_price}{Door price}
+#' \item{attendance}{Attendance}
+#' \item{recorded_by}{Recorded by}
+#' \item{mastered_by}{Mastered by}
+#' \item{original_source}{Original source}
+#' \item{sound_quality}{Sound quality rating: Excellent, Very Good, Good, or Poor}
+#' \item{played_with}{Bands played with, comma-separated}
+#' \item{fls_notes}{Any official note shown on the show's page (e.g. "Previously released on CD (FLS29)"), NA when the show has none}
+#' \item{track_1-track_n}{Tracks, one column per track slot up to the widest tracklist in the data}
+#' }
+#' @examples
+#' # What is the total number of people that Fugazi performed for in the shows that are available in the Fugazi Live Series data?
+#' test <- Repeatr0
+#' test <- test %>% mutate(attendancedata = nchar(attendance))
+#' test <- test %>% filter(attendancedata>0)
+#' test <- test %>% mutate(attendance = as.numeric(attendance))
+#' test <- test %>% filter(is.na(attendance)==FALSE)
+#' totalpeople <- sum(test$attendance)
+#' totalpeople
+"Repeatr0"
+
+#' Fugazi Live Series raw data
+#'
+#' This data was scraped from the Fugazi Live Series website by Carni Klirs for his project "Visualizing the History of Fugazi".
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format dataframe with one row for each show.
+#' \describe{
+#' \item{year}{year of the show}
+#' \item{V1}{show id}
+#' \item{V2}{Fugazi Live Series id}
+#' \item{V3}{Show date}
+#' \item{V4}{Venue}
+#' \item{V5}{Door price}
+#' \item{V6}{Attendance}
+#' \item{V7}{Recorded by}
+#' \item{V8}{Mastered by}
+#' \item{V9}{Original source}
+#' \item{V10-V50}{Tracks}
+#' }
+#' @examples
+#' # What is the total number of people that Fugazi performed for in the shows that are available in the Fugazi Live Series data?
+#' test <- rawdata
+#' test <- test %>% mutate(attendancedata = nchar(V6))
+#' test <- test %>% filter(attendancedata>0)
+#' test <- test %>% mutate(attendance = as.numeric(V6))
+#' test <- test %>% filter(is.na(attendance)==FALSE)
+#' totalpeople <- sum(test$attendance)
+#' totalpeople
+"rawdata"
+
+#' Fugazi Live Series data - other variables
+#'
+#' some of this data was scraped from the Fugazi Live Series website by Carni Klirs for his project "Visualizing the History of Fugazi".
+#' The original data on coordinates, cities and tours data came from The D-I-Y Data of Fugazi by Matthew Conlen.
+#' Rows with checked==1 were updated by Alex Mitrani, in particular making sure that the coordinates indicated the actual locations of the venues for city-level mapping.
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format dataframe with one row for each show.
+#' \describe{
+#' \item{gid}{show id}
+#' \item{flsid}{Fugazi Live Series id}
+#' \item{venue}{Venue}
+#' \item{doorprice}{Door price}
+#' \item{attendance}{Attendance}
+#' \item{recorded_by}{Recorded by}
+#' \item{mastered_by}{Mastered by}
+#' \item{original_source}{Original source}
+#' \item{x}{longitude}
+#' \item{y}{latitude}
+#' \item{city}{city}
+#' \item{country}{country}
+#' \item{tour}{tour}
+#' \item{year}{year}
+#' \item{checked}{checked==1 indicates that the data was checked and updated by Alex Mitrani, in particular making sure that the coordinates indicate as closely as possible the actual locations of the venues.}
+#' }
+#' @examples
+#' othervariables
+"othervariables"
+
+#' Fugazi Live Series data in long format with related discography data
+#'
+#' Song data from the Fugazi discography pages on Wikipedia. The variables attributing lead vocals are simplifications in some cases where lead vocals were shared.
+#' The variables song_number, first_song and last_song were defined after data cleaning, so intros, outros, sound checks, interludes and one-offs are not included.
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @source https://web.archive.org/web/20201112000517/http://en.wikipedia.org/wiki/Fugazi_discography
+#' @format dataframe with one row for show and each song performed in all the Fugazi Live Series shows with data.
+#' \describe{
+#' \item{gid}{gig id.  This is a concatenation of city, country, and date}
+#' \item{date}{Show date}
+#' \item{year}{Year}
+#' \item{month}{Month, as a number}
+#' \item{day}{Day, as a number}
+#' \item{tracktype}{0 = interlude, 1 = song, 2 = other music}
+#' \item{song_number}{The number of the song in the sequence of songs that were performed as part of that show}
+#' \item{songid}{numeric id for each song}
+#' \item{song}{The name of the song}
+#' \item{number_songs}{The number of songs that were performed as part of that show}
+#' \item{first_song}{Identifies the first song of the set}
+#' \item{last_song}{Identifies the last song of the set}
+#' \item{releaseid}{numeric id in ascending chronological order}
+#' \item{release}{name of album or EP}
+#' \item{track_number}{The track number for the song on the release}
+#' \item{instrumental}{Indicates whether or not the piece is an instrumental}
+#' \item{vocals_picciotto}{indicates whether or not Guy Picciotto sang lead vocals on this track}
+#' \item{vocals_mackaye}{indicates whether or not Ian Mackaye sang lead vocals on this track}
+#' \item{vocals_lally}{indicates whether or not Joe Lally sang lead vocals on this track}
+#' \item{duration_seconds}{The duration of the song in seconds}
+#' }
+#' @examples
+#' Repeatr1
+"Repeatr1"
+
+#' Fugazi Live Series choice data in long format with related discography data
+#'
+#' Song data from the Fugazi discography pages on Wikipedia. The variables attributing lead vocals are simplifications in some cases where lead vocals were shared.
+#' The variables song_number, first_song and last_song were defined after data cleaning, so intros, outros, sound checks, interludes and one-offs are not included.
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @source https://web.archive.org/web/20201112000517/http://en.wikipedia.org/wiki/Fugazi_discography
+#' @format dataframe with one row for each show, each song performed and each song available in all the Fugazi Live Series shows with data.
+#' \describe{
+#' \item{case}{This is a numerical id with unique values for each combination of gid and song_number}
+#' \item{gid}{gig id.  This is a concatenation of city, country, and date}
+#' \item{date}{Show date}
+#' \item{year}{Year}
+#' \item{launchdate}{The date on which the song was first performed according to the data}
+#' \item{yearsold}{The difference between the date of the show and the launchdate of the song, measured in years}
+#' \item{song_number}{The number of the song in the sequence of songs that were performed as part of that show}
+#' \item{alt}{alt is the songid variable renamed}
+#' \item{song}{The name of the song}
+#' \item{choice}{1 if the song was performed at that point in the show, 0 otherwise}
+#' \item{played}{1 if the song was performed at or before that point in the show, 0 otherwise}
+#' \item{available_rl}{Repertoire-level availability: 1 if the song was available in the repertoire for this show, 0 otherwise}
+#' \item{available_gl}{Gig-level availability: 1 if the song was available in the repertoire and was available to be played at this point in this show, 0 otherwise}
+#' \item{first_song}{Identifies the first song of the set}
+#' \item{last_song}{Identifies the last song of the set}
+#' \item{releaseid}{numeric id in ascending chronological order}
+#' \item{release}{name of album or EP}
+#' \item{track_number}{The track number for the song on the release}
+#' \item{instrumental}{Indicates whether or not the piece is an instrumental}
+#' \item{vocals_picciotto}{indicates whether or not Guy Picciotto sang lead vocals on this track}
+#' \item{vocals_mackaye}{indicates whether or not Ian Mackaye sang lead vocals on this track}
+#' \item{vocals_lally}{indicates whether or not Joe Lally sang lead vocals on this track}
+#' \item{duration_seconds}{The duration of the song in seconds}
+#' \item{first_song_instrumental}{1 if first song of the show and instrumental, 0 otherwise}
+#' }
+#' @examples
+#' Repeatr2
+"Repeatr2"
+
+#' Fugazi Live Series choice data in long format with related discography data and dummy variables for age categories of songs.
+#'
+#' Song data from the Fugazi discography pages on Wikipedia. The variables attributing lead vocals are simplifications in some cases where lead vocals were shared.
+#' The variables song_number, first_song and last_song were defined after data cleaning, so intros, outros, sound checks, interludes and one-offs are not included.
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @source https://web.archive.org/web/20201112000517/http://en.wikipedia.org/wiki/Fugazi_discography
+#' @format dataframe with one row for each show, each song performed and each song available in all the Fugazi Live Series shows with data.
+#' \describe{
+#' \item{gid}{gig id. This is a concatenation of city, country, and date}
+#' \item{case}{This is a numerical id with unique values for each combination of gid and song_number}
+#' \item{song_number}{The number of the song in the sequence of songs that were performed as part of that show}
+#' \item{alt}{alt is the songid variable renamed}
+#' \item{choice}{1 if the song was performed at that point in the show, 0 otherwise}
+#' \item{yearsold}{The difference between the date of the show and the launchdate of the song, measured in years}
+#' \item{vocals_picciotto}{indicates whether or not Guy Picciotto sang lead vocals on this track}
+#' \item{vocals_mackaye}{indicates whether or not Ian Mackaye sang lead vocals on this track}
+#' \item{vocals_lally}{indicates whether or not Joe Lally sang lead vocals on this track}
+#' \item{instrumental}{Indicates whether or not the piece is an instrumental}
+#' \item{first_song}{Identifies the first song of the set}
+#' \item{last_song}{Identifies the last song of the set}
+#' \item{duration_seconds}{The duration of the song in seconds}
+#' \item{yearsold_0}{0 < age < 1}
+#' \item{yearsold_1}{1 <= age < 2}
+#' \item{yearsold_2}{2 <= age < 3}
+#' \item{yearsold_3}{3 <= age < 4}
+#' \item{yearsold_4}{4 <= age < 5}
+#' \item{yearsold_5}{5 <= age < 6}
+#' \item{yearsold_6}{6 <= age < 7}
+#' \item{yearsold_7}{7 <= age < 8}
+#' \item{yearsold_8}{8 <= age}
+#' \item{yearsold_1_vp}{1 <= age < 2 and vocals Picciotto}
+#' \item{yearsold_2_vp}{2 <= age < 3 and vocals Picciotto}
+#' \item{yearsold_3_vp}{3 <= age < 4 and vocals Picciotto}
+#' \item{yearsold_4_vp}{4 <= age < 5 and vocals Picciotto}
+#' \item{yearsold_5_vp}{5 <= age < 6 and vocals Picciotto}
+#' \item{yearsold_6_vp}{6 <= age < 7 and vocals Picciotto}
+#' \item{yearsold_7_vp}{7 <= age < 8 and vocals Picciotto}
+#' \item{yearsold_8_vp}{8 <= age and vocals Picciotto}
+#' \item{first_song_instrumental}{1 if first song of the show and instrumental, 0 otherwise}
+#' \item{vocals_picciotto_sum}{running total of songs with lead vocals by Guy Picciotto in this show}
+#' \item{vocals_mackaye_sum}{running total of songs with lead vocals by Ian Mackaye in this show}
+#' \item{vocals_lally_sum}{running total of songs with lead vocals by Joe Lally in this show}
+#' }
+#' @examples
+#' Repeatr3
+"Repeatr3"
+
+
+# Sound quality and played-with -------------------------------------------
+
+#' Sound quality data, one record per show
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format dataframe with one row for each show in the Fugazi Live Series data.
+#' \describe{
+#' \item{gid}{show id}
+#' \item{sound_quality}{Sound quality rating: Excellent, Very Good, Good, or Poor.}
+#' }
+#' @examples
+#' gid_sound_quality
+"gid_sound_quality"
+
+#' 899 stacks of 10-12 shows covering the whole Fugazi repertoire (94 songs), one for each show in the Fugazi Live Series.
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format dataframe with one row for each combination of initial show and stacked show.
+#' \describe{
+#' \item{gid_initial}{show id of the initial show, used to identify each stack of shows}
+#' \item{gid}{show id of each show contained within each stack}
+#' \item{sound_quality}{Sound quality rating: Excellent, Very Good, Good, or Poor.}
+#' }
+#' @examples
+#' gid_initial_gid_sound_quality
+"gid_initial_gid_sound_quality"
+
+#' Fugazi Live Series data on bands that fugazi played with in long format
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @source https://arquivomotor.wordpress.com/1994/08/12/bhrif-programacao/
+#' @format dataframe with one row for show and each band that Fugazi played with in the Fugazi Live Series shows with data.
+#' \describe{
+#' \item{gid}{gig id.  This is a concatenation of city, country, and date}
+#' \item{fls_id}{Fugazi Live Series ID}
+#' \item{played_with}{Band name}
+#' }
+#' @examples
+#' played_with
+"played_with"
+
+#' Fugazi Live Series data on bands that fugazi played with in long format, combined with show data and coordinates
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @source https://arquivomotor.wordpress.com/1994/08/12/bhrif-programacao/
+#' @format dataframe with one row for show and each band that Fugazi played with in the Fugazi Live Series shows with data.
+#' \describe{
+#' \item{fls_link}{link to the corresponding page on the Fugazi Live Series site}
+#' \item{year}{year}
+#' \item{tour}{tour}
+#' \item{date}{date}
+#' \item{venue}{Venue}
+#' \item{city}{city}
+#' \item{country}{country}
+#' \item{played_with}{Band name}
+#' \item{attendance}{Attendance}
+#' \item{sound_quality}{Sound quality rating: Excellent, Very Good, Good, or Poor.}
+#' \item{latitude}{latitude}
+#' \item{longitude}{longitude}
+#' }
+#' @examples
+#' played_with_data
+"played_with_data"
+
+#' Fugazi Live Series summary data on bands that fugazi played with, one row per combination of year, tour and band, with corresponding number of shows.
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @source https://arquivomotor.wordpress.com/1994/08/12/bhrif-programacao/
+#' @format dataframe with one row for each band that Fugazi played with in the Fugazi Live Series shows with data.
+#' \describe{
+#' \item{year}{year}
+#' \item{tour}{tour}
+#' \item{played_with}{band name}
+#' \item{shows}{number of shows}
+#' }
+#' @examples
+#' played_with_summary
+"played_with_summary"
+
+
+# Shows, venues, tours, attendance ----------------------------------------
+
+#' Shows Data
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format dataframe with one row for each show in the Fugazi Live Series data.
+#' \describe{
+#' \item{gid}{Unique identifier for the show}
+#' \item{tour}{The tour that the show belongs to.}
+#' \item{year}{The year of the show,}
+#' \item{date}{The date of the show.}
+#' \item{venue}{the venue,}
+#' \item{city}{the city.}
+#' \item{country}{The country.}
+#' \item{attendance}{The number of people who attended.}
+#' \item{door_price}{The ticket price.}
+#' \item{latitude}{The latitude of the show location.}
+#' \item{longitude}{The longitude of the show location.}
+#' \item{urls}{A string used to form the URLs of the corresponding page on the Fugazi Live series site.}
+#' \item{fls_link}{a link to the corresponding page of the Fugazi Live Series site.}
+#' \item{minutes}{duration of the show in minutes if a recording is available}
+#' \item{sound_quality}{Sound quality rating: Excellent, Very Good, Good, or Poor.}
+#' }
+#' @examples
+#' shows_data
+"shows_data"
+
+#' Venues data
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format dataframe with one row for each venue in the Fugazi Live Series data.
+#' \describe{
+#' \item{venue}{Venue of the show}
+#' \item{city}{City}
+#' \item{country}{Country}
+#' \item{from}{Year of first show at the venue}
+#' \item{to}{Year of last show at the venue}
+#' }
+#' @examples
+#' venuesdata
+"venuesdata"
+
+#' Tours data
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format dataframe with one row for each tour in the Fugazi Live Series data.
+#' \describe{
+#' \item{tour}{Name of the tour}
+#' \item{start}{Start date}
+#' \item{end}{End date}
+#' \item{shows}{Number of shows}
+#' \item{duration}{Duration of the tour in days}
+#' \item{attendance}{Total attendance of all the shows}
+#' \item{meanattendance}{Average attendance per show}
+#' \item{startyear}{Year in which the tour started}
+#' \item{endyear}{Year in which the tour ended}
+#' }
+#' @examples
+#' toursdata
+"toursdata"
+
+#' Attendance data
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format dataframe with one row for each show for which attendance was recorded in the Fugazi Live Series data.
+#' \describe{
+#' \item{year}{Year of the show}
+#' \item{date}{Date of the show}
+#' \item{venue}{Venue of the show}
+#' \item{attendance}{Estimated attendance}
+#' }
+#' @examples
+#' attendancedata
+"attendancedata"
+
+
+# Song lookups and discography --------------------------------------------
+
+#' Fugazi song id lookup table
+#'
+#' @format dataframe with one row for each song in the Fugazi discography, except those which never appear in the Fugazi Live Series data.
+#' \describe{
+#' \item{songid}{numeric id for each song, based on the alphabetical order of the song names.}
+#' \item{song}{The name of the song}
+#' }
+#' @examples
+#' songidlookup
+"songidlookup"
+
+#' Fugazi songs data
+#'
+#' Song data from the Fugazi discography pages on Wikipedia. The variables attributing lead vocals are simplifications in some cases where lead vocals were shared.
+#'
+#' @source https://web.archive.org/web/20201112000517/http://en.wikipedia.org/wiki/Fugazi_discography
+#' @format dataframe with one row for each song in the Fugazi discography, except those which never appear in the Fugazi Live Series data.
+#' \describe{
+#' \item{songid}{numeric id for each song}
+#' \item{releaseid}{numeric id in ascending chronological order}
+#' \item{track_number}{The track number for the song on the release}
+#' \item{instrumental}{Indicates whether or not the piece is an instrumental}
+#' \item{vocals_picciotto}{indicates whether or not Guy Picciotto sang lead vocals on this track}
+#' \item{vocals_mackaye}{indicates whether or not Ian Mackaye sang lead vocals on this track}
+#' \item{vocals_lally}{indicates whether or not Joe Lally sang lead vocals on this track}
+#' \item{duration_seconds}{The duration of the song in seconds}
+#' }
+#' @examples
+#' songvarslookup
+"songvarslookup"
+
+#' Fugazi releases data
+#'
+#' @format dataframe with one row for each release.
+#' \describe{
+#' \item{releaseid}{numeric id in ascending chronological order}
+#' \item{release}{release name}
+#' \item{variable}{release names for use as variable names}
+#' \item{releasedate}{release date}
+#' \item{release_date_source}{source of the release date}
+#' \item{colour_code}{hex colour code to be used for the release in graphs}
+#' \item{rym_rating}{RYM rating scaled to the interval between 0 and 1}
+#' }
+#' @examples
+#' releasesdatalookup
+"releasesdatalookup"
+
+#' Releases data input
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format dataframe with one row for each song in the Fugazi discography, except those which never appear in the Fugazi Live Series data.
+#' \describe{
+#' \item{releaseid}{numeric id in ascending chronological order}
+#' \item{release}{release name}
+#' \item{track_number}{The track number for the song on the release}
+#' \item{song}{The name of the song}
+#' \item{last_show}{The number of the last show in the series}
+#' \item{colour_code}{The hex colour code used for the corresponding release}
+#' \item{count}{The number of times the song was performed according to the data}
+#' \item{date}{The debut date of the song}
+#' \item{show_num}{The show number of the debut of the song}
+#' \item{shows}{The number of shows in which the song could have been performed}
+#' \item{intensity}{The rate at which the song was played - this is count / shows}
+#' \item{rating}{The rating calculated for the song based on preferences implied by the choices of which songs to play.}
+#' }
+#' @examples
+#' releases_data_input
+"releases_data_input"
+
+#' Releases menu list
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format dataframe with one row for each release in the Fugazi discography, except those which never appear in the Fugazi Live Series data.
+#' \describe{
+#' \item{releaseid}{A unique identifier for the release based on the alphabetical order of the titles.}
+#' \item{release}{The name of the release.}
+#' \item{variable}{The name of the release in snake case.}
+#' \item{first_debut}{the date of the first debut from this release}
+#' \item{release_date}{this is an assumption based on the available evidence. Actual release dates will have been different in different places.}
+#' \item{release_date_source}{The source of the release date assumption}
+#' \item{colour code}{Hex code of the colour used for this release in graphs.}
+#' \item{rym}{The rate your music rating of the release - November 2021.}
+#' }
+#' @examples
+#' releases_menu_list
+"releases_menu_list"
+
+#' Releases Summary
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format dataframe with one row for each release in the Fugazi discography.
+#' \describe{
+#' \item{release}{The name of the release.}
+#' \item{first_debut}{the date of the first debut from this release}
+#' \item{last_debut}{the date of the last debut from this release}
+#' \item{release_date}{this is an assumption based on the available evidence. Actual release dates will have been different in different places.}
+#' \item{songs}{number of songs on the release}
+#' \item{count}{total number of performances of the songs on the release}
+#' \item{shows}{number of shows at which songs from the release were performed}
+#' \item{rate}{the average of the rates for the songs on the release}
+#' }
+#' @examples
+#' releases_summary
+"releases_summary"
+
+#' Release ID, variable, colour code
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format dataframe with one row for each release in the Fugazi discography, except those which never appear in the Fugazi Live Series data.
+#' \describe{
+#' \item{releaseid}{A unique identifier for the release based on the alphabetical order of the titles.}
+#' \item{variable}{The name of the release in snake case.}
+#' \item{colour code}{Hex code of the colour used for this release in graphs.}
+#' }
+#' @examples
+#' releaseid_variable_colour_code
+"releaseid_variable_colour_code"
+
+#' Song tempo BPM data
+#'
+#' @source Tempos of selected songs from https://www.dischord.com/fugazi_live_series measured with 'liveBPM' app for Android and also finger tapping with a timer.
+#' @format dataframe with one row for each song in the Fugazi discography, except those which never appear in the Fugazi Live Series data.
+#' \describe{
+#' \item{song}{The name of the song}
+#' \item{tempo_bpm}{The tempo of the song in beats per minute}
+#' }
+#' @examples
+#' song_tempo_bpm_data
+"song_tempo_bpm_data"
+
+
+# Tags and duration data (from MP3 tags) ----------------------------------
+
+#' Tags data
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format dataframe with one row for each track in the Fugazi Live Series data, including data from the audio file tags.
+#' \describe{
+#' \item{track}{track number}
+#' \item{album}{album name, which includes the date, venue, city, state, and country}
+#' \item{song}{track name}
+#' \item{duration}{duration in period format (lubridate)}
+#' \item{seconds}{duration in seconds}
+#' \item{minutes}{duration in decimal minutes}
+#' \item{date}{date}
+#' \item{venue}{venue}
+#' \item{city}{city}
+#' \item{state}{state for USA shows}
+#' \item{country}{country}
+#' \item{gid}{show id}
+#' }
+#' @examples
+#' fls_tags
+"fls_tags"
+
+#' Tags data, one record per show
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format dataframe with one row for each show in the Fugazi Live Series data, including data from the audio file tags.
+#' \describe{
+#' \item{date}{date}
+#' \item{venue}{venue}
+#' \item{city}{city}
+#' \item{state}{state for USA shows}
+#' \item{country}{country}
+#' \item{album}{album name, which includes the date, venue, city, state, and country}
+#' \item{gid}{show id}
+#' \item{duration}{duration in period format (lubridate)}
+#' \item{seconds}{duration in seconds}
+#' }
+#' @examples
+#' fls_tags_show
+"fls_tags_show"
+
+#' Duration Data
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format dataframe with one row for each rendition of each song in the Fugazi Live Series data.
+#' \describe{
+#' \item{gid}{Unique identifier for the show}
+#' \item{date}{The date of the show.}
+#' \item{song_number}{this is the number of the song in the set, where 1 is the first song in that show. Larger numbers will indicate that the song was played later in the set,}
+#' \item{song}{the name of the song}
+#' \item{urls}{A string used to form the URLs of the corresponding page on the Fugazi Live series site.}
+#' \item{fls_link}{a link to the corresponding page of the Fugazi Live Series site.}
+#' \item{minutes}{duration of the song in minutes}
+#' }
+#' @examples
+#' duration_data_da
+"duration_data_da"
+
+#' Fugazi song duration summary data
+#'
+#' Summary data on the song durations in the Fugazi Live Series.
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format dataframe with one row for each song in the Fugazi discography, except those which never appear in the Fugazi Live Series data.
+#' \describe{
+#' \item{song}{Name of the song}
+#' \item{renditions}{The number of times the song was played live according to the available recordings.}
+#' \item{minutes_min}{The minimum duration. In many cases this will be as short as it is because the recording was cut off, not because the band played the song really fast.}
+#' \item{minutes_median}{The median duration: if all the renditions were lined up in order from shortest to longest this would be the middle one.}
+#' \item{minutes_max}{The maximum duration.}
+#' \item{minutes_mean}{The average duration.}
+#' \item{minutes_sd}{The standard deviation of the duration - this is a measure of spread, it indicates how much variation there is across all of the renditions.}
+#' \item{minutes_total}{The total duration of all the times the song was played.}
+#' }
+#' @examples
+#' duration_summary
+"duration_summary"
+
+#' Cumulative Duration Counts
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format dataframe with one row for each combination of song and duration in the Fugazi Live Series data.
+#' \describe{
+#' \item{minutes}{Duration of the show in minutes}
+#' \item{song}{Name of the song}
+#' \item{release}{Name of the corresponding discographical release}
+#' \item{count}{The cumulative count of the number of times the song had been performed up to and including this duration.}
+#' }
+#' @examples
+#' cumulative_duration_counts
+"cumulative_duration_counts"
+
+#' Cumulative Song Counts
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format dataframe with one row for each combination of song and date in the Fugazi Live Series data.
+#' \describe{
+#' \item{date}{Date of the show}
+#' \item{song}{Name of the song}
+#' \item{release}{Name of the corresponding discographical release}
+#' \item{count}{The cumulative count of the number of times the song had been performed up to and including this performance.}
+#' }
+#' @examples
+#' cumulative_song_counts
+"cumulative_song_counts"
+
+#' Fugazi song performance counts
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format dataframe with one row for each song in the Fugazi discography, except those which never appear in the Fugazi Live Series data.
+#' \describe{
+#' \item{songid}{numeric id for each song}
+#' \item{song}{The name of the song}
+#' \item{launchdate}{The date on which the song was first performed according to the data}
+#' \item{count}{The number of times the song was performed according to the data}
+#' }
+#' @examples
+#' fugazi_song_counts
+"fugazi_song_counts"
+
+#' Fugazi song performance intensity data
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format dataframe with one row for each song in the Fugazi discography, except those which never appear in the Fugazi Live Series data.
+#' \describe{
+#' \item{songid}{numeric id for each song}
+#' \item{song}{The name of the song}
+#' \item{launchdate}{The date on which the song was first performed according to the data}
+#' \item{chosen}{The number of times the song was performed according to the data}
+#' \item{available_rl}{The number of shows for which the song was available in the band's repertoire}
+#' \item{intensity}{The performance intensity is the ratio of chosen/available_rl}
+#' }
+#' @examples
+#' fugazi_song_performance_intensity
+"fugazi_song_performance_intensity"
+
+#' Last Performance Data
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format dataframe with one row for each song that was performed at least twice in the Fugazi Live Series data.
+#' \describe{
+#' \item{song}{name of the song}
+#' \item{last_performance}{date of the last performance.}
+#' }
+#' @examples
+#' last_performance_data
+"last_performance_data"
+
+
+# Choice model outputs -----------------------------------------------------
+
+#' Estimated coefficients and related statistics from the model ml.Repeatr4
+#'
+#' Basic choice model
+#'
+#' This model was estimated with mlogit on all of the data.
+#'
+#' The utility formula was as follows:
+#'
+#' choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5 + yearsold_6 + yearsold_7 + yearsold_8 + song2 + ... + song92
+#'
+#' @format dataframe with one row for each coefficient in the model.
+#' \describe{
+#' \item{Estimate}{The coefficient value}
+#' \item{Std. Error}{The standard error of the coefficient}
+#' \item{z-value}{The z-value of the coefficient}
+#' \item{Pr(>|z|)}{The P value of the coefficient}
+#' }
+#' @examples
+#' results_ml_Repeatr4
+"results_ml_Repeatr4"
+
+#' Variance-covariance matrix from the model ml.Repeatr4
+#'
+#' The variance-covariance matrix of the coefficients estimated in the basic choice model (see \code{\link{results_ml_Repeatr4}}), typically produced via `vcov(ml.Repeatr4)`. Used by \code{\link{diffr}}/\code{\link{rankr}} to test whether pairs of coefficients differ significantly.
+#'
+#' @format a square matrix with one row and one column per model coefficient, in the same order as \code{\link{results_ml_Repeatr4}}.
+#' @examples
+#' vcovmat_ml_Repeatr4
+"vcovmat_ml_Repeatr4"
+
+#' Fugazi song choice model results, with song names substituted in for intercept terms
+#'
+#' Produced by \code{\link{Repeatr_5}} from \code{\link{results_ml_Repeatr4}}: the raw model `variable` names for the per-song intercept terms (e.g. `(Intercept):5`) are replaced with the corresponding song name, using \code{\link{songidlookup}}.
+#'
+#' @format dataframe with one row for each coefficient in the model.
+#' \describe{
+#' \item{variable}{The name of the model covariate, or the song name for intercept terms}
+#' \item{Estimate}{The coefficient value}
+#' \item{Std. Error}{The standard error of the coefficient}
+#' \item{z-value}{The z-value of the coefficient}
+#' \item{Pr(>|z|)}{The P value of the coefficient}
+#' }
+#' @examples
+#' fugazi_song_choice_model
+"fugazi_song_choice_model"
+
+#' Fugazi song preferences, ranked by estimated intercept (implied preference)
+#'
+#' Produced by \code{\link{Repeatr_5}} from the per-song intercept terms of \code{\link{results_ml_Repeatr4}} (the omitted reference song, "23 Beats Off", is added back in with an estimate of 0), ranked from most to least preferred.
+#'
+#' @format dataframe with one row for each song, ranked by estimated preference.
+#' \describe{
+#' \item{rank_rating}{Rank of the song by estimated preference, 1 = most preferred}
+#' \item{songid}{numeric id for each song}
+#' \item{song}{The name of the song}
+#' \item{Estimate}{The estimated intercept for this song (0 for the omitted reference song)}
+#' \item{z-value}{The z-value of the estimate (NA for the omitted reference song)}
+#' }
+#' @examples
+#' fugazi_song_preferences
+"fugazi_song_preferences"
+
+#' Average estimated song rating by release
+#'
+#' Produced by \code{\link{Repeatr_5}}: average of the estimated \code{\link{summary}} rating across the songs on each release (excluding First Demo and Unreleased, which aren't comparable to the others).
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format dataframe with one row for each release.
+#' \describe{
+#' \item{release}{The name of the release.}
+#' \item{releaseid}{numeric id in ascending chronological order}
+#' \item{releasedate}{The date of the release}
+#' \item{songs_rated}{The number of songs on the release that were rated}
+#' \item{rating}{The average rating across the rated songs on the release}
+#' }
+#' @examples
+#' releases_rated
+"releases_rated"
+
+#' Summary
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format dataframe with one row for each song in the Fugazi discography, except those which never appear in the Fugazi Live Series data.
+#' \describe{
+#' \item{rank_rating}{The rank of the song in terms of the rating derived from the choice modelling, with the highest-rated song in the first position.}
+#' \item{songid}{numeric id for each song}
+#' \item{song}{The name of the song}
+#' \item{launchdate}{The date on which the song was first performed according to the data}
+#' \item{duration_seconds}{The duration of the song in seconds}
+#' \item{chosen}{The number of times the song was performed according to the data}
+#' \item{available_rl}{The number of shows for which the song was available in the band's repertoire}
+#' \item{intensity}{The performance intensity is the ratio of chosen/available_rl}
+#' \item{rating}{Rating on the interval between 0 and 1 where 1 is the highest rating and 0 the lowest.}
+#' \item{releaseid}{numeric id in ascending chronological order}
+#' \item{release}{release name}
+#' \item{track_number}{The track number for the song on the release}
+#' \item{instrumental}{Indicates whether or not the piece is an instrumental}
+#' \item{vocals_picciotto}{indicates whether or not Guy Picciotto sang lead vocals on this track}
+#' \item{vocals_mackaye}{indicates whether or not Ian Mackaye sang lead vocals on this track}
+#' \item{vocals_lally}{indicates whether or not Joe Lally sang lead vocals on this track}
+#' \item{releasedate}{The date of the corresponding release}
+#' \item{lead}{The number of days between the launch date and the release date}
+#' \item{launchyear}{The year in which the song was first performed}
+#' \item{releaseyear}{The year in which the song was released}
+#' }
+#' @examples
+#' summary
+"summary"
+
+
+# Transitions and xray -----------------------------------------------------
+
+#' Transitions
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format dataframe with one row for each transition between songs in the Fugazi Live Series data.
+#' \describe{
+#' \item{from}{Song #1}
+#' \item{to}{Song #2}
+#' \item{count}{A count of the times this transition appears in the data}
+#' \item{count_scaled}{The count scaled by the total number of times this transition was available}
+#' }
+#' @examples
+#' transitions
+"transitions"
+
+#' Transitions Data
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format dataframe with one row for each combination of show, first song and second song in the Fugazi Live Series data.
+#' \describe{
+#' \item{gid}{gig id.  This is a concatenation of city, country, and date}
+#' \item{url}{url to the corresponding page of the Fugazi Live Series site.}
+#' \item{fls_link}{provides a link to the corresponding page of the Fugazi Live Series site}
+#' \item{date}{date of the show}
+#' \item{transition}{Number of the transition in the show}
+#' \item{song1}{Name of the first song}
+#' \item{song2}{Name of the second song}
+#' }
+#' @examples
+#' transitions_data_da
+"transitions_data_da"
+
+#' xray
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format dataframe with one row for each rendition of each show in the Fugazi Live Series data and each type of units (tracks and minutes)
+#' \describe{
+#' \item{gid}{gig id.  This is a concatenation of city, country, and date}
+#' \item{url}{url to the corresponding page of the Fugazi Live Series site.}
+#' \item{fls_link}{a link to the corresponding page of the Fugazi Live Series site.}
+#' \item{year}{The year of the show,}
+#' \item{tour}{The tour that the show belongs to.}
+#' \item{date}{The date of the show.}
+#' \item{units}{The units can be either tracks or minutes.  The remaining columns on any given row will be in these units}
+#' \item{songs}{songs that were performed at least twice}
+#' \item{released}{songs that had been released before the date of the show}
+#' \item{unreleased}{songs that had not been released before the date of the show}
+#' \item{debut}{songs that were performed for the first time at this show}
+#' \item{farewell}{songs that were performed for the last time at this show}
+#' \item{incumbent}{songs that were neither performed for the first time or the last at this show}
+#' \item{other}{tracks that are something else, for instance: intro, opening remarks, interlude, encore, outro, interruptions, and one-offs.}
+#' \item{...}{The remaining columns correspond to specific releases in the band's catalogue.}
+#' }
+#' @examples
+#' xray
+"xray"
