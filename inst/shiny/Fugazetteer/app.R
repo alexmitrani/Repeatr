@@ -1595,7 +1595,7 @@ server <- function(input, output, session) {
              mutate(mycolour = myx - (daten - max(daten)))
 
 
-    mypalette <- get_brewer_pal("Reds", contrast=c(0.5, 1.0), plot = FALSE)
+    mypalette <- c4a("brewer.reds", range = c(0.5, 1.0))
 
     colorData <- factor(df$mycolour)
     pal <- colorFactor(palette = mypalette, levels = levels(colorData), reverse = FALSE)
@@ -1892,11 +1892,11 @@ server <- function(input, output, session) {
 
     if(number_bands==1) {
 
-      mypalette <- get_brewer_pal("Reds", plot = FALSE)
+      mypalette <- c4a("brewer.reds")
 
     } else {
 
-      mypalette <- get_brewer_pal("Set1", plot = FALSE)
+      mypalette <- c4a("brewer.set1")
 
     }
 
