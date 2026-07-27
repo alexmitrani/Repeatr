@@ -1,21 +1,21 @@
 
 #' @name Repeatr_1
 #' @title imports raw data in CSV format (1 row per show), cleans the data, and reshapes it long so that the rows are identified by combinations of gid and song_number.
-#' @description This was originally developed with a file called "fugotcha.csv", the first line of which went like this:
-#' @description washington-dc-usa-90387	FLS0001	03/09/1987	Wilson Center	$5	300	Joey Picuri	Fugazi	Cassette	Joe #1	Intro	Song #1	Furniture	Merchandise	Turn Off Your Guns	In Defense Of Humans	Waiting Room	The Word
+#' @description This was originally developed with a headerless file called "fugotcha.csv". It now reads "fls_data.csv" instead - a tidy, headered CSV produced by \code{\link{scrape_fls_shows}}, with one row per show and columns gid, fls_id, show_date, venue, door_price, attendance, recorded_by, mastered_by, original_source, sound_quality, played_with, fls_notes, track_1 ... track_n.
 #' @description "gid" is short for "gig id"
 #' @description Another data file that was used was called "releases_songs_durations_wikipedia.csv" and was obtained from the Wikipedia data on the Fugazi discography.
 #' @description This file contains the following variables: index	releaseid	release	track_number	songid	song	instrumental	vocals_picciotto	vocals_mackaye	vocals_lally	duration_seconds
 
 #'
 #' @import dplyr
+#' @import tidyr
 #' @import stringr
 #' @import lubridate
 #' @import fastDummies
 #' @import rlang
 #' @import knitr
 #'
-#' @param mycsvfile Optional name of CSV file containing Fugazi Live Series data to be used. If omitted, the default file provided with the package will be used.
+#' @param mycsvfile Optional name of CSV file containing Fugazi Live Series data to be used (tidy, headered, as produced by \code{\link{scrape_fls_shows}}). If omitted, the default file provided with the package (fls_data.csv) will be used.
 #' @param mysongdatafile Optional name of CSV file containing song data to be used. If omitted, the default file provided with the package will be used.
 #' @param releasesdatafile Optional name of CSV file containing releases data to be used. If omitted, the default file provided with the package will be used.
 #'
@@ -23,10 +23,10 @@
 #' @export
 #'
 #' @examples
-#' fugotcha <- system.file("extdata", "fugotcha.csv", package = "Repeatr")
+#' fls_data <- system.file("extdata", "fls_data.csv", package = "Repeatr")
 #' releases_songs_durations_wikipedia <- system.file("extdata", "releases_songs_durations_wikipedia.csv", package = "Repeatr")
 #' releasesdatafile <- system.file("extdata", "releases.csv", package = "Repeatr")
-#' Repeatr_1_results <- Repeatr_1(mycsvfile = fugotcha, mysongdatafile = releases_songs_durations_wikipedia, releasesdatafile = releasesdatafile)
+#' Repeatr_1_results <- Repeatr_1(mycsvfile = fls_data, mysongdatafile = releases_songs_durations_wikipedia, releasesdatafile = releasesdatafile)
 #'
 Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile = NULL) {
 
@@ -52,21 +52,23 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   if (is.null(mycsvfile)==FALSE) {
 
-    Repeatr0 <- read.csv(mycsvfile, header=FALSE)
+    Repeatr0 <- read.csv(mycsvfile, header=TRUE)
 
   } else {
 
-    fugotcha <- system.file("extdata", "fugotcha.csv", package = "Repeatr")
-    Repeatr0 <- read.csv(fugotcha, header=FALSE)
-
-    rawdata <- Repeatr0 %>%
-      mutate(date = as.Date(V3, "%Y-%m-%d")) %>%
-      mutate(year = lubridate::year(date)) %>%
-      relocate(year)
-
-    rawdata$date <- NULL
+    fls_data <- system.file("extdata", "fls_data.csv", package = "Repeatr")
+    Repeatr0 <- read.csv(fls_data, header=TRUE)
 
   }
+
+  # gid_sound_quality used to be a static dataset with no regeneration path -
+  # it's now rebuilt live from Repeatr0 every run, same gid/sound_quality
+  # shape as before, so the left_join(gid_sound_quality) calls further down
+  # need no other change.
+
+  gid_sound_quality <- Repeatr0 %>%
+    select(gid, sound_quality) %>%
+    filter(is.na(sound_quality)==FALSE)
 
   if (is.null(mysongdatafile)==FALSE) {
 
@@ -107,18 +109,10 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
            checked = 1)
 
   othervariables <- Repeatr0 %>%
-    select(V1, V2, V3, V4, V5, V6, V7, V8, V9)
+    select(gid, fls_id, show_date, venue, door_price, attendance, recorded_by, mastered_by, original_source, fls_notes)
 
   othervariables <- othervariables %>%
-    rename(gid = V1) %>%
-    rename(flsid = V2) %>%
-    rename(date = V3) %>%
-    rename(venue = V4) %>%
-    rename(doorprice = V5) %>%
-    rename(attendance = V6) %>%
-    rename(recorded_by = V7) %>%
-    rename(mastered_by = V8) %>%
-    rename(original_source = V9)
+    rename(flsid = fls_id, date = show_date, doorprice = door_price)
 
   othervariables <- othervariables %>%
     mutate(date = as.Date(date, "%d/%m/%Y"),
@@ -148,7 +142,10 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   othervariables <- othervariables %>%
     filter(is.na(x)==FALSE)
 
-  othervariables <- rbind.data.frame(othervariables, othervariables_patchfile)
+  # bind_rows (not rbind.data.frame) since othervariables_patch.csv has no
+  # fls_notes column - bind_rows fills it with NA for those rows instead of
+  # erroring on the column-count mismatch
+  othervariables <- dplyr::bind_rows(othervariables, othervariables_patchfile)
 
   # Disambiguation
 
@@ -346,6 +343,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   save(releasesdatalookup, file="releasesdatalookup.rda")
   save(songvarslookup, file="songvarslookup.rda")
   save(Repeatr0, file="Repeatr0.rda")
+  save(gid_sound_quality, file="gid_sound_quality.rda")
 
   setwd(mydir)
 
@@ -485,18 +483,10 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   # Select the most relevant columns -------
 
-  Repeatr1 <- subset(Repeatr0, select = -c(V2, V4, V5, V6, V7, V8, V9))
-
-  names(Repeatr1)
-
-  # Define gig id -----------------------------------------------------------
-
-  names(Repeatr1)[names(Repeatr1) == "V1"] <- "gid"
-
+  Repeatr1 <- Repeatr0 %>%
+    select(gid, date = show_date, dplyr::starts_with("track_"))
 
   # Define date variables ----------------------------------------------------
-
-  names(Repeatr1)[names(Repeatr1) == "V3"] <- "date"
 
   Repeatr1 <- Repeatr1 %>%
     mutate(date = as.Date(date, "%d/%m/%Y"))
@@ -513,37 +503,19 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     mutate(day = day(date)) %>%
     relocate(day, .after=month)
 
-  # Rename variables to make reshaping the data easier ----------------------
-
-  myv <- 10
-
-  for(mysong in 1:44) {
-
-    myinitialname <- paste0("V", myv)
-    mynewname <- paste0("song.", mysong)
-    names(Repeatr1)[names(Repeatr1) == myinitialname] <- mynewname
-    myv <- myv + 1
-
-  }
-
-  Repeatr1$nchar <- nchar(Repeatr1$song.1)
+  # Reshape to long format with 1 row per song -------------------------------
+  # (replaces the old fixed-width V10:V53/song.1:song.44 reshape() - the
+  # number of track_N columns now varies from run to run depending on the
+  # longest tracklist scraped, so this must not hardcode a song count)
 
   Repeatr1 <- Repeatr1 %>%
-    filter(nchar>0)
-
-  Repeatr1$nchar <- NULL
-
-  # Reshape to long format with 1 row per song ------------------------------
-
-  Repeatr1 <- reshape(data = Repeatr1
-                              , direction = "long"
-                              , varying = 6:44
-                              , idvar = "gid"
-  )
-
-  # Define song number ------------------------------------------------------
-
-  names(Repeatr1)[names(Repeatr1) == "time"] <- "song_number"
+    tidyr::pivot_longer(
+      cols = dplyr::starts_with("track_"),
+      names_to = "song_number",
+      names_prefix = "track_",
+      values_to = "song"
+    ) %>%
+    mutate(song_number = as.integer(song_number))
 
   Repeatr1 <- Repeatr1 %>%
     arrange(gid, song_number)
@@ -914,8 +886,9 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
 # Played with data --------------------------------------------------------
 
-    played_with_file <- system.file("extdata", "gid_fls_id_played_with.csv", package = "Repeatr")
-    played_with <- read.csv(played_with_file)
+    played_with <- Repeatr0 %>%
+      select(gid, fls_id, played_with) %>%
+      filter(is.na(played_with)==FALSE)
 
     played_with <- played_with %>%
       mutate_if(is.character, utf8::utf8_encode)
@@ -1165,7 +1138,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
       mutate(year = lubridate::year(date)) %>%
       rename(latitude = y) %>%
       rename(longitude = x) %>%
-      select(gid, tour, year, date, venue, city, country, attendance, doorprice, latitude, longitude) %>%
+      select(gid, tour, year, date, venue, city, country, attendance, doorprice, latitude, longitude, fls_notes) %>%
       rename(door_price = doorprice) %>%
       mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
       mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>")) %>%

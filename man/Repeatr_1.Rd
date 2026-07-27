@@ -7,16 +7,14 @@
 Repeatr_1(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile = NULL)
 }
 \arguments{
-\item{mycsvfile}{Optional name of CSV file containing Fugazi Live Series data to be used. If omitted, the default file provided with the package will be used.}
+\item{mycsvfile}{Optional name of CSV file containing Fugazi Live Series data to be used (tidy, headered, as produced by \code{\link{scrape_fls_shows}}). If omitted, the default file provided with the package (fls_data.csv) will be used.}
 
 \item{mysongdatafile}{Optional name of CSV file containing song data to be used. If omitted, the default file provided with the package will be used.}
 
 \item{releasesdatafile}{Optional name of CSV file containing releases data to be used. If omitted, the default file provided with the package will be used.}
 }
 \description{
-This was originally developed with a file called "fugotcha.csv", the first line of which went like this:
-
-washington-dc-usa-90387	FLS0001	03/09/1987	Wilson Center	$5	300	Joey Picuri	Fugazi	Cassette	Joe #1	Intro	Song #1	Furniture	Merchandise	Turn Off Your Guns	In Defense Of Humans	Waiting Room	The Word
+This was originally developed with a headerless file called "fugotcha.csv". It now reads "fls_data.csv" instead - a tidy, headered CSV produced by \code{\link{scrape_fls_shows}}, with one row per show and columns gid, fls_id, show_date, venue, door_price, attendance, recorded_by, mastered_by, original_source, sound_quality, played_with, fls_notes, track_1 ... track_n.
 
 "gid" is short for "gig id"
 
@@ -25,9 +23,9 @@ Another data file that was used was called "releases_songs_durations_wikipedia.c
 This file contains the following variables: index	releaseid	release	track_number	songid	song	instrumental	vocals_picciotto	vocals_mackaye	vocals_lally	duration_seconds
 }
 \examples{
-fugotcha <- system.file("extdata", "fugotcha.csv", package = "Repeatr")
+fls_data <- system.file("extdata", "fls_data.csv", package = "Repeatr")
 releases_songs_durations_wikipedia <- system.file("extdata", "releases_songs_durations_wikipedia.csv", package = "Repeatr")
 releasesdatafile <- system.file("extdata", "releases.csv", package = "Repeatr")
-Repeatr_1_results <- Repeatr_1(mycsvfile = fugotcha, mysongdatafile = releases_songs_durations_wikipedia, releasesdatafile = releasesdatafile)
+Repeatr_1_results <- Repeatr_1(mycsvfile = fls_data, mysongdatafile = releases_songs_durations_wikipedia, releasesdatafile = releasesdatafile)
 
 }

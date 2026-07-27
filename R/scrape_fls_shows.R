@@ -455,7 +455,23 @@ scrape_fls_shows <- function(existing_data = NULL,
 
   if (is.null(mycsvfilename) == FALSE) {
 
-    utils::write.csv(results, file = mycsvfilename, fileEncoding = "UTF-8", row.names = FALSE)
+    # Writing out is a nice-to-have on top of the (potentially long, rate-
+    # limited) scrape above - if the path is bad, warn and still return the
+    # scraped data rather than losing it by letting write.csv's error abort
+    # the whole function before it can return anything.
+    tryCatch(
+
+      utils::write.csv(results, file = mycsvfilename, fileEncoding = "UTF-8", row.names = FALSE),
+
+      error = function(e) {
+        warning(
+          "Could not write to '", mycsvfilename, "': ", conditionMessage(e),
+          ". Returning the scraped data anyway - write it out yourself, e.g. write.csv(results, \"<path>\", row.names = FALSE).",
+          call. = FALSE
+        )
+      }
+
+    )
 
   }
 
