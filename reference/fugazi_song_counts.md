@@ -36,19 +36,19 @@ https://www.dischord.com/fugazi_live_series
 ## Examples
 
 ``` r
-  fugazi_song_counts
+fugazi_song_counts
 #> # A tibble: 94 × 4
 #>    songid song                 launchdate count
 #>     <dbl> <chr>                <date>     <int>
-#>  1      1 23 beats off         1992-10-23    26
-#>  2      2 and the same         1987-09-26   376
-#>  3      3 argument             1999-08-26    66
-#>  4      4 arpeggiator          1997-05-02   154
-#>  5      5 back to base         1994-11-20   136
-#>  6      6 bad mouth            1987-10-16   280
-#>  7      7 bed for the scraping 1994-11-20   299
-#>  8      8 birthday pony        1994-08-15   199
-#>  9      9 blueprint            1989-11-25   584
-#> 10     10 break                1996-08-15   172
+#>  1      1 23 beats off         1992-10-23    27
+#>  2      2 and the same         1987-09-26   397
+#>  3      3 argument             1999-08-26    76
+#>  4      4 arpeggiator          1997-05-02   163
+#>  5      5 back to base         1994-11-20   142
+#>  6      6 bad mouth            1987-10-16   312
+#>  7      7 bed for the scraping 1994-11-20   310
+#>  8      8 birthday pony        1994-08-15   203
+#>  9      9 blueprint            1989-09-23   608
+#> 10     10 break                1996-08-15   179
 #> # ℹ 84 more rows
 ```

@@ -25,7 +25,7 @@ those which never appear in the Fugazi Live Series data.
 ## Examples
 
 ``` r
-  songidlookup
+songidlookup
 #> # A tibble: 94 × 2
 #>    songid song                
 #>     <int> <chr>               

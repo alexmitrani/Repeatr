@@ -18,17 +18,17 @@ January 1991.
     #> # A tibble: 11 × 2
     #>    song                debut     
     #>    <fct>               <date>    
-    #>  1 kyeo                1987-10-07
-    #>  2 long division       1989-04-09
-    #>  3 runaway return      1990-02-11
-    #>  4 reclamation         1990-05-05
-    #>  5 exit only           1990-07-06
-    #>  6 latin roots         1990-10-01
-    #>  7 dear justice letter 1991-01-02
-    #>  8 stacks              1991-02-15
-    #>  9 nice new outfit     1991-02-20
-    #> 10 polish              1991-03-06
-    #> 11 steady diet         1991-04-12
+    #>  1 song #1             1987-09-03
+    #>  2 kyeo                1987-10-07
+    #>  3 long division       1989-04-09
+    #>  4 exit only           1990-07-06
+    #>  5 latin roots         1990-10-01
+    #>  6 dear justice letter 1991-01-02
+    #>  7 stacks              1991-02-15
+    #>  8 nice new outfit     1991-02-20
+    #>  9 polish              1991-03-06
+    #> 10 returning the screw 1992-10-23
+    #> 11 recap modotti       1997-05-01
 
 On the 12th January 1991 the US Congress authorized the use of force to
 eject Iraq from Kuwait, and ‘Operation Desert Storm’ started on the 16th

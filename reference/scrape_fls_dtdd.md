@@ -49,6 +49,13 @@ scrape_fls_dtdd(
 
   specific URL to use for test
 
+## Value
+
+A data frame with one row per scraped show: `gid`, `fls_id`, and
+`fls_data` (the value extracted from the dt/dd pair matching
+`mydt_caption`, or `""` if that show has no such pair). Also written to
+`mycsvfilename`.
+
 ## Examples
 
 ``` r

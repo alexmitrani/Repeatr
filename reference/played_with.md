@@ -34,8 +34,8 @@ https://arquivomotor.wordpress.com/1994/08/12/bhrif-programacao/
 ## Examples
 
 ``` r
-  played_with
-#> # A tibble: 1,681 × 3
+played_with
+#> # A tibble: 1,669 × 3
 #>    gid                      fls_id  played_with     
 #>    <chr>                    <chr>   <chr>           
 #>  1 washington-dc-usa-90387  FLS0001 Fire Party      
@@ -48,5 +48,5 @@ https://arquivomotor.wordpress.com/1994/08/12/bhrif-programacao/
 #>  8 chapel-hill-nc-usa-92787 FLS0003 Slush Puppies   
 #>  9 richmond-va-usa-100787   FLS0004 Killjoy         
 #> 10 richmond-va-usa-100787   FLS0004 Oi Polloi       
-#> # ℹ 1,671 more rows
+#> # ℹ 1,659 more rows
 ```

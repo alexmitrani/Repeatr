@@ -9,7 +9,7 @@ To run the full update: Repeatr_Updatr(really = "really")'></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9185</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9197</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,6 +35,7 @@ To run the full update: Repeatr_Updatr(really = "really")'></head><body>
     <li><a class="dropdown-item" href="../articles/The%20Argument.html">The Argument</a></li>
     <li><a class="dropdown-item" href="../articles/The%20Emperor's%20New%20Outfit.html">The Emperor's New Outfit</a></li>
     <li><a class="dropdown-item" href="../articles/The%20Tyranny%20of%20Distance.html">The Tyranny of Distance</a></li>
+    <li><a class="dropdown-item" href="../articles/Updating%20the%20Data.html">Updating the Data</a></li>
   </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
@@ -59,7 +60,7 @@ To run the full update: Repeatr_Updatr(really = "really")'></head><body>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">Repeatr_Updatr</span><span class="op">(</span>really <span class="op">=</span> <span class="st">"not_really"</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">Repeatr_Updatr</span><span class="op">(</span>really <span class="op">=</span> <span class="st">"not_really"</span>, min_song_count <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -67,9 +68,17 @@ To run the full update: Repeatr_Updatr(really = "really")'></head><body>
 
 
 <dl><dt id="arg-really">really<a class="anchor" aria-label="anchor" href="#arg-really"></a></dt>
-<dd></dd>
+<dd><p>set to "really" to actually run the update; any other value (the default, "not_really") does nothing.</p></dd>
+
+
+<dt id="arg-min-song-count">min_song_count<a class="anchor" aria-label="anchor" href="#arg-min-song-count"></a></dt>
+<dd><p>passed through to <code><a href="Repeatr_1.html">Repeatr_1</a></code>: minimum number of performances a song needs to compete as an alternative in the choice model. Default 2.</p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    <p>Invisibly, the list of results from the final <code><a href="Repeatr_5.html">Repeatr_5()</a></code> call when <code>really = "really"</code>; <code>NULL</code> otherwise. The real effect is refreshing all of the package's <code>data/*.rda</code> objects in place, ready to be reinstalled.</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>

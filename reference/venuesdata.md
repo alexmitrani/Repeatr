@@ -39,7 +39,7 @@ https://www.dischord.com/fugazi_live_series
 ## Examples
 
 ``` r
-  venuesdata
+venuesdata
 #> # A tibble: 733 × 6
 #>    venue         city        country shows  from    to
 #>    <chr>         <chr>       <chr>   <int> <dbl> <dbl>

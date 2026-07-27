@@ -107,8 +107,8 @@ https://web.archive.org/web/20201112000517/http://en.wikipedia.org/wiki/Fugazi_d
 ## Examples
 
 ``` r
-  Repeatr1
-#> # A tibble: 23,280 × 20
+Repeatr1
+#> # A tibble: 24,578 × 20
 #>    gid           date        year month   day tracktype song_number songid song 
 #>    <chr>         <date>     <dbl> <dbl> <int>     <dbl>       <dbl>  <int> <chr>
 #>  1 aalst-belgiu… 1990-09-23  1990     9    23         0           1     NA intro
@@ -121,7 +121,7 @@ https://web.archive.org/web/20201112000517/http://en.wikipedia.org/wiki/Fugazi_d
 #>  8 aalst-belgiu… 1990-09-23  1990     9    23         1           8     13 bull…
 #>  9 aalst-belgiu… 1990-09-23  1990     9    23         1           9     15 burn…
 #> 10 aalst-belgiu… 1990-09-23  1990     9    23         0          10     NA inte…
-#> # ℹ 23,270 more rows
+#> # ℹ 24,568 more rows
 #> # ℹ 11 more variables: number_songs <int>, first_song <dbl>, last_song <dbl>,
 #> #   releaseid <int>, release <chr>, track_number <int>, instrumental <int>,
 #> #   vocals_picciotto <int>, vocals_mackaye <int>, vocals_lally <int>,

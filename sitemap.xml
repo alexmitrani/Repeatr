@@ -14,6 +14,7 @@
 <url><loc>https://alexmitrani.github.io/Repeatr/articles/The Argument.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/articles/The Emperor's New Outfit.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/articles/The Tyranny of Distance.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/articles/Updating the Data.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/articles/au clair de la lune.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/articles/in your memory.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/articles/index.html</loc></url>
@@ -42,8 +43,10 @@
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/fls_tags.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/fls_tags_importer.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/fls_tags_show.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/fugazi_song_choice_model.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/fugazi_song_counts.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/fugazi_song_performance_intensity.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/fugazi_song_preferences.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/fugazi_spotify_data.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/gid_initial_gid_sound_quality.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/gid_sound_quality.html</loc></url>
@@ -59,11 +62,13 @@
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/releaseid_variable_colour_code.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/releases_data_input.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/releases_menu_list.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/releases_rated.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/releases_summary.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/releasesdatalookup.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/results_ml_Repeatr4.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/scrape_fls_data.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/scrape_fls_dtdd.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/scrape_fls_shows.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/sets.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/shows_data.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/song_tempo_bpm_data.html</loc></url>
@@ -75,6 +80,7 @@
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/toursdata.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/transitions.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/transitions_data_da.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/vcovmat_ml_Repeatr4.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/venuesdata.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/xray.html</loc></url>
 </urlset>

@@ -68,8 +68,8 @@ https://www.dischord.com/fugazi_live_series
 ## Examples
 
 ``` r
-  fls_tags
-#> # A tibble: 23,258 × 11
+fls_tags
+#> # A tibble: 24,570 × 11
 #> # Rowwise: 
 #>    track album song  duration seconds date       venue city  state country gid  
 #>    <chr> <chr> <chr> <Period>   <dbl> <date>     <chr> <chr> <chr> <chr>   <chr>
@@ -83,5 +83,5 @@ https://www.dischord.com/fugazi_live_series
 #>  8 08    1987… wait… 3M 52S       232 1987-09-03 Wils… Wash… DC    USA     wash…
 #>  9 09    1987… the … 4M 59S       299 1987-09-03 Wils… Wash… DC    USA     wash…
 #> 10 01    1987… intro 2M 37S       157 1987-09-26 St. … Wash… DC    USA     wash…
-#> # ℹ 23,248 more rows
+#> # ℹ 24,560 more rows
 ```

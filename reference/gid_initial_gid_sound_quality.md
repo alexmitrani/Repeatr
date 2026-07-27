@@ -33,7 +33,7 @@ https://www.dischord.com/fugazi_live_series
 ## Examples
 
 ``` r
-  gid_initial_gid_sound_quality
+gid_initial_gid_sound_quality
 #>                                          gid_initial
 #> 1                                aalst-belgium-92390
 #> 2                                aalst-belgium-92390

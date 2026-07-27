@@ -34,6 +34,12 @@ datestampr(
 
   adds the active username to the timestamp.
 
+## Value
+
+A character string datestamp, formatted according to
+`dateonly`/`houronly`/`minuteonly` and optionally suffixed with the
+current username.
+
 ## Details
 
 datestampr is used internally by the fsm package.
@@ -45,7 +51,7 @@ datestring <- datestampr(myusername=TRUE)
 cat(yellow(paste0("\n \n", "Hello world, have a datestamp: ", datestring, "\n \n")))
 #> 
 #>  
-#> Hello world, have a datestamp: 20260721155739
+#> Hello world, have a datestamp: 20260727213546
 #>  
 #> 
 ```

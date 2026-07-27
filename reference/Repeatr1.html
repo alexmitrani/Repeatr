@@ -9,7 +9,7 @@ The variables song_number, first_song and last_song were defined after data clea
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9185</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9197</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,6 +35,7 @@ The variables song_number, first_song and last_song were defined after data clea
     <li><a class="dropdown-item" href="../articles/The%20Argument.html">The Argument</a></li>
     <li><a class="dropdown-item" href="../articles/The%20Emperor's%20New%20Outfit.html">The Emperor's New Outfit</a></li>
     <li><a class="dropdown-item" href="../articles/The%20Tyranny%20of%20Distance.html">The Tyranny of Distance</a></li>
+    <li><a class="dropdown-item" href="../articles/Updating%20the%20Data.html">Updating the Data</a></li>
   </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
@@ -48,7 +49,7 @@ The variables song_number, first_song and last_song were defined after data clea
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Fugazi Live Series data in long format with related discography data</h1>
-      <small class="dont-index">Source: <a href="https://github.com/alexmitrani/Repeatr/blob/main/R/Repeatr1.R" class="external-link"><code>R/Repeatr1.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/alexmitrani/Repeatr/blob/main/R/data.R" class="external-link"><code>R/data.R</code></a></small>
       <div class="d-none name"><code>Repeatr1.Rd</code></div>
     </div>
 
@@ -134,8 +135,8 @@ The variables song_number, first_song and last_song were defined after data clea
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="va">Repeatr1</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 23,280 × 20</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">Repeatr1</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 24,578 × 20</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    gid           date        year month   day tracktype song_number songid song </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> aalst-belgiu… 1990-09-23  <span style="text-decoration: underline;">1</span>990     9    23         0           1     <span style="color: #BB0000;">NA</span> intro</span>
@@ -148,7 +149,7 @@ The variables song_number, first_song and last_song were defined after data clea
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> aalst-belgiu… 1990-09-23  <span style="text-decoration: underline;">1</span>990     9    23         1           8     13 bull…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> aalst-belgiu… 1990-09-23  <span style="text-decoration: underline;">1</span>990     9    23         1           9     15 burn…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> aalst-belgiu… 1990-09-23  <span style="text-decoration: underline;">1</span>990     9    23         0          10     <span style="color: #BB0000;">NA</span> inte…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 23,270 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 24,568 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 11 more variables: number_songs &lt;int&gt;, first_song &lt;dbl&gt;, last_song &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   releaseid &lt;int&gt;, release &lt;chr&gt;, track_number &lt;int&gt;, instrumental &lt;int&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   vocals_picciotto &lt;int&gt;, vocals_mackaye &lt;int&gt;, vocals_lally &lt;int&gt;,</span></span>

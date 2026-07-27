@@ -21,6 +21,11 @@ compressr(mydf, ...)
   a list of the variables to have their storage modes changed to
   integer.
 
+## Value
+
+The input data frame `mydf`, with the storage mode of any listed
+variables that exist in it converted from double to integer.
+
 ## Details
 
 compressr is used internally by the Repeatr package.

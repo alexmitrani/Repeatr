@@ -84,8 +84,8 @@ https://www.dischord.com/fugazi_live_series
 ## Examples
 
 ``` r
-  xray
-#> # A tibble: 1,804 × 25
+xray
+#> # A tibble: 1,924 × 25
 #>    gid     url   fls_link  year tour  date       units songs released unreleased
 #>    <chr>   <chr> <chr>    <dbl> <chr> <date>     <chr> <dbl>    <dbl>      <dbl>
 #>  1 washin… http… <a href…  1987 1987… 1987-09-03 minu…  31.0     0          31.0
@@ -96,9 +96,9 @@ https://www.dischord.com/fugazi_live_series
 #>  6 washin… http… <a href…  1987 1987… 1987-12-03 minu…  45.7     0          45.7
 #>  7 norwal… http… <a href…  1987 1987… 1987-12-05 minu…  33.7    -5.55       39.2
 #>  8 washin… http… <a href…  1987 1987… 1987-12-28 minu…  52.8     0          52.8
-#>  9 flint-… http… <a href…  1988 1988… 1988-01-21 minu…  44.6     0          44.6
-#> 10 ypsila… http… <a href…  1988 1988… 1988-01-22 minu…  40.5     0          40.5
-#> # ℹ 1,794 more rows
+#>  9 ypsila… http… <a href…  1988 NA    1988-01-19 minu…   0       0           0  
+#> 10 flint-… http… <a href…  1988 1988… 1988-01-21 minu…  44.6     0          44.6
+#> # ℹ 1,914 more rows
 #> # ℹ 15 more variables: other <dbl>, debut <dbl>, farewell <dbl>,
 #> #   incumbent <dbl>, fugazi <dbl>, margin_walker <dbl>, three_songs <dbl>,
 #> #   repeater <dbl>, steady_diet_of_nothing <dbl>, in_on_the_killtaker <dbl>,

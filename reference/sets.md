@@ -26,6 +26,12 @@ sets(mydf = NULL, shows = NULL)
 
   a list of show ids
 
+## Value
+
+A list of two data frames, as described above: the show-by-song table
+(first element) and the shows-per-song-count summary table (second
+element). Both are `NULL` if `shows` is not supplied.
+
 ## Details
 
 sets

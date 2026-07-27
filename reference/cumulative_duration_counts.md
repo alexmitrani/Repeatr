@@ -37,8 +37,8 @@ https://www.dischord.com/fugazi_live_series
 ## Examples
 
 ``` r
-  cumulative_duration_counts
-#> # A tibble: 44,759 × 4
+cumulative_duration_counts
+#> # A tibble: 45,582 × 4
 #>    minutes song                   release             count
 #>      <dbl> <chr>                  <chr>               <int>
 #>  1    0.05 cassavetes             in on the killtaker     1
@@ -46,10 +46,10 @@ https://www.dischord.com/fugazi_live_series
 #>  3    0.08 cassavetes             in on the killtaker     1
 #>  4    0.08 public witness program in on the killtaker     1
 #>  5    0.08 waiting room           fugazi                  1
-#>  6    0.15 cassavetes             in on the killtaker     1
-#>  7    0.15 public witness program in on the killtaker     2
-#>  8    0.15 waiting room           fugazi                  1
-#>  9    0.25 cassavetes             in on the killtaker     1
-#> 10    0.25 public witness program in on the killtaker     2
-#> # ℹ 44,749 more rows
+#>  6    0.1  cassavetes             in on the killtaker     1
+#>  7    0.1  public witness program in on the killtaker     1
+#>  8    0.1  waiting room           fugazi                  1
+#>  9    0.1  suggestion             fugazi                  1
+#> 10    0.15 cassavetes             in on the killtaker     1
+#> # ℹ 45,572 more rows
 ```

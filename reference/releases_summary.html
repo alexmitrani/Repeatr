@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9185</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9197</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,6 +33,7 @@
     <li><a class="dropdown-item" href="../articles/The%20Argument.html">The Argument</a></li>
     <li><a class="dropdown-item" href="../articles/The%20Emperor's%20New%20Outfit.html">The Emperor's New Outfit</a></li>
     <li><a class="dropdown-item" href="../articles/The%20Tyranny%20of%20Distance.html">The Tyranny of Distance</a></li>
+    <li><a class="dropdown-item" href="../articles/Updating%20the%20Data.html">Updating the Data</a></li>
   </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
@@ -46,7 +47,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Releases Summary</h1>
-      <small class="dont-index">Source: <a href="https://github.com/alexmitrani/Repeatr/blob/main/R/releases_summary.R" class="external-link"><code>R/releases_summary.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/alexmitrani/Repeatr/blob/main/R/data.R" class="external-link"><code>R/data.R</code></a></small>
       <div class="d-none name"><code>releases_summary.Rd</code></div>
     </div>
 
@@ -94,22 +95,22 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="va">releases_summary</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">releases_summary</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 12 × 10</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    releaseid release       first_debut last_debut release_date songs count shows</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>         1 fugazi        1987-09-03  1988-06-15 1988-11-19       7  <span style="text-decoration: underline;">2</span>196   890</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>         2 margin walker 1987-09-26  1988-11-14 1989-06-15       6  <span style="text-decoration: underline;">1</span>574   878</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>         3 3 songs       1987-09-03  1987-10-16 1989-12-01       3   588   899</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>         4 repeater      1987-09-03  1990-05-17 1990-03-01      11  <span style="text-decoration: underline;">3</span>887   847</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>         5 steady diet … 1987-10-07  1991-04-12 1991-08-01      11  <span style="text-decoration: underline;">2</span>455   752</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>         6 in on the ki… 1991-07-28  1993-02-05 1993-06-18      12  <span style="text-decoration: underline;">2</span>560   565</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>         7 red medicine  1993-04-28  1994-11-27 1995-05-12      13  <span style="text-decoration: underline;">2</span>054   392</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>         8 end hits      1996-01-30  1998-05-01 1998-04-24      13  <span style="text-decoration: underline;">1</span>361   221</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>         9 the argument  1998-11-29  2001-06-21 2001-10-16      10   430    79</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>        10 furniture     1987-09-03  2001-04-27 2001-10-16       3   206   363</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span>        11 first demo    1987-09-03  1987-09-03 2014-11-18       3    71   900</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span>        13 unreleased    1988-10-31  1996-01-30 <span style="color: #BB0000;">NA</span>               2     8   560</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>         1 fugazi        1987-10-16  1994-08-27 1988-11-19       7  <span style="text-decoration: underline;">1</span>683   852</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>         2 margin walker 1987-09-26  1988-10-21 1989-06-15       6  <span style="text-decoration: underline;">1</span>678   928</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>         3 3 songs       1987-09-03  1992-10-23 1989-12-01       3   547   813</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>         4 repeater      1987-09-03  2001-04-06 1990-03-01      11  <span style="text-decoration: underline;">3</span>320   795</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>         5 steady diet … 1987-09-03  1997-05-01 1991-08-01      11  <span style="text-decoration: underline;">2</span>250   722</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>         6 in on the ki… 1987-09-03  1992-10-23 1993-06-18      12  <span style="text-decoration: underline;">3</span>603   761</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>         7 red medicine  1989-05-03  1994-11-27 1995-05-12      13  <span style="text-decoration: underline;">2</span>447   461</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>         8 end hits      1993-02-05  1998-05-01 1998-04-24      13  <span style="text-decoration: underline;">1</span>551   260</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>         9 the argument  1991-04-12  2001-06-21 2001-10-16      10   732   185</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>        10 furniture     1987-09-03  2001-04-27 2001-10-16       3   230   386</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span>        11 first demo    1987-09-03  2001-04-05 2014-11-18       3   105   655</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span>        13 unreleased    1988-10-31  1992-10-23 <span style="color: #BB0000;">NA</span>               2   153   725</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: intensity &lt;dbl&gt;, rating &lt;dbl&gt;</span></span>
 </code></pre></div>
     </div>

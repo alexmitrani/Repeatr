@@ -37,7 +37,7 @@ https://www.dischord.com/fugazi_live_series
 ## Examples
 
 ``` r
-  transitions
+transitions
 #> # A tibble: 3,053 × 4
 #>    from                to                count count_scaled
 #>    <chr>               <chr>             <int>        <dbl>

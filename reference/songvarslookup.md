@@ -54,7 +54,7 @@ https://web.archive.org/web/20201112000517/http://en.wikipedia.org/wiki/Fugazi_d
 ## Examples
 
 ``` r
-  songvarslookup
+songvarslookup
 #>    rank_length releaseid track_number                         song songid
 #> 1            1         6            6                 23 beats off      1
 #> 2           43         2            2                 and the same      2

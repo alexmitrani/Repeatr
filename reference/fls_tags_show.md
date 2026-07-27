@@ -56,8 +56,8 @@ https://www.dischord.com/fugazi_live_series
 ## Examples
 
 ``` r
-  fls_tags_show
-#> # A tibble: 899 × 9
+fls_tags_show
+#> # A tibble: 954 × 9
 #>    date       venue             city  state country album gid   duration seconds
 #>    <date>     <chr>             <chr> <chr> <chr>   <chr> <chr> <Period>   <dbl>
 #>  1 1987-09-03 Wilson Center     Wash… DC    USA     1987… wash… 31M 58S     1918
@@ -68,7 +68,7 @@ https://www.dischord.com/fugazi_live_series
 #>  6 1987-12-03 Wilson Center     Wash… DC    USA     1987… wash… 54M 22S     3262
 #>  7 1987-12-05 Anthrax           Norw… CT    USA     1987… norw… 46M 26S     2786
 #>  8 1987-12-28 dc space          Wash… DC    USA     1987… wash… 55M 43S     3343
-#>  9 1988-01-21 Fallout Shelter   Capi… MI    USA     1988… flin… 52M 22S     3142
-#> 10 1988-01-22 Eastern Michigan… Ypsi… MI    USA     1988… ypsi… 50M 57S     3057
-#> # ℹ 889 more rows
+#>  9 1988-01-19 McKenny Union Ba… East… MI    USA     1988… NA    50M 57S     3057
+#> 10 1988-01-21 Fallout Shelter   Capi… MI    USA     1988… flin… 52M 22S     3142
+#> # ℹ 944 more rows
 ```

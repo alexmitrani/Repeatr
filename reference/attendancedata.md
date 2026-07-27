@@ -36,7 +36,7 @@ https://www.dischord.com/fugazi_live_series
 ## Examples
 
 ``` r
-  attendancedata
+attendancedata
 #>     year       date                                             venue
 #> 1   1987 1987-09-03                                     Wilson Center
 #> 2   1987 1987-09-26                    St. Stephen's Church Cafeteria

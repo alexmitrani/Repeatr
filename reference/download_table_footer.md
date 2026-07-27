@@ -35,6 +35,13 @@ download_table_footer(
 
   character vector of text to be added at bottom of table
 
+## Value
+
+The input data frame `mydf`, with all columns coerced to character, a
+new text column inserted at the front (named `textcolumnname`), and
+`nblankrows` blank rows plus one row per element of `rowtext` appended
+at the bottom.
+
 ## Details
 
 download_table_footer

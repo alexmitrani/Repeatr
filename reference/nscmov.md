@@ -31,6 +31,14 @@ nscmov(fls_venue_geocoding_update_filename = NULL)
   filename of file with which to update coordinates data in
   othervariables.rda
 
+## Value
+
+The updated `othervariables` data frame, with coordinates and `checked`
+status refreshed from `fls_venue_geocoding_update_filename`. Also saved
+to `data/othervariables.rda`, and writes
+`fls_venue_geocoding_update.csv` - a template listing any venues still
+unresolved (`checked == 0`) - to the working directory.
+
 ## Examples
 
 ``` r

@@ -37,8 +37,8 @@ https://www.dischord.com/fugazi_live_series
 ## Examples
 
 ``` r
-  cumulative_song_counts
-#> # A tibble: 52,218 × 5
+cumulative_song_counts
+#> # A tibble: 54,869 × 5
 #>    date       song                 release    count releasedate
 #>    <date>     <chr>                <chr>      <int> <chr>      
 #>  1 1987-09-03 furniture            furniture      1 16/10/2001 
@@ -51,5 +51,5 @@ https://www.dischord.com/fugazi_live_series
 #>  8 1987-09-03 waiting room         fugazi         1 19/11/1988 
 #>  9 1987-09-26 furniture            furniture      2 16/10/2001 
 #> 10 1987-09-26 in defense of humans first demo     2 18/11/2014 
-#> # ℹ 52,208 more rows
+#> # ℹ 54,859 more rows
 ```

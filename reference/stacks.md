@@ -1,6 +1,7 @@
 # stacks puts together a set of shows that will contain a specified number of unique songs.
 
-stacks
+stacks puts together a set of shows that will contain a specified number
+of unique songs.
 
 ## Usage
 
@@ -34,6 +35,14 @@ stacks(
 
   set to TRUE to exclude shows with poor sound quality
 
+## Value
+
+A list of two data frames: `stack_songs` (`gid`, `song` - one row per
+unique song in the stack, and the show it came from) and
+`stack_shows_songs` (one row per show included in the stack, with
+venue/date/sound-quality details and the number of new songs it
+contributed).
+
 ## Examples
 
 ``` r
@@ -41,6 +50,11 @@ gid_song <- duration_data_da %>%
   select(gid, song)
 
 results <- stacks(mydf = gid_song, mygid = "washington-dc-usa-13196", mynumberofsongs = 94)
+#> Joining with `by = join_by(song)`
+#> Joining with `by = join_by(gid)`
+#> Joining with `by = join_by(gid)`
+#> Joining with `by = join_by(gid)`
+#> Joining with `by = join_by(gid)`
 #> Joining with `by = join_by(song)`
 #> Joining with `by = join_by(gid)`
 #> Joining with `by = join_by(gid)`

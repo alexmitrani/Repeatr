@@ -43,7 +43,7 @@ dataframe with one row for each release.
 ## Examples
 
 ``` r
-  releasesdatalookup
+releasesdatalookup
 #>    releaseid                release               variable releasedate
 #> 1          1                 fugazi                 fugazi  19/11/1988
 #> 2          2          margin walker          margin_walker  15/06/1989

@@ -15,12 +15,21 @@ Repeatr_3(mydf = NULL)
   optional dataframe to be used. If omitted the default dataframe will
   be used.
 
+## Value
+
+A data frame (`Repeatr3`) reduced to the variables needed for mlogit
+choice modelling (`case`, `song_number`, `alt`, `choice`, `yearsold`
+buckets and their interactions with vocalist dummies, etc.), with
+numeric variables compressed to integer storage via
+[`compressr()`](https://alexmitrani.github.io/Repeatr/reference/compressr.md).
+Also saved to `data/Repeatr3.rda`.
+
 ## Examples
 
 ``` r
 Repeatr3 <- Repeatr_3(mydf = Repeatr2)
 #> Joining with `by = join_by(case)`
-#> Size of Repeatr3 before converting the storage modes of specified variables to integer: 144.251 MB. 
+#> Size of Repeatr3 before converting the storage modes of specified variables to integer: 151.175 MB. 
 #> The following variables will have their storage modes converted to integer, if they exist in Repeatr3: 
 #>  [1] "vocals_mackaye"          "vocals_picciotto"       
 #>  [3] "vocals_lally"            "vocals_picciotto_sum"   
@@ -36,7 +45,7 @@ Repeatr3 <- Repeatr_3(mydf = Repeatr2)
 #> [23] "yearsold_4_vp"           "yearsold_5_vp"          
 #> [25] "yearsold_6_vp"           "yearsold_7_vp"          
 #> [27] "yearsold_8_vp"          
-#> Size of Repeatr3 after converting storage mode of variables to integer: 137.219 MB. 
-#> RAM saved: 7.032 MB. 
+#> Size of Repeatr3 after converting storage mode of variables to integer: 143.804 MB. 
+#> RAM saved: 7.371 MB. 
 #> Error in setwd(mydatadir): cannot change working directory
 ```

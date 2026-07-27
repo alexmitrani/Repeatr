@@ -30,7 +30,7 @@ for Android and also finger tapping with a timer.
 ## Examples
 
 ``` r
-  song_tempo_bpm_data
+song_tempo_bpm_data
 #> # A tibble: 94 × 2
 #>    song                 tempo_bpm
 #>    <chr>                    <dbl>

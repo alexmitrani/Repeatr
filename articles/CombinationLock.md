@@ -41,7 +41,7 @@ mydf1 <- Repeatr1 %>%
   rename(song1 = song)
 
 print(paste0("There are ", nrow(mydf1), " rows in this dataframe."))
-#> [1] "There are 23280 rows in this dataframe."
+#> [1] "There are 24578 rows in this dataframe."
 
 head(mydf1)
 #> # A tibble: 6 × 3
@@ -75,7 +75,7 @@ mydf3 <- mydf1 %>%
 #> Joining with `by = join_by(gid, song_number)`
 
 print(paste0("There are ", nrow(mydf3), " rows in this dataframe."))
-#> [1] "There are 22376 rows in this dataframe."
+#> [1] "There are 23620 rows in this dataframe."
 
 head(mydf3)
 #> # A tibble: 6 × 4
@@ -106,7 +106,7 @@ checknumberofshows <- Repeatr1 %>%
 numberofshows <- nrow(checknumberofshows)
 
 print(paste0("There are ", numberofshows, " rows in this dataframe."))
-#> [1] "There are 902 rows in this dataframe."
+#> [1] "There are 953 rows in this dataframe."
 
 head(checknumberofshows)
 #> # A tibble: 6 × 2
@@ -124,7 +124,7 @@ numberofsongs <- sum(checknumberofshows$songs)
 numberoftransitions <- numberofsongs - numberofshows
 
 print(paste0("There are ", numberofsongs, " songs, ", numberofshows, " shows, and ", numberoftransitions, " transitions between songs in the Fugazi Live Series data."  ))
-#> [1] "There are 23280 songs, 902 shows, and 22378 transitions between songs in the Fugazi Live Series data."
+#> [1] "There are 24578 songs, 953 shows, and 23625 transitions between songs in the Fugazi Live Series data."
 ```
 
 Now let’s summarise the data to count how many times each transition
@@ -156,12 +156,12 @@ head(transitions)
 #> # A tibble: 6 × 3
 #>   from              to               count
 #>   <chr>             <chr>            <int>
-#> 1 long division     blueprint          176
-#> 2 suggestion        give me the cure   157
-#> 3 reprovisional     outro              115
-#> 4 repeater          reprovisional      114
-#> 5 sieve-fisted find reclamation        112
-#> 6 sweet and low     outro              109
+#> 1 long division     blueprint          179
+#> 2 suggestion        give me the cure   170
+#> 3 repeater          reprovisional      117
+#> 4 reprovisional     outro              117
+#> 5 two beats off     repeater           116
+#> 6 sieve-fisted find reclamation        114
 ```
 
 ## Probabilities of transitions between songs given availability of both songs
@@ -209,12 +209,12 @@ head(transitions)
 #> # A tibble: 6 × 7
 #>   from   to    from_available_rl to_available_rl available_rl count count_scaled
 #>   <chr>  <chr>             <dbl>           <dbl>        <dbl> <int>        <dbl>
-#> 1 long … blue…               848             826          826   176        0.213
-#> 2 sugge… give…               896             888          888   157        0.177
-#> 3 break  plac…               229             229          229    35        0.153
-#> 4 argum… blue…               101             826          101    15        0.149
-#> 5 sieve… recl…               853             795          795   112        0.141
-#> 6 life … clos…                44             199           44     6        0.136
+#> 1 long … blue…               889             873          873   179        0.205
+#> 2 sugge… give…               947             939          939   170        0.181
+#> 3 break  plac…               244             244          244    38        0.156
+#> 4 life … clos…                47             211           47     7        0.149
+#> 5 argum… blue…               113             873          113    16        0.142
+#> 6 sieve… recl…               894             820          820   114        0.139
 
 transitions <- transitions %>%
   select(from, to, count, count_scaled)
@@ -373,16 +373,16 @@ transitions_by_group
 #> # A tibble: 25 × 4
 #>    from_vocals  to_vocals    count proportion
 #>    <chr>        <chr>        <int>      <dbl>
-#>  1 mackaye      picciotto     4943       0.22
-#>  2 picciotto    mackaye       4784       0.21
-#>  3 NA           mackaye       2500       0.11
-#>  4 mackaye      NA            2412       0.11
-#>  5 picciotto    NA            2332       0.1 
-#>  6 NA           picciotto     2149       0.1 
-#>  7 mackaye      mackaye        552       0.02
-#>  8 NA           instrumental   418       0.02
-#>  9 instrumental mackaye        355       0.02
-#> 10 mackaye      instrumental   277       0.01
+#>  1 mackaye      picciotto     5163       0.22
+#>  2 picciotto    mackaye       4993       0.21
+#>  3 NA           mackaye       2679       0.11
+#>  4 mackaye      NA            2562       0.11
+#>  5 picciotto    NA            2483       0.11
+#>  6 NA           picciotto     2273       0.1 
+#>  7 mackaye      mackaye        609       0.03
+#>  8 NA           instrumental   437       0.02
+#>  9 instrumental mackaye        358       0.02
+#> 10 mackaye      instrumental   296       0.01
 #> # ℹ 15 more rows
 ```
 

@@ -60,10 +60,16 @@
   file.
 - [`fls_tags_show`](https://alexmitrani.github.io/Repeatr/reference/fls_tags_show.md)
   : Tags data, one record per show
+- [`fugazi_song_choice_model`](https://alexmitrani.github.io/Repeatr/reference/fugazi_song_choice_model.md)
+  : Fugazi song choice model results, with song names substituted in for
+  intercept terms
 - [`fugazi_song_counts`](https://alexmitrani.github.io/Repeatr/reference/fugazi_song_counts.md)
   : Fugazi song performance counts
 - [`fugazi_song_performance_intensity`](https://alexmitrani.github.io/Repeatr/reference/fugazi_song_performance_intensity.md)
   : Fugazi song performance intensity data
+- [`fugazi_song_preferences`](https://alexmitrani.github.io/Repeatr/reference/fugazi_song_preferences.md)
+  : Fugazi song preferences, ranked by estimated intercept (implied
+  preference)
 - [`fugazi_spotify_data()`](https://alexmitrani.github.io/Repeatr/reference/fugazi_spotify_data.md)
   : fugazi_spotify_data provides basic code for extracting metadata on
   Fugazi songs from the Spotify API. .
@@ -99,7 +105,9 @@
 - [`releases_data_input`](https://alexmitrani.github.io/Repeatr/reference/releases_data_input.md)
   : Releases data input
 - [`releases_menu_list`](https://alexmitrani.github.io/Repeatr/reference/releases_menu_list.md)
-  : Releases Summary
+  : Releases menu list
+- [`releases_rated`](https://alexmitrani.github.io/Repeatr/reference/releases_rated.md)
+  : Average estimated song rating by release
 - [`releases_summary`](https://alexmitrani.github.io/Repeatr/reference/releases_summary.md)
   : Releases Summary
 - [`releasesdatalookup`](https://alexmitrani.github.io/Repeatr/reference/releasesdatalookup.md)
@@ -112,6 +120,8 @@
 - [`scrape_fls_dtdd()`](https://alexmitrani.github.io/Repeatr/reference/scrape_fls_dtdd.md)
   : Scrape data from Fugazi Live Series show info tables using dt and dd
   tags.
+- [`scrape_fls_shows()`](https://alexmitrani.github.io/Repeatr/reference/scrape_fls_shows.md)
+  : Scrape an up-to-date Fugazi Live Series dataset, including new shows
 - [`sets()`](https://alexmitrani.github.io/Repeatr/reference/sets.md) :
   compares the setlists of two or more shows.
 - [`shows_data`](https://alexmitrani.github.io/Repeatr/reference/shows_data.md)
@@ -136,6 +146,8 @@
   : Transitions
 - [`transitions_data_da`](https://alexmitrani.github.io/Repeatr/reference/transitions_data_da.md)
   : Transitions Data
+- [`vcovmat_ml_Repeatr4`](https://alexmitrani.github.io/Repeatr/reference/vcovmat_ml_Repeatr4.md)
+  : Variance-covariance matrix from the model ml.Repeatr4
 - [`venuesdata`](https://alexmitrani.github.io/Repeatr/reference/venuesdata.md)
   : Venues data
 - [`xray`](https://alexmitrani.github.io/Repeatr/reference/xray.md) :

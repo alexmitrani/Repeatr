@@ -33,7 +33,7 @@ https://www.dischord.com/fugazi_live_series
 ## Examples
 
 ``` r
-  releaseid_variable_colour_code
+releaseid_variable_colour_code
 #>    releaseid               variable colour_code
 #> 1          1                 fugazi     #80110e
 #> 2          2          margin_walker     #f1bd98

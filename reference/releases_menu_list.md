@@ -1,6 +1,6 @@
-# Releases Summary
+# Releases menu list
 
-Releases Summary
+Releases menu list
 
 ## Usage
 
@@ -54,7 +54,7 @@ https://www.dischord.com/fugazi_live_series
 ## Examples
 
 ``` r
-  releases_menu_list
+releases_menu_list
 #>    releaseid                release               variable releasedate
 #> 1          1                 fugazi                 fugazi  19/11/1988
 #> 2          2          margin walker          margin_walker  15/06/1989

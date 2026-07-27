@@ -15,6 +15,12 @@ fls_tags_importer(myfilename = NULL)
 
   the full path and filename of the file to be imported and converted.
 
+## Value
+
+A data frame of the imported tag data (`track`, `artist`, `album`,
+`name`, `duration`), with `duration` parsed into an hms `Period` and
+`seconds`/`minutes` columns added.
+
 ## Details
 
 fls_tags_importer

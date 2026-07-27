@@ -29,8 +29,34 @@ fugazi_spotify_data(app_id = NULL, client_id = NULL, client_secret = NULL)
 
 ## Arguments
 
+- app_id:
+
+  Spotify app id, as generated in the Spotify developer dashboard.
+
+- client_id:
+
+  Spotify client id, as generated in the Spotify developer dashboard.
+
 - client_secret:
+
+  Spotify client secret, as generated in the Spotify developer
+  dashboard.
+
+## Value
+
+A data frame with one row per Fugazi track, combining Spotify's per-song
+audio features (e.g. tempo) with the track and album name.
 
 ## Details
 
 fugazi_spotify_data
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+library(Rspotify)
+key_spotify <- spotifyOAuth("app_id", "client_id", "client_secret")
+fugazi_tracks <- fugazi_spotify_data(app_id = "app_id", client_id = "client_id", client_secret = "client_secret")
+} # }
+```

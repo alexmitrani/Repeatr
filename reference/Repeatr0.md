@@ -1,7 +1,9 @@
 # Fugazi Live Series data
 
-This data was scraped from the Fugazi Live Series website by Carni Klirs
-for his project "Visualizing the History of Fugazi".
+This data was originally scraped from the Fugazi Live Series website by
+Carni Klirs for his project "Visualizing the History of Fugazi", and is
+now kept up to date via
+[`scrape_fls_shows`](https://alexmitrani.github.io/Repeatr/reference/scrape_fls_shows.md).
 
 ## Usage
 
@@ -13,45 +15,59 @@ Repeatr0
 
 dataframe with one row for each show.
 
-- V1:
+- gid:
 
   show id
 
-- V2:
+- fls_id:
 
   Fugazi Live Series id
 
-- V3:
+- show_date:
 
   Show date
 
-- V4:
+- venue:
 
   Venue
 
-- V5:
+- door_price:
 
   Door price
 
-- V6:
+- attendance:
 
   Attendance
 
-- V7:
+- recorded_by:
 
   Recorded by
 
-- V8:
+- mastered_by:
 
   Mastered by
 
-- V9:
+- original_source:
 
   Original source
 
-- V10-V50:
+- sound_quality:
 
-  Tracks
+  Sound quality rating: Excellent, Very Good, Good, or Poor
+
+- played_with:
+
+  Bands played with, comma-separated
+
+- fls_notes:
+
+  Any official note shown on the show's page (e.g. "Previously released
+  on CD (FLS29)"), NA when the show has none
+
+- track_1-track_n:
+
+  Tracks, one column per track slot up to the widest tracklist in the
+  data
 
 ## Source
 
@@ -62,11 +78,11 @@ https://www.dischord.com/fugazi_live_series
 ``` r
 # What is the total number of people that Fugazi performed for in the shows that are available in the Fugazi Live Series data?
 test <- Repeatr0
-test <- test %>% mutate(attendancedata = nchar(V6))
+test <- test %>% mutate(attendancedata = nchar(attendance))
 test <- test %>% filter(attendancedata>0)
-test <- test %>% mutate(attendance = as.numeric(V6))
+test <- test %>% mutate(attendance = as.numeric(attendance))
 test <- test %>% filter(is.na(attendance)==FALSE)
 totalpeople <- sum(test$attendance)
 totalpeople
-#> [1] 885250
+#> [1] 885650
 ```

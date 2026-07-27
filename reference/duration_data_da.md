@@ -51,8 +51,8 @@ https://www.dischord.com/fugazi_live_series
 ## Examples
 
 ``` r
-  duration_data_da
-#> # A tibble: 17,391 × 7
+duration_data_da
+#> # A tibble: 18,340 × 7
 #>    gid                 date       song_number song        urls  fls_link minutes
 #>    <chr>               <date>           <dbl> <chr>       <chr> <chr>      <dbl>
 #>  1 aalst-belgium-92390 1990-09-23           2 turnover    http… <a href…    4.43
@@ -65,5 +65,5 @@ https://www.dischord.com/fugazi_live_series
 #>  8 aalst-belgium-92390 1990-09-23          11 suggestion  http… <a href…    6.4 
 #>  9 aalst-belgium-92390 1990-09-23          13 reclamation http… <a href…    3.52
 #> 10 aalst-belgium-92390 1990-09-23          14 blueprint   http… <a href…    4.33
-#> # ℹ 17,381 more rows
+#> # ℹ 18,330 more rows
 ```

@@ -14,19 +14,19 @@ release on Repeater which was released around the 1 March 1990 ([Fugazi
 would be released on Repeater.
 
     #> # A tibble: 11 × 2
-    #>    song              debut     
-    #>    <fct>             <date>    
-    #>  1 merchandise       1987-09-03
-    #>  2 reprovisional     1988-12-29
-    #>  3 shut the door     1989-03-24
-    #>  4 greed             1989-03-24
-    #>  5 sieve-fisted find 1989-03-24
-    #>  6 brendan #1        1989-03-24
-    #>  7 turnover          1989-04-09
-    #>  8 two beats off     1989-05-03
-    #>  9 repeater          1989-07-20
-    #> 10 blueprint         1989-11-25
-    #> 11 styrofoam         1990-05-17
+    #>    song               debut     
+    #>    <fct>              <date>    
+    #>  1 merchandise        1987-09-03
+    #>  2 turn off your guns 1987-09-03
+    #>  3 greed              1989-03-24
+    #>  4 shut the door      1989-03-24
+    #>  5 brendan #1         1989-03-24
+    #>  6 turnover           1989-04-09
+    #>  7 repeater           1989-07-19
+    #>  8 blueprint          1989-09-23
+    #>  9 runaway return     1990-02-11
+    #> 10 rend it            1991-12-08
+    #> 11 strangelight       2001-04-06
 
 Fugazi played Two Beats Off at least 371 times with the last recorded
 version being on the 6 July 2001 in Victoria, BC, Canada. Two Beats Off

@@ -1,0 +1,189 @@
+# Updating the Data
+
+## Overview
+
+The package’s data comes from three independent sources, updated on
+three different schedules:
+
+1.  **Show data** - dates, venues, attendance, sound quality,
+    played-with bands, notes, and tracklists, scraped from the [Fugazi
+    Live Series](https://www.dischord.com/fugazi_live_series) website.
+    Fully automated via
+    [`scrape_fls_shows()`](https://alexmitrani.github.io/Repeatr/reference/scrape_fls_shows.md).
+2.  **Tags/duration data** - song-level timings, taken from my own
+    personally-tagged MP3 collection. Manual, done outside this
+    repository.
+3.  **Venue coordinates** - latitude/longitude for each venue. Manual,
+    looked up on Google Maps as new venues show up.
+
+All three feed into
+[`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md),
+which combines them (plus a fair amount of hand-written, gid-keyed
+correction code accumulated over time) into the package’s `data/*.rda`
+objects. `Repeatr_Updatr(really = "really")` runs
+[`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)
+and the rest of the modelling pipeline (`Repeatr_2` through `Repeatr_5`)
+in sequence, and the
+[Fugazetteer](https://alexmitrani.shinyapps.io/Fugazetteer/) Shiny app
+is just a consumer of those same rebuilt `data/*.rda` objects - it never
+reads a CSV directly, so once the package data is rebuilt and
+reinstalled the app picks it up automatically.
+
+None of steps 1-3 need to happen together. Run whichever one has new
+material, then rebuild (step 4) and redeploy (step 5).
+
+`data-raw/build_data.R` is the canonical, runnable version of steps 1-4
+below - this vignette explains the why, that script is what to actually
+run.
+
+## 1. Updating show data
+
+[`scrape_fls_shows()`](https://alexmitrani.github.io/Repeatr/reference/scrape_fls_shows.md)
+(`R/scrape_fls_shows.R`) discovers the current show listing directly
+from the site - including any pages added since the last run - and
+scrapes each show’s detail page for date, venue, door price, attendance,
+recorded/mastered by, original source, sound quality, played-with, any
+official notes, and the tracklist.
+
+Test on a small slice first:
+
+``` r
+
+test_shows <- scrape_fls_shows(max_listing_pages = 1, max_shows = 3, sleepseconds = 2)
+```
+
+By default it’s incremental: it only scrapes shows not already in the
+existing dataset (`fls_data.csv` unless you point `existing_data`
+elsewhere), so routine re-runs are quick. It also picks up on shows
+whose recording has newly gone from unavailable to available
+(`detect_changes`, on by default) without needing a full re-scrape -
+this is how ~50 shows that had gone from “no tracklist yet” to fully
+available got picked up in one run without touching the ~1000 shows that
+hadn’t changed.
+
+To actually refresh the packaged file, for real, against the live site:
+
+``` r
+
+fls_data <- scrape_fls_shows(
+  update_existing = TRUE,
+  sleepseconds = 2,
+  mycsvfilename = "inst/extdata/fls_data.csv"
+)
+```
+
+A few things worth knowing:
+
+- It respects a delay (`sleepseconds`, default 2) between every request,
+  listing pages and show pages alike - don’t reduce this to hammer the
+  site.
+- A full run pages through every listing page and scrapes every target
+  show, which can be tens of minutes depending on how many shows are
+  new. `max_shows`/`max_listing_pages` cap it for testing.
+- `fugazi-live-all-access` (FLS0000) is a standing all-access download
+  bundle, not a show, and is always excluded automatically.
+- `fls_data.csv` supersedes the older `fugotcha.csv`,
+  `gid_fls_id_sound_quality.csv` and `gid_fls_id_played_with.csv` -
+  those older files are left in place for reference but nothing reads
+  them anymore.
+
+## 2. Updating tags/duration data
+
+Song-level durations (`fls_tags`, `fls_tags_show`, and everything
+derived from them like `duration_summary`, `cumulative_duration_counts`)
+come from `inst/extdata/fls_tags.txt`, which isn’t produced by any
+script - it’s exported from [kid3](https://kid3.kde.org/), the audio
+tagger I use to tag every MP3 as I listen to it (see the [All
+Access](https://alexmitrani.github.io/Repeatr/articles/AllAccess.md)
+article for the listening process itself). Each show’s MP3s get tagged
+with the track name and album set to
+`YYYYMMDD Venue, City, State, Country`, and duration comes along for
+free from the file itself.
+
+To update: open the new mp3 files in kid3, export the tag data as format
+“CSV quoted” with header `track; artist; album; name; duration` and
+tracks `"%{track}";"%{artist}";"%{album}";"%{title}";"%{duration}"`.
+Open the resulting file in a text editor, remove the quotation marks and
+add spaces after the semi-colons using find and replace, then and add
+the new data to the end of any existing `inst/extdata/fls_tags.txt`
+file, or create the file if it does not exist. **Save as UTF-8**, not
+the editor’s default ANSI/system codepage - a venue or city name with an
+accent (é, ö, ã, …) saved in the wrong encoding will parse fine at first
+but crash
+[`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)
+with an `invalid multibyte string` error once it reaches
+[`nchar()`](https://rdrr.io/r/base/nchar.html)/[`gregexpr()`](https://rdrr.io/r/base/grep.html)
+further down.
+[`fls_tags_importer()`](https://alexmitrani.github.io/Repeatr/reference/fls_tags_importer.md)
+parses it, and
+[`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)
+calls it automatically - no separate function to run. If a new show’s
+`album` string doesn’t parse cleanly (typos happen),
+[`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)’s
+“process tags data” section is where the hand-written corrections for
+specific albums/venues live - add a new `mutate(album = ifelse(...))`
+line there following the existing pattern if needed.
+
+## 3. Updating venue coordinates
+
+Venue coordinates are looked up by hand on Google Maps and kept in
+`inst/extdata/fls_venue_geocoding.csv`.
+[`nscmov()`](https://alexmitrani.github.io/Repeatr/reference/nscmov.md)
+(`R/nscmov.R`) automates the bookkeeping around this, but not the lookup
+itself:
+
+``` r
+
+othervariables <- nscmov()
+```
+
+This applies whatever coordinates are already confirmed in
+`fls_venue_geocoding.csv`, then writes
+`fls_venue_geocoding_update.csv` - a to-do list of every venue that’s
+still unresolved (`checked == 0`). For each row, look the venue up on
+Google Maps, fill in `googlemaps_hyperlink`, `link_x`, `link_y` (and
+`city_disambiguation`/`guess`/`unknown` where relevant), then merge
+those filled-in rows back into `fls_venue_geocoding.csv` by hand. Run
+[`nscmov()`](https://alexmitrani.github.io/Repeatr/reference/nscmov.md)
+again to confirm the new venues are picked up (`checked` should flip to
+1).
+
+## 4. Rebuilding everything
+
+Once any of the above is updated, rebuild the package’s data objects:
+
+``` r
+
+Repeatr_Updatr(really = "really")
+```
+
+This runs
+`Repeatr_1() -> Repeatr_2() -> Repeatr_3() -> Repeatr_4() -> Repeatr_5()`
+and saves every downstream dataset (`othervariables`, `Repeatr0`,
+`Repeatr1`, `gid_sound_quality`, `played_with`, `shows_data`, `xray`,
+`fls_tags`, `fls_tags_show`, the choice-model outputs, and more) into
+`data/`. It’s the `really = "not_really"` default that stops this
+running by accident - always pass `really = "really"` explicitly. It can
+take a while (the choice model fit in
+[`Repeatr_4()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_4.md)
+is the slow part), so it’s worth checking
+[`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)
+on its own first if you only want to sanity-check the data-ingestion
+changes.
+
+## 5. Reinstalling and redeploying
+
+1.  Commit and push the updated `inst/extdata/*` source files and the
+    regenerated `data/*.rda` files.
+2.  Reinstall the package from the updated source
+    (`devtools::install()`, or
+    `devtools::install_github("alexmitrani/Repeatr")` once pushed).
+3.  Run the Shiny app locally to check nothing broke:
+    `shiny::runApp("inst/shiny/Fugazetteer")`.
+4.  Redeploy to shinyapps.io
+    (`rsconnect::deployApp("inst/shiny/Fugazetteer")`, or the RStudio
+    “Publish” button from `app.R`).
+
+The app only ever reads the package’s lazy-loaded data objects, never
+the raw CSVs, so as long as steps 1-4 above ran cleanly there’s nothing
+else to change in `app.R` itself.

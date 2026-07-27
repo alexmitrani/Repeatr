@@ -55,7 +55,7 @@ https://www.dischord.com/fugazi_live_series
 ## Examples
 
 ``` r
-  toursdata
+toursdata
 #> # A tibble: 76 × 9
 #>    tour           start      end        shows duration attendance meanattendance
 #>    <chr>          <date>     <date>     <int>    <int>      <int>          <int>

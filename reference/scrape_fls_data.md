@@ -40,6 +40,12 @@ scrape_fls_data(
 
   html element that contains the data to be scraped
 
+## Value
+
+A data frame with one row per scraped show: `gid`, `fls_id`, and
+`fls_data` (the trimmed text extracted from `my_data_html_element`).
+Also written to `mycsvfilename`.
+
 ## Examples
 
 ``` r

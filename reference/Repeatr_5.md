@@ -18,6 +18,17 @@ Repeatr_5(mymodeldf = NULL)
   the results. If omitted, the default choice model coefficients
   dataframe will be used, which is results_ml_Repeatr4.
 
+## Value
+
+A list of 5 elements: `fugazi_song_choice_model` (per-variable
+coefficient table with song names substituted in for the intercept
+terms), `fugazi_song_preferences` (songs ranked by estimated
+preference), `summary` (song performance summary combining counts,
+intensity and rating), `releases_rated` (average rating by release), and
+`releases_data_input` (per-song-per-release data enriched with the
+estimated rating). Each of these, plus `releases_summary`, is also saved
+into `data/`.
+
 ## Examples
 
 ``` r

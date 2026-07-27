@@ -49,8 +49,8 @@ https://www.dischord.com/fugazi_live_series
 ## Examples
 
 ``` r
-  transitions_data_da
-#> # A tibble: 12,052 × 7
+transitions_data_da
+#> # A tibble: 12,623 × 7
 #>    gid                 url                 fls_link date  transition song1 song2
 #>    <chr>               <chr>               <chr>    <chr>      <int> <chr> <chr>
 #>  1 aalst-belgium-92390 https://www.discho… <a href… 1990…          2 turn… bren…
@@ -63,5 +63,5 @@ https://www.dischord.com/fugazi_live_series
 #>  8 aalst-belgium-92390 https://www.discho… <a href… 1990…         15 shut… two …
 #>  9 aalst-belgium-92390 https://www.discho… <a href… 1990…         16 two … repr…
 #> 10 aalst-belgium-92390 https://www.discho… <a href… 1990…         21 runa… repe…
-#> # ℹ 12,042 more rows
+#> # ℹ 12,613 more rows
 ```

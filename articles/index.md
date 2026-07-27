@@ -26,3 +26,5 @@
   Outfit](https://alexmitrani.github.io/Repeatr/articles/The%20Emperor's%20New%20Outfit.md):
 - [The Tyranny of
   Distance](https://alexmitrani.github.io/Repeatr/articles/The%20Tyranny%20of%20Distance.md):
+- [Updating the
+  Data](https://alexmitrani.github.io/Repeatr/articles/Updating%20the%20Data.md):

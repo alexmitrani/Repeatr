@@ -78,67 +78,67 @@ available in all the Fugazi Live Series shows with data.
 
 - yearsold_1:
 
-  1 ≤ age \< 2
+  1 \<= age \< 2
 
 - yearsold_2:
 
-  2 ≤ age \< 3
+  2 \<= age \< 3
 
 - yearsold_3:
 
-  3 ≤ age \< 4
+  3 \<= age \< 4
 
 - yearsold_4:
 
-  4 ≤ age \< 5
+  4 \<= age \< 5
 
 - yearsold_5:
 
-  5 ≤ age \< 6
+  5 \<= age \< 6
 
 - yearsold_6:
 
-  6 ≤ age \< 7
+  6 \<= age \< 7
 
 - yearsold_7:
 
-  7 ≤ age \< 8
+  7 \<= age \< 8
 
 - yearsold_8:
 
-  8 ≤ age
+  8 \<= age
 
 - yearsold_1_vp:
 
-  1 ≤ age \< 2 and vocals Picciotto
+  1 \<= age \< 2 and vocals Picciotto
 
 - yearsold_2_vp:
 
-  2 ≤ age \< 3 and vocals Picciotto
+  2 \<= age \< 3 and vocals Picciotto
 
 - yearsold_3_vp:
 
-  3 ≤ age \< 4 and vocals Picciotto
+  3 \<= age \< 4 and vocals Picciotto
 
 - yearsold_4_vp:
 
-  4 ≤ age \< 5 and vocals Picciotto
+  4 \<= age \< 5 and vocals Picciotto
 
 - yearsold_5_vp:
 
-  5 ≤ age \< 6 and vocals Picciotto
+  5 \<= age \< 6 and vocals Picciotto
 
 - yearsold_6_vp:
 
-  6 ≤ age \< 7 and vocals Picciotto
+  6 \<= age \< 7 and vocals Picciotto
 
 - yearsold_7_vp:
 
-  7 ≤ age \< 8 and vocals Picciotto
+  7 \<= age \< 8 and vocals Picciotto
 
 - yearsold_8_vp:
 
-  8 ≤ age and vocals Picciotto
+  8 \<= age and vocals Picciotto
 
 - first_song_instrumental:
 
@@ -165,21 +165,21 @@ https://web.archive.org/web/20201112000517/http://en.wikipedia.org/wiki/Fugazi_d
 ## Examples
 
 ``` r
-  Repeatr3
-#> # A tibble: 878,971 × 34
+Repeatr3
+#> # A tibble: 921,299 × 34
 #>    gid    case song_number   alt choice yearsold vocals_mackaye vocals_picciotto
 #>    <chr> <int>       <int> <dbl>  <dbl>    <int>          <int>            <int>
 #>  1 wash…     1           1    36      0        0              0                0
 #>  2 wash…     1           1    43      0        0              0                0
 #>  3 wash…     1           1    45      1        0              0                0
 #>  4 wash…     1           1    55      0        0              0                0
-#>  5 wash…     1           1    78      0        0              0                0
-#>  6 wash…     1           1    87      0        0              0                0
-#>  7 wash…     1           1    88      0        0              0                0
-#>  8 wash…     1           1    92      0        0              0                0
+#>  5 wash…     1           1    79      0        0              0                0
+#>  6 wash…     1           1    88      0        0              0                0
+#>  7 wash…     1           1    89      0        0              0                0
+#>  8 wash…     1           1    93      0        0              0                0
 #>  9 wash…     3           3    36      0        0              1                0
 #> 10 wash…     3           3    43      0        0              1                0
-#> # ℹ 878,961 more rows
+#> # ℹ 921,289 more rows
 #> # ℹ 26 more variables: vocals_lally <int>, instrumental <int>,
 #> #   first_song <dbl>, last_song <dbl>, duration_seconds <int>,
 #> #   yearsold_0 <int>, yearsold_1 <int>, yearsold_2 <int>, yearsold_3 <int>,

@@ -15,7 +15,7 @@ that were performed live, using data from … how many shows?
 
 one_row_per_show <- Repeatr1 %>% group_by(gid) %>% slice(1) %>% ungroup()
 nrow(one_row_per_show)
-#> [1] 902
+#> [1] 953
 ```
 
 These frequency counts do not necessarily measure the band’s preferences
@@ -34,100 +34,100 @@ knitr::kable(fugazi_song_counts, "pipe")
 
 | songid | song                         | launchdate | count |
 |-------:|:-----------------------------|:-----------|------:|
-|     92 | waiting room                 | 1987-09-03 |   633 |
-|     69 | reclamation                  | 1990-05-05 |   594 |
-|      9 | blueprint                    | 1989-11-25 |   584 |
-|     53 | long division                | 1989-04-09 |   498 |
-|     55 | merchandise                  | 1987-09-03 |   477 |
-|     54 | margin walker                | 1988-08-01 |   430 |
-|     76 | sieve-fisted find            | 1989-03-24 |   418 |
-|     71 | repeater                     | 1989-07-20 |   410 |
-|     89 | turnover                     | 1989-04-09 |   395 |
-|     65 | promises                     | 1988-10-15 |   380 |
-|      2 | and the same                 | 1987-09-26 |   376 |
-|     90 | two beats off                | 1989-05-03 |   371 |
-|     37 | give me the cure             | 1988-03-25 |   370 |
-|     70 | rend it                      | 1991-12-08 |   346 |
-|     83 | suggestion                   | 1987-12-03 |   340 |
-|     75 | shut the door                | 1989-03-24 |   323 |
-|     78 | song \#1                     | 1987-09-03 |   322 |
-|      7 | bed for the scraping         | 1994-11-20 |   299 |
-|     28 | facet squared                | 1991-08-12 |   299 |
-|     82 | styrofoam                    | 1990-05-17 |   287 |
-|      6 | bad mouth                    | 1987-10-16 |   280 |
-|     72 | reprovisional                | 1988-12-29 |   276 |
-|     27 | exit only                    | 1990-07-06 |   275 |
-|     44 | instrument                   | 1992-01-25 |   273 |
-|     23 | do you like me               | 1994-11-20 |   272 |
-|     39 | great cop                    | 1991-12-08 |   268 |
-|     74 | runaway return               | 1990-02-11 |   265 |
-|     67 | public witness program       | 1993-02-05 |   264 |
-|     85 | target                       | 1994-08-15 |   260 |
-|     77 | smallpox champion            | 1992-10-23 |   253 |
-|     84 | sweet and low                | 1992-05-15 |   249 |
-|     16 | by you                       | 1993-04-28 |   232 |
-|     13 | bulldog front                | 1988-06-15 |   226 |
-|     15 | burning too                  | 1988-08-01 |   215 |
-|     14 | burning                      | 1988-02-06 |   214 |
-|     34 | forensic scene               | 1994-08-19 |   201 |
-|      8 | birthday pony                | 1994-08-15 |   199 |
-|     40 | greed                        | 1989-03-24 |   188 |
-|     49 | latin roots                  | 1990-10-01 |   182 |
-|     46 | kyeo                         | 1987-10-07 |   173 |
-|     10 | break                        | 1996-08-15 |   172 |
-|     18 | cassavetes                   | 1991-07-28 |   171 |
-|     51 | lockdown                     | 1987-12-03 |   165 |
-|     20 | closed captioned             | 1997-06-18 |   159 |
-|     12 | brendan \#1                  | 1989-03-24 |   158 |
-|      4 | arpeggiator                  | 1997-05-02 |   154 |
-|     79 | stacks                       | 1991-02-15 |   153 |
-|     22 | dear justice letter          | 1991-01-02 |   148 |
-|     68 | recap modotti                | 1997-05-03 |   141 |
-|     93 | walken’s syndrome            | 1992-10-23 |   141 |
-|     30 | fell, destroyed              | 1993-08-16 |   137 |
-|      5 | back to base                 | 1994-11-20 |   136 |
-|     47 | last chance for a slow dance | 1991-07-28 |   136 |
-|     11 | break-in                     | 1987-10-16 |   134 |
-|     73 | returning the screw          | 1992-10-23 |   134 |
-|     38 | glueman                      | 1988-05-12 |   133 |
-|     62 | place position               | 1996-08-15 |   133 |
-|     45 | joe \#1                      | 1987-09-03 |   132 |
-|     29 | fd                           | 1997-05-02 |   115 |
-|     56 | nice new outfit              | 1991-02-20 |   115 |
-|     52 | long distance runner         | 1994-11-27 |   113 |
-|     24 | downed city                  | 1994-11-20 |   111 |
-|     59 | number 5                     | 1998-11-21 |   110 |
-|     31 | five corporations            | 1996-08-15 |   109 |
-|     32 | floating boy                 | 1996-10-16 |   106 |
-|     36 | furniture                    | 1987-09-03 |    94 |
-|     58 | no surprise                  | 1996-09-29 |    89 |
-|     60 | oh                           | 1998-11-29 |    80 |
-|     61 | pink frosty                  | 1996-03-20 |    67 |
-|      3 | argument                     | 1999-08-26 |    66 |
-|     17 | cashout                      | 2000-09-30 |    62 |
-|     19 | caustic acrostic             | 1996-01-30 |    51 |
-|     80 | steady diet                  | 1991-04-12 |    46 |
-|     26 | ex-spectator                 | 1999-08-26 |    45 |
-|     57 | nightshop                    | 1999-08-26 |    44 |
+|     92 | waiting room                 | 1994-08-27 |   675 |
+|     69 | reclamation                  | 1997-05-01 |   612 |
+|      9 | blueprint                    | 1989-09-23 |   608 |
+|     53 | long division                | 1989-04-09 |   523 |
+|     55 | merchandise                  | 1987-09-03 |   495 |
+|     54 | margin walker                | 1988-07-28 |   467 |
+|     76 | sieve-fisted find            | 1989-03-24 |   435 |
+|     71 | repeater                     | 1991-12-08 |   427 |
+|     89 | turnover                     | 1987-09-03 |   416 |
+|     37 | give me the cure             | 1988-03-30 |   401 |
+|      2 | and the same                 | 1987-09-26 |   397 |
+|     65 | promises                     | 1988-10-15 |   392 |
+|     90 | two beats off                | 1989-04-09 |   392 |
+|     83 | suggestion                   | 1989-07-19 |   373 |
+|     70 | rend it                      | 1990-05-05 |   354 |
+|     78 | song \#1                     | 1992-10-23 |   353 |
+|     75 | shut the door                | 1990-02-11 |   342 |
+|      6 | bad mouth                    | 1987-10-16 |   312 |
+|      7 | bed for the scraping         | 1994-11-20 |   310 |
+|     28 | facet squared                | 1991-08-12 |   307 |
+|     82 | styrofoam                    | 2001-04-06 |   294 |
+|     72 | reprovisional                | 1989-07-19 |   284 |
+|     23 | do you like me               | 1994-11-20 |   282 |
+|     27 | exit only                    | 1990-07-06 |   282 |
+|     44 | instrument                   | 1992-01-25 |   282 |
+|     39 | great cop                    | 1991-12-08 |   277 |
+|     67 | public witness program       | 1988-11-14 |   273 |
+|     74 | runaway return               | 1992-10-23 |   273 |
+|     85 | target                       | 1992-05-15 |   267 |
+|     77 | smallpox champion            | 1989-03-24 |   265 |
+|     84 | sweet and low                | 1987-12-03 |   254 |
+|     13 | bulldog front                | 1988-06-15 |   249 |
+|     14 | burning                      | 1988-02-06 |   243 |
+|     15 | burning too                  | 1988-07-28 |   238 |
+|     16 | by you                       | 1993-04-24 |   236 |
+|      8 | birthday pony                | 1994-08-15 |   203 |
+|     34 | forensic scene               | 1994-08-19 |   203 |
+|     40 | greed                        | 1989-03-24 |   199 |
+|     49 | latin roots                  | 1990-10-01 |   187 |
+|     51 | lockdown                     | 1987-12-03 |   184 |
+|     46 | kyeo                         | 1987-10-07 |   183 |
+|     18 | cassavetes                   | 1991-07-28 |   180 |
+|     10 | break                        | 1996-08-15 |   179 |
+|     12 | brendan \#1                  | 1989-03-24 |   170 |
+|     20 | closed captioned             | 1997-06-18 |   169 |
+|      4 | arpeggiator                  | 1997-05-02 |   163 |
+|     79 | stacks                       | 1987-09-03 |   156 |
+|     22 | dear justice letter          | 1991-01-02 |   152 |
+|     68 | recap modotti                | 1993-02-05 |   151 |
+|     38 | glueman                      | 1988-05-07 |   148 |
+|     93 | walken’s syndrome            | 1987-09-03 |   147 |
+|     11 | break-in                     | 1987-10-16 |   146 |
+|      5 | back to base                 | 1994-11-20 |   142 |
+|     62 | place position               | 1996-08-15 |   140 |
+|     47 | last chance for a slow dance | 1991-07-28 |   138 |
+|     73 | returning the screw          | 1988-12-29 |   138 |
+|     45 | joe \#1                      | 1987-09-03 |   136 |
+|     30 | fell, destroyed              | 1993-08-16 |   135 |
+|     29 | fd                           | 1997-05-02 |   122 |
+|     59 | number 5                     | 1998-11-21 |   120 |
+|     56 | nice new outfit              | 1991-02-20 |   119 |
+|     24 | downed city                  | 1994-11-20 |   116 |
+|     52 | long distance runner         | 1994-11-27 |   114 |
+|     31 | five corporations            | 1996-08-15 |   113 |
+|     36 | furniture                    | 1987-09-03 |   108 |
+|     32 | floating boy                 | 1996-10-16 |   107 |
+|     58 | no surprise                  | 1996-09-29 |    97 |
+|     60 | oh                           | 1998-11-29 |    91 |
+|      3 | argument                     | 1999-08-26 |    76 |
+|     61 | pink frosty                  | 1996-03-20 |    69 |
+|     17 | cashout                      | 2000-06-04 |    67 |
+|     19 | caustic acrostic             | 1996-01-30 |    53 |
+|     26 | ex-spectator                 | 1999-08-26 |    52 |
+|     57 | nightshop                    | 1999-08-26 |    46 |
+|     80 | steady diet                  | 1991-02-15 |    46 |
 |     48 | latest disgrace              | 1994-11-20 |    39 |
-|     86 | the kill                     | 2001-04-05 |    35 |
-|     91 | version                      | 1994-08-27 |    34 |
-|     33 | foreman’s dog                | 1998-05-01 |    33 |
-|     25 | epic problem                 | 2000-10-01 |    32 |
+|     86 | the kill                     | 1994-08-15 |    37 |
+|     87 | the word                     | 2001-04-05 |    37 |
+|     91 | version                      | 1989-05-03 |    36 |
+|     25 | epic problem                 | 2000-08-07 |    34 |
+|     33 | foreman’s dog                | 1998-05-01 |    34 |
 |     41 | guilford fall                | 1996-08-15 |    32 |
-|     87 | the word                     | 1987-09-03 |    31 |
-|      1 | 23 beats off                 | 1992-10-23 |    26 |
-|     35 | full disclosure              | 2001-04-05 |    26 |
-|     43 | in defense of humans         | 1987-09-03 |    25 |
+|     43 | in defense of humans         | 1987-09-03 |    31 |
+|     35 | full disclosure              | 2001-04-05 |    29 |
+|      1 | 23 beats off                 | 1992-10-23 |    27 |
+|     50 | life and limb                | 2001-06-21 |    24 |
 |     21 | combination lock             | 1994-11-27 |    21 |
-|     50 | life and limb                | 2001-06-21 |    21 |
-|     81 | strangelight                 | 2001-04-06 |    19 |
-|     88 | turn off your guns           | 1987-09-03 |    15 |
-|     66 | provisional                  | 1988-11-14 |     8 |
+|     81 | strangelight                 | 1991-04-12 |    19 |
+|     88 | turn off your guns           | 1987-09-03 |    17 |
+|     66 | provisional                  | NA         |    13 |
 |     63 | polish                       | 1991-03-06 |     6 |
 |     64 | preprovisional               | 1988-10-31 |     6 |
 |     42 | hello morning                | 2001-04-27 |     2 |
-|     94 | world beat                   | 1996-01-30 |     2 |
+|     94 | world beat                   | 1992-10-23 |     2 |
 
 ## Performance intensity
 
@@ -149,100 +149,101 @@ knitr::kable(fugazi_song_performance_intensity, "pipe")
 
 | songid | song                         | launchdate | chosen | available_rl | intensity |
 |-------:|:-----------------------------|:-----------|-------:|-------------:|----------:|
-|     17 | cashout                      | 2000-09-30 |     62 |           66 | 0.9393939 |
-|     20 | closed captioned             | 1997-06-18 |    159 |          199 | 0.7989950 |
-|      7 | bed for the scraping         | 1994-11-20 |    299 |          377 | 0.7931034 |
-|     59 | number 5                     | 1998-11-21 |    110 |          145 | 0.7586207 |
-|     10 | break                        | 1996-08-15 |    172 |          229 | 0.7510917 |
-|     69 | reclamation                  | 1990-05-05 |    594 |          795 | 0.7471698 |
-|      4 | arpeggiator                  | 1997-05-02 |    154 |          208 | 0.7403846 |
-|     23 | do you like me               | 1994-11-20 |    272 |          377 | 0.7214854 |
-|      9 | blueprint                    | 1989-11-25 |    584 |          826 | 0.7070218 |
-|     92 | waiting room                 | 1987-09-03 |    633 |          901 | 0.7025527 |
-|     68 | recap modotti                | 1997-05-03 |    141 |          207 | 0.6811594 |
-|     85 | target                       | 1994-08-15 |    260 |          385 | 0.6753247 |
-|      3 | argument                     | 1999-08-26 |     66 |          101 | 0.6534653 |
-|     86 | the kill                     | 2001-04-05 |     35 |           58 | 0.6034483 |
-|     70 | rend it                      | 1991-12-08 |    346 |          585 | 0.5914530 |
-|     53 | long division                | 1989-04-09 |    498 |          848 | 0.5872642 |
-|     60 | oh                           | 1998-11-29 |     80 |          137 | 0.5839416 |
-|     62 | place position               | 1996-08-15 |    133 |          229 | 0.5807860 |
-|     29 | fd                           | 1997-05-02 |    115 |          208 | 0.5528846 |
-|     55 | merchandise                  | 1987-09-03 |    477 |          901 | 0.5294118 |
-|     34 | forensic scene               | 1994-08-19 |    201 |          383 | 0.5248042 |
-|      8 | birthday pony                | 1994-08-15 |    199 |          385 | 0.5168831 |
-|     67 | public witness program       | 1993-02-05 |    264 |          513 | 0.5146199 |
-|     54 | margin walker                | 1988-08-01 |    430 |          872 | 0.4931193 |
-|     25 | epic problem                 | 2000-10-01 |     32 |           65 | 0.4923077 |
-|     16 | by you                       | 1993-04-28 |    232 |          473 | 0.4904863 |
-|     77 | smallpox champion            | 1992-10-23 |    253 |          516 | 0.4903101 |
-|     76 | sieve-fisted find            | 1989-03-24 |    418 |          853 | 0.4900352 |
-|     71 | repeater                     | 1989-07-20 |    410 |          838 | 0.4892601 |
-|     28 | facet squared                | 1991-08-12 |    299 |          621 | 0.4814815 |
-|     50 | life and limb                | 2001-06-21 |     21 |           44 | 0.4772727 |
-|     31 | five corporations            | 1996-08-15 |    109 |          229 | 0.4759825 |
-|     44 | instrument                   | 1992-01-25 |    273 |          583 | 0.4682676 |
-|     32 | floating boy                 | 1996-10-16 |    106 |          227 | 0.4669604 |
-|     89 | turnover                     | 1989-04-09 |    395 |          848 | 0.4658019 |
-|     39 | great cop                    | 1991-12-08 |    268 |          585 | 0.4581197 |
-|     35 | full disclosure              | 2001-04-05 |     26 |           58 | 0.4482759 |
-|     26 | ex-spectator                 | 1999-08-26 |     45 |          101 | 0.4455446 |
-|     84 | sweet and low                | 1992-05-15 |    249 |          563 | 0.4422735 |
-|     90 | two beats off                | 1989-05-03 |    371 |          846 | 0.4385343 |
-|     65 | promises                     | 1988-10-15 |    380 |          869 | 0.4372842 |
-|     57 | nightshop                    | 1999-08-26 |     44 |          101 | 0.4356436 |
-|      2 | and the same                 | 1987-09-26 |    376 |          900 | 0.4177778 |
-|     37 | give me the cure             | 1988-03-25 |    370 |          888 | 0.4166667 |
-|     58 | no surprise                  | 1996-09-29 |     89 |          228 | 0.3903509 |
-|     83 | suggestion                   | 1987-12-03 |    340 |          896 | 0.3794643 |
-|     75 | shut the door                | 1989-03-24 |    323 |          853 | 0.3786635 |
-|     27 | exit only                    | 1990-07-06 |    275 |          755 | 0.3642384 |
-|     82 | styrofoam                    | 1990-05-17 |    287 |          788 | 0.3642132 |
-|      5 | back to base                 | 1994-11-20 |    136 |          377 | 0.3607427 |
-|     78 | song \#1                     | 1987-09-03 |    322 |          901 | 0.3573807 |
-|     81 | strangelight                 | 2001-04-06 |     19 |           57 | 0.3333333 |
-|     74 | runaway return               | 1990-02-11 |    265 |          817 | 0.3243574 |
-|     72 | reprovisional                | 1988-12-29 |    276 |          854 | 0.3231850 |
-|      6 | bad mouth                    | 1987-10-16 |    280 |          898 | 0.3118040 |
-|     30 | fell, destroyed              | 1993-08-16 |    137 |          449 | 0.3051225 |
-|     52 | long distance runner         | 1994-11-27 |    113 |          376 | 0.3005319 |
-|     24 | downed city                  | 1994-11-20 |    111 |          377 | 0.2944297 |
-|     93 | walken’s syndrome            | 1992-10-23 |    141 |          516 | 0.2732558 |
-|     18 | cassavetes                   | 1991-07-28 |    171 |          632 | 0.2705696 |
-|     61 | pink frosty                  | 1996-03-20 |     67 |          251 | 0.2669323 |
-|     73 | returning the screw          | 1992-10-23 |    134 |          516 | 0.2596899 |
-|     13 | bulldog front                | 1988-06-15 |    226 |          876 | 0.2579909 |
-|     49 | latin roots                  | 1990-10-01 |    182 |          729 | 0.2496571 |
-|     15 | burning too                  | 1988-08-01 |    215 |          872 | 0.2465596 |
-|     14 | burning                      | 1988-02-06 |    214 |          891 | 0.2401796 |
-|     79 | stacks                       | 1991-02-15 |    153 |          691 | 0.2214182 |
-|     40 | greed                        | 1989-03-24 |    188 |          853 | 0.2203986 |
-|     47 | last chance for a slow dance | 1991-07-28 |    136 |          632 | 0.2151899 |
-|     22 | dear justice letter          | 1991-01-02 |    148 |          694 | 0.2132565 |
-|     19 | caustic acrostic             | 1996-01-30 |     51 |          254 | 0.2007874 |
-|     46 | kyeo                         | 1987-10-07 |    173 |          899 | 0.1924360 |
-|     33 | foreman’s dog                | 1998-05-01 |     33 |          176 | 0.1875000 |
-|     12 | brendan \#1                  | 1989-03-24 |    158 |          853 | 0.1852286 |
-|     51 | lockdown                     | 1987-12-03 |    165 |          896 | 0.1841518 |
-|     56 | nice new outfit              | 1991-02-20 |    115 |          690 | 0.1666667 |
-|     38 | glueman                      | 1988-05-12 |    133 |          884 | 0.1504525 |
-|     11 | break-in                     | 1987-10-16 |    134 |          898 | 0.1492205 |
-|     45 | joe \#1                      | 1987-09-03 |    132 |          901 | 0.1465039 |
-|     41 | guilford fall                | 1996-08-15 |     32 |          229 | 0.1397380 |
-|     36 | furniture                    | 1987-09-03 |     94 |          901 | 0.1043285 |
-|     48 | latest disgrace              | 1994-11-20 |     39 |          377 | 0.1034483 |
-|     91 | version                      | 1994-08-27 |     34 |          378 | 0.0899471 |
-|     80 | steady diet                  | 1991-04-12 |     46 |          673 | 0.0683507 |
-|     21 | combination lock             | 1994-11-27 |     21 |          376 | 0.0558511 |
-|      1 | 23 beats off                 | 1992-10-23 |     26 |          516 | 0.0503876 |
-|     42 | hello morning                | 2001-04-27 |      2 |           45 | 0.0444444 |
-|     87 | the word                     | 1987-09-03 |     31 |          901 | 0.0344062 |
-|     43 | in defense of humans         | 1987-09-03 |     25 |          901 | 0.0277469 |
-|     88 | turn off your guns           | 1987-09-03 |     15 |          901 | 0.0166482 |
-|     66 | provisional                  | 1988-11-14 |      8 |          863 | 0.0092700 |
-|     63 | polish                       | 1991-03-06 |      6 |          685 | 0.0087591 |
-|     94 | world beat                   | 1996-01-30 |      2 |          254 | 0.0078740 |
-|     64 | preprovisional               | 1988-10-31 |      6 |          866 | 0.0069284 |
+|     17 | cashout                      | 2000-06-04 |     67 |           74 | 0.9054054 |
+|     20 | closed captioned             | 1997-06-18 |    169 |          211 | 0.8009479 |
+|      7 | bed for the scraping         | 1994-11-20 |    310 |          393 | 0.7888041 |
+|     59 | number 5                     | 1998-11-21 |    120 |          157 | 0.7643312 |
+|     70 | reclamation                  | NA         |    612 |          820 | 0.7463415 |
+|      4 | arpeggiator                  | 1997-05-02 |    163 |          220 | 0.7409091 |
+|     10 | break                        | 1996-08-15 |    179 |          244 | 0.7336066 |
+|     23 | do you like me               | 1994-11-20 |    282 |          393 | 0.7175573 |
+|     93 | waiting room                 | NA         |    675 |          952 | 0.7090336 |
+|      9 | blueprint                    | 1989-09-23 |    608 |          873 | 0.6964490 |
+|     69 | recap modotti                | NA         |    151 |          221 | 0.6832579 |
+|      3 | argument                     | 1999-08-26 |     76 |          113 | 0.6725664 |
+|     86 | target                       | NA         |    267 |          401 | 0.6658354 |
+|     60 | oh                           | 1998-11-29 |     91 |          149 | 0.6107383 |
+|     87 | the kill                     | NA         |     37 |           62 | 0.5967742 |
+|     53 | long division                | 1989-04-09 |    523 |          889 | 0.5883015 |
+|     71 | rend it                      | NA         |    354 |          608 | 0.5822368 |
+|     62 | place position               | 1996-08-15 |    140 |          244 | 0.5737705 |
+|     29 | fd                           | 1997-05-02 |    122 |          220 | 0.5545455 |
+|     55 | merchandise                  | 1987-09-03 |    495 |          952 | 0.5199580 |
+|     68 | public witness program       | NA         |    273 |          534 | 0.5112360 |
+|     50 | life and limb                | 2001-06-21 |     24 |           47 | 0.5106383 |
+|     34 | forensic scene               | 1994-08-19 |    203 |          399 | 0.5087719 |
+|     54 | margin walker                | 1988-07-28 |    467 |          921 | 0.5070575 |
+|      8 | birthday pony                | 1994-08-15 |    203 |          401 | 0.5062344 |
+|     78 | smallpox champion            | NA         |    265 |          537 | 0.4934823 |
+|     72 | repeater                     | NA         |    427 |          876 | 0.4874429 |
+|     77 | sieve-fisted find            | NA         |    435 |          894 | 0.4865772 |
+|     28 | facet squared                | 1991-08-12 |    307 |          645 | 0.4759690 |
+|     16 | by you                       | 1993-04-24 |    236 |          498 | 0.4738956 |
+|     25 | epic problem                 | 2000-08-07 |     34 |           72 | 0.4722222 |
+|     90 | turnover                     | NA         |    416 |          889 | 0.4679415 |
+|     35 | full disclosure              | 2001-04-05 |     29 |           62 | 0.4677419 |
+|     44 | instrument                   | 1992-01-25 |    282 |          606 | 0.4653465 |
+|     31 | five corporations            | 1996-08-15 |    113 |          244 | 0.4631148 |
+|     26 | ex-spectator                 | 1999-08-26 |     52 |          113 | 0.4601770 |
+|     39 | great cop                    | 1991-12-08 |    277 |          608 | 0.4555921 |
+|     32 | floating boy                 | 1996-10-16 |    107 |          242 | 0.4421488 |
+|     91 | two beats off                | NA         |    392 |          887 | 0.4419391 |
+|     85 | sweet and low                | NA         |    254 |          585 | 0.4341880 |
+|     65 | promises                     | 1988-10-15 |    392 |          916 | 0.4279476 |
+|     37 | give me the cure             | 1988-03-30 |    401 |          939 | 0.4270501 |
+|      2 | and the same                 | 1987-09-26 |    397 |          951 | 0.4174553 |
+|     57 | nightshop                    | 1999-08-26 |     46 |          113 | 0.4070796 |
+|     58 | no surprise                  | 1996-09-29 |     97 |          243 | 0.3991770 |
+|     84 | suggestion                   | NA         |    373 |          947 | 0.3938754 |
+|     76 | shut the door                | NA         |    342 |          894 | 0.3825503 |
+|     79 | song \#1                     | NA         |    353 |          952 | 0.3707983 |
+|     27 | exit only                    | 1990-07-06 |    282 |          780 | 0.3615385 |
+|      5 | back to base                 | 1994-11-20 |    142 |          393 | 0.3613232 |
+|     83 | styrofoam                    | NA         |    294 |          876 | 0.3356164 |
+|      6 | bad mouth                    | 1987-10-16 |    312 |          949 | 0.3287671 |
+|     75 | runaway return               | NA         |    273 |          845 | 0.3230769 |
+|     73 | reprovisional                | NA         |    284 |          896 | 0.3169643 |
+|     82 | strangelight                 | NA         |     19 |           61 | 0.3114754 |
+|     24 | downed city                  | 1994-11-20 |    116 |          393 | 0.2951654 |
+|     52 | long distance runner         | 1994-11-27 |    114 |          392 | 0.2908163 |
+|     30 | fell, destroyed              | 1993-08-16 |    135 |          467 | 0.2890792 |
+|     18 | cassavetes                   | 1991-07-28 |    180 |          656 | 0.2743902 |
+|     94 | walken’s syndrome            | NA         |    147 |          537 | 0.2737430 |
+|     13 | bulldog front                | 1988-06-15 |    249 |          925 | 0.2691892 |
+|     61 | pink frosty                  | 1996-03-20 |     69 |          266 | 0.2593985 |
+|     15 | burning too                  | 1988-07-28 |    238 |          921 | 0.2584148 |
+|     14 | burning                      | 1988-02-06 |    243 |          942 | 0.2579618 |
+|     74 | returning the screw          | NA         |    138 |          537 | 0.2569832 |
+|     49 | latin roots                  | 1990-10-01 |    187 |          753 | 0.2483400 |
+|     40 | greed                        | 1989-03-24 |    199 |          894 | 0.2225951 |
+|     80 | stacks                       | NA         |    156 |          715 | 0.2181818 |
+|     22 | dear justice letter          | 1991-01-02 |    152 |          718 | 0.2116992 |
+|     47 | last chance for a slow dance | 1991-07-28 |    138 |          656 | 0.2103659 |
+|     19 | caustic acrostic             | 1996-01-30 |     53 |          269 | 0.1970260 |
+|     51 | lockdown                     | 1987-12-03 |    184 |          947 | 0.1942978 |
+|     46 | kyeo                         | 1987-10-07 |    183 |          950 | 0.1926316 |
+|     12 | brendan \#1                  | 1989-03-24 |    170 |          894 | 0.1901566 |
+|     33 | foreman’s dog                | 1998-05-01 |     34 |          188 | 0.1808511 |
+|     56 | nice new outfit              | 1991-02-20 |    119 |          714 | 0.1666667 |
+|     38 | glueman                      | 1988-05-07 |    148 |          935 | 0.1582888 |
+|     11 | break-in                     | 1987-10-16 |    146 |          949 | 0.1538462 |
+|     45 | joe \#1                      | 1987-09-03 |    136 |          952 | 0.1428571 |
+|     41 | guilford fall                | 1996-08-15 |     32 |          244 | 0.1311475 |
+|     36 | furniture                    | 1987-09-03 |    108 |          952 | 0.1134454 |
+|     48 | latest disgrace              | 1994-11-20 |     39 |          393 | 0.0992366 |
+|     92 | version                      | NA         |     36 |          394 | 0.0913706 |
+|     81 | steady diet                  | NA         |     46 |          697 | 0.0659971 |
+|     21 | combination lock             | 1994-11-27 |     21 |          392 | 0.0535714 |
+|      1 | 23 beats off                 | 1992-10-23 |     27 |          537 | 0.0502793 |
+|     42 | hello morning                | 2001-04-27 |      2 |           48 | 0.0416667 |
+|     88 | the word                     | NA         |     37 |          952 | 0.0388655 |
+|     43 | in defense of humans         | 1987-09-03 |     31 |          952 | 0.0325630 |
+|     89 | turn off your guns           | NA         |     17 |          952 | 0.0178571 |
+|     67 | provisional                  | NA         |     13 |          907 | 0.0143330 |
+|     63 | polish                       | 1991-03-06 |      6 |          709 | 0.0084626 |
+|     95 | world beat                   | NA         |      2 |          269 | 0.0074349 |
+|     64 | preprovisional               | 1988-10-31 |      6 |          911 | 0.0065862 |
+|     66 | promises bit                 | NA         |      0 |            0 |       NaN |
 
 The “songid” variable indicates the raw frequency ranking of each song,
 allowing easy comparison between the intensity and frequency measures.
@@ -267,7 +268,7 @@ the band during their live shows?
 ``` r
 
 nrow(Repeatr1)
-#> [1] 23280
+#> [1] 24578
 ```
 
 This data was used to estimate the strength of preference for each of
@@ -358,102 +359,9 @@ myresults <- fugazi_song_preferences %>%
 knitr::kable((myresults), "pipe")
 ```
 
-| rank_rating | songid | song                         |   Estimate |    z-value |
-|------------:|-------:|:-----------------------------|-----------:|-----------:|
-|           1 |     10 | break                        |  3.6273290 | 16.6768024 |
-|           2 |      7 | bed for the scraping         |  3.6147356 | 17.4428027 |
-|           3 |     69 | reclamation                  |  3.5902420 | 17.6264828 |
-|           4 |     23 | do you like me               |  3.4400007 | 16.5401090 |
-|           5 |     17 | cashout                      |  3.3619662 | 13.2856430 |
-|           6 |     20 | closed captioned             |  3.3366269 | 15.1246854 |
-|           7 |     62 | place position               |  3.2311148 | 14.6111819 |
-|           8 |     85 | target                       |  3.1535223 | 15.1902897 |
-|           9 |     92 | waiting room                 |  3.1479071 | 14.9671965 |
-|          10 |     68 | recap modotti                |  3.1354875 | 14.1387319 |
-|          11 |     59 | number 5                     |  3.0267289 | 13.0773660 |
-|          12 |      9 | blueprint                    |  3.0111120 | 14.7567639 |
-|          13 |     76 | sieve-fisted find            |  2.9622055 | 14.2698126 |
-|          14 |     55 | merchandise                  |  2.9489128 | 13.9468658 |
-|          15 |     70 | rend it                      |  2.9297788 | 14.3597513 |
-|          16 |      4 | arpeggiator                  |  2.8802644 | 13.0652330 |
-|          17 |      8 | birthday pony                |  2.7855678 | 13.2364268 |
-|          18 |     28 | facet squared                |  2.7800682 | 13.5218817 |
-|          19 |     54 | margin walker                |  2.7782867 | 13.3137352 |
-|          20 |     89 | turnover                     |  2.7509584 | 13.2387443 |
-|          21 |      3 | argument                     |  2.7018622 | 10.9739495 |
-|          22 |     67 | public witness program       |  2.7002325 | 13.1218802 |
-|          23 |     53 | long division                |  2.6994533 | 13.0620622 |
-|          24 |     60 | oh                           |  2.6848145 | 11.2323233 |
-|          25 |     86 | the kill                     |  2.6679460 |  9.5995642 |
-|          26 |     29 | fd                           |  2.6195547 | 11.6285928 |
-|          27 |     34 | forensic scene               |  2.6094116 | 12.4097753 |
-|          28 |     16 | by you                       |  2.5796483 | 12.4589798 |
-|          29 |     77 | smallpox champion            |  2.5721154 | 12.4792433 |
-|          30 |     31 | five corporations            |  2.5628542 | 11.4086433 |
-|          31 |      2 | and the same                 |  2.5449317 | 11.9606545 |
-|          32 |     32 | floating boy                 |  2.5381197 | 11.2598588 |
-|          33 |     44 | instrument                   |  2.5003213 | 12.1419700 |
-|          34 |     50 | life and limb                |  2.4238423 |  7.7825958 |
-|          35 |     35 | full disclosure              |  2.4223096 |  8.1999503 |
-|          36 |     39 | great cop                    |  2.4096372 | 11.6966573 |
-|          37 |     78 | song \#1                     |  2.3903059 | 11.1896372 |
-|          38 |     90 | two beats off                |  2.3799839 | 11.4404653 |
-|          39 |     37 | give me the cure             |  2.3792718 | 11.2751707 |
-|          40 |     26 | ex-spectator                 |  2.3714875 |  9.1090914 |
-|          41 |     71 | repeater                     |  2.3284697 | 11.2701912 |
-|          42 |     25 | epic problem                 |  2.3229954 |  8.2734201 |
-|          43 |     82 | styrofoam                    |  2.2740648 | 10.9478062 |
-|          44 |     83 | suggestion                   |  2.2700402 | 10.7055585 |
-|          45 |     58 | no surprise                  |  2.2696531 |  9.9018401 |
-|          46 |     65 | promises                     |  2.2472968 | 10.7497779 |
-|          47 |      5 | back to base                 |  2.2031401 | 10.1769554 |
-|          48 |      6 | bad mouth                    |  2.1857980 | 10.2093302 |
-|          49 |     27 | exit only                    |  2.1709371 | 10.4535553 |
-|          50 |     75 | shut the door                |  2.1654502 | 10.3489984 |
-|          51 |     57 | nightshop                    |  2.1632358 |  8.2785413 |
-|          52 |     84 | sweet and low                |  2.1415705 | 10.3772617 |
-|          53 |     74 | runaway return               |  2.0103313 |  9.6228459 |
-|          54 |     24 | downed city                  |  1.9071603 |  8.6615464 |
-|          55 |     13 | bulldog front                |  1.8986618 |  8.8752391 |
-|          56 |     30 | fell, destroyed              |  1.8908266 |  8.8219434 |
-|          57 |     93 | walken’s syndrome            |  1.8860891 |  8.8324554 |
-|          58 |     72 | reprovisional                |  1.8784109 |  8.9110107 |
-|          59 |     52 | long distance runner         |  1.8505193 |  8.4182628 |
-|          60 |     81 | strangelight                 |  1.8285532 |  5.7479585 |
-|          61 |     15 | burning too                  |  1.8218152 |  8.5056042 |
-|          62 |     18 | cassavetes                   |  1.8190524 |  8.6055868 |
-|          63 |     61 | pink frosty                  |  1.8093470 |  7.6736122 |
-|          64 |     14 | burning                      |  1.7932812 |  8.2989270 |
-|          65 |     73 | returning the screw          |  1.7811289 |  8.3074278 |
-|          66 |     49 | latin roots                  |  1.7588546 |  8.3084271 |
-|          67 |     40 | greed                        |  1.7203389 |  8.0188097 |
-|          68 |     22 | dear justice letter          |  1.6068838 |  7.5011799 |
-|          69 |     19 | caustic acrostic             |  1.5774489 |  6.4285581 |
-|          70 |     79 | stacks                       |  1.5696995 |  7.3463655 |
-|          71 |     47 | last chance for a slow dance |  1.4983507 |  6.9751905 |
-|          72 |     51 | lockdown                     |  1.4688784 |  6.6940149 |
-|          73 |     12 | brendan \#1                  |  1.4637611 |  6.7493563 |
-|          74 |     46 | kyeo                         |  1.3989762 |  6.3696510 |
-|          75 |     56 | nice new outfit              |  1.3077889 |  5.9803837 |
-|          76 |     33 | foreman’s dog                |  1.2672564 |  4.6648930 |
-|          77 |     11 | break-in                     |  1.2127518 |  5.4356867 |
-|          78 |     45 | joe \#1                      |  1.1760132 |  5.2450415 |
-|          79 |     41 | guilford fall                |  1.1528479 |  4.2819844 |
-|          80 |     38 | glueman                      |  1.0905833 |  4.9188561 |
-|          81 |     36 | furniture                    |  0.8610537 |  3.7305761 |
-|          82 |     48 | latest disgrace              |  0.7809690 |  3.0604130 |
-|          83 |     91 | version                      |  0.5465618 |  2.0865911 |
-|          84 |     66 | provisional                  |  0.5217540 |  1.2720383 |
-|          85 |     80 | steady diet                  |  0.3453195 |  1.4008498 |
-|          86 |     21 | combination lock             |  0.1159590 |  0.3929426 |
-|          87 |      1 | 23 beats off                 |  0.0000000 |         NA |
-|          88 |     42 | hello morning                | -0.2840934 | -0.3834491 |
-|          89 |     87 | the word                     | -0.4397045 | -1.5827587 |
-|          90 |     43 | in defense of humans         | -0.5671355 | -1.9729918 |
-|          91 |     88 | turn off your guns           | -1.0880002 | -3.2912397 |
-|          92 |     94 | world beat                   | -1.7970604 | -2.4441872 |
-|          93 |     63 | polish                       | -1.8026276 | -3.9740081 |
-|          94 |     64 | preprovisional               | -2.0675196 | -4.5372872 |
+| rank_rating | songid | song         | Estimate | z-value |
+|------------:|-------:|:-------------|---------:|:--------|
+|           1 |      1 | 23 beats off |        0 | NA      |
 
 It is hard to say exactly whose preferences are represented by these
 results. It seems reasonable to assume that they mainly represent the
@@ -489,102 +397,103 @@ intervals.
 knitr::kable(summary %>% select(song, chosen, intensity, rating) %>% arrange(desc(rating)), "pipe")
 ```
 
-| song                         | chosen | intensity |    rating |
-|:-----------------------------|-------:|----------:|----------:|
-| break                        |    172 | 0.7510917 | 1.0000000 |
-| bed for the scraping         |    299 | 0.7931034 | 0.9977886 |
-| reclamation                  |    594 | 0.7471698 | 0.9934876 |
-| do you like me               |    272 | 0.7214854 | 0.9671057 |
-| cashout                      |     62 | 0.9393939 | 0.9534030 |
-| closed captioned             |    159 | 0.7989950 | 0.9489535 |
-| place position               |    133 | 0.5807860 | 0.9304259 |
-| target                       |    260 | 0.6753247 | 0.9168008 |
-| waiting room                 |    633 | 0.7025527 | 0.9158148 |
-| recap modotti                |    141 | 0.6811594 | 0.9136340 |
-| number 5                     |    110 | 0.7586207 | 0.8945362 |
-| blueprint                    |    584 | 0.7070218 | 0.8917940 |
-| sieve-fisted find            |    418 | 0.4900352 | 0.8832061 |
-| merchandise                  |    477 | 0.5294118 | 0.8808720 |
-| rend it                      |    346 | 0.5914530 | 0.8775121 |
-| arpeggiator                  |    154 | 0.7403846 | 0.8688175 |
-| birthday pony                |    199 | 0.5168831 | 0.8521890 |
-| facet squared                |    299 | 0.4814815 | 0.8512233 |
-| margin walker                |    430 | 0.4931193 | 0.8509105 |
-| turnover                     |    395 | 0.4658019 | 0.8461117 |
-| argument                     |     66 | 0.6534653 | 0.8374905 |
-| public witness program       |    264 | 0.5146199 | 0.8372044 |
-| long division                |    498 | 0.5872642 | 0.8370675 |
-| oh                           |     80 | 0.5839416 | 0.8344970 |
-| the kill                     |     35 | 0.6034483 | 0.8315349 |
-| fd                           |    115 | 0.5528846 | 0.8230376 |
-| forensic scene               |    201 | 0.5248042 | 0.8212565 |
-| by you                       |    232 | 0.4904863 | 0.8160301 |
-| smallpox champion            |    253 | 0.4903101 | 0.8147074 |
-| five corporations            |    109 | 0.4759825 | 0.8130811 |
-| and the same                 |    376 | 0.4177778 | 0.8099340 |
-| floating boy                 |    106 | 0.4669604 | 0.8087378 |
-| instrument                   |    273 | 0.4682676 | 0.8021005 |
-| life and limb                |     21 | 0.4772727 | 0.7886710 |
-| full disclosure              |     26 | 0.4482759 | 0.7884019 |
-| great cop                    |    268 | 0.4581197 | 0.7861766 |
-| song \#1                     |    322 | 0.3573807 | 0.7827821 |
-| two beats off                |    371 | 0.4385343 | 0.7809696 |
-| give me the cure             |    370 | 0.4166667 | 0.7808445 |
-| ex-spectator                 |     45 | 0.4455446 | 0.7794776 |
-| repeater                     |    410 | 0.4892601 | 0.7719238 |
-| epic problem                 |     32 | 0.4923077 | 0.7709626 |
-| styrofoam                    |    287 | 0.3642132 | 0.7623705 |
-| suggestion                   |    340 | 0.3794643 | 0.7616638 |
-| no surprise                  |     89 | 0.3903509 | 0.7615958 |
-| promises                     |    380 | 0.4372842 | 0.7576701 |
-| back to base                 |    136 | 0.3607427 | 0.7499163 |
-| bad mouth                    |    280 | 0.3118040 | 0.7468711 |
-| exit only                    |    275 | 0.3642384 | 0.7442615 |
-| shut the door                |    323 | 0.3786635 | 0.7432980 |
-| nightshop                    |     44 | 0.4356436 | 0.7429092 |
-| sweet and low                |    249 | 0.4422735 | 0.7391048 |
-| runaway return               |    265 | 0.3243574 | 0.7160596 |
-| downed city                  |    111 | 0.2944297 | 0.6979430 |
-| bulldog front                |    226 | 0.2579909 | 0.6964507 |
-| fell, destroyed              |    137 | 0.3051225 | 0.6950749 |
-| walken’s syndrome            |    141 | 0.2732558 | 0.6942430 |
-| reprovisional                |    276 | 0.3231850 | 0.6928947 |
-| long distance runner         |    113 | 0.3005319 | 0.6879970 |
-| strangelight                 |     19 | 0.3333333 | 0.6841398 |
-| burning too                  |    215 | 0.2465596 | 0.6829567 |
-| cassavetes                   |    171 | 0.2705696 | 0.6824715 |
-| pink frosty                  |     67 | 0.2669323 | 0.6807673 |
-| burning                      |    214 | 0.2401796 | 0.6779462 |
-| returning the screw          |    134 | 0.2596899 | 0.6758123 |
-| latin roots                  |    182 | 0.2496571 | 0.6719010 |
-| greed                        |    188 | 0.2203986 | 0.6651377 |
-| dear justice letter          |    148 | 0.2132565 | 0.6452153 |
-| caustic acrostic             |     51 | 0.2007874 | 0.6400466 |
-| stacks                       |    153 | 0.2214182 | 0.6386858 |
-| last chance for a slow dance |    136 | 0.2151899 | 0.6261572 |
-| lockdown                     |    165 | 0.1841518 | 0.6209819 |
-| brendan \#1                  |    158 | 0.1852286 | 0.6200833 |
-| kyeo                         |    173 | 0.1924360 | 0.6087073 |
-| nice new outfit              |    115 | 0.1666667 | 0.5926950 |
-| foreman’s dog                |     33 | 0.1875000 | 0.5855776 |
-| break-in                     |    134 | 0.1492205 | 0.5760068 |
-| joe \#1                      |    132 | 0.1465039 | 0.5695556 |
-| guilford fall                |     32 | 0.1397380 | 0.5654878 |
-| glueman                      |    133 | 0.1504525 | 0.5545543 |
-| furniture                    |     94 | 0.1043285 | 0.5142495 |
-| latest disgrace              |     39 | 0.1034483 | 0.5001869 |
-| version                      |     34 | 0.0899471 | 0.4590256 |
-| provisional                  |      8 | 0.0092700 | 0.4546694 |
-| steady diet                  |     46 | 0.0683507 | 0.4236880 |
-| combination lock             |     21 | 0.0558511 | 0.3834129 |
-| 23 beats off                 |     26 | 0.0503876 | 0.3630508 |
-| hello morning                |      2 | 0.0444444 | 0.3131648 |
-| the word                     |     31 | 0.0344062 | 0.2858399 |
-| in defense of humans         |     25 | 0.0277469 | 0.2634634 |
-| turn off your guns           |     15 | 0.0166482 | 0.1720009 |
-| world beat                   |      2 | 0.0078740 | 0.0474919 |
-| polish                       |      6 | 0.0087591 | 0.0465143 |
-| preprovisional               |      6 | 0.0069284 | 0.0000000 |
+| song                         | chosen | intensity | rating |
+|:-----------------------------|-------:|----------:|-------:|
+| bulldog front                |    249 | 0.2691892 |     NA |
+| bad mouth                    |    312 | 0.3287671 |     NA |
+| burning                      |    243 | 0.2579618 |     NA |
+| give me the cure             |    401 | 0.4270501 |     NA |
+| glueman                      |    148 | 0.1582888 |     NA |
+| margin walker                |    467 | 0.5070575 |     NA |
+| and the same                 |    397 | 0.4174553 |     NA |
+| burning too                  |    238 | 0.2584148 |     NA |
+| lockdown                     |    184 | 0.1942978 |     NA |
+| promises                     |    390 | 0.4257642 |     NA |
+| joe \#1                      |    136 | 0.1428571 |     NA |
+| break-in                     |    146 | 0.1538462 |     NA |
+| brendan \#1                  |    170 | 0.1901566 |     NA |
+| merchandise                  |    495 | 0.5199580 |     NA |
+| blueprint                    |    608 | 0.6964490 |     NA |
+| greed                        |    199 | 0.2225951 |     NA |
+| exit only                    |    282 | 0.3615385 |     NA |
+| nice new outfit              |    119 | 0.1666667 |     NA |
+| latin roots                  |    187 | 0.2483400 |     NA |
+| long division                |    523 | 0.5883015 |     NA |
+| polish                       |      6 | 0.0084626 |     NA |
+| dear justice letter          |    152 | 0.2116992 |     NA |
+| kyeo                         |    183 | 0.1926316 |     NA |
+| facet squared                |    307 | 0.4759690 |     NA |
+| 23 beats off                 |     27 | 0.0502793 |    NaN |
+| cassavetes                   |    180 | 0.2743902 |     NA |
+| great cop                    |    277 | 0.4555921 |     NA |
+| instrument                   |    282 | 0.4653465 |     NA |
+| last chance for a slow dance |    138 | 0.2103659 |     NA |
+| do you like me               |    282 | 0.7175573 |     NA |
+| bed for the scraping         |    310 | 0.7888041 |     NA |
+| latest disgrace              |     39 | 0.0992366 |     NA |
+| birthday pony                |    203 | 0.5062344 |     NA |
+| forensic scene               |    203 | 0.5087719 |     NA |
+| combination lock             |     21 | 0.0535714 |     NA |
+| fell, destroyed              |    135 | 0.2890792 |     NA |
+| by you                       |    236 | 0.4738956 |     NA |
+| back to base                 |    142 | 0.3613232 |     NA |
+| downed city                  |    116 | 0.2951654 |     NA |
+| long distance runner         |    114 | 0.2908163 |     NA |
+| break                        |    179 | 0.7336066 |     NA |
+| place position               |    140 | 0.5737705 |     NA |
+| no surprise                  |     97 | 0.3991770 |     NA |
+| five corporations            |    113 | 0.4631148 |     NA |
+| caustic acrostic             |     53 | 0.1970260 |     NA |
+| closed captioned             |    169 | 0.8009479 |     NA |
+| floating boy                 |    107 | 0.4421488 |     NA |
+| foreman’s dog                |     34 | 0.1808511 |     NA |
+| arpeggiator                  |    163 | 0.7409091 |     NA |
+| guilford fall                |     32 | 0.1311475 |     NA |
+| pink frosty                  |     69 | 0.2593985 |     NA |
+| fd                           |    122 | 0.5545455 |     NA |
+| cashout                      |     67 | 0.9054054 |     NA |
+| full disclosure              |     29 | 0.4677419 |     NA |
+| epic problem                 |     34 | 0.4722222 |     NA |
+| life and limb                |     24 | 0.5106383 |     NA |
+| oh                           |     91 | 0.6107383 |     NA |
+| ex-spectator                 |     52 | 0.4601770 |     NA |
+| nightshop                    |     46 | 0.4070796 |     NA |
+| argument                     |     76 | 0.6725664 |     NA |
+| furniture                    |    108 | 0.1134454 |     NA |
+| number 5                     |    120 | 0.7643312 |     NA |
+| hello morning                |      2 | 0.0416667 |     NA |
+| in defense of humans         |     31 | 0.0325630 |     NA |
+| preprovisional               |      6 | 0.0065862 |     NA |
+| reclamation                  |    612 | 0.7463415 |     NA |
+| waiting room                 |    675 | 0.7090336 |     NA |
+| recap modotti                |    151 | 0.6832579 |     NA |
+| target                       |    267 | 0.6658354 |     NA |
+| the kill                     |     37 | 0.5967742 |     NA |
+| rend it                      |    354 | 0.5822368 |     NA |
+| public witness program       |    273 | 0.5112360 |     NA |
+| smallpox champion            |    265 | 0.4934823 |     NA |
+| repeater                     |    427 | 0.4874429 |     NA |
+| sieve-fisted find            |    435 | 0.4865772 |     NA |
+| turnover                     |    416 | 0.4679415 |     NA |
+| two beats off                |    392 | 0.4419391 |     NA |
+| sweet and low                |    254 | 0.4341880 |     NA |
+| suggestion                   |    373 | 0.3938754 |     NA |
+| shut the door                |    342 | 0.3825503 |     NA |
+| song \#1                     |    353 | 0.3707983 |     NA |
+| styrofoam                    |    294 | 0.3356164 |     NA |
+| runaway return               |    273 | 0.3230769 |     NA |
+| reprovisional                |    284 | 0.3169643 |     NA |
+| strangelight                 |     19 | 0.3114754 |     NA |
+| walken’s syndrome            |    147 | 0.2737430 |     NA |
+| returning the screw          |    138 | 0.2569832 |     NA |
+| stacks                       |    156 | 0.2181818 |     NA |
+| version                      |     36 | 0.0913706 |     NA |
+| steady diet                  |     46 | 0.0659971 |     NA |
+| the word                     |     37 | 0.0388655 |     NA |
+| turn off your guns           |     17 | 0.0178571 |     NA |
+| provisional                  |     13 | 0.0143330 |     NA |
+| world beat                   |      2 | 0.0074349 |     NA |
+| promises bit                 |      2 | 0.0021906 |     NA |
 
 ## Breaking ranks
 
@@ -612,9 +521,9 @@ mycomparisons <- mycomparisons %>%
 knitr::kable(mycomparisons, format = "pipe", digits = 3)
 ```
 
-| song1        | song2         | coef1 | coef2 | coefdiff |    z |
-|:-------------|:--------------|------:|------:|---------:|-----:|
-| waiting room | bulldog front | 3.148 | 1.899 |    1.249 | 1.72 |
+| song1 | song2        | coef1 |  coef2 | coefdiff |   z |
+|:------|:-------------|------:|-------:|---------:|----:|
+| NA    | back to base |    NA | -0.914 |       NA |  NA |
 
 A z-statistic of 1.96 or greater indicates a difference that is
 statistically significant with 95% confidence. The difference between
@@ -639,19 +548,19 @@ mycomparisons <- mycomparisons %>%
 knitr::kable(mycomparisons, format = "pipe", digits = 3)
 ```
 
-| song1               | song2               | coef1 |  coef2 | coefdiff |       z |
-|:--------------------|:--------------------|------:|-------:|---------:|--------:|
-| waiting room        | and the same        | 3.148 |  2.545 |    0.603 |   0.836 |
-| and the same        | turnover            | 2.545 |  2.751 |   -0.206 |  -0.782 |
-| turnover            | styrofoam           | 2.751 |  2.274 |    0.477 |   1.352 |
-| styrofoam           | steady diet         | 2.274 |  0.345 |    1.929 |   7.433 |
-| steady diet         | returning the screw | 0.345 |  1.781 |   -1.436 |  -6.141 |
-| returning the screw | instrument          | 1.781 |  2.500 |   -0.719 |  -4.192 |
-| instrument          | fell, destroyed     | 2.500 |  1.891 |    0.609 |   5.104 |
-| fell, destroyed     | place position      | 1.891 |  3.231 |   -1.340 | -11.316 |
-| place position      | arpeggiator         | 3.231 |  2.880 |    0.351 |   2.709 |
-| arpeggiator         | the kill            | 2.880 |  2.668 |    0.212 |   0.902 |
-| the kill            | hello morning       | 2.668 | -0.284 |    2.952 |  12.658 |
+| song1                | song2                |  coef1 |  coef2 | coefdiff |      z |
+|:---------------------|:---------------------|-------:|-------:|---------:|-------:|
+| NA                   | NA                   |     NA |     NA |       NA |     NA |
+| NA                   | NA                   |     NA |     NA |       NA |     NA |
+| NA                   | 23 beats off         |     NA |  0.000 |       NA |     NA |
+| 23 beats off         | bed for the scraping |  0.000 | -1.265 |    1.265 | 18.333 |
+| bed for the scraping | NA                   | -1.265 |     NA |       NA |     NA |
+| NA                   | argument             |     NA | -0.422 |       NA |     NA |
+| argument             | NA                   | -0.422 |     NA |       NA |     NA |
+| NA                   | NA                   |     NA |     NA |       NA |     NA |
+| NA                   | NA                   |     NA |     NA |       NA |     NA |
+| NA                   | NA                   |     NA |     NA |       NA |     NA |
+| NA                   | NA                   |     NA |     NA |       NA |     NA |
 
 So, the ranks should not be interpreted rigidly. Any two of the adjacent
 songs in the table could be interchanged and the resulting ranking would
@@ -671,15 +580,15 @@ knitr::kable(releases_data %>% arrange(desc(rating)), "pipe")
 
 | releaseid | release | first_debut | last_debut | release_date | songs | count | shows | intensity | rating |
 |---:|:---|:---|:---|:---|---:|---:|---:|---:|---:|
-| 9 | the argument | 1998-11-29 | 2001-06-21 | 2001-10-16 | 10 | 430 | 79 | 0.5412 | 0.8012 |
-| 8 | end hits | 1996-01-30 | 1998-05-01 | 1998-04-24 | 13 | 1361 | 221 | 0.4795 | 0.7954 |
-| 4 | repeater | 1987-09-03 | 1990-05-17 | 1990-03-01 | 11 | 3887 | 847 | 0.4175 | 0.7762 |
-| 7 | red medicine | 1993-04-28 | 1994-11-27 | 1995-05-12 | 13 | 2054 | 392 | 0.4025 | 0.7342 |
-| 1 | fugazi | 1987-09-03 | 1988-06-15 | 1988-11-19 | 7 | 2196 | 890 | 0.3517 | 0.7335 |
-| 6 | in on the killtaker | 1991-07-28 | 1993-02-05 | 1993-06-18 | 12 | 2560 | 565 | 0.3763 | 0.7292 |
-| 2 | margin walker | 1987-09-26 | 1988-11-14 | 1989-06-15 | 6 | 1574 | 878 | 0.2984 | 0.6962 |
-| 3 | 3 songs | 1987-09-03 | 1987-10-16 | 1989-12-01 | 3 | 588 | 899 | 0.2180 | 0.6428 |
-| 5 | steady diet of nothing | 1987-10-07 | 1991-04-12 | 1991-08-01 | 11 | 2455 | 752 | 0.2858 | 0.6289 |
-| 10 | furniture | 1987-09-03 | 2001-04-27 | 2001-10-16 | 3 | 206 | 363 | 0.3025 | 0.5740 |
-| 11 | first demo | 1987-09-03 | 1987-09-03 | 2014-11-18 | 3 | 71 | 900 | 0.0263 | 0.2404 |
-| 13 | unreleased | 1988-10-31 | 1996-01-30 | NA | 2 | 8 | 560 | 0.0074 | 0.0238 |
+| 1 | fugazi | 1987-10-16 | 1994-08-27 | 1988-11-19 | 7 | 1683 | 852 | 0.2668 | NA |
+| 2 | margin walker | 1987-09-26 | 1988-10-21 | 1989-06-15 | 6 | 1678 | 928 | 0.3009 | NA |
+| 3 | 3 songs | 1987-09-03 | 1992-10-23 | 1989-12-01 | 3 | 547 | 813 | 0.2631 | NA |
+| 4 | repeater | 1987-09-03 | 2001-04-06 | 1990-03-01 | 11 | 3320 | 795 | 0.3816 | NA |
+| 5 | steady diet of nothing | 1987-09-03 | 1997-05-01 | 1991-08-01 | 11 | 2250 | 722 | 0.3001 | NA |
+| 6 | in on the killtaker | 1987-09-03 | 1992-10-23 | 1993-06-18 | 12 | 3603 | 761 | 0.3828 | NA |
+| 7 | red medicine | 1989-05-03 | 1994-11-27 | 1995-05-12 | 13 | 2447 | 461 | 0.4037 | NA |
+| 8 | end hits | 1993-02-05 | 1998-05-01 | 1998-04-24 | 13 | 1551 | 260 | 0.4587 | NA |
+| 9 | the argument | 1991-04-12 | 2001-06-21 | 2001-10-16 | 10 | 732 | 185 | 0.5219 | NA |
+| 10 | furniture | 1987-09-03 | 2001-04-27 | 2001-10-16 | 3 | 230 | 386 | 0.3049 | NA |
+| 11 | first demo | 1987-09-03 | 2001-04-05 | 2014-11-18 | 3 | 105 | 655 | 0.2228 | NA |
+| 13 | unreleased | 1988-10-31 | 1992-10-23 | NA | 2 | 153 | 725 | 0.1399 | NA |

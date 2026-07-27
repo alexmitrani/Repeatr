@@ -69,20 +69,20 @@ https://www.dischord.com/fugazi_live_series
 ## Examples
 
 ``` r
-  releases_data_input
+releases_data_input
 #> # A tibble: 94 × 12
 #>    releaseid release   track_number song  last_show colour_code count date      
 #>        <int> <fct>            <int> <fct>     <int> <chr>       <int> <date>    
-#>  1        13 unreleas…            2 worl…       900 #e69f00         2 1996-01-30
-#>  2        13 unreleas…            1 prep…       900 #e69f00         6 1988-10-31
-#>  3        11 first de…           10 in d…       900 #adb56a        25 1987-09-03
-#>  4        11 first de…            8 turn…       900 #adb56a        15 1987-09-03
-#>  5        11 first de…            5 the …       900 #adb56a        31 1987-09-03
-#>  6        10 furniture            3 hell…       900 #d15743         2 2001-04-27
-#>  7        10 furniture            2 numb…       900 #d15743       110 1998-11-21
-#>  8        10 furniture            1 furn…       900 #d15743        94 1987-09-03
-#>  9         9 the argu…           11 argu…       900 #99c3cb        66 1999-08-26
-#> 10         9 the argu…           10 nigh…       900 #99c3cb        44 1999-08-26
+#>  1        13 unreleas…            2 walk…       952 #e69f00       147 1992-10-23
+#>  2        13 unreleas…            1 prep…       952 #e69f00         6 1988-10-31
+#>  3        11 first de…           10 in d…       952 #adb56a        31 1987-09-03
+#>  4        11 first de…            8 the …       952 #adb56a        37 1987-09-03
+#>  5        11 first de…            5 the …       952 #adb56a        37 2001-04-05
+#>  6        10 furniture            3 hell…       952 #d15743         2 2001-04-27
+#>  7        10 furniture            2 numb…       952 #d15743       120 1998-11-21
+#>  8        10 furniture            1 furn…       952 #d15743       108 1987-09-03
+#>  9         9 the argu…           11 argu…       952 #99c3cb        76 1999-08-26
+#> 10         9 the argu…           10 nigh…       952 #99c3cb        46 1999-08-26
 #> # ℹ 84 more rows
 #> # ℹ 4 more variables: show_num <int>, shows <dbl>, intensity <dbl>,
 #> #   rating <dbl>

@@ -44,17 +44,24 @@ diffr(coeftable = NULL, vcovmat = NULL, coefindex1 = NULL, coefindex2 = NULL)
 
   index number of second coefficient to be tested
 
+## Value
+
+A one-row data frame with columns `var1`, `var2`, `coefindex1`,
+`coefindex2`, `mycoef1`, `mycoef2`, `mycoefdiff`, `myz`, `myp`,
+`lower95ci`, `upper95ci`, giving the z-test of the difference between
+the two specified coefficients.
+
 ## Examples
 
 ``` r
 mytest <- diffr(coeftable = results_ml_Repeatr4, vcovmat = vcovmat_ml_Repeatr4, coefindex1 = 1, coefindex2 = 2)
 #> 
 #>  
-#> First coefficient: 2.54493169309144 
+#> First coefficient: 0.190336139918484 
 #>  
-#> Second coefficient: 2.70186219139716 
+#> Second coefficient: -0.215248525271357 
 #>  
-#> Difference to be tested: -0.156930498305724 
+#> Difference to be tested: 0.40558466518984 
 #>  
 #> Variance of the first coefficient: 0.00443420102574495 
 #>  
@@ -62,13 +69,13 @@ mytest <- diffr(coeftable = results_ml_Repeatr4, vcovmat = vcovmat_ml_Repeatr4, 
 #>  
 #> Covariance of the two coefficients: 0.00256233487451444 
 #>  
-#> Z-statistic: -2.62732626187157 
+#> Z-statistic: 6.79028776286495 
 #>  
-#> P-statistic: 0.00860587760402746 
+#> P-statistic: 1.99999999998881 
 #>  
-#> Lower boundary of 95% confidence interval of the difference between the two coefficients: -0.27400152261776 
+#> Lower boundary of 95% confidence interval of the difference between the two coefficients: 0.288513640877804 
 #>  
-#> Upper boundary of 95% confidence interval of the difference between the two coefficients: -0.0398594739936872 
+#> Upper boundary of 95% confidence interval of the difference between the two coefficients: 0.522655689501877 
 #>  
 #> 
 ```

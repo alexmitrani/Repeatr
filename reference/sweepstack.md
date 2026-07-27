@@ -21,6 +21,14 @@ sweepstack(number_stacks = NULL, exclude_poor_sound_quality = FALSE)
 
   set this to TRUE to exclude shows with sound quality rated as 'Poor'.
 
+## Value
+
+A list of two data frames: `stack_summary` (`gid`, `shows` - one row per
+starting show tested, and the number of shows needed to reach the target
+unique-song count) and `stack_details` (`gid_initial`, `gid`, `song` -
+the full, deduplicated set of shows and songs behind every stack
+tested).
+
 ## Details
 
 sweepstack
