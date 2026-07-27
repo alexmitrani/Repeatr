@@ -14,7 +14,7 @@
 #' @param coefindex1 index number of first coefficient to be tested
 #' @param coefindex2 index number of second coefficient to be tested
 #'
-#' @return
+#' @return A one-row data frame with columns `var1`, `var2`, `coefindex1`, `coefindex2`, `mycoef1`, `mycoef2`, `mycoefdiff`, `myz`, `myp`, `lower95ci`, `upper95ci`, giving the z-test of the difference between the two specified coefficients.
 #' @export
 #'
 #' @examples

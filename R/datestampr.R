@@ -13,7 +13,7 @@
 #' @param minuteonly requests a simplified timestamp with only the date, the hour and the minutes (no seconds).
 #' @param myusername adds the active username to the timestamp.
 #'
-#' @return
+#' @return A character string datestamp, formatted according to `dateonly`/`houronly`/`minuteonly` and optionally suffixed with the current username.
 #' @export
 #'
 #' @examples

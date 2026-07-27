@@ -9,6 +9,9 @@ nscmov(fls_venue_geocoding_update_filename = NULL)
 \arguments{
 \item{fls_venue_geocoding_update_filename}{filename of file with which to update coordinates data in othervariables.rda}
 }
+\value{
+The updated \code{othervariables} data frame, with coordinates and \code{checked} status refreshed from \code{fls_venue_geocoding_update_filename}. Also saved to \code{data/othervariables.rda}, and writes \code{fls_venue_geocoding_update.csv} - a template listing any venues still unresolved (\code{checked == 0}) - to the working directory.
+}
 \description{
 Process for updating coordinates on Shiny app:
 \enumerate{

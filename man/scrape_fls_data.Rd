@@ -23,6 +23,9 @@ scrape_fls_data(
 
 \item{my_data_html_element}{html element that contains the data to be scraped}
 }
+\value{
+A data frame with one row per scraped show: \code{gid}, \code{fls_id}, and \code{fls_data} (the trimmed text extracted from \code{my_data_html_element}). Also written to \code{mycsvfilename}.
+}
 \description{
 A simple function to scrape data from the Fugazi Live Series website using rvest.
 }

@@ -12,7 +12,7 @@
 #' @param test_page_to_scrape specific URL to use for test
 #'
 #' @import rvest
-#' @return
+#' @return A data frame with one row per scraped show: `gid`, `fls_id`, and `fls_data` (the value extracted from the dt/dd pair matching `mydt_caption`, or `""` if that show has no such pair). Also written to `mycsvfilename`.
 #' @export
 #'
 #' @examples

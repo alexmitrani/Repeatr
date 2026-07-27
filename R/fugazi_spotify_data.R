@@ -13,14 +13,19 @@
 #' @description key_spotify <- spotifyOAuth("app_id","client_id","client_secret")
 #' @description This function will produce an error if you do not load the package RSpotify first or if you do not provide as arguments your app_id, client_id and client_secret.
 #'
-#' @param app_id
-#' @param client_id
-#' @param client_secret
+#' @param app_id Spotify app id, as generated in the Spotify developer dashboard.
+#' @param client_id Spotify client id, as generated in the Spotify developer dashboard.
+#' @param client_secret Spotify client secret, as generated in the Spotify developer dashboard.
 #'
-#' @return
+#' @return A data frame with one row per Fugazi track, combining Spotify's per-song audio features (e.g. tempo) with the track and album name.
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' library(Rspotify)
+#' key_spotify <- spotifyOAuth("app_id", "client_id", "client_secret")
+#' fugazi_tracks <- fugazi_spotify_data(app_id = "app_id", client_id = "client_id", client_secret = "client_secret")
+#' }
 fugazi_spotify_data <- function(app_id = NULL, client_id = NULL, client_secret = NULL) {
 
   key_spotify <- spotifyOAuth(app_id, client_id, client_secret)

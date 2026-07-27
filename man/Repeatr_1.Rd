@@ -13,6 +13,9 @@ Repeatr_1(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile = NULL)
 
 \item{releasesdatafile}{Optional name of CSV file containing releases data to be used. If omitted, the default file provided with the package will be used.}
 }
+\value{
+A list of 11 elements: \code{Repeatr0}, \code{Repeatr1}, \code{songidlookup}, \code{mycount}, \code{songvarslookup}, \code{releasesdatalookup}, \code{othervariables}, \code{cumulative_song_counts}, \code{fls_tags}, \code{fls_tags_show}, and \code{cumulative_duration_counts}. As a side effect, these and several other derived datasets (including \code{gid_sound_quality}, \code{played_with}, \code{shows_data}, \code{xray}) are also saved into \verb{data/}.
+}
 \description{
 This was originally developed with a headerless file called "fugotcha.csv". It now reads "fls_data.csv" instead - a tidy, headered CSV produced by \code{\link{scrape_fls_shows}}, with one row per show and columns gid, fls_id, show_date, venue, door_price, attendance, recorded_by, mastered_by, original_source, sound_quality, played_with, fls_notes, track_1 ... track_n.
 

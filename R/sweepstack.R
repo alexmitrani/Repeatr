@@ -7,7 +7,7 @@
 #' @param number_stacks this is the number of starting shows to test.  if not specified all the possible starting shows will be tested.
 #' @param exclude_poor_sound_quality set this to TRUE to exclude shows with sound quality rated as 'Poor'.
 #'
-#' @return
+#' @return A list of two data frames: `stack_summary` (`gid`, `shows` - one row per starting show tested, and the number of shows needed to reach the target unique-song count) and `stack_details` (`gid_initial`, `gid`, `song` - the full, deduplicated set of shows and songs behind every stack tested).
 #' @export
 #'
 #' @examples

@@ -13,6 +13,9 @@ rankr(coeftable = NULL, vcovmat = NULL, mysongidlist = NULL)
 
 \item{mysongidlist}{a dataframe containing the list of song ids to be tested.  It can contain other variables but only songid will be used.}
 }
+\value{
+A data frame with one row per adjacent pair of songs tested, giving \code{song1}, \code{song2}, their coefficients (\code{mycoef1}, \code{mycoef2}), the coefficient difference and its z-statistic, p-value and 95\% confidence interval (as produced by \code{diffr()}).
+}
 \description{
 The index numbers are based on the model coefficient table that comes straight out of the model, with no sorting.
 

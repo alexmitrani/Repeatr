@@ -9,6 +9,12 @@ Repeatr_4(mydf = NULL)
 \arguments{
 \item{mydf}{optional dataframe to be used.  If omitted, the default dataframe will be used.  Example of use: ml_Repeatr4 <- Repeatr_4()}
 }
+\value{
+A data frame (\code{results_ml_Repeatr4}) of the mlogit coefficient table: one row per model covariate, with columns for the estimate, standard error, z-value and p-value. Also saved to \code{data/results_ml_Repeatr4.rda}.
+}
 \description{
 Defines indices, makes changes to variable formats and data structure to prepare for choice modelling with mlogit.
+}
+\examples{
+results_ml_Repeatr4 <- Repeatr_4()
 }

@@ -9,6 +9,9 @@ Repeatr_2(mydf = NULL)
 \arguments{
 \item{mydf}{optional dataframe to be used.  If omitted the default dataframe will be used.}
 }
+\value{
+A data frame (\code{Repeatr2}) with one row per gid/song_number/songid combination, prepared for choice modelling: includes \code{case} (choice-situation id), \code{alt} (song id, renamed from \code{songid}), \code{choice} (whether that song was the one played, renamed from \code{chosen}), availability/played dummy variables, and years-since-launch bucket variables. Also saved to \code{data/Repeatr2.rda}, alongside \code{fugazi_song_counts} and \code{fugazi_song_performance_intensity}.
+}
 \description{
 The first line of the data this was originally developed with:
 

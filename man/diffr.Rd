@@ -15,6 +15,9 @@ diffr(coeftable = NULL, vcovmat = NULL, coefindex1 = NULL, coefindex2 = NULL)
 
 \item{coefindex2}{index number of second coefficient to be tested}
 }
+\value{
+A one-row data frame with columns \code{var1}, \code{var2}, \code{coefindex1}, \code{coefindex2}, \code{mycoef1}, \code{mycoef2}, \code{mycoefdiff}, \code{myz}, \code{myp}, \code{lower95ci}, \code{upper95ci}, giving the z-test of the difference between the two specified coefficients.
+}
 \description{
 The function finds the standard error of the difference between the two coefficients in terms of their variances and their covariance: myse <- (sqrt(myvar1 + myvar2 - 2*mycov))
 

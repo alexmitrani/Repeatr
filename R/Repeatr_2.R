@@ -13,7 +13,7 @@
 #'
 #' @param mydf optional dataframe to be used.  If omitted the default dataframe will be used.
 #'
-#' @return
+#' @return A data frame (`Repeatr2`) with one row per gid/song_number/songid combination, prepared for choice modelling: includes `case` (choice-situation id), `alt` (song id, renamed from `songid`), `choice` (whether that song was the one played, renamed from `chosen`), availability/played dummy variables, and years-since-launch bucket variables. Also saved to `data/Repeatr2.rda`, alongside `fugazi_song_counts` and `fugazi_song_performance_intensity`.
 #' @export
 #'
 #' @examples

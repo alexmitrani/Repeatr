@@ -11,6 +11,9 @@ compressr(mydf, ...)
 
 \item{...}{a list of the variables to have their storage modes changed to integer.}
 }
+\value{
+The input data frame \code{mydf}, with the storage mode of any listed variables that exist in it converted from double to integer.
+}
 \description{
 compressr is used to reduce the size of data files with double-precision storage of integer variables, by changing the storage type of these variables to integer.
 }

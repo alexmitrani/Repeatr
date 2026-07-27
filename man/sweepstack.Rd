@@ -11,6 +11,9 @@ sweepstack(number_stacks = NULL, exclude_poor_sound_quality = FALSE)
 
 \item{exclude_poor_sound_quality}{set this to TRUE to exclude shows with sound quality rated as 'Poor'.}
 }
+\value{
+A list of two data frames: \code{stack_summary} (\code{gid}, \code{shows} - one row per starting show tested, and the number of shows needed to reach the target unique-song count) and \code{stack_details} (\code{gid_initial}, \code{gid}, \code{song} - the full, deduplicated set of shows and songs behind every stack tested).
+}
 \description{
 it returns a dataframe with two columns, "gid" and "shows".  gid is the gig id of the starting show used for the test.  shows is the number of shows included in the resulting stack.
 }

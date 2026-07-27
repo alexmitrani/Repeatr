@@ -9,6 +9,9 @@ Repeatr_3(mydf = NULL)
 \arguments{
 \item{mydf}{optional dataframe to be used.  If omitted the default dataframe will be used.}
 }
+\value{
+A data frame (\code{Repeatr3}) reduced to the variables needed for mlogit choice modelling (\code{case}, \code{song_number}, \code{alt}, \code{choice}, \code{yearsold} buckets and their interactions with vocalist dummies, etc.), with numeric variables compressed to integer storage via \code{compressr()}. Also saved to \code{data/Repeatr3.rda}.
+}
 \description{
 "gid" is short for "gig id"
 }

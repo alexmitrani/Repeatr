@@ -11,9 +11,9 @@
 #' @import rlang
 #' @import knitr
 #'
-#' @param really
+#' @param really set to "really" to actually run the update; any other value (the default, "not_really") does nothing.
 #'
-#' @return
+#' @return Invisibly, the list of results from the final `Repeatr_5()` call when `really = "really"`; `NULL` otherwise. The real effect is refreshing all of the package's `data/*.rda` objects in place, ready to be reinstalled.
 #' @export
 #'
 #' @examples

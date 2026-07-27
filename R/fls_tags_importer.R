@@ -7,7 +7,7 @@
 #'
 #' @param myfilename the full path and filename of the file to be imported and converted.
 #'
-#' @return
+#' @return A data frame of the imported tag data (`track`, `artist`, `album`, `name`, `duration`), with `duration` parsed into an hms `Period` and `seconds`/`minutes` columns added.
 #' @export
 #'
 #' @examples

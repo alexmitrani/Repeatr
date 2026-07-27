@@ -19,7 +19,7 @@
 #' @param mysongdatafile Optional name of CSV file containing song data to be used. If omitted, the default file provided with the package will be used.
 #' @param releasesdatafile Optional name of CSV file containing releases data to be used. If omitted, the default file provided with the package will be used.
 #'
-#' @return
+#' @return A list of 11 elements: `Repeatr0`, `Repeatr1`, `songidlookup`, `mycount`, `songvarslookup`, `releasesdatalookup`, `othervariables`, `cumulative_song_counts`, `fls_tags`, `fls_tags_show`, and `cumulative_duration_counts`. As a side effect, these and several other derived datasets (including `gid_sound_quality`, `played_with`, `shows_data`, `xray`) are also saved into `data/`.
 #' @export
 #'
 #' @examples

@@ -20,6 +20,9 @@ download_table_footer(
 
 \item{rowtext}{character vector of text to be added at bottom of table}
 }
+\value{
+The input data frame \code{mydf}, with all columns coerced to character, a new text column inserted at the front (named \code{textcolumnname}), and \code{nblankrows} blank rows plus one row per element of \code{rowtext} appended at the bottom.
+}
 \description{
 All columns in the dataframe will be converted to character formaat to avoid blanks appearing as "NA".
 

@@ -14,7 +14,7 @@
 #' @param mydf the dataframe to be modified.
 #' @param ... a list of the variables to have their storage modes changed to integer.
 #'
-#' @return
+#' @return The input data frame `mydf`, with the storage mode of any listed variables that exist in it converted from double to integer.
 #' @export
 #'
 #' @examples

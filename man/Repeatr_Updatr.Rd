@@ -7,7 +7,10 @@
 Repeatr_Updatr(really = "not_really")
 }
 \arguments{
-\item{really}{}
+\item{really}{set to "really" to actually run the update; any other value (the default, "not_really") does nothing.}
+}
+\value{
+Invisibly, the list of results from the final \code{Repeatr_5()} call when \code{really = "really"}; \code{NULL} otherwise. The real effect is refreshing all of the package's \verb{data/*.rda} objects in place, ready to be reinstalled.
 }
 \description{
 This can take a while which is why the parameter "really" is "not_really" by default.

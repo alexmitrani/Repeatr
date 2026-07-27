@@ -9,6 +9,9 @@ Repeatr_5(mymodeldf = NULL)
 \arguments{
 \item{mymodeldf}{optional choice model coefficients dataframe to be used to generate the results. If omitted, the default choice model coefficients dataframe will be used, which is results_ml_Repeatr4.}
 }
+\value{
+A list of 5 elements: \code{fugazi_song_choice_model} (per-variable coefficient table with song names substituted in for the intercept terms), \code{fugazi_song_preferences} (songs ranked by estimated preference), \code{summary} (song performance summary combining counts, intensity and rating), \code{releases_rated} (average rating by release), and \code{releases_data_input} (per-song-per-release data enriched with the estimated rating). Each of these, plus \code{releases_summary}, is also saved into \verb{data/}.
+}
 \description{
 Produces a summary table that includes song performance counts, song performance intensities, and ratings based on the estimated choice model parameters.
 }

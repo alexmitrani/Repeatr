@@ -20,6 +20,9 @@ datestampr(
 
 \item{myusername}{adds the active username to the timestamp.}
 }
+\value{
+A character string datestamp, formatted according to \code{dateonly}/\code{houronly}/\code{minuteonly} and optionally suffixed with the current username.
+}
 \description{
 datestampr is used to create the datestamps used to produce unique filenames for the output files.
 }

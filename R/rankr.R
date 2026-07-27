@@ -9,7 +9,7 @@
 #' @param vcovmat variance covariance matrix from mlogit, with one row and one column per coefficient
 #' @param mysongidlist a dataframe containing the list of song ids to be tested.  It can contain other variables but only songid will be used.
 #'
-#' @return
+#' @return A data frame with one row per adjacent pair of songs tested, giving `song1`, `song2`, their coefficients (`mycoef1`, `mycoef2`), the coefficient difference and its z-statistic, p-value and 95% confidence interval (as produced by `diffr()`).
 #' @export
 #'
 #' @examples

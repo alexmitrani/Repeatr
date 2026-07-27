@@ -10,7 +10,7 @@
 #' @param textcolumnname name of text column that will be added to the front of the dataframe
 #' @param rowtext character vector of text to be added at bottom of table
 #'
-#' @return
+#' @return The input data frame `mydf`, with all columns coerced to character, a new text column inserted at the front (named `textcolumnname`), and `nblankrows` blank rows plus one row per element of `rowtext` appended at the bottom.
 #' @export
 #'
 #' @examples

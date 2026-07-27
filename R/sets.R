@@ -8,7 +8,7 @@
 #' @param mydf the dataframe to use. must contain the columns "gid" and "song".
 #' @param shows a list of show ids
 #'
-#' @return
+#' @return A list of two data frames, as described above: the show-by-song table (first element) and the shows-per-song-count summary table (second element). Both are `NULL` if `shows` is not supplied.
 #' @export
 #'
 #' @examples

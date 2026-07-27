@@ -26,6 +26,9 @@ scrape_fls_dtdd(
 
 \item{test_page_to_scrape}{specific URL to use for test}
 }
+\value{
+A data frame with one row per scraped show: \code{gid}, \code{fls_id}, and \code{fls_data} (the value extracted from the dt/dd pair matching \code{mydt_caption}, or \code{""} if that show has no such pair). Also written to \code{mycsvfilename}.
+}
 \description{
 The dt tags hold the captions and the dd tags hold the data. The user specifies what caption corresponds to the data they are interested in and the function will get the data.
 }

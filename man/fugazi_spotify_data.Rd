@@ -7,7 +7,14 @@
 fugazi_spotify_data(app_id = NULL, client_id = NULL, client_secret = NULL)
 }
 \arguments{
-\item{client_secret}{}
+\item{app_id}{Spotify app id, as generated in the Spotify developer dashboard.}
+
+\item{client_id}{Spotify client id, as generated in the Spotify developer dashboard.}
+
+\item{client_secret}{Spotify client secret, as generated in the Spotify developer dashboard.}
+}
+\value{
+A data frame with one row per Fugazi track, combining Spotify's per-song audio features (e.g. tempo) with the track and album name.
 }
 \description{
 Based on code from this presentation: https://brunaw.com/shortcourses/IXSER/en/pres-en.html#1
@@ -30,4 +37,11 @@ This function will produce an error if you do not load the package RSpotify firs
 }
 \details{
 fugazi_spotify_data
+}
+\examples{
+\dontrun{
+library(Rspotify)
+key_spotify <- spotifyOAuth("app_id", "client_id", "client_secret")
+fugazi_tracks <- fugazi_spotify_data(app_id = "app_id", client_id = "client_id", client_secret = "client_secret")
+}
 }

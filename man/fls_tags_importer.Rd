@@ -9,6 +9,9 @@ fls_tags_importer(myfilename = NULL)
 \arguments{
 \item{myfilename}{the full path and filename of the file to be imported and converted.}
 }
+\value{
+A data frame of the imported tag data (\code{track}, \code{artist}, \code{album}, \code{name}, \code{duration}), with \code{duration} parsed into an hms \code{Period} and \code{seconds}/\code{minutes} columns added.
+}
 \description{
 fls_tags_importer is used to import a .txt file of duration data generated with kid3 audio tagger (https://kid3.kde.org/)
 }

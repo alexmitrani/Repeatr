@@ -13,11 +13,11 @@
 #'
 #' @param mydf optional dataframe to be used.  If omitted, the default dataframe will be used.  Example of use: ml_Repeatr4 <- Repeatr_4()
 #'
-#' @return
+#' @return A data frame (`results_ml_Repeatr4`) of the mlogit coefficient table: one row per model covariate, with columns for the estimate, standard error, z-value and p-value. Also saved to `data/results_ml_Repeatr4.rda`.
 #' @export
 #'
 #' @examples
-#'
+#' results_ml_Repeatr4 <- Repeatr_4()
 
 Repeatr_4 <- function(mydf = NULL) {
 

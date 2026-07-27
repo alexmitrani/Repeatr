@@ -11,6 +11,9 @@ sets(mydf = NULL, shows = NULL)
 
 \item{shows}{a list of show ids}
 }
+\value{
+A list of two data frames, as described above: the show-by-song table (first element) and the shows-per-song-count summary table (second element). Both are \code{NULL} if \code{shows} is not supplied.
+}
 \description{
 sets returns a list with two dataframes
 

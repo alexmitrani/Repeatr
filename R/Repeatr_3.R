@@ -12,7 +12,7 @@
 #'
 #' @param mydf optional dataframe to be used.  If omitted the default dataframe will be used.
 #'
-#' @return
+#' @return A data frame (`Repeatr3`) reduced to the variables needed for mlogit choice modelling (`case`, `song_number`, `alt`, `choice`, `yearsold` buckets and their interactions with vocalist dummies, etc.), with numeric variables compressed to integer storage via `compressr()`. Also saved to `data/Repeatr3.rda`.
 #' @export
 #'
 #' @examples
