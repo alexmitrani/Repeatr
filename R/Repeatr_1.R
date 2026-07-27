@@ -541,7 +541,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   Repeatr1 <- rbind.data.frame(Repeatr1, Repeatr1_outro)
 
-  # Recode variants of song titles to the main song title -------------------
+  # Recode variants of song titles to the main song title only in cases where there is ambiguity or inconsistency -------------------
 
   Repeatr1 <- Repeatr1 %>%
     mutate(song = str_replace(song, " instrumental", ""))
@@ -573,6 +573,12 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   # define track types: intros, interludes, sound checks -----------------------------------------------------------------
 
+  # track types
+  # 0 soundchecks, intros, interludes, encores
+  # 1 songs
+  # 2 rarities
+  # 3 raps
+
   Repeatr1$tracktype <- 1
 
   Repeatr1 <- Repeatr1 %>%
@@ -589,9 +595,6 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   Repeatr1 <- Repeatr1 %>%
     mutate(tracktype=ifelse(grepl("remarks", song)==TRUE, 0, tracktype))
-
-  Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("ice cream", song)==TRUE, 0, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
     mutate(tracktype=ifelse(grepl("outside", song)==TRUE, 0, tracktype))
@@ -645,6 +648,11 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   Repeatr1 <- Repeatr1 %>%
     mutate(tracktype=ifelse(grepl("strange disclosure", song)==TRUE, 2, tracktype))
+
+  # Raps ---------------------------------------
+
+  Repeatr1 <- Repeatr1 %>%
+    mutate(tracktype=ifelse(grepl("ice cream", song)==TRUE, 3, tracktype))
 
   # Summarise the data to check frequency counts for all songs --------------
 

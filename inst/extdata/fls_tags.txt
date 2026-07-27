@@ -22740,29 +22740,6 @@ track; artist; album; name; duration
 27; Fugazi; 20020406 James Madison U. Godwin Gym/MacRock, Harrisonburg, VA, USA; Epic Problem; 4:11
 28; Fugazi; 20020406 James Madison U. Godwin Gym/MacRock, Harrisonburg, VA, USA; Interlude 5; 0:59
 29; Fugazi; 20020406 James Madison U. Godwin Gym/MacRock, Harrisonburg, VA, USA; Arpeggiator; 4:12
-01; Fugazi; 20020418 Holyoke War Memorial, Holyoke, MA, USA; Introduction; 3:17
-02; Fugazi; 20020418 Holyoke War Memorial, Holyoke, MA, USA; Cashout; 4:36
-03; Fugazi; 20020418 Holyoke War Memorial, Holyoke, MA, USA; Full Disclosure; 3:22
-04; Fugazi; 20020418 Holyoke War Memorial, Holyoke, MA, USA; And The Same; 4:33
-05; Fugazi; 20020418 Holyoke War Memorial, Holyoke, MA, USA; Do You Like Me; 3:45
-06; Fugazi; 20020418 Holyoke War Memorial, Holyoke, MA, USA; Back To Base; 3:29
-07; Fugazi; 20020418 Holyoke War Memorial, Holyoke, MA, USA; Closed Caption; 4:35
-08; Fugazi; 20020418 Holyoke War Memorial, Holyoke, MA, USA; Nightshop; 4:24
-09; Fugazi; 20020418 Holyoke War Memorial, Holyoke, MA, USA; Bed For The Scraping; 3:03
-10; Fugazi; 20020418 Holyoke War Memorial, Holyoke, MA, USA; Burning; 2:45
-11; Fugazi; 20020418 Holyoke War Memorial, Holyoke, MA, USA; Waiting Room; 3:01
-12; Fugazi; 20020418 Holyoke War Memorial, Holyoke, MA, USA; Give Me The Cure; 2:57
-13; Fugazi; 20020418 Holyoke War Memorial, Holyoke, MA, USA; Suggestion; 8:17
-14; Fugazi; 20020418 Holyoke War Memorial, Holyoke, MA, USA; By You; 4:25
-15; Fugazi; 20020418 Holyoke War Memorial, Holyoke, MA, USA; Life And Limb; 3:26
-16; Fugazi; 20020418 Holyoke War Memorial, Holyoke, MA, USA; Merchandise; 2:50
-17; Fugazi; 20020418 Holyoke War Memorial, Holyoke, MA, USA; Latin Roots; 3:07
-18; Fugazi; 20020418 Holyoke War Memorial, Holyoke, MA, USA; Long Division; 2:34
-19; Fugazi; 20020418 Holyoke War Memorial, Holyoke, MA, USA; Number 5; 5:16
-20; Fugazi; 20020418 Holyoke War Memorial, Holyoke, MA, USA; Epic Problem; 4:01
-21; Fugazi; 20020418 Holyoke War Memorial, Holyoke, MA, USA; Oh; 4:07
-22; Fugazi; 20020418 Holyoke War Memorial, Holyoke, MA, USA; Promises; 7:32
-23; Fugazi; 20020418 Holyoke War Memorial, Holyoke, MA, USA; Smallpox Champion; 4:00
 01; Fugazi; 20020419 Mass Art Gymnasium, Boston, MA, USA; Break; 1:24
 02; Fugazi; 20020419 Mass Art Gymnasium, Boston, MA, USA; Sieve-Fisted Find; 3:15
 03; Fugazi; 20020419 Mass Art Gymnasium, Boston, MA, USA; Reclamation; 4:00
