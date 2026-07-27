@@ -7,6 +7,7 @@
 scrape_fls_shows(
   existing_data = NULL,
   update_existing = FALSE,
+  detect_changes = TRUE,
   gids = NULL,
   max_shows = Inf,
   max_listing_pages = Inf,
@@ -23,6 +24,13 @@ function produces (must have a \code{gid} column) or the legacy headerless
 
 \item{update_existing}{If \code{TRUE}, scrape every discovered (or supplied) gid
 regardless of what's in \code{existing_data}. Default \code{FALSE}.}
+
+\item{detect_changes}{If \code{TRUE} (the default), also re-scrape shows already
+in \code{existing_data} that have no tracklist on file but whose listing-page
+Available flag has turned to "Yes", since that means a recording was
+added after the last scrape. Only applies during listing-page discovery
+(i.e. when \code{gids} is not supplied) and is ignored when \code{update_existing = TRUE}
+(which already re-scrapes everything).}
 
 \item{gids}{Optional character vector of specific gids to scrape, bypassing
 listing-page discovery entirely. Useful for testing or for refreshing a
@@ -66,6 +74,19 @@ required separate scraping passes (see \code{scrape_fls_data.R}).
 By default, only shows not already present in \code{existing_data}
 are scraped, so routine re-runs are cheap and polite to the site. Set
 \code{update_existing = TRUE} to re-scrape everything discovered.
+
+The listing pages also show an Available Yes/No flag per show
+(whether a recording is downloadable), which is captured for free while
+discovering gids. When \code{detect_changes = TRUE} (the default), any show
+already on file with no tracklist yet, whose flag has since turned to
+"Yes", is added to the scrape targets alongside brand-new shows - this
+catches shows that had a tracklist (and usually sound quality/played
+with) added after the fact, without visiting every existing show's page.
+This can only catch changes visible on the listing page itself (a
+recording newly appearing); it won't catch e.g. a corrected door price
+or a sound quality rating changed on a show that was already available -
+use \code{update_existing = TRUE} (optionally with \code{gids} to target specific
+shows) to refresh those.
 }
 \examples{
 # Small-scale test: only the first listing page, and only 3 new shows

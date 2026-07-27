@@ -23,9 +23,13 @@ fls_get_max_listing_page <- function(page) {
 
 }
 
-# Scrapes the show links (gids) out of one listing page. Scoped specifically
-# to the show-listing tables, since the page template also contains an
-# unrelated "on this day" link elsewhere that matches the same URL pattern.
+# Scrapes the show links (gids) out of one listing page, along with the
+# "Available" Yes/No flag shown next to each show, scoped specifically to the
+# show-listing tables since the page template also contains an unrelated
+# "on this day" link elsewhere that matches the same URL pattern. The
+# available flag is captured here (for free, since the page is already being
+# fetched for gid discovery) so that shows whose recording has newly gone
+# from unavailable to available can be detected without extra requests.
 fls_scrape_listing_page <- function(page_num, base_url, user_agent) {
 
   url <- if (page_num == 1) base_url else paste0(base_url, "?page=", page_num)
@@ -38,13 +42,20 @@ fls_scrape_listing_page <- function(page_num, base_url, user_agent) {
 
   gids <- basename(hrefs)
 
-  list(page = page, gids = gids)
+  available <- page %>%
+    rvest::html_elements("table.fugazi-shows-table td.available") %>%
+    rvest::html_text2() %>%
+    stringr::str_trim()
+
+  list(page = page, gids = gids, available = available)
 
 }
 
-# Discovers every gid currently listed on the site, paging through the
-# listing until the site's own pagination widget says there are no more
-# pages (capped by max_listing_pages for testing).
+# Discovers every gid currently listed on the site (plus its Available flag),
+# paging through the listing until the site's own pagination widget says
+# there are no more pages (capped by max_listing_pages for testing). Returns
+# a data frame with one row per gid, deduplicated in case a show is ever
+# linked from more than one place on a listing page.
 fls_discover_gids <- function(base_url, max_listing_pages, sleepseconds, user_agent) {
 
   message("Discovering listing pages from ", base_url)
@@ -55,7 +66,10 @@ fls_discover_gids <- function(base_url, max_listing_pages, sleepseconds, user_ag
 
   message("Found ", total_pages, " listing page(s) to scrape (site max may be higher if capped by max_listing_pages)")
 
+  message("Scraping listing page 1 of ", total_pages)
+
   all_gids <- first$gids
+  all_available <- first$available
 
   if (total_pages > 1) {
 
@@ -68,29 +82,49 @@ fls_discover_gids <- function(base_url, max_listing_pages, sleepseconds, user_ag
       this_page <- fls_scrape_listing_page(page_num, base_url, user_agent)
 
       all_gids <- c(all_gids, this_page$gids)
+      all_available <- c(all_available, this_page$available)
 
     }
 
   }
 
-  unique(all_gids)
+  listing <- data.frame(gid = all_gids, available = all_available, stringsAsFactors = FALSE)
+
+  listing[duplicated(listing$gid) == FALSE, ]
 
 }
 
-# Reads the gid column out of either the tidy CSV produced by
-# scrape_fls_shows(), or the legacy headerless fugotcha.csv format (where
-# the first column is the gid), so incremental runs work against either.
-fls_read_existing_gids <- function(path) {
+# Reads a summary of the existing dataset out of either the tidy CSV produced
+# by scrape_fls_shows(), or the legacy headerless fugotcha.csv format (gid in
+# the first column, tracks from the 10th column onward) - so incremental runs
+# and change-detection work against either. Returns a data frame with one row
+# per known gid and a has_tracks flag (whether a tracklist is already on file
+# for that show), which is what lets newly-available recordings be detected.
+fls_read_existing_summary <- function(path) {
 
   df <- utils::read.csv(path, header = TRUE, stringsAsFactors = FALSE)
 
   if ("gid" %in% names(df)) {
-    return(df$gid)
+
+    track_cols <- grep("^track_", names(df), value = TRUE)
+
+    has_tracks <- if (length(track_cols) == 0) {
+      rep(FALSE, nrow(df))
+    } else {
+      apply(as.data.frame(df[, track_cols]), 1, function(row) {
+        any(is.na(row) == FALSE & nchar(stringr::str_trim(row)) > 0)
+      })
+    }
+
+    return(data.frame(gid = df$gid, has_tracks = has_tracks, stringsAsFactors = FALSE))
+
   }
 
   df <- utils::read.csv(path, header = FALSE, stringsAsFactors = FALSE)
 
-  df$V1
+  has_tracks <- is.na(df$V10) == FALSE & nchar(stringr::str_trim(as.character(df$V10))) > 0
+
+  data.frame(gid = df$V1, has_tracks = has_tracks, stringsAsFactors = FALSE)
 
 }
 
@@ -230,6 +264,18 @@ fls_shows_to_dataframe <- function(shows) {
 #' @description By default, only shows not already present in `existing_data`
 #'   are scraped, so routine re-runs are cheap and polite to the site. Set
 #'   `update_existing = TRUE` to re-scrape everything discovered.
+#' @description The listing pages also show an Available Yes/No flag per show
+#'   (whether a recording is downloadable), which is captured for free while
+#'   discovering gids. When `detect_changes = TRUE` (the default), any show
+#'   already on file with no tracklist yet, whose flag has since turned to
+#'   "Yes", is added to the scrape targets alongside brand-new shows - this
+#'   catches shows that had a tracklist (and usually sound quality/played
+#'   with) added after the fact, without visiting every existing show's page.
+#'   This can only catch changes visible on the listing page itself (a
+#'   recording newly appearing); it won't catch e.g. a corrected door price
+#'   or a sound quality rating changed on a show that was already available -
+#'   use `update_existing = TRUE` (optionally with `gids` to target specific
+#'   shows) to refresh those.
 #'
 #' @param existing_data Path to a CSV used to determine which gids are already
 #'   known, so only new shows get scraped. Accepts either the tidy format this
@@ -238,6 +284,12 @@ fls_shows_to_dataframe <- function(shows) {
 #'   `fugotcha.csv` shipped with the package. Ignored when `update_existing = TRUE`.
 #' @param update_existing If `TRUE`, scrape every discovered (or supplied) gid
 #'   regardless of what's in `existing_data`. Default `FALSE`.
+#' @param detect_changes If `TRUE` (the default), also re-scrape shows already
+#'   in `existing_data` that have no tracklist on file but whose listing-page
+#'   Available flag has turned to "Yes", since that means a recording was
+#'   added after the last scrape. Only applies during listing-page discovery
+#'   (i.e. when `gids` is not supplied) and is ignored when `update_existing = TRUE`
+#'   (which already re-scrapes everything).
 #' @param gids Optional character vector of specific gids to scrape, bypassing
 #'   listing-page discovery entirely. Useful for testing or for refreshing a
 #'   handful of known shows.
@@ -284,6 +336,7 @@ fls_shows_to_dataframe <- function(shows) {
 #'
 scrape_fls_shows <- function(existing_data = NULL,
                               update_existing = FALSE,
+                              detect_changes = TRUE,
                               gids = NULL,
                               max_shows = Inf,
                               max_listing_pages = Inf,
@@ -296,9 +349,23 @@ scrape_fls_shows <- function(existing_data = NULL,
 
   httr::set_config(httr::user_agent(user_agent))
 
+  if (is.null(existing_data)) {
+    existing_data <- system.file("extdata", "fugotcha.csv", package = "Repeatr")
+  }
+
+  existing_summary <- NULL
+
+  if (nzchar(existing_data) && file.exists(existing_data)) {
+    existing_summary <- fls_read_existing_summary(existing_data)
+  }
+
+  listing <- NULL
+
   if (is.null(gids)) {
 
-    target_gids <- fls_discover_gids(base_url, max_listing_pages, sleepseconds, user_agent)
+    listing <- fls_discover_gids(base_url, max_listing_pages, sleepseconds, user_agent)
+
+    target_gids <- listing$gid
 
   } else {
 
@@ -308,15 +375,23 @@ scrape_fls_shows <- function(existing_data = NULL,
 
   if (update_existing == FALSE) {
 
-    if (is.null(existing_data)) {
-      existing_data <- system.file("extdata", "fugotcha.csv", package = "Repeatr")
-    }
+    known_gids <- if (is.null(existing_summary)) character(0) else existing_summary$gid
 
-    if (nzchar(existing_data) && file.exists(existing_data)) {
+    target_gids <- setdiff(target_gids, known_gids)
 
-      existing_gids <- fls_read_existing_gids(existing_data)
+    if (detect_changes && is.null(listing) == FALSE && is.null(existing_summary) == FALSE) {
 
-      target_gids <- setdiff(target_gids, existing_gids)
+      previously_unavailable <- existing_summary$gid[existing_summary$has_tracks == FALSE]
+
+      now_available <- listing$gid[listing$available == "Yes"]
+
+      changed_gids <- intersect(previously_unavailable, now_available)
+
+      if (length(changed_gids) > 0) {
+        message("Detected ", length(changed_gids), " previously-unavailable show(s) that now show a recording as available - re-scraping them too")
+      }
+
+      target_gids <- union(target_gids, changed_gids)
 
     }
 
