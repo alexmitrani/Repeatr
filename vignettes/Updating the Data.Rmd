@@ -33,6 +33,8 @@ All three feed into `Repeatr_1()`, which combines them (plus a fair amount of ha
 
 None of steps 1-3 need to happen together. Run whichever one has new material, then rebuild (step 4) and redeploy (step 5).
 
+`data-raw/build_data.R` is the canonical, runnable version of steps 1-4 below - this vignette explains the why, that script is what to actually run.
+
 ## 1. Updating show data
 
 `scrape_fls_shows()` (`R/scrape_fls_shows.R`) discovers the current show listing directly from the site - including any pages added since the last run - and scrapes each show's detail page for date, venue, door price, attendance, recorded/mastered by, original source, sound quality, played-with, any official notes, and the tracklist.
