@@ -43,7 +43,7 @@ Repeatr_4 <- function(mydf = NULL) {
   Repeatr4 <- dfidx(Repeatr4, idx = c("case", "alt"), drop.index = TRUE)
 
   ml.Repeatr4 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5
-                         + yearsold_6 + yearsold_7 + yearsold_8 , data = Repeatr4)
+                         + yearsold_6 + yearsold_7 + yearsold_8 - 1, data = Repeatr4)
 
   summary.ml.Repeatr4 <- summary(ml.Repeatr4)
 
