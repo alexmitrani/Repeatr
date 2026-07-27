@@ -387,18 +387,6 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
            datestring = paste0(day, "/", month, "/", year))
 
   fls_tags <- fls_tags %>%
-    mutate(album = ifelse(datestring == "20/02/1988" , "19880220 Merrifield Community Center, Merrifield, VA, USA", album))
-
-  fls_tags <- fls_tags %>%
-    mutate(album = ifelse(datestring == "20/08/1994" , "19940820 Aeroanta, Sao Paulo, Brazil", album))
-
-  fls_tags <- fls_tags %>%
-    mutate(album = ifelse(datestring == "24/09/1995" , "19950924 Cegep Limoilou, Quebec City, Quebec, Canada", album))
-
-  fls_tags <- fls_tags %>%
-    mutate(album = ifelse(datestring == "22/07/1998" , "19980722 Centre de Loisirs, Quebec City, QC, Canada", album))
-
-  fls_tags <- fls_tags %>%
     mutate(album = ifelse(datestring == "11/02/1990" , "19900211 Studio 10, Baltimore, MD, USA", album))
 
   fls_tags <- fls_tags %>%

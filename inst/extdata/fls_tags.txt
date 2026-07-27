@@ -176,22 +176,22 @@ track; artist; album; name; duration
 17; Fugazi; 19880206 Unitarian Church, Annapolis, MD, USA; Suggestion; 8:16
 18; Fugazi; 19880206 Unitarian Church, Annapolis, MD, USA; The Word; 6:46
 19; Fugazi; 19880206 Unitarian Church, Annapolis, MD, USA; Outro; 0:14
-01; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; Intro; 1:06
-02; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; Joe #1; 3:19
-03; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; Bad Mouth; 2:48
-04; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; Interlude 1; 0:38
-05; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; Furniture; 4:08
-06; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; Interlude 2; 2:15
-07; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; Waiting Room; 3:30
-08; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; Song #1; 3:06
-09; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; Burning; 2:41
-10; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; Interlude 3; 1:01
-11; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; Merchandise; 3:07
-12; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; Interlude 4; 0:46
-13; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; Suggestion; 7:58
-14; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; Break-In; 2:13
-15; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; The Word; 5:27
-16; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; KYEO; 3:10
+01; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; Intro; 1:06
+02; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; Joe #1; 3:19
+03; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; Bad Mouth; 2:48
+04; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; Interlude 1; 0:38
+05; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; Furniture; 4:08
+06; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; Interlude 2; 2:15
+07; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; Waiting Room; 3:30
+08; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; Song #1; 3:06
+09; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; Burning; 2:41
+10; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; Interlude 3; 1:01
+11; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; Merchandise; 3:07
+12; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; Interlude 4; 0:46
+13; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; Suggestion; 7:58
+14; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; Break-In; 2:13
+15; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; The Word; 5:27
+16; Fugazi; 19880220 Merrifield Community Center, Merrifield, VA, USA; KYEO; 3:10
 01; Fugazi; 19880303 Wilson Center, Washington, DC, USA; Intro; 1:28
 02; Fugazi; 19880303 Wilson Center, Washington, DC, USA; In Defense of Humans; 2:50
 03; Fugazi; 19880303 Wilson Center, Washington, DC, USA; Furniture; 4:01
@@ -12541,34 +12541,34 @@ track; artist; album; name; duration
 22; Fugazi; 19940819 Colegio Leao XIII Hall, Itaborai, Brazil; Public Witness Program; 2:06,
 23; Fugazi; 19940819 Colegio Leao XIII Hall, Itaborai, Brazil; Sweet and Low; 4:06,
 24; Fugazi; 19940819 Colegio Leao XIII Hall, Itaborai, Brazil; Outro; 1:02,
-01; Fugazi; 19940820 Aeroanta, São Paulo, Brazil; Intro; 1:03,
-02; Fugazi; 19940820 Aeroanta, São Paulo, Brazil; Styrofoam; 2:33,
-03; Fugazi; 19940820 Aeroanta, São Paulo, Brazil; Latin Roots; 3:04,
-04; Fugazi; 19940820 Aeroanta, São Paulo, Brazil; Facet Squared; 2:48,
-05; Fugazi; 19940820 Aeroanta, São Paulo, Brazil; Sieve-Fisted Find; 3:12,
-06; Fugazi; 19940820 Aeroanta, São Paulo, Brazil; Reclamation; 3:38,
-07; Fugazi; 19940820 Aeroanta, São Paulo, Brazil; Interlude 1; 0:34,
-08; Fugazi; 19940820 Aeroanta, São Paulo, Brazil; Two Beats Off; 5:28,
-09; Fugazi; 19940820 Aeroanta, São Paulo, Brazil; Interlude 2; 0:44,
-10; Fugazi; 19940820 Aeroanta, São Paulo, Brazil; Birthday Pony; 2:44,
-11; Fugazi; 19940820 Aeroanta, São Paulo, Brazil; By You; 4:45,
-12; Fugazi; 19940820 Aeroanta, São Paulo, Brazil; Margin Walker; 2:49,
-13; Fugazi; 19940820 Aeroanta, São Paulo, Brazil; Bad Mouth; 2:37,
-14; Fugazi; 19940820 Aeroanta, São Paulo, Brazil; Break-In; 1:27,
-15; Fugazi; 19940820 Aeroanta, São Paulo, Brazil; Waiting Room; 2:50,
-16; Fugazi; 19940820 Aeroanta, São Paulo, Brazil; Interlude 3; 0:53,
-17; Fugazi; 19940820 Aeroanta, São Paulo, Brazil; Smallpox Champion; 3:40,
-18; Fugazi; 19940820 Aeroanta, São Paulo, Brazil; Interlude 4; 0:40,
-19; Fugazi; 19940820 Aeroanta, São Paulo, Brazil; Instrument; 3:46,
-20; Fugazi; 19940820 Aeroanta, São Paulo, Brazil; Blueprint; 3:27,
-21; Fugazi; 19940820 Aeroanta, São Paulo, Brazil; Interlude 5; 1:04,
-22; Fugazi; 19940820 Aeroanta, São Paulo, Brazil; Long Division; 2:16,
-23; Fugazi; 19940820 Aeroanta, São Paulo, Brazil; Target; 3:49,
-24; Fugazi; 19940820 Aeroanta, São Paulo, Brazil; Repeater; 2:58,
-25; Fugazi; 19940820 Aeroanta, São Paulo, Brazil; Encore; 3:19,
-26; Fugazi; 19940820 Aeroanta, São Paulo, Brazil; Fell, Destroyed Instrumental; 3:38
-27; Fugazi; 19940820 Aeroanta, São Paulo, Brazil; Promises; 5:32,
-28; Fugazi; 19940820 Aeroanta, São Paulo, Brazil; Reprovisional; 5:22,
+01; Fugazi; 19940820 Aeroanta, SÃ£o Paulo, Brazil; Intro; 1:03,
+02; Fugazi; 19940820 Aeroanta, SÃ£o Paulo, Brazil; Styrofoam; 2:33,
+03; Fugazi; 19940820 Aeroanta, SÃ£o Paulo, Brazil; Latin Roots; 3:04,
+04; Fugazi; 19940820 Aeroanta, SÃ£o Paulo, Brazil; Facet Squared; 2:48,
+05; Fugazi; 19940820 Aeroanta, SÃ£o Paulo, Brazil; Sieve-Fisted Find; 3:12,
+06; Fugazi; 19940820 Aeroanta, SÃ£o Paulo, Brazil; Reclamation; 3:38,
+07; Fugazi; 19940820 Aeroanta, SÃ£o Paulo, Brazil; Interlude 1; 0:34,
+08; Fugazi; 19940820 Aeroanta, SÃ£o Paulo, Brazil; Two Beats Off; 5:28,
+09; Fugazi; 19940820 Aeroanta, SÃ£o Paulo, Brazil; Interlude 2; 0:44,
+10; Fugazi; 19940820 Aeroanta, SÃ£o Paulo, Brazil; Birthday Pony; 2:44,
+11; Fugazi; 19940820 Aeroanta, SÃ£o Paulo, Brazil; By You; 4:45,
+12; Fugazi; 19940820 Aeroanta, SÃ£o Paulo, Brazil; Margin Walker; 2:49,
+13; Fugazi; 19940820 Aeroanta, SÃ£o Paulo, Brazil; Bad Mouth; 2:37,
+14; Fugazi; 19940820 Aeroanta, SÃ£o Paulo, Brazil; Break-In; 1:27,
+15; Fugazi; 19940820 Aeroanta, SÃ£o Paulo, Brazil; Waiting Room; 2:50,
+16; Fugazi; 19940820 Aeroanta, SÃ£o Paulo, Brazil; Interlude 3; 0:53,
+17; Fugazi; 19940820 Aeroanta, SÃ£o Paulo, Brazil; Smallpox Champion; 3:40,
+18; Fugazi; 19940820 Aeroanta, SÃ£o Paulo, Brazil; Interlude 4; 0:40,
+19; Fugazi; 19940820 Aeroanta, SÃ£o Paulo, Brazil; Instrument; 3:46,
+20; Fugazi; 19940820 Aeroanta, SÃ£o Paulo, Brazil; Blueprint; 3:27,
+21; Fugazi; 19940820 Aeroanta, SÃ£o Paulo, Brazil; Interlude 5; 1:04,
+22; Fugazi; 19940820 Aeroanta, SÃ£o Paulo, Brazil; Long Division; 2:16,
+23; Fugazi; 19940820 Aeroanta, SÃ£o Paulo, Brazil; Target; 3:49,
+24; Fugazi; 19940820 Aeroanta, SÃ£o Paulo, Brazil; Repeater; 2:58,
+25; Fugazi; 19940820 Aeroanta, SÃ£o Paulo, Brazil; Encore; 3:19,
+26; Fugazi; 19940820 Aeroanta, SÃ£o Paulo, Brazil; Fell, Destroyed Instrumental; 3:38
+27; Fugazi; 19940820 Aeroanta, SÃ£o Paulo, Brazil; Promises; 5:32,
+28; Fugazi; 19940820 Aeroanta, SÃ£o Paulo, Brazil; Reprovisional; 5:22,
 01; Fugazi; 19940821 Aeroanta, Sao Paulo, Brazil; Intro; 0:19,
 02; Fugazi; 19940821 Aeroanta, Sao Paulo, Brazil; Joe #1; 2:41,
 03; Fugazi; 19940821 Aeroanta, Sao Paulo, Brazil; Exit Only; 2:32,
@@ -14983,34 +14983,34 @@ track; artist; album; name; duration
 27; Fugazi; 19950923 Metropolis, Montreal, QC, Canada; Long Distance Runner; 4:40
 28; Fugazi; 19950923 Metropolis, Montreal, QC, Canada; Give Me The Cure; 3:03
 29; Fugazi; 19950923 Metropolis, Montreal, QC, Canada; Outro; 2:33
-01; Fugazi; 19950924 Cégep Limoilou, Quebec City, Quebec, Canada; Intro; 1:39
-02; Fugazi; 19950924 Cégep Limoilou, Quebec City, Quebec, Canada; Steady Diet; 1:59
-03; Fugazi; 19950924 Cégep Limoilou, Quebec City, Quebec, Canada; Exit Only; 2:33
-04; Fugazi; 19950924 Cégep Limoilou, Quebec City, Quebec, Canada; And The Same; 4:30
-05; Fugazi; 19950924 Cégep Limoilou, Quebec City, Quebec, Canada; Latest Disgrace; 3:26
-06; Fugazi; 19950924 Cégep Limoilou, Quebec City, Quebec, Canada; Interlude 1; 0:48
-07; Fugazi; 19950924 Cégep Limoilou, Quebec City, Quebec, Canada; Birthday Pony; 2:21
-08; Fugazi; 19950924 Cégep Limoilou, Quebec City, Quebec, Canada; Runaway Return; 3:41
-09; Fugazi; 19950924 Cégep Limoilou, Quebec City, Quebec, Canada; Reclamation; 3:35
-10; Fugazi; 19950924 Cégep Limoilou, Quebec City, Quebec, Canada; Interlude 2; 0:48
-11; Fugazi; 19950924 Cégep Limoilou, Quebec City, Quebec, Canada; Margin Walker; 2:32
-12; Fugazi; 19950924 Cégep Limoilou, Quebec City, Quebec, Canada; By You; 4:08
-13; Fugazi; 19950924 Cégep Limoilou, Quebec City, Quebec, Canada; Interlude 3; 0:31
-14; Fugazi; 19950924 Cégep Limoilou, Quebec City, Quebec, Canada; Back to Base; 1:39
-15; Fugazi; 19950924 Cégep Limoilou, Quebec City, Quebec, Canada; Rend It; 3:51
-16; Fugazi; 19950924 Cégep Limoilou, Quebec City, Quebec, Canada; Waiting Room; 2:53
-17; Fugazi; 19950924 Cégep Limoilou, Quebec City, Quebec, Canada; Interlude 4; 1:32
-18; Fugazi; 19950924 Cégep Limoilou, Quebec City, Quebec, Canada; Forensic Scene; 3:15
-19; Fugazi; 19950924 Cégep Limoilou, Quebec City, Quebec, Canada; Bed For The Scraping; 2:53
-20; Fugazi; 19950924 Cégep Limoilou, Quebec City, Quebec, Canada; Turnover; 4:14
-21; Fugazi; 19950924 Cégep Limoilou, Quebec City, Quebec, Canada; Encore 1; 2:25
-22; Fugazi; 19950924 Cégep Limoilou, Quebec City, Quebec, Canada; Do You Like Me; 2:57
-23; Fugazi; 19950924 Cégep Limoilou, Quebec City, Quebec, Canada; Instrument; 3:21
-24; Fugazi; 19950924 Cégep Limoilou, Quebec City, Quebec, Canada; Downed City; 2:01
-25; Fugazi; 19950924 Cégep Limoilou, Quebec City, Quebec, Canada; Long Division; 2:20
-26; Fugazi; 19950924 Cégep Limoilou, Quebec City, Quebec, Canada; Fell, Destroyed; 3:42,
-27; Fugazi; 19950924 Cégep Limoilou, Quebec City, Quebec, Canada; Sweet and Low; 4:45
-28; Fugazi; 19950924 Cégep Limoilou, Quebec City, Quebec, Canada; Outro; 0:58
+01; Fugazi; 19950924 CÃ©gep Limoilou, Quebec City, Quebec, Canada; Intro; 1:39
+02; Fugazi; 19950924 CÃ©gep Limoilou, Quebec City, Quebec, Canada; Steady Diet; 1:59
+03; Fugazi; 19950924 CÃ©gep Limoilou, Quebec City, Quebec, Canada; Exit Only; 2:33
+04; Fugazi; 19950924 CÃ©gep Limoilou, Quebec City, Quebec, Canada; And The Same; 4:30
+05; Fugazi; 19950924 CÃ©gep Limoilou, Quebec City, Quebec, Canada; Latest Disgrace; 3:26
+06; Fugazi; 19950924 CÃ©gep Limoilou, Quebec City, Quebec, Canada; Interlude 1; 0:48
+07; Fugazi; 19950924 CÃ©gep Limoilou, Quebec City, Quebec, Canada; Birthday Pony; 2:21
+08; Fugazi; 19950924 CÃ©gep Limoilou, Quebec City, Quebec, Canada; Runaway Return; 3:41
+09; Fugazi; 19950924 CÃ©gep Limoilou, Quebec City, Quebec, Canada; Reclamation; 3:35
+10; Fugazi; 19950924 CÃ©gep Limoilou, Quebec City, Quebec, Canada; Interlude 2; 0:48
+11; Fugazi; 19950924 CÃ©gep Limoilou, Quebec City, Quebec, Canada; Margin Walker; 2:32
+12; Fugazi; 19950924 CÃ©gep Limoilou, Quebec City, Quebec, Canada; By You; 4:08
+13; Fugazi; 19950924 CÃ©gep Limoilou, Quebec City, Quebec, Canada; Interlude 3; 0:31
+14; Fugazi; 19950924 CÃ©gep Limoilou, Quebec City, Quebec, Canada; Back to Base; 1:39
+15; Fugazi; 19950924 CÃ©gep Limoilou, Quebec City, Quebec, Canada; Rend It; 3:51
+16; Fugazi; 19950924 CÃ©gep Limoilou, Quebec City, Quebec, Canada; Waiting Room; 2:53
+17; Fugazi; 19950924 CÃ©gep Limoilou, Quebec City, Quebec, Canada; Interlude 4; 1:32
+18; Fugazi; 19950924 CÃ©gep Limoilou, Quebec City, Quebec, Canada; Forensic Scene; 3:15
+19; Fugazi; 19950924 CÃ©gep Limoilou, Quebec City, Quebec, Canada; Bed For The Scraping; 2:53
+20; Fugazi; 19950924 CÃ©gep Limoilou, Quebec City, Quebec, Canada; Turnover; 4:14
+21; Fugazi; 19950924 CÃ©gep Limoilou, Quebec City, Quebec, Canada; Encore 1; 2:25
+22; Fugazi; 19950924 CÃ©gep Limoilou, Quebec City, Quebec, Canada; Do You Like Me; 2:57
+23; Fugazi; 19950924 CÃ©gep Limoilou, Quebec City, Quebec, Canada; Instrument; 3:21
+24; Fugazi; 19950924 CÃ©gep Limoilou, Quebec City, Quebec, Canada; Downed City; 2:01
+25; Fugazi; 19950924 CÃ©gep Limoilou, Quebec City, Quebec, Canada; Long Division; 2:20
+26; Fugazi; 19950924 CÃ©gep Limoilou, Quebec City, Quebec, Canada; Fell, Destroyed; 3:42,
+27; Fugazi; 19950924 CÃ©gep Limoilou, Quebec City, Quebec, Canada; Sweet and Low; 4:45
+28; Fugazi; 19950924 CÃ©gep Limoilou, Quebec City, Quebec, Canada; Outro; 0:58
 01; Fugazi; 19950926 Carleton University Porter Hall, Ottawa, Ontario, Canada; Intro; 2:22
 02; Fugazi; 19950926 Carleton University Porter Hall, Ottawa, Ontario, Canada; Bed For Scraping; 3:03
 03; Fugazi; 19950926 Carleton University Porter Hall, Ottawa, Ontario, Canada; Sieve-Fisted Find; 3:18
@@ -18507,35 +18507,35 @@ track; artist; album; name; duration
 29; Fugazi; 19980721 Spectrum, Montreal, QC, Canada; Waiting Room; 3:58
 30; Fugazi; 19980721 Spectrum, Montreal, QC, Canada; Public Witness Program; 1:51
 31; Fugazi; 19980721 Spectrum, Montreal, QC, Canada; Outro; 1:16
-01; Fugazi; 19980722 Centre de Loisirs, Québec City, QC, Canada; Intro; 1:24
-02; Fugazi; 19980722 Centre de Loisirs, Québec City, QC, Canada; Turnover; 4:12
-03; Fugazi; 19980722 Centre de Loisirs, Québec City, QC, Canada; Facet Squared; 2:33
-04; Fugazi; 19980722 Centre de Loisirs, Québec City, QC, Canada; Latin Roots; 3:29
-05; Fugazi; 19980722 Centre de Loisirs, Québec City, QC, Canada; Reclamation; 4:06
-06; Fugazi; 19980722 Centre de Loisirs, Québec City, QC, Canada; Guilford Fall; 3:17
-07; Fugazi; 19980722 Centre de Loisirs, Québec City, QC, Canada; Break; 2:05
-08; Fugazi; 19980722 Centre de Loisirs, Québec City, QC, Canada; Downed City; 2:02
-09; Fugazi; 19980722 Centre de Loisirs, Québec City, QC, Canada; Bed For The Scraping; 3:04
-10; Fugazi; 19980722 Centre de Loisirs, Québec City, QC, Canada; Interlude 1; 0:37
-11; Fugazi; 19980722 Centre de Loisirs, Québec City, QC, Canada; Floating Boy; 5:34
-12; Fugazi; 19980722 Centre de Loisirs, Québec City, QC, Canada; Waiting Room; 2:52
-13; Fugazi; 19980722 Centre de Loisirs, Québec City, QC, Canada; Burning; 3:42
-14; Fugazi; 19980722 Centre de Loisirs, Québec City, QC, Canada; Closed Captioned; 5:43
-15; Fugazi; 19980722 Centre de Loisirs, Québec City, QC, Canada; Foreman's Dog; 4:25
-16; Fugazi; 19980722 Centre de Loisirs, Québec City, QC, Canada; Interlude 2; 0:43
-17; Fugazi; 19980722 Centre de Loisirs, Québec City, QC, Canada; Long Division; 2:24
-18; Fugazi; 19980722 Centre de Loisirs, Québec City, QC, Canada; Blueprint; 3:34
-19; Fugazi; 19980722 Centre de Loisirs, Québec City, QC, Canada; Interlude 3; 0:41
-20; Fugazi; 19980722 Centre de Loisirs, Québec City, QC, Canada; Five Corporations; 2:44
-21; Fugazi; 19980722 Centre de Loisirs, Québec City, QC, Canada; FD; 2:19
-22; Fugazi; 19980722 Centre de Loisirs, Québec City, QC, Canada; Encore 1; 3:13
-23; Fugazi; 19980722 Centre de Loisirs, Québec City, QC, Canada; Arpeggiator; 3:50
-24; Fugazi; 19980722 Centre de Loisirs, Québec City, QC, Canada; Interlude 4; 0:37
-25; Fugazi; 19980722 Centre de Loisirs, Québec City, QC, Canada; Great Cop; 1:43
-26; Fugazi; 19980722 Centre de Loisirs, Québec City, QC, Canada; Public Witness Program; 2:12
-27; Fugazi; 19980722 Centre de Loisirs, Québec City, QC, Canada; Stacks; 3:24
-28; Fugazi; 19980722 Centre de Loisirs, Québec City, QC, Canada; Reprovisional; 3:12
-29; Fugazi; 19980722 Centre de Loisirs, Québec City, QC, Canada; Outro; 1:05
+01; Fugazi; 19980722 Centre de Loisirs, QuÃ©bec City, QC, Canada; Intro; 1:24
+02; Fugazi; 19980722 Centre de Loisirs, QuÃ©bec City, QC, Canada; Turnover; 4:12
+03; Fugazi; 19980722 Centre de Loisirs, QuÃ©bec City, QC, Canada; Facet Squared; 2:33
+04; Fugazi; 19980722 Centre de Loisirs, QuÃ©bec City, QC, Canada; Latin Roots; 3:29
+05; Fugazi; 19980722 Centre de Loisirs, QuÃ©bec City, QC, Canada; Reclamation; 4:06
+06; Fugazi; 19980722 Centre de Loisirs, QuÃ©bec City, QC, Canada; Guilford Fall; 3:17
+07; Fugazi; 19980722 Centre de Loisirs, QuÃ©bec City, QC, Canada; Break; 2:05
+08; Fugazi; 19980722 Centre de Loisirs, QuÃ©bec City, QC, Canada; Downed City; 2:02
+09; Fugazi; 19980722 Centre de Loisirs, QuÃ©bec City, QC, Canada; Bed For The Scraping; 3:04
+10; Fugazi; 19980722 Centre de Loisirs, QuÃ©bec City, QC, Canada; Interlude 1; 0:37
+11; Fugazi; 19980722 Centre de Loisirs, QuÃ©bec City, QC, Canada; Floating Boy; 5:34
+12; Fugazi; 19980722 Centre de Loisirs, QuÃ©bec City, QC, Canada; Waiting Room; 2:52
+13; Fugazi; 19980722 Centre de Loisirs, QuÃ©bec City, QC, Canada; Burning; 3:42
+14; Fugazi; 19980722 Centre de Loisirs, QuÃ©bec City, QC, Canada; Closed Captioned; 5:43
+15; Fugazi; 19980722 Centre de Loisirs, QuÃ©bec City, QC, Canada; Foreman's Dog; 4:25
+16; Fugazi; 19980722 Centre de Loisirs, QuÃ©bec City, QC, Canada; Interlude 2; 0:43
+17; Fugazi; 19980722 Centre de Loisirs, QuÃ©bec City, QC, Canada; Long Division; 2:24
+18; Fugazi; 19980722 Centre de Loisirs, QuÃ©bec City, QC, Canada; Blueprint; 3:34
+19; Fugazi; 19980722 Centre de Loisirs, QuÃ©bec City, QC, Canada; Interlude 3; 0:41
+20; Fugazi; 19980722 Centre de Loisirs, QuÃ©bec City, QC, Canada; Five Corporations; 2:44
+21; Fugazi; 19980722 Centre de Loisirs, QuÃ©bec City, QC, Canada; FD; 2:19
+22; Fugazi; 19980722 Centre de Loisirs, QuÃ©bec City, QC, Canada; Encore 1; 3:13
+23; Fugazi; 19980722 Centre de Loisirs, QuÃ©bec City, QC, Canada; Arpeggiator; 3:50
+24; Fugazi; 19980722 Centre de Loisirs, QuÃ©bec City, QC, Canada; Interlude 4; 0:37
+25; Fugazi; 19980722 Centre de Loisirs, QuÃ©bec City, QC, Canada; Great Cop; 1:43
+26; Fugazi; 19980722 Centre de Loisirs, QuÃ©bec City, QC, Canada; Public Witness Program; 2:12
+27; Fugazi; 19980722 Centre de Loisirs, QuÃ©bec City, QC, Canada; Stacks; 3:24
+28; Fugazi; 19980722 Centre de Loisirs, QuÃ©bec City, QC, Canada; Reprovisional; 3:12
+29; Fugazi; 19980722 Centre de Loisirs, QuÃ©bec City, QC, Canada; Outro; 1:05
 01; Fugazi; 19980724 New Maryland Recreation Center, Fredericton, NB, Canada; Intro; 1:25
 02; Fugazi; 19980724 New Maryland Recreation Center, Fredericton, NB, Canada; Break; 2:04
 03; Fugazi; 19980724 New Maryland Recreation Center, Fredericton, NB, Canada; Do You Like Me; 2:59
@@ -24418,29 +24418,29 @@ track; artist; album; name; duration
 27; Fugazi; 20000807 Fort Reno, Washington, DC, USA; FD; 2:12
 28; Fugazi; 20000807 Fort Reno, Washington, DC, USA; Arpeggiator; 3:39
 29; Fugazi; 20000807 Fort Reno, Washington, DC, USA; Outro; 0:25
-01; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Intro; 0:20
-02; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Cashout; 4:56
-03; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Exit Only; 2:33
-04; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Reclamation; 4:16
-05; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Do You Like Me; 2:51
-06; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Merchandise; 2:55
-07; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Number Five; 2:53
-08; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Oh; 4:31
-09; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Closed Captioned; 4:55
-10; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Rend It; 3:57
-11; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Bad Mouth; 2:15
-12; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Recap Modotti; 2:16
-13; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Break; 2:05
-14; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Nice New Outfit; 4:36
-15; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Bed For The Scraping; 3:11
-16; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Two Beats Off; 5:57
-17; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Encore; 1:08
-18; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Shut the Door; 8:14
-19; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Arpeggiator; 3:50
-20; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Interlude 1; 0:42
-21; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Back To Base; 1:46
-22; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Turnover; 4:09
-23; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Argument; 4:45
+01; Fugazi; 20001006 Kulturhuset, JÃ¶nkÃ¶ping, Sweden; Intro; 0:20
+02; Fugazi; 20001006 Kulturhuset, JÃ¶nkÃ¶ping, Sweden; Cashout; 4:56
+03; Fugazi; 20001006 Kulturhuset, JÃ¶nkÃ¶ping, Sweden; Exit Only; 2:33
+04; Fugazi; 20001006 Kulturhuset, JÃ¶nkÃ¶ping, Sweden; Reclamation; 4:16
+05; Fugazi; 20001006 Kulturhuset, JÃ¶nkÃ¶ping, Sweden; Do You Like Me; 2:51
+06; Fugazi; 20001006 Kulturhuset, JÃ¶nkÃ¶ping, Sweden; Merchandise; 2:55
+07; Fugazi; 20001006 Kulturhuset, JÃ¶nkÃ¶ping, Sweden; Number Five; 2:53
+08; Fugazi; 20001006 Kulturhuset, JÃ¶nkÃ¶ping, Sweden; Oh; 4:31
+09; Fugazi; 20001006 Kulturhuset, JÃ¶nkÃ¶ping, Sweden; Closed Captioned; 4:55
+10; Fugazi; 20001006 Kulturhuset, JÃ¶nkÃ¶ping, Sweden; Rend It; 3:57
+11; Fugazi; 20001006 Kulturhuset, JÃ¶nkÃ¶ping, Sweden; Bad Mouth; 2:15
+12; Fugazi; 20001006 Kulturhuset, JÃ¶nkÃ¶ping, Sweden; Recap Modotti; 2:16
+13; Fugazi; 20001006 Kulturhuset, JÃ¶nkÃ¶ping, Sweden; Break; 2:05
+14; Fugazi; 20001006 Kulturhuset, JÃ¶nkÃ¶ping, Sweden; Nice New Outfit; 4:36
+15; Fugazi; 20001006 Kulturhuset, JÃ¶nkÃ¶ping, Sweden; Bed For The Scraping; 3:11
+16; Fugazi; 20001006 Kulturhuset, JÃ¶nkÃ¶ping, Sweden; Two Beats Off; 5:57
+17; Fugazi; 20001006 Kulturhuset, JÃ¶nkÃ¶ping, Sweden; Encore; 1:08
+18; Fugazi; 20001006 Kulturhuset, JÃ¶nkÃ¶ping, Sweden; Shut the Door; 8:14
+19; Fugazi; 20001006 Kulturhuset, JÃ¶nkÃ¶ping, Sweden; Arpeggiator; 3:50
+20; Fugazi; 20001006 Kulturhuset, JÃ¶nkÃ¶ping, Sweden; Interlude 1; 0:42
+21; Fugazi; 20001006 Kulturhuset, JÃ¶nkÃ¶ping, Sweden; Back To Base; 1:46
+22; Fugazi; 20001006 Kulturhuset, JÃ¶nkÃ¶ping, Sweden; Turnover; 4:09
+23; Fugazi; 20001006 Kulturhuset, JÃ¶nkÃ¶ping, Sweden; Argument; 4:45
 01; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Opening Remarks; 0:25
 02; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Intro; 2:50
 03; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Cashout; 4:35
