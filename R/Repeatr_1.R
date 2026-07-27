@@ -48,6 +48,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 # Import data -------------------------------------------------------------
 
   mydir <- getwd()
+  on.exit(setwd(mydir), add = TRUE)
   myinputdir <- paste0(mydir, "/inst/extdata/")
   mydatadir <- paste0(mydir, "/data")
 
@@ -304,10 +305,6 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   othervariables <- othervariables %>%
     relocate(checked, .after = year)
-
-  mydir <- getwd()
-  myinputdir <- paste0(mydir, "/inst/extdata/")
-  mydatadir <- paste0(mydir, "/data")
 
   fls_venue_geocoding_update_filename <- paste0(myinputdir, "fls_venue_geocoding.csv")
 

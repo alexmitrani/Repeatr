@@ -23,6 +23,7 @@
 Repeatr_2 <- function(mydf = NULL) {
 
   mydir <- getwd()
+  on.exit(setwd(mydir), add = TRUE)
   myinputdir <- paste0(mydir, "/inst/extdata/")
   mydatadir <- paste0(mydir, "/data")
 
