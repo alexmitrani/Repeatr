@@ -23258,3 +23258,1315 @@ track; artist; album; name; duration
 30; Fugazi; 19931203 Hellenic Hall, Hobart, Tasmania, Australia; Runaway Return; 3:50
 31; Fugazi; 19931203 Hellenic Hall, Hobart, Tasmania, Australia; Sweet and Low; 4:47
 32; Fugazi; 19931203 Hellenic Hall, Hobart, Tasmania, Australia; Outro; 3:05
+01; Fugazi; 19880119 McKenny Union Ballroom, Eastern Michigan University, Ypsilanti, MI, USA; Intro; 4:15
+02; Fugazi; 19880119 McKenny Union Ballroom, Eastern Michigan University, Ypsilanti, MI, USA; Song #1; 3:07
+03; Fugazi; 19880119 McKenny Union Ballroom, Eastern Michigan University, Ypsilanti, MI, USA; Merchandise; 3:34
+04; Fugazi; 19880119 McKenny Union Ballroom, Eastern Michigan University, Ypsilanti, MI, USA; And The Same; 4:53
+05; Fugazi; 19880119 McKenny Union Ballroom, Eastern Michigan University, Ypsilanti, MI, USA; Interlude 1; 0:57
+06; Fugazi; 19880119 McKenny Union Ballroom, Eastern Michigan University, Ypsilanti, MI, USA; Turn Off Your Guns; 3:54
+07; Fugazi; 19880119 McKenny Union Ballroom, Eastern Michigan University, Ypsilanti, MI, USA; Bad Mouth; 2:44
+08; Fugazi; 19880119 McKenny Union Ballroom, Eastern Michigan University, Ypsilanti, MI, USA; Interlude 2; 0:56
+09; Fugazi; 19880119 McKenny Union Ballroom, Eastern Michigan University, Ypsilanti, MI, USA; Break-In; 1:45
+10; Fugazi; 19880119 McKenny Union Ballroom, Eastern Michigan University, Ypsilanti, MI, USA; Interlude 3; 0:50
+11; Fugazi; 19880119 McKenny Union Ballroom, Eastern Michigan University, Ypsilanti, MI, USA; Waiting Room; 4:06
+12; Fugazi; 19880119 McKenny Union Ballroom, Eastern Michigan University, Ypsilanti, MI, USA; Interlude 4; 0:51
+13; Fugazi; 19880119 McKenny Union Ballroom, Eastern Michigan University, Ypsilanti, MI, USA; Furniture; 3:51
+14; Fugazi; 19880119 McKenny Union Ballroom, Eastern Michigan University, Ypsilanti, MI, USA; Interlude 5; 1:12
+15; Fugazi; 19880119 McKenny Union Ballroom, Eastern Michigan University, Ypsilanti, MI, USA; Suggestion; 7:05
+16; Fugazi; 19880119 McKenny Union Ballroom, Eastern Michigan University, Ypsilanti, MI, USA; Encore; 1:27
+17; Fugazi; 19880119 McKenny Union Ballroom, Eastern Michigan University, Ypsilanti, MI, USA; The Word; 5:30
+01; Fugazi; 19880409 Fine Arts Building, Montgomery College, Rockville, MD, USA; Opening Remarks; 0:42
+02; Fugazi; 19880409 Fine Arts Building, Montgomery College, Rockville, MD, USA; Intro; 0:20
+03; Fugazi; 19880409 Fine Arts Building, Montgomery College, Rockville, MD, USA; Give Me The Cure; 3:10
+04; Fugazi; 19880409 Fine Arts Building, Montgomery College, Rockville, MD, USA; Interlude 1; 0:33
+05; Fugazi; 19880409 Fine Arts Building, Montgomery College, Rockville, MD, USA; Bad Mouth; 2:51
+06; Fugazi; 19880409 Fine Arts Building, Montgomery College, Rockville, MD, USA; Interlude 2; 0:23
+07; Fugazi; 19880409 Fine Arts Building, Montgomery College, Rockville, MD, USA; Song #1; 2:46
+08; Fugazi; 19880409 Fine Arts Building, Montgomery College, Rockville, MD, USA; The Word; 5:38
+09; Fugazi; 19880409 Fine Arts Building, Montgomery College, Rockville, MD, USA; I Spent It All; 2:33
+10; Fugazi; 19880409 Fine Arts Building, Montgomery College, Rockville, MD, USA; Interlude 3; 0:23
+11; Fugazi; 19880409 Fine Arts Building, Montgomery College, Rockville, MD, USA; Suggestion; 7:11
+12; Fugazi; 19880409 Fine Arts Building, Montgomery College, Rockville, MD, USA; Break-In; 2:00
+13; Fugazi; 19880409 Fine Arts Building, Montgomery College, Rockville, MD, USA; Interlude 4; 0:23
+14; Fugazi; 19880409 Fine Arts Building, Montgomery College, Rockville, MD, USA; Joe #1; 2:20
+15; Fugazi; 19880409 Fine Arts Building, Montgomery College, Rockville, MD, USA; Waiting Room; 3:12
+16; Fugazi; 19880409 Fine Arts Building, Montgomery College, Rockville, MD, USA; Burning; 2:41
+17; Fugazi; 19880409 Fine Arts Building, Montgomery College, Rockville, MD, USA; Furniture; 4:08
+01; Fugazi; 19880507 Thunderdrone Sports Complex, Clarksville, IN, USA; Intro; 3:29
+02; Fugazi; 19880507 Thunderdrone Sports Complex, Clarksville, IN, USA; Bad Mouth; 2:31
+03; Fugazi; 19880507 Thunderdrone Sports Complex, Clarksville, IN, USA; Interlude 1; 0:44
+04; Fugazi; 19880507 Thunderdrone Sports Complex, Clarksville, IN, USA; Song #1; 3:12
+05; Fugazi; 19880507 Thunderdrone Sports Complex, Clarksville, IN, USA; Burning; 2:28
+06; Fugazi; 19880507 Thunderdrone Sports Complex, Clarksville, IN, USA; Interlude 2; 0:28
+07; Fugazi; 19880507 Thunderdrone Sports Complex, Clarksville, IN, USA; KYEO; 4:01
+08; Fugazi; 19880507 Thunderdrone Sports Complex, Clarksville, IN, USA; Interlude 3; 0:48
+09; Fugazi; 19880507 Thunderdrone Sports Complex, Clarksville, IN, USA; Suggestion; 7:17
+10; Fugazi; 19880507 Thunderdrone Sports Complex, Clarksville, IN, USA; Give Me The Cure; 3:13
+11; Fugazi; 19880507 Thunderdrone Sports Complex, Clarksville, IN, USA; Interlude 4; 0:44
+12; Fugazi; 19880507 Thunderdrone Sports Complex, Clarksville, IN, USA; Merchandise; 4:20
+13; Fugazi; 19880507 Thunderdrone Sports Complex, Clarksville, IN, USA; Interlude 5; 1:52
+14; Fugazi; 19880507 Thunderdrone Sports Complex, Clarksville, IN, USA; The Word; 5:42
+15; Fugazi; 19880507 Thunderdrone Sports Complex, Clarksville, IN, USA; Interlude 6; 0:24
+16; Fugazi; 19880507 Thunderdrone Sports Complex, Clarksville, IN, USA; Glueman; 3:51
+01; Fugazi; 19880604 First Existentialist Church, Atlanta, GA, USA; Intro; 0:36
+02; Fugazi; 19880604 First Existentialist Church, Atlanta, GA, USA; KYEO; 4:30
+03; Fugazi; 19880604 First Existentialist Church, Atlanta, GA, USA; Interlude 1; 0:41
+04; Fugazi; 19880604 First Existentialist Church, Atlanta, GA, USA; Song #1; 3:26
+05; Fugazi; 19880604 First Existentialist Church, Atlanta, GA, USA; Waiting Room; 2:55
+06; Fugazi; 19880604 First Existentialist Church, Atlanta, GA, USA; Burning; 1:31
+07; Fugazi; 19880604 First Existentialist Church, Atlanta, GA, USA; Furniture; 3:24
+08; Fugazi; 19880604 First Existentialist Church, Atlanta, GA, USA; Give Me The Cure; 3:02
+09; Fugazi; 19880604 First Existentialist Church, Atlanta, GA, USA; Suggestion; 8:20
+10; Fugazi; 19880604 First Existentialist Church, Atlanta, GA, USA; Break-In; 1:33
+11; Fugazi; 19880604 First Existentialist Church, Atlanta, GA, USA; Outro; 0:42
+01; Fugazi; 19880728 Wilson Center, Washington, DC, USA; Opening Remarks; 2:02
+02; Fugazi; 19880728 Wilson Center, Washington, DC, USA; Intro; 1:02
+03; Fugazi; 19880728 Wilson Center, Washington, DC, USA; Glueman; 4:09
+04; Fugazi; 19880728 Wilson Center, Washington, DC, USA; Furniture; 4:11
+05; Fugazi; 19880728 Wilson Center, Washington, DC, USA; Merchandise; 3:44
+06; Fugazi; 19880728 Wilson Center, Washington, DC, USA; Give Me The Cure; 3:29
+07; Fugazi; 19880728 Wilson Center, Washington, DC, USA; Margin Walker; 2:59
+08; Fugazi; 19880728 Wilson Center, Washington, DC, USA; Suggestion; 7:53
+09; Fugazi; 19880728 Wilson Center, Washington, DC, USA; Bad Mouth; 2:27
+10; Fugazi; 19880728 Wilson Center, Washington, DC, USA; Interlude 1; 1:28
+11; Fugazi; 19880728 Wilson Center, Washington, DC, USA; Burning; 2:51
+12; Fugazi; 19880728 Wilson Center, Washington, DC, USA; Interlude 2; 0:54
+13; Fugazi; 19880728 Wilson Center, Washington, DC, USA; Burning Too; 3:13
+14; Fugazi; 19880728 Wilson Center, Washington, DC, USA; Song #1; 3:08
+15; Fugazi; 19880728 Wilson Center, Washington, DC, USA; Outro; 0:39
+01; Fugazi; 19881021 Alternative, Lubeck, Germany; Intro; 0:30
+02; Fugazi; 19881021 Alternative, Lubeck, Germany; Song #1; 3:00
+03; Fugazi; 19881021 Alternative, Lubeck, Germany; Merchandise; 2:59
+04; Fugazi; 19881021 Alternative, Lubeck, Germany; Burning; 2:42
+05; Fugazi; 19881021 Alternative, Lubeck, Germany; Interlude 1; 0:22
+06; Fugazi; 19881021 Alternative, Lubeck, Germany; Bad Mouth; 2:33
+07; Fugazi; 19881021 Alternative, Lubeck, Germany; Margin Walker; 2:58
+08; Fugazi; 19881021 Alternative, Lubeck, Germany; Interlude 2; 0:20
+09; Fugazi; 19881021 Alternative, Lubeck, Germany; Waiting Room; 3:17
+10; Fugazi; 19881021 Alternative, Lubeck, Germany; Give Me The Cure; 3:18
+11; Fugazi; 19881021 Alternative, Lubeck, Germany; Interlude 3; 0:58
+12; Fugazi; 19881021 Alternative, Lubeck, Germany; Suggestion; 7:58
+13; Fugazi; 19881021 Alternative, Lubeck, Germany; Burning Too; 2:48
+14; Fugazi; 19881021 Alternative, Lubeck, Germany; Interlude 4; 0:47
+15; Fugazi; 19881021 Alternative, Lubeck, Germany; Lockdown; 2:31
+16; Fugazi; 19881021 Alternative, Lubeck, Germany; Interlude 5; 0:20
+17; Fugazi; 19881021 Alternative, Lubeck, Germany; Break-In; 1:34
+18; Fugazi; 19881021 Alternative, Lubeck, Germany; Interlude 6; 0:22
+19; Fugazi; 19881021 Alternative, Lubeck, Germany; Furniture; 4:11
+20; Fugazi; 19881021 Alternative, Lubeck, Germany; In Defense of Humans; 2:35
+21; Fugazi; 19881021 Alternative, Lubeck, Germany; Interlude 7; 0:17
+22; Fugazi; 19881021 Alternative, Lubeck, Germany; The Word; 6:30
+23; Fugazi; 19881021 Alternative, Lubeck, Germany; Encore 1; 2:53
+24; Fugazi; 19881021 Alternative, Lubeck, Germany; KYEO; 4:02
+25; Fugazi; 19881021 Alternative, Lubeck, Germany; Interlude 8; 1:05
+26; Fugazi; 19881021 Alternative, Lubeck, Germany; Glueman; 4:52
+27; Fugazi; 19881021 Alternative, Lubeck, Germany; Encore 2 > Untitled Link Track #3; 3:40
+28; Fugazi; 19881021 Alternative, Lubeck, Germany; Bulldog Front; 2:59
+29; Fugazi; 19881021 Alternative, Lubeck, Germany; Encore 3; 2:38
+30; Fugazi; 19881021 Alternative, Lubeck, Germany; Hello Morning Seed; 1:55
+31; Fugazi; 19881021 Alternative, Lubeck, Germany; Promises Bit; 1:59
+01; Fugazi; 19881025 Blitz, Oslo, Norway; Merchandise; 1:32
+02; Fugazi; 19881025 Blitz, Oslo, Norway; Burning; 2:41
+03; Fugazi; 19881025 Blitz, Oslo, Norway; Bad Mouth; 2:48
+04; Fugazi; 19881025 Blitz, Oslo, Norway; Bulldog Front; 2:57
+05; Fugazi; 19881025 Blitz, Oslo, Norway; Give Me The Cure; 3:01
+06; Fugazi; 19881025 Blitz, Oslo, Norway; Interlude; 0:38
+07; Fugazi; 19881025 Blitz, Oslo, Norway; Suggestion; 2:58
+01; Fugazi; 19881104 Jugendzentrum, Nagold, Germany; Intro; 0:32
+02; Fugazi; 19881104 Jugendzentrum, Nagold, Germany; Glueman; 4:07
+03; Fugazi; 19881104 Jugendzentrum, Nagold, Germany; Furniture; 6:52
+04; Fugazi; 19881104 Jugendzentrum, Nagold, Germany; Song #1; 2:53
+05; Fugazi; 19881104 Jugendzentrum, Nagold, Germany; Bulldog Front; 2:53
+06; Fugazi; 19881104 Jugendzentrum, Nagold, Germany; Interlude 1; 0:31
+07; Fugazi; 19881104 Jugendzentrum, Nagold, Germany; Lockdown; 2:38
+08; Fugazi; 19881104 Jugendzentrum, Nagold, Germany; Merchandise; 2:56
+09; Fugazi; 19881104 Jugendzentrum, Nagold, Germany; Suggestion; 6:46
+10; Fugazi; 19881104 Jugendzentrum, Nagold, Germany; Interlude 2; 0:44
+11; Fugazi; 19881104 Jugendzentrum, Nagold, Germany; Burning Too; 2:56
+12; Fugazi; 19881104 Jugendzentrum, Nagold, Germany; Burning; 3:26
+13; Fugazi; 19881104 Jugendzentrum, Nagold, Germany; Break-In; 1:24
+14; Fugazi; 19881104 Jugendzentrum, Nagold, Germany; Margin Walker; 2:29
+15; Fugazi; 19881104 Jugendzentrum, Nagold, Germany; Waiting Room; 2:55
+16; Fugazi; 19881104 Jugendzentrum, Nagold, Germany; Give Me The Cure; 3:38
+17; Fugazi; 19881104 Jugendzentrum, Nagold, Germany; KYEO; 4:38
+18; Fugazi; 19881104 Jugendzentrum, Nagold, Germany; Outro; 1:54
+01; Fugazi; 19881105 Bootleg, Augsburg, Germany; Intro; 1:46
+02; Fugazi; 19881105 Bootleg, Augsburg, Germany; Bad Mouth; 2:27
+03; Fugazi; 19881105 Bootleg, Augsburg, Germany; Song #1; 3:01
+04; Fugazi; 19881105 Bootleg, Augsburg, Germany; Bulldog Front; 2:44
+05; Fugazi; 19881105 Bootleg, Augsburg, Germany; Break-In; 1:25
+06; Fugazi; 19881105 Bootleg, Augsburg, Germany; Waiting Room; 3:20
+07; Fugazi; 19881105 Bootleg, Augsburg, Germany; Margin Walker; 2:37
+08; Fugazi; 19881105 Bootleg, Augsburg, Germany; Lockdown; 2:11
+09; Fugazi; 19881105 Bootleg, Augsburg, Germany; Merchandise; 3:04
+10; Fugazi; 19881105 Bootleg, Augsburg, Germany; Suggestion; 6:08
+11; Fugazi; 19881105 Bootleg, Augsburg, Germany; Burning Too; 2:41
+12; Fugazi; 19881105 Bootleg, Augsburg, Germany; Interlude 1; 0:46
+13; Fugazi; 19881105 Bootleg, Augsburg, Germany; Give Me The Cure; 3:29
+14; Fugazi; 19881105 Bootleg, Augsburg, Germany; Burning; 2:44
+15; Fugazi; 19881105 Bootleg, Augsburg, Germany; Furniture; 3:26
+16; Fugazi; 19881105 Bootleg, Augsburg, Germany; Glueman; 3:21
+17; Fugazi; 19881105 Bootleg, Augsburg, Germany; Untitled Link Track #2; 2:27
+18; Fugazi; 19881105 Bootleg, Augsburg, Germany; KYEO; 5:05
+19; Fugazi; 19881105 Bootleg, Augsburg, Germany; Preprovisional; 1:56
+20; Fugazi; 19881105 Bootleg, Augsburg, Germany; Promises Bit; 1:09
+21; Fugazi; 19881105 Bootleg, Augsburg, Germany; Outro; 0:30
+01; Fugazi; 19881119 Centro Sociale Leoncavallo, Milan, Italy; Give Me The Cure; 2:56
+02; Fugazi; 19881119 Centro Sociale Leoncavallo, Milan, Italy; Break-In; 1:27
+03; Fugazi; 19881119 Centro Sociale Leoncavallo, Milan, Italy; Waiting Room; 3:25
+04; Fugazi; 19881119 Centro Sociale Leoncavallo, Milan, Italy; Interlude 1; 0:41
+05; Fugazi; 19881119 Centro Sociale Leoncavallo, Milan, Italy; Suggestion; 6:16
+06; Fugazi; 19881119 Centro Sociale Leoncavallo, Milan, Italy; Burning Too; 2:33
+07; Fugazi; 19881119 Centro Sociale Leoncavallo, Milan, Italy; KYEO; 4:53
+08; Fugazi; 19881119 Centro Sociale Leoncavallo, Milan, Italy; Interlude 2; 0:23
+09; Fugazi; 19881119 Centro Sociale Leoncavallo, Milan, Italy; Merchandise; 3:08
+10; Fugazi; 19881119 Centro Sociale Leoncavallo, Milan, Italy; Lockdown; 2:04
+11; Fugazi; 19881119 Centro Sociale Leoncavallo, Milan, Italy; Burning; 2:39
+12; Fugazi; 19881119 Centro Sociale Leoncavallo, Milan, Italy; Furniture; 4:37
+13; Fugazi; 19881119 Centro Sociale Leoncavallo, Milan, Italy; In Defense of Humans; 2:43
+14; Fugazi; 19881119 Centro Sociale Leoncavallo, Milan, Italy; Bulldog Front; 2:30
+15; Fugazi; 19881119 Centro Sociale Leoncavallo, Milan, Italy; Margin Walker; 2:27
+16; Fugazi; 19881119 Centro Sociale Leoncavallo, Milan, Italy; Interlude 3; 0:37
+17; Fugazi; 19881119 Centro Sociale Leoncavallo, Milan, Italy; Bad Mouth; 2:49
+01; Fugazi; 19881122 Club Gibus, Paris, France; Intro; 0:54
+02; Fugazi; 19881122 Club Gibus, Paris, France; Furniture; 3:42
+03; Fugazi; 19881122 Club Gibus, Paris, France; Interlude 1; 0:44
+04; Fugazi; 19881122 Club Gibus, Paris, France; Song #1; 2:38
+05; Fugazi; 19881122 Club Gibus, Paris, France; Interlude 2; 0:28
+06; Fugazi; 19881122 Club Gibus, Paris, France; Lockdown; 2:11
+07; Fugazi; 19881122 Club Gibus, Paris, France; Burning; 2:37
+08; Fugazi; 19881122 Club Gibus, Paris, France; Merchandise; 2:59
+09; Fugazi; 19881122 Club Gibus, Paris, France; Interlude 3; 0:34
+10; Fugazi; 19881122 Club Gibus, Paris, France; In Defense of Humans; 2:35
+11; Fugazi; 19881122 Club Gibus, Paris, France; Margin Walker; 2:51
+12; Fugazi; 19881122 Club Gibus, Paris, France; Break-In; 1:49
+13; Fugazi; 19881122 Club Gibus, Paris, France; Waiting Room; 3:13
+14; Fugazi; 19881122 Club Gibus, Paris, France; Turn Off Your Guns; 3:14
+15; Fugazi; 19881122 Club Gibus, Paris, France; Suggestion; 6:23
+16; Fugazi; 19881122 Club Gibus, Paris, France; Bad Mouth; 2:23
+17; Fugazi; 19881122 Club Gibus, Paris, France; Interlude 4; 1:37
+18; Fugazi; 19881122 Club Gibus, Paris, France; Burning Too; 5:31
+19; Fugazi; 19881122 Club Gibus, Paris, France; Give Me The Cure; 2:54
+20; Fugazi; 19881122 Club Gibus, Paris, France; Interlude 5; 1:21
+21; Fugazi; 19881122 Club Gibus, Paris, France; Glueman; 4:41
+22; Fugazi; 19881122 Club Gibus, Paris, France; Encore; 0:52
+23; Fugazi; 19881122 Club Gibus, Paris, France; The Word; 6:57
+24; Fugazi; 19881122 Club Gibus, Paris, France; Interlude 6; 0:53
+25; Fugazi; 19881122 Club Gibus, Paris, France; Bulldog Front; 2:50
+26; Fugazi; 19881122 Club Gibus, Paris, France; Interlude 7; 0:42
+27; Fugazi; 19881122 Club Gibus, Paris, France; KYEO; 5:16
+28; Fugazi; 19881122 Club Gibus, Paris, France; Untitled Link Track #2; 1:42
+29; Fugazi; 19881122 Club Gibus, Paris, France; Promises Coda Instrumental; 1:30
+01; Fugazi; 19890126 9:30 Club, Washington, DC, USA; Burning Too; 0:30
+02; Fugazi; 19890126 9:30 Club, Washington, DC, USA; Interlude 1; 1:19
+03; Fugazi; 19890126 9:30 Club, Washington, DC, USA; Bulldog Front; 2:40
+04; Fugazi; 19890126 9:30 Club, Washington, DC, USA; Burning; 2:29
+05; Fugazi; 19890126 9:30 Club, Washington, DC, USA; Interlude 2; 1:02
+06; Fugazi; 19890126 9:30 Club, Washington, DC, USA; And The Same; 3:45
+07; Fugazi; 19890126 9:30 Club, Washington, DC, USA; Bad Mouth; 2:32
+08; Fugazi; 19890126 9:30 Club, Washington, DC, USA; Margin Walker; 2:40
+09; Fugazi; 19890126 9:30 Club, Washington, DC, USA; Lockdown; 2:09
+10; Fugazi; 19890126 9:30 Club, Washington, DC, USA; Interlude 3; 2:38
+11; Fugazi; 19890126 9:30 Club, Washington, DC, USA; Suggestion; 7:42
+12; Fugazi; 19890126 9:30 Club, Washington, DC, USA; The Word; 5:12
+13; Fugazi; 19890126 9:30 Club, Washington, DC, USA; Waiting Room; 3:09
+14; Fugazi; 19890126 9:30 Club, Washington, DC, USA; Promises; 4:13
+15; Fugazi; 19890126 9:30 Club, Washington, DC, USA; Interlude 4; 0:22
+16; Fugazi; 19890126 9:30 Club, Washington, DC, USA; Give Me The Cure; 3:07
+17; Fugazi; 19890126 9:30 Club, Washington, DC, USA; Interlude 5; 1:02
+18; Fugazi; 19890126 9:30 Club, Washington, DC, USA; Glueman; 4:15
+19; Fugazi; 19890126 9:30 Club, Washington, DC, USA; Encore; 2:03
+20; Fugazi; 19890126 9:30 Club, Washington, DC, USA; Furniture; 3:30
+21; Fugazi; 19890126 9:30 Club, Washington, DC, USA; Break-In; 1:44
+22; Fugazi; 19890126 9:30 Club, Washington, DC, USA; Joe #1; 2:37
+23; Fugazi; 19890126 9:30 Club, Washington, DC, USA; Outro; 0:54
+01; Fugazi; 19890505 Excelsior Mill, Atlanta, GA, USA; Intro; 1:21
+02; Fugazi; 19890505 Excelsior Mill, Atlanta, GA, USA; Brendan #1; 2:41
+03; Fugazi; 19890505 Excelsior Mill, Atlanta, GA, USA; Sieve-Fisted Find; 3:03
+04; Fugazi; 19890505 Excelsior Mill, Atlanta, GA, USA; Interlude 1; 0:28
+05; Fugazi; 19890505 Excelsior Mill, Atlanta, GA, USA; Bad Mouth; 2:37
+06; Fugazi; 19890505 Excelsior Mill, Atlanta, GA, USA; Song #1; 3:38
+07; Fugazi; 19890505 Excelsior Mill, Atlanta, GA, USA; Margin Walker; 2:22
+08; Fugazi; 19890505 Excelsior Mill, Atlanta, GA, USA; Interlude 2; 0:27
+09; Fugazi; 19890505 Excelsior Mill, Atlanta, GA, USA; Bulldog Front; 2:46
+10; Fugazi; 19890505 Excelsior Mill, Atlanta, GA, USA; Interlude 3; 1:46
+11; Fugazi; 19890505 Excelsior Mill, Atlanta, GA, USA; Burning Too; 2:39
+12; Fugazi; 19890505 Excelsior Mill, Atlanta, GA, USA; Interlude 4; 1:54
+13; Fugazi; 19890505 Excelsior Mill, Atlanta, GA, USA; Shut the Door; 4:16
+14; Fugazi; 19890505 Excelsior Mill, Atlanta, GA, USA; Interlude 5; 1:29
+15; Fugazi; 19890505 Excelsior Mill, Atlanta, GA, USA; Greed; 1:56
+16; Fugazi; 19890505 Excelsior Mill, Atlanta, GA, USA; Interlude 6; 1:02
+17; Fugazi; 19890505 Excelsior Mill, Atlanta, GA, USA; Suggestion; 8:01
+18; Fugazi; 19890505 Excelsior Mill, Atlanta, GA, USA; Give Me The Cure; 2:47
+19; Fugazi; 19890505 Excelsior Mill, Atlanta, GA, USA; Burning; 2:22
+20; Fugazi; 19890505 Excelsior Mill, Atlanta, GA, USA; Interlude 7; 1:09
+21; Fugazi; 19890505 Excelsior Mill, Atlanta, GA, USA; Waiting Room; 3:23
+22; Fugazi; 19890505 Excelsior Mill, Atlanta, GA, USA; Lockdown; 2:06
+23; Fugazi; 19890505 Excelsior Mill, Atlanta, GA, USA; Interlude 8; 0:53
+24; Fugazi; 19890505 Excelsior Mill, Atlanta, GA, USA; Glueman; 3:58
+25; Fugazi; 19890505 Excelsior Mill, Atlanta, GA, USA; Outro; 0:46
+01; Fugazi; 19890601 Speedway, Salt Lake City, UT, USA; Intro; 0:37
+02; Fugazi; 19890601 Speedway, Salt Lake City, UT, USA; Brendan #1; 2:50
+03; Fugazi; 19890601 Speedway, Salt Lake City, UT, USA; Interlude 1; 0:25
+04; Fugazi; 19890601 Speedway, Salt Lake City, UT, USA; Turnover; 4:04
+05; Fugazi; 19890601 Speedway, Salt Lake City, UT, USA; Interlude 2; 0:40
+06; Fugazi; 19890601 Speedway, Salt Lake City, UT, USA; Song #1; 2:44
+07; Fugazi; 19890601 Speedway, Salt Lake City, UT, USA; Bad Mouth; 2:53
+08; Fugazi; 19890601 Speedway, Salt Lake City, UT, USA; Margin Walker; 2:33
+09; Fugazi; 19890601 Speedway, Salt Lake City, UT, USA; Bulldog Front; 2:34
+10; Fugazi; 19890601 Speedway, Salt Lake City, UT, USA; Interlude 3; 1:02
+11; Fugazi; 19890601 Speedway, Salt Lake City, UT, USA; Burning Too; 2:47
+12; Fugazi; 19890601 Speedway, Salt Lake City, UT, USA; Interlude 4; 0:33
+13; Fugazi; 19890601 Speedway, Salt Lake City, UT, USA; Lockdown; 2:03
+14; Fugazi; 19890601 Speedway, Salt Lake City, UT, USA; Burning; 2:27
+15; Fugazi; 19890601 Speedway, Salt Lake City, UT, USA; Interlude 5; 1:43
+16; Fugazi; 19890601 Speedway, Salt Lake City, UT, USA; Shut the Door; 4:26
+17; Fugazi; 19890601 Speedway, Salt Lake City, UT, USA; Sieve-Fisted Find; 3:10
+18; Fugazi; 19890601 Speedway, Salt Lake City, UT, USA; Waiting Room; 3:15
+19; Fugazi; 19890601 Speedway, Salt Lake City, UT, USA; Suggestion; 7:36
+20; Fugazi; 19890601 Speedway, Salt Lake City, UT, USA; Give Me The Cure; 3:19
+21; Fugazi; 19890601 Speedway, Salt Lake City, UT, USA; Untitled Link Track #2; 0:38
+22; Fugazi; 19890601 Speedway, Salt Lake City, UT, USA; Glueman; 4:54
+23; Fugazi; 19890601 Speedway, Salt Lake City, UT, USA; Encore; 0:40
+24; Fugazi; 19890601 Speedway, Salt Lake City, UT, USA; Two Beats Off Instrumental; 2:18
+25; Fugazi; 19890601 Speedway, Salt Lake City, UT, USA; Reprovisional; 2:47
+01; Fugazi; 19890609 Crystal Palace, Milwaukee, WI, USA; Intro; 0:41
+02; Fugazi; 19890609 Crystal Palace, Milwaukee, WI, USA; Brendan #1; 2:29
+03; Fugazi; 19890609 Crystal Palace, Milwaukee, WI, USA; Greed; 1:53
+04; Fugazi; 19890609 Crystal Palace, Milwaukee, WI, USA; Interlude 1; 0:33
+05; Fugazi; 19890609 Crystal Palace, Milwaukee, WI, USA; Bad Mouth; 2:14
+06; Fugazi; 19890609 Crystal Palace, Milwaukee, WI, USA; Song #1; 2:46
+07; Fugazi; 19890609 Crystal Palace, Milwaukee, WI, USA; Interlude 2; 1:03
+08; Fugazi; 19890609 Crystal Palace, Milwaukee, WI, USA; Margin Walker; 2:26
+09; Fugazi; 19890609 Crystal Palace, Milwaukee, WI, USA; Bulldog Front; 2:30
+10; Fugazi; 19890609 Crystal Palace, Milwaukee, WI, USA; Waiting Room; 2:48
+11; Fugazi; 19890609 Crystal Palace, Milwaukee, WI, USA; Interlude 3; 1:01
+12; Fugazi; 19890609 Crystal Palace, Milwaukee, WI, USA; Shut the Door; 4:17
+13; Fugazi; 19890609 Crystal Palace, Milwaukee, WI, USA; Interlude 4; 0:21
+14; Fugazi; 19890609 Crystal Palace, Milwaukee, WI, USA; Suggestion; 3:22
+01; Fugazi; 19890719 9:30 Club, Washington, DC, USA; Brendan #1; 2:14
+02; Fugazi; 19890719 9:30 Club, Washington, DC, USA; Styrofoam; 2:34
+03; Fugazi; 19890719 9:30 Club, Washington, DC, USA; And The Same; 3:39
+04; Fugazi; 19890719 9:30 Club, Washington, DC, USA; Interlude 1; 0:20
+05; Fugazi; 19890719 9:30 Club, Washington, DC, USA; Turnover; 3:55
+06; Fugazi; 19890719 9:30 Club, Washington, DC, USA; Burning Too; 2:42
+07; Fugazi; 19890719 9:30 Club, Washington, DC, USA; Bulldog Front; 2:40
+08; Fugazi; 19890719 9:30 Club, Washington, DC, USA; Lockdown; 2:21
+09; Fugazi; 19890719 9:30 Club, Washington, DC, USA; Song #1; 2:37
+10; Fugazi; 19890719 9:30 Club, Washington, DC, USA; Bad Mouth; 2:23
+11; Fugazi; 19890719 9:30 Club, Washington, DC, USA; Repeater; 3:43
+12; Fugazi; 19890719 9:30 Club, Washington, DC, USA; Two Beats Off; 3:04
+13; Fugazi; 19890719 9:30 Club, Washington, DC, USA; Reprovisional; 2:06
+14; Fugazi; 19890719 9:30 Club, Washington, DC, USA; Waiting Room; 2:46
+15; Fugazi; 19890719 9:30 Club, Washington, DC, USA; Margin Walker; 2:15
+16; Fugazi; 19890719 9:30 Club, Washington, DC, USA; Burning; 2:37
+17; Fugazi; 19890719 9:30 Club, Washington, DC, USA; Promises; 3:47
+18; Fugazi; 19890719 9:30 Club, Washington, DC, USA; Break-In; 1:26
+19; Fugazi; 19890719 9:30 Club, Washington, DC, USA; Give Me The Cure; 2:45
+20; Fugazi; 19890719 9:30 Club, Washington, DC, USA; In Defense of Humans; 2:38
+21; Fugazi; 19890719 9:30 Club, Washington, DC, USA; Interlude 2; 0:28
+22; Fugazi; 19890719 9:30 Club, Washington, DC, USA; Shut the Door; 4:47
+01; Fugazi; 19890923 Drexel University, Philadelphia, PA, USA; Intro; 2:55
+02; Fugazi; 19890923 Drexel University, Philadelphia, PA, USA; Brendan #1; 2:42
+03; Fugazi; 19890923 Drexel University, Philadelphia, PA, USA; Blueprint; 3:59
+04; Fugazi; 19890923 Drexel University, Philadelphia, PA, USA; Interlude 1; 0:31
+05; Fugazi; 19890923 Drexel University, Philadelphia, PA, USA; Song #1; 3:04
+06; Fugazi; 19890923 Drexel University, Philadelphia, PA, USA; And the Same; 3:42
+07; Fugazi; 19890923 Drexel University, Philadelphia, PA, USA; Interlude 2; 1:29
+08; Fugazi; 19890923 Drexel University, Philadelphia, PA, USA; Turnover; 4:37
+09; Fugazi; 19890923 Drexel University, Philadelphia, PA, USA; Interlude 3; 1:01
+10; Fugazi; 19890923 Drexel University, Philadelphia, PA, USA; Bulldog Front; 2:41
+11; Fugazi; 19890923 Drexel University, Philadelphia, PA, USA; Bad Mouth; 2:26
+12; Fugazi; 19890923 Drexel University, Philadelphia, PA, USA; Burning; 2:40
+13; Fugazi; 19890923 Drexel University, Philadelphia, PA, USA; Interlude 4; 0:35
+14; Fugazi; 19890923 Drexel University, Philadelphia, PA, USA; Margin Walker; 2:24
+15; Fugazi; 19890923 Drexel University, Philadelphia, PA, USA; Waiting Room; 3:28
+16; Fugazi; 19890923 Drexel University, Philadelphia, PA, USA; Lockdown; 2:10
+17; Fugazi; 19890923 Drexel University, Philadelphia, PA, USA; Burning Too; 2:42
+18; Fugazi; 19890923 Drexel University, Philadelphia, PA, USA; Interlude 5; 3:33
+19; Fugazi; 19890923 Drexel University, Philadelphia, PA, USA; Two Beats Off; 3:45
+20; Fugazi; 19890923 Drexel University, Philadelphia, PA, USA; Repeater; 3:34
+21; Fugazi; 19890923 Drexel University, Philadelphia, PA, USA; Encore; 0:38
+22; Fugazi; 19890923 Drexel University, Philadelphia, PA, USA; Suggestion; 8:13
+23; Fugazi; 19890923 Drexel University, Philadelphia, PA, USA; Give Me The Cure; 3:09
+24; Fugazi; 19890923 Drexel University, Philadelphia, PA, USA; Outro; 0:23
+01; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Intro; 1:01
+02; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Brendan #1; 2:43
+03; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Greed; 1:52
+04; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Interlude 1; 0:26
+05; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Blueprint; 4:07
+06; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; And The Same; 4:18
+07; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Sieve-Fisted Find; 3:32
+08; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Interlude 2; 1:03
+09; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Bad Mouth; 2:50
+10; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Margin Walker; 2:48
+11; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Interlude 3; 0:35
+12; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Burning Too; 2:51
+13; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Interlude 4; 0:23
+14; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Bulldog Front; 2:56
+15; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Burning; 2:52
+16; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Interlude 5; 0:31
+17; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Suggestion; 9:21
+18; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Give Me The Cure; 3:08
+19; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Interlude 6; 0:33
+20; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Waiting Room; 3:33
+21; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Interlude 7; 1:58
+22; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Two Beats Off; 3:40
+23; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Repeater; 3:20
+24; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Interlude 8; 0:46
+25; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Provisional; 2:53
+26; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Encore; 1:01
+27; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; In Defense of Humans; 3:03
+28; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Interlude 9; 0:47
+29; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Shut the Door; 5:43
+30; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Song #1; 3:31
+31; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Interlude 10; 0:36
+32; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Lockdown; 2:27
+33; Fugazi; 19891001 Rivoli, Toronto, ON, Canada; Outro; 0:25
+01; Fugazi; 19891005 Living Room, Providence, RI, USA; Intro; 1:32
+02; Fugazi; 19891005 Living Room, Providence, RI, USA; Brendan #1; 2:56
+03; Fugazi; 19891005 Living Room, Providence, RI, USA; Greed; 1:50
+04; Fugazi; 19891005 Living Room, Providence, RI, USA; Interlude 1; 1:05
+05; Fugazi; 19891005 Living Room, Providence, RI, USA; And The Same; 3:55
+06; Fugazi; 19891005 Living Room, Providence, RI, USA; Interlude 2; 0:27
+07; Fugazi; 19891005 Living Room, Providence, RI, USA; Sieve-Fisted Find; 3:25
+08; Fugazi; 19891005 Living Room, Providence, RI, USA; Interlude 3; 0:35
+09; Fugazi; 19891005 Living Room, Providence, RI, USA; Burning Too; 3:01
+10; Fugazi; 19891005 Living Room, Providence, RI, USA; Bulldog Front; 2:49
+11; Fugazi; 19891005 Living Room, Providence, RI, USA; Bad Mouth; 2:42
+12; Fugazi; 19891005 Living Room, Providence, RI, USA; Interlude 4; 0:37
+13; Fugazi; 19891005 Living Room, Providence, RI, USA; Margin Walker; 2:44
+14; Fugazi; 19891005 Living Room, Providence, RI, USA; Interlude 5; 0:27
+15; Fugazi; 19891005 Living Room, Providence, RI, USA; Burning; 2:35
+16; Fugazi; 19891005 Living Room, Providence, RI, USA; Interlude 6; 2:14
+17; Fugazi; 19891005 Living Room, Providence, RI, USA; Turnover; 4:30
+18; Fugazi; 19891005 Living Room, Providence, RI, USA; Shut the Door; 4:49
+19; Fugazi; 19891005 Living Room, Providence, RI, USA; Interlude 7; 0:26
+20; Fugazi; 19891005 Living Room, Providence, RI, USA; Waiting Room; 3:09
+21; Fugazi; 19891005 Living Room, Providence, RI, USA; Suggestion; 9:31
+22; Fugazi; 19891005 Living Room, Providence, RI, USA; Give Me The Cure; 3:18
+23; Fugazi; 19891005 Living Room, Providence, RI, USA; Interlude 8; 2:00
+24; Fugazi; 19891005 Living Room, Providence, RI, USA; Two Beats Off; 3:50
+25; Fugazi; 19891005 Living Room, Providence, RI, USA; Repeater; 3:34
+26; Fugazi; 19891005 Living Room, Providence, RI, USA; Reprovisional; 2:47
+27; Fugazi; 19891005 Living Room, Providence, RI, USA; Encore; 1:05
+28; Fugazi; 19891005 Living Room, Providence, RI, USA; Song #1; 3:13
+29; Fugazi; 19891005 Living Room, Providence, RI, USA; Interlude 9; 0:46
+30; Fugazi; 19891005 Living Room, Providence, RI, USA; Glueman; 6:41
+01; Fugazi; 19891015 Dupont Circle, Washington, DC, USA; Turnover; 4:29
+02; Fugazi; 19891015 Dupont Circle, Washington, DC, USA; Brendan #1; 2:32
+03; Fugazi; 19891015 Dupont Circle, Washington, DC, USA; And The Same; 3:20
+04; Fugazi; 19891015 Dupont Circle, Washington, DC, USA; Margin Walker; 2:27
+05; Fugazi; 19891015 Dupont Circle, Washington, DC, USA; Bad Mouth; 2:38
+06; Fugazi; 19891015 Dupont Circle, Washington, DC, USA; Waiting Room; 2:52
+07; Fugazi; 19891015 Dupont Circle, Washington, DC, USA; Interlude; 0:32
+08; Fugazi; 19891015 Dupont Circle, Washington, DC, USA; Repeater; 3:11
+09; Fugazi; 19891015 Dupont Circle, Washington, DC, USA; Reprovisional; 2:49
+01; Fugazi; 19891109 Doornroosje, Nijmegen, Netherlands; Sieve-Fisted Find; 2:56
+02; Fugazi; 19891109 Doornroosje, Nijmegen, Netherlands; And The Same; 3:44
+03; Fugazi; 19891109 Doornroosje, Nijmegen, Netherlands; Interlude 1; 0:24
+04; Fugazi; 19891109 Doornroosje, Nijmegen, Netherlands; Turnover; 4:28
+05; Fugazi; 19891109 Doornroosje, Nijmegen, Netherlands; Interlude 2; 0:27
+06; Fugazi; 19891109 Doornroosje, Nijmegen, Netherlands; Bad Mouth; 2:32
+07; Fugazi; 19891109 Doornroosje, Nijmegen, Netherlands; Margin Walker; 2:35
+08; Fugazi; 19891109 Doornroosje, Nijmegen, Netherlands; Burning Too; 2:45
+09; Fugazi; 19891109 Doornroosje, Nijmegen, Netherlands; Burning; 2:57
+10; Fugazi; 19891109 Doornroosje, Nijmegen, Netherlands; Interlude 3; 1:03
+11; Fugazi; 19891109 Doornroosje, Nijmegen, Netherlands; Bulldog Front; 2:49
+12; Fugazi; 19891109 Doornroosje, Nijmegen, Netherlands; Song #1; 3:06
+13; Fugazi; 19891109 Doornroosje, Nijmegen, Netherlands; Long Division Instrumental; 1:00
+14; Fugazi; 19891109 Doornroosje, Nijmegen, Netherlands; Shut the Door; 5:00
+15; Fugazi; 19891109 Doornroosje, Nijmegen, Netherlands; Greed; 2:08
+16; Fugazi; 19891109 Doornroosje, Nijmegen, Netherlands; Blueprint; 4:19
+17; Fugazi; 19891109 Doornroosje, Nijmegen, Netherlands; Waiting Room; 3:18
+18; Fugazi; 19891109 Doornroosje, Nijmegen, Netherlands; Suggestion; 8:54
+19; Fugazi; 19891109 Doornroosje, Nijmegen, Netherlands; Give Me The Cure; 3:34
+20; Fugazi; 19891109 Doornroosje, Nijmegen, Netherlands; Untitled Link Track #7; 1:29
+21; Fugazi; 19891109 Doornroosje, Nijmegen, Netherlands; Two Beats Off; 4:30
+22; Fugazi; 19891109 Doornroosje, Nijmegen, Netherlands; Repeater; 3:21
+23; Fugazi; 19891109 Doornroosje, Nijmegen, Netherlands; Provisional; 3:02
+24; Fugazi; 19891109 Doornroosje, Nijmegen, Netherlands; Encore 1; 1:12
+25; Fugazi; 19891109 Doornroosje, Nijmegen, Netherlands; In Defense of Humans; 3:13
+26; Fugazi; 19891109 Doornroosje, Nijmegen, Netherlands; Glueman; 6:29
+27; Fugazi; 19891109 Doornroosje, Nijmegen, Netherlands; Encore 2; 2:36
+28; Fugazi; 19891109 Doornroosje, Nijmegen, Netherlands; Merchandise; 2:57
+29; Fugazi; 19891109 Doornroosje, Nijmegen, Netherlands; Break-In; 2:19
+01; Fugazi; 19891119 Edwards No. 8, Birmingham, England; Intro; 1:36
+02; Fugazi; 19891119 Edwards No. 8, Birmingham, England; Brendan #1; 2:39
+03; Fugazi; 19891119 Edwards No. 8, Birmingham, England; Blueprint; 4:20
+04; Fugazi; 19891119 Edwards No. 8, Birmingham, England; And The Same; 3:42
+05; Fugazi; 19891119 Edwards No. 8, Birmingham, England; Greed; 1:44
+06; Fugazi; 19891119 Edwards No. 8, Birmingham, England; Interlude 1; 0:37
+07; Fugazi; 19891119 Edwards No. 8, Birmingham, England; Bad Mouth; 2:39
+08; Fugazi; 19891119 Edwards No. 8, Birmingham, England; Margin Walker; 2:41
+09; Fugazi; 19891119 Edwards No. 8, Birmingham, England; Burning Too; 2:43
+10; Fugazi; 19891119 Edwards No. 8, Birmingham, England; Interlude 2; 1:18
+11; Fugazi; 19891119 Edwards No. 8, Birmingham, England; Bulldog Front; 2:41
+12; Fugazi; 19891119 Edwards No. 8, Birmingham, England; Burning; 2:47
+13; Fugazi; 19891119 Edwards No. 8, Birmingham, England; Interlude 3; 1:37
+14; Fugazi; 19891119 Edwards No. 8, Birmingham, England; Shut the Door; 4:47
+15; Fugazi; 19891119 Edwards No. 8, Birmingham, England; Sieve-Fisted Find; 3:16
+16; Fugazi; 19891119 Edwards No. 8, Birmingham, England; Interlude 4; 0:18
+17; Fugazi; 19891119 Edwards No. 8, Birmingham, England; Waiting Room; 3:09
+18; Fugazi; 19891119 Edwards No. 8, Birmingham, England; Lockdown; 2:07
+19; Fugazi; 19891119 Edwards No. 8, Birmingham, England; Suggestion; 0:06
+01; Fugazi; 19891123 McGonagles, Dublin, Ireland; Intro; 0:55
+02; Fugazi; 19891123 McGonagles, Dublin, Ireland; Brendan #1; 2:37
+03; Fugazi; 19891123 McGonagles, Dublin, Ireland; Interlude 1; 0:25
+04; Fugazi; 19891123 McGonagles, Dublin, Ireland; And The Same; 3:45
+05; Fugazi; 19891123 McGonagles, Dublin, Ireland; Interlude 2; 0:56
+06; Fugazi; 19891123 McGonagles, Dublin, Ireland; Turnover; 4:03
+07; Fugazi; 19891123 McGonagles, Dublin, Ireland; Interlude 3; 1:11
+08; Fugazi; 19891123 McGonagles, Dublin, Ireland; Bad Mouth; 2:35
+09; Fugazi; 19891123 McGonagles, Dublin, Ireland; Margin Walker; 2:34
+10; Fugazi; 19891123 McGonagles, Dublin, Ireland; Interlude 4; 0:39
+11; Fugazi; 19891123 McGonagles, Dublin, Ireland; Bulldog Front; 2:39
+12; Fugazi; 19891123 McGonagles, Dublin, Ireland; Suggestion; 7:21
+13; Fugazi; 19891123 McGonagles, Dublin, Ireland; Give Me The Cure; 3:27
+14; Fugazi; 19891123 McGonagles, Dublin, Ireland; Interlude 5; 1:09
+15; Fugazi; 19891123 McGonagles, Dublin, Ireland; Burning Too; 3:40
+16; Fugazi; 19891123 McGonagles, Dublin, Ireland; Interlude 6; 0:44
+17; Fugazi; 19891123 McGonagles, Dublin, Ireland; Waiting Room; 3:50
+18; Fugazi; 19891123 McGonagles, Dublin, Ireland; Interlude 7; 0:31
+19; Fugazi; 19891123 McGonagles, Dublin, Ireland; Lockdown; 2:18
+20; Fugazi; 19891123 McGonagles, Dublin, Ireland; Interlude 8; 0:40
+21; Fugazi; 19891123 McGonagles, Dublin, Ireland; Provisional; 1:16
+22; Fugazi; 19891123 McGonagles, Dublin, Ireland; Outro; 0:36
+01; Fugazi; 19891207 Vera, Groningen, Netherlands; Intro; 0:55
+02; Fugazi; 19891207 Vera, Groningen, Netherlands; Blueprint; 4:32
+03; Fugazi; 19891207 Vera, Groningen, Netherlands; And The Same; 3:51
+04; Fugazi; 19891207 Vera, Groningen, Netherlands; Greed; 2:04
+05; Fugazi; 19891207 Vera, Groningen, Netherlands; Sieve-Fisted Find; 3:28
+06; Fugazi; 19891207 Vera, Groningen, Netherlands; Bad Mouth; 2:42
+07; Fugazi; 19891207 Vera, Groningen, Netherlands; Interlude 1; 0:25
+08; Fugazi; 19891207 Vera, Groningen, Netherlands; Bulldog Front; 2:50
+09; Fugazi; 19891207 Vera, Groningen, Netherlands; Burning Too; 2:44
+10; Fugazi; 19891207 Vera, Groningen, Netherlands; Interlude 2; 0:36
+11; Fugazi; 19891207 Vera, Groningen, Netherlands; Margin Walker; 2:41
+12; Fugazi; 19891207 Vera, Groningen, Netherlands; Interlude 3; 1:55
+13; Fugazi; 19891207 Vera, Groningen, Netherlands; Shut the Door; 4:58
+14; Fugazi; 19891207 Vera, Groningen, Netherlands; Turnover; 4:14
+15; Fugazi; 19891207 Vera, Groningen, Netherlands; Interlude 4; 0:48
+16; Fugazi; 19891207 Vera, Groningen, Netherlands; Waiting Room; 2:45
+17; Fugazi; 19891207 Vera, Groningen, Netherlands; Suggestion; 3:45
+18; Fugazi; 19891207 Vera, Groningen, Netherlands; Reprovisional; 2:36
+19; Fugazi; 19891207 Vera, Groningen, Netherlands; Encore 1; 3:35
+20; Fugazi; 19891207 Vera, Groningen, Netherlands; Song #1; 2:50
+21; Fugazi; 19891207 Vera, Groningen, Netherlands; Give Me The Cure; 3:12
+22; Fugazi; 19891207 Vera, Groningen, Netherlands; Encore 2; 3:14
+23; Fugazi; 19891207 Vera, Groningen, Netherlands; Merchandise; 2:42
+24; Fugazi; 19891207 Vera, Groningen, Netherlands; Interlude 5; 1:01
+25; Fugazi; 19891207 Vera, Groningen, Netherlands; Lockdown; 2:05
+26; Fugazi; 19891207 Vera, Groningen, Netherlands; Outro; 0:27
+01; Fugazi; 19891211 Forum de Grenelle, Paris, France; Intro; 0:10
+02; Fugazi; 19891211 Forum de Grenelle, Paris, France; Joe #1; 3:15
+03; Fugazi; 19891211 Forum de Grenelle, Paris, France; Turnover; 4:16
+04; Fugazi; 19891211 Forum de Grenelle, Paris, France; Interlude 1; 0:25
+05; Fugazi; 19891211 Forum de Grenelle, Paris, France; And The Same; 4:15
+06; Fugazi; 19891211 Forum de Grenelle, Paris, France; Sieve-Fisted Find; 3:49
+07; Fugazi; 19891211 Forum de Grenelle, Paris, France; Burning Too; 3:23
+08; Fugazi; 19891211 Forum de Grenelle, Paris, France; Margin Walker; 2:38
+09; Fugazi; 19891211 Forum de Grenelle, Paris, France; Bad Mouth; 3:00
+10; Fugazi; 19891211 Forum de Grenelle, Paris, France; Bulldog Front; 2:40
+11; Fugazi; 19891211 Forum de Grenelle, Paris, France; Suggestion; 9:06
+12; Fugazi; 19891211 Forum de Grenelle, Paris, France; Interlude 2; 0:40
+13; Fugazi; 19891211 Forum de Grenelle, Paris, France; Blueprint; 4:06
+14; Fugazi; 19891211 Forum de Grenelle, Paris, France; Shut the Door; 5:36
+15; Fugazi; 19891211 Forum de Grenelle, Paris, France; Waiting Room; 3:07
+16; Fugazi; 19891211 Forum de Grenelle, Paris, France; Lockdown; 2:21
+17; Fugazi; 19891211 Forum de Grenelle, Paris, France; Interlude 3; 1:36
+18; Fugazi; 19891211 Forum de Grenelle, Paris, France; Two Beats Off; 4:16
+19; Fugazi; 19891211 Forum de Grenelle, Paris, France; Repeater; 4:02
+20; Fugazi; 19891211 Forum de Grenelle, Paris, France; Reprovisional; 7:53
+21; Fugazi; 19891211 Forum de Grenelle, Paris, France; Encore; 1:17
+22; Fugazi; 19891211 Forum de Grenelle, Paris, France; Give Me The Cure; 2:54
+23; Fugazi; 19891211 Forum de Grenelle, Paris, France; Song #1; 3:18
+01; Fugazi; 19900127 St. Augustine's Church, Washington, DC, USA; 23 Beats Off; 3:51
+02; Fugazi; 19900127 St. Augustine's Church, Washington, DC, USA; Interlude 1; 0:53
+03; Fugazi; 19900127 St. Augustine's Church, Washington, DC, USA; Repeater; 2:58
+04; Fugazi; 19900127 St. Augustine's Church, Washington, DC, USA; Interlude 2; 0:29
+05; Fugazi; 19900127 St. Augustine's Church, Washington, DC, USA; Song #1; 3:13
+06; Fugazi; 19900127 St. Augustine's Church, Washington, DC, USA; Margin Walker; 2:35
+07; Fugazi; 19900127 St. Augustine's Church, Washington, DC, USA; Interlude 3; 0:31
+08; Fugazi; 19900127 St. Augustine's Church, Washington, DC, USA; Bad Mouth; 2:31
+09; Fugazi; 19900127 St. Augustine's Church, Washington, DC, USA; Interlude 4; 1:42
+10; Fugazi; 19900127 St. Augustine's Church, Washington, DC, USA; Burning Too; 2:54
+11; Fugazi; 19900127 St. Augustine's Church, Washington, DC, USA; Interlude 5; 0:43
+12; Fugazi; 19900127 St. Augustine's Church, Washington, DC, USA; Blueprint; 4:09
+13; Fugazi; 19900127 St. Augustine's Church, Washington, DC, USA; Greed; 1:50
+14; Fugazi; 19900127 St. Augustine's Church, Washington, DC, USA; Interlude 6; 0:35
+15; Fugazi; 19900127 St. Augustine's Church, Washington, DC, USA; Turnover; 4:31
+16; Fugazi; 19900127 St. Augustine's Church, Washington, DC, USA; Interlude 7; 2:08
+17; Fugazi; 19900127 St. Augustine's Church, Washington, DC, USA; And The Same; 4:03
+18; Fugazi; 19900127 St. Augustine's Church, Washington, DC, USA; Sieve-Fisted Find; 3:32
+19; Fugazi; 19900127 St. Augustine's Church, Washington, DC, USA; Interlude 8; 0:28
+20; Fugazi; 19900127 St. Augustine's Church, Washington, DC, USA; Waiting Room; 2:45
+21; Fugazi; 19900127 St. Augustine's Church, Washington, DC, USA; Suggestion; 9:17
+22; Fugazi; 19900127 St. Augustine's Church, Washington, DC, USA; Give Me The Cure; 3:06
+23; Fugazi; 19900127 St. Augustine's Church, Washington, DC, USA; Encore; 2:04
+24; Fugazi; 19900127 St. Augustine's Church, Washington, DC, USA; Provisional; 3:10
+25; Fugazi; 19900127 St. Augustine's Church, Washington, DC, USA; Glueman; 6:06
+01; Fugazi; 19900225 Metro, Richmond, VA, USA; Opening Remarks; 1:07
+02; Fugazi; 19900225 Metro, Richmond, VA, USA; Brendan #1; 3:21
+03; Fugazi; 19900225 Metro, Richmond, VA, USA; Turnover; 4:20
+04; Fugazi; 19900225 Metro, Richmond, VA, USA; Interlude 1; 1:05
+05; Fugazi; 19900225 Metro, Richmond, VA, USA; And The Same; 4:31
+06; Fugazi; 19900225 Metro, Richmond, VA, USA; Sieve-Fisted Find; 3:43
+07; Fugazi; 19900225 Metro, Richmond, VA, USA; Song #1; 3:02
+08; Fugazi; 19900225 Metro, Richmond, VA, USA; Margin Walker; 2:36
+09; Fugazi; 19900225 Metro, Richmond, VA, USA; Interlude 2; 0:54
+10; Fugazi; 19900225 Metro, Richmond, VA, USA; Burning Too; 2:58
+11; Fugazi; 19900225 Metro, Richmond, VA, USA; Lockdown; 2:37
+12; Fugazi; 19900225 Metro, Richmond, VA, USA; Long Division; 3:45
+13; Fugazi; 19900225 Metro, Richmond, VA, USA; Waiting Room; 3:20
+14; Fugazi; 19900225 Metro, Richmond, VA, USA; Bulldog Front; 2:48
+15; Fugazi; 19900225 Metro, Richmond, VA, USA; Bad Mouth; 2:45
+16; Fugazi; 19900225 Metro, Richmond, VA, USA; Interlude 3; 1:36
+17; Fugazi; 19900225 Metro, Richmond, VA, USA; Blueprint; 4:27
+18; Fugazi; 19900225 Metro, Richmond, VA, USA; Shut The Door; 5:46
+19; Fugazi; 19900225 Metro, Richmond, VA, USA; Interlude 4; 0:55
+20; Fugazi; 19900225 Metro, Richmond, VA, USA; Two Beats Off; 4:25
+21; Fugazi; 19900225 Metro, Richmond, VA, USA; Encore; 3:43
+22; Fugazi; 19900225 Metro, Richmond, VA, USA; Glueman; 7:18
+23; Fugazi; 19900225 Metro, Richmond, VA, USA; Outro; 0:52
+01; Fugazi; 19900308 Citadel Center, Washington, DC, USA; Repeater; 1:26
+02; Fugazi; 19900308 Citadel Center, Washington, DC, USA; Two Beats Off; 3:28
+03; Fugazi; 19900308 Citadel Center, Washington, DC, USA; Provisional; 2:49
+04; Fugazi; 19900308 Citadel Center, Washington, DC, USA; Interlude 1; 0:50
+05; Fugazi; 19900308 Citadel Center, Washington, DC, USA; Song #1; 3:09
+06; Fugazi; 19900308 Citadel Center, Washington, DC, USA; Burning Too; 2:46
+07; Fugazi; 19900308 Citadel Center, Washington, DC, USA; Interlude 2; 0:26
+08; Fugazi; 19900308 Citadel Center, Washington, DC, USA; Margin Walker; 2:38
+09; Fugazi; 19900308 Citadel Center, Washington, DC, USA; Burning; 2:51
+10; Fugazi; 19900308 Citadel Center, Washington, DC, USA; Long Division; 3:45
+11; Fugazi; 19900308 Citadel Center, Washington, DC, USA; Sieve-Fisted Find; 3:31
+12; Fugazi; 19900308 Citadel Center, Washington, DC, USA; And The Same; 4:10
+13; Fugazi; 19900308 Citadel Center, Washington, DC, USA; Blueprint; 4:00
+14; Fugazi; 19900308 Citadel Center, Washington, DC, USA; Interlude 3; 0:18
+15; Fugazi; 19900308 Citadel Center, Washington, DC, USA; Suggestion; 7:06
+16; Fugazi; 19900308 Citadel Center, Washington, DC, USA; Give Me The Cure; 2:51
+17; Fugazi; 19900308 Citadel Center, Washington, DC, USA; Bad Mouth; 2:40
+18; Fugazi; 19900308 Citadel Center, Washington, DC, USA; Interlude 4; 1:15
+19; Fugazi; 19900308 Citadel Center, Washington, DC, USA; Brendan #1; 2:38
+20; Fugazi; 19900308 Citadel Center, Washington, DC, USA; Runaway Return; 4:10
+21; Fugazi; 19900308 Citadel Center, Washington, DC, USA; Interlude 5; 0:30
+22; Fugazi; 19900308 Citadel Center, Washington, DC, USA; Shut the Door; 5:24
+23; Fugazi; 19900308 Citadel Center, Washington, DC, USA; Outro; 3:13
+01; Fugazi; 19900315 Masquerade, Atlanta, GA, USA; Intro; 1:18
+02; Fugazi; 19900315 Masquerade, Atlanta, GA, USA; Two Beats Off; 3:28
+03; Fugazi; 19900315 Masquerade, Atlanta, GA, USA; Repeater; 3:24
+04; Fugazi; 19900315 Masquerade, Atlanta, GA, USA; Reprovisional; 3:01
+05; Fugazi; 19900315 Masquerade, Atlanta, GA, USA; Interlude 1; 0:45
+06; Fugazi; 19900315 Masquerade, Atlanta, GA, USA; Song #1; 3:39
+07; Fugazi; 19900315 Masquerade, Atlanta, GA, USA; Margin Walker; 2:32
+08; Fugazi; 19900315 Masquerade, Atlanta, GA, USA; Bad Mouth; 2:30
+09; Fugazi; 19900315 Masquerade, Atlanta, GA, USA; Interlude 2; 0:40
+10; Fugazi; 19900315 Masquerade, Atlanta, GA, USA; Blueprint; 4:13
+11; Fugazi; 19900315 Masquerade, Atlanta, GA, USA; Shut the Door; 5:29
+12; Fugazi; 19900315 Masquerade, Atlanta, GA, USA; Runaway Return; 4:07
+13; Fugazi; 19900315 Masquerade, Atlanta, GA, USA; Interlude 3; 1:03
+14; Fugazi; 19900315 Masquerade, Atlanta, GA, USA; Suggestion; 7:01
+15; Fugazi; 19900315 Masquerade, Atlanta, GA, USA; Burning; 3:04
+16; Fugazi; 19900315 Masquerade, Atlanta, GA, USA; Interlude 4; 1:03
+17; Fugazi; 19900315 Masquerade, Atlanta, GA, USA; Burning Too; 5:12
+18; Fugazi; 19900315 Masquerade, Atlanta, GA, USA; Interlude 5; 0:27
+19; Fugazi; 19900315 Masquerade, Atlanta, GA, USA; Bulldog Front; 2:42
+20; Fugazi; 19900315 Masquerade, Atlanta, GA, USA; Waiting Room; 3:23
+21; Fugazi; 19900315 Masquerade, Atlanta, GA, USA; Encore; 1:32
+22; Fugazi; 19900315 Masquerade, Atlanta, GA, USA; Long Division; 3:36
+23; Fugazi; 19900315 Masquerade, Atlanta, GA, USA; Turnover; 4:16
+24; Fugazi; 19900315 Masquerade, Atlanta, GA, USA; And The Same; 5:08
+25; Fugazi; 19900315 Masquerade, Atlanta, GA, USA; Outro; 2:31
+01; Fugazi; 19900915 Calton Studios, Edinburgh, Scotland; Intro; 0:37
+02; Fugazi; 19900915 Calton Studios, Edinburgh, Scotland; Reclamation; 3:28
+03; Fugazi; 19900915 Calton Studios, Edinburgh, Scotland; Sieve-Fisted Find; 3:28
+04; Fugazi; 19900915 Calton Studios, Edinburgh, Scotland; Merchandise; 3:26
+05; Fugazi; 19900915 Calton Studios, Edinburgh, Scotland; Turnover; 5:00
+06; Fugazi; 19900915 Calton Studios, Edinburgh, Scotland; And The Same; 5:14
+07; Fugazi; 19900915 Calton Studios, Edinburgh, Scotland; Exit Only; 2:55
+08; Fugazi; 19900915 Calton Studios, Edinburgh, Scotland; Greed; 1:45
+09; Fugazi; 19900915 Calton Studios, Edinburgh, Scotland; Interlude 1; 0:57
+10; Fugazi; 19900915 Calton Studios, Edinburgh, Scotland; Margin Walker; 2:38
+11; Fugazi; 19900915 Calton Studios, Edinburgh, Scotland; Bad Mouth; 2:49
+12; Fugazi; 19900915 Calton Studios, Edinburgh, Scotland; Lockdown; 2:11
+13; Fugazi; 19900915 Calton Studios, Edinburgh, Scotland; Waiting Room; 3:17
+14; Fugazi; 19900915 Calton Studios, Edinburgh, Scotland; Long Division; 2:23
+15; Fugazi; 19900915 Calton Studios, Edinburgh, Scotland; Blueprint; 4:00
+16; Fugazi; 19900915 Calton Studios, Edinburgh, Scotland; Runaway Return; 4:22
+17; Fugazi; 19900915 Calton Studios, Edinburgh, Scotland; Suggestion; 11:01
+18; Fugazi; 19900915 Calton Studios, Edinburgh, Scotland; Give Me The Cure; 3:07
+19; Fugazi; 19900915 Calton Studios, Edinburgh, Scotland; Encore 1; 2:45
+20; Fugazi; 19900915 Calton Studios, Edinburgh, Scotland; Promises; 4:34
+21; Fugazi; 19900915 Calton Studios, Edinburgh, Scotland; Two Beats Off; 4:35
+22; Fugazi; 19900915 Calton Studios, Edinburgh, Scotland; Repeater; 3:31
+23; Fugazi; 19900915 Calton Studios, Edinburgh, Scotland; Outro; 7:35
+01; Fugazi; 19911026 Manly Youth Center, Manly, NSW, Australia; Greed; 1:51
+02; Fugazi; 19911026 Manly Youth Center, Manly, NSW, Australia; Interlude 1; 1:08
+03; Fugazi; 19911026 Manly Youth Center, Manly, NSW, Australia; Styrofoam; 2:47
+04; Fugazi; 19911026 Manly Youth Center, Manly, NSW, Australia; Nice New Outfit; 3:26
+05; Fugazi; 19911026 Manly Youth Center, Manly, NSW, Australia; Stacks; 3:06
+06; Fugazi; 19911026 Manly Youth Center, Manly, NSW, Australia; Sieve-Fisted Find; 3:22
+07; Fugazi; 19911026 Manly Youth Center, Manly, NSW, Australia; Reclamation; 3:38
+08; Fugazi; 19911026 Manly Youth Center, Manly, NSW, Australia; Interlude 2; 0:59
+09; Fugazi; 19911026 Manly Youth Center, Manly, NSW, Australia; Lockdown; 2:19
+10; Fugazi; 19911026 Manly Youth Center, Manly, NSW, Australia; Burning Too; 2:48
+11; Fugazi; 19911026 Manly Youth Center, Manly, NSW, Australia; Interlude 3; 1:05
+12; Fugazi; 19911026 Manly Youth Center, Manly, NSW, Australia; Burning; 3:10
+13; Fugazi; 19911026 Manly Youth Center, Manly, NSW, Australia; Waiting Room; 3:00
+14; Fugazi; 19911026 Manly Youth Center, Manly, NSW, Australia; Long Division; 2:54
+15; Fugazi; 19911026 Manly Youth Center, Manly, NSW, Australia; Runaway Return; 4:11
+16; Fugazi; 19911026 Manly Youth Center, Manly, NSW, Australia; Interlude 4; 0:45
+17; Fugazi; 19911026 Manly Youth Center, Manly, NSW, Australia; Promises; 4:45
+18; Fugazi; 19911026 Manly Youth Center, Manly, NSW, Australia; Two Beats Off; 5:16
+19; Fugazi; 19911026 Manly Youth Center, Manly, NSW, Australia; Interlude 5; 0:51
+20; Fugazi; 19911026 Manly Youth Center, Manly, NSW, Australia; KYEO; 3:17
+21; Fugazi; 19911026 Manly Youth Center, Manly, NSW, Australia; Encore; 2:47
+22; Fugazi; 19911026 Manly Youth Center, Manly, NSW, Australia; Suggestion; 8:27
+23; Fugazi; 19911026 Manly Youth Center, Manly, NSW, Australia; Give Me The Cure; 2:57
+24; Fugazi; 19911026 Manly Youth Center, Manly, NSW, Australia; Outro; 0:20
+01; Fugazi; 19920506 Junction, Cambridge, England; Joe #1; 3:20
+02; Fugazi; 19920506 Junction, Cambridge, England; Interlude 1; 0:50
+03; Fugazi; 19920506 Junction, Cambridge, England; Greed; 1:54
+04; Fugazi; 19920506 Junction, Cambridge, England; Dear Justice Letter; 3:24
+05; Fugazi; 19920506 Junction, Cambridge, England; And The Same; 4:22
+06; Fugazi; 19920506 Junction, Cambridge, England; Sieve-Fisted Find; 3:25
+07; Fugazi; 19920506 Junction, Cambridge, England; Reclamation; 4:17
+08; Fugazi; 19920506 Junction, Cambridge, England; Rend It; 4:09
+09; Fugazi; 19920506 Junction, Cambridge, England; Facet Squared; 3:26
+10; Fugazi; 19920506 Junction, Cambridge, England; Waiting Room; 2:59
+11; Fugazi; 19920506 Junction, Cambridge, England; Margin Walker; 2:41
+12; Fugazi; 19920506 Junction, Cambridge, England; Song #1; 2:54
+13; Fugazi; 19920506 Junction, Cambridge, England; Lockdown; 2:38
+14; Fugazi; 19920506 Junction, Cambridge, England; Long Division; 2:52
+15; Fugazi; 19920506 Junction, Cambridge, England; Runaway Return; 3:58
+16; Fugazi; 19920506 Junction, Cambridge, England; Instrument; 3:33
+17; Fugazi; 19920506 Junction, Cambridge, England; Two Beats Off; 5:10
+18; Fugazi; 19920506 Junction, Cambridge, England; Merchandise; 3:10
+19; Fugazi; 19920506 Junction, Cambridge, England; Encore 1; 2:59
+20; Fugazi; 19920506 Junction, Cambridge, England; Last Chance For A Slow Dance; 4:28
+21; Fugazi; 19920506 Junction, Cambridge, England; Repeater; 3:32
+22; Fugazi; 19920506 Junction, Cambridge, England; Encore 2; 2:58
+23; Fugazi; 19920506 Junction, Cambridge, England; Glueman; 7:31
+24; Fugazi; 19920506 Junction, Cambridge, England; Outro; 0:57
+01; Fugazi; 19920831 Fort Reno, Washington, DC, USA; Intro; 0:24
+02; Fugazi; 19920831 Fort Reno, Washington, DC, USA; Reclamation; 3:43
+03; Fugazi; 19920831 Fort Reno, Washington, DC, USA; Latin Roots; 3:29
+04; Fugazi; 19920831 Fort Reno, Washington, DC, USA; And The Same; 4:24
+05; Fugazi; 19920831 Fort Reno, Washington, DC, USA; Rend It; 4:00
+06; Fugazi; 19920831 Fort Reno, Washington, DC, USA; Facet Squared; 2:36
+07; Fugazi; 19920831 Fort Reno, Washington, DC, USA; Interlude 1; 0:37
+08; Fugazi; 19920831 Fort Reno, Washington, DC, USA; Blueprint; 3:26
+09; Fugazi; 19920831 Fort Reno, Washington, DC, USA; Interlude 2; 1:12
+10; Fugazi; 19920831 Fort Reno, Washington, DC, USA; Great Cop; 2:00
+11; Fugazi; 19920831 Fort Reno, Washington, DC, USA; Cassavettes; 2:44
+12; Fugazi; 19920831 Fort Reno, Washington, DC, USA; Long Division; 2:13
+13; Fugazi; 19920831 Fort Reno, Washington, DC, USA; Runaway Return; 4:05
+14; Fugazi; 19920831 Fort Reno, Washington, DC, USA; Interlude 3; 0:24
+15; Fugazi; 19920831 Fort Reno, Washington, DC, USA; Instrument; 3:22
+16; Fugazi; 19920831 Fort Reno, Washington, DC, USA; Last Chance for a Slow Dance; 4:30
+17; Fugazi; 19920831 Fort Reno, Washington, DC, USA; Promises; 5:25
+18; Fugazi; 19920831 Fort Reno, Washington, DC, USA; Reprovisional; 7:10
+19; Fugazi; 19920831 Fort Reno, Washington, DC, USA; Encore; 1:39
+20; Fugazi; 19920831 Fort Reno, Washington, DC, USA; Suggestion; 7:17
+21; Fugazi; 19920831 Fort Reno, Washington, DC, USA; Break-In; 1:36
+22; Fugazi; 19920831 Fort Reno, Washington, DC, USA; Shut the Door; 7:59
+23; Fugazi; 19920831 Fort Reno, Washington, DC, USA; Outro; 0:15
+01; Fugazi; 19930505 Melody Ballroom, Portland, OR, USA; 23 Beats Off; 3:06
+02; Fugazi; 19930505 Melody Ballroom, Portland, OR, USA; Exit Only; 2:32
+03; Fugazi; 19930505 Melody Ballroom, Portland, OR, USA; Interlude 1; 2:22
+04; Fugazi; 19930505 Melody Ballroom, Portland, OR, USA; Merchandise; 2:45
+05; Fugazi; 19930505 Melody Ballroom, Portland, OR, USA; Latin Roots; 3:08
+06; Fugazi; 19930505 Melody Ballroom, Portland, OR, USA; Interlude 2; 1:04
+07; Fugazi; 19930505 Melody Ballroom, Portland, OR, USA; Song #1; 3:08
+08; Fugazi; 19930505 Melody Ballroom, Portland, OR, USA; Break-In; 1:23
+09; Fugazi; 19930505 Melody Ballroom, Portland, OR, USA; Suggestion; 6:00
+10; Fugazi; 19930505 Melody Ballroom, Portland, OR, USA; Burning; 2:40
+11; Fugazi; 19930505 Melody Ballroom, Portland, OR, USA; Interlude 3; 0:40
+12; Fugazi; 19930505 Melody Ballroom, Portland, OR, USA; Returning The Screw; 3:50
+13; Fugazi; 19930505 Melody Ballroom, Portland, OR, USA; Smallpox Champion; 3:54
+14; Fugazi; 19930505 Melody Ballroom, Portland, OR, USA; Interlude 4; 1:46
+15; Fugazi; 19930505 Melody Ballroom, Portland, OR, USA; Promises; 6:06
+16; Fugazi; 19930505 Melody Ballroom, Portland, OR, USA; Encore; 2:02
+17; Fugazi; 19930505 Melody Ballroom, Portland, OR, USA; Two Beats Off; 4:53
+18; Fugazi; 19930505 Melody Ballroom, Portland, OR, USA; Long Division; 2:41
+19; Fugazi; 19930505 Melody Ballroom, Portland, OR, USA; Nice New Outfit; 3:34
+20; Fugazi; 19930505 Melody Ballroom, Portland, OR, USA; KYEO; 4:49
+21; Fugazi; 19930505 Melody Ballroom, Portland, OR, USA; Outro; 0:46
+01; Fugazi; 19930506 Oz, Seattle, WA, USA; Intro; 2:26
+02; Fugazi; 19930506 Oz, Seattle, WA, USA; Reclamation; 3:26
+03; Fugazi; 19930506 Oz, Seattle, WA, USA; Interlude 1; 1:33
+04; Fugazi; 19930506 Oz, Seattle, WA, USA; Great Cop; 1:46
+05; Fugazi; 19930506 Oz, Seattle, WA, USA; Exit Only; 2:48
+06; Fugazi; 19930506 Oz, Seattle, WA, USA; Stacks; 3:19
+07; Fugazi; 19930506 Oz, Seattle, WA, USA; Turnover; 3:51
+08; Fugazi; 19930506 Oz, Seattle, WA, USA; Facet Squared; 2:34
+09; Fugazi; 19930506 Oz, Seattle, WA, USA; Walken's Syndrome; 2:43
+10; Fugazi; 19930506 Oz, Seattle, WA, USA; Interlude 2; 2:47
+11; Fugazi; 19930506 Oz, Seattle, WA, USA; Burning Too; 2:38
+12; Fugazi; 19930506 Oz, Seattle, WA, USA; Give Me The Cure; 2:42
+13; Fugazi; 19930506 Oz, Seattle, WA, USA; Waiting Room; 2:47
+14; Fugazi; 19930506 Oz, Seattle, WA, USA; Interlude 3; 0:47
+15; Fugazi; 19930506 Oz, Seattle, WA, USA; Rend It; 4:13
+16; Fugazi; 19930506 Oz, Seattle, WA, USA; Instrument; 3:23
+17; Fugazi; 19930506 Oz, Seattle, WA, USA; Two Beats Off; 4:52
+18; Fugazi; 19930506 Oz, Seattle, WA, USA; Interlude 4; 0:31
+19; Fugazi; 19930506 Oz, Seattle, WA, USA; Shut the Door; 9:10
+20; Fugazi; 19930506 Oz, Seattle, WA, USA; Encore; 2:06
+21; Fugazi; 19930506 Oz, Seattle, WA, USA; Long Division; 2:27
+22; Fugazi; 19930506 Oz, Seattle, WA, USA; Cassavetes; 2:16
+23; Fugazi; 19930506 Oz, Seattle, WA, USA; Repeater; 3:08
+24; Fugazi; 19930506 Oz, Seattle, WA, USA; Sweet and Low; 3:40
+25; Fugazi; 19930506 Oz, Seattle, WA, USA; Outro; 0:47
+01; Fugazi; 19930530 City Lights, Indianapolis, IN, USA; Intro; 1:33
+02; Fugazi; 19930530 City Lights, Indianapolis, IN, USA; Joe #1; 3:27
+03; Fugazi; 19930530 City Lights, Indianapolis, IN, USA; Reclamation; 3:10
+04; Fugazi; 19930530 City Lights, Indianapolis, IN, USA; Interlude 1; 0:50
+05; Fugazi; 19930530 City Lights, Indianapolis, IN, USA; Turnover; 3:35
+06; Fugazi; 19930530 City Lights, Indianapolis, IN, USA; Facet Squared; 2:09
+07; Fugazi; 19930530 City Lights, Indianapolis, IN, USA; Walken's Syndrome; 2:34
+08; Fugazi; 19930530 City Lights, Indianapolis, IN, USA; Interlude 2; 0:42
+09; Fugazi; 19930530 City Lights, Indianapolis, IN, USA; Promises; 6:12
+10; Fugazi; 19930530 City Lights, Indianapolis, IN, USA; Exit Only; 2:47
+11; Fugazi; 19930530 City Lights, Indianapolis, IN, USA; Interlude 3; 2:14
+12; Fugazi; 19930530 City Lights, Indianapolis, IN, USA; Great Cop; 1:47
+13; Fugazi; 19930530 City Lights, Indianapolis, IN, USA; Cassavetes; 2:19
+14; Fugazi; 19930530 City Lights, Indianapolis, IN, USA; Song #1; 3:17
+15; Fugazi; 19930530 City Lights, Indianapolis, IN, USA; Margin Walker; 2:41
+16; Fugazi; 19930530 City Lights, Indianapolis, IN, USA; Interlude 4; 0:58
+17; Fugazi; 19930530 City Lights, Indianapolis, IN, USA; Waiting Room; 2:43
+18; Fugazi; 19930530 City Lights, Indianapolis, IN, USA; Interlude 5; 0:32
+19; Fugazi; 19930530 City Lights, Indianapolis, IN, USA; Smallpox Champion; 3:49
+20; Fugazi; 19930530 City Lights, Indianapolis, IN, USA; Returning The Screw; 3:32
+21; Fugazi; 19930530 City Lights, Indianapolis, IN, USA; Blueprint; 2:44
+01; Fugazi; 19930825 Mississippi Nights, St. Louis, MO, USA; Intro; 2:02
+02; Fugazi; 19930825 Mississippi Nights, St. Louis, MO, USA; Smallpox Champion; 3:20
+03; Fugazi; 19930825 Mississippi Nights, St. Louis, MO, USA; Facet Squared; 2:33
+04; Fugazi; 19930825 Mississippi Nights, St. Louis, MO, USA; Nice New Outfit; 3:13
+05; Fugazi; 19930825 Mississippi Nights, St. Louis, MO, USA; And The Same; 4:10
+06; Fugazi; 19930825 Mississippi Nights, St. Louis, MO, USA; Public Witness Program; 2:03
+07; Fugazi; 19930825 Mississippi Nights, St. Louis, MO, USA; Long Division; 2:40
+08; Fugazi; 19930825 Mississippi Nights, St. Louis, MO, USA; Two Beats Off; 4:05
+09; Fugazi; 19930825 Mississippi Nights, St. Louis, MO, USA; Interlude 1; 2:37
+10; Fugazi; 19930825 Mississippi Nights, St. Louis, MO, USA; Great Cop; 1:48
+11; Fugazi; 19930825 Mississippi Nights, St. Louis, MO, USA; Cassavetes; 2:18
+12; Fugazi; 19930825 Mississippi Nights, St. Louis, MO, USA; Interlude 2; 2:13
+13; Fugazi; 19930825 Mississippi Nights, St. Louis, MO, USA; Waiting Room; 2:57
+14; Fugazi; 19930825 Mississippi Nights, St. Louis, MO, USA; Lockdown; 2:05
+15; Fugazi; 19930825 Mississippi Nights, St. Louis, MO, USA; Song #1; 3:06
+16; Fugazi; 19930825 Mississippi Nights, St. Louis, MO, USA; Interlude 3; 1:24
+17; Fugazi; 19930825 Mississippi Nights, St. Louis, MO, USA; Walken's Syndrome; 2:43
+18; Fugazi; 19930825 Mississippi Nights, St. Louis, MO, USA; Instrument; 3:17
+19; Fugazi; 19930825 Mississippi Nights, St. Louis, MO, USA; Exit Only; 3:02
+20; Fugazi; 19930825 Mississippi Nights, St. Louis, MO, USA; Shut The Door; 8:01
+21; Fugazi; 19930825 Mississippi Nights, St. Louis, MO, USA; Encore; 3:27
+22; Fugazi; 19930825 Mississippi Nights, St. Louis, MO, USA; Joe #1; 2:56
+23; Fugazi; 19930825 Mississippi Nights, St. Louis, MO, USA; Rend It; 3:44
+24; Fugazi; 19930825 Mississippi Nights, St. Louis, MO, USA; Repeater; 3:01
+25; Fugazi; 19930825 Mississippi Nights, St. Louis, MO, USA; Sweet and Low; 4:27
+26; Fugazi; 19930825 Mississippi Nights, St. Louis, MO, USA; Outro; 2:29
+01; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Opening Remarks; 1:37
+02; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Intro; 2:22
+03; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Reclamation; 3:54
+04; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Dear Justice Letter; 3:02
+05; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Facet Squared; 2:32
+06; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Interlude 1; 1:04
+07; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Public Witness Program; 1:55
+08; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Long Division; 2:30
+09; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Runaway Return; 3:47
+10; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Interlude 2; 0:27
+11; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Merchandise; 2:47
+12; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Smallpox Champion; 3:54
+13; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Returning The Screw; 3:37
+14; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Interlude 3; 0:59
+15; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Margin Walker; 2:31
+16; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Waiting Room; 2:43
+17; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Give Me The Cure; 2:50
+18; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Interlude 4; 0:38
+19; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Instrument; 3:31
+20; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Cassavetes; 2:20
+21; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Interlude 5; 0:21
+22; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Promises; 7:23
+23; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Interlude 6; 0:21
+24; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Blueprint; 3:20
+25; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Encore; 2:20
+26; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Two Beats Off; 4:49
+27; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Interlude 7; 0:39
+28; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Great Cop; 1:45
+29; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Walken's Syndrome; 2:36
+30; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Sweet and Low; 4:28
+31; Fugazi; 19930926 HUB Ballroom, Pennsylvania State University, University Park, PA, USA; Outro; 0:48
+01; Fugazi; 19951101 Egan Center, Anchorage, AK, USA; Intro; 4:39
+02; Fugazi; 19951101 Egan Center, Anchorage, AK, USA; Merchandise; 2:57
+03; Fugazi; 19951101 Egan Center, Anchorage, AK, USA; Do You Like Me; 2:12
+04; Fugazi; 19951101 Egan Center, Anchorage, AK, USA; Reclamation; 3:16
+05; Fugazi; 19951101 Egan Center, Anchorage, AK, USA; Public Witness Program; 1:58
+06; Fugazi; 19951101 Egan Center, Anchorage, AK, USA; Long Division; 1:58
+07; Fugazi; 19951101 Egan Center, Anchorage, AK, USA; Target; 3:30
+08; Fugazi; 19951101 Egan Center, Anchorage, AK, USA; Interlude 1; 3:20
+09; Fugazi; 19951101 Egan Center, Anchorage, AK, USA; Bed For The Scraping; 2:47
+10; Fugazi; 19951101 Egan Center, Anchorage, AK, USA; Downed City; 1:54
+11; Fugazi; 19951101 Egan Center, Anchorage, AK, USA; Waiting Room; 3:40
+12; Fugazi; 19951101 Egan Center, Anchorage, AK, USA; Margin Walker; 3:02
+13; Fugazi; 19951101 Egan Center, Anchorage, AK, USA; By You; 4:53
+14; Fugazi; 19951101 Egan Center, Anchorage, AK, USA; Birthday Pony; 2:26
+15; Fugazi; 19951101 Egan Center, Anchorage, AK, USA; Interlude 2; 0:50
+16; Fugazi; 19951101 Egan Center, Anchorage, AK, USA; Blueprint; 3:21
+17; Fugazi; 19951101 Egan Center, Anchorage, AK, USA; Instrument; 3:36
+18; Fugazi; 19951101 Egan Center, Anchorage, AK, USA; Forensic Scene; 3:04
+19; Fugazi; 19951101 Egan Center, Anchorage, AK, USA; Promises; 7:55
+20; Fugazi; 19951101 Egan Center, Anchorage, AK, USA; Interlude 3; 1:58
+21; Fugazi; 19951101 Egan Center, Anchorage, AK, USA; Smallpox Champion; 3:22
+22; Fugazi; 19951101 Egan Center, Anchorage, AK, USA; Facet Squared; 2:34
+23; Fugazi; 19951101 Egan Center, Anchorage, AK, USA; Turnover; 3:47
+24; Fugazi; 19951101 Egan Center, Anchorage, AK, USA; Repeater; 3:33
+25; Fugazi; 19951101 Egan Center, Anchorage, AK, USA; Reprovisional; 4:26
+01; Fugazi; 19961017 Maui Cultural Center, Maui, HI, USA; Instrument; 0:51
+02; Fugazi; 19961017 Maui Cultural Center, Maui, HI, USA; Sieve-Fisted Find; 3:25
+03; Fugazi; 19961017 Maui Cultural Center, Maui, HI, USA; Bed For The Scraping; 3:19
+04; Fugazi; 19961017 Maui Cultural Center, Maui, HI, USA; Target; 4:10
+05; Fugazi; 19961017 Maui Cultural Center, Maui, HI, USA; Shut the Door; 8:11
+06; Fugazi; 19961017 Maui Cultural Center, Maui, HI, USA; Interlude; 0:41
+07; Fugazi; 19961017 Maui Cultural Center, Maui, HI, USA; No Surprise; 4:17
+08; Fugazi; 19961017 Maui Cultural Center, Maui, HI, USA; Waiting Room; 3:00
+09; Fugazi; 19961017 Maui Cultural Center, Maui, HI, USA; Bulldog Front; 3:36
+10; Fugazi; 19961017 Maui Cultural Center, Maui, HI, USA; Long Division; 2:37
+11; Fugazi; 19961017 Maui Cultural Center, Maui, HI, USA; Do You Like Me; 2:59
+12; Fugazi; 19961017 Maui Cultural Center, Maui, HI, USA; Merchandise; 3:13
+13; Fugazi; 19961017 Maui Cultural Center, Maui, HI, USA; Caustic Acrostic; 2:05
+14; Fugazi; 19961017 Maui Cultural Center, Maui, HI, USA; Back To Base; 1:56
+15; Fugazi; 19961017 Maui Cultural Center, Maui, HI, USA; Blueprint; 3:37
+16; Fugazi; 19961017 Maui Cultural Center, Maui, HI, USA; Encore; 2:05
+17; Fugazi; 19961017 Maui Cultural Center, Maui, HI, USA; By You; 4:43
+18; Fugazi; 19961017 Maui Cultural Center, Maui, HI, USA; Five Corporations; 2:18
+19; Fugazi; 19961017 Maui Cultural Center, Maui, HI, USA; Downed City; 2:02
+20; Fugazi; 19961017 Maui Cultural Center, Maui, HI, USA; Sweet and Low; 3:33
+21; Fugazi; 19961017 Maui Cultural Center, Maui, HI, USA; Repeater; 3:39
+22; Fugazi; 19961017 Maui Cultural Center, Maui, HI, USA; Outro; 1:51
+01; Fugazi; 19961113 Sapphire Ballroom, Hobart, Tasmania, Australia; Intro; 1:41
+02; Fugazi; 19961113 Sapphire Ballroom, Hobart, Tasmania, Australia; Do You Like Me; 2:33
+03; Fugazi; 19961113 Sapphire Ballroom, Hobart, Tasmania, Australia; Styrofoam; 2:34
+04; Fugazi; 19961113 Sapphire Ballroom, Hobart, Tasmania, Australia; Downed City; 2:00
+05; Fugazi; 19961113 Sapphire Ballroom, Hobart, Tasmania, Australia; Reclamation; 4:04
+06; Fugazi; 19961113 Sapphire Ballroom, Hobart, Tasmania, Australia; Turnover; 4:13
+07; Fugazi; 19961113 Sapphire Ballroom, Hobart, Tasmania, Australia; Bed For The Scraping; 2:42
+08; Fugazi; 19961113 Sapphire Ballroom, Hobart, Tasmania, Australia; Cassavetes; 2:28
+09; Fugazi; 19961113 Sapphire Ballroom, Hobart, Tasmania, Australia; Shut the Door; 8:34
+10; Fugazi; 19961113 Sapphire Ballroom, Hobart, Tasmania, Australia; Interlude 1; 0:43
+11; Fugazi; 19961113 Sapphire Ballroom, Hobart, Tasmania, Australia; No Surprise; 4:09
+12; Fugazi; 19961113 Sapphire Ballroom, Hobart, Tasmania, Australia; Long Division; 2:24
+13; Fugazi; 19961113 Sapphire Ballroom, Hobart, Tasmania, Australia; Target; 3:52
+14; Fugazi; 19961113 Sapphire Ballroom, Hobart, Tasmania, Australia; Song #1; 3:38
+15; Fugazi; 19961113 Sapphire Ballroom, Hobart, Tasmania, Australia; Give Me The Cure; 2:58
+16; Fugazi; 19961113 Sapphire Ballroom, Hobart, Tasmania, Australia; Interlude 2; 0:43
+17; Fugazi; 19961113 Sapphire Ballroom, Hobart, Tasmania, Australia; Forensic Scene; 3:51
+18; Fugazi; 19961113 Sapphire Ballroom, Hobart, Tasmania, Australia; Encore; 2:29
+19; Fugazi; 19961113 Sapphire Ballroom, Hobart, Tasmania, Australia; Long Distance Runner; 5:18
+20; Fugazi; 19961113 Sapphire Ballroom, Hobart, Tasmania, Australia; Version; 4:11
+21; Fugazi; 19961113 Sapphire Ballroom, Hobart, Tasmania, Australia; Glueman; 8:00
+01; Fugazi; 19970501 Palladium, New York, NY, USA; Intro; 2:53
+02; Fugazi; 19970501 Palladium, New York, NY, USA; Do You Like Me; 3:00
+03; Fugazi; 19970501 Palladium, New York, NY, USA; Bed For The Scraping; 3:37
+04; Fugazi; 19970501 Palladium, New York, NY, USA; Cassavetes; 2:39
+05; Fugazi; 19970501 Palladium, New York, NY, USA; Interlude 1; 0:55
+06; Fugazi; 19970501 Palladium, New York, NY, USA; Five Corporations; 2:34
+07; Fugazi; 19970501 Palladium, New York, NY, USA; Place Position; 2:45
+08; Fugazi; 19970501 Palladium, New York, NY, USA; Reclamation; 3:59
+09; Fugazi; 19970501 Palladium, New York, NY, USA; Margin Walker; 3:11
+10; Fugazi; 19970501 Palladium, New York, NY, USA; Song #1; 4:04
+11; Fugazi; 19970501 Palladium, New York, NY, USA; Interlude 2; 0:58
+12; Fugazi; 19970501 Palladium, New York, NY, USA; Floating Boy; 5:33
+13; Fugazi; 19970501 Palladium, New York, NY, USA; Long Division; 3:45
+14; Fugazi; 19970501 Palladium, New York, NY, USA; Blueprint; 3:36
+15; Fugazi; 19970501 Palladium, New York, NY, USA; Merchandise; 3:29
+16; Fugazi; 19970501 Palladium, New York, NY, USA; Interlude 3; 0:58
+17; Fugazi; 19970501 Palladium, New York, NY, USA; Recap Modotti; 2:42
+18; Fugazi; 19970501 Palladium, New York, NY, USA; No Surprise; 4:19
+19; Fugazi; 19970501 Palladium, New York, NY, USA; Pink Frosty; 4:03
+20; Fugazi; 19970501 Palladium, New York, NY, USA; Target; 3:50
+21; Fugazi; 19970501 Palladium, New York, NY, USA; Instrument; 4:06
+22; Fugazi; 19970501 Palladium, New York, NY, USA; Encore 1; 2:03
+23; Fugazi; 19970501 Palladium, New York, NY, USA; Give Me The Cure; 2:49
+24; Fugazi; 19970501 Palladium, New York, NY, USA; Suggestion; 7:49
+25; Fugazi; 19970501 Palladium, New York, NY, USA; Version; 5:35
+26; Fugazi; 19970501 Palladium, New York, NY, USA; Encore 2; 3:56
+27; Fugazi; 19970501 Palladium, New York, NY, USA; By You; 4:14
+28; Fugazi; 19970501 Palladium, New York, NY, USA; Smallpox Champion; 4:51
+29; Fugazi; 19970501 Palladium, New York, NY, USA; Waiting Room; 1:23
+30; Fugazi; 19970501 Palladium, New York, NY, USA; Bad Mouth; 2:29
+31; Fugazi; 19970501 Palladium, New York, NY, USA; Outro; 1:17
+01; Fugazi; 19990917 Schlachthof, Bremen, Germany; Intro; 0:52
+02; Fugazi; 19990917 Schlachthof, Bremen, Germany; Ex-Spectator Instrumental; 3:56
+03; Fugazi; 19990917 Schlachthof, Bremen, Germany; Back To Base; 1:52
+04; Fugazi; 19990917 Schlachthof, Bremen, Germany; Place Position; 2:42
+05; Fugazi; 19990917 Schlachthof, Bremen, Germany; Birthday Pony; 2:33
+06; Fugazi; 19990917 Schlachthof, Bremen, Germany; Do You Like Me; 3:01
+07; Fugazi; 19990917 Schlachthof, Bremen, Germany; Closed Captioned; 5:26
+08; Fugazi; 19990917 Schlachthof, Bremen, Germany; Oh; 4:51
+09; Fugazi; 19990917 Schlachthof, Bremen, Germany; Long Division; 2:16
+10; Fugazi; 19990917 Schlachthof, Bremen, Germany; Blueprint; 3:19
+11; Fugazi; 19990917 Schlachthof, Bremen, Germany; Waiting Room; 2:47
+12; Fugazi; 19990917 Schlachthof, Bremen, Germany; Margin Walker; 2:54
+13; Fugazi; 19990917 Schlachthof, Bremen, Germany; Break; 2:20
+14; Fugazi; 19990917 Schlachthof, Bremen, Germany; Recap Modotti; 3:39
+15; Fugazi; 19990917 Schlachthof, Bremen, Germany; Two Beats Off; 4:57
+16; Fugazi; 19990917 Schlachthof, Bremen, Germany; Instrument; 3:19
+17; Fugazi; 19990917 Schlachthof, Bremen, Germany; Downed City; 2:00
+18; Fugazi; 19990917 Schlachthof, Bremen, Germany; Encore 1; 1:18
+19; Fugazi; 19990917 Schlachthof, Bremen, Germany; Argument; 4:29
+20; Fugazi; 19990917 Schlachthof, Bremen, Germany; Dear Justice Letter; 3:44
+21; Fugazi; 19990917 Schlachthof, Bremen, Germany; Bed For The Scraping; 2:51
+22; Fugazi; 19990917 Schlachthof, Bremen, Germany; Interlude 1; 0:33
+23; Fugazi; 19990917 Schlachthof, Bremen, Germany; Smallpox Champion; 3:35
+24; Fugazi; 19990917 Schlachthof, Bremen, Germany; Suggestion; 7:17
+25; Fugazi; 19990917 Schlachthof, Bremen, Germany; Encore 2; 4:39
+26; Fugazi; 19990917 Schlachthof, Bremen, Germany; Number Five; 3:13
+27; Fugazi; 19990917 Schlachthof, Bremen, Germany; Arpeggiator; 3:45
+28; Fugazi; 19990917 Schlachthof, Bremen, Germany; Outro; 0:35
+01; Fugazi; 19990922 Conne Island, Leipzig, Germany; Intro; 0:46
+02; Fugazi; 19990922 Conne Island, Leipzig, Germany; Break; 1:58
+03; Fugazi; 19990922 Conne Island, Leipzig, Germany; Place Position; 2:36
+04; Fugazi; 19990922 Conne Island, Leipzig, Germany; Facet Squared; 2:37
+05; Fugazi; 19990922 Conne Island, Leipzig, Germany; Sieve-Fisted Find; 3:14
+06; Fugazi; 19990922 Conne Island, Leipzig, Germany; Bed For The Scraping; 2:52
+07; Fugazi; 19990922 Conne Island, Leipzig, Germany; FD; 2:48
+08; Fugazi; 19990922 Conne Island, Leipzig, Germany; Closed Captioned; 5:02
+09; Fugazi; 19990922 Conne Island, Leipzig, Germany; Walken's Syndrome; 2:37
+10; Fugazi; 19990922 Conne Island, Leipzig, Germany; Reclamation; 3:40
+11; Fugazi; 19990922 Conne Island, Leipzig, Germany; Recap Modotti; 3:20
+12; Fugazi; 19990922 Conne Island, Leipzig, Germany; Interlude 1; 0:35
+13; Fugazi; 19990922 Conne Island, Leipzig, Germany; Turnover; 3:55
+14; Fugazi; 19990922 Conne Island, Leipzig, Germany; Five Corporations; 2:29
+15; Fugazi; 19990922 Conne Island, Leipzig, Germany; Smallpox Champion; 3:41
+16; Fugazi; 19990922 Conne Island, Leipzig, Germany; Interlude 2; 0:36
+17; Fugazi; 19990922 Conne Island, Leipzig, Germany; Returning The Screw; 3:39
+18; Fugazi; 19990922 Conne Island, Leipzig, Germany; Margin Walker; 2:41
+19; Fugazi; 19990922 Conne Island, Leipzig, Germany; Waiting Room; 3:07
+20; Fugazi; 19990922 Conne Island, Leipzig, Germany; Interlude 3; 0:54
+21; Fugazi; 19990922 Conne Island, Leipzig, Germany; Oh; 4:45
+22; Fugazi; 19990922 Conne Island, Leipzig, Germany; Long Division; 2:23
+23; Fugazi; 19990922 Conne Island, Leipzig, Germany; Exit Only; 2:34
+24; Fugazi; 19990922 Conne Island, Leipzig, Germany; Argument; 4:25
+25; Fugazi; 19990922 Conne Island, Leipzig, Germany; Arpeggiator; 4:11
+26; Fugazi; 19990922 Conne Island, Leipzig, Germany; Interlude 4; 1:35
+27; Fugazi; 19990922 Conne Island, Leipzig, Germany; Blueprint; 3:35
+28; Fugazi; 19990922 Conne Island, Leipzig, Germany; Interlude 5; 1:45
+29; Fugazi; 19990922 Conne Island, Leipzig, Germany; Repeater; 3:01
+30; Fugazi; 19990922 Conne Island, Leipzig, Germany; Interlude 6; 0:25
+31; Fugazi; 19990922 Conne Island, Leipzig, Germany; Public Witness Program; 2:04
+32; Fugazi; 19990922 Conne Island, Leipzig, Germany; Interlude 7; 1:27
+33; Fugazi; 19990922 Conne Island, Leipzig, Germany; Back To Base; 1:47
+34; Fugazi; 19990922 Conne Island, Leipzig, Germany; Number Five; 3:11
+01; Fugazi; 19991204 Electric Factory, Philadelphia, PA, USA; Intro; 2:27
+02; Fugazi; 19991204 Electric Factory, Philadelphia, PA, USA; Arpeggiator; 4:04
+03; Fugazi; 19991204 Electric Factory, Philadelphia, PA, USA; Place Position; 6:24
+04; Fugazi; 19991204 Electric Factory, Philadelphia, PA, USA; Birthday Pony; 2:17
+05; Fugazi; 19991204 Electric Factory, Philadelphia, PA, USA; Walken's Syndrome; 2:37
+06; Fugazi; 19991204 Electric Factory, Philadelphia, PA, USA; And The Same; 4:24
+07; Fugazi; 19991204 Electric Factory, Philadelphia, PA, USA; Caustic Acrostic; 2:07
+08; Fugazi; 19991204 Electric Factory, Philadelphia, PA, USA; Interlude 1; 0:48
+09; Fugazi; 19991204 Electric Factory, Philadelphia, PA, USA; Back To Base; 1:43
+10; Fugazi; 19991204 Electric Factory, Philadelphia, PA, USA; Do You Like Me; 2:35
+11; Fugazi; 19991204 Electric Factory, Philadelphia, PA, USA; Long Division; 3:00
+12; Fugazi; 19991204 Electric Factory, Philadelphia, PA, USA; Oh; 4:34
+13; Fugazi; 19991204 Electric Factory, Philadelphia, PA, USA; Break; 2:01
+14; Fugazi; 19991204 Electric Factory, Philadelphia, PA, USA; Margin Walker; 2:36
+15; Fugazi; 19991204 Electric Factory, Philadelphia, PA, USA; Waiting Room; 2:48
+16; Fugazi; 19991204 Electric Factory, Philadelphia, PA, USA; Interlude 2; 0:59
+17; Fugazi; 19991204 Electric Factory, Philadelphia, PA, USA; Recap Modotti; 2:56
+18; Fugazi; 19991204 Electric Factory, Philadelphia, PA, USA; Turnover; 4:02
+19; Fugazi; 19991204 Electric Factory, Philadelphia, PA, USA; Interlude 3; 0:37
+20; Fugazi; 19991204 Electric Factory, Philadelphia, PA, USA; Argument; 4:31
+21; Fugazi; 19991204 Electric Factory, Philadelphia, PA, USA; FD; 2:30
+01; Fugazi; 19991207 Trax, Charlottesville, VA, USA; Intro; 0:25
+02; Fugazi; 19991207 Trax, Charlottesville, VA, USA; Latin Roots; 3:07
+03; Fugazi; 19991207 Trax, Charlottesville, VA, USA; Styrofoam; 2:50
+04; Fugazi; 19991207 Trax, Charlottesville, VA, USA; Foreman's Dog; 4:20
+05; Fugazi; 19991207 Trax, Charlottesville, VA, USA; Long Division; 3:07
+06; Fugazi; 19991207 Trax, Charlottesville, VA, USA; Two Beats Off; 4:58
+07; Fugazi; 19991207 Trax, Charlottesville, VA, USA; Reclamation; 4:11
+08; Fugazi; 19991207 Trax, Charlottesville, VA, USA; Recap Modotti; 3:04
+09; Fugazi; 19991207 Trax, Charlottesville, VA, USA; Target; 3:57
+10; Fugazi; 19991207 Trax, Charlottesville, VA, USA; Interlude 1; 0:31
+11; Fugazi; 19991207 Trax, Charlottesville, VA, USA; Argument; 6:28
+12; Fugazi; 19991207 Trax, Charlottesville, VA, USA; Burning; 3:42
+13; Fugazi; 19991207 Trax, Charlottesville, VA, USA; Interlude 2; 4:15
+14; Fugazi; 19991207 Trax, Charlottesville, VA, USA; Great Cop; 1:42
+15; Fugazi; 19991207 Trax, Charlottesville, VA, USA; Public Witness Program; 1:53
+16; Fugazi; 19991207 Trax, Charlottesville, VA, USA; Break; 2:02
+17; Fugazi; 19991207 Trax, Charlottesville, VA, USA; Number Five; 2:51
+18; Fugazi; 19991207 Trax, Charlottesville, VA, USA; Oh; 4:32
+19; Fugazi; 19991207 Trax, Charlottesville, VA, USA; Sweet and Low; 3:40
+20; Fugazi; 19991207 Trax, Charlottesville, VA, USA; Interlude 3; 2:52
+21; Fugazi; 19991207 Trax, Charlottesville, VA, USA; Bed For The Scraping; 2:56
+22; Fugazi; 19991207 Trax, Charlottesville, VA, USA; FD; 2:12
+23; Fugazi; 19991207 Trax, Charlottesville, VA, USA; Waiting Room; 2:48
+24; Fugazi; 19991207 Trax, Charlottesville, VA, USA; Margin Walker; 2:28
+25; Fugazi; 19991207 Trax, Charlottesville, VA, USA; Bad Mouth; 2:25
+26; Fugazi; 19991207 Trax, Charlottesville, VA, USA; Interlude 4; 0:35
+27; Fugazi; 19991207 Trax, Charlottesville, VA, USA; No Surprise; 3:54
+28; Fugazi; 19991207 Trax, Charlottesville, VA, USA; Pink Frosty; 4:15
+29; Fugazi; 19991207 Trax, Charlottesville, VA, USA; Arpeggiator; 4:09
+01; Fugazi; 20000409 E9, El Paso, TX, USA; Intro; 3:45
+02; Fugazi; 20000409 E9, El Paso, TX, USA; Break; 1:53
+03; Fugazi; 20000409 E9, El Paso, TX, USA; Place Position; 2:36
+04; Fugazi; 20000409 E9, El Paso, TX, USA; Merchandise; 2:44
+05; Fugazi; 20000409 E9, El Paso, TX, USA; Latin Roots; 3:10
+06; Fugazi; 20000409 E9, El Paso, TX, USA; Interlude 1; 0:42
+07; Fugazi; 20000409 E9, El Paso, TX, USA; Reclamation; 4:07
+08; Fugazi; 20000409 E9, El Paso, TX, USA; Full Disclosure; 3:25
+09; Fugazi; 20000409 E9, El Paso, TX, USA; Long Division; 2:28
+10; Fugazi; 20000409 E9, El Paso, TX, USA; Number Five; 2:44
+11; Fugazi; 20000409 E9, El Paso, TX, USA; Oh; 4:29
+12; Fugazi; 20000409 E9, El Paso, TX, USA; Interlude 2; 0:50
+13; Fugazi; 20000409 E9, El Paso, TX, USA; Closed Captioned; 5:15
+14; Fugazi; 20000409 E9, El Paso, TX, USA; Smallpox Champion; 4:05
+15; Fugazi; 20000409 E9, El Paso, TX, USA; Stacks; 3:13
+16; Fugazi; 20000409 E9, El Paso, TX, USA; Recap Modotti; 2:48
+17; Fugazi; 20000409 E9, El Paso, TX, USA; FD; 2:30
+18; Fugazi; 20000409 E9, El Paso, TX, USA; Interlude 3; 0:47
+19; Fugazi; 20000409 E9, El Paso, TX, USA; Waiting Room; 2:54
+20; Fugazi; 20000409 E9, El Paso, TX, USA; Give Me The Cure; 2:37
+21; Fugazi; 20000409 E9, El Paso, TX, USA; Song #1; 3:36
+22; Fugazi; 20000409 E9, El Paso, TX, USA; Interlude 4; 0:47
+23; Fugazi; 20000409 E9, El Paso, TX, USA; Public Witness Program; 2:00
+24; Fugazi; 20000409 E9, El Paso, TX, USA; Furniture; 3:21
+25; Fugazi; 20000409 E9, El Paso, TX, USA; Arpeggiator; 4:14
+26; Fugazi; 20000409 E9, El Paso, TX, USA; Interlude 5; 0:49
+27; Fugazi; 20000409 E9, El Paso, TX, USA; Great Cop; 1:45
+28; Fugazi; 20000409 E9, El Paso, TX, USA; Do You Like Me; 2:44
+29; Fugazi; 20000409 E9, El Paso, TX, USA; Interlude 6; 0:36
+30; Fugazi; 20000409 E9, El Paso, TX, USA; Repeater; 3:15
+31; Fugazi; 20000409 E9, El Paso, TX, USA; Blueprint; 3:59
+32; Fugazi; 20000409 E9, El Paso, TX, USA; Outro; 0:32
+01; Fugazi; 20000604 Mission Dolores Park, San Francisco, CA, USA; Ex-Spectator Instrumental; 3:40
+02; Fugazi; 20000604 Mission Dolores Park, San Francisco, CA, USA; Break; 2:13
+03; Fugazi; 20000604 Mission Dolores Park, San Francisco, CA, USA; Place Position; 2:42
+04; Fugazi; 20000604 Mission Dolores Park, San Francisco, CA, USA; Interlude 1; 0:53
+05; Fugazi; 20000604 Mission Dolores Park, San Francisco, CA, USA; Merchandise; 2:41
+06; Fugazi; 20000604 Mission Dolores Park, San Francisco, CA, USA; Turnover; 4:09
+07; Fugazi; 20000604 Mission Dolores Park, San Francisco, CA, USA; Reclamation; 3:49
+08; Fugazi; 20000604 Mission Dolores Park, San Francisco, CA, USA; Interlude 2; 0:53
+09; Fugazi; 20000604 Mission Dolores Park, San Francisco, CA, USA; Oh; 4:39
+10; Fugazi; 20000604 Mission Dolores Park, San Francisco, CA, USA; Long Division; 2:30
+11; Fugazi; 20000604 Mission Dolores Park, San Francisco, CA, USA; Rend It; 3:35
+12; Fugazi; 20000604 Mission Dolores Park, San Francisco, CA, USA; Interlude 3; 0:35
+13; Fugazi; 20000604 Mission Dolores Park, San Francisco, CA, USA; Argument; 4:27
+14; Fugazi; 20000604 Mission Dolores Park, San Francisco, CA, USA; Margin Walker; 2:50
+15; Fugazi; 20000604 Mission Dolores Park, San Francisco, CA, USA; Interlude 4; 0:35
+16; Fugazi; 20000604 Mission Dolores Park, San Francisco, CA, USA; Suggestion; 6:28
+17; Fugazi; 20000604 Mission Dolores Park, San Francisco, CA, USA; Burning; 3:17
+18; Fugazi; 20000604 Mission Dolores Park, San Francisco, CA, USA; Interlude 5; 2:31
+19; Fugazi; 20000604 Mission Dolores Park, San Francisco, CA, USA; Cashout; 5:02
+20; Fugazi; 20000604 Mission Dolores Park, San Francisco, CA, USA; Interlude 6; 0:33
+21; Fugazi; 20000604 Mission Dolores Park, San Francisco, CA, USA; Arpeggiator; 3:38
+22; Fugazi; 20000604 Mission Dolores Park, San Francisco, CA, USA; Do You Like Me; 2:44
+23; Fugazi; 20000604 Mission Dolores Park, San Francisco, CA, USA; Great Cop; 1:57
+24; Fugazi; 20000604 Mission Dolores Park, San Francisco, CA, USA; No Surprise; 4:00
+25; Fugazi; 20000604 Mission Dolores Park, San Francisco, CA, USA; Encore; 0:53
+26; Fugazi; 20000604 Mission Dolores Park, San Francisco, CA, USA; Closed Captioned; 0:37
+27; Fugazi; 20000604 Mission Dolores Park, San Francisco, CA, USA; Outro; 0:25
+01; Fugazi; 20000627 Smithsonian Folklife Festival, National Mall, Washington, DC, USA; Opening Remarks; 6:47
+02; Fugazi; 20000627 Smithsonian Folklife Festival, National Mall, Washington, DC, USA; Ex-Spectator Instrumental; 4:22
+03; Fugazi; 20000627 Smithsonian Folklife Festival, National Mall, Washington, DC, USA; Smallpox Champion; 3:28
+04; Fugazi; 20000627 Smithsonian Folklife Festival, National Mall, Washington, DC, USA; Reclamation; 4:18
+05; Fugazi; 20000627 Smithsonian Folklife Festival, National Mall, Washington, DC, USA; Interlude 1; 1:35
+06; Fugazi; 20000627 Smithsonian Folklife Festival, National Mall, Washington, DC, USA; Target; 3:24
+07; Fugazi; 20000627 Smithsonian Folklife Festival, National Mall, Washington, DC, USA; Styrofoam; 2:42
+08; Fugazi; 20000627 Smithsonian Folklife Festival, National Mall, Washington, DC, USA; Interlude 2; 0:27
+09; Fugazi; 20000627 Smithsonian Folklife Festival, National Mall, Washington, DC, USA; Oh; 4:31
+10; Fugazi; 20000627 Smithsonian Folklife Festival, National Mall, Washington, DC, USA; Closed Captioned; 5:05
+11; Fugazi; 20000627 Smithsonian Folklife Festival, National Mall, Washington, DC, USA; FD; 2:17
+12; Fugazi; 20000627 Smithsonian Folklife Festival, National Mall, Washington, DC, USA; Argument; 4:30
+13; Fugazi; 20000627 Smithsonian Folklife Festival, National Mall, Washington, DC, USA; Burning; 3:34
+14; Fugazi; 20000627 Smithsonian Folklife Festival, National Mall, Washington, DC, USA; Song #1; 3:48
+15; Fugazi; 20000627 Smithsonian Folklife Festival, National Mall, Washington, DC, USA; Number Five; 2:58
+16; Fugazi; 20000627 Smithsonian Folklife Festival, National Mall, Washington, DC, USA; Interlude 3; 0:43
+17; Fugazi; 20000627 Smithsonian Folklife Festival, National Mall, Washington, DC, USA; Cassavetes; 2:23
+18; Fugazi; 20000627 Smithsonian Folklife Festival, National Mall, Washington, DC, USA; Recap Modotti; 3:22
+19; Fugazi; 20000627 Smithsonian Folklife Festival, National Mall, Washington, DC, USA; Bed For The Scraping; 2:43
+20; Fugazi; 20000627 Smithsonian Folklife Festival, National Mall, Washington, DC, USA; Downed City; 2:15
+21; Fugazi; 20000627 Smithsonian Folklife Festival, National Mall, Washington, DC, USA; Interlude 4; 2:39
+22; Fugazi; 20000627 Smithsonian Folklife Festival, National Mall, Washington, DC, USA; Cashout; 4:49
+23; Fugazi; 20000627 Smithsonian Folklife Festival, National Mall, Washington, DC, USA; Blueprint; 3:35
+24; Fugazi; 20000627 Smithsonian Folklife Festival, National Mall, Washington, DC, USA; Outro; 1:28
+01; Fugazi; 20000807 Fort Reno, Washington, DC, USA; Opening Remarks; 4:47
+02; Fugazi; 20000807 Fort Reno, Washington, DC, USA; Ex-Spectator; 5:50
+03; Fugazi; 20000807 Fort Reno, Washington, DC, USA; Number Five; 1:15
+04; Fugazi; 20000807 Fort Reno, Washington, DC, USA; Bed For The Scraping; 2:57
+05; Fugazi; 20000807 Fort Reno, Washington, DC, USA; Public Witness Program; 1:55
+06; Fugazi; 20000807 Fort Reno, Washington, DC, USA; Epic Problem; 4:12
+07; Fugazi; 20000807 Fort Reno, Washington, DC, USA; Interlude 1; 0:43
+08; Fugazi; 20000807 Fort Reno, Washington, DC, USA; Strange Disclosure; 4:27
+09; Fugazi; 20000807 Fort Reno, Washington, DC, USA; Furniture; 3:32
+10; Fugazi; 20000807 Fort Reno, Washington, DC, USA; Turnover; 3:55
+11; Fugazi; 20000807 Fort Reno, Washington, DC, USA; Instrument; 3:20
+12; Fugazi; 20000807 Fort Reno, Washington, DC, USA; Recap Modotti; 3:33
+13; Fugazi; 20000807 Fort Reno, Washington, DC, USA; Oh; 4:33
+14; Fugazi; 20000807 Fort Reno, Washington, DC, USA; Cashout; 5:04
+15; Fugazi; 20000807 Fort Reno, Washington, DC, USA; Interlude 2; 0:45
+16; Fugazi; 20000807 Fort Reno, Washington, DC, USA; Margin Walker; 2:40
+17; Fugazi; 20000807 Fort Reno, Washington, DC, USA; Bad Mouth; 2:34
+18; Fugazi; 20000807 Fort Reno, Washington, DC, USA; Interlude 3; 0:39
+19; Fugazi; 20000807 Fort Reno, Washington, DC, USA; Forensic Scene; 3:24
+20; Fugazi; 20000807 Fort Reno, Washington, DC, USA; Argument; 3:21
+21; Fugazi; 20000807 Fort Reno, Washington, DC, USA; Smallpox Champion; 4:26
+22; Fugazi; 20000807 Fort Reno, Washington, DC, USA; Interlude 4; 2:53
+23; Fugazi; 20000807 Fort Reno, Washington, DC, USA; KYEO; 4:03
+24; Fugazi; 20000807 Fort Reno, Washington, DC, USA; Encore; 2:41
+25; Fugazi; 20000807 Fort Reno, Washington, DC, USA; No Surprise; 3:57
+26; Fugazi; 20000807 Fort Reno, Washington, DC, USA; Closed Captioned; 4:52
+27; Fugazi; 20000807 Fort Reno, Washington, DC, USA; FD; 2:12
+28; Fugazi; 20000807 Fort Reno, Washington, DC, USA; Arpeggiator; 3:39
+29; Fugazi; 20000807 Fort Reno, Washington, DC, USA; Outro; 0:25
+01; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Intro; 0:20
+02; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Cashout; 4:56
+03; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Exit Only; 2:33
+04; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Reclamation; 4:16
+05; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Do You Like Me; 2:51
+06; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Merchandise; 2:55
+07; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Number Five; 2:53
+08; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Oh; 4:31
+09; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Closed Captioned; 4:55
+10; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Rend It; 3:57
+11; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Bad Mouth; 2:15
+12; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Recap Modotti; 2:16
+13; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Break; 2:05
+14; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Nice New Outfit; 4:36
+15; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Bed For The Scraping; 3:11
+16; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Two Beats Off; 5:57
+17; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Encore; 1:08
+18; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Shut the Door; 8:14
+19; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Arpeggiator; 3:50
+20; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Interlude 1; 0:42
+21; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Back To Base; 1:46
+22; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Turnover; 4:09
+23; Fugazi; 20001006 Kulturhuset, Jönköping, Sweden; Argument; 4:45
+01; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Opening Remarks; 0:25
+02; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Intro; 2:50
+03; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Cashout; 4:35
+04; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Full Disclosure; 3:16
+05; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; And The Same; 4:34
+06; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Do You Like Me; 2:45
+07; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Interlude 1; 1:05
+08; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Back To Base; 1:37
+09; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Public Witness Program; 1:51
+10; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Closed Captioned; 4:35
+11; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Nightshop; 4:23
+12; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Bed For The Scraping; 2:57
+13; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Burning; 2:51
+14; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Waiting Room; 3:01
+15; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Give Me The Cure; 2:58
+16; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Suggestion; 7:02
+17; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Interlude 2; 1:09
+18; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; By You; 4:29
+19; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Life and Limb; 3:26
+20; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Merchandise; 2:50
+21; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Latin Roots; 3:06
+22; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Long Division; 2:34
+23; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Number Five; 2:50
+24; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Encore; 2:23
+25; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Epic Problem; 4:01
+26; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Oh; 4:08
+27; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Promises; 7:33
+28; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Smallpox Champion; 3:24
+29; Fugazi; 20020418 Holyoke War Memorial, 310 Appleton Street, Holyoke, MA, USA; Outro; 0:36
+01; Fugazi; 20021025 Red Box, Dublin, Ireland; Intro; 2:55
+02; Fugazi; 20021025 Red Box, Dublin, Ireland; Joe #1; 3:27
+03; Fugazi; 20021025 Red Box, Dublin, Ireland; Break; 2:06
+04; Fugazi; 20021025 Red Box, Dublin, Ireland; Sieve-Fisted Find; 3:12
+05; Fugazi; 20021025 Red Box, Dublin, Ireland; Ex-Spectator; 4:24
+06; Fugazi; 20021025 Red Box, Dublin, Ireland; Full Disclosure; 3:15
+07; Fugazi; 20021025 Red Box, Dublin, Ireland; Furniture; 3:28
+08; Fugazi; 20021025 Red Box, Dublin, Ireland; Public Witness Program; 2:08
+09; Fugazi; 20021025 Red Box, Dublin, Ireland; Interlude 1; 1:07
+10; Fugazi; 20021025 Red Box, Dublin, Ireland; Birthday Pony; 2:24
+11; Fugazi; 20021025 Red Box, Dublin, Ireland; Life and Limb; 3:26
+12; Fugazi; 20021025 Red Box, Dublin, Ireland; Closed Captioned; 4:51
+13; Fugazi; 20021025 Red Box, Dublin, Ireland; Number Five; 2:36
+14; Fugazi; 20021025 Red Box, Dublin, Ireland; Burning; 3:04
+15; Fugazi; 20021025 Red Box, Dublin, Ireland; Bad Mouth; 2:28
+16; Fugazi; 20021025 Red Box, Dublin, Ireland; Interlude 2; 0:52
+17; Fugazi; 20021025 Red Box, Dublin, Ireland; Give Me The Cure; 2:49
+18; Fugazi; 20021025 Red Box, Dublin, Ireland; Waiting Room; 3:05
+19; Fugazi; 20021025 Red Box, Dublin, Ireland; By You; 4:07
+20; Fugazi; 20021025 Red Box, Dublin, Ireland; Interlude 3; 0:57
+21; Fugazi; 20021025 Red Box, Dublin, Ireland; Oh; 4:11
+22; Fugazi; 20021025 Red Box, Dublin, Ireland; Cashout; 5:10
+23; Fugazi; 20021025 Red Box, Dublin, Ireland; Encore; 1:59
+24; Fugazi; 20021025 Red Box, Dublin, Ireland; Blueprint; 3:16
+25; Fugazi; 20021025 Red Box, Dublin, Ireland; Reclamation; 3:49
+26; Fugazi; 20021025 Red Box, Dublin, Ireland; Interlude 4; 0:30
+27; Fugazi; 20021025 Red Box, Dublin, Ireland; No Surprise; 3:46
+28; Fugazi; 20021025 Red Box, Dublin, Ireland; Long Division; 2:43
+29; Fugazi; 20021025 Red Box, Dublin, Ireland; Smallpox Champion; 3:34
+30; Fugazi; 20021025 Red Box, Dublin, Ireland; Sweet and Low; 4:17
+31; Fugazi; 20021025 Red Box, Dublin, Ireland; Outro; 0:35
+01; Fugazi; 20021102 Forum, London, England; Intro; 1:07
+02; Fugazi; 20021102 Forum, London, England; Cashout; 4:15
+03; Fugazi; 20021102 Forum, London, England; Dear Justice Letter; 3:03
+04; Fugazi; 20021102 Forum, London, England; Bed For The Scraping; 2:56
+05; Fugazi; 20021102 Forum, London, England; Full Disclosure; 3:10
+06; Fugazi; 20021102 Forum, London, England; And The Same; 4:02
+07; Fugazi; 20021102 Forum, London, England; Smallpox Champion; 3:48
+08; Fugazi; 20021102 Forum, London, England; Five Corporations; 2:52
+09; Fugazi; 20021102 Forum, London, England; Life and Limb; 3:29
+10; Fugazi; 20021102 Forum, London, England; Closed Captioned; 4:46
+11; Fugazi; 20021102 Forum, London, England; Number Five; 2:35
+12; Fugazi; 20021102 Forum, London, England; Burning; 3:07
+13; Fugazi; 20021102 Forum, London, England; Interlude 1; 0:33
+14; Fugazi; 20021102 Forum, London, England; Suggestion; 6:14
+15; Fugazi; 20021102 Forum, London, England; Bulldog Front; 2:42
+16; Fugazi; 20021102 Forum, London, England; Waiting Room; 2:53
+17; Fugazi; 20021102 Forum, London, England; Interlude 2; 0:42
+18; Fugazi; 20021102 Forum, London, England; The Kill; 4:46
+19; Fugazi; 20021102 Forum, London, England; Rend It; 3:53
+20; Fugazi; 20021102 Forum, London, England; Epic Problem; 4:32
+21; Fugazi; 20021102 Forum, London, England; Nightshop; 3:50
+22; Fugazi; 20021102 Forum, London, England; Merchandise; 3:08
+23; Fugazi; 20021102 Forum, London, England; Interlude 3; 1:04
+24; Fugazi; 20021102 Forum, London, England; No Surprise; 3:59
+25; Fugazi; 20021102 Forum, London, England; Argument; 4:32
+26; Fugazi; 20021102 Forum, London, England; Blueprint; 3:13
+27; Fugazi; 20021102 Forum, London, England; Great Cop; 2:03
+28; Fugazi; 20021102 Forum, London, England; Arpeggiator; 3:48
+29; Fugazi; 20021102 Forum, London, England; Encore 1; 0:29
+30; Fugazi; 20021102 Forum, London, England; Cassavetes; 2:18
+31; Fugazi; 20021102 Forum, London, England; Furniture; 3:20
+32; Fugazi; 20021102 Forum, London, England; FD; 3:02
+33; Fugazi; 20021102 Forum, London, England; Encore 2; 1:15
+34; Fugazi; 20021102 Forum, London, England; Oh; 4:07
+35; Fugazi; 20021102 Forum, London, England; Reclamation; 3:43
+36; Fugazi; 20021102 Forum, London, England; Sweet and Low; 4:54
+01; Fugazi; 20021103 Forum, London, England; Intro; 0:55
+02; Fugazi; 20021103 Forum, London, England; Ex-Spectator; 4:12
+03; Fugazi; 20021103 Forum, London, England; Do You Like Me; 2:58
+04; Fugazi; 20021103 Forum, London, England; Facet Squared; 2:29
+05; Fugazi; 20021103 Forum, London, England; Public Witness Program; 1:51
+06; Fugazi; 20021103 Forum, London, England; Long Division; 2:34
+07; Fugazi; 20021103 Forum, London, England; Oh; 4:07
+08; Fugazi; 20021103 Forum, London, England; Cashout; 4:57
+09; Fugazi; 20021103 Forum, London, England; Target; 3:54
+10; Fugazi; 20021103 Forum, London, England; Furniture; 3:41
+11; Fugazi; 20021103 Forum, London, England; Life and Limb; 3:29
+12; Fugazi; 20021103 Forum, London, England; Promises; 7:07
+13; Fugazi; 20021103 Forum, London, England; Burning; 2:45
+14; Fugazi; 20021103 Forum, London, England; Song #1; 3:21
+15; Fugazi; 20021103 Forum, London, England; Give Me The Cure; 2:38
+16; Fugazi; 20021103 Forum, London, England; Bad Mouth; 2:26
+17; Fugazi; 20021103 Forum, London, England; Interlude 1; 0:33
+18; Fugazi; 20021103 Forum, London, England; Recap Modotti; 2:44
+19; Fugazi; 20021103 Forum, London, England; The Kill; 4:46
+20; Fugazi; 20021103 Forum, London, England; Turnover; 3:52
+21; Fugazi; 20021103 Forum, London, England; Interlude 2; 0:17
+22; Fugazi; 20021103 Forum, London, England; Back To Base; 1:36
+23; Fugazi; 20021103 Forum, London, England; Number Five; 2:40
+24; Fugazi; 20021103 Forum, London, England; Interlude 3; 2:12
+25; Fugazi; 20021103 Forum, London, England; Nightshop; 3:36
+26; Fugazi; 20021103 Forum, London, England; Epic Problem; 3:55
+27; Fugazi; 20021103 Forum, London, England; Latin Roots; 3:01
+28; Fugazi; 20021103 Forum, London, England; Break; 1:53
+29; Fugazi; 20021103 Forum, London, England; Encore; 0:14
+30; Fugazi; 20021103 Forum, London, England; Place Position; 2:43
+31; Fugazi; 20021103 Forum, London, England; Argument; 5:25
+32; Fugazi; 20021103 Forum, London, England; Full Disclosure; 3:08
+33; Fugazi; 20021103 Forum, London, England; Outro; 1:01
