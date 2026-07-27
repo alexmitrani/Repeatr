@@ -2,6 +2,12 @@
 
 # Internal helpers -----------------------------------------------------------
 
+# gids that have a Fugazi Live Series detail page but aren't an actual show,
+# so should never be scraped into the show data. "fugazi-live-all-access"
+# (FLS0000) is a standing all-access download bundle, not a show - it has no
+# date and doesn't fit the show row schema. This is not expected to change.
+fls_non_show_gids <- c("fugazi-live-all-access")
+
 # Extracts the highest page number referenced in the site's pagination widget
 # on a listing page. Requesting a page beyond this does not 404 - the site
 # silently returns unrelated fallback content - so this must be read fresh
@@ -276,6 +282,9 @@ fls_shows_to_dataframe <- function(shows) {
 #'   or a sound quality rating changed on a show that was already available -
 #'   use `update_existing = TRUE` (optionally with `gids` to target specific
 #'   shows) to refresh those.
+#' @description `fugazi-live-all-access` (FLS0000) has a detail page like a
+#'   show but is actually a standing all-access download bundle, not a show -
+#'   it is always excluded from the scrape targets.
 #'
 #' @param existing_data Path to a CSV used to determine which gids are already
 #'   known, so only new shows get scraped. Accepts either the tidy format this
@@ -396,6 +405,8 @@ scrape_fls_shows <- function(existing_data = NULL,
     }
 
   }
+
+  target_gids <- setdiff(target_gids, fls_non_show_gids)
 
   if (length(target_gids) > max_shows) {
     target_gids <- target_gids[1:max_shows]

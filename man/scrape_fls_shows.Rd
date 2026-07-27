@@ -87,6 +87,10 @@ recording newly appearing); it won't catch e.g. a corrected door price
 or a sound quality rating changed on a show that was already available -
 use \code{update_existing = TRUE} (optionally with \code{gids} to target specific
 shows) to refresh those.
+
+\code{fugazi-live-all-access} (FLS0000) has a detail page like a
+show but is actually a standing all-access download bundle, not a show -
+it is always excluded from the scrape targets.
 }
 \examples{
 # Small-scale test: only the first listing page, and only 3 new shows
