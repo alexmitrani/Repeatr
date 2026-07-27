@@ -199,6 +199,17 @@ Repeatr_2 <- function(mydf = NULL) {
 
   Repeatr2 <- Repeatr2 %>% filter(available_gl==1)
 
+  # Drop any choice occasion (gid, song_number) whose actually-performed
+  # song isn't in the alternative set - e.g. a song too rare to be included
+  # in songidlookup (see Repeatr_1's mycount filter). These have no chosen
+  # alternative among the remaining rows, which is degenerate for mlogit: a
+  # choice occasion with zero chosen alternatives destabilizes the Hessian
+  # during model fitting (Repeatr_4).
+  Repeatr2 <- Repeatr2 %>%
+    group_by(gid, song_number) %>%
+    filter(any(chosen == 1)) %>%
+    ungroup()
+
   # Choice modelling with multinomial logit
 
   # define case variable and add it to the data

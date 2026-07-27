@@ -4,7 +4,12 @@
 \alias{Repeatr_1}
 \title{imports raw data in CSV format (1 row per show), cleans the data, and reshapes it long so that the rows are identified by combinations of gid and song_number.}
 \usage{
-Repeatr_1(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile = NULL)
+Repeatr_1(
+  mycsvfile = NULL,
+  mysongdatafile = NULL,
+  releasesdatafile = NULL,
+  min_song_count = 2
+)
 }
 \arguments{
 \item{mycsvfile}{Optional name of CSV file containing Fugazi Live Series data to be used (tidy, headered, as produced by \code{\link{scrape_fls_shows}}). If omitted, the default file provided with the package (fls_data.csv) will be used.}
@@ -12,6 +17,8 @@ Repeatr_1(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile = NULL)
 \item{mysongdatafile}{Optional name of CSV file containing song data to be used. If omitted, the default file provided with the package will be used.}
 
 \item{releasesdatafile}{Optional name of CSV file containing releases data to be used. If omitted, the default file provided with the package will be used.}
+
+\item{min_song_count}{Minimum number of performances a song needs to be included in \code{songidlookup} and to compete as an alternative in the choice model (\code{Repeatr_4}). Songs performed fewer times still appear in \code{Repeatr1} by name, they just won't have a \code{songid}. Default 2 - songs performed only once can't support a stable alternative-specific intercept in the choice model.}
 }
 \value{
 A list of 11 elements: \code{Repeatr0}, \code{Repeatr1}, \code{songidlookup}, \code{mycount}, \code{songvarslookup}, \code{releasesdatalookup}, \code{othervariables}, \code{cumulative_song_counts}, \code{fls_tags}, \code{fls_tags_show}, and \code{cumulative_duration_counts}. As a side effect, these and several other derived datasets (including \code{gid_sound_quality}, \code{played_with}, \code{shows_data}, \code{xray}) are also saved into \verb{data/}.

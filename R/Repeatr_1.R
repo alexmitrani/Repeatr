@@ -18,6 +18,7 @@
 #' @param mycsvfile Optional name of CSV file containing Fugazi Live Series data to be used (tidy, headered, as produced by \code{\link{scrape_fls_shows}}). If omitted, the default file provided with the package (fls_data.csv) will be used.
 #' @param mysongdatafile Optional name of CSV file containing song data to be used. If omitted, the default file provided with the package will be used.
 #' @param releasesdatafile Optional name of CSV file containing releases data to be used. If omitted, the default file provided with the package will be used.
+#' @param min_song_count Minimum number of performances a song needs to be included in `songidlookup` and to compete as an alternative in the choice model (`Repeatr_4`). Songs performed fewer times still appear in `Repeatr1` by name, they just won't have a `songid`. Default 2 - songs performed only once can't support a stable alternative-specific intercept in the choice model.
 #'
 #' @return A list of 11 elements: `Repeatr0`, `Repeatr1`, `songidlookup`, `mycount`, `songvarslookup`, `releasesdatalookup`, `othervariables`, `cumulative_song_counts`, `fls_tags`, `fls_tags_show`, and `cumulative_duration_counts`. As a side effect, these and several other derived datasets (including `gid_sound_quality`, `played_with`, `shows_data`, `xray`) are also saved into `data/`.
 #' @export
@@ -28,7 +29,7 @@
 #' releasesdatafile <- system.file("extdata", "releases.csv", package = "Repeatr")
 #' Repeatr_1_results <- Repeatr_1(mycsvfile = fls_data, mysongdatafile = releases_songs_durations_wikipedia, releasesdatafile = releasesdatafile)
 #'
-Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile = NULL) {
+Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile = NULL, min_song_count = 2) {
 
 # Devel setup -------------------------------------------------------------
 
@@ -655,6 +656,15 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     group_by(song) %>%
     summarise(count= n()) %>%
     ungroup()
+
+  # Songs performed too few times can't support a stable alternative-specific
+  # intercept in the choice model (Repeatr_4) - restrict the choice set via
+  # min_song_count (default 2, matching the "94 songs" framing used
+  # throughout the package's docs/vignettes). Rarer songs still appear in
+  # Repeatr1 by name; they just won't have a songid or compete as an
+  # alternative in the choice model.
+  mycount <- mycount %>%
+    filter(count>=min_song_count)
 
   mycount <- mycount %>%
     arrange((song))

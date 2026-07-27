@@ -60,6 +60,9 @@ othervariables <- nscmov()
 # fls_tags_show, the choice-model outputs, and more). Picks up whatever was
 # updated in steps 1-3 above. really = "not_really" is the default precisely
 # so this doesn't run by accident - always pass really = "really" explicitly.
+# min_song_count (default 2) excludes songs performed fewer times from the
+# choice model (Repeatr_4) - they still appear in Repeatr1 by name, just
+# without a songid.
 
 Repeatr_Updatr(really = "really")
 
