@@ -1,5 +1,5 @@
 
-# devtools::install_github("alexmitrani/Repeatr", build_opts = c("--no-resave-data", "--no-manual"))
+# pak::pkg_install("alexmitrani/Repeatr")
 
 library(Repeatr)
 
