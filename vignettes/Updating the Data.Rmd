@@ -23,17 +23,19 @@ library(Repeatr)
 
 ## Overview
 
-The package's data comes from three independent sources, updated on three different schedules:
+The package's data comes from five independent sources, updated on five different schedules. See `vignette("Data Provenance")` for how every dataset in `data/` maps onto these sources and the pipeline stages below.
 
 1.  **Show data** - dates, venues, attendance, sound quality, played-with bands, notes, and tracklists, scraped from the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) website. Fully automated via `scrape_fls_shows()`.
 2.  **Tags/duration data** - song-level timings, taken from my own personally-tagged MP3 collection. Manual, done outside this repository.
 3.  **Venue coordinates** - latitude/longitude for each venue. Manual, looked up on Google Maps as new venues show up.
+4.  **Song/release/duration data** - release, track number, instrumental/vocalist, and duration metadata per song, hand-maintained in `inst/extdata/releases_songs_durations_wikipedia.csv` against the Wikipedia Fugazi discography page. Manual, done outside this repository.
+5.  **Song tempo data** - beats-per-minute per song, hand-compiled in `inst/extdata/song_tempo_bpm_data.csv`. Manual, done outside this repository; also read directly by the Shiny app.
 
-All three feed into `Repeatr_1()`, which combines them (plus a fair amount of hand-written, gid-keyed correction code accumulated over time) into the package's `data/*.rda` objects. `Repeatr_Updatr(really = "really")` runs `Repeatr_1()` and the rest of the modelling pipeline (`Repeatr_2` through `Repeatr_5`) in sequence, and the [Fugazetteer](https://alexmitrani.shinyapps.io/Fugazetteer/) Shiny app is just a consumer of those same rebuilt `data/*.rda` objects - it never reads a CSV directly, so once the package data is rebuilt and reinstalled the app picks it up automatically.
+All five feed into `Repeatr_1()` (song tempo data is read directly by the Shiny app instead), which combines them (plus a fair amount of hand-written, gid-keyed correction code accumulated over time) into the package's `data/*.rda` objects. `Repeatr_Updatr(really = "really")` runs `Repeatr_1()` and the rest of the modelling pipeline (`Repeatr_2` through `Repeatr_5`) in sequence, and the [Fugazetteer](https://alexmitrani.shinyapps.io/Fugazetteer/) Shiny app is just a consumer of those same rebuilt `data/*.rda` objects - it never reads a CSV directly (song tempo data is the one exception, read straight from `inst/extdata/song_tempo_bpm_data.csv`), so once the package data is rebuilt and reinstalled the app picks it up automatically.
 
-None of steps 1-3 need to happen together. Run whichever one has new material, then rebuild (step 4) and redeploy (step 5).
+None of steps 1-4 need to happen together. Run whichever one has new material, then rebuild (step 5) and redeploy (step 6).
 
-`data-raw/build_data.R` is the canonical, runnable version of steps 1-4 below - this vignette explains the why, that script is what to actually run.
+`data-raw/build_data.R` is the canonical, runnable version of steps 1-5 below - this vignette explains the why, that script is what to actually run.
 
 ## 1. Updating show data
 
@@ -80,9 +82,15 @@ othervariables <- nscmov()
 
 This applies whatever coordinates are already confirmed in `fls_venue_geocoding.csv`, then writes `fls_venue_geocoding_update.csv` - a to-do list of every venue that's still unresolved (`checked == 0`). For each row, look the venue up on Google Maps, fill in `googlemaps_hyperlink`, `link_x`, `link_y` (and `city_disambiguation`/`guess`/`unknown` where relevant), then merge those filled-in rows back into `fls_venue_geocoding.csv` by hand. Run `nscmov()` again to confirm the new venues are picked up (`checked` should flip to 1).
 
-## 4. Rebuilding everything
+## 4. Updating song/release/duration and tempo data
 
-Once any of the above is updated, rebuild the package's data objects:
+`inst/extdata/releases_songs_durations_wikipedia.csv` carries release, track number, instrumental/vocalist, and duration metadata per song, hand-maintained against the [Wikipedia Fugazi discography page](https://web.archive.org/web/20201112000517/http://en.wikipedia.org/wiki/Fugazi_discography). `Repeatr_1()` reads it into `songvarslookup` and joins it onto the live, classified song set by song title (`song`) - **not** by a hardcoded id column, precisely so this file can't silently drift out of sync with `Repeatr_1()`'s classification rules the way it once did. If you add, rename, or remove a song here, `Repeatr_1()` will `warning()` at build time listing any song names that don't match between the live classification and this file - see the songid reconciliation check in `R/Repeatr_1.R` for what that looks like, and fix the mismatch in this CSV's `song` column before trusting the rebuilt data.
+
+`inst/extdata/song_tempo_bpm_data.csv` carries hand-compiled tempo (BPM) per song. Unlike the other four sources, it is **not** read by `Repeatr_1()` at all - the Shiny app (`inst/shiny/Fugazetteer/app.R`) reads it directly - so there is no automated check tying its song names to the live classification; when a song's title changes elsewhere, update it here by hand too.
+
+## 5. Rebuilding everything
+
+Once any of sources 1-4 is updated, rebuild the package's data objects:
 
 ```{r}
 Repeatr_Updatr(really = "really")
@@ -90,11 +98,11 @@ Repeatr_Updatr(really = "really")
 
 This runs `Repeatr_1() -> Repeatr_2() -> Repeatr_3() -> Repeatr_4() -> Repeatr_5()` and saves every downstream dataset (`othervariables`, `Repeatr0`, `Repeatr1`, `gid_sound_quality`, `played_with`, `shows_data`, `xray`, `fls_tags`, `fls_tags_show`, the choice-model outputs, and more) into `data/`. It's the `really = "not_really"` default that stops this running by accident - always pass `really = "really"` explicitly. It can take a while (the choice model fit in `Repeatr_4()` is the slow part), so it's worth checking `Repeatr_1()` on its own first if you only want to sanity-check the data-ingestion changes.
 
-## 5. Reinstalling and redeploying
+## 6. Reinstalling and redeploying
 
 1.  Commit and push the updated `inst/extdata/*` source files and the regenerated `data/*.rda` files.
 2.  Reinstall the package from the updated source (`devtools::install()`, or `devtools::install_github("alexmitrani/Repeatr")` once pushed).
 3.  Run the Shiny app locally to check nothing broke: `shiny::runApp("inst/shiny/Fugazetteer")`.
 4.  Redeploy to shinyapps.io (`rsconnect::deployApp("inst/shiny/Fugazetteer")`, or the RStudio "Publish" button from `app.R`).
 
-The app only ever reads the package's lazy-loaded data objects, never the raw CSVs, so as long as steps 1-4 above ran cleanly there's nothing else to change in `app.R` itself.
+The app reads the package's lazy-loaded data objects for everything except `song_tempo_bpm_data` (read directly from its source CSV, see step 4), so as long as steps 1-5 above ran cleanly there's nothing else to change in `app.R` itself.

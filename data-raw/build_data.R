@@ -61,8 +61,9 @@ othervariables <- nscmov()
 # updated in steps 1-3 above. really = "not_really" is the default precisely
 # so this doesn't run by accident - always pass really = "really" explicitly.
 # min_song_count (default 2) excludes songs performed fewer times from the
-# choice model (Repeatr_4) - they still appear in Repeatr1 by name, just
-# without a songid.
+# choice model (Repeatr_4) - they still get a songid/songidlookup entry
+# and appear in Repeatr1 by name, they just don't get an `alt` and can't
+# compete as a choice-model alternative.
 
 Repeatr_Updatr(really = "really")
 

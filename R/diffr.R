@@ -5,7 +5,7 @@
 #' @description A z-statistic of 1.96 or greater would indicate that the difference between the coefficients is significant at the 95% level of confidence.
 #' @description The index numbers are based on the model coefficient table that comes straight out of the model, with no sorting.
 #' @description The function will return a one-row dataframe with the following columns: var1, var2, coefindex1, coefindex2, mycoef1, mycoef2, mycoefdiff, myz, myp, lower95ci, upper95ci
-#' @description A coefficient index of 0 will be interpreted as referring to the omitted constant.
+#' @description A coefficient index of 0 will be interpreted as referring to the omitted constant, labeled "(Intercept):1" below. This is always correct, not a hardcoded assumption about which song is omitted: `Repeatr_2()` builds `alt` as a dense 1..n index (`row_number()`), so `as.factor(alt)` in `Repeatr_4()` always has 1 as its lowest level, and mlogit always drops the lowest level as the reference - whichever song that numerically is.
 #'
 #' @import crayon
 #'

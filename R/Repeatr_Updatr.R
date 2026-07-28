@@ -12,7 +12,7 @@
 #' @import knitr
 #'
 #' @param really set to "really" to actually run the update; any other value (the default, "not_really") does nothing.
-#' @param min_song_count passed through to \code{\link{Repeatr_1}}: minimum number of performances a song needs to compete as an alternative in the choice model. Default 2.
+#' @param min_song_count passed through to \code{\link{Repeatr_2}}: minimum number of performances a song needs to compete as an alternative in the choice model. Default 2. Does not affect `songid`/`songidlookup`, which cover every classified song regardless of this threshold.
 #'
 #' @return Invisibly, the list of results from the final `Repeatr_5()` call when `really = "really"`; `NULL` otherwise. The real effect is refreshing all of the package's `data/*.rda` objects in place, ready to be reinstalled.
 #' @export
@@ -29,7 +29,7 @@ Repeatr_Updatr <- function(really = "not_really", min_song_count = 2) {
     releases_songs_durations_wikipedia <- system.file("extdata", "releases_songs_durations_wikipedia.csv", package = "Repeatr")
     releasesdatafile <- system.file("extdata", "releases.csv", package = "Repeatr")
 
-    Repeatr_1_results <- Repeatr_1(mycsvfile = fls_data, mysongdatafile = releases_songs_durations_wikipedia, releasesdatafile = releasesdatafile, min_song_count = min_song_count)
+    Repeatr_1_results <- Repeatr_1(mycsvfile = fls_data, mysongdatafile = releases_songs_durations_wikipedia, releasesdatafile = releasesdatafile)
 
     # Thread each stage's own return value into the next explicitly, rather
     # than relying on bare object names (which previously resolved to
@@ -39,7 +39,10 @@ Repeatr_Updatr <- function(really = "not_really", min_song_count = 2) {
     # .rda mid-session doesn't retroactively update an already-established
     # lazy binding).
 
-    Repeatr2 <- Repeatr_2(mydf = Repeatr_1_results[[2]], mysongidlookup = Repeatr_1_results[[3]])
+    Repeatr_2_results <- Repeatr_2(mydf = Repeatr_1_results[[2]], mysongidlookup = Repeatr_1_results[[3]], min_song_count = min_song_count)
+
+    Repeatr2 <- Repeatr_2_results[[1]]
+    altlookup <- Repeatr_2_results[[2]]
 
     Repeatr3 <- Repeatr_3(mydf = Repeatr2)
 
@@ -47,6 +50,7 @@ Repeatr_Updatr <- function(really = "not_really", min_song_count = 2) {
 
     Repeatr_5_results <- Repeatr_5(mymodeldf = ml_Repeatr4,
                                     mysongidlookup = Repeatr_1_results[[3]],
+                                    myaltlookup = altlookup,
                                     mysongvarslookup = Repeatr_1_results[[5]],
                                     myreleasesdatalookup = Repeatr_1_results[[6]],
                                     myreleases_data_input = Repeatr_1_results[[12]])

@@ -4,7 +4,7 @@
 #' @description This was originally developed with a headerless file called "fugotcha.csv". It now reads "fls_data.csv" instead - a tidy, headered CSV produced by \code{\link{scrape_fls_shows}}, with one row per show and columns gid, fls_id, show_date, venue, door_price, attendance, recorded_by, mastered_by, original_source, sound_quality, played_with, fls_notes, track_1 ... track_n.
 #' @description "gid" is short for "gig id"
 #' @description Another data file that was used was called "releases_songs_durations_wikipedia.csv" and was obtained from the Wikipedia data on the Fugazi discography.
-#' @description This file contains the following variables: index	releaseid	release	track_number	songid	song	instrumental	vocals_picciotto	vocals_mackaye	vocals_lally	duration_seconds
+#' @description This file contains the following variables: rank_length	releaseid	track_number	song	instrumental	vocals_picciotto	vocals_mackaye	vocals_lally	duration_seconds. It is joined onto the live, classified song set by `song` title text, not by a hardcoded id column - see `songid` below.
 
 #'
 #' @import dplyr
@@ -18,9 +18,8 @@
 #' @param mycsvfile Optional name of CSV file containing Fugazi Live Series data to be used (tidy, headered, as produced by \code{\link{scrape_fls_shows}}). If omitted, the default file provided with the package (fls_data.csv) will be used.
 #' @param mysongdatafile Optional name of CSV file containing song data to be used. If omitted, the default file provided with the package will be used.
 #' @param releasesdatafile Optional name of CSV file containing releases data to be used. If omitted, the default file provided with the package will be used.
-#' @param min_song_count Minimum number of performances a song needs to be included in `songidlookup` and to compete as an alternative in the choice model (`Repeatr_4`). Songs performed fewer times still appear in `Repeatr1` by name, they just won't have a `songid`. Default 2 - songs performed only once can't support a stable alternative-specific intercept in the choice model.
 #'
-#' @return A list of 12 elements: `Repeatr0`, `Repeatr1`, `songidlookup`, `mycount`, `songvarslookup`, `releasesdatalookup`, `othervariables`, `cumulative_song_counts`, `fls_tags`, `fls_tags_show`, `cumulative_duration_counts`, and `releases_data_input`. As a side effect, these and several other derived datasets (including `gid_sound_quality`, `played_with`, `shows_data`, `xray`) are also saved into `data/`.
+#' @return A list of 12 elements: `Repeatr0`, `Repeatr1`, `songidlookup`, `mycount`, `songvarslookup`, `releasesdatalookup`, `othervariables`, `cumulative_song_counts`, `fls_tags`, `fls_tags_show`, `cumulative_duration_counts`, and `releases_data_input`. As a side effect, these and several other derived datasets (including `gid_sound_quality`, `played_with`, `shows_data`, `xray`) are also saved into `data/`. `songidlookup` assigns a stable `songid` to every classified song, including one-offs and rarities - the modelling-eligibility filter (`min_song_count`) that used to be applied here has moved to \code{\link{Repeatr_2}}, which is where it belongs since it's a choice-model concern, not a question of song identity.
 #' @export
 #'
 #' @examples
@@ -29,7 +28,7 @@
 #' releasesdatafile <- system.file("extdata", "releases.csv", package = "Repeatr")
 #' Repeatr_1_results <- Repeatr_1(mycsvfile = fls_data, mysongdatafile = releases_songs_durations_wikipedia, releasesdatafile = releasesdatafile)
 #'
-Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile = NULL, min_song_count = 2) {
+Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile = NULL) {
 
 # Devel setup -------------------------------------------------------------
 
@@ -673,15 +672,17 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     summarise(count= n()) %>%
     ungroup()
 
-  # Songs performed too few times can't support a stable alternative-specific
-  # intercept in the choice model (Repeatr_4) - restrict the choice set via
-  # min_song_count (default 2, matching the "94 songs" framing used
-  # throughout the package's docs/vignettes). Rarer songs still appear in
-  # Repeatr1 by name; they just won't have a songid or compete as an
-  # alternative in the choice model.
-  mycount <- mycount %>%
-    filter(count>=min_song_count)
-
+  # songid identifies every classified song, including one-off performances
+  # and rarities - it is the stable identity used by songvarslookup and
+  # everywhere else that needs to refer to "this song", not just the
+  # modelling-eligible subset. Songs performed too few times can't support
+  # a stable alternative-specific intercept in the choice model (Repeatr_4),
+  # but that eligibility decision is a choice-model concern, not a question
+  # of song identity - it's applied downstream, via `min_song_count`, in
+  # Repeatr_2(), which builds the modelling-only `alt` index from this
+  # songid. Keeping the two decisions separate means one-off songs still
+  # get an id and Wikipedia metadata (via songvarslookup) even though they
+  # can't compete as a choice-model alternative.
   mycount <- mycount %>%
     arrange((song))
 
@@ -691,7 +692,6 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   # Create lookup table to go from song id to song title --------------
 
   songidlookup <- mycount
-  songidlookup$count <- NULL
   setwd(mydatadir)
   save(songidlookup, file="songidlookup.rda")
   setwd(mydir)
@@ -738,11 +738,33 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     left_join(songidlookup)
 
 
-  # add additional variables for potential use in the choice modelling
-  songvarslookup <- songvarslookup %>% select(songid, releaseid, track_number, instrumental, vocals_picciotto, vocals_mackaye, vocals_lally, duration_seconds)
+  # add additional variables for potential use in the choice modelling.
+  # Joined by song title text, not by a hardcoded songid column - the
+  # hand-maintained CSV behind songvarslookup no longer carries its own
+  # songid, precisely so it can't silently drift out of sync with the
+  # songid computed above (see the reconciliation check just below).
+  songvarslookup <- songvarslookup %>% select(song, releaseid, track_number, instrumental, vocals_picciotto, vocals_mackaye, vocals_lally, duration_seconds)
 
   Repeatr1 <- Repeatr1 %>%
     left_join(songvarslookup)
+
+  # Reconciliation check: warn (don't stop - a new song can legitimately
+  # lag the hand-maintained CSV for a while) if the live classified song
+  # set and the Wikipedia CSV's song names have drifted apart, so a future
+  # change to the classification rules above can't silently misattribute
+  # release/duration/vocalist metadata the way it once did.
+  songs_missing_from_songvarslookup <- anti_join(songidlookup, songvarslookup, by = "song")$song
+  songs_missing_from_songidlookup <- anti_join(songvarslookup, songidlookup, by = "song")$song
+
+  if (length(songs_missing_from_songvarslookup) > 0) {
+    warning("Repeatr_1(): song(s) classified in the live data have no matching row in songvarslookup (releases_songs_durations_wikipedia.csv): ",
+            paste(songs_missing_from_songvarslookup, collapse = ", "))
+  }
+
+  if (length(songs_missing_from_songidlookup) > 0) {
+    warning("Repeatr_1(): song(s) in songvarslookup (releases_songs_durations_wikipedia.csv) have no matching row in the live classified data: ",
+            paste(songs_missing_from_songidlookup, collapse = ", "))
+  }
 
   Repeatr1 <- Repeatr1 %>% left_join(releasesdatalookup)
 

@@ -1,5 +1,5 @@
 #' @name Repeatr_2
-#' @title takes a dataframe with one row per show-song and reshapes it long again so that the rows are identified by combinations of gid, song_number, and songid.
+#' @title takes a dataframe with one row per show-song and reshapes it long again so that the rows are identified by combinations of gid, song_number, and alt.
 #' @description The first line of the data this was originally developed with:
 #' @description washington-dc-usa-90387	FLS0001	03/09/1987	Wilson Center	$5	300	Joey Picuri	Fugazi	Cassette	Joe #1	Intro	Song #1	Furniture	Merchandise	Turn Off Your Guns	In Defense Of Humans	Waiting Room	The Word
 #' @description "gid" is short for "gig id"
@@ -13,15 +13,18 @@
 #'
 #' @param mydf optional dataframe to be used (the `Repeatr1` element of `Repeatr_1()`'s return list). If omitted the default (currently lazy-loaded) `Repeatr1` dataframe will be used.
 #' @param mysongidlookup optional `songidlookup` dataframe to be used (the `songidlookup` element of `Repeatr_1()`'s return list). If omitted the default (currently lazy-loaded) `songidlookup` dataframe will be used. Pass this explicitly - rather than relying on the default - when calling `Repeatr_2()` right after a fresh `Repeatr_1()` in the same session, since the lazy-loaded default reflects the last build on disk, not the one just computed.
+#' @param min_song_count Minimum number of performances a song needs to compete as an alternative in the choice model (`Repeatr_4`). Songs performed fewer times still appear in `songid`/`song` on the output, they just won't get an `alt` and can't be chosen as an alternative. Default 2 - songs performed only once can't support a stable alternative-specific intercept in the choice model. This is a choice-model concern only: it does not affect `songid`, which \code{\link{Repeatr_1}} assigns to every classified song regardless of this threshold.
 #'
-#' @return A data frame (`Repeatr2`) with one row per gid/song_number/songid combination, prepared for choice modelling: includes `case` (choice-situation id), `alt` (song id, renamed from `songid`), `choice` (whether that song was the one played, renamed from `chosen`), availability/played dummy variables, and years-since-launch bucket variables. Also saved to `data/Repeatr2.rda`, alongside `fugazi_song_counts` and `fugazi_song_performance_intensity`.
+#' @return A list of 2 elements: `Repeatr2`, a data frame with one row per gid/song_number/alt combination, prepared for choice modelling (`case` is the choice-situation id, `alt` a dense 1..n index over the `min_song_count`-eligible songs only - this is what `mlogit`/`Repeatr_4` actually sees - `songid` the stable, full identity from `songidlookup` kept alongside `alt` rather than overwritten by it, `choice` whether that song was the one played, availability/played dummy variables, and years-since-launch bucket variables); and `altlookup` (`alt`, `songid`, `song`, `count` - one row per `min_song_count`-eligible song), needed by \code{\link{Repeatr_5}}/\code{\link{rankr}} to translate `mlogit`'s `alt`-indexed coefficients back to song identity. Also saved to `data/Repeatr2.rda` and `data/altlookup.rda`, alongside `fugazi_song_counts` and `fugazi_song_performance_intensity` (which cover every classified song, not just the `min_song_count`-eligible ones).
 #' @export
 #'
 #' @examples
-#' Repeatr2 <- Repeatr_2(mydf = Repeatr1)
+#' Repeatr_2_results <- Repeatr_2(mydf = Repeatr1)
+#' Repeatr2 <- Repeatr_2_results[[1]]
+#' altlookup <- Repeatr_2_results[[2]]
 #'
 
-Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL) {
+Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, min_song_count = 2) {
 
   mydir <- getwd()
   on.exit(setwd(mydir), add = TRUE)
@@ -41,7 +44,29 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL) {
 
   }
 
-  nsongs <- nrow(songidlookup)
+  # songidlookup (from Repeatr_1) covers every classified song, including
+  # one-offs and rarities. songidlookup_model is the min_song_count-eligible
+  # subset that can actually compete as a choice-model alternative; `alt` is
+  # a dense 1..n index over *this* subset only, kept separate from the
+  # stable, global `songid` so that changing min_song_count (or the set of
+  # rare songs) can never renumber song identity - only which songs get an
+  # `alt` at all.
+  songidlookup_model <- songidlookup %>%
+    filter(count >= min_song_count) %>%
+    arrange(songid) %>%
+    mutate(alt = row_number())
+
+  nsongs <- nrow(songidlookup_model)
+
+  # altlookup is the alt <-> songid/song translation table - Repeatr_5() and
+  # rankr() need it to map mlogit's alt-indexed coefficients back to a
+  # stable song identity, since Repeatr_3()/Repeatr_4() only ever see `alt`.
+  altlookup <- songidlookup_model %>%
+    select(alt, songid, song, count)
+
+  setwd(mydatadir)
+  save(altlookup, file = "altlookup.rda")
+  setwd(mydir)
 
   # Reshape to long again so that there will now be one row per combination of song performed and song potentially available ------------------------------
 
@@ -64,6 +89,10 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL) {
   Repeatr2 <- Repeatr2 %>%
     filter(tracktype==1)
 
+  # fugazi_song_counts covers every classified song (not just the
+  # min_song_count-eligible subset used for alt below), so one-off
+  # performances and rarities are still visible here even though they
+  # can't compete as a choice-model alternative.
   fugazi_song_counts <- Repeatr2 %>%
     group_by(songid, song) %>%
     summarize(count = n()) %>%
@@ -73,26 +102,26 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL) {
 
   Repeatr2 <- Repeatr2 %>% arrange(date, song_number)
 
-  for(mysongid in 1:nsongs) {
+  for(myalt in 1:nsongs) {
 
-    myvarname <- paste0("song.", mysongid)
-    mysongname <- as.character(songidlookup[mysongid,2])
+    myvarname <- paste0("song.", myalt)
+    mysongname <- songidlookup_model %>% filter(alt == myalt) %>% pull(song)
     Repeatr2 <- Repeatr2 %>% mutate(!!myvarname := ifelse(song == mysongname,1,0))
 
   }
 
-  for(mysongid in 1:nsongs) {
+  for(myalt in 1:nsongs) {
 
-    mysongvar <- rlang::sym(paste0("song.", mysongid))
-    myavailablevarname <- paste0("available.", mysongid)
+    mysongvar <- rlang::sym(paste0("song.", myalt))
+    myavailablevarname <- paste0("available.", myalt)
     Repeatr2 <- Repeatr2 %>% mutate(!!myavailablevarname := ifelse(cumsum(!!mysongvar)>=1,1,0))
 
   }
 
-  for(mysongid in 1:nsongs) {
+  for(myalt in 1:nsongs) {
 
-    mysongvar <- rlang::sym(paste0("song.", mysongid))
-    myplayedvarname <- paste0("played.", mysongid)
+    mysongvar <- rlang::sym(paste0("song.", myalt))
+    myplayedvarname <- paste0("played.", myalt)
     Repeatr2 <- Repeatr2 %>%
       group_by(gid) %>%
       mutate(!!myplayedvarname := ifelse(cumsum(!!mysongvar)>=1,1,0)) %>%
@@ -116,10 +145,16 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL) {
                    , idvar = c("gid", "song_number")
   )
 
+  # Drop the stale, per-row global songid that came along for the ride from
+  # Repeatr1 (it's the song actually performed at this gid/song_number,
+  # repeated identically across every alternative row by the reshape above -
+  # not what we want here). `time` is the dense 1..nsongs index the dummy
+  # columns above were built from - that's `alt`, the choice-model
+  # alternative id, not song identity.
   Repeatr2$songid <- NULL
-  Repeatr2 <- Repeatr2 %>% rename(songid = time)
+  Repeatr2 <- Repeatr2 %>% rename(alt = time)
   Repeatr2 <- Repeatr2 %>% rename(chosen = song)
-  Repeatr2 <- Repeatr2 %>% arrange(date, year, month, day, song_number, songid)
+  Repeatr2 <- Repeatr2 %>% arrange(date, year, month, day, song_number, alt)
 
   # available_rl is repertoire-level availability: is the song available in the repertoire?  It is considered available at the repertoire level from the time of its first performance in this data onwards.
   Repeatr2 <- Repeatr2 %>% rename(available_rl = available)
@@ -128,24 +163,25 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL) {
 
   # summarise the data at gig level
   mycount2_gl <- Repeatr2 %>%
-    group_by(gid, date, songid) %>%
+    group_by(gid, date, alt) %>%
     summarise(chosen= sum(chosen), available_rl=max(available_rl)) %>%
-    arrange(date, gid, songid) %>%
+    arrange(date, gid, alt) %>%
     ungroup()
 
   available_rl_lookup <- mycount2_gl %>%
-    select(gid, songid, available_rl)
+    select(gid, alt, available_rl)
 
   # get the launch date of each song
   mylaunchdatelookup <- mycount2_gl %>%
     filter(available_rl==1) %>%
-    group_by(songid) %>%
+    group_by(alt) %>%
     summarise(launchdate = min(date)) %>%
     ungroup()
 
 
   # add launch dates to count file
   fugazi_song_counts <- fugazi_song_counts %>%
+    left_join(songidlookup_model %>% select(songid, alt)) %>%
     left_join(mylaunchdatelookup) %>%
     select(songid, song, launchdate, count)
 
@@ -164,7 +200,7 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL) {
   # summarise the data at song level
 
   mycount2_sl <- mycount2_gl %>%
-    group_by(songid) %>%
+    group_by(alt) %>%
     summarise(chosen= sum(chosen), available_rl=sum(available_rl)) %>%
     ungroup()
 
@@ -175,10 +211,10 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL) {
     arrange(desc(intensity))
 
   mycount2_sl <- mycount2_sl %>%
-    left_join(songidlookup)
+    left_join(songidlookup_model %>% select(alt, songid, song))
 
   mycount2_sl <- mycount2_sl %>%
-    left_join(fugazi_song_counts)
+    left_join(fugazi_song_counts %>% select(-song))
 
   fugazi_song_performance_intensity <- mycount2_sl %>%
     select(songid, song, launchdate, chosen, available_rl, intensity)
@@ -198,9 +234,9 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL) {
   # merge on repertoire-level availability
   Repeatr2$available_rl <- NULL
   Repeatr2 <- Repeatr2 %>% left_join(available_rl_lookup)
-  Repeatr2 <- Repeatr2 %>% left_join(songidlookup)
-  Repeatr2 <- Repeatr2 %>% select(gid, date, song_number, songid, song, chosen, played, available_rl, first_song, last_song, releaseid,	release, track_number, instrumental,	vocals_picciotto,	vocals_mackaye,	vocals_lally,	duration_seconds)
-  Repeatr2 <- Repeatr2 %>% arrange(date, gid, song_number, songid)
+  Repeatr2 <- Repeatr2 %>% left_join(songidlookup_model %>% select(alt, songid, song))
+  Repeatr2 <- Repeatr2 %>% select(gid, date, song_number, alt, songid, song, chosen, played, available_rl, first_song, last_song, releaseid,	release, track_number, instrumental,	vocals_picciotto,	vocals_mackaye,	vocals_lally,	duration_seconds)
+  Repeatr2 <- Repeatr2 %>% arrange(date, gid, song_number, alt)
 
   # Merge on the launch date of each song and calculate how many years old each song is at the time of each gig
   Repeatr2 <- Repeatr2 %>% left_join(mylaunchdatelookup)
@@ -221,11 +257,11 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL) {
   Repeatr2 <- Repeatr2 %>% filter(available_gl==1)
 
   # Drop any choice occasion (gid, song_number) whose actually-performed
-  # song isn't in the alternative set - e.g. a song too rare to be included
-  # in songidlookup (see Repeatr_1's mycount filter). These have no chosen
-  # alternative among the remaining rows, which is degenerate for mlogit: a
-  # choice occasion with zero chosen alternatives destabilizes the Hessian
-  # during model fitting (Repeatr_4).
+  # song isn't in the alternative set - e.g. a song too rare to meet
+  # min_song_count and be included in songidlookup_model above. These have
+  # no chosen alternative among the remaining rows, which is degenerate for
+  # mlogit: a choice occasion with zero chosen alternatives destabilizes the
+  # Hessian during model fitting (Repeatr_4).
   Repeatr2 <- Repeatr2 %>%
     group_by(gid, song_number) %>%
     filter(any(chosen == 1)) %>%
@@ -249,7 +285,6 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL) {
     left_join(mycaseidlookup) %>%
     relocate(case)
 
-  Repeatr2 <- Repeatr2 %>% rename(alt = songid)
   Repeatr2 <- Repeatr2 %>% rename(choice = chosen)
 
   Repeatr2 <- Repeatr2 %>%
@@ -265,9 +300,8 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL) {
 
   setwd(mydir)
 
-  return(Repeatr2)
+  return(list(Repeatr2, altlookup))
 
 }
 
 #
-

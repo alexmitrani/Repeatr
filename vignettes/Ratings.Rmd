@@ -54,7 +54,7 @@ The results of this analysis look like this:
 knitr::kable(fugazi_song_performance_intensity, "pipe")
 ```   
 
-The "songid" variable indicates the raw frequency ranking of each song, allowing easy comparison between the intensity and frequency measures.
+The "songid" variable is each song's stable identity (alphabetical rank among all classified songs, from `songidlookup`) - it's a consistent key for joining `fugazi_song_counts` and `fugazi_song_performance_intensity` together, not a ranking by frequency or intensity itself.
 
 ## Song preferences
 

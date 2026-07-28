@@ -13,7 +13,7 @@
 #'
 #' @param mydf optional dataframe to be used.  If omitted, the default dataframe will be used.  Example of use: ml_Repeatr4 <- Repeatr_4()
 #'
-#' @return A data frame (`results_ml_Repeatr4`) of the mlogit coefficient table: one row per model covariate, with columns for the estimate, standard error, z-value and p-value. Also saved to `data/results_ml_Repeatr4.rda`.
+#' @return A data frame (`results_ml_Repeatr4`) of the mlogit coefficient table: one row per model covariate, with columns for the estimate, standard error, z-value and p-value. Also saved to `data/results_ml_Repeatr4.rda`, alongside the corresponding `vcovmat_ml_Repeatr4.rda` (needed by \code{\link{diffr}}/\code{\link{rankr}}) - both are always written together by this function so they can never go out of sync with each other.
 #' @export
 #'
 #' @examples
@@ -60,9 +60,15 @@ Repeatr_4 <- function(mydf = NULL) {
 
   results_ml_Repeatr4 <- as.data.frame(summary.ml.Repeatr4[["CoefTable"]])
 
+  # vcov(ml.Repeatr4) has the same row/column order as results_ml_Repeatr4
+  # above (both come straight from the same fit) - save it alongside, not
+  # separately, so the two can never end up describing different fits.
+  vcovmat_ml_Repeatr4 <- vcov(ml.Repeatr4)
+
   setwd(mydatadir)
 
   save(results_ml_Repeatr4, file = "results_ml_Repeatr4.rda")
+  save(vcovmat_ml_Repeatr4, file = "vcovmat_ml_Repeatr4.rda")
 
   setwd(mydir)
 

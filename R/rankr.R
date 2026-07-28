@@ -8,7 +8,7 @@
 #' @param coeftable coefficients table from mlogit, with one row per coefficient
 #' @param vcovmat variance covariance matrix from mlogit, with one row and one column per coefficient
 #' @param mysongidlist a dataframe containing the list of song ids to be tested.  It can contain other variables but only songid will be used.
-#' @param mysongidlookup optional `songidlookup` dataframe (as produced by `Repeatr_1()`) used to attach song names to the results. If omitted the currently lazy-loaded default will be used.
+#' @param myaltlookup optional `altlookup` dataframe (the second element of `Repeatr_2()`'s return list) used to translate `mysongidlist`'s `songid` values into `coeftable`'s `alt`-indexed rows, and to attach song names to the results - `songid` and `alt` are different scales (`songid` spans every classified song, `alt` only the `min_song_count`-eligible ones actually fit by the model), so this translation is required, not optional bookkeeping. If omitted the currently lazy-loaded default will be used. Songs in `mysongidlist` that aren't in `altlookup` (i.e. below `min_song_count`) are dropped with a warning, since they have no coefficient to compare.
 #'
 #' @return A data frame with one row per adjacent pair of songs tested, giving `song1`, `song2`, their coefficients (`mycoef1`, `mycoef2`), the coefficient difference and its z-statistic, p-value and 95% confidence interval (as produced by `diffr()`).
 #' @export
@@ -18,22 +18,37 @@
 #' mycomparisons <- rankr(coeftable = results_ml_Repeatr4, vcovmat = vcovmat_ml_Repeatr4, mysongidlist = songstobecompared)
 #' mycomparisons
 #'
-rankr <- function(coeftable = NULL, vcovmat = NULL, mysongidlist = NULL, mysongidlookup = NULL) {
+rankr <- function(coeftable = NULL, vcovmat = NULL, mysongidlist = NULL, myaltlookup = NULL) {
 
-  # Use a freshly-supplied songidlookup if given, otherwise fall back to
+  # Use a freshly-supplied altlookup if given, otherwise fall back to
   # whatever is currently lazy-loaded from data/ (the package's last build).
-  if (is.null(mysongidlookup)==FALSE) { songidlookup <- mysongidlookup } else { songidlookup <- songidlookup }
+  if (is.null(myaltlookup)==FALSE) { altlookup <- myaltlookup } else { altlookup <- altlookup }
 
   mysongidlist <- mysongidlist %>%
     select(songid)
+
+  nsongs_requested <- nrow(mysongidlist)
+
+  # coeftable's rows are indexed by `alt` (mlogit's alternative-specific
+  # index over the min_song_count-eligible songs only), not by the fuller
+  # `songid` - translate before using these as coefficient-table indices.
+  # inner_join, not left_join: a songid with no alt can't be compared.
+  mysongidlist <- mysongidlist %>%
+    inner_join(altlookup %>% select(songid, alt), by = "songid")
+
+  if (nrow(mysongidlist) < nsongs_requested) {
+    warning("rankr(): dropped ", nsongs_requested - nrow(mysongidlist),
+            " songid(s) from mysongidlist with no matching alt in altlookup ",
+            "(performed fewer times than min_song_count, so they have no coefficient to compare).")
+  }
 
   nsongs <- nrow(mysongidlist)
   ntests <- nsongs - 1
 
   for(test in 1:ntests) {
 
-    coefindex1 <- as.numeric(mysongidlist[test,1]-1)
-    coefindex2 <- as.numeric(mysongidlist[test+1,1]-1)
+    coefindex1 <- as.numeric(mysongidlist[test,"alt"]-1)
+    coefindex2 <- as.numeric(mysongidlist[test+1,"alt"]-1)
 
     mytest <- diffr(coeftable = coeftable, vcovmat = vcovmat, coefindex1 = coefindex1, coefindex2 = coefindex2)
 
@@ -49,23 +64,27 @@ rankr <- function(coeftable = NULL, vcovmat = NULL, mysongidlist = NULL, mysongi
 
   }
 
+  # The number embedded in var1/var2 (e.g. "(Intercept):5") is `alt`, not
+  # `songid` - translate back via altlookup before attaching song names.
   myresultsdf <- myresultsdf %>%
-    mutate(songid1 = parse_number(var1)) %>%
-    mutate(songid2 = parse_number(var2))
+    mutate(alt1 = parse_number(var1)) %>%
+    mutate(alt2 = parse_number(var2))
 
-  songidlookup1 <- songidlookup %>%
-    rename(songid1 = songid) %>%
+  altlookup1 <- altlookup %>%
+    select(alt, song) %>%
+    rename(alt1 = alt) %>%
     rename(song1 = song)
 
-  songidlookup2 <- songidlookup %>%
-    rename(songid2 = songid) %>%
+  altlookup2 <- altlookup %>%
+    select(alt, song) %>%
+    rename(alt2 = alt) %>%
     rename(song2 = song)
 
   myresultsdf <- myresultsdf %>%
-    left_join(songidlookup1)
+    left_join(altlookup1)
 
   myresultsdf <- myresultsdf %>%
-    left_join(songidlookup2)
+    left_join(altlookup2)
 
   myresultsdf <- myresultsdf %>%
     relocate(song1, song2)
@@ -76,4 +95,3 @@ rankr <- function(coeftable = NULL, vcovmat = NULL, mysongidlist = NULL, mysongi
   return(myresultsdf)
 
 }
-

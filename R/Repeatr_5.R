@@ -13,6 +13,7 @@
 #'
 #' @param mymodeldf optional choice model coefficients dataframe to be used to generate the results. If omitted, the default choice model coefficients dataframe will be used, which is results_ml_Repeatr4.
 #' @param mysongidlookup optional `songidlookup` dataframe (the `songidlookup` element of `Repeatr_1()`'s return list). If omitted the currently lazy-loaded default will be used.
+#' @param myaltlookup optional `altlookup` dataframe (the second element of `Repeatr_2()`'s return list) used to translate `mymodeldf`'s `alt`-indexed intercept coefficients back to `songid`/`song`. If omitted the currently lazy-loaded default will be used.
 #' @param mysongvarslookup optional `songvarslookup` dataframe (the `songvarslookup` element of `Repeatr_1()`'s return list). If omitted the currently lazy-loaded default will be used.
 #' @param myreleasesdatalookup optional `releasesdatalookup` dataframe (the `releasesdatalookup` element of `Repeatr_1()`'s return list). If omitted the currently lazy-loaded default will be used.
 #' @param myreleases_data_input optional `releases_data_input` dataframe (the `releases_data_input` element of `Repeatr_1()`'s return list). If omitted the currently lazy-loaded default will be used.
@@ -23,7 +24,7 @@
 #' @examples
 #' Repeatr_5_results <- Repeatr_5(mymodeldf = results_ml_Repeatr4)
 #'
-Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, mysongvarslookup = NULL,
+Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NULL, mysongvarslookup = NULL,
                        myreleasesdatalookup = NULL, myreleases_data_input = NULL) {
 
   mydir <- getwd()
@@ -31,11 +32,13 @@ Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, mysongvarslookup 
   myinputdir <- paste0(mydir, "/inst/extdata/")
   mydatadir <- paste0(mydir, "/data")
 
-  # Use the lookup tables freshly returned by this session's Repeatr_1() call
-  # if supplied, otherwise fall back to whatever is currently lazy-loaded
-  # from data/ (the package's last build) - see Repeatr_Updatr.R for why
-  # threading these through matters when chaining a fresh pipeline run.
+  # Use the lookup tables freshly returned by this session's Repeatr_1()/
+  # Repeatr_2() calls if supplied, otherwise fall back to whatever is
+  # currently lazy-loaded from data/ (the package's last build) - see
+  # Repeatr_Updatr.R for why threading these through matters when chaining
+  # a fresh pipeline run.
   if (is.null(mysongidlookup)==FALSE) { songidlookup <- mysongidlookup } else { songidlookup <- songidlookup }
+  if (is.null(myaltlookup)==FALSE) { altlookup <- myaltlookup } else { altlookup <- altlookup }
   if (is.null(mysongvarslookup)==FALSE) { songvarslookup <- mysongvarslookup } else { songvarslookup <- songvarslookup }
   if (is.null(myreleasesdatalookup)==FALSE) { releasesdatalookup <- myreleasesdatalookup } else { releasesdatalookup <- releasesdatalookup }
   if (is.null(myreleases_data_input)==FALSE) { releases_data_input <- myreleases_data_input } else { releases_data_input <- releases_data_input }
@@ -54,16 +57,19 @@ Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, mysongvarslookup 
 
   fugazi_song_choice_model <- cbind.data.frame(variable, results.mymodel)
 
+  # The number embedded in a per-song intercept name (e.g. "(Intercept):5")
+  # is mlogit's `alt` index, not `songid` - translate it back to a song name
+  # via altlookup, not songidlookup directly.
   fugazi_song_choice_model <- fugazi_song_choice_model %>%
-    mutate(songid = ifelse(grepl("(Intercept)",variable)==TRUE,readr::parse_number(variable),NA))
+    mutate(alt = ifelse(grepl("(Intercept)",variable)==TRUE,readr::parse_number(variable),NA))
 
   fugazi_song_choice_model <- fugazi_song_choice_model %>%
-    left_join(songidlookup)
+    left_join(altlookup %>% select(alt, song))
 
   fugazi_song_choice_model <- fugazi_song_choice_model %>%
     mutate(variable = ifelse(grepl("(Intercept)",variable)==TRUE,song,variable))
 
-  fugazi_song_choice_model$songid <- NULL
+  fugazi_song_choice_model$alt <- NULL
   fugazi_song_choice_model$song <- NULL
 
   knitr::kable(fugazi_song_choice_model, "pipe")
@@ -88,18 +94,22 @@ Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, mysongvarslookup 
     filter(grepl("(Intercept)",variable)==TRUE)
 
   results.mymodel <- results.mymodel %>%
-    mutate(songid = ifelse(grepl("(Intercept)",variable)==TRUE,readr::parse_number(variable),NA))
+    mutate(alt = ifelse(grepl("(Intercept)",variable)==TRUE,readr::parse_number(variable),NA))
 
   results.mymodel <- results.mymodel %>%
-    left_join(songidlookup)
+    left_join(altlookup %>% select(alt, songid, song))
 
   results.mymodel <- results.mymodel %>%
     select(songid, song, Estimate, "z-value")
 
-  # to add back in "23 beats off" which was the omitted constant in the choice model and has a parameter value of zero by definition.
-
-  results.mymodel.os <- songidlookup %>%
-    filter(songid==1) %>%
+  # Add back in the omitted reference song, whose intercept mlogit fixes to
+  # zero by definition rather than estimating. as.factor(alt) in Repeatr_4()
+  # sorts by the numeric alt value before assigning factor levels, and
+  # mlogit drops the first level as the reference - so the omitted song is
+  # always the one with the smallest alt, not a fixed song name/songid.
+  results.mymodel.os <- altlookup %>%
+    filter(alt==min(alt)) %>%
+    select(songid, song) %>%
     mutate(Estimate = 0) %>%
     mutate("z-value" = NA)
 
