@@ -20,6 +20,10 @@ song_tempo_bpm_data
 \description{
 Song tempo BPM data
 }
+\section{Provenance}{
+ Raw-hand-curated. Manually compiled per-song tempo, \code{inst/extdata/song_tempo_bpm_data.csv}; not read by any current \verb{R/} script (the \code{data/song_tempo_bpm_data.rda} copy was created by hand). Actively consumed directly by \code{inst/shiny/Fugazetteer/app.R} (\code{left_join(song_tempo_bpm_data)}) - do not tag \code{Frozen-legacy} on the "not written by the pipeline" test alone, since that's expected for raw hand-curated input.
+}
+
 \examples{
 song_tempo_bpm_data
 }

@@ -24,6 +24,10 @@ fugazi_song_performance_intensity
 \description{
 Fugazi song performance intensity data
 }
+\section{Provenance}{
+ Derived-modeled. Produced by \code{\link{Repeatr_2}} from the \code{min_song_count}-eligible subset only (it needs \code{available_rl}, which is only tracked for songs that got an \code{alt}) - unlike \code{fugazi_song_counts}, one-off/rare songs are not included here.
+}
+
 \examples{
 fugazi_song_performance_intensity
 }

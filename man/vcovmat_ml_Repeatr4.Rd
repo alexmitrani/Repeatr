@@ -13,6 +13,10 @@ vcovmat_ml_Repeatr4
 \description{
 The variance-covariance matrix of the coefficients estimated in the basic choice model (see \code{\link{results_ml_Repeatr4}}), typically produced via \code{vcov(ml.Repeatr4)}. Used by \code{\link{diffr}}/\code{\link{rankr}} to test whether pairs of coefficients differ significantly.
 }
+\section{Provenance}{
+ Derived-modeled. Produced by \code{\link{Repeatr_4}} via \code{vcov()} on the fitted model, saved in the same call as \code{results_ml_Repeatr4} so the two can never describe different fits.
+}
+
 \examples{
 vcovmat_ml_Repeatr4
 }

@@ -23,6 +23,10 @@ releases_rated
 \description{
 Produced by \code{\link{Repeatr_5}}: average of the estimated \code{\link{summary}} rating across the songs on each release (excluding First Demo and Unreleased, which aren't comparable to the others).
 }
+\section{Provenance}{
+ Derived-modeled. Produced by \code{\link{Repeatr_5}}.
+}
+
 \examples{
 releases_rated
 }

@@ -27,6 +27,10 @@ fls_tags_show
 \description{
 Tags data, one record per show
 }
+\section{Provenance}{
+ Derived-cleaned. Produced by \code{\link{Repeatr_1}} from \code{fls_tags}.
+}
+
 \examples{
 fls_tags_show
 }

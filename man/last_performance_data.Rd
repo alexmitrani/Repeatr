@@ -20,6 +20,10 @@ last_performance_data
 \description{
 Last Performance Data
 }
+\section{Provenance}{
+ Derived-cleaned. Produced by \code{\link{Repeatr_1}}.
+}
+
 \examples{
 last_performance_data
 }

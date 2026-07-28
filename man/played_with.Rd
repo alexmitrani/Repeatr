@@ -23,6 +23,10 @@ played_with
 \description{
 Fugazi Live Series data on bands that fugazi played with in long format
 }
+\section{Provenance}{
+ Derived-cleaned. Produced by \code{\link{Repeatr_1}}.
+}
+
 \examples{
 played_with
 }

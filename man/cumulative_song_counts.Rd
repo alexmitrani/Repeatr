@@ -22,6 +22,10 @@ cumulative_song_counts
 \description{
 Cumulative Song Counts
 }
+\section{Provenance}{
+ Derived-cleaned. Produced by \code{\link{Repeatr_1}}.
+}
+
 \examples{
 cumulative_song_counts
 }

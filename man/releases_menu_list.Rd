@@ -26,6 +26,10 @@ releases_menu_list
 \description{
 Releases menu list
 }
+\section{Provenance}{
+ Derived-cleaned. Produced by \code{\link{Repeatr_1}}.
+}
+
 \examples{
 releases_menu_list
 }

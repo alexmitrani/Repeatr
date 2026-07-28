@@ -22,6 +22,10 @@ cumulative_duration_counts
 \description{
 Cumulative Duration Counts
 }
+\section{Provenance}{
+ Derived-cleaned. Produced by \code{\link{Repeatr_1}}.
+}
+
 \examples{
 cumulative_duration_counts
 }

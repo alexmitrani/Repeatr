@@ -31,6 +31,10 @@ Repeatr0
 \description{
 This data was originally scraped from the Fugazi Live Series website by Carni Klirs for his project "Visualizing the History of Fugazi", and is now kept up to date via \code{\link{scrape_fls_shows}}.
 }
+\section{Provenance}{
+ Derived-cleaned. Produced by \code{\link{Repeatr_1}} from the raw scrape (\code{\link{scrape_fls_shows}}); typed/cleaned, no song classification yet.
+}
+
 \examples{
 # What is the total number of people that Fugazi performed for in the shows that are available in the Fugazi Live Series data?
 test <- Repeatr0

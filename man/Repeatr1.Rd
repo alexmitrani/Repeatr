@@ -41,6 +41,10 @@ Repeatr1
 Song data from the Fugazi discography pages on Wikipedia. The variables attributing lead vocals are simplifications in some cases where lead vocals were shared.
 The variables song_number, first_song and last_song were defined after data cleaning, so intros, outros, sound checks, interludes and one-offs are not included.
 }
+\section{Provenance}{
+ Derived-classified. Produced by \code{\link{Repeatr_1}}: mechanically joined, but shaped by the hand-written \code{grepl()}-based song-title recoding and \code{tracktype} classification rules in \code{R/Repeatr_1.R} - the layer whose edits can shift which songs get a \code{songid} (see \code{\link{songidlookup}}).
+}
+
 \examples{
 Repeatr1
 }

@@ -9,7 +9,7 @@ Repeatr_Updatr(really = "not_really", min_song_count = 2)
 \arguments{
 \item{really}{set to "really" to actually run the update; any other value (the default, "not_really") does nothing.}
 
-\item{min_song_count}{passed through to \code{\link{Repeatr_1}}: minimum number of performances a song needs to compete as an alternative in the choice model. Default 2.}
+\item{min_song_count}{passed through to \code{\link{Repeatr_2}}: minimum number of performances a song needs to compete as an alternative in the choice model. Default 2. Does not affect \code{songid}/\code{songidlookup}, which cover every classified song regardless of this threshold.}
 }
 \value{
 Invisibly, the list of results from the final \code{Repeatr_5()} call when \code{really = "really"}; \code{NULL} otherwise. The real effect is refreshing all of the package's \verb{data/*.rda} objects in place, ready to be reinstalled.

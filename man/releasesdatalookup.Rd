@@ -22,6 +22,10 @@ releasesdatalookup
 \description{
 Fugazi releases data
 }
+\section{Provenance}{
+ Derived-cleaned. Produced by \code{\link{Repeatr_1}} from the raw, hand-curated \code{inst/extdata/releases.csv} (which itself carries a manually-assigned \code{colour_code} and an \code{rym_rating} sourced from rateyourmusic.com).
+}
+
 \examples{
 releasesdatalookup
 }

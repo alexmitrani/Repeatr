@@ -35,6 +35,10 @@ some of this data was scraped from the Fugazi Live Series website by Carni Klirs
 The original data on coordinates, cities and tours data came from The D-I-Y Data of Fugazi by Matthew Conlen.
 Rows with checked==1 were updated by Alex Mitrani, in particular making sure that the coordinates indicated the actual locations of the venues for city-level mapping.
 }
+\section{Provenance}{
+ Derived-cleaned. Produced by \code{\link{Repeatr_1}} by joining the raw scrape with the hand-curated venue coordinates and the \code{othervariables_patch.csv} correction table. Actively consumed directly by \code{inst/shiny/Fugazetteer/app.R} (e.g. its attendance/tour reactives).
+}
+
 \examples{
 othervariables
 }

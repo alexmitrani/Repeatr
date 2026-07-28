@@ -20,6 +20,10 @@ gid_sound_quality
 \description{
 Sound quality data, one record per show
 }
+\section{Provenance}{
+ Derived-cleaned. Produced by \code{\link{Repeatr_1}}.
+}
+
 \examples{
 gid_sound_quality
 }

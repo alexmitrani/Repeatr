@@ -10,7 +10,7 @@ Repeatr_4(mydf = NULL)
 \item{mydf}{optional dataframe to be used.  If omitted, the default dataframe will be used.  Example of use: ml_Repeatr4 <- Repeatr_4()}
 }
 \value{
-A data frame (\code{results_ml_Repeatr4}) of the mlogit coefficient table: one row per model covariate, with columns for the estimate, standard error, z-value and p-value. Also saved to \code{data/results_ml_Repeatr4.rda}.
+A data frame (\code{results_ml_Repeatr4}) of the mlogit coefficient table: one row per model covariate, with columns for the estimate, standard error, z-value and p-value. Also saved to \code{data/results_ml_Repeatr4.rda}, alongside the corresponding \code{vcovmat_ml_Repeatr4.rda} (needed by \code{\link{diffr}}/\code{\link{rankr}}) - both are always written together by this function so they can never go out of sync with each other.
 }
 \description{
 Defines indices, makes changes to variable formats and data structure to prepare for choice modelling with mlogit.

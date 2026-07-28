@@ -30,6 +30,10 @@ fls_tags
 \description{
 Tags data
 }
+\section{Provenance}{
+ Derived-cleaned. Parsed by \code{\link{Repeatr_1}} (via \code{\link{fls_tags_importer}}) from the raw \code{inst/extdata/fls_tags.txt} kid3 MP3-tag export.
+}
+
 \examples{
 fls_tags
 }

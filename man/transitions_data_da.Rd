@@ -25,6 +25,10 @@ transitions_data_da
 \description{
 Transitions Data
 }
+\section{Provenance}{
+ Derived-cleaned. Produced by \code{\link{Repeatr_1}}. Not to be confused with the orphaned \code{transitions} object.
+}
+
 \examples{
 transitions_data_da
 }

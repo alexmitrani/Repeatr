@@ -26,6 +26,10 @@ The utility formula was as follows:
 
 choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5 + yearsold_6 + yearsold_7 + yearsold_8 + song2 + ... + song92
 }
+\section{Provenance}{
+ Derived-modeled. Produced by \code{\link{Repeatr_4}} (\code{mlogit} fit on \code{Repeatr3}).
+}
+
 \examples{
 results_ml_Repeatr4
 }

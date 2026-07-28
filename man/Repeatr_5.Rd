@@ -7,6 +7,7 @@
 Repeatr_5(
   mymodeldf = NULL,
   mysongidlookup = NULL,
+  myaltlookup = NULL,
   mysongvarslookup = NULL,
   myreleasesdatalookup = NULL,
   myreleases_data_input = NULL
@@ -16,6 +17,8 @@ Repeatr_5(
 \item{mymodeldf}{optional choice model coefficients dataframe to be used to generate the results. If omitted, the default choice model coefficients dataframe will be used, which is results_ml_Repeatr4.}
 
 \item{mysongidlookup}{optional \code{songidlookup} dataframe (the \code{songidlookup} element of \code{Repeatr_1()}'s return list). If omitted the currently lazy-loaded default will be used.}
+
+\item{myaltlookup}{optional \code{altlookup} dataframe (the second element of \code{Repeatr_2()}'s return list) used to translate \code{mymodeldf}'s \code{alt}-indexed intercept coefficients back to \code{songid}/\code{song}. If omitted the currently lazy-loaded default will be used.}
 
 \item{mysongvarslookup}{optional \code{songvarslookup} dataframe (the \code{songvarslookup} element of \code{Repeatr_1()}'s return list). If omitted the currently lazy-loaded default will be used.}
 

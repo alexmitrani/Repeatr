@@ -10,16 +10,30 @@ test_that("songid in songidlookup is dense 1:n over every classified song", {
   expect_equal(sort(songidlookup$songid), seq_len(nrow(songidlookup)))
 })
 
-test_that("every song in songidlookup has a matching row in songvarslookup, and vice versa", {
+test_that("every song in songidlookup has a matching row in songvarslookup", {
+  # Every tracktype==1 song (i.e. everything in songidlookup) should have
+  # Wikipedia metadata - a gap here means a song is missing release/
+  # duration/vocalist data downstream.
   missing_from_songvarslookup <- dplyr::anti_join(songidlookup, songvarslookup, by = "song")
-  missing_from_songidlookup <- dplyr::anti_join(songvarslookup, songidlookup, by = "song")
 
   expect_equal(nrow(missing_from_songvarslookup), 0,
                info = paste("song(s) with no match in songvarslookup:",
                              paste(missing_from_songvarslookup$song, collapse = ", ")))
-  expect_equal(nrow(missing_from_songidlookup), 0,
-               info = paste("song(s) with no match in songidlookup:",
-                             paste(missing_from_songidlookup$song, collapse = ", ")))
+})
+
+test_that("every song in songvarslookup matches some classified song, of any tracktype", {
+  # Not the mirror image of the test above: songvarslookup can legitimately
+  # describe a tracktype 0/2 song (e.g. a catalogued-but-unreleased rarity)
+  # that never appears in songidlookup - that's expected, not drift - so
+  # this checks against every classified song in Repeatr1, not just
+  # songidlookup's tracktype==1 subset. See the matching comment in
+  # R/Repeatr_1.R's reconciliation check.
+  all_classified_songs <- dplyr::distinct(Repeatr1, song)
+  missing_from_classified_songs <- dplyr::anti_join(songvarslookup, all_classified_songs, by = "song")
+
+  expect_equal(nrow(missing_from_classified_songs), 0,
+               info = paste("song(s) in songvarslookup with no match anywhere in the live classified data:",
+                             paste(missing_from_classified_songs$song, collapse = ", ")))
 })
 
 test_that("alt in Repeatr2 is dense 1:n over the min_song_count-eligible songs", {

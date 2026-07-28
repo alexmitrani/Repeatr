@@ -10,7 +10,7 @@ dataframe with one row for each show, each song performed and each song availabl
 \item{gid}{gig id. This is a concatenation of city, country, and date}
 \item{case}{This is a numerical id with unique values for each combination of gid and song_number}
 \item{song_number}{The number of the song in the sequence of songs that were performed as part of that show}
-\item{alt}{alt is the songid variable renamed}
+\item{alt}{A dense 1..n index over the \code{min_song_count}-eligible songs only, in \code{songid} order - this is the alternative-specific index \code{mlogit}/\code{\link{Repeatr_4}} actually sees. See \code{\link{altlookup}} to translate back to song identity.}
 \item{choice}{1 if the song was performed at that point in the show, 0 otherwise}
 \item{yearsold}{The difference between the date of the show and the launchdate of the song, measured in years}
 \item{vocals_picciotto}{indicates whether or not Guy Picciotto sang lead vocals on this track}
@@ -55,6 +55,10 @@ Repeatr3
 Song data from the Fugazi discography pages on Wikipedia. The variables attributing lead vocals are simplifications in some cases where lead vocals were shared.
 The variables song_number, first_song and last_song were defined after data cleaning, so intros, outros, sound checks, interludes and one-offs are not included.
 }
+\section{Provenance}{
+ Derived-modeled. Produced by \code{\link{Repeatr_3}} from \code{Repeatr2}: variable selection and integer compression, ready for \code{\link{Repeatr_4}}'s \code{mlogit} fit.
+}
+
 \examples{
 Repeatr3
 }

@@ -24,6 +24,10 @@ played_with_summary
 \description{
 Fugazi Live Series summary data on bands that fugazi played with, one row per combination of year, tour and band, with corresponding number of shows.
 }
+\section{Provenance}{
+ Derived-cleaned. Produced by \code{\link{Repeatr_1}}.
+}
+
 \examples{
 played_with_summary
 }

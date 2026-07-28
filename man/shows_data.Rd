@@ -33,6 +33,10 @@ shows_data
 \description{
 Shows Data
 }
+\section{Provenance}{
+ Derived-cleaned. Produced by \code{\link{Repeatr_1}}. Actively consumed directly by \code{inst/shiny/Fugazetteer/app.R}.
+}
+
 \examples{
 shows_data
 }

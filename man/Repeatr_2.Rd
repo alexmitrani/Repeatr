@@ -2,17 +2,19 @@
 % Please edit documentation in R/Repeatr_2.R
 \name{Repeatr_2}
 \alias{Repeatr_2}
-\title{takes a dataframe with one row per show-song and reshapes it long again so that the rows are identified by combinations of gid, song_number, and songid.}
+\title{takes a dataframe with one row per show-song and reshapes it long again so that the rows are identified by combinations of gid, song_number, and alt.}
 \usage{
-Repeatr_2(mydf = NULL, mysongidlookup = NULL)
+Repeatr_2(mydf = NULL, mysongidlookup = NULL, min_song_count = 2)
 }
 \arguments{
 \item{mydf}{optional dataframe to be used (the \code{Repeatr1} element of \code{Repeatr_1()}'s return list). If omitted the default (currently lazy-loaded) \code{Repeatr1} dataframe will be used.}
 
 \item{mysongidlookup}{optional \code{songidlookup} dataframe to be used (the \code{songidlookup} element of \code{Repeatr_1()}'s return list). If omitted the default (currently lazy-loaded) \code{songidlookup} dataframe will be used. Pass this explicitly - rather than relying on the default - when calling \code{Repeatr_2()} right after a fresh \code{Repeatr_1()} in the same session, since the lazy-loaded default reflects the last build on disk, not the one just computed.}
+
+\item{min_song_count}{Minimum number of performances a song needs to compete as an alternative in the choice model (\code{Repeatr_4}). Songs performed fewer times still appear in \code{songid}/\code{song} on the output, they just won't get an \code{alt} and can't be chosen as an alternative. Default 2 - songs performed only once can't support a stable alternative-specific intercept in the choice model. This is a choice-model concern only: it does not affect \code{songid}, which \code{\link{Repeatr_1}} assigns to every classified song regardless of this threshold.}
 }
 \value{
-A data frame (\code{Repeatr2}) with one row per gid/song_number/songid combination, prepared for choice modelling: includes \code{case} (choice-situation id), \code{alt} (song id, renamed from \code{songid}), \code{choice} (whether that song was the one played, renamed from \code{chosen}), availability/played dummy variables, and years-since-launch bucket variables. Also saved to \code{data/Repeatr2.rda}, alongside \code{fugazi_song_counts} and \code{fugazi_song_performance_intensity}.
+A list of 2 elements: \code{Repeatr2}, a data frame with one row per gid/song_number/alt combination, prepared for choice modelling (\code{case} is the choice-situation id, \code{alt} a dense 1..n index over the \code{min_song_count}-eligible songs only - this is what \code{mlogit}/\code{Repeatr_4} actually sees - \code{songid} the stable, full identity from \code{songidlookup} kept alongside \code{alt} rather than overwritten by it, \code{choice} whether that song was the one played, availability/played dummy variables, and years-since-launch bucket variables); and \code{altlookup} (\code{alt}, \code{songid}, \code{song}, \code{count} - one row per \code{min_song_count}-eligible song), needed by \code{\link{Repeatr_5}}/\code{\link{rankr}} to translate \code{mlogit}'s \code{alt}-indexed coefficients back to song identity. Also saved to \code{data/Repeatr2.rda} and \code{data/altlookup.rda}, alongside \code{fugazi_song_counts} and \code{fugazi_song_performance_intensity} (which cover every classified song, not just the \code{min_song_count}-eligible ones).
 }
 \description{
 The first line of the data this was originally developed with:
@@ -22,6 +24,8 @@ washington-dc-usa-90387	FLS0001	03/09/1987	Wilson Center	$5	300	Joey Picuri	Fuga
 "gid" is short for "gig id"
 }
 \examples{
-Repeatr2 <- Repeatr_2(mydf = Repeatr1)
+Repeatr_2_results <- Repeatr_2(mydf = Repeatr1)
+Repeatr2 <- Repeatr_2_results[[1]]
+altlookup <- Repeatr_2_results[[2]]
 
 }

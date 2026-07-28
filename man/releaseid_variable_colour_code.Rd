@@ -21,6 +21,10 @@ releaseid_variable_colour_code
 \description{
 Release ID, variable, colour code
 }
+\section{Provenance}{
+ Derived-cleaned. Produced by \code{\link{Repeatr_1}}.
+}
+
 \examples{
 releaseid_variable_colour_code
 }

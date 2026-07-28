@@ -26,6 +26,10 @@ duration_summary
 \description{
 Summary data on the song durations in the Fugazi Live Series.
 }
+\section{Provenance}{
+ Derived-cleaned. Produced by \code{\link{Repeatr_1}}.
+}
+
 \examples{
 duration_summary
 }

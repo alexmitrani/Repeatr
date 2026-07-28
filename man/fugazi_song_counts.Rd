@@ -22,6 +22,10 @@ fugazi_song_counts
 \description{
 Fugazi song performance counts
 }
+\section{Provenance}{
+ Derived-modeled. Produced by \code{\link{Repeatr_2}}, but covers every classified song, not just the \code{min_song_count}-eligible subset used to build \code{alt} - one-off performances and rarities appear here too.
+}
+
 \examples{
 fugazi_song_counts
 }

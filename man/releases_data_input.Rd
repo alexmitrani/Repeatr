@@ -30,6 +30,10 @@ releases_data_input
 \description{
 Releases data input
 }
+\section{Provenance}{
+ Derived-modeled. Produced twice: an intermediate version in \code{\link{Repeatr_1}}, finalized by \code{\link{Repeatr_5}} once the choice-model \code{rating} column is available.
+}
+
 \examples{
 releases_data_input
 }

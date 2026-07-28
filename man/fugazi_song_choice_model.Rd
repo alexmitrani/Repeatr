@@ -20,6 +20,10 @@ fugazi_song_choice_model
 \description{
 Produced by \code{\link{Repeatr_5}} from \code{\link{results_ml_Repeatr4}}: the raw model \code{variable} names for the per-song intercept terms (e.g. \code{(Intercept):5}) are replaced with the corresponding song name, using \code{\link{songidlookup}}.
 }
+\section{Provenance}{
+ Derived-modeled. Produced by \code{\link{Repeatr_5}} from \code{results_ml_Repeatr4}.
+}
+
 \examples{
 fugazi_song_choice_model
 }

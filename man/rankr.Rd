@@ -8,7 +8,7 @@ rankr(
   coeftable = NULL,
   vcovmat = NULL,
   mysongidlist = NULL,
-  mysongidlookup = NULL
+  myaltlookup = NULL
 )
 }
 \arguments{
@@ -18,7 +18,7 @@ rankr(
 
 \item{mysongidlist}{a dataframe containing the list of song ids to be tested.  It can contain other variables but only songid will be used.}
 
-\item{mysongidlookup}{optional \code{songidlookup} dataframe (as produced by \code{Repeatr_1()}) used to attach song names to the results. If omitted the currently lazy-loaded default will be used.}
+\item{myaltlookup}{optional \code{altlookup} dataframe (the second element of \code{Repeatr_2()}'s return list) used to translate \code{mysongidlist}'s \code{songid} values into \code{coeftable}'s \code{alt}-indexed rows, and to attach song names to the results - \code{songid} and \code{alt} are different scales (\code{songid} spans every classified song, \code{alt} only the \code{min_song_count}-eligible ones actually fit by the model), so this translation is required, not optional bookkeeping. If omitted the currently lazy-loaded default will be used. Songs in \code{mysongidlist} that aren't in \code{altlookup} (i.e. below \code{min_song_count}) are dropped with a warning, since they have no coefficient to compare.}
 }
 \value{
 A data frame with one row per adjacent pair of songs tested, giving \code{song1}, \code{song2}, their coefficients (\code{mycoef1}, \code{mycoef2}), the coefficient difference and its z-statistic, p-value and 95\% confidence interval (as produced by \code{diffr()}).

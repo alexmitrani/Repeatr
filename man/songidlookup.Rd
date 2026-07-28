@@ -7,8 +7,9 @@
 \format{
 dataframe with one row for each song in the Fugazi discography, except those which never appear in the Fugazi Live Series data.
 \describe{
-\item{songid}{numeric id for each song, based on the alphabetical order of the song names.}
+\item{songid}{numeric id for each song, based on the alphabetical order of the song names. Assigned to every classified song, including one-off performances and rarities below \code{min_song_count}.}
 \item{song}{The name of the song}
+\item{count}{The number of times the song was performed according to the data. Used by \code{\link{Repeatr_2}} to apply the \code{min_song_count} choice-model eligibility filter.}
 }
 }
 \usage{
@@ -17,6 +18,10 @@ songidlookup
 \description{
 Fugazi song id lookup table
 }
+\section{Provenance}{
+ Derived-classified. Computed live in \code{\link{Repeatr_1}} from \code{Repeatr1}; the single source of truth for song identity - not hand-edited, and (after the songid fix) assigned to every classified song including one-offs, not just those meeting \code{min_song_count}.
+}
+
 \examples{
 songidlookup
 }

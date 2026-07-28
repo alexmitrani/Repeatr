@@ -26,6 +26,10 @@ releases_summary
 \description{
 Releases Summary
 }
+\section{Provenance}{
+ Derived-modeled. Produced by \code{\link{Repeatr_5}}: its \code{rate} column is the average of the choice-model-derived song ratings on each release.
+}
+
 \examples{
 releases_summary
 }

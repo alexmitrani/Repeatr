@@ -14,7 +14,8 @@ dataframe with one row for each show, each song performed and each song availabl
 \item{launchdate}{The date on which the song was first performed according to the data}
 \item{yearsold}{The difference between the date of the show and the launchdate of the song, measured in years}
 \item{song_number}{The number of the song in the sequence of songs that were performed as part of that show}
-\item{alt}{alt is the songid variable renamed}
+\item{alt}{A dense 1..n index over the \code{min_song_count}-eligible songs only, in \code{songid} order - this is the alternative-specific index \code{mlogit}/\code{\link{Repeatr_4}} actually sees. See \code{songid} below for the stable song identity this is derived from.}
+\item{songid}{The stable, full song identity from \code{\link{songidlookup}}, kept alongside \code{alt} rather than overwritten by it.}
 \item{song}{The name of the song}
 \item{choice}{1 if the song was performed at that point in the show, 0 otherwise}
 \item{played}{1 if the song was performed at or before that point in the show, 0 otherwise}
@@ -45,6 +46,10 @@ Repeatr2
 Song data from the Fugazi discography pages on Wikipedia. The variables attributing lead vocals are simplifications in some cases where lead vocals were shared.
 The variables song_number, first_song and last_song were defined after data cleaning, so intros, outros, sound checks, interludes and one-offs are not included.
 }
+\section{Provenance}{
+ Derived-modeled. Produced by \code{\link{Repeatr_2}}: this is where the \code{min_song_count} modelling-eligibility filter is applied and the dense \code{alt} choice-model index is constructed from the stable \code{songid} in \code{\link{songidlookup}} - the analysis-side counterpart to \code{Repeatr1}'s full, unfiltered song set.
+}
+
 \examples{
 Repeatr2
 }

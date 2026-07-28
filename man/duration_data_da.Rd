@@ -25,6 +25,10 @@ duration_data_da
 \description{
 Duration Data
 }
+\section{Provenance}{
+ Derived-cleaned. Produced by \code{\link{Repeatr_1}}. Also a direct input to \code{\link{sweepstack}}/\code{\link{stacks}}.
+}
+
 \examples{
 duration_data_da
 }

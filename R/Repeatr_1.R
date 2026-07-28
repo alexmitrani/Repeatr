@@ -4,7 +4,7 @@
 #' @description This was originally developed with a headerless file called "fugotcha.csv". It now reads "fls_data.csv" instead - a tidy, headered CSV produced by \code{\link{scrape_fls_shows}}, with one row per show and columns gid, fls_id, show_date, venue, door_price, attendance, recorded_by, mastered_by, original_source, sound_quality, played_with, fls_notes, track_1 ... track_n.
 #' @description "gid" is short for "gig id"
 #' @description Another data file that was used was called "releases_songs_durations_wikipedia.csv" and was obtained from the Wikipedia data on the Fugazi discography.
-#' @description This file contains the following variables: rank_length	releaseid	track_number	song	instrumental	vocals_picciotto	vocals_mackaye	vocals_lally	duration_seconds. It is joined onto the live, classified song set by `song` title text, not by a hardcoded id column - see `songid` below.
+#' @description This file contains the following variables: releaseid	track_number	song	instrumental	vocals_picciotto	vocals_mackaye	vocals_lally	duration_seconds. It is joined onto the live, classified song set by `song` title text, not by a hardcoded id column - see `songid` below.
 
 #'
 #' @import dplyr
@@ -662,7 +662,8 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     Repeatr1 <- Repeatr1 %>%
       mutate(tracktype=ifelse(grepl("ice cream", song)==TRUE, 2, tracktype))
 
-
+    Repeatr1 <- Repeatr1 %>%
+      mutate(tracktype=ifelse(grepl("provisional medley", song)==TRUE, 2, tracktype))
 
   # Summarise the data to check frequency counts for all songs --------------
 
@@ -753,8 +754,18 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   # set and the Wikipedia CSV's song names have drifted apart, so a future
   # change to the classification rules above can't silently misattribute
   # release/duration/vocalist metadata the way it once did.
+  #
+  # The two directions are NOT symmetric. songvarslookup can legitimately
+  # describe a song that's tracktype 0/2 (e.g. a catalogued-but-unreleased
+  # rarity like "world beat"/"preprovisional" - see the "Filter to remove
+  # unreleased songs or improvised one-offs" block above) and so never gets
+  # a songid at all - that's expected, not drift, so this direction is
+  # checked against every classified song regardless of tracktype, not just
+  # songidlookup's tracktype==1 subset.
+  all_classified_songs <- Repeatr1 %>% distinct(song)
+
   songs_missing_from_songvarslookup <- anti_join(songidlookup, songvarslookup, by = "song")$song
-  songs_missing_from_songidlookup <- anti_join(songvarslookup, songidlookup, by = "song")$song
+  songs_missing_from_songidlookup <- anti_join(songvarslookup, all_classified_songs, by = "song")$song
 
   if (length(songs_missing_from_songvarslookup) > 0) {
     warning("Repeatr_1(): song(s) classified in the live data have no matching row in songvarslookup (releases_songs_durations_wikipedia.csv): ",
@@ -762,7 +773,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   }
 
   if (length(songs_missing_from_songidlookup) > 0) {
-    warning("Repeatr_1(): song(s) in songvarslookup (releases_songs_durations_wikipedia.csv) have no matching row in the live classified data: ",
+    warning("Repeatr_1(): song(s) in songvarslookup (releases_songs_durations_wikipedia.csv) have no matching row anywhere in the live classified data (not even as a non-tracktype-1 rarity) - this CSV row may be stale: ",
             paste(songs_missing_from_songidlookup, collapse = ", "))
   }
 

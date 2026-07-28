@@ -7,7 +7,7 @@
 \format{
 dataframe with one row for each song in the Fugazi discography, except those which never appear in the Fugazi Live Series data.
 \describe{
-\item{songid}{numeric id for each song}
+\item{song}{The name of the song. The join key used to attach this data to \code{\link{Repeatr1}} - this file no longer carries its own \code{songid} column, precisely so it can't drift out of sync with the one computed in \code{\link{songidlookup}}.}
 \item{releaseid}{numeric id in ascending chronological order}
 \item{track_number}{The track number for the song on the release}
 \item{instrumental}{Indicates whether or not the piece is an instrumental}
@@ -26,6 +26,10 @@ songvarslookup
 \description{
 Song data from the Fugazi discography pages on Wikipedia. The variables attributing lead vocals are simplifications in some cases where lead vocals were shared.
 }
+\section{Provenance}{
+ Raw-hand-curated. Read directly from \code{inst/extdata/releases_songs_durations_wikipedia.csv}, edited by hand against Wikipedia. Joined into \code{Repeatr1} by song title (\code{song}), not by a hardcoded id column - see the songid fix for why.
+}
+
 \examples{
 songvarslookup
 }

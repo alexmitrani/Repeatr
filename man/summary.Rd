@@ -38,6 +38,10 @@ summary
 \description{
 Summary
 }
+\section{Provenance}{
+ Derived-modeled. Produced by \code{\link{Repeatr_5}}, the final combined song-level output of the whole pipeline. Actively consumed directly by \code{inst/shiny/Fugazetteer/app.R}.
+}
+
 \examples{
 summary
 }

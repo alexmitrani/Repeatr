@@ -2,7 +2,7 @@
 % Please edit documentation in R/Repeatr_3.R
 \name{Repeatr_3}
 \alias{Repeatr_3}
-\title{takes a dataframe with gid, song_number, and songid, and modifies it to make it suitable for choice modelling.}
+\title{takes a dataframe with gid, song_number, and alt, and modifies it to make it suitable for choice modelling.}
 \usage{
 Repeatr_3(mydf = NULL)
 }

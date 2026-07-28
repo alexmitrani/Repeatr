@@ -18,8 +18,12 @@ dataframe with one row for each song, ranked by estimated preference.
 fugazi_song_preferences
 }
 \description{
-Produced by \code{\link{Repeatr_5}} from the per-song intercept terms of \code{\link{results_ml_Repeatr4}} (the omitted reference song, "23 Beats Off", is added back in with an estimate of 0), ranked from most to least preferred.
+Produced by \code{\link{Repeatr_5}} from the per-song intercept terms of \code{\link{results_ml_Repeatr4}} (the omitted reference song - whichever has the smallest \code{alt} in \code{\link{altlookup}} - is added back in with an estimate of 0), ranked from most to least preferred.
 }
+\section{Provenance}{
+ Derived-modeled. Produced by \code{\link{Repeatr_5}} from \code{results_ml_Repeatr4}.
+}
+
 \examples{
 fugazi_song_preferences
 }
