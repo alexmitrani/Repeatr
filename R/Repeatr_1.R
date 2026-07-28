@@ -20,7 +20,7 @@
 #' @param releasesdatafile Optional name of CSV file containing releases data to be used. If omitted, the default file provided with the package will be used.
 #' @param min_song_count Minimum number of performances a song needs to be included in `songidlookup` and to compete as an alternative in the choice model (`Repeatr_4`). Songs performed fewer times still appear in `Repeatr1` by name, they just won't have a `songid`. Default 2 - songs performed only once can't support a stable alternative-specific intercept in the choice model.
 #'
-#' @return A list of 11 elements: `Repeatr0`, `Repeatr1`, `songidlookup`, `mycount`, `songvarslookup`, `releasesdatalookup`, `othervariables`, `cumulative_song_counts`, `fls_tags`, `fls_tags_show`, and `cumulative_duration_counts`. As a side effect, these and several other derived datasets (including `gid_sound_quality`, `played_with`, `shows_data`, `xray`) are also saved into `data/`.
+#' @return A list of 12 elements: `Repeatr0`, `Repeatr1`, `songidlookup`, `mycount`, `songvarslookup`, `releasesdatalookup`, `othervariables`, `cumulative_song_counts`, `fls_tags`, `fls_tags_show`, `cumulative_duration_counts`, and `releases_data_input`. As a side effect, these and several other derived datasets (including `gid_sound_quality`, `played_with`, `shows_data`, `xray`) are also saved into `data/`.
 #' @export
 #'
 #' @examples
@@ -543,6 +543,10 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   # Recode variants of song titles to the main song title only in cases where there is ambiguity or inconsistency -------------------
 
+  # keep the original song as a different variable song_original before any changes are made, so no information is lost
+  Repeatr1 <- Repeatr1 %>%
+    mutate(song_original = song)
+
   Repeatr1 <- Repeatr1 %>%
     mutate(song = str_replace(song, " instrumental", ""))
 
@@ -556,28 +560,26 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     mutate(song = ifelse(song=="bed for the scraping (continued)", "bed for the scraping", song))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(song = ifelse(song=="promises bit soundcheck", "promises", song))
-
-  Repeatr1 <- Repeatr1 %>%
-    mutate(song = ifelse(song=="promises bit", "promises", song))
-
-  Repeatr1 <- Repeatr1 %>%
-    mutate(song = ifelse(song=="promises coda", "promises", song))
-
-  Repeatr1 <- Repeatr1 %>%
-    mutate(song = ifelse(song=="provisional medley", "provisional", song))
-
-  Repeatr1 <- Repeatr1 %>%
     mutate(song = ifelse(song=="the argument", "argument", song))
+
+  # 'promises bit' and 'promises coda' refer to the same thing but it is only the end part of promises, not the whole song.
+
+  Repeatr1 <- Repeatr1 %>%
+    mutate(song = ifelse(song=="promises bit soundcheck", "promises coda", song))
+
+  Repeatr1 <- Repeatr1 %>%
+    mutate(song = ifelse(song=="promises coda instrumental", "promises coda", song))
+
+  Repeatr1 <- Repeatr1 %>%
+    mutate(song = ifelse(song=="promises bit", "promises coda", song))
 
 
   # define track types: intros, interludes, sound checks -----------------------------------------------------------------
 
   # track types
   # 0 soundchecks, intros, interludes, encores
-  # 1 songs
-  # 2 rarities
-  # 3 raps
+  # 1 released songs
+  # 2 unreleased songs
 
   Repeatr1$tracktype <- 1
 
@@ -616,43 +618,52 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
   # Filter to remove unreleased songs or improvised one-offs ---------------------------------------
 
-  Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("heart on my chest", song)==TRUE, 2, tracktype))
+    Repeatr1 <- Repeatr1 %>%
+      mutate(tracktype=ifelse(grepl("heart on my chest", song)==TRUE, 2, tracktype))
 
-  Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("lock dug", song)==TRUE, 2, tracktype))
+    Repeatr1 <- Repeatr1 %>%
+      mutate(tracktype=ifelse(grepl("lock dug", song)==TRUE, 2, tracktype))
 
-  Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("nedcars", song)==TRUE, 2, tracktype))
+    Repeatr1 <- Repeatr1 %>%
+      mutate(tracktype=ifelse(grepl("nedcars", song)==TRUE, 2, tracktype))
 
-  Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("noisy dub", song)==TRUE, 2, tracktype))
+    Repeatr1 <- Repeatr1 %>%
+      mutate(tracktype=ifelse(grepl("noisy dub", song)==TRUE, 2, tracktype))
 
-  Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("nsa", song)==TRUE, 2, tracktype))
+    Repeatr1 <- Repeatr1 %>%
+      mutate(tracktype=ifelse(grepl("nsa", song)==TRUE, 2, tracktype))
 
-  Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("set the charges", song)==TRUE, 2, tracktype))
+    Repeatr1 <- Repeatr1 %>%
+      mutate(tracktype=ifelse(grepl("set the charges", song)==TRUE, 2, tracktype))
 
-  Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("she is blind", song)==TRUE, 2, tracktype))
+    Repeatr1 <- Repeatr1 %>%
+      mutate(tracktype=ifelse(grepl("she is blind", song)==TRUE, 2, tracktype))
 
-  Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("surf tune", song)==TRUE, 2, tracktype))
+    Repeatr1 <- Repeatr1 %>%
+      mutate(tracktype=ifelse(grepl("surf tune", song)==TRUE, 2, tracktype))
 
-  Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("hello morning seed", song)==TRUE, 2, tracktype))
+    Repeatr1 <- Repeatr1 %>%
+      mutate(tracktype=ifelse(grepl("world beat", song)==TRUE, 2, tracktype))
 
-  Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("i spent it all", song)==TRUE, 2, tracktype))
+    Repeatr1 <- Repeatr1 %>%
+      mutate(tracktype=ifelse(grepl("preprovisional", song)==TRUE, 2, tracktype))
 
-  Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("strange disclosure", song)==TRUE, 2, tracktype))
+    Repeatr1 <- Repeatr1 %>%
+      mutate(tracktype=ifelse(grepl("hello morning seed", song)==TRUE, 2, tracktype))
 
-  # Raps ---------------------------------------
+    Repeatr1 <- Repeatr1 %>%
+      mutate(tracktype=ifelse(grepl("i spent it all", song)==TRUE, 2, tracktype))
 
-  Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("ice cream", song)==TRUE, 3, tracktype))
+    Repeatr1 <- Repeatr1 %>%
+      mutate(tracktype=ifelse(grepl("strange disclosure", song)==TRUE, 2, tracktype))
+
+    Repeatr1 <- Repeatr1 %>%
+      mutate(tracktype=ifelse(grepl("promises coda", song)==TRUE, 2, tracktype))
+
+    Repeatr1 <- Repeatr1 %>%
+      mutate(tracktype=ifelse(grepl("ice cream", song)==TRUE, 2, tracktype))
+
+
 
   # Summarise the data to check frequency counts for all songs --------------
 
@@ -1114,12 +1125,17 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
                 intensity = round(mean(intensity), digits = 4)) %>%
       ungroup()
 
-    releasesdatalookup <- releasesdatalookup %>%
+    # Named distinctly (not reassigned to `releasesdatalookup`) so this
+    # local date-only trim doesn't clobber the full `releasesdatalookup`
+    # that gets saved to data/ and returned from this function - Repeatr_5()
+    # needs the full version (release, rym_rating, etc.), not just these
+    # two columns.
+    releasesdatalookup_dates <- releasesdatalookup %>%
       select(releaseid, releasedate) %>%
       mutate(releasedate = as.Date(releasedate, "%d/%m/%Y", origin = "1970-01-01"))
 
     releases_summary <- releases_summary %>%
-      left_join(releasesdatalookup) %>%
+      left_join(releasesdatalookup_dates) %>%
       select(releaseid, release, first_debut, last_debut, releasedate, songs, count, shows, intensity) %>%
       rename(release_date = releasedate) %>%
       filter(releaseid>0)
@@ -1181,7 +1197,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
       mutate(releasedate = as.Date(releasedate, "%d/%m/%Y", origin = "1970-01-01"))
 
     xray <- xray %>%
-      mutate(unreleased = ifelse(tracktype==2 | (tracktype==1 & date<releasedate) | song=="preprovisional" | song=="world beat",1,0))
+      mutate(unreleased = ifelse(tracktype==2 | (tracktype==1 & date<releasedate),1,0))
 
     xray2 <- Repeatr::summary %>%
       select(songid, launchdate)
@@ -1386,7 +1402,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
 
 
-  myreturnlist <- list(Repeatr0, Repeatr1, songidlookup, mycount, songvarslookup, releasesdatalookup, othervariables, cumulative_song_counts, fls_tags, fls_tags_show, cumulative_duration_counts)
+  myreturnlist <- list(Repeatr0, Repeatr1, songidlookup, mycount, songvarslookup, releasesdatalookup, othervariables, cumulative_song_counts, fls_tags, fls_tags_show, cumulative_duration_counts, releases_data_input)
 
   return(myreturnlist)
 

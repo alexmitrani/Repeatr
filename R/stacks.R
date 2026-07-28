@@ -5,6 +5,9 @@
 #' @param mygid gig id of initial show as a string, for instance "washington-dc-usa-13196".
 #' @param mynumberofsongs the number of unique songs that are required. the maximum is 94 (the number of songs Fugazi played live  at least twice) and the number of songs in the initial show will be taken as a minimum.
 #' @param exclude_poor_sound_quality set to TRUE to exclude shows with poor sound quality
+#' @param mysummary optional `summary` dataframe (as produced by `Repeatr_5()`) to be used for song play counts. If omitted the currently lazy-loaded default will be used - pass this explicitly if calling `stacks()` right after a fresh `Repeatr_Updatr()` run in the same session.
+#' @param myothervariables optional `othervariables` dataframe (as produced by `Repeatr_1()`) to be used for show details. If omitted the currently lazy-loaded default will be used.
+#' @param mygidsoundquality optional `gid_sound_quality` dataframe (as produced by `Repeatr_1()`) to be used for sound quality filtering/display. If omitted the currently lazy-loaded default will be used.
 #'
 #' @return A list of two data frames: `stack_songs` (`gid`, `song` - one row per unique song in the stack, and the show it came from) and `stack_shows_songs` (one row per show included in the stack, with venue/date/sound-quality details and the number of new songs it contributed).
 #' @export
@@ -18,11 +21,18 @@
 #' stack2 <- results[[2]]
 #'
 #'
-stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL, exclude_poor_sound_quality = FALSE){
+stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL, exclude_poor_sound_quality = FALSE,
+                    mysummary = NULL, myothervariables = NULL, mygidsoundquality = NULL){
 
 # pre-processing to check that all required parameters are defined -----------------------------------------------------------
 
-  song_chosen <- Repeatr::summary %>%
+  # Use freshly-supplied lookup tables if given, otherwise fall back to
+  # whatever is currently lazy-loaded from data/ (the package's last build).
+  if (is.null(mysummary)==FALSE) { summarydf <- mysummary } else { summarydf <- Repeatr::summary }
+  if (is.null(myothervariables)==FALSE) { othervariables <- myothervariables } else { othervariables <- othervariables }
+  if (is.null(mygidsoundquality)==FALSE) { gid_sound_quality <- mygidsoundquality } else { gid_sound_quality <- gid_sound_quality }
+
+  song_chosen <- summarydf %>%
     select(song, chosen) %>%
     arrange(chosen)
 

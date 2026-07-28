@@ -4,12 +4,23 @@
 \alias{sweepstack}
 \title{sweepstack runs stacks iteratively over a range of different starting shows.}
 \usage{
-sweepstack(number_stacks = NULL, exclude_poor_sound_quality = FALSE)
+sweepstack(
+  number_stacks = NULL,
+  exclude_poor_sound_quality = FALSE,
+  myduration_data_da = NULL,
+  mysummary = NULL,
+  myothervariables = NULL,
+  mygidsoundquality = NULL
+)
 }
 \arguments{
 \item{number_stacks}{this is the number of starting shows to test.  if not specified all the possible starting shows will be tested.}
 
 \item{exclude_poor_sound_quality}{set this to TRUE to exclude shows with sound quality rated as 'Poor'.}
+
+\item{myduration_data_da}{optional \code{duration_data_da} dataframe (as produced by \code{Repeatr_1()}) to be used for the pool of shows/songs to sweep over. If omitted the currently lazy-loaded default will be used.}
+
+\item{mysummary, myothervariables, mygidsoundquality}{optional lookup tables passed straight through to \code{stacks()} - see there for details. If omitted the currently lazy-loaded defaults will be used.}
 }
 \value{
 A list of two data frames: \code{stack_summary} (\code{gid}, \code{shows} - one row per starting show tested, and the number of shows needed to reach the target unique-song count) and \code{stack_details} (\code{gid_initial}, \code{gid}, \code{song} - the full, deduplicated set of shows and songs behind every stack tested).

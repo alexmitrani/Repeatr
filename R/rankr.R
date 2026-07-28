@@ -8,6 +8,7 @@
 #' @param coeftable coefficients table from mlogit, with one row per coefficient
 #' @param vcovmat variance covariance matrix from mlogit, with one row and one column per coefficient
 #' @param mysongidlist a dataframe containing the list of song ids to be tested.  It can contain other variables but only songid will be used.
+#' @param mysongidlookup optional `songidlookup` dataframe (as produced by `Repeatr_1()`) used to attach song names to the results. If omitted the currently lazy-loaded default will be used.
 #'
 #' @return A data frame with one row per adjacent pair of songs tested, giving `song1`, `song2`, their coefficients (`mycoef1`, `mycoef2`), the coefficient difference and its z-statistic, p-value and 95% confidence interval (as produced by `diffr()`).
 #' @export
@@ -17,7 +18,11 @@
 #' mycomparisons <- rankr(coeftable = results_ml_Repeatr4, vcovmat = vcovmat_ml_Repeatr4, mysongidlist = songstobecompared)
 #' mycomparisons
 #'
-rankr <- function(coeftable = NULL, vcovmat = NULL, mysongidlist = NULL) {
+rankr <- function(coeftable = NULL, vcovmat = NULL, mysongidlist = NULL, mysongidlookup = NULL) {
+
+  # Use a freshly-supplied songidlookup if given, otherwise fall back to
+  # whatever is currently lazy-loaded from data/ (the package's last build).
+  if (is.null(mysongidlookup)==FALSE) { songidlookup <- mysongidlookup } else { songidlookup <- songidlookup }
 
   mysongidlist <- mysongidlist %>%
     select(songid)

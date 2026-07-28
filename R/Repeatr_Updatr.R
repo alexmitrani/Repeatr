@@ -39,13 +39,17 @@ Repeatr_Updatr <- function(really = "not_really", min_song_count = 2) {
     # .rda mid-session doesn't retroactively update an already-established
     # lazy binding).
 
-    Repeatr2 <- Repeatr_2(mydf = Repeatr_1_results[[2]])
+    Repeatr2 <- Repeatr_2(mydf = Repeatr_1_results[[2]], mysongidlookup = Repeatr_1_results[[3]])
 
     Repeatr3 <- Repeatr_3(mydf = Repeatr2)
 
     ml_Repeatr4 <- Repeatr_4(mydf = Repeatr3)
 
-    Repeatr_5_results <- Repeatr_5(mymodeldf = ml_Repeatr4)
+    Repeatr_5_results <- Repeatr_5(mymodeldf = ml_Repeatr4,
+                                    mysongidlookup = Repeatr_1_results[[3]],
+                                    mysongvarslookup = Repeatr_1_results[[5]],
+                                    myreleasesdatalookup = Repeatr_1_results[[6]],
+                                    myreleases_data_input = Repeatr_1_results[[12]])
 
   }
 

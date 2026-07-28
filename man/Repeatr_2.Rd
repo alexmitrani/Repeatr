@@ -4,10 +4,12 @@
 \alias{Repeatr_2}
 \title{takes a dataframe with one row per show-song and reshapes it long again so that the rows are identified by combinations of gid, song_number, and songid.}
 \usage{
-Repeatr_2(mydf = NULL)
+Repeatr_2(mydf = NULL, mysongidlookup = NULL)
 }
 \arguments{
-\item{mydf}{optional dataframe to be used.  If omitted the default dataframe will be used.}
+\item{mydf}{optional dataframe to be used (the \code{Repeatr1} element of \code{Repeatr_1()}'s return list). If omitted the default (currently lazy-loaded) \code{Repeatr1} dataframe will be used.}
+
+\item{mysongidlookup}{optional \code{songidlookup} dataframe to be used (the \code{songidlookup} element of \code{Repeatr_1()}'s return list). If omitted the default (currently lazy-loaded) \code{songidlookup} dataframe will be used. Pass this explicitly - rather than relying on the default - when calling \code{Repeatr_2()} right after a fresh \code{Repeatr_1()} in the same session, since the lazy-loaded default reflects the last build on disk, not the one just computed.}
 }
 \value{
 A data frame (\code{Repeatr2}) with one row per gid/song_number/songid combination, prepared for choice modelling: includes \code{case} (choice-situation id), \code{alt} (song id, renamed from \code{songid}), \code{choice} (whether that song was the one played, renamed from \code{chosen}), availability/played dummy variables, and years-since-launch bucket variables. Also saved to \code{data/Repeatr2.rda}, alongside \code{fugazi_song_counts} and \code{fugazi_song_performance_intensity}.

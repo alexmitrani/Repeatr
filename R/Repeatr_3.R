@@ -29,6 +29,10 @@ Repeatr_3 <- function(mydf = NULL) {
 
     Repeatr2 <- mydf
 
+  } else {
+
+    Repeatr2 <- Repeatr2
+
   }
 
   # Keep only the specific variables needed for the modelling --------

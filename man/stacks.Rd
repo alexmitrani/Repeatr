@@ -8,7 +8,10 @@ stacks(
   mydf = NULL,
   mygid = NULL,
   mynumberofsongs = NULL,
-  exclude_poor_sound_quality = FALSE
+  exclude_poor_sound_quality = FALSE,
+  mysummary = NULL,
+  myothervariables = NULL,
+  mygidsoundquality = NULL
 )
 }
 \arguments{
@@ -19,6 +22,12 @@ stacks(
 \item{mynumberofsongs}{the number of unique songs that are required. the maximum is 94 (the number of songs Fugazi played live  at least twice) and the number of songs in the initial show will be taken as a minimum.}
 
 \item{exclude_poor_sound_quality}{set to TRUE to exclude shows with poor sound quality}
+
+\item{mysummary}{optional \code{summary} dataframe (as produced by \code{Repeatr_5()}) to be used for song play counts. If omitted the currently lazy-loaded default will be used - pass this explicitly if calling \code{stacks()} right after a fresh \code{Repeatr_Updatr()} run in the same session.}
+
+\item{myothervariables}{optional \code{othervariables} dataframe (as produced by \code{Repeatr_1()}) to be used for show details. If omitted the currently lazy-loaded default will be used.}
+
+\item{mygidsoundquality}{optional \code{gid_sound_quality} dataframe (as produced by \code{Repeatr_1()}) to be used for sound quality filtering/display. If omitted the currently lazy-loaded default will be used.}
 }
 \value{
 A list of two data frames: \code{stack_songs} (\code{gid}, \code{song} - one row per unique song in the stack, and the show it came from) and \code{stack_shows_songs} (one row per show included in the stack, with venue/date/sound-quality details and the number of new songs it contributed).

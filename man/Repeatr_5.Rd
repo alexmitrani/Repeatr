@@ -4,10 +4,24 @@
 \alias{Repeatr_5}
 \title{produces results using a coefficient table for a choice model estimated with mlogit.}
 \usage{
-Repeatr_5(mymodeldf = NULL)
+Repeatr_5(
+  mymodeldf = NULL,
+  mysongidlookup = NULL,
+  mysongvarslookup = NULL,
+  myreleasesdatalookup = NULL,
+  myreleases_data_input = NULL
+)
 }
 \arguments{
 \item{mymodeldf}{optional choice model coefficients dataframe to be used to generate the results. If omitted, the default choice model coefficients dataframe will be used, which is results_ml_Repeatr4.}
+
+\item{mysongidlookup}{optional \code{songidlookup} dataframe (the \code{songidlookup} element of \code{Repeatr_1()}'s return list). If omitted the currently lazy-loaded default will be used.}
+
+\item{mysongvarslookup}{optional \code{songvarslookup} dataframe (the \code{songvarslookup} element of \code{Repeatr_1()}'s return list). If omitted the currently lazy-loaded default will be used.}
+
+\item{myreleasesdatalookup}{optional \code{releasesdatalookup} dataframe (the \code{releasesdatalookup} element of \code{Repeatr_1()}'s return list). If omitted the currently lazy-loaded default will be used.}
+
+\item{myreleases_data_input}{optional \code{releases_data_input} dataframe (the \code{releases_data_input} element of \code{Repeatr_1()}'s return list). If omitted the currently lazy-loaded default will be used.}
 }
 \value{
 A list of 5 elements: \code{fugazi_song_choice_model} (per-variable coefficient table with song names substituted in for the intercept terms), \code{fugazi_song_preferences} (songs ranked by estimated preference), \code{summary} (song performance summary combining counts, intensity and rating), \code{releases_rated} (average rating by release), and \code{releases_data_input} (per-song-per-release data enriched with the estimated rating). Each of these, plus \code{releases_summary}, is also saved into \verb{data/}.

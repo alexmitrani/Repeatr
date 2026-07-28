@@ -21,7 +21,7 @@ Repeatr_1(
 \item{min_song_count}{Minimum number of performances a song needs to be included in \code{songidlookup} and to compete as an alternative in the choice model (\code{Repeatr_4}). Songs performed fewer times still appear in \code{Repeatr1} by name, they just won't have a \code{songid}. Default 2 - songs performed only once can't support a stable alternative-specific intercept in the choice model.}
 }
 \value{
-A list of 11 elements: \code{Repeatr0}, \code{Repeatr1}, \code{songidlookup}, \code{mycount}, \code{songvarslookup}, \code{releasesdatalookup}, \code{othervariables}, \code{cumulative_song_counts}, \code{fls_tags}, \code{fls_tags_show}, and \code{cumulative_duration_counts}. As a side effect, these and several other derived datasets (including \code{gid_sound_quality}, \code{played_with}, \code{shows_data}, \code{xray}) are also saved into \verb{data/}.
+A list of 12 elements: \code{Repeatr0}, \code{Repeatr1}, \code{songidlookup}, \code{mycount}, \code{songvarslookup}, \code{releasesdatalookup}, \code{othervariables}, \code{cumulative_song_counts}, \code{fls_tags}, \code{fls_tags_show}, \code{cumulative_duration_counts}, and \code{releases_data_input}. As a side effect, these and several other derived datasets (including \code{gid_sound_quality}, \code{played_with}, \code{shows_data}, \code{xray}) are also saved into \verb{data/}.
 }
 \description{
 This was originally developed with a headerless file called "fugotcha.csv". It now reads "fls_data.csv" instead - a tidy, headered CSV produced by \code{\link{scrape_fls_shows}}, with one row per show and columns gid, fls_id, show_date, venue, door_price, attendance, recorded_by, mastered_by, original_source, sound_quality, played_with, fls_notes, track_1 ... track_n.

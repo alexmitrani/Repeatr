@@ -12,6 +12,10 @@
 #'
 #'
 #' @param mymodeldf optional choice model coefficients dataframe to be used to generate the results. If omitted, the default choice model coefficients dataframe will be used, which is results_ml_Repeatr4.
+#' @param mysongidlookup optional `songidlookup` dataframe (the `songidlookup` element of `Repeatr_1()`'s return list). If omitted the currently lazy-loaded default will be used.
+#' @param mysongvarslookup optional `songvarslookup` dataframe (the `songvarslookup` element of `Repeatr_1()`'s return list). If omitted the currently lazy-loaded default will be used.
+#' @param myreleasesdatalookup optional `releasesdatalookup` dataframe (the `releasesdatalookup` element of `Repeatr_1()`'s return list). If omitted the currently lazy-loaded default will be used.
+#' @param myreleases_data_input optional `releases_data_input` dataframe (the `releases_data_input` element of `Repeatr_1()`'s return list). If omitted the currently lazy-loaded default will be used.
 #'
 #' @return A list of 5 elements: `fugazi_song_choice_model` (per-variable coefficient table with song names substituted in for the intercept terms), `fugazi_song_preferences` (songs ranked by estimated preference), `summary` (song performance summary combining counts, intensity and rating), `releases_rated` (average rating by release), and `releases_data_input` (per-song-per-release data enriched with the estimated rating). Each of these, plus `releases_summary`, is also saved into `data/`.
 #' @export
@@ -19,12 +23,22 @@
 #' @examples
 #' Repeatr_5_results <- Repeatr_5(mymodeldf = results_ml_Repeatr4)
 #'
-Repeatr_5 <- function(mymodeldf = NULL) {
+Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, mysongvarslookup = NULL,
+                       myreleasesdatalookup = NULL, myreleases_data_input = NULL) {
 
   mydir <- getwd()
   on.exit(setwd(mydir), add = TRUE)
   myinputdir <- paste0(mydir, "/inst/extdata/")
   mydatadir <- paste0(mydir, "/data")
+
+  # Use the lookup tables freshly returned by this session's Repeatr_1() call
+  # if supplied, otherwise fall back to whatever is currently lazy-loaded
+  # from data/ (the package's last build) - see Repeatr_Updatr.R for why
+  # threading these through matters when chaining a fresh pipeline run.
+  if (is.null(mysongidlookup)==FALSE) { songidlookup <- mysongidlookup } else { songidlookup <- songidlookup }
+  if (is.null(mysongvarslookup)==FALSE) { songvarslookup <- mysongvarslookup } else { songvarslookup <- songvarslookup }
+  if (is.null(myreleasesdatalookup)==FALSE) { releasesdatalookup <- myreleasesdatalookup } else { releasesdatalookup <- releasesdatalookup }
+  if (is.null(myreleases_data_input)==FALSE) { releases_data_input <- myreleases_data_input } else { releases_data_input <- releases_data_input }
 
   # Report results of the choice modelling for the preferred choice model ----------------------------------
 
@@ -244,8 +258,6 @@ Repeatr_5 <- function(mymodeldf = NULL) {
   save(summary, file = "summary.rda")
 
   setwd(mydir)
-
-  releases_data_input <- releases_data_input
 
   summary_selected <- summary %>%
     select(releaseid, track_number, rating)

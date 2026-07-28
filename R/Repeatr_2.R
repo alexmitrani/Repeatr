@@ -11,7 +11,8 @@
 #' @import rlang
 #' @import knitr
 #'
-#' @param mydf optional dataframe to be used.  If omitted the default dataframe will be used.
+#' @param mydf optional dataframe to be used (the `Repeatr1` element of `Repeatr_1()`'s return list). If omitted the default (currently lazy-loaded) `Repeatr1` dataframe will be used.
+#' @param mysongidlookup optional `songidlookup` dataframe to be used (the `songidlookup` element of `Repeatr_1()`'s return list). If omitted the default (currently lazy-loaded) `songidlookup` dataframe will be used. Pass this explicitly - rather than relying on the default - when calling `Repeatr_2()` right after a fresh `Repeatr_1()` in the same session, since the lazy-loaded default reflects the last build on disk, not the one just computed.
 #'
 #' @return A data frame (`Repeatr2`) with one row per gid/song_number/songid combination, prepared for choice modelling: includes `case` (choice-situation id), `alt` (song id, renamed from `songid`), `choice` (whether that song was the one played, renamed from `chosen`), availability/played dummy variables, and years-since-launch bucket variables. Also saved to `data/Repeatr2.rda`, alongside `fugazi_song_counts` and `fugazi_song_performance_intensity`.
 #' @export
@@ -20,12 +21,25 @@
 #' Repeatr2 <- Repeatr_2(mydf = Repeatr1)
 #'
 
-Repeatr_2 <- function(mydf = NULL) {
+Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL) {
 
   mydir <- getwd()
   on.exit(setwd(mydir), add = TRUE)
   myinputdir <- paste0(mydir, "/inst/extdata/")
   mydatadir <- paste0(mydir, "/data")
+
+  # Use the songidlookup freshly returned by this session's Repeatr_1() call
+  # if supplied, otherwise fall back to whatever is currently lazy-loaded
+  # from data/songidlookup.rda (the package's last build).
+  if (is.null(mysongidlookup)==FALSE) {
+
+    songidlookup <- mysongidlookup
+
+  } else {
+
+    songidlookup <- songidlookup
+
+  }
 
   nsongs <- nrow(songidlookup)
 
@@ -40,6 +54,12 @@ Repeatr_2 <- function(mydf = NULL) {
     Repeatr2 <- Repeatr1
 
   }
+
+  # Keep the full, unfiltered Repeatr1 data (same object mydf was given, or
+  # the lazy-loaded default) for mycaseidlookup below - it needs every
+  # gid/song_number combination, not just tracktype==1 rows, and must be the
+  # same vintage as mydf rather than a separately-resolved bare `Repeatr1`.
+  Repeatr1_current <- Repeatr2
 
   Repeatr2 <- Repeatr2 %>%
     filter(tracktype==1)
@@ -215,7 +235,7 @@ Repeatr_2 <- function(mydf = NULL) {
 
   # define case variable and add it to the data
 
-  mycaseidlookup <- Repeatr1 %>%
+  mycaseidlookup <- Repeatr1_current %>%
     group_by(gid, song_number) %>%
     summarise(records = n(), date=min(date)) %>%
     arrange(date, song_number) %>%

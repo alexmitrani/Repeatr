@@ -32,6 +32,10 @@ Repeatr_4 <- function(mydf = NULL) {
 
     Repeatr3 <- mydf
 
+  } else {
+
+    Repeatr3 <- Repeatr3
+
   }
 
   Repeatr4 <- Repeatr3
@@ -42,8 +46,15 @@ Repeatr_4 <- function(mydf = NULL) {
 
   Repeatr4 <- dfidx(Repeatr4, idx = c("case", "alt"), drop.index = TRUE)
 
+  # Alternative-specific constants (one per song) are what we actually want
+  # to estimate here, so the intercept is intentionally kept (no "- 1").
+  # This formula previously failed to estimate ("system is computationally
+  # singular") under mlogit 1.1.3 combined with dfidx >= 0.1-0 - not because
+  # of a real collinearity in the data, but because of a version
+  # incompatibility between the two packages for models with this many
+  # alternatives. mlogit >= 2.0-0 (see DESCRIPTION) resolves it.
   ml.Repeatr4 <- mlogit(choice ~ yearsold_1 + yearsold_2 + yearsold_3 + yearsold_4 + yearsold_5
-                         + yearsold_6 + yearsold_7 + yearsold_8 - 1, data = Repeatr4)
+                         + yearsold_6 + yearsold_7 + yearsold_8, data = Repeatr4)
 
   summary.ml.Repeatr4 <- summary(ml.Repeatr4)
 

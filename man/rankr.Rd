@@ -4,7 +4,12 @@
 \alias{rankr}
 \title{Undertakes paired comparisons for ranking a set of coefficients, considering whether the differences between the coefficients are significant or not.}
 \usage{
-rankr(coeftable = NULL, vcovmat = NULL, mysongidlist = NULL)
+rankr(
+  coeftable = NULL,
+  vcovmat = NULL,
+  mysongidlist = NULL,
+  mysongidlookup = NULL
+)
 }
 \arguments{
 \item{coeftable}{coefficients table from mlogit, with one row per coefficient}
@@ -12,6 +17,8 @@ rankr(coeftable = NULL, vcovmat = NULL, mysongidlist = NULL)
 \item{vcovmat}{variance covariance matrix from mlogit, with one row and one column per coefficient}
 
 \item{mysongidlist}{a dataframe containing the list of song ids to be tested.  It can contain other variables but only songid will be used.}
+
+\item{mysongidlookup}{optional \code{songidlookup} dataframe (as produced by \code{Repeatr_1()}) used to attach song names to the results. If omitted the currently lazy-loaded default will be used.}
 }
 \value{
 A data frame with one row per adjacent pair of songs tested, giving \code{song1}, \code{song2}, their coefficients (\code{mycoef1}, \code{mycoef2}), the coefficient difference and its z-statistic, p-value and 95\% confidence interval (as produced by \code{diffr()}).
