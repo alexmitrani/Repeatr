@@ -1,7 +1,7 @@
 
 #' @name Repeatr_1
 #' @title imports raw data in CSV format (1 row per show), cleans the data, and reshapes it long so that the rows are identified by combinations of gid and song_number.
-#' @description This was originally developed with a headerless file called "fugotcha.csv". It now reads "fls_data.csv" instead - a tidy, headered CSV produced by \code{\link{scrape_fls_shows}}, with one row per show and columns gid, fls_id, show_date, venue, door_price, attendance, recorded_by, mastered_by, original_source, sound_quality, played_with, fls_notes, track_1 ... track_n.
+#' @description This was originally developed with a headerless file called "fugotcha.csv". It now reads "fls_data.csv" instead - a tidy, headered CSV produced by \code{\link{scrape_fls_shows}}, with one row per show and columns gid, fls_id, show_date, venue, door_price, attendance, recorded_by, mastered_by, original_source, sound_quality, played_with, fls_notes, tour, track_1 ... track_n. `tour` (the touring period, e.g. "1988 Fall European Tour") comes from the FLS listing pages' own tour headings (see \code{\link{scrape_fls_listing_data}}), not from the older "fugazi-small.csv" file, which no longer supplies it. `city`/`state`/`country` are also scraped from those same listing pages (\code{\link{scrape_fls_listing_data}}) but, as of this writing, still get to `othervariables` via "fugazi-small.csv" rather than `fls_data.csv` - only `tour` has been migrated over so far.
 #' @description "gid" is short for "gig id"
 #' @description Another data file that was used was called "releases_songs_durations_wikipedia.csv" and was obtained from the Wikipedia data on the Fugazi discography.
 #' @description This file contains the following variables: releaseid	track_number	song	instrumental	vocals_picciotto	vocals_mackaye	vocals_lally	duration_seconds. It is joined onto the live, classified song set by `song` title text, not by a hardcoded id column - see `songid` below.
@@ -101,6 +101,12 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   geocodedatafile <- read.csv(geocodedatafilename)
   geocodedatafile$X <- NULL
 
+  # tour now comes straight from fls_data.csv (scraped from the FLS listing
+  # pages' own tour headings via scrape_fls_listing_data()) rather than this file -
+  # drop it here so the join below can't overwrite/blank it out with the
+  # older, less complete fugazi-small.csv value.
+  geocodedatafile$tour <- NULL
+
   geocodedatafile <- geocodedatafile %>%
     mutate(date = as.Date(date))
 
@@ -110,7 +116,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
            checked = 1)
 
   othervariables <- Repeatr0 %>%
-    select(gid, fls_id, show_date, venue, door_price, attendance, recorded_by, mastered_by, original_source, fls_notes)
+    select(gid, fls_id, show_date, venue, door_price, attendance, recorded_by, mastered_by, original_source, fls_notes, tour)
 
   othervariables <- othervariables %>%
     rename(flsid = fls_id, date = show_date, doorprice = door_price)

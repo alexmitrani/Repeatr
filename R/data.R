@@ -22,6 +22,7 @@
 #' \item{sound_quality}{Sound quality rating: Excellent, Very Good, Good, or Poor}
 #' \item{played_with}{Bands played with, comma-separated}
 #' \item{fls_notes}{Any official note shown on the show's page (e.g. "Previously released on CD (FLS29)"), NA when the show has none}
+#' \item{tour}{The touring period the show belongs to (e.g. "1988 Fall European Tour"), scraped from the FLS listing pages' own tour headings - see \code{\link{scrape_fls_listing_data}}.}
 #' \item{track_1-track_n}{Tracks, one column per track slot up to the widest tracklist in the data}
 #' }
 #' @section Provenance: Derived-cleaned. Produced by \code{\link{Repeatr_1}} from the raw scrape (\code{\link{scrape_fls_shows}}); typed/cleaned, no song classification yet.
@@ -88,7 +89,7 @@
 #' \item{y}{latitude}
 #' \item{city}{city}
 #' \item{country}{country}
-#' \item{tour}{tour}
+#' \item{tour}{The touring period the show belongs to, scraped directly from the FLS listing pages (see \code{\link{Repeatr0}}/\code{\link{scrape_fls_listing_data}}) - no longer sourced from "fugazi-small.csv".}
 #' \item{year}{year}
 #' \item{checked}{checked==1 indicates that the data was checked and updated by Alex Mitrani, in particular making sure that the coordinates indicate as closely as possible the actual locations of the venues.}
 #' }
