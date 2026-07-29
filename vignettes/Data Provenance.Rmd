@@ -70,9 +70,12 @@ rawdata, venuesdata, toursdata, attendancedata, transitions
 
 | Source file | Tier | Read by |
 |---|---|---|
-| `fls_data.csv` | Raw-scraped | `Repeatr_1()`, via `scrape_fls_shows()` |
+| `fls_data.csv` | Raw-scraped | `Repeatr_1()`, via `scrape_fls_shows()`. Also carries `tour`/`city`/`state`/`country`, scraped from the listing pages via `scrape_fls_listing_data()` (see `?Repeatr0`) |
 | `fls_tags.txt` | Raw-hand-curated | `Repeatr_1()`, via `fls_tags_importer()` |
-| `fls_venue_geocoding.csv` / `_v2.csv` | Raw-hand-curated | `Repeatr_1()` / `nscmov()`; `_v2` also read live by `app.R` via `gsheet2tbl()` |
+| `fls_venue_geocoding_v2.csv` | Raw-hand-curated | `Repeatr_1()` - the current primary source of venue `x`/`y`, matched by `country`/`city`/`venue`. A periodically hand-updated local snapshot of a private Google Sheet (not fetched live - that sheet isn't reliably available) |
+| `fugazi-small.csv` | Raw-hand-curated, legacy | `Repeatr_1()` - fallback `x`/`y` only, for venues `fls_venue_geocoding_v2.csv` doesn't cover yet (matched by `date`+`venue`, not `country`/`city`/`venue`); `tour`/`city`/`country`/`year` no longer read from this file |
+| `fls_venue_geocoding.csv` | Frozen-legacy | Not read by `Repeatr_1()` anymore (superseded by `_v2.csv`) or by `nscmov()`'s workflow, which is itself retired - kept for reference only |
+| `venue_name_corrections.csv` | Raw-hand-curated | `Repeatr_1()` - `venue → venue_corrected` aliases so scraped venue names match `fls_venue_geocoding_v2.csv`'s spelling (e.g. "Rivoli" → "Rivoli Theater"); same idea as `fls_tags_name_recoded.csv` below but for venues. `fls_venue_geocoding_v2.csv` is the source of truth for venue names as well as coordinates - if a geocoding entry's own venue label turns out to be wrong, fix it in the sheet, not with a code-side override |
 | `releases_songs_durations_wikipedia.csv` | Raw-hand-curated | `Repeatr_1()`, joined by `song` name (see `?songvarslookup`) |
 | `releases.csv` | Raw-hand-curated | `Repeatr_1()`, produces `releasesdatalookup` |
 | `song_tempo_bpm_data.csv` | Raw-hand-curated | `inst/shiny/Fugazetteer/app.R` directly - **not** read by `Repeatr_1()` |
