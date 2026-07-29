@@ -101,11 +101,17 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   geocodedatafile <- read.csv(geocodedatafilename)
   geocodedatafile$X <- NULL
 
-  # tour now comes straight from fls_data.csv (scraped from the FLS listing
-  # pages' own tour headings via scrape_fls_listing_data()) rather than this file -
-  # drop it here so the join below can't overwrite/blank it out with the
-  # older, less complete fugazi-small.csv value.
+  # tour/city/country/year now come straight from fls_data.csv (tour and
+  # city/country scraped from the FLS listing pages via
+  # scrape_fls_listing_data(); year computed from date below) rather than
+  # this file - drop them here so the join below can't overwrite/blank them
+  # out with the older, less complete fugazi-small.csv values. x/y
+  # (coordinates) are the only fields still sourced from this file, as a
+  # fallback for venues fls_venue_geocoding.csv doesn't cover yet.
   geocodedatafile$tour <- NULL
+  geocodedatafile$city <- NULL
+  geocodedatafile$country <- NULL
+  geocodedatafile$year <- NULL
 
   geocodedatafile <- geocodedatafile %>%
     mutate(date = as.Date(date))
@@ -116,13 +122,14 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
            checked = 1)
 
   othervariables <- Repeatr0 %>%
-    select(gid, fls_id, show_date, venue, door_price, attendance, recorded_by, mastered_by, original_source, fls_notes, tour)
+    select(gid, fls_id, show_date, venue, door_price, attendance, recorded_by, mastered_by, original_source, fls_notes, tour, city, country)
 
   othervariables <- othervariables %>%
     rename(flsid = fls_id, date = show_date, doorprice = door_price)
 
   othervariables <- othervariables %>%
     mutate(date = as.Date(date, "%d/%m/%Y"),
+           year = lubridate::year(date),
            checked = 0)
 
   othervariables <- othervariables %>%
