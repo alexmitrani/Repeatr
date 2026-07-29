@@ -17,9 +17,10 @@ dataframe with one row for each show.
 \item{original_source}{Original source}
 \item{x}{longitude}
 \item{y}{latitude}
-\item{city}{city}
+\item{city}{city - for cities that share a name with another Fugazi tour stop (Portland, Columbia, Newcastle, Croydon, Oxford), disambiguated as "City (ST/Country)" to match \code{\link{scrape_fls_listing_data}}'s coordinates source.}
+\item{state}{US state code, where applicable (\code{NA} outside the US) - scraped directly, see \code{\link{Repeatr0}}/\code{\link{scrape_fls_listing_data}}.}
 \item{country}{country}
-\item{tour}{tour}
+\item{tour}{The touring period the show belongs to, scraped directly from the FLS listing pages (see \code{\link{Repeatr0}}/\code{\link{scrape_fls_listing_data}}) - no longer sourced from "fugazi-small.csv".}
 \item{year}{year}
 \item{checked}{checked==1 indicates that the data was checked and updated by Alex Mitrani, in particular making sure that the coordinates indicate as closely as possible the actual locations of the venues.}
 }
