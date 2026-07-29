@@ -55,6 +55,17 @@ othervariables <- othervariables %>%
   select(-x, -y) %>%
   left_join(fls_venue_geocoding)
 
+# Safety net: gid should be unique in othervariables (Repeatr_1() already
+# enforces this on the package's own data via group_by(gid) %>% slice(1)),
+# but the fls_venue_geocoding join just above matches on country/city/venue,
+# not gid - if that sheet ever has two rows for the same venue, this keeps
+# a duplicate-venue fan-out from propagating into every reactive below
+# instead of just silently corrupting them.
+othervariables <- othervariables %>%
+  group_by(gid) %>%
+  slice(1) %>%
+  ungroup()
+
 played_with <- played_with %>%
   select(gid, played_with)
 
@@ -162,6 +173,26 @@ shows_data <- shows_data %>%
   select(-longitude, -latitude) %>%
   left_join(fls_venue_geocoding) %>%
   rename(latitude = y, longitude = x)
+
+# Safety net, same reasoning as the othervariables one above: gid should be
+# unique in shows_data, but this section's joins (gid_tempo_bpm above, and
+# fls_venue_geocoding by country/city/venue just above) aren't all gid-keyed,
+# and shows_data is used throughout the rest of this app - one duplicated
+# gid here fans out into every page that reads shows_data.
+shows_data <- shows_data %>%
+  group_by(gid) %>%
+  slice(1) %>%
+  ungroup()
+
+# fls_tags_show is grouped by (date, venue, city, state, country, album, gid)
+# in Repeatr_1.R - two tag batches for the same show under slightly
+# different venue text (e.g. an earlier recording later superseded by an
+# official release) produce two rows sharing one gid. Dedupe defensively
+# here too, since this is the only place in the app that reads it.
+fls_tags_show <- fls_tags_show %>%
+  group_by(gid) %>%
+  slice(1) %>%
+  ungroup()
 
 played_with_flat <- played_with %>%
   group_by(gid) %>%

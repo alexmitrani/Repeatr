@@ -1209,6 +1209,17 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
       left_join(gid_minutes) %>%
       left_join(gid_sound_quality)
 
+    # Safety net, matching othervariables above: gid_minutes comes from
+    # fls_tags_show, which is grouped by (date, venue, city, state, country,
+    # album, gid) - two tag batches for the same show under slightly
+    # different venue text (e.g. an earlier recording later superseded by
+    # an official release) produce two rows sharing one gid there, which
+    # would otherwise silently duplicate that gid here too.
+    shows_data <- shows_data %>%
+      group_by(gid) %>%
+      slice(1) %>%
+      ungroup()
+
     save(shows_data, file = "shows_data.rda")
 
     last_performance_data <- Repeatr1 %>%

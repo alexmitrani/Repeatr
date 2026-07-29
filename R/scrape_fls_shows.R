@@ -30,38 +30,71 @@ fls_get_max_listing_page <- function(page) {
 }
 
 # Scrapes the show links (gids) out of one listing page, along with the
-# "Available" Yes/No flag shown next to each show, scoped specifically to the
-# show-listing tables since the page template also contains an unrelated
-# "on this day" link elsewhere that matches the same URL pattern. The
-# available flag is captured here (for free, since the page is already being
-# fetched for gid discovery) so that shows whose recording has newly gone
-# from unavailable to available can be detected without extra requests.
-fls_scrape_listing_page <- function(page_num, base_url, user_agent) {
+# "Available" Yes/No flag and the touring period shown next to each show,
+# scoped specifically to the show-listing tables since the page template
+# also contains an unrelated "on this day" link elsewhere that matches the
+# same URL pattern. The available flag and tour are captured here (for
+# free, since the page is already being fetched for gid discovery) so that
+# shows whose recording has newly gone from unavailable to available can be
+# detected, and every show's tour recovered, without extra requests.
+#
+# Tour is not a column within each show's row - it's shown as an <h2>
+# heading immediately preceding the table.fugazi-shows-table for that tour,
+# with (potentially) several <h2>+table pairs on one listing page. This is
+# NOT verified against the live site by an R test run as of this writing -
+# spot-check with a small max_listing_pages before trusting a full crawl.
+#
+# carry_tour supplies the tour already in effect when this page starts, for
+# the case where one tour's shows are split across a page boundary and the
+# heading is only shown once, on the earlier page.
+fls_scrape_listing_page <- function(page_num, base_url, user_agent, carry_tour = NA_character_) {
 
   url <- if (page_num == 1) base_url else paste0(base_url, "?page=", page_num)
 
   page <- rvest::read_html(url, user_agent = user_agent)
 
-  hrefs <- page %>%
-    rvest::html_elements("table.fugazi-shows-table td.date a") %>%
-    rvest::html_attr("href")
+  tables <- page %>% rvest::html_elements("table.fugazi-shows-table")
 
-  gids <- basename(hrefs)
+  current_tour <- carry_tour
 
-  available <- page %>%
-    rvest::html_elements("table.fugazi-shows-table td.available") %>%
-    rvest::html_text2() %>%
-    stringr::str_trim()
+  gids <- character(0)
+  available <- character(0)
+  tour <- character(0)
 
-  list(page = page, gids = gids, available = available)
+  for (tbl in tables) {
+
+    heading <- xml2::xml_find_first(tbl, "preceding-sibling::h2[1]")
+
+    if (is.na(heading) == FALSE) {
+      current_tour <- heading %>% rvest::html_text2() %>% stringr::str_trim()
+    }
+
+    table_hrefs <- tbl %>%
+      rvest::html_elements("td.date a") %>%
+      rvest::html_attr("href")
+
+    table_gids <- basename(table_hrefs)
+
+    table_available <- tbl %>%
+      rvest::html_elements("td.available") %>%
+      rvest::html_text2() %>%
+      stringr::str_trim()
+
+    gids <- c(gids, table_gids)
+    available <- c(available, table_available)
+    tour <- c(tour, rep(current_tour, length(table_gids)))
+
+  }
+
+  list(page = page, gids = gids, available = available, tour = tour, last_tour = current_tour)
 
 }
 
-# Discovers every gid currently listed on the site (plus its Available flag),
-# paging through the listing until the site's own pagination widget says
-# there are no more pages (capped by max_listing_pages for testing). Returns
-# a data frame with one row per gid, deduplicated in case a show is ever
-# linked from more than one place on a listing page.
+# Discovers every gid currently listed on the site (plus its Available flag
+# and tour), paging through the listing until the site's own pagination
+# widget says there are no more pages (capped by max_listing_pages for
+# testing). Returns a data frame with one row per gid, deduplicated in case
+# a show is ever linked from more than one place on a listing page.
 fls_discover_gids <- function(base_url, max_listing_pages, sleepseconds, user_agent) {
 
   message("Discovering listing pages from ", base_url)
@@ -76,6 +109,8 @@ fls_discover_gids <- function(base_url, max_listing_pages, sleepseconds, user_ag
 
   all_gids <- first$gids
   all_available <- first$available
+  all_tour <- first$tour
+  last_tour <- first$last_tour
 
   if (total_pages > 1) {
 
@@ -85,16 +120,18 @@ fls_discover_gids <- function(base_url, max_listing_pages, sleepseconds, user_ag
 
       message("Scraping listing page ", page_num, " of ", total_pages)
 
-      this_page <- fls_scrape_listing_page(page_num, base_url, user_agent)
+      this_page <- fls_scrape_listing_page(page_num, base_url, user_agent, carry_tour = last_tour)
 
       all_gids <- c(all_gids, this_page$gids)
       all_available <- c(all_available, this_page$available)
+      all_tour <- c(all_tour, this_page$tour)
+      last_tour <- this_page$last_tour
 
     }
 
   }
 
-  listing <- data.frame(gid = all_gids, available = all_available, stringsAsFactors = FALSE)
+  listing <- data.frame(gid = all_gids, available = all_available, tour = all_tour, stringsAsFactors = FALSE)
 
   listing[duplicated(listing$gid) == FALSE, ]
 
@@ -332,6 +369,7 @@ fls_shows_to_dataframe <- function(shows) {
 #'   returned, not written to disk.
 #'
 #' @import rvest
+#' @import xml2
 #' @import stringr
 #' @import dplyr
 #' @import lubridate
@@ -339,8 +377,11 @@ fls_shows_to_dataframe <- function(shows) {
 #'   `show_date`, `venue`, `door_price`, `attendance`, `recorded_by`,
 #'   `mastered_by`, `original_source`, `sound_quality`, `played_with`,
 #'   `fls_notes` (any official note shown on the show's page, e.g. "Previously
-#'   released on CD (FLS29)"; `NA` when the show has none), and `track_1` ...
-#'   `track_n` (as many track columns as the widest tracklist in the result).
+#'   released on CD (FLS29)"; `NA` when the show has none), `tour` (the
+#'   touring period shown on the listing page, e.g. "1988 Fall European
+#'   Tour" - `NA` when `gids` is supplied directly, since that bypasses the
+#'   listing-page crawl this comes from), and `track_1` ... `track_n` (as
+#'   many track columns as the widest tracklist in the result).
 #' @export
 #'
 #' @examples
@@ -448,10 +489,27 @@ scrape_fls_shows <- function(existing_data = NULL,
 
   if (length(shows) == 0) {
     message("No new shows found to scrape.")
-    return(fls_shows_to_dataframe(list()))
+    empty <- fls_shows_to_dataframe(list())
+    empty$tour <- character(0)
+    return(empty)
   }
 
   results <- fls_shows_to_dataframe(shows)
+
+  # tour is only ever known from the listing-page crawl (there's no tour
+  # field on a show's own detail page - see fls_scrape_listing_page()), so
+  # it's only available here when that crawl actually ran (gids wasn't
+  # supplied directly).
+  if (is.null(listing) == FALSE) {
+
+    results <- results %>%
+      dplyr::left_join(listing[, c("gid", "tour")], by = "gid")
+
+  } else {
+
+    results$tour <- NA_character_
+
+  }
 
   if (is.null(mycsvfilename) == FALSE) {
 
@@ -476,5 +534,58 @@ scrape_fls_shows <- function(existing_data = NULL,
   }
 
   return(results)
+
+}
+
+#' @name scrape_fls_tours
+#' @title Scrape just the gid -> tour mapping from the FLS listing pages
+#' @description Crawls only the Fugazi Live Series listing pages
+#'   (`https://www.dischord.com/fugazi_live_series?page=N`) to recover each
+#'   show's touring period (e.g. "1988 Fall European Tour"). Tour is shown
+#'   there as an `<h2>` heading grouping the shows table beneath it - it is
+#'   not shown on individual show detail pages, so \code{\link{scrape_fls_shows}}'s
+#'   per-show scrape can't recover it for a show unless that show happens to
+#'   be re-scraped for some other reason.
+#' @description Because this only needs the listing pages (a few dozen
+#'   requests total), not one request per show, it's the cheap way to
+#'   backfill `tour` onto every already-known show, e.g.:
+#'   `fls_data <- fls_data %>% select(-tour) %>% left_join(scrape_fls_tours(), by = "gid")`
+#'   - much faster than a full `update_existing = TRUE` \code{\link{scrape_fls_shows}}
+#'   re-scrape, which would revisit every show's own detail page for no
+#'   benefit here (tour isn't there).
+#' @description This has not been verified against the live site by an
+#'   actual R run as of this writing (the `<h2>`/`table.fugazi-shows-table`
+#'   structure it targets was confirmed by inspecting the page, not by
+#'   executing this code) - spot-check with `max_listing_pages = 1` before
+#'   trusting a full crawl.
+#'
+#' @param max_listing_pages Maximum number of listing pages to page through.
+#'   Set to a low number for testing. Defaults to `Inf` (pages through
+#'   everything the site's pagination widget reports).
+#' @param sleepseconds Seconds to wait before every request, to stay polite
+#'   to the site. Default 2.
+#'
+#' @import rvest
+#' @import xml2
+#' @import stringr
+#' @return A data frame with one row per show currently listed on the site,
+#'   columns `gid` and `tour`.
+#' @export
+#'
+#' @examples
+#' # Small-scale test: only the first listing page
+#' test_tours <- scrape_fls_tours(max_listing_pages = 1)
+#'
+scrape_fls_tours <- function(max_listing_pages = Inf, sleepseconds = 2) {
+
+  base_url <- "https://www.dischord.com/fugazi_live_series"
+
+  user_agent <- "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+
+  httr::set_config(httr::user_agent(user_agent))
+
+  listing <- fls_discover_gids(base_url, max_listing_pages, sleepseconds, user_agent)
+
+  listing[, c("gid", "tour")]
 
 }
