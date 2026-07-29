@@ -1,9 +1,20 @@
-country,city,venue,venue_corrected
-Canada,Toronto,Rivoli,Rivoli Theater
-Netherlands,Amsterdam,Vrankrijk,Vranckrijk
-England,Birmingham,Edwards No. 8,Edward's #8
-USA,Lincoln,University of Nebraska Centennial Ballroom,University of Nebraska Centennial Hall
-USA,Orlando,Visage (Edge),Edge
-USA,Rapid City,Surbeck Center at SD School of Mines and Technology,Surbeck City School of Mines and Technology
-Brazil,Santos,Bar Do Três,Bar do 3
-England,Canterbury,Kent Institute of Art and Design,Arts College
+country,city,venue,country_corrected,city_corrected,venue_corrected
+Canada,Toronto,Rivoli,,,Rivoli Theater
+Netherlands,Amsterdam,Vrankrijk,,,Vranckrijk
+England,Birmingham,Edwards No. 8,,,Edward's #8
+USA,Lincoln,University of Nebraska Centennial Ballroom,,,University of Nebraska Centennial Hall
+USA,Orlando,Visage (Edge),,,Edge
+USA,Rapid City,Surbeck Center at SD School of Mines and Technology,,,Surbeck City School of Mines and Technology
+Brazil,Santos,Bar Do Três,,,Bar do 3
+England,Canterbury,Kent Institute of Art and Design,,,Arts College
+USA,East Lansing,Matt Kelly’s Basement,,Lansing,Matt Kelly's Basement
+USA,St. Louis,1227,,St Louis,
+France,Riec-Sur-Belon,Kergon Forte,,Sur Belon,
+USA,Springfield,Chestnut Hall,,Springfield (MO),
+USA,Springfield,McKensie Ballroom,,Springfield (OR),
+Spain/Basque,Lakuntza,Sala Matraka,Spain,,
+Spain/Basque,Bergara,Sala Jam,Spain,,
+Italy,"Gavoi, Sardinia",Covo Dei Nottambuli,,Gavoi,
+Italy,"Catania, Sicily",Porto Catania Outdoor Show,,Catania,
+Brazil,Campinas,A.S.S.A.M.P.I.,,,Assampi
+Sweden,Jönköping,Kulturhuset,,Jonkoping,

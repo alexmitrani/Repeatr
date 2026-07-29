@@ -135,24 +135,30 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   othervariables <- othervariables %>%
     mutate(attendance = as.numeric(attendance))
 
-  # Correct venue names to match fls_venue_geocoding_v2.csv's spelling
-  # before anything below tries to match against it by venue text (e.g.
-  # "Rivoli" here vs "Rivoli Theater" there) - applied this early so the
-  # corrected name is also what ends up in shows_data/the app, not just
-  # what the coordinate join sees. inst/extdata/venue_name_corrections.csv
-  # is a small hand-maintained list, the same idea as
-  # fls_tags_name_recoded.csv but for venues instead of songs. The sheet is
-  # the source of truth for venue names as well as coordinates - if a
-  # mismatch turns out to be fls_venue_geocoding_v2.csv's own label being
-  # wrong rather than a real spelling difference, fix it in the sheet
-  # itself, not with a rename here or a coordinate override below.
+  # Correct country/city/venue to match fls_venue_geocoding_v2.csv's
+  # spelling before anything below tries to match against it (e.g.
+  # "Rivoli" here vs "Rivoli Theater" there, or "Spain/Basque" here vs
+  # "Spain" there) - applied this early so the corrected values are also
+  # what ends up in shows_data/the app, not just what the coordinate join
+  # sees. inst/extdata/venue_name_corrections.csv is a small hand-maintained
+  # list, the same idea as fls_tags_name_recoded.csv but for show
+  # locations. The sheet is the source of truth for these names as well as
+  # coordinates - if a mismatch turns out to be fls_venue_geocoding_v2.csv's
+  # own label being wrong rather than a real spelling difference, fix it in
+  # the sheet itself, not with a rename here or a coordinate override below.
   venue_name_corrections_filename <- system.file("extdata", "venue_name_corrections.csv", package = "Repeatr")
   venue_name_corrections <- read.csv(venue_name_corrections_filename)
 
+  # ifelse conditions check for "" as well as NA - blank fields in
+  # venue_name_corrections.csv (a row correcting only one or two of the
+  # three columns) can come back as either from read.csv(), and this must
+  # not overwrite country/city/venue with an empty string either way.
   othervariables <- othervariables %>%
     left_join(venue_name_corrections, by = c("country", "city", "venue")) %>%
-    mutate(venue = ifelse(is.na(venue_corrected)==FALSE, venue_corrected, venue)) %>%
-    select(-venue_corrected)
+    mutate(country = ifelse(is.na(country_corrected) | country_corrected=="", country, country_corrected),
+           city = ifelse(is.na(city_corrected) | city_corrected=="", city, city_corrected),
+           venue = ifelse(is.na(venue_corrected) | venue_corrected=="", venue, venue_corrected)) %>%
+    select(-country_corrected, -city_corrected, -venue_corrected)
 
   othervariables <- othervariables %>% left_join(geocodedatafile)
 
