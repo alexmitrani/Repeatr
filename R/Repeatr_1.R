@@ -564,6 +564,74 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     ) %>%
     mutate(song_number = as.integer(song_number))
 
+
+# check list of songs with minimal changes to the names ------------------------
+
+  raw_fls_song_list <- Repeatr1 %>%
+    mutate(song = ifelse(song=="And the Same", "And The Same", song)) %>%
+    mutate(song = ifelse(song=="Back To Base", "Back to Base", song)) %>%
+    mutate(song = ifelse(song=="Bed For The Scraping (continued)", "Bed For The Scraping", song)) %>%
+    mutate(song = ifelse(song=="Bed for the Scraping", "Bed For The Scraping", song)) %>%
+    mutate(song = ifelse(song=="Bed for the Scraping", "Bed For The Scraping", song)) %>%
+    mutate(song = ifelse(song=="Give Me the Cure", "Give Me The Cure", song)) %>%
+    mutate(song = ifelse(song=="Give me the Cure", "Give Me The Cure", song)) %>%
+    mutate(song = ifelse(song=="In Defense of Humans", "In Defense Of Humans", song)) %>%
+    mutate(song = ifelse(song=="Last Chance For a Slow Dance", "Last Chance For A Slow Dance", song)) %>%
+    mutate(song = ifelse(song=="Last Chance for a Slow Dance", "Last Chance For A Slow Dance", song)) %>%
+    mutate(song = ifelse(song=="Life And Limb", "Life and Limb", song)) %>%
+    mutate(song = ifelse(song=="Life And Limb", "Life and Limb", song)) %>%
+    mutate(song = ifelse(song=="Rend it", "Rend It", song)) %>%
+    mutate(song = ifelse(song=="Returning the Screw", "Returning The Screw", song)) %>%
+    mutate(song = ifelse(song=="Shut The Door", "Shut the Door", song)) %>%
+    mutate(song = ifelse(song=="Sieve-Fisted FInd", "Sieve-Fisted Find", song)) %>%
+    mutate(song = ifelse(song=="Sweet and Low", "Sweet And Low", song))
+
+  raw_fls_song_list <- raw_fls_song_list %>%
+    filter(is.na(song)==FALSE) %>%
+    group_by(song) %>%
+    summarize(count = n()) %>%
+    ungroup() %>%
+    arrange(song)
+
+  raw_fls_song_list$tracktype <- 1
+
+  raw_fls_song_list$song2 <- str_to_lower(raw_fls_song_list$song)
+
+  raw_fls_song_list <- raw_fls_song_list %>%
+    mutate(tracktype=ifelse(grepl("interlude", song2)==TRUE, 0, tracktype))
+
+  raw_fls_song_list <- raw_fls_song_list %>%
+    mutate(tracktype=ifelse(grepl("encore", song2)==TRUE, 0, tracktype))
+
+  raw_fls_song_list <- raw_fls_song_list %>%
+    mutate(tracktype=ifelse(grepl("intro", song2)==TRUE, 0, tracktype))
+
+  raw_fls_song_list <- raw_fls_song_list %>%
+    mutate(tracktype=ifelse(grepl("track", song2)==TRUE, 0, tracktype))
+
+  raw_fls_song_list <- raw_fls_song_list %>%
+    mutate(tracktype=ifelse(grepl("remarks", song2)==TRUE, 0, tracktype))
+
+  raw_fls_song_list <- raw_fls_song_list %>%
+    mutate(tracktype=ifelse(grepl("crowd", song2)==TRUE, 0, tracktype))
+
+  raw_fls_song_list <- raw_fls_song_list %>%
+    mutate(tracktype=ifelse(grepl("outro", song2)==TRUE, 0, tracktype))
+
+  raw_fls_song_list <- raw_fls_song_list %>%
+    mutate(tracktype=ifelse(grepl("untitled", song2)==TRUE, 0, tracktype))
+
+  raw_fls_song_list <- raw_fls_song_list %>%
+    mutate(tracktype=ifelse(grepl("instrumental interlude", song2)==TRUE, 1, tracktype))
+
+  raw_fls_song_list <- raw_fls_song_list %>%
+    mutate(tracktype=ifelse(grepl("comedy of life", song2)==TRUE, 1, tracktype))
+
+  raw_fls_song_list <- raw_fls_song_list %>%
+    mutate(tracktype=ifelse(grepl("link track", song2)==TRUE, 1, tracktype))
+
+  raw_fls_song_list$song2 <- NULL
+
   Repeatr1 <- Repeatr1 %>%
     arrange(gid, song_number)
 
@@ -1508,7 +1576,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
 
 
 
-  myreturnlist <- list(Repeatr0, Repeatr1, songidlookup, mycount, songvarslookup, releasesdatalookup, othervariables, cumulative_song_counts, fls_tags, fls_tags_show, cumulative_duration_counts, releases_data_input)
+  myreturnlist <- list(Repeatr0, Repeatr1, songidlookup, mycount, songvarslookup, releasesdatalookup, othervariables, cumulative_song_counts, fls_tags, fls_tags_show, cumulative_duration_counts, releases_data_input, raw_fls_song_list)
 
   return(myreturnlist)
 
