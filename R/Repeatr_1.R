@@ -122,7 +122,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
            checked = 1)
 
   othervariables <- Repeatr0 %>%
-    select(gid, fls_id, show_date, venue, door_price, attendance, recorded_by, mastered_by, original_source, fls_notes, tour, city, country)
+    select(gid, fls_id, show_date, venue, door_price, attendance, recorded_by, mastered_by, original_source, fls_notes, tour, city, state, country)
 
   othervariables <- othervariables %>%
     rename(flsid = fls_id, date = show_date, doorprice = door_price)
@@ -153,8 +153,14 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   othervariables <- othervariables %>%
     mutate(city = ifelse(city=="Wesleyan", "Middletown", city))
 
-  othervariables <- othervariables %>%
-    filter(is.na(x)==FALSE)
+  # Do NOT filter out rows with no x/y here - this used to run immediately
+  # after the fugazi-small.csv join above, which meant any show whose
+  # coordinates only come from a later source (the disambiguation-corrected
+  # city match, the many hardcoded per-venue x/y corrections below, or the
+  # fls_venue_geocoding_v2.csv join near the end of this function) was
+  # dropped before any of those ever got a chance to run. The equivalent
+  # filter now runs at the very end, after every coordinate source has had
+  # its turn.
 
   # bind_rows (not rbind.data.frame) since othervariables_patch.csv has no
   # fls_notes column - bind_rows fills it with NA for those rows instead of
@@ -166,7 +172,15 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   othervariables <- othervariables %>%
     mutate(city = ifelse(country=="England" & city=="Newcastle", "Newcastle-Upon-Tyne", city),
            city = ifelse(country=="USA" & city=="Oxford", "Oxford (USA)", city),
-           city = ifelse(country=="Australia" & city=="Croydon", "Croydon (Australia)", city))
+           city = ifelse(country=="Australia" & city=="Croydon", "Croydon (Australia)", city),
+           city = ifelse(country=="Australia" & city=="Newcastle", "Newcastle (Australia)", city),
+           # Portland and Columbia each cover multiple, differently-located
+           # US cities of the same name - fls_venue_geocoding_v2.csv
+           # disambiguates them as "City (ST)", so match that convention
+           # using the state scraped alongside city/country, or these
+           # venues' coordinates can never be found there.
+           city = ifelse(country=="USA" & city=="Portland" & is.na(state)==FALSE, paste0("Portland (", state, ")"), city),
+           city = ifelse(country=="USA" & city=="Columbia" & is.na(state)==FALSE, paste0("Columbia (", state, ")"), city))
 
   othervariables <- othervariables %>%
     mutate(venue = ifelse(country=="USA" & city=="Washington" & venue=="9:30 Club" & year<=1995, "9:30 Club (1980-1995)", venue),
@@ -318,16 +332,21 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   othervariables <- othervariables %>%
     relocate(checked, .after = year)
 
-  fls_venue_geocoding_update_filename <- paste0(myinputdir, "fls_venue_geocoding.csv")
+  # fls_venue_geocoding_v2.csv is the current source of truth for venue
+  # coordinates (a periodically hand-updated local snapshot of a private
+  # Google Sheet - not read live, since that sheet isn't reliably
+  # available). It overrides whatever x/y fugazi-small.csv provided above,
+  # falling back to that older value only for venues not yet in this file.
+  # Unlike the older fls_venue_geocoding.csv this replaces, there's no
+  # city_disambiguation/guess/unknown distinction here - every coordinate
+  # in this file is treated as checked/confirmed.
+  fls_venue_geocoding_update_filename <- paste0(myinputdir, "fls_venue_geocoding_v2.csv")
 
-  # Update coordinates from geocoding file
   fls_venue_geocoding_update <- read.csv(fls_venue_geocoding_update_filename, header=TRUE) %>%
-    select(country, city, venue, link_x, link_y, city_disambiguation, guess, unknown) %>%
+    select(country, city, venue, x, y) %>%
+    rename(link_x = x, link_y = y) %>%
     filter(is.na(link_x)==FALSE) %>%
     mutate(geocoding_check=1)
-
-  fls_venue_geocoding_update <- fls_venue_geocoding_update %>%
-    mutate(city_disambiguation = ifelse(nchar(city_disambiguation)>0,city_disambiguation,NA))
 
   othervariables <- othervariables %>%
     left_join(fls_venue_geocoding_update)
@@ -335,12 +354,17 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   othervariables <- othervariables %>%
     mutate(x = ifelse(is.na(link_x)==FALSE, link_x, x),
            y = ifelse(is.na(link_y)==FALSE, link_y, y),
-           city = ifelse(is.na(city_disambiguation)==FALSE, city_disambiguation, city),
-           checked = ifelse(is.na(geocoding_check)==FALSE & is.na(guess)==TRUE & is.na(unknown)==TRUE, geocoding_check, checked))
+           checked = ifelse(is.na(geocoding_check)==FALSE, geocoding_check, checked))
 
   othervariables <- othervariables %>%
-    select(-link_x, -link_y, -city_disambiguation, -geocoding_check, -guess, -unknown)
+    select(-link_x, -link_y, -geocoding_check)
 
+  # This is the one place a show should actually be dropped for lacking
+  # coordinates - after fugazi-small.csv, every hardcoded per-venue
+  # correction above, and fls_venue_geocoding_v2.csv have all had a chance
+  # to supply x/y, not before.
+  othervariables <- othervariables %>%
+    filter(is.na(x)==FALSE)
 
   setwd(mydatadir)
 

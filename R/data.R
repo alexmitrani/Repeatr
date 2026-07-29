@@ -23,6 +23,9 @@
 #' \item{played_with}{Bands played with, comma-separated}
 #' \item{fls_notes}{Any official note shown on the show's page (e.g. "Previously released on CD (FLS29)"), NA when the show has none}
 #' \item{tour}{The touring period the show belongs to (e.g. "1988 Fall European Tour"), scraped from the FLS listing pages' own tour headings - see \code{\link{scrape_fls_listing_data}}.}
+#' \item{city}{City, scraped from the FLS listing pages - see \code{\link{scrape_fls_listing_data}}. Not yet disambiguated for cities that share a name with another tour stop (Portland, Columbia, etc.) - see \code{\link{othervariables}} for the disambiguated version.}
+#' \item{state}{US state code, where applicable (`NA` outside the US) - see \code{\link{scrape_fls_listing_data}}.}
+#' \item{country}{Country, scraped from the FLS listing pages - see \code{\link{scrape_fls_listing_data}}.}
 #' \item{track_1-track_n}{Tracks, one column per track slot up to the widest tracklist in the data}
 #' }
 #' @section Provenance: Derived-cleaned. Produced by \code{\link{Repeatr_1}} from the raw scrape (\code{\link{scrape_fls_shows}}); typed/cleaned, no song classification yet.
@@ -87,7 +90,8 @@
 #' \item{original_source}{Original source}
 #' \item{x}{longitude}
 #' \item{y}{latitude}
-#' \item{city}{city}
+#' \item{city}{city - for cities that share a name with another Fugazi tour stop (Portland, Columbia, Newcastle, Croydon, Oxford), disambiguated as "City (ST/Country)" to match \code{\link{scrape_fls_listing_data}}'s coordinates source.}
+#' \item{state}{US state code, where applicable (`NA` outside the US) - scraped directly, see \code{\link{Repeatr0}}/\code{\link{scrape_fls_listing_data}}.}
 #' \item{country}{country}
 #' \item{tour}{The touring period the show belongs to, scraped directly from the FLS listing pages (see \code{\link{Repeatr0}}/\code{\link{scrape_fls_listing_data}}) - no longer sourced from "fugazi-small.csv".}
 #' \item{year}{year}

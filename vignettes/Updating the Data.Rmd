@@ -75,13 +75,11 @@ To update: open the new mp3 files in kid3, export the tag data as format "CSV qu
 
 ## 3. Updating venue coordinates
 
-Venue coordinates are looked up by hand on Google Maps and kept in `inst/extdata/fls_venue_geocoding.csv`. `nscmov()` (`R/nscmov.R`) automates the bookkeeping around this, but not the lookup itself:
+Venue coordinates now come primarily from `inst/extdata/fls_venue_geocoding_v2.csv`, a local snapshot of a private Google Sheet the coordinates are actually maintained in - `Repeatr_1()` reads this file directly (matched to shows by `country`/`city`/`venue`), not the live sheet itself, since that sheet isn't reliably available and isn't part of the formal package workflow. To update: look up new/corrected venues on Google Maps in the sheet as usual, then download it and overwrite `inst/extdata/fls_venue_geocoding_v2.csv` with the current export.
 
-```{r}
-othervariables <- nscmov()
-```
+`inst/extdata/fugazi-small.csv` is still consulted as a fallback for any venue `fls_venue_geocoding_v2.csv` doesn't cover, so a show doesn't lose its coordinates entirely just because a new venue hasn't been added to the sheet yet.
 
-This applies whatever coordinates are already confirmed in `fls_venue_geocoding.csv`, then writes `fls_venue_geocoding_update.csv` - a to-do list of every venue that's still unresolved (`checked == 0`). For each row, look the venue up on Google Maps, fill in `googlemaps_hyperlink`, `link_x`, `link_y` (and `city_disambiguation`/`guess`/`unknown` where relevant), then merge those filled-in rows back into `fls_venue_geocoding.csv` by hand. Run `nscmov()` again to confirm the new venues are picked up (`checked` should flip to 1).
+The older `fls_venue_geocoding.csv` file and `nscmov()`'s (`R/nscmov.R`) to-do-list bookkeeping around it are **no longer part of this pipeline** - `Repeatr_1()` stopped reading that file once `fls_venue_geocoding_v2.csv` became the source of truth. They're left in place for reference but nothing in `Repeatr_1()` calls `nscmov()` or reads `fls_venue_geocoding.csv` anymore; treat that workflow as retired unless it gets revived deliberately.
 
 ## 4. Updating song/release/duration and tempo data
 
