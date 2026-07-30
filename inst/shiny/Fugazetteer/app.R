@@ -51,16 +51,19 @@ othervariables <- othervariables %>%
   mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
   mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>"))
 
-# fls_venue_geocoding (the live Sheet) keeps Portland/Columbia/Croydon under
-# their disambiguated "City (ST/Country)" form - othervariables$city is
-# already back to plain city by this point (Repeatr_1.R strips it after its
-# own, internal join against the same coordinates), so re-inject the same
-# suffix here too or this join silently misses those venues, same reasoning
-# as R/Repeatr_1.R's disambiguation block.
+# fls_venue_geocoding (the live Sheet) keeps Portland/Columbia/Croydon/Oxford/
+# Newcastle under their disambiguated "City (ST/Country)" form -
+# othervariables$city is already back to plain city by this point
+# (Repeatr_1.R strips it after its own, internal join against the same
+# coordinates), so re-inject the same suffix here too or this join silently
+# misses those venues, same reasoning as R/Repeatr_1.R's disambiguation block.
 othervariables <- othervariables %>%
   mutate(city = ifelse(country=="USA" & city=="Portland" & is.na(subdivision)==FALSE, paste0("Portland (", subdivision, ")"), city),
          city = ifelse(country=="USA" & city=="Columbia" & is.na(subdivision)==FALSE, paste0("Columbia (", subdivision, ")"), city),
-         city = ifelse(country=="Australia" & city=="Croydon", "Croydon (Australia)", city))
+         city = ifelse(country=="USA" & city=="Springfield" & is.na(subdivision)==FALSE, paste0("Springfield (", subdivision, ")"), city),
+         city = ifelse(country=="Australia" & city=="Croydon", "Croydon (Australia)", city),
+         city = ifelse(country=="USA" & city=="Oxford", "Oxford (USA)", city),
+         city = ifelse(country=="Australia" & city=="Newcastle", "Newcastle (Australia)", city))
 
 othervariables <- othervariables %>%
   select(-x, -y) %>%
@@ -74,7 +77,11 @@ othervariables <- othervariables %>%
          city = ifelse(city=="Columbia (SC)", "Columbia", city),
          city = ifelse(city=="Columbia (MO)", "Columbia", city),
          city = ifelse(city=="Columbia (MD)", "Columbia", city),
-         city = ifelse(city=="Croydon (Australia)", "Croydon", city))
+         city = ifelse(city=="Springfield (MO)", "Springfield", city),
+         city = ifelse(city=="Springfield (OR)", "Springfield", city),
+         city = ifelse(city=="Croydon (Australia)", "Croydon", city),
+         city = ifelse(city=="Oxford (USA)", "Oxford", city),
+         city = ifelse(city=="Newcastle (Australia)", "Newcastle", city))
 
 # Safety net: gid should be unique in othervariables (Repeatr_1() already
 # enforces this on the package's own data via group_by(gid) %>% slice(1)),
@@ -98,7 +105,7 @@ played_with <- played_with %>%
   mutate(attendance = round(attendance, 0))
 
 played_with <- played_with %>%
-  select(fls_link, gid, year, tour, date, venue, city, country, played_with, attendance, sound_quality, latitude, longitude)
+  select(fls_link, gid, year, tour, date, venue, city, subdivision, country, played_with, attendance, sound_quality, latitude, longitude)
 
 year_tour_gid_song <- duration_data_da %>%
   left_join(othervariables) %>%
@@ -190,16 +197,19 @@ gid_tempo_bpm <- gid_tempo_bpm_minutes %>%
 shows_data <- Repeatr::shows_data %>%
   left_join(gid_tempo_bpm)
 
-# fls_venue_geocoding (the live Sheet) keeps Portland/Columbia/Croydon under
-# their disambiguated "City (ST/Country)" form - shows_data$city is already
-# back to plain city by this point (Repeatr_1.R strips it after its own,
-# internal join against the same coordinates), so re-inject the same suffix
+# fls_venue_geocoding (the live Sheet) keeps Portland/Columbia/Croydon/Oxford/
+# Newcastle under their disambiguated "City (ST/Country)" form - shows_data$city
+# is already back to plain city by this point (Repeatr_1.R strips it after its
+# own, internal join against the same coordinates), so re-inject the same suffix
 # here too or this join silently misses those venues, same reasoning as
 # R/Repeatr_1.R's disambiguation block.
 shows_data <- shows_data %>%
   mutate(city = ifelse(country=="USA" & city=="Portland" & is.na(subdivision)==FALSE, paste0("Portland (", subdivision, ")"), city),
          city = ifelse(country=="USA" & city=="Columbia" & is.na(subdivision)==FALSE, paste0("Columbia (", subdivision, ")"), city),
-         city = ifelse(country=="Australia" & city=="Croydon", "Croydon (Australia)", city))
+         city = ifelse(country=="USA" & city=="Springfield" & is.na(subdivision)==FALSE, paste0("Springfield (", subdivision, ")"), city),
+         city = ifelse(country=="Australia" & city=="Croydon", "Croydon (Australia)", city),
+         city = ifelse(country=="USA" & city=="Oxford", "Oxford (USA)", city),
+         city = ifelse(country=="Australia" & city=="Newcastle", "Newcastle (Australia)", city))
 
 shows_data <- shows_data %>%
   select(-longitude, -latitude) %>%
@@ -214,7 +224,11 @@ shows_data <- shows_data %>%
          city = ifelse(city=="Columbia (SC)", "Columbia", city),
          city = ifelse(city=="Columbia (MO)", "Columbia", city),
          city = ifelse(city=="Columbia (MD)", "Columbia", city),
-         city = ifelse(city=="Croydon (Australia)", "Croydon", city))
+         city = ifelse(city=="Springfield (MO)", "Springfield", city),
+         city = ifelse(city=="Springfield (OR)", "Springfield", city),
+         city = ifelse(city=="Croydon (Australia)", "Croydon", city),
+         city = ifelse(city=="Oxford (USA)", "Oxford", city),
+         city = ifelse(city=="Newcastle (Australia)", "Newcastle", city))
 
 # Safety net, same reasoning as the othervariables one above: gid should be
 # unique in shows_data, but this section's joins (gid_tempo_bpm above, and
@@ -247,6 +261,14 @@ format_played_with <- function(bands) {
   } else {
     paste0(paste(bands[seq_len(n - 1)], collapse = ", "), ", and ", bands[n])
   }
+}
+
+# Appends subdivision onto city (e.g. "Portland, OR" vs "Portland, ME") to
+# disambiguate same-named cities in the "shows"/"with" tabs' tables and the
+# city dropdown - falls back to plain city when no subdivision is recorded.
+add_subdivision_to_city <- function(df) {
+  df %>%
+    mutate(city = ifelse(is.na(subdivision) | subdivision == "", city, paste0(city, ", ", subdivision)))
 }
 
 played_with_flat <- played_with %>%
@@ -1502,7 +1524,8 @@ server <- function(input, output, session) {
 
   output$menuOptions_cities <- renderUI({
 
-    menudata <- shows_data
+    menudata <- shows_data %>%
+      add_subdivision_to_city()
 
     if (is.null(input$yearInput_shows)==FALSE) {
       menudata <- menudata %>%
@@ -1584,7 +1607,8 @@ server <- function(input, output, session) {
 
     mydf <- shows_data %>%
       filter(date >= date1 &
-               date <= date2)
+               date <= date2) %>%
+      add_subdivision_to_city()
 
     if (is.null(input$yearInput_shows)==FALSE) {
       mydf <- mydf %>%
@@ -2092,6 +2116,7 @@ server <- function(input, output, session) {
     } else {
 
       mydf <- played_with_data() %>%
+        add_subdivision_to_city() %>%
         mutate(url = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
         select(url, fls_link, date, venue, city, country, played_with, attendance, sound_quality) %>%
         arrange(date)

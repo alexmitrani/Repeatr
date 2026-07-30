@@ -184,6 +184,29 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   othervariables <- othervariables %>%
     mutate(subdivision = ifelse(city=="Hobart" & country=="Australia" & subdivision=="TZ", "TAS", subdivision))
 
+  # The FLS site's own "State" filter link is blank for a number of
+  # Australian shows (and wrong - "NSW" - for every Canberra show, which is
+  # actually in the Australian Capital Territory) even though every one of
+  # these cities is unambiguously in a single state/territory. Fill/correct
+  # them here rather than leaving subdivision blank, since app.R uses
+  # subdivision to disambiguate city names (e.g. "Newcastle, NSW" vs
+  # "Newcastle-Upon-Tyne"). Verified against each venue's own coordinates in
+  # fls_venue_geocoding_v2.csv.
+  othervariables <- othervariables %>%
+    mutate(subdivision = ifelse(country=="Australia" & city=="Adelaide", "SA", subdivision),
+           subdivision = ifelse(country=="Australia" & city=="Ballarat", "VIC", subdivision),
+           subdivision = ifelse(country=="Australia" & city=="Brisbane", "QLD", subdivision),
+           subdivision = ifelse(country=="Australia" & city=="Canberra", "ACT", subdivision),
+           subdivision = ifelse(country=="Australia" & city=="Darwin", "NT", subdivision),
+           subdivision = ifelse(country=="Australia" & city=="Geelong", "VIC", subdivision),
+           subdivision = ifelse(country=="Australia" & city=="Lismore", "NSW", subdivision),
+           subdivision = ifelse(country=="Australia" & city=="Manly", "NSW", subdivision),
+           subdivision = ifelse(country=="Australia" & city=="Melbourne", "VIC", subdivision),
+           subdivision = ifelse(country=="Australia" & city=="Newcastle", "NSW", subdivision),
+           subdivision = ifelse(country=="Australia" & city=="Perth", "WA", subdivision),
+           subdivision = ifelse(country=="Australia" & city=="Sydney", "NSW", subdivision),
+           subdivision = ifelse(country=="Australia" & city=="Wollongong", "NSW", subdivision))
+
   # Do NOT filter out rows with no x/y here - this used to run immediately
   # after the fugazi-small.csv join above, which meant any show whose
   # coordinates only come from a later source (the disambiguation-corrected
@@ -391,21 +414,29 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     select(-link_x, -link_y, -geocoding_check)
 
   # The "City (ST)"/"City (Country)" disambiguation suffix injected above
-  # (Portland, Columbia, Croydon) exists only so the join against
-  # fls_venue_geocoding_v2.csv above can find the right coordinates -
+  # (Portland, Columbia, Croydon, Oxford, Newcastle) exists only so the join
+  # against fls_venue_geocoding_v2.csv above can find the right coordinates -
   # subdivision/country already carry the same disambiguating information
-  # untouched, so strip the suffix back off now that its job is done.
-  # Explicit per-value ifelse()s rather than a generic "strip trailing
-  # parenthetical" regex, since e.g. "Oxford (USA)" also has a trailing
-  # parenthetical that must NOT be stripped - that one stays
-  # country-disambiguated, not subdivision-disambiguated.
+  # untouched, so strip the suffix back off now that its job is done. Oxford
+  # and Newcastle (Australia) now rely on their (newly-populated) subdivision
+  # for disambiguation instead of a permanent country suffix, same as the
+  # others - see app.R's city/subdivision concatenation.
   othervariables <- othervariables %>%
     mutate(city = ifelse(city=="Portland (OR)", "Portland", city),
            city = ifelse(city=="Portland (ME)", "Portland", city),
            city = ifelse(city=="Columbia (SC)", "Columbia", city),
            city = ifelse(city=="Columbia (MO)", "Columbia", city),
            city = ifelse(city=="Columbia (MD)", "Columbia", city),
-           city = ifelse(city=="Croydon (Australia)", "Croydon", city))
+           city = ifelse(city=="Croydon (Australia)", "Croydon", city),
+           city = ifelse(city=="Oxford (USA)", "Oxford", city),
+           city = ifelse(city=="Newcastle (Australia)", "Newcastle", city),
+           # "Springfield (MO)"/"Springfield (OR)" come from
+           # venue_name_corrections.csv (not the Disambiguation block above)
+           # for the same reason - matching fls_venue_geocoding_v2.csv's join
+           # key - but are just as subdivision-disambiguated as Portland, so
+           # strip them back here too.
+           city = ifelse(city=="Springfield (MO)", "Springfield", city),
+           city = ifelse(city=="Springfield (OR)", "Springfield", city))
 
   # This is the one place a show should actually be dropped for lacking
   # coordinates - after fugazi-small.csv, every hardcoded per-venue
