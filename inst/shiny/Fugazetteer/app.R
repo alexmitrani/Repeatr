@@ -236,9 +236,22 @@ fls_tags_show <- fls_tags_show %>%
   slice(1) %>%
   ungroup()
 
+# Joins a vector of band names into a grammatically correct list: "A" for
+# one band, "A and B" for two, "A, B, and C" (Oxford comma) for three or more.
+format_played_with <- function(bands) {
+  n <- length(bands)
+  if (n == 1) {
+    bands
+  } else if (n == 2) {
+    paste(bands, collapse = " and ")
+  } else {
+    paste0(paste(bands[seq_len(n - 1)], collapse = ", "), ", and ", bands[n])
+  }
+}
+
 played_with_flat <- played_with %>%
   group_by(gid) %>%
-  summarise(played_with = str_flatten(played_with, ", "))
+  summarise(played_with = format_played_with(played_with))
 
 today_data <- shows_data %>%
   left_join(fls_tags_show, by = "gid") %>%
