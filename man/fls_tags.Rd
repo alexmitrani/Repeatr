@@ -8,7 +8,7 @@
 dataframe with one row for each track in the Fugazi Live Series data, including data from the audio file tags.
 \describe{
 \item{track}{track number}
-\item{album}{album name, which includes the date, venue, city, state, and country}
+\item{album}{album name, which includes the date, venue, city, subdivision, and country}
 \item{song}{track name}
 \item{duration}{duration in period format (lubridate)}
 \item{seconds}{duration in seconds}
@@ -16,7 +16,7 @@ dataframe with one row for each track in the Fugazi Live Series data, including 
 \item{date}{date}
 \item{venue}{venue}
 \item{city}{city}
-\item{state}{state for USA shows}
+\item{subdivision}{subdivision, parsed from the album tag text - only ever populated for \code{country=="USA"}, blank otherwise (unlike \code{\link{shows_data}}'s \code{subdivision}, which is sourced from the site's own per-show field and also covers Canada/Australia)}
 \item{country}{country}
 \item{gid}{show id}
 }

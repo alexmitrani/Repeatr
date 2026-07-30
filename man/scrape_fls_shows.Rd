@@ -57,8 +57,9 @@ A data frame with one row per show and columns \code{gid}, \code{fls_id},
 \code{mastered_by}, \code{original_source}, \code{sound_quality}, \code{played_with},
 \code{fls_notes} (any official note shown on the show's page, e.g. "Previously
 released on CD (FLS29)"; \code{NA} when the show has none), \code{tour} (the
-touring period, e.g. "1988 Fall European Tour"), \code{city}, \code{state}
-(\code{NA} outside the US, which has no state to show), \code{country} - the
+touring period, e.g. "1988 Fall European Tour"), \code{city}, \code{subdivision}
+(\code{NA} outside the US, Canada, and Australia, which don't have one to
+show), \code{country} - the
 last four all read from the listing page, not the show's own detail
 page (see \code{\link{scrape_fls_listing_data}}), so all four are \code{NA}
 when \code{gids} is supplied directly, since that bypasses the listing-page

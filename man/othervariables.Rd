@@ -17,8 +17,8 @@ dataframe with one row for each show.
 \item{original_source}{Original source}
 \item{x}{longitude}
 \item{y}{latitude}
-\item{city}{city - for cities that share a name with another Fugazi tour stop (Portland, Columbia, Newcastle, Croydon, Oxford), disambiguated as "City (ST/Country)" to match \code{\link{scrape_fls_listing_data}}'s coordinates source.}
-\item{state}{US state code, where applicable (\code{NA} outside the US) - scraped directly, see \code{\link{Repeatr0}}/\code{\link{scrape_fls_listing_data}}.}
+\item{city}{city - plain city name (e.g. "Portland", "Columbia", "Croydon"); see \code{subdivision}/\code{country} to disambiguate cities that share a name with another Fugazi tour stop. Internally, \code{\link{Repeatr_1}} temporarily suffixes these as "City (ST/Country)" to match the venue-coordinate lookup's join key, then strips the suffix back off once coordinates are resolved - the suffix never persists to this exposed column.}
+\item{subdivision}{Subnational administrative unit (US state, DC, Canadian province, or Australian state/territory), where applicable (\code{NA} outside those three countries) - scraped directly, see \code{\link{Repeatr0}}/\code{\link{scrape_fls_listing_data}}.}
 \item{country}{country}
 \item{tour}{The touring period the show belongs to, scraped directly from the FLS listing pages (see \code{\link{Repeatr0}}/\code{\link{scrape_fls_listing_data}}) - no longer sourced from "fugazi-small.csv".}
 \item{year}{year}

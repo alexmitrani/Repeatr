@@ -13,6 +13,7 @@ dataframe with one row for each show in the Fugazi Live Series data.
 \item{date}{The date of the show.}
 \item{venue}{the venue,}
 \item{city}{the city.}
+\item{subdivision}{Subnational administrative unit (US state, DC, Canadian province, or Australian state/territory), where applicable (\code{NA} outside those three countries).}
 \item{country}{The country.}
 \item{attendance}{The number of people who attended.}
 \item{door_price}{The ticket price.}

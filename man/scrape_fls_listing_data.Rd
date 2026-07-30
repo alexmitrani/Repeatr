@@ -2,7 +2,7 @@
 % Please edit documentation in R/scrape_fls_shows.R
 \name{scrape_fls_listing_data}
 \alias{scrape_fls_listing_data}
-\title{Scrape just the gid -> tour/city/state/country mapping from the FLS listing pages}
+\title{Scrape just the gid -> tour/city/subdivision/country mapping from the FLS listing pages}
 \usage{
 scrape_fls_listing_data(max_listing_pages = Inf, sleepseconds = 2)
 }
@@ -16,16 +16,17 @@ to the site. Default 2.}
 }
 \value{
 A data frame with one row per show currently listed on the site,
-columns \code{gid}, \code{tour}, \code{city}, \code{state} (\code{NA} outside the US), \code{country}.
+columns \code{gid}, \code{tour}, \code{city}, \code{subdivision} (\code{NA} outside the US,
+Canada, and Australia), \code{country}.
 }
 \description{
 Crawls only the Fugazi Live Series listing pages
 (\verb{https://www.dischord.com/fugazi_live_series?page=N}) to recover each
 show's touring period (e.g. "1988 Fall European Tour") and location
-(city, state - US shows only - and country). None of these four are
+(city, subdivision, and country). None of these four are
 shown on individual show detail pages in a form \code{\link{scrape_fls_shows}}'s
 per-show scrape reads - tour is an \verb{<h2>} heading grouping the shows
-table beneath it, and city/state/country are separate filter links in
+table beneath it, and city/subdivision/country are separate filter links in
 the listing table's own columns - so that function can't recover any
 of them for a show unless it happens to be re-scraped for some other
 reason.
@@ -33,7 +34,7 @@ reason.
 Because this only needs the listing pages (a few dozen
 requests total), not one request per show, it's the cheap way to
 backfill all four onto every already-known show, e.g.:
-\code{fls_data <- fls_data \%>\% select(-tour, -city, -state, -country) \%>\% left_join(scrape_fls_listing_data(), by = "gid")}
+\code{fls_data <- fls_data \%>\% select(-tour, -city, -subdivision, -country) \%>\% left_join(scrape_fls_listing_data(), by = "gid")}
 \itemize{
 \item much faster than a full \code{update_existing = TRUE} \code{\link{scrape_fls_shows}}
 re-scrape, which would revisit every show's own detail page for no

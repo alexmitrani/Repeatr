@@ -7,13 +7,8 @@
 \format{
 dataframe with one row for each show in the Fugazi Live Series data, including data from the audio file tags.
 \describe{
-\item{date}{date}
-\item{venue}{venue}
-\item{city}{city}
-\item{state}{state for USA shows}
-\item{country}{country}
-\item{album}{album name, which includes the date, venue, city, state, and country}
 \item{gid}{show id}
+\item{album}{album name, which includes the date, venue, city, subdivision, and country}
 \item{duration}{duration in period format (lubridate)}
 \item{seconds}{duration in seconds}
 }
@@ -28,7 +23,7 @@ fls_tags_show
 Tags data, one record per show
 }
 \section{Provenance}{
- Derived-cleaned. Produced by \code{\link{Repeatr_1}} from \code{fls_tags}.
+ Derived-cleaned. Produced by \code{\link{Repeatr_1}} from \code{fls_tags}, grouped by \verb{(gid, album)}. Deliberately does not carry its own venue/city/subdivision/country/date - those are independently re-parsed from the album tag text by counting commas, which silently misparses whenever a venue or city name itself contains a comma (e.g. Ypsilanti, Flint, Eau Claire, Osaka). \code{\link{shows_data}} (joined via \code{gid}) is the sole authoritative source for those fields.
 }
 
 \examples{

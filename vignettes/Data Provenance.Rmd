@@ -61,7 +61,7 @@ Repeatr_2() ─▶ Repeatr_3() ─▶ Repeatr_4() ─▶ Repeatr_5()
                                                     [Derived-modeled: model output]
 
 Frozen-legacy (disconnected from the live pipeline)
-rawdata, venuesdata, toursdata, attendancedata, transitions
+rawdata, toursdata, attendancedata, transitions
 ```
 
 ## Dataset catalogue
@@ -70,7 +70,7 @@ rawdata, venuesdata, toursdata, attendancedata, transitions
 
 | Source file | Tier | Read by |
 |---|---|---|
-| `fls_data.csv` | Raw-scraped | `Repeatr_1()`, via `scrape_fls_shows()`. Also carries `tour`/`city`/`state`/`country`, scraped from the listing pages via `scrape_fls_listing_data()` (see `?Repeatr0`) |
+| `fls_data.csv` | Raw-scraped | `Repeatr_1()`, via `scrape_fls_shows()`. Also carries `tour`/`city`/`subdivision`/`country`, scraped from the listing pages via `scrape_fls_listing_data()` (see `?Repeatr0`) |
 | `fls_tags.txt` | Raw-hand-curated | `Repeatr_1()`, via `fls_tags_importer()` |
 | `fls_venue_geocoding_v2.csv` | Raw-hand-curated | `Repeatr_1()` - the current primary source of venue `x`/`y`, matched by `country`/`city`/`venue`. A periodically hand-updated local snapshot of a private Google Sheet (not fetched live - that sheet isn't reliably available) |
 | `fugazi-small.csv` | Raw-hand-curated, legacy | `Repeatr_1()` - fallback `x`/`y` only, for venues `fls_venue_geocoding_v2.csv` doesn't cover yet (matched by `date`+`venue`, not `country`/`city`/`venue`); `tour`/`city`/`country`/`year` no longer read from this file |
@@ -109,7 +109,7 @@ rawdata, venuesdata, toursdata, attendancedata, transitions
 | `results_ml_Repeatr4`, `vcovmat_ml_Repeatr4` | Derived-modeled | `Repeatr_4()`, saved together so they always describe the same fit |
 | `fugazi_song_choice_model`, `fugazi_song_preferences`, `releases_rated`, `releases_summary`, `releases_data_input`, `summary` | Derived-modeled | `Repeatr_5()`; `summary` is also read directly by `app.R` |
 | `rawdata` | Frozen-legacy | Superseded by `Repeatr0`; no consumers found |
-| `venuesdata`, `toursdata`, `attendancedata` | Frozen-legacy | No consumers found; same-named local variables in `app.R`/vignettes shadow rather than use these |
+| `toursdata`, `attendancedata` | Frozen-legacy | No consumers found; same-named local variables in `app.R`/vignettes shadow rather than use these |
 | `transitions` | Frozen-legacy | No consumers found; distinct from the actively-used `transitions_data_da` |
 
 For the full column-by-column description of any dataset, see its help page (e.g. `?summary`).

@@ -1,7 +1,7 @@
 
 #' @name Repeatr_1
 #' @title imports raw data in CSV format (1 row per show), cleans the data, and reshapes it long so that the rows are identified by combinations of gid and song_number.
-#' @description This was originally developed with a headerless file called "fugotcha.csv". It now reads "fls_data.csv" instead - a tidy, headered CSV produced by \code{\link{scrape_fls_shows}}, with one row per show and columns gid, fls_id, show_date, venue, door_price, attendance, recorded_by, mastered_by, original_source, sound_quality, played_with, fls_notes, tour, track_1 ... track_n. `tour` (the touring period, e.g. "1988 Fall European Tour") comes from the FLS listing pages' own tour headings (see \code{\link{scrape_fls_listing_data}}), not from the older "fugazi-small.csv" file, which no longer supplies it. `city`/`state`/`country` are also scraped from those same listing pages (\code{\link{scrape_fls_listing_data}}) but, as of this writing, still get to `othervariables` via "fugazi-small.csv" rather than `fls_data.csv` - only `tour` has been migrated over so far.
+#' @description This was originally developed with a headerless file called "fugotcha.csv". It now reads "fls_data.csv" instead - a tidy, headered CSV produced by \code{\link{scrape_fls_shows}}, with one row per show and columns gid, fls_id, show_date, venue, door_price, attendance, recorded_by, mastered_by, original_source, sound_quality, played_with, fls_notes, tour, city, subdivision, country, track_1 ... track_n. `tour`, `city`, `subdivision`, and `country` all come from the FLS listing pages' own filter links/tour headings (see \code{\link{scrape_fls_listing_data}}), not from the older "fugazi-small.csv" file, which no longer supplies any of them - that file is only still consulted for x/y coordinates, as a fallback for venues `fls_venue_geocoding_v2.csv` doesn't cover yet.
 #' @description "gid" is short for "gig id"
 #' @description Another data file that was used was called "releases_songs_durations_wikipedia.csv" and was obtained from the Wikipedia data on the Fugazi discography.
 #' @description This file contains the following variables: releaseid	track_number	song	instrumental	vocals_picciotto	vocals_mackaye	vocals_lally	duration_seconds. It is joined onto the live, classified song set by `song` title text, not by a hardcoded id column - see `songid` below.
@@ -122,7 +122,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
            checked = 1)
 
   othervariables <- Repeatr0 %>%
-    select(gid, fls_id, show_date, venue, door_price, attendance, recorded_by, mastered_by, original_source, fls_notes, tour, city, state, country)
+    select(gid, fls_id, show_date, venue, door_price, attendance, recorded_by, mastered_by, original_source, fls_notes, tour, city, subdivision, country)
 
   othervariables <- othervariables %>%
     rename(flsid = fls_id, date = show_date, doorprice = door_price)
@@ -178,6 +178,12 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   othervariables <- othervariables %>%
     mutate(city = ifelse(city=="Wesleyan", "Middletown", city))
 
+  # One-off data-entry error on the site: this Hobart show's own "State"
+  # filter link reads "TZ", while every other Hobart/Launceston show says
+  # "TAS" - not a real distinct designation, just a typo to correct.
+  othervariables <- othervariables %>%
+    mutate(subdivision = ifelse(city=="Hobart" & country=="Australia" & subdivision=="TZ", "TAS", subdivision))
+
   # Do NOT filter out rows with no x/y here - this used to run immediately
   # after the fugazi-small.csv join above, which meant any show whose
   # coordinates only come from a later source (the disambiguation-corrected
@@ -202,10 +208,10 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
            # Portland and Columbia each cover multiple, differently-located
            # US cities of the same name - fls_venue_geocoding_v2.csv
            # disambiguates them as "City (ST)", so match that convention
-           # using the state scraped alongside city/country, or these
+           # using the subdivision scraped alongside city/country, or these
            # venues' coordinates can never be found there.
-           city = ifelse(country=="USA" & city=="Portland" & is.na(state)==FALSE, paste0("Portland (", state, ")"), city),
-           city = ifelse(country=="USA" & city=="Columbia" & is.na(state)==FALSE, paste0("Columbia (", state, ")"), city))
+           city = ifelse(country=="USA" & city=="Portland" & is.na(subdivision)==FALSE, paste0("Portland (", subdivision, ")"), city),
+           city = ifelse(country=="USA" & city=="Columbia" & is.na(subdivision)==FALSE, paste0("Columbia (", subdivision, ")"), city))
 
   othervariables <- othervariables %>%
     mutate(venue = ifelse(country=="USA" & city=="Washington" & venue=="9:30 Club" & year<=1995, "9:30 Club (1980-1995)", venue),
@@ -384,6 +390,23 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   othervariables <- othervariables %>%
     select(-link_x, -link_y, -geocoding_check)
 
+  # The "City (ST)"/"City (Country)" disambiguation suffix injected above
+  # (Portland, Columbia, Croydon) exists only so the join against
+  # fls_venue_geocoding_v2.csv above can find the right coordinates -
+  # subdivision/country already carry the same disambiguating information
+  # untouched, so strip the suffix back off now that its job is done.
+  # Explicit per-value ifelse()s rather than a generic "strip trailing
+  # parenthetical" regex, since e.g. "Oxford (USA)" also has a trailing
+  # parenthetical that must NOT be stripped - that one stays
+  # country-disambiguated, not subdivision-disambiguated.
+  othervariables <- othervariables %>%
+    mutate(city = ifelse(city=="Portland (OR)", "Portland", city),
+           city = ifelse(city=="Portland (ME)", "Portland", city),
+           city = ifelse(city=="Columbia (SC)", "Columbia", city),
+           city = ifelse(city=="Columbia (MO)", "Columbia", city),
+           city = ifelse(city=="Columbia (MD)", "Columbia", city),
+           city = ifelse(city=="Croydon (Australia)", "Croydon", city))
+
   # This is the one place a show should actually be dropped for lacking
   # coordinates - after fugazi-small.csv, every hardcoded per-venue
   # correction above, and fls_venue_geocoding_v2.csv have all had a chance
@@ -490,10 +513,10 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     mutate(country = str_sub(album, lastcomma + 2, stringlength))
 
   fls_tags <- fls_tags %>%
-    mutate(state = ifelse(country=="USA", str_sub(album, lastcomma-2, lastcomma-1),""))
+    mutate(subdivision = ifelse(country=="USA", str_sub(album, lastcomma-2, lastcomma-1),""))
 
   fls_tags <- fls_tags %>%
-    select(track, album, song, duration, seconds, date, venue, city, state, country)
+    select(track, album, song, duration, seconds, date, venue, city, subdivision, country)
 
   date_gid <- othervariables %>%
     select(date, gid)
@@ -510,14 +533,20 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   fls_tags <- fls_tags %>%
     mutate(song = ifelse(gid=="peoria-il-usa-100995" & song=="dance rap", "interlude 4", song))
 
+  # Grouped by (gid, album) only, not the show's own venue/city/subdivision/
+  # country/date - those are independently re-parsed from the album tag text
+  # by counting commas, which silently misparses whenever a venue or city
+  # name itself contains a comma (e.g. Ypsilanti, Flint, Eau Claire, Osaka).
+  # shows_data (joined via gid) is the sole authoritative source for those
+  # fields now - fls_tags_show only needs to contribute album/duration/seconds.
   fls_tags_show <- fls_tags %>%
-    group_by(date, venue, city, state, country, album, gid) %>%
+    group_by(gid, album) %>%
     summarize(seconds = sum(seconds)) %>%
     mutate(duration = seconds_to_period(seconds)) %>%
     ungroup()
 
   fls_tags_show <- fls_tags_show %>%
-    select(date, venue, city, state, country, album, gid, duration, seconds)
+    select(gid, album, duration, seconds)
 
   setwd(mydatadir)
 
@@ -1332,7 +1361,7 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
       mutate(year = lubridate::year(date)) %>%
       rename(latitude = y) %>%
       rename(longitude = x) %>%
-      select(gid, tour, year, date, venue, city, country, attendance, doorprice, latitude, longitude, fls_notes) %>%
+      select(gid, tour, year, date, venue, city, subdivision, country, attendance, doorprice, latitude, longitude, fls_notes) %>%
       rename(door_price = doorprice) %>%
       mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
       mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>")) %>%
@@ -1340,11 +1369,11 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
       left_join(gid_sound_quality)
 
     # Safety net, matching othervariables above: gid_minutes comes from
-    # fls_tags_show, which is grouped by (date, venue, city, state, country,
-    # album, gid) - two tag batches for the same show under slightly
-    # different venue text (e.g. an earlier recording later superseded by
-    # an official release) produce two rows sharing one gid there, which
-    # would otherwise silently duplicate that gid here too.
+    # fls_tags_show, which is grouped by (gid, album) - two tag batches for
+    # the same show under slightly different album text (e.g. an earlier
+    # recording later superseded by an official release) produce two rows
+    # sharing one gid there, which would otherwise silently duplicate that
+    # gid here too.
     shows_data <- shows_data %>%
       group_by(gid) %>%
       slice(1) %>%
