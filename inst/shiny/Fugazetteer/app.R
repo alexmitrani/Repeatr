@@ -51,9 +51,30 @@ othervariables <- othervariables %>%
   mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
   mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>"))
 
+# fls_venue_geocoding (the live Sheet) keeps Portland/Columbia/Croydon under
+# their disambiguated "City (ST/Country)" form - othervariables$city is
+# already back to plain city by this point (Repeatr_1.R strips it after its
+# own, internal join against the same coordinates), so re-inject the same
+# suffix here too or this join silently misses those venues, same reasoning
+# as R/Repeatr_1.R's disambiguation block.
+othervariables <- othervariables %>%
+  mutate(city = ifelse(country=="USA" & city=="Portland" & is.na(subdivision)==FALSE, paste0("Portland (", subdivision, ")"), city),
+         city = ifelse(country=="USA" & city=="Columbia" & is.na(subdivision)==FALSE, paste0("Columbia (", subdivision, ")"), city),
+         city = ifelse(country=="Australia" & city=="Croydon", "Croydon (Australia)", city))
+
 othervariables <- othervariables %>%
   select(-x, -y) %>%
   left_join(fls_venue_geocoding)
+
+# Strip the suffix back off now that it's done its job as a join key, same
+# as R/Repeatr_1.R does after its own coordinate join.
+othervariables <- othervariables %>%
+  mutate(city = ifelse(city=="Portland (OR)", "Portland", city),
+         city = ifelse(city=="Portland (ME)", "Portland", city),
+         city = ifelse(city=="Columbia (SC)", "Columbia", city),
+         city = ifelse(city=="Columbia (MO)", "Columbia", city),
+         city = ifelse(city=="Columbia (MD)", "Columbia", city),
+         city = ifelse(city=="Croydon (Australia)", "Croydon", city))
 
 # Safety net: gid should be unique in othervariables (Repeatr_1() already
 # enforces this on the package's own data via group_by(gid) %>% slice(1)),
@@ -169,10 +190,31 @@ gid_tempo_bpm <- gid_tempo_bpm_minutes %>%
 shows_data <- Repeatr::shows_data %>%
   left_join(gid_tempo_bpm)
 
+# fls_venue_geocoding (the live Sheet) keeps Portland/Columbia/Croydon under
+# their disambiguated "City (ST/Country)" form - shows_data$city is already
+# back to plain city by this point (Repeatr_1.R strips it after its own,
+# internal join against the same coordinates), so re-inject the same suffix
+# here too or this join silently misses those venues, same reasoning as
+# R/Repeatr_1.R's disambiguation block.
+shows_data <- shows_data %>%
+  mutate(city = ifelse(country=="USA" & city=="Portland" & is.na(subdivision)==FALSE, paste0("Portland (", subdivision, ")"), city),
+         city = ifelse(country=="USA" & city=="Columbia" & is.na(subdivision)==FALSE, paste0("Columbia (", subdivision, ")"), city),
+         city = ifelse(country=="Australia" & city=="Croydon", "Croydon (Australia)", city))
+
 shows_data <- shows_data %>%
   select(-longitude, -latitude) %>%
   left_join(fls_venue_geocoding) %>%
   rename(latitude = y, longitude = x)
+
+# Strip the suffix back off now that it's done its job as a join key, same
+# as R/Repeatr_1.R does after its own coordinate join.
+shows_data <- shows_data %>%
+  mutate(city = ifelse(city=="Portland (OR)", "Portland", city),
+         city = ifelse(city=="Portland (ME)", "Portland", city),
+         city = ifelse(city=="Columbia (SC)", "Columbia", city),
+         city = ifelse(city=="Columbia (MO)", "Columbia", city),
+         city = ifelse(city=="Columbia (MD)", "Columbia", city),
+         city = ifelse(city=="Croydon (Australia)", "Croydon", city))
 
 # Safety net, same reasoning as the othervariables one above: gid should be
 # unique in shows_data, but this section's joins (gid_tempo_bpm above, and
