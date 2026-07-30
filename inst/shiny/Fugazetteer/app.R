@@ -1259,7 +1259,17 @@ server <- function(input, output, session) {
 
   session$onSessionEnded(stopApp)
 
-  session$userData$time <- reactive({as.Date(lubridate::dmy_hms(input$clientTime))})
+  # clientTime starts as "" (app.R's tags$script only fills it in with the
+  # browser's local time after the page has loaded, see the textInput
+  # definition below) - fall back to the server's own date for that brief
+  # window rather than letting dmy_hms("") warn ("All formats failed to
+  # parse. No formats found.") and return NA.
+  session$userData$time <- reactive({
+    if (is.null(input$clientTime) || input$clientTime == "") {
+      return(as.Date(Sys.time()))
+    }
+    as.Date(lubridate::dmy_hms(input$clientTime))
+  })
 
 
   # today -------------------------------------------------------------------
