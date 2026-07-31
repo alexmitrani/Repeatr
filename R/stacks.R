@@ -79,13 +79,13 @@ stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL, exclude_po
 
   if(is.null(mynumberofsongs)==TRUE) {
 
-    mynumberofsongs <- 92
+    mynumberofsongs <- nrow(summarydf)
 
   }
 
-  if(mynumberofsongs > 92) {
+  if(mynumberofsongs > nrow(summarydf)) {
 
-    mynumberofsongs <- 92
+    mynumberofsongs <- nrow(summarydf)
 
   }
 
