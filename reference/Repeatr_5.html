@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9197</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9208</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,6 +23,7 @@
     <li><a class="dropdown-item" href="../articles/AllAccess.html">All Access</a></li>
     <li><a class="dropdown-item" href="../articles/au%20clair%20de%20la%20lune.html">Au Clair de la Lune</a></li>
     <li><a class="dropdown-item" href="../articles/CombinationLock.html">Combination Lock</a></li>
+    <li><a class="dropdown-item" href="../articles/Data%20Provenance.html">Data Provenance</a></li>
     <li><a class="dropdown-item" href="../articles/Fugazetteer.html">Fugazetteer</a></li>
     <li><a class="dropdown-item" href="../articles/in%20your%20memory.html">in your memory</a></li>
     <li><a class="dropdown-item" href="../articles/LinkTracks.html">Link Tracks</a></li>
@@ -57,7 +58,14 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">Repeatr_5</span><span class="op">(</span>mymodeldf <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">Repeatr_5</span><span class="op">(</span></span>
+<span>  mymodeldf <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  mysongidlookup <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  myaltlookup <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  mysongvarslookup <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  myreleasesdatalookup <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  myreleases_data_input <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -66,6 +74,26 @@
 
 <dl><dt id="arg-mymodeldf">mymodeldf<a class="anchor" aria-label="anchor" href="#arg-mymodeldf"></a></dt>
 <dd><p>optional choice model coefficients dataframe to be used to generate the results. If omitted, the default choice model coefficients dataframe will be used, which is results_ml_Repeatr4.</p></dd>
+
+
+<dt id="arg-mysongidlookup">mysongidlookup<a class="anchor" aria-label="anchor" href="#arg-mysongidlookup"></a></dt>
+<dd><p>optional <code>songidlookup</code> dataframe (the <code>songidlookup</code> element of <code><a href="Repeatr_1.html">Repeatr_1()</a></code>'s return list). If omitted the currently lazy-loaded default will be used.</p></dd>
+
+
+<dt id="arg-myaltlookup">myaltlookup<a class="anchor" aria-label="anchor" href="#arg-myaltlookup"></a></dt>
+<dd><p>optional <code>altlookup</code> dataframe (the second element of <code><a href="Repeatr_2.html">Repeatr_2()</a></code>'s return list) used to translate <code>mymodeldf</code>'s <code>alt</code>-indexed intercept coefficients back to <code>songid</code>/<code>song</code>. If omitted the currently lazy-loaded default will be used.</p></dd>
+
+
+<dt id="arg-mysongvarslookup">mysongvarslookup<a class="anchor" aria-label="anchor" href="#arg-mysongvarslookup"></a></dt>
+<dd><p>optional <code>songvarslookup</code> dataframe (the <code>songvarslookup</code> element of <code><a href="Repeatr_1.html">Repeatr_1()</a></code>'s return list). If omitted the currently lazy-loaded default will be used.</p></dd>
+
+
+<dt id="arg-myreleasesdatalookup">myreleasesdatalookup<a class="anchor" aria-label="anchor" href="#arg-myreleasesdatalookup"></a></dt>
+<dd><p>optional <code>releasesdatalookup</code> dataframe (the <code>releasesdatalookup</code> element of <code><a href="Repeatr_1.html">Repeatr_1()</a></code>'s return list). If omitted the currently lazy-loaded default will be used.</p></dd>
+
+
+<dt id="arg-myreleases-data-input">myreleases_data_input<a class="anchor" aria-label="anchor" href="#arg-myreleases-data-input"></a></dt>
+<dd><p>optional <code>releases_data_input</code> dataframe (the <code>releases_data_input</code> element of <code><a href="Repeatr_1.html">Repeatr_1()</a></code>'s return list). If omitted the currently lazy-loaded default will be used.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -76,7 +104,7 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">Repeatr_5_results</span> <span class="op">&lt;-</span> <span class="fu">Repeatr_5</span><span class="op">(</span>mymodeldf <span class="op">=</span> <span class="va">results_ml_Repeatr4</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(songid)`</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(alt)`</span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in setwd(myinputdir):</span> cannot change working directory</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

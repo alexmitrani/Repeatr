@@ -48,11 +48,18 @@ Live Series data.
 
 https://www.dischord.com/fugazi_live_series
 
+## Provenance
+
+Derived-cleaned. Produced by
+[`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md).
+Also a direct input to
+[`sweepstack`](https://alexmitrani.github.io/Repeatr/reference/sweepstack.md)/[`stacks`](https://alexmitrani.github.io/Repeatr/reference/stacks.md).
+
 ## Examples
 
 ``` r
 duration_data_da
-#> # A tibble: 18,340 × 7
+#> # A tibble: 18,287 × 7
 #>    gid                 date       song_number song        urls  fls_link minutes
 #>    <chr>               <date>           <dbl> <chr>       <chr> <chr>      <dbl>
 #>  1 aalst-belgium-92390 1990-09-23           2 turnover    http… <a href…    4.43
@@ -65,5 +72,5 @@ duration_data_da
 #>  8 aalst-belgium-92390 1990-09-23          11 suggestion  http… <a href…    6.4 
 #>  9 aalst-belgium-92390 1990-09-23          13 reclamation http… <a href…    3.52
 #> 10 aalst-belgium-92390 1990-09-23          14 blueprint   http… <a href…    4.33
-#> # ℹ 18,330 more rows
+#> # ℹ 18,277 more rows
 ```

@@ -68,23 +68,28 @@ https://www.dischord.com/fugazi_live_series
 
 https://arquivomotor.wordpress.com/1994/08/12/bhrif-programacao/
 
+## Provenance
+
+Derived-cleaned. Produced by
+[`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md).
+
 ## Examples
 
 ``` r
 played_with_data
-#> # A tibble: 1,720 × 12
+#> # A tibble: 1,754 × 12
 #>    fls_link     year tour  date       venue city  country played_with attendance
 #>    <chr>       <dbl> <chr> <date>     <chr> <chr> <chr>   <chr>            <dbl>
 #>  1 <a href='h…  1990 1990… 1990-09-23 Netw… Aalst Belgium Alice Donut        600
 #>  2 <a href='h…  1999 1999… 1999-05-04 Lemo… Aber… Scotla… Laeto              550
 #>  3 <a href='h…  1993 1993… 1993-11-11 Dom … Adel… Austra… Magic Dirt         550
-#>  4 <a href='h…  1996 1996… 1996-11-12 Adel… Adel… Austra… Sin Dog Je…        913
-#>  5 <a href='h…  1996 1996… 1996-11-12 Adel… Adel… Austra… Test Eagles        913
+#>  4 <a href='h…  1996 1996… 1996-11-12 Adel… Adel… Austra… Sin Dog Je…        906
+#>  5 <a href='h…  1996 1996… 1996-11-12 Adel… Adel… Austra… Test Eagles        906
 #>  6 <a href='h…  1991 1991… 1991-10-22 Le R… Adel… Austra… Baba Ganous        450
 #>  7 <a href='h…  1990 1990… 1990-06-28 Jack… Akron USA     Holy Rolle…        700
 #>  8 <a href='h…  1990 1990… 1990-06-28 Jack… Akron USA     Hyper as H…        700
 #>  9 <a href='h…  1993 1993… 1993-09-20 S.U.… Alba… USA     Spinanes          1000
 #> 10 <a href='h…  1993 1993… 1993-09-20 S.U.… Alba… USA     Very Pleas…       1000
-#> # ℹ 1,710 more rows
+#> # ℹ 1,744 more rows
 #> # ℹ 3 more variables: sound_quality <chr>, latitude <dbl>, longitude <dbl>
 ```

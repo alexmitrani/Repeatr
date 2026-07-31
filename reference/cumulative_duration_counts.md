@@ -34,11 +34,16 @@ Fugazi Live Series data.
 
 https://www.dischord.com/fugazi_live_series
 
+## Provenance
+
+Derived-cleaned. Produced by
+[`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md).
+
 ## Examples
 
 ``` r
 cumulative_duration_counts
-#> # A tibble: 45,582 × 4
+#> # A tibble: 44,680 × 4
 #>    minutes song                   release             count
 #>      <dbl> <chr>                  <chr>               <int>
 #>  1    0.05 cassavetes             in on the killtaker     1
@@ -51,5 +56,5 @@ cumulative_duration_counts
 #>  8    0.1  waiting room           fugazi                  1
 #>  9    0.1  suggestion             fugazi                  1
 #> 10    0.15 cassavetes             in on the killtaker     1
-#> # ℹ 45,572 more rows
+#> # ℹ 44,670 more rows
 ```

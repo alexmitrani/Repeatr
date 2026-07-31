@@ -27,6 +27,16 @@ Tempos of selected songs from
 https://www.dischord.com/fugazi_live_series measured with 'liveBPM' app
 for Android and also finger tapping with a timer.
 
+## Provenance
+
+Raw-hand-curated. Manually compiled per-song tempo,
+`inst/extdata/song_tempo_bpm_data.csv`; not read by any current `R/`
+script (the `data/song_tempo_bpm_data.rda` copy was created by hand).
+Actively consumed directly by `inst/shiny/Fugazetteer/app.R`
+(`left_join(song_tempo_bpm_data)`) - do not tag `Frozen-legacy` on the
+"not written by the pipeline" test alone, since that's expected for raw
+hand-curated input.
+
 ## Examples
 
 ``` r

@@ -7,7 +7,14 @@ shows included in the resulting stack.
 ## Usage
 
 ``` r
-sweepstack(number_stacks = NULL, exclude_poor_sound_quality = FALSE)
+sweepstack(
+  number_stacks = NULL,
+  exclude_poor_sound_quality = FALSE,
+  myduration_data_da = NULL,
+  mysummary = NULL,
+  myothervariables = NULL,
+  mygidsoundquality = NULL
+)
 ```
 
 ## Arguments
@@ -20,6 +27,20 @@ sweepstack(number_stacks = NULL, exclude_poor_sound_quality = FALSE)
 - exclude_poor_sound_quality:
 
   set this to TRUE to exclude shows with sound quality rated as 'Poor'.
+
+- myduration_data_da:
+
+  optional `duration_data_da` dataframe (as produced by
+  [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md))
+  to be used for the pool of shows/songs to sweep over. If omitted the
+  currently lazy-loaded default will be used.
+
+- mysummary, myothervariables, mygidsoundquality:
+
+  optional lookup tables passed straight through to
+  [`stacks()`](https://alexmitrani.github.io/Repeatr/reference/stacks.md) -
+  see there for details. If omitted the currently lazy-loaded defaults
+  will be used.
 
 ## Value
 

@@ -31,6 +31,11 @@ https://www.dischord.com/fugazi_live_series
 
 https://arquivomotor.wordpress.com/1994/08/12/bhrif-programacao/
 
+## Provenance
+
+Derived-cleaned. Produced by
+[`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md).
+
 ## Examples
 
 ``` r

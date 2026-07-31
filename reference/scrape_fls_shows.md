@@ -109,9 +109,15 @@ A data frame with one row per show and columns `gid`, `fls_id`,
 `show_date`, `venue`, `door_price`, `attendance`, `recorded_by`,
 `mastered_by`, `original_source`, `sound_quality`, `played_with`,
 `fls_notes` (any official note shown on the show's page, e.g.
-"Previously released on CD (FLS29)"; `NA` when the show has none), and
-`track_1` ... `track_n` (as many track columns as the widest tracklist
-in the result).
+"Previously released on CD (FLS29)"; `NA` when the show has none),
+`tour` (the touring period, e.g. "1988 Fall European Tour"), `city`,
+`subdivision` (`NA` outside the US, Canada, and Australia, which don't
+have one to show), `country` - the last four all read from the listing
+page, not the show's own detail page (see
+[`scrape_fls_listing_data`](https://alexmitrani.github.io/Repeatr/reference/scrape_fls_listing_data.md)),
+so all four are `NA` when `gids` is supplied directly, since that
+bypasses the listing-page crawl they come from - and `track_1` ...
+`track_n` (as many track columns as the widest tracklist in the result).
 
 ## Examples
 

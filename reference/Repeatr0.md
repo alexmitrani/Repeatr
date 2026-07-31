@@ -64,6 +64,33 @@ dataframe with one row for each show.
   Any official note shown on the show's page (e.g. "Previously released
   on CD (FLS29)"), NA when the show has none
 
+- tour:
+
+  The touring period the show belongs to (e.g. "1988 Fall European
+  Tour"), scraped from the FLS listing pages' own tour headings - see
+  [`scrape_fls_listing_data`](https://alexmitrani.github.io/Repeatr/reference/scrape_fls_listing_data.md).
+
+- city:
+
+  City, scraped from the FLS listing pages - see
+  [`scrape_fls_listing_data`](https://alexmitrani.github.io/Repeatr/reference/scrape_fls_listing_data.md).
+  Not yet disambiguated for cities that share a name with another tour
+  stop (Portland, Columbia, etc.) - see
+  [`othervariables`](https://alexmitrani.github.io/Repeatr/reference/othervariables.md)
+  for the disambiguated version.
+
+- subdivision:
+
+  Subnational administrative unit (US state, DC, Canadian province, or
+  Australian state/territory), where applicable (`NA` outside those
+  three countries) - see
+  [`scrape_fls_listing_data`](https://alexmitrani.github.io/Repeatr/reference/scrape_fls_listing_data.md).
+
+- country:
+
+  Country, scraped from the FLS listing pages - see
+  [`scrape_fls_listing_data`](https://alexmitrani.github.io/Repeatr/reference/scrape_fls_listing_data.md).
+
 - track_1-track_n:
 
   Tracks, one column per track slot up to the widest tracklist in the
@@ -72,6 +99,14 @@ dataframe with one row for each show.
 ## Source
 
 https://www.dischord.com/fugazi_live_series
+
+## Provenance
+
+Derived-cleaned. Produced by
+[`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)
+from the raw scrape
+([`scrape_fls_shows`](https://alexmitrani.github.io/Repeatr/reference/scrape_fls_shows.md));
+typed/cleaned, no song classification yet.
 
 ## Examples
 

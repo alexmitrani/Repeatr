@@ -22,14 +22,14 @@ mygraphdata <- summary %>%
 
 head(mygraphdata)
 #> # A tibble: 6 × 5
-#>   song             launchdate chosen release       rating
-#>   <chr>            <date>      <int> <chr>          <dbl>
-#> 1 bulldog front    1988-06-15    249 fugazi            NA
-#> 2 bad mouth        1987-10-16    312 fugazi            NA
-#> 3 burning          1988-02-06    243 fugazi            NA
-#> 4 give me the cure 1988-03-30    401 fugazi            NA
-#> 5 glueman          1988-05-07    148 fugazi            NA
-#> 6 margin walker    1988-07-28    467 margin walker     NA
+#>   song             launchdate chosen release rating
+#>   <chr>            <date>      <int> <chr>    <dbl>
+#> 1 waiting room     1987-09-03    675 fugazi   0.916
+#> 2 bulldog front    1988-06-15    249 fugazi   0.694
+#> 3 bad mouth        1987-10-16    312 fugazi   0.751
+#> 4 burning          1988-02-06    243 fugazi   0.682
+#> 5 give me the cure 1988-03-30    401 fugazi   0.779
+#> 6 suggestion       1987-12-03    373 fugazi   0.763
 ```
 
 A few of the columns need explanation.

@@ -104,24 +104,34 @@ https://www.dischord.com/fugazi_live_series
 
 https://web.archive.org/web/20201112000517/http://en.wikipedia.org/wiki/Fugazi_discography
 
+## Provenance
+
+Derived-classified. Produced by
+[`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md):
+mechanically joined, but shaped by the hand-written
+[`grepl()`](https://rdrr.io/r/base/grep.html)-based song-title recoding
+and `tracktype` classification rules in `R/Repeatr_1.R` - the layer
+whose edits can shift which songs get a `songid` (see
+[`songidlookup`](https://alexmitrani.github.io/Repeatr/reference/songidlookup.md)).
+
 ## Examples
 
 ``` r
 Repeatr1
-#> # A tibble: 24,578 × 20
+#> # A tibble: 24,571 × 20
 #>    gid           date        year month   day tracktype song_number songid song 
 #>    <chr>         <date>     <dbl> <dbl> <int>     <dbl>       <dbl>  <int> <chr>
 #>  1 aalst-belgiu… 1990-09-23  1990     9    23         0           1     NA intro
-#>  2 aalst-belgiu… 1990-09-23  1990     9    23         1           2     89 turn…
+#>  2 aalst-belgiu… 1990-09-23  1990     9    23         1           2     88 turn…
 #>  3 aalst-belgiu… 1990-09-23  1990     9    23         1           3     12 bren…
 #>  4 aalst-belgiu… 1990-09-23  1990     9    23         1           4     55 merc…
-#>  5 aalst-belgiu… 1990-09-23  1990     9    23         1           5     76 siev…
+#>  5 aalst-belgiu… 1990-09-23  1990     9    23         1           5     75 siev…
 #>  6 aalst-belgiu… 1990-09-23  1990     9    23         1           6      2 and …
 #>  7 aalst-belgiu… 1990-09-23  1990     9    23         0           7     NA inte…
 #>  8 aalst-belgiu… 1990-09-23  1990     9    23         1           8     13 bull…
 #>  9 aalst-belgiu… 1990-09-23  1990     9    23         1           9     15 burn…
 #> 10 aalst-belgiu… 1990-09-23  1990     9    23         0          10     NA inte…
-#> # ℹ 24,568 more rows
+#> # ℹ 24,561 more rows
 #> # ℹ 11 more variables: number_songs <int>, first_song <dbl>, last_song <dbl>,
 #> #   releaseid <int>, release <chr>, track_number <int>, instrumental <int>,
 #> #   vocals_picciotto <int>, vocals_mackaye <int>, vocals_lally <int>,

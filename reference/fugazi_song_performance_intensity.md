@@ -42,22 +42,30 @@ those which never appear in the Fugazi Live Series data.
 
 https://www.dischord.com/fugazi_live_series
 
+## Provenance
+
+Derived-modeled. Produced by
+[`Repeatr_2`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_2.md)
+from the `min_song_count`-eligible subset only (it needs `available_rl`,
+which is only tracked for songs that got an `alt`) - unlike
+`fugazi_song_counts`, one-off/rare songs are not included here.
+
 ## Examples
 
 ``` r
 fugazi_song_performance_intensity
-#> # A tibble: 95 × 6
+#> # A tibble: 92 × 6
 #>    songid song                 launchdate chosen available_rl intensity
-#>     <dbl> <chr>                <date>      <dbl>        <dbl>     <dbl>
+#>     <int> <chr>                <date>      <dbl>        <dbl>     <dbl>
 #>  1     17 cashout              2000-06-04     67           74     0.905
 #>  2     20 closed captioned     1997-06-18    169          211     0.801
 #>  3      7 bed for the scraping 1994-11-20    310          393     0.789
 #>  4     59 number 5             1998-11-21    120          157     0.764
-#>  5     70 reclamation          NA            612          820     0.746
+#>  5     68 reclamation          1990-05-05    612          820     0.746
 #>  6      4 arpeggiator          1997-05-02    163          220     0.741
 #>  7     10 break                1996-08-15    179          244     0.734
 #>  8     23 do you like me       1994-11-20    282          393     0.718
-#>  9     93 waiting room         NA            675          952     0.709
+#>  9     91 waiting room         1987-09-03    675          952     0.709
 #> 10      9 blueprint            1989-09-23    608          873     0.696
-#> # ℹ 85 more rows
+#> # ℹ 82 more rows
 ```

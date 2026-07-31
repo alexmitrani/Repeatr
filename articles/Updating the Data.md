@@ -2,8 +2,11 @@
 
 ## Overview
 
-The package’s data comes from three independent sources, updated on
-three different schedules:
+The package’s data comes from five independent sources, updated on five
+different schedules. See
+[`vignette("Data Provenance")`](https://alexmitrani.github.io/Repeatr/articles/Data%20Provenance.md)
+for how every dataset in `data/` maps onto these sources and the
+pipeline stages below.
 
 1.  **Show data** - dates, venues, attendance, sound quality,
     played-with bands, notes, and tracklists, scraped from the [Fugazi
@@ -15,24 +18,36 @@ three different schedules:
     repository.
 3.  **Venue coordinates** - latitude/longitude for each venue. Manual,
     looked up on Google Maps as new venues show up.
+4.  **Song/release/duration data** - release, track number,
+    instrumental/vocalist, and duration metadata per song,
+    hand-maintained in
+    `inst/extdata/releases_songs_durations_wikipedia.csv` against the
+    Wikipedia Fugazi discography page. Manual, done outside this
+    repository.
+5.  **Song tempo data** - beats-per-minute per song, hand-compiled in
+    `inst/extdata/song_tempo_bpm_data.csv`. Manual, done outside this
+    repository; also read directly by the Shiny app.
 
-All three feed into
-[`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md),
-which combines them (plus a fair amount of hand-written, gid-keyed
-correction code accumulated over time) into the package’s `data/*.rda`
-objects. `Repeatr_Updatr(really = "really")` runs
+All five feed into
+[`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)
+(song tempo data is read directly by the Shiny app instead), which
+combines them (plus a fair amount of hand-written, gid-keyed correction
+code accumulated over time) into the package’s `data/*.rda` objects.
+`Repeatr_Updatr(really = "really")` runs
 [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)
 and the rest of the modelling pipeline (`Repeatr_2` through `Repeatr_5`)
 in sequence, and the
 [Fugazetteer](https://alexmitrani.shinyapps.io/Fugazetteer/) Shiny app
 is just a consumer of those same rebuilt `data/*.rda` objects - it never
-reads a CSV directly, so once the package data is rebuilt and
-reinstalled the app picks it up automatically.
+reads a CSV directly (song tempo data is the one exception, read
+straight from `inst/extdata/song_tempo_bpm_data.csv`), so once the
+package data is rebuilt and reinstalled the app picks it up
+automatically.
 
-None of steps 1-3 need to happen together. Run whichever one has new
-material, then rebuild (step 4) and redeploy (step 5).
+None of steps 1-4 need to happen together. Run whichever one has new
+material, then rebuild (step 5) and redeploy (step 6).
 
-`data-raw/build_data.R` is the canonical, runnable version of steps 1-4
+`data-raw/build_data.R` is the canonical, runnable version of steps 1-5
 below - this vignette explains the why, that script is what to actually
 run.
 
@@ -43,7 +58,11 @@ run.
 from the site - including any pages added since the last run - and
 scrapes each show’s detail page for date, venue, door price, attendance,
 recorded/mastered by, original source, sound quality, played-with, any
-official notes, and the tracklist.
+official notes, and the tracklist. It also attaches `tour` (e.g. “1988
+Fall European Tour”) from the listing pages’ own tour headings - that’s
+the only field here that doesn’t come from the show’s own detail page,
+so a run with `gids` supplied directly (bypassing listing discovery)
+won’t be able to fill it in.
 
 Test on a small slice first:
 
@@ -86,19 +105,28 @@ A few things worth knowing:
   `gid_fls_id_sound_quality.csv` and `gid_fls_id_played_with.csv` -
   those older files are left in place for reference but nothing reads
   them anymore.
+- If `fls_data.csv` ever needs `tour`/`city`/`state`/`country`
+  backfilled without a full show-by-show re-scrape (e.g. after adding
+  one of these columns, or if some rows are missing it),
+  [`scrape_fls_listing_data()`](https://alexmitrani.github.io/Repeatr/reference/scrape_fls_listing_data.md)
+  crawls just the listing pages - a few dozen requests instead of
+  1000+ - and returns a `gid` + all four:
+  `fls_data <- fls_data %>% select(-tour) %>% left_join(scrape_fls_listing_data() %>% select(gid, tour), by = "gid")`.
+  [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)
+  reads `tour` straight from `fls_data.csv`/`Repeatr0` now, not from the
+  older `fugazi-small.csv` file - `city`/`state`/`country` are scraped
+  the same way but haven’t been migrated over to source from
+  `fls_data.csv` yet.
 
 ## 2. Updating tags/duration data
 
 Song-level durations (`fls_tags`, `fls_tags_show`, and everything
 derived from them like `duration_summary`, `cumulative_duration_counts`)
 come from `inst/extdata/fls_tags.txt`, which isn’t produced by any
-script - it’s exported from [kid3](https://kid3.kde.org/), the audio
-tagger I use to tag every MP3 as I listen to it (see the [All
-Access](https://alexmitrani.github.io/Repeatr/articles/AllAccess.md)
-article for the listening process itself). Each show’s MP3s get tagged
-with the track name and album set to
-`YYYYMMDD Venue, City, State, Country`, and duration comes along for
-free from the file itself.
+script - it’s exported from the mp3 files using
+[kid3](https://kid3.kde.org/). Each show’s MP3s get tagged with the
+track name and album set to `YYYYMMDD Venue, City, State, Country`, and
+duration comes along for free from the file itself.
 
 To update: open the new mp3 files in kid3, export the tag data as format
 “CSV quoted” with header `track; artist; album; name; duration` and
@@ -126,31 +154,66 @@ line there following the existing pattern if needed.
 
 ## 3. Updating venue coordinates
 
-Venue coordinates are looked up by hand on Google Maps and kept in
-`inst/extdata/fls_venue_geocoding.csv`.
+Venue coordinates now come primarily from
+`inst/extdata/fls_venue_geocoding_v2.csv`, a local snapshot of a private
+Google Sheet the coordinates are actually maintained in -
+[`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)
+reads this file directly (matched to shows by `country`/`city`/`venue`),
+not the live sheet itself, since that sheet isn’t reliably available and
+isn’t part of the formal package workflow. To update: look up
+new/corrected venues on Google Maps in the sheet as usual, then download
+it and overwrite `inst/extdata/fls_venue_geocoding_v2.csv` with the
+current export.
+
+`inst/extdata/fugazi-small.csv` is still consulted as a fallback for any
+venue `fls_venue_geocoding_v2.csv` doesn’t cover, so a show doesn’t lose
+its coordinates entirely just because a new venue hasn’t been added to
+the sheet yet.
+
+The older `fls_venue_geocoding.csv` file and
+[`nscmov()`](https://alexmitrani.github.io/Repeatr/reference/nscmov.md)’s
+(`R/nscmov.R`) to-do-list bookkeeping around it are **no longer part of
+this pipeline** -
+[`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)
+stopped reading that file once `fls_venue_geocoding_v2.csv` became the
+source of truth. They’re left in place for reference but nothing in
+[`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)
+calls
 [`nscmov()`](https://alexmitrani.github.io/Repeatr/reference/nscmov.md)
-(`R/nscmov.R`) automates the bookkeeping around this, but not the lookup
-itself:
+or reads `fls_venue_geocoding.csv` anymore; treat that workflow as
+retired unless it gets revived deliberately.
 
-``` r
+## 4. Updating song/release/duration and tempo data
 
-othervariables <- nscmov()
-```
+`inst/extdata/releases_songs_durations_wikipedia.csv` carries release,
+track number, instrumental/vocalist, and duration metadata per song,
+hand-maintained against the [Wikipedia Fugazi discography
+page](https://web.archive.org/web/20201112000517/http://en.wikipedia.org/wiki/Fugazi_discography).
+[`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)
+reads it into `songvarslookup` and joins it onto the live, classified
+song set by song title (`song`) - **not** by a hardcoded id column,
+precisely so this file can’t silently drift out of sync with
+[`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)’s
+classification rules the way it once did. If you add, rename, or remove
+a song here,
+[`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)
+will [`warning()`](https://rdrr.io/r/base/warning.html) at build time
+listing any song names that don’t match between the live classification
+and this file - see the songid reconciliation check in `R/Repeatr_1.R`
+for what that looks like, and fix the mismatch in this CSV’s `song`
+column before trusting the rebuilt data.
 
-This applies whatever coordinates are already confirmed in
-`fls_venue_geocoding.csv`, then writes
-`fls_venue_geocoding_update.csv` - a to-do list of every venue that’s
-still unresolved (`checked == 0`). For each row, look the venue up on
-Google Maps, fill in `googlemaps_hyperlink`, `link_x`, `link_y` (and
-`city_disambiguation`/`guess`/`unknown` where relevant), then merge
-those filled-in rows back into `fls_venue_geocoding.csv` by hand. Run
-[`nscmov()`](https://alexmitrani.github.io/Repeatr/reference/nscmov.md)
-again to confirm the new venues are picked up (`checked` should flip to
-1).
+`inst/extdata/song_tempo_bpm_data.csv` carries hand-compiled tempo (BPM)
+per song. Unlike the other four sources, it is **not** read by
+[`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)
+at all - the Shiny app (`inst/shiny/Fugazetteer/app.R`) reads it
+directly - so there is no automated check tying its song names to the
+live classification; when a song’s title changes elsewhere, update it
+here by hand too.
 
-## 4. Rebuilding everything
+## 5. Rebuilding everything
 
-Once any of the above is updated, rebuild the package’s data objects:
+Once any of sources 1-4 is updated, rebuild the package’s data objects:
 
 ``` r
 
@@ -171,7 +234,7 @@ is the slow part), so it’s worth checking
 on its own first if you only want to sanity-check the data-ingestion
 changes.
 
-## 5. Reinstalling and redeploying
+## 6. Reinstalling and redeploying
 
 1.  Commit and push the updated `inst/extdata/*` source files and the
     regenerated `data/*.rda` files.
@@ -184,6 +247,7 @@ changes.
     (`rsconnect::deployApp("inst/shiny/Fugazetteer")`, or the RStudio
     “Publish” button from `app.R`).
 
-The app only ever reads the package’s lazy-loaded data objects, never
-the raw CSVs, so as long as steps 1-4 above ran cleanly there’s nothing
-else to change in `app.R` itself.
+The app reads the package’s lazy-loaded data objects for everything
+except `song_tempo_bpm_data` (read directly from its source CSV, see
+step 4), so as long as steps 1-5 above ran cleanly there’s nothing else
+to change in `app.R` itself.

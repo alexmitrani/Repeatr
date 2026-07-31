@@ -49,24 +49,30 @@ dataframe with one row for each release in the Fugazi discography.
 
 https://www.dischord.com/fugazi_live_series
 
+## Provenance
+
+Derived-modeled. Produced by
+[`Repeatr_5`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_5.md):
+its `rate` column is the average of the choice-model-derived song
+ratings on each release.
+
 ## Examples
 
 ``` r
 releases_summary
-#> # A tibble: 12 × 10
+#> # A tibble: 11 × 10
 #>    releaseid release       first_debut last_debut release_date songs count shows
 #>        <int> <fct>         <date>      <date>     <date>       <int> <int> <dbl>
-#>  1         1 fugazi        1987-10-16  1994-08-27 1988-11-19       7  1683   852
-#>  2         2 margin walker 1987-09-26  1988-10-21 1989-06-15       6  1678   928
-#>  3         3 3 songs       1987-09-03  1992-10-23 1989-12-01       3   547   813
-#>  4         4 repeater      1987-09-03  2001-04-06 1990-03-01      11  3320   795
-#>  5         5 steady diet … 1987-09-03  1997-05-01 1991-08-01      11  2250   722
-#>  6         6 in on the ki… 1987-09-03  1992-10-23 1993-06-18      12  3603   761
-#>  7         7 red medicine  1989-05-03  1994-11-27 1995-05-12      13  2447   461
-#>  8         8 end hits      1993-02-05  1998-05-01 1998-04-24      13  1551   260
-#>  9         9 the argument  1991-04-12  2001-06-21 2001-10-16      10   732   185
+#>  1         1 fugazi        1987-09-03  1988-06-15 1988-11-19       7  2401   942
+#>  2         2 margin walker 1987-09-26  1989-05-03 1989-06-15       6  1684   924
+#>  3         3 3 songs       1987-09-03  1987-10-16 1989-12-01       3   635   952
+#>  4         4 repeater      1987-09-03  1989-09-23 1990-03-01      11  4062   895
+#>  5         5 steady diet … 1987-10-07  1991-04-12 1991-08-01      11  2539   783
+#>  6         6 in on the ki… 1991-07-28  1993-02-05 1993-06-18      12  2642   589
+#>  7         7 red medicine  1993-04-24  1994-11-27 1995-05-12      13  2104   410
+#>  8         8 end hits      1996-01-30  1998-05-01 1998-04-24      13  1429   237
+#>  9         9 the argument  1998-11-29  2001-06-21 2001-10-16      10   475    87
 #> 10        10 furniture     1987-09-03  2001-04-27 2001-10-16       3   230   386
-#> 11        11 first demo    1987-09-03  2001-04-05 2014-11-18       3   105   655
-#> 12        13 unreleased    1988-10-31  1992-10-23 NA               2   153   725
+#> 11        11 first demo    1987-09-03  1987-09-03 2014-11-18       3    85   953
 #> # ℹ 2 more variables: intensity <dbl>, rating <dbl>
 ```

@@ -9,7 +9,7 @@ The function will return a dataframe with the results for each pair of coeeficie
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9197</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9208</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,6 +25,7 @@ The function will return a dataframe with the results for each pair of coeeficie
     <li><a class="dropdown-item" href="../articles/AllAccess.html">All Access</a></li>
     <li><a class="dropdown-item" href="../articles/au%20clair%20de%20la%20lune.html">Au Clair de la Lune</a></li>
     <li><a class="dropdown-item" href="../articles/CombinationLock.html">Combination Lock</a></li>
+    <li><a class="dropdown-item" href="../articles/Data%20Provenance.html">Data Provenance</a></li>
     <li><a class="dropdown-item" href="../articles/Fugazetteer.html">Fugazetteer</a></li>
     <li><a class="dropdown-item" href="../articles/in%20your%20memory.html">in your memory</a></li>
     <li><a class="dropdown-item" href="../articles/LinkTracks.html">Link Tracks</a></li>
@@ -60,7 +61,12 @@ The function will return a dataframe with the results for each pair of coeeficie
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">rankr</span><span class="op">(</span>coeftable <span class="op">=</span> <span class="cn">NULL</span>, vcovmat <span class="op">=</span> <span class="cn">NULL</span>, mysongidlist <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">rankr</span><span class="op">(</span></span>
+<span>  coeftable <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  vcovmat <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  mysongidlist <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  myaltlookup <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -78,6 +84,10 @@ The function will return a dataframe with the results for each pair of coeeficie
 <dt id="arg-mysongidlist">mysongidlist<a class="anchor" aria-label="anchor" href="#arg-mysongidlist"></a></dt>
 <dd><p>a dataframe containing the list of song ids to be tested.  It can contain other variables but only songid will be used.</p></dd>
 
+
+<dt id="arg-myaltlookup">myaltlookup<a class="anchor" aria-label="anchor" href="#arg-myaltlookup"></a></dt>
+<dd><p>optional <code>altlookup</code> dataframe (the second element of <code><a href="Repeatr_2.html">Repeatr_2()</a></code>'s return list) used to translate <code>mysongidlist</code>'s <code>songid</code> values into <code>coeftable</code>'s <code>alt</code>-indexed rows, and to attach song names to the results - <code>songid</code> and <code>alt</code> are different scales (<code>songid</code> spans every classified song, <code>alt</code> only the <code>min_song_count</code>-eligible ones actually fit by the model), so this translation is required, not optional bookkeeping. If omitted the currently lazy-loaded default will be used. Songs in <code>mysongidlist</code> that aren't in <code>altlookup</code> (i.e. below <code>min_song_count</code>) are dropped with a warning, since they have no coefficient to compare.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -94,226 +104,226 @@ The function will return a dataframe with the results for each pair of coeeficie
 <span class="r-in"><span><span class="va">mycomparisons</span> <span class="op">&lt;-</span> <span class="fu">rankr</span><span class="op">(</span>coeftable <span class="op">=</span> <span class="va">results_ml_Repeatr4</span>, vcovmat <span class="op">=</span> <span class="va">vcovmat_ml_Repeatr4</span>, mysongidlist <span class="op">=</span> <span class="va">songstobecompared</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">First coefficient: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">First coefficient: 3.15160717544381 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Second coefficient: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Second coefficient: 1.1804771823996 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Difference to be tested: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Difference to be tested: 1.97112999304421 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the first coefficient: 0.00453742924223042 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the first coefficient: 0.0424198483543461 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the second coefficient: 0.00855050607579515 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the second coefficient: 0.14101846094101 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Covariance of the two coefficients: 0.00184567407828399 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Covariance of the two coefficients: 0.0397520462780542 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Z-statistic: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Z-statistic: 6.11414863943603 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">P-statistic: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">P-statistic: 1.99999999902926 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Lower boundary of 95% confidence interval of the difference between the two coefficients: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Lower boundary of 95% confidence interval of the difference between the two coefficients: 1.33924892272679 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Upper boundary of 95% confidence interval of the difference between the two coefficients: NA </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">First coefficient: NA </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Second coefficient: NA </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Difference to be tested: NA </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the first coefficient: 0.00855050607579515 </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the second coefficient: 0.0236674697358574 </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Covariance of the two coefficients: 0.00370389077326437 </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Z-statistic: NA </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">P-statistic: NA </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Lower boundary of 95% confidence interval of the difference between the two coefficients: NA </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Upper boundary of 95% confidence interval of the difference between the two coefficients: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Upper boundary of 95% confidence interval of the difference between the two coefficients: 2.60301106336164 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">First coefficient: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">First coefficient: 1.1804771823996 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Second coefficient: -1.0550251349753 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Second coefficient: 2.99125045503584 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Difference to be tested: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Difference to be tested: -1.81077327263624 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the first coefficient: 0.0236674697358574 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the first coefficient: 0.14101846094101 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the second coefficient: 0.00453255097738979 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the second coefficient: 0.0402153553683423 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Covariance of the two coefficients: 0.0036794376800882 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Covariance of the two coefficients: 0.0387413994726352 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Z-statistic: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Z-statistic: -5.62170294705247 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">P-statistic: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">P-statistic: 1.8908419439589e-08 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Lower boundary of 95% confidence interval of the difference between the two coefficients: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Lower boundary of 95% confidence interval of the difference between the two coefficients: -2.44209720557863 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Upper boundary of 95% confidence interval of the difference between the two coefficients: NA </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">First coefficient: -1.0550251349753 </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Second coefficient: NA </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Difference to be tested: NA </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the first coefficient: 0.00453255097738979 </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the second coefficient: 0.0046368645007149 </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Covariance of the two coefficients: 0.00196996762434043 </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Z-statistic: NA </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">P-statistic: NA </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Lower boundary of 95% confidence interval of the difference between the two coefficients: NA </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Upper boundary of 95% confidence interval of the difference between the two coefficients: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Upper boundary of 95% confidence interval of the difference between the two coefficients: -1.17944933969384 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">First coefficient: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">First coefficient: 2.99125045503584 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Second coefficient: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Second coefficient: 1.55497313773894 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Difference to be tested: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Difference to be tested: 1.43627731729689 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the first coefficient: 0.0046368645007149 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the first coefficient: 0.0402153553683423 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the second coefficient: 0.0192717930043312 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the second coefficient: 0.0440670936195828 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Covariance of the two coefficients: 0.00298093290655243 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Covariance of the two coefficients: 0.0379532956637188 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Z-statistic: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Z-statistic: 15.6936389764983 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">P-statistic: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">P-statistic: 2 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Lower boundary of 95% confidence interval of the difference between the two coefficients: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Lower boundary of 95% confidence interval of the difference between the two coefficients: 1.25689868203469 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Upper boundary of 95% confidence interval of the difference between the two coefficients: NA </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">First coefficient: NA </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Second coefficient: NA </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Difference to be tested: NA </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the first coefficient: 0.0192717930043312 </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the second coefficient: 0.0144238577046019 </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Covariance of the two coefficients: 0.00983982772986972 </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Z-statistic: NA </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">P-statistic: NA </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Lower boundary of 95% confidence interval of the difference between the two coefficients: NA </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Upper boundary of 95% confidence interval of the difference between the two coefficients: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Upper boundary of 95% confidence interval of the difference between the two coefficients: 1.61565595255909 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">First coefficient: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">First coefficient: 1.55497313773894 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Second coefficient: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Second coefficient: 1.7709465185483 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Difference to be tested: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Difference to be tested: -0.215973380809354 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the first coefficient: 0.0144238577046019 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the first coefficient: 0.0440670936195828 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the second coefficient: 0.0433360457412497 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the second coefficient: 0.0443255740862942 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Covariance of the two coefficients: 0.0150482705176275 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Covariance of the two coefficients: 0.037049365818188 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Z-statistic: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Z-statistic: -1.80644319347025 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">P-statistic: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">P-statistic: 0.0708491398455441 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Lower boundary of 95% confidence interval of the difference between the two coefficients: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Lower boundary of 95% confidence interval of the difference between the two coefficients: -0.45030559115312 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Upper boundary of 95% confidence interval of the difference between the two coefficients: NA </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">First coefficient: NA </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Second coefficient: NA </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Difference to be tested: NA </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the first coefficient: 0.0433360457412497 </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the second coefficient: 0.0494846260902958 </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Covariance of the two coefficients: 0.0219604946383592 </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Z-statistic: NA </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">P-statistic: NA </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Lower boundary of 95% confidence interval of the difference between the two coefficients: NA </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Upper boundary of 95% confidence interval of the difference between the two coefficients: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Upper boundary of 95% confidence interval of the difference between the two coefficients: 0.0183588295344116 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">First coefficient: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">First coefficient: 1.7709465185483 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Second coefficient: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Second coefficient: 3.43463368962312 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Difference to be tested: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Difference to be tested: -1.66368717107483 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the first coefficient: 0.0494846260902958 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the first coefficient: 0.0443255740862942 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the second coefficient: 0.0804502488495918 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the second coefficient: 0.0416408587411747 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Covariance of the two coefficients: 0.022641593498318 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Covariance of the two coefficients: 0.0370539702928315 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Z-statistic: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Z-statistic: -15.2776631703945 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">P-statistic: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">P-statistic: 1.07735208464099e-52 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Lower boundary of 95% confidence interval of the difference between the two coefficients: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Lower boundary of 95% confidence interval of the difference between the two coefficients: -1.87712471181244 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Upper boundary of 95% confidence interval of the difference between the two coefficients: NA </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Upper boundary of 95% confidence interval of the difference between the two coefficients: -1.45024963033721 </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(songid1)`</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(songid2)`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">First coefficient: 3.43463368962312 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Second coefficient: 2.19875828310069 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Difference to be tested: 1.23587540652243 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the first coefficient: 0.0416408587411747 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the second coefficient: 0.0450744117590485 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Covariance of the two coefficients: 0.0379531307884917 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Z-statistic: 11.8872597418323 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">P-statistic: 2 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Lower boundary of 95% confidence interval of the difference between the two coefficients: 1.03210129462517 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Upper boundary of 95% confidence interval of the difference between the two coefficients: 1.43964951841969 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">First coefficient: 2.19875828310069 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Second coefficient: 2.45670420855044 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Difference to be tested: -0.257945925449744 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the first coefficient: 0.0450744117590485 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the second coefficient: 0.0491032660733902 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Covariance of the two coefficients: 0.0385323434380715 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Z-statistic: -1.9718129369467 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">P-statistic: 0.0486309649554755 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Lower boundary of 95% confidence interval of the difference between the two coefficients: -0.514346522285449 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Upper boundary of 95% confidence interval of the difference between the two coefficients: -0.00154532861403855 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">First coefficient: 2.45670420855044 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Second coefficient: 2.61508600037117 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Difference to be tested: -0.158381791820735 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the first coefficient: 0.0491032660733902 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the second coefficient: 0.0735540408379587 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Covariance of the two coefficients: 0.041617793563402 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Z-statistic: -0.797696099838669 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">P-statistic: 0.425046867706681 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Lower boundary of 95% confidence interval of the difference between the two coefficients: -0.547537902815163 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Upper boundary of 95% confidence interval of the difference between the two coefficients: 0.230774319173694 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">First coefficient: 2.61508600037117 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Second coefficient: -1.02160744461325 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Difference to be tested: 3.63669344498442 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the first coefficient: 0.0735540408379587 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Variance of the second coefficient: 0.0997223633400827 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Covariance of the two coefficients: 0.0317249024098666 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Z-statistic: 10.9736960151414 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">P-statistic: 2 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Lower boundary of 95% confidence interval of the difference between the two coefficients: 2.9871475543078 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">Upper boundary of 95% confidence interval of the difference between the two coefficients: 4.28623933566103 </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;"> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(alt1)`</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(alt2)`</span>
 <span class="r-in"><span><span class="va">mycomparisons</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       song1     song2   mycoef1   mycoef2 mycoefdiff myz myp lower95ci</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1      &lt;NA&gt;      &lt;NA&gt;        NA        NA         NA  NA  NA        NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2      &lt;NA&gt;      &lt;NA&gt;        NA        NA         NA  NA  NA        NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3      &lt;NA&gt; bad mouth        NA -1.055025         NA  NA  NA        NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 bad mouth      &lt;NA&gt; -1.055025        NA         NA  NA  NA        NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5      &lt;NA&gt;      &lt;NA&gt;        NA        NA         NA  NA  NA        NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6      &lt;NA&gt;      &lt;NA&gt;        NA        NA         NA  NA  NA        NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7      &lt;NA&gt;      &lt;NA&gt;        NA        NA         NA  NA  NA        NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8      &lt;NA&gt;      &lt;NA&gt;        NA        NA         NA  NA  NA        NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9      &lt;NA&gt;      &lt;NA&gt;        NA        NA         NA  NA  NA        NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   upper95ci</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1        NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2        NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3        NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4        NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5        NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6        NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7        NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8        NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9        NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 song1               song2  mycoef1   mycoef2 mycoefdiff</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1        waiting room         provisional 3.151607  1.180477  1.9711300</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         provisional           blueprint 1.180477  2.991250 -1.8107733</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3           blueprint              stacks 2.991250  1.554973  1.4362773</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4              stacks returning the screw 1.554973  1.770947 -0.2159734</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 returning the screw      do you like me 1.770947  3.434634 -1.6636872</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6      do you like me        back to base 3.434634  2.198758  1.2358754</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7        back to base        floating boy 2.198758  2.456704 -0.2579459</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8        floating boy            the kill 2.456704  2.615086 -0.1583818</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9            the kill  turn off your guns 2.615086 -1.021607  3.6366934</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           myz          myp  lower95ci    upper95ci</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   6.1141486 2.000000e+00  1.3392489  2.603011063</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  -5.6217029 1.890842e-08 -2.4420972 -1.179449340</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  15.6936390 2.000000e+00  1.2568987  1.615655953</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  -1.8064432 7.084914e-02 -0.4503056  0.018358830</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 -15.2776632 1.077352e-52 -1.8771247 -1.450249630</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  11.8872597 2.000000e+00  1.0321013  1.439649518</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  -1.9718129 4.863096e-02 -0.5143465 -0.001545329</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  -0.7976961 4.250469e-01 -0.5475379  0.230774319</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  10.9736960 2.000000e+00  2.9871476  4.286239336</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

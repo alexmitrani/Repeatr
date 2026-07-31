@@ -16,9 +16,10 @@ The main analysis process is split across 5 functions:
 
 - Repeatr_2 takes a dataframe with one row per show-song and reshapes it
   long again so that the rows are identified by combinations of gid,
-  song_number, and songid.
+  song_number, and alt (a dense choice-model index over the songs that
+  meet `min_song_count`, kept separate from the stable, full `songid`).
 
-- Repeatr_3 takes a dataframe with gid, song_number, and songid, and
+- Repeatr_3 takes a dataframe with gid, song_number, and alt, and
   modifies it to make it suitable for choice modelling.
 
 - Repeatr_4 prepares data for choice modelling with mlogit, and

@@ -34,11 +34,16 @@ Fugazi Live Series data.
 
 https://www.dischord.com/fugazi_live_series
 
+## Provenance
+
+Derived-cleaned. Produced by
+[`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md).
+
 ## Examples
 
 ``` r
 cumulative_song_counts
-#> # A tibble: 54,869 × 5
+#> # A tibble: 53,665 × 5
 #>    date       song                 release    count releasedate
 #>    <date>     <chr>                <chr>      <int> <chr>      
 #>  1 1987-09-03 furniture            furniture      1 16/10/2001 
@@ -51,5 +56,5 @@ cumulative_song_counts
 #>  8 1987-09-03 waiting room         fugazi         1 19/11/1988 
 #>  9 1987-09-26 furniture            furniture      2 16/10/2001 
 #> 10 1987-09-26 in defense of humans first demo     2 18/11/2014 
-#> # ℹ 54,859 more rows
+#> # ℹ 53,655 more rows
 ```

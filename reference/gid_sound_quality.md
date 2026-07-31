@@ -24,6 +24,11 @@ dataframe with one row for each show in the Fugazi Live Series data.
 
 https://www.dischord.com/fugazi_live_series
 
+## Provenance
+
+Derived-cleaned. Produced by
+[`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md).
+
 ## Examples
 
 ``` r

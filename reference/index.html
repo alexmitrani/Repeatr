@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9197</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9208</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,6 +23,7 @@
     <li><a class="dropdown-item" href="../articles/AllAccess.html">All Access</a></li>
     <li><a class="dropdown-item" href="../articles/au%20clair%20de%20la%20lune.html">Au Clair de la Lune</a></li>
     <li><a class="dropdown-item" href="../articles/CombinationLock.html">Combination Lock</a></li>
+    <li><a class="dropdown-item" href="../articles/Data%20Provenance.html">Data Provenance</a></li>
     <li><a class="dropdown-item" href="../articles/Fugazetteer.html">Fugazetteer</a></li>
     <li><a class="dropdown-item" href="../articles/in%20your%20memory.html">in your memory</a></li>
     <li><a class="dropdown-item" href="../articles/LinkTracks.html">Link Tracks</a></li>
@@ -99,14 +100,14 @@
           <code><a href="Repeatr_2.html">Repeatr_2()</a></code>
 
         </dt>
-        <dd>takes a dataframe with one row per show-song and reshapes it long again so that the rows are identified by combinations of gid, song_number, and songid.</dd>
+        <dd>takes a dataframe with one row per show-song and reshapes it long again so that the rows are identified by combinations of gid, song_number, and alt.</dd>
 
         <dt>
 
           <code><a href="Repeatr_3.html">Repeatr_3()</a></code>
 
         </dt>
-        <dd>takes a dataframe with gid, song_number, and songid, and modifies it to make it suitable for choice modelling.</dd>
+        <dd>takes a dataframe with gid, song_number, and alt, and modifies it to make it suitable for choice modelling.</dd>
 
         <dt>
 
@@ -128,6 +129,13 @@
 
         </dt>
         <dd>Runs the whole analysis process to update the site and Fugazetteer web app from the input data files.</dd>
+
+        <dt>
+
+          <code><a href="altlookup.html">altlookup</a></code>
+
+        </dt>
+        <dd>Fugazi alt id lookup table (choice-model alternative index)</dd>
 
         <dt>
 
@@ -383,6 +391,13 @@
 
         <dt>
 
+          <code><a href="scrape_fls_listing_data.html">scrape_fls_listing_data()</a></code>
+
+        </dt>
+        <dd>Scrape just the gid -&gt; tour/city/subdivision/country mapping from the FLS listing pages</dd>
+
+        <dt>
+
           <code><a href="scrape_fls_shows.html">scrape_fls_shows()</a></code>
 
         </dt>
@@ -471,13 +486,6 @@
 
         </dt>
         <dd>Variance-covariance matrix from the model ml.Repeatr4</dd>
-
-        <dt>
-
-          <code><a href="venuesdata.html">venuesdata</a></code>
-
-        </dt>
-        <dd>Venues data</dd>
 
         <dt>
 

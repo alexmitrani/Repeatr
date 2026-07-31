@@ -25,11 +25,16 @@ in the Fugazi Live Series data.
 
 https://www.dischord.com/fugazi_live_series
 
+## Provenance
+
+Derived-cleaned. Produced by
+[`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md).
+
 ## Examples
 
 ``` r
 last_performance_data
-#> # A tibble: 94 × 2
+#> # A tibble: 92 × 2
 #>    song                 last_performance
 #>    <chr>                <date>          
 #>  1 23 beats off         1996-04-07      
@@ -42,5 +47,5 @@ last_performance_data
 #>  8 birthday pony        2002-11-04      
 #>  9 blueprint            2002-11-04      
 #> 10 break                2002-11-03      
-#> # ℹ 84 more rows
+#> # ℹ 82 more rows
 ```

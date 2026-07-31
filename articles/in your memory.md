@@ -22,12 +22,12 @@ release of Red Medicine.
     #> # A tibble: 13 × 2
     #>    song                 debut     
     #>    <fct>                <date>    
-    #>  1 two beats off        1989-05-03
-    #>  2 sweet and low        1992-05-15
-    #>  3 by you               1993-04-24
-    #>  4 fell, destroyed      1993-08-16
-    #>  5 birthday pony        1994-08-15
-    #>  6 forensic scene       1994-08-19
+    #>  1 by you               1993-04-24
+    #>  2 fell, destroyed      1993-08-16
+    #>  3 target               1994-08-15
+    #>  4 birthday pony        1994-08-15
+    #>  5 forensic scene       1994-08-19
+    #>  6 version              1994-08-27
     #>  7 downed city          1994-11-20
     #>  8 back to base         1994-11-20
     #>  9 latest disgrace      1994-11-20

@@ -11,7 +11,7 @@ Rows with checked==1 were updated by Alex Mitrani, in particular making sure tha
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9197</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9208</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,6 +27,7 @@ Rows with checked==1 were updated by Alex Mitrani, in particular making sure tha
     <li><a class="dropdown-item" href="../articles/AllAccess.html">All Access</a></li>
     <li><a class="dropdown-item" href="../articles/au%20clair%20de%20la%20lune.html">Au Clair de la Lune</a></li>
     <li><a class="dropdown-item" href="../articles/CombinationLock.html">Combination Lock</a></li>
+    <li><a class="dropdown-item" href="../articles/Data%20Provenance.html">Data Provenance</a></li>
     <li><a class="dropdown-item" href="../articles/Fugazetteer.html">Fugazetteer</a></li>
     <li><a class="dropdown-item" href="../articles/in%20your%20memory.html">in your memory</a></li>
     <li><a class="dropdown-item" href="../articles/LinkTracks.html">Link Tracks</a></li>
@@ -99,13 +100,16 @@ Rows with checked==1 were updated by Alex Mitrani, in particular making sure tha
 <dd><p>latitude</p></dd>
 
 <dt>city</dt>
-<dd><p>city</p></dd>
+<dd><p>city - plain city name (e.g. "Portland", "Columbia", "Croydon"); see <code>subdivision</code>/<code>country</code> to disambiguate cities that share a name with another Fugazi tour stop. Internally, <code><a href="Repeatr_1.html">Repeatr_1</a></code> temporarily suffixes these as "City (ST/Country)" to match the venue-coordinate lookup's join key, then strips the suffix back off once coordinates are resolved - the suffix never persists to this exposed column.</p></dd>
+
+<dt>subdivision</dt>
+<dd><p>Subnational administrative unit (US state, DC, Canadian province, or Australian state/territory), where applicable (<code>NA</code> outside those three countries) - scraped directly, see <code><a href="Repeatr0.html">Repeatr0</a></code>/<code><a href="scrape_fls_listing_data.html">scrape_fls_listing_data</a></code>.</p></dd>
 
 <dt>country</dt>
 <dd><p>country</p></dd>
 
 <dt>tour</dt>
-<dd><p>tour</p></dd>
+<dd><p>The touring period the show belongs to, scraped directly from the FLS listing pages (see <code><a href="Repeatr0.html">Repeatr0</a></code>/<code><a href="scrape_fls_listing_data.html">scrape_fls_listing_data</a></code>) - no longer sourced from "fugazi-small.csv".</p></dd>
 
 <dt>year</dt>
 <dd><p>year</p></dd>
@@ -119,26 +123,31 @@ Rows with checked==1 were updated by Alex Mitrani, in particular making sure tha
     <h2 id="source">Source<a class="anchor" aria-label="anchor" href="#source"></a></h2>
     <p>https://www.dischord.com/fugazi_live_series</p>
     </div>
+    <div class="section level2">
+    <h2 id="provenance">Provenance<a class="anchor" aria-label="anchor" href="#provenance"></a></h2>
+    <p>Derived-cleaned. Produced by <code><a href="Repeatr_1.html">Repeatr_1</a></code> by joining the raw scrape with the hand-curated venue coordinates and the <code>othervariables_patch.csv</code> correction table. Actively consumed directly by <code>inst/shiny/Fugazetteer/app.R</code> (e.g. its attendance/tour reactives).</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">othervariables</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,028 × 17</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,049 × 18</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    gid       flsid date       venue doorprice attendance recorded_by mastered_by</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> aalst-be… FLS0… 1990-09-23 Netw… <span style="color: #BB0000;">NA</span>              600  Joey Picuri Warren Rus…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> aberdeen… FLS0… 1999-05-04 Lemo… 6(pounds)       550  Joey Picuri Jerry Bush…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> adelaide… FLS0… 1993-11-11 Dom … 15              550  Joey Picuri Warren Rus…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> adelaide… FLS0… 1996-11-12 Adel… <span style="color: #BB0000;">NA</span>              913. Nick Pelli… Jerry Bush…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> adelaide… FLS0… 1996-11-12 Adel… <span style="color: #BB0000;">NA</span>              906. Nick Pelli… Jerry Bush…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> adelaide… FLS0… 1991-10-22 Le R… <span style="color: #BB0000;">NA</span>              450  Joey Picuri Warren Rus…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> akron-oh… FLS0… 1990-06-28 Jack… 5               700  Joey Picuri Warren Rus…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> albany-n… FLS0… 1993-09-20 S.U.… 5              <span style="text-decoration: underline;">1</span>000  Joey Picuri Warren Rus…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> albuquer… FLS0… 1995-11-13 Five… 5               895  Joey Picuri Warren Rus…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> albuquer… FLS0… 2001-04-08 Suns… 6              <span style="text-decoration: underline;">1</span>100  Nick Pelli… Warren Rus…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> albuquer… FLS0… 1991-09-11 Suns… 5               800  Joey Picuri Warren Rus…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1,018 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 9 more variables: original_source &lt;chr&gt;, fls_notes &lt;chr&gt;, x &lt;dbl&gt;, y &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   city &lt;chr&gt;, country &lt;chr&gt;, tour &lt;chr&gt;, year &lt;dbl&gt;, checked &lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1,039 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 10 more variables: original_source &lt;chr&gt;, fls_notes &lt;chr&gt;, tour &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   city &lt;chr&gt;, subdivision &lt;chr&gt;, country &lt;chr&gt;, year &lt;dbl&gt;, checked &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   x &lt;dbl&gt;, y &lt;dbl&gt;</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

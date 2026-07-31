@@ -21,9 +21,11 @@ Repeatr_Updatr(really = "not_really", min_song_count = 2)
 - min_song_count:
 
   passed through to
-  [`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md):
+  [`Repeatr_2`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_2.md):
   minimum number of performances a song needs to compete as an
-  alternative in the choice model. Default 2.
+  alternative in the choice model. Default 2. Does not affect
+  `songid`/`songidlookup`, which cover every classified song regardless
+  of this threshold.
 
 ## Value
 

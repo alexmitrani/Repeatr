@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9197</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9208</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,6 +23,7 @@
     <li><a class="dropdown-item" href="../articles/AllAccess.html">All Access</a></li>
     <li><a class="dropdown-item" href="../articles/au%20clair%20de%20la%20lune.html">Au Clair de la Lune</a></li>
     <li><a class="dropdown-item" href="../articles/CombinationLock.html">Combination Lock</a></li>
+    <li><a class="dropdown-item" href="../articles/Data%20Provenance.html">Data Provenance</a></li>
     <li><a class="dropdown-item" href="../articles/Fugazetteer.html">Fugazetteer</a></li>
     <li><a class="dropdown-item" href="../articles/in%20your%20memory.html">in your memory</a></li>
     <li><a class="dropdown-item" href="../articles/LinkTracks.html">Link Tracks</a></li>
@@ -98,6 +99,18 @@
 <dt>fls_notes</dt>
 <dd><p>Any official note shown on the show's page (e.g. "Previously released on CD (FLS29)"), NA when the show has none</p></dd>
 
+<dt>tour</dt>
+<dd><p>The touring period the show belongs to (e.g. "1988 Fall European Tour"), scraped from the FLS listing pages' own tour headings - see <code><a href="scrape_fls_listing_data.html">scrape_fls_listing_data</a></code>.</p></dd>
+
+<dt>city</dt>
+<dd><p>City, scraped from the FLS listing pages - see <code><a href="scrape_fls_listing_data.html">scrape_fls_listing_data</a></code>. Not yet disambiguated for cities that share a name with another tour stop (Portland, Columbia, etc.) - see <code><a href="othervariables.html">othervariables</a></code> for the disambiguated version.</p></dd>
+
+<dt>subdivision</dt>
+<dd><p>Subnational administrative unit (US state, DC, Canadian province, or Australian state/territory), where applicable (<code>NA</code> outside those three countries) - see <code><a href="scrape_fls_listing_data.html">scrape_fls_listing_data</a></code>.</p></dd>
+
+<dt>country</dt>
+<dd><p>Country, scraped from the FLS listing pages - see <code><a href="scrape_fls_listing_data.html">scrape_fls_listing_data</a></code>.</p></dd>
+
 <dt>track_1-track_n</dt>
 <dd><p>Tracks, one column per track slot up to the widest tracklist in the data</p></dd>
 
@@ -106,6 +119,10 @@
     <div class="section level2">
     <h2 id="source">Source<a class="anchor" aria-label="anchor" href="#source"></a></h2>
     <p>https://www.dischord.com/fugazi_live_series</p>
+    </div>
+    <div class="section level2">
+    <h2 id="provenance">Provenance<a class="anchor" aria-label="anchor" href="#provenance"></a></h2>
+    <p>Derived-cleaned. Produced by <code><a href="Repeatr_1.html">Repeatr_1</a></code> from the raw scrape (<code><a href="scrape_fls_shows.html">scrape_fls_shows</a></code>); typed/cleaned, no song classification yet.</p>
     </div>
 
     <div class="section level2">

@@ -17,7 +17,14 @@ var1, var2, coefindex1, coefindex2, mycoef1, mycoef2, mycoefdiff, myz,
 myp, lower95ci, upper95ci
 
 A coefficient index of 0 will be interpreted as referring to the omitted
-constant.
+constant, labeled "(Intercept):1" below. This is always correct, not a
+hardcoded assumption about which song is omitted:
+[`Repeatr_2()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_2.md)
+builds `alt` as a dense 1..n index (`row_number()`), so `as.factor(alt)`
+in
+[`Repeatr_4()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_4.md)
+always has 1 as its lowest level, and mlogit always drops the lowest
+level as the reference - whichever song that numerically is.
 
 ## Usage
 
@@ -57,25 +64,25 @@ the two specified coefficients.
 mytest <- diffr(coeftable = results_ml_Repeatr4, vcovmat = vcovmat_ml_Repeatr4, coefindex1 = 1, coefindex2 = 2)
 #> 
 #>  
-#> First coefficient: 0.190336139918484 
+#> First coefficient: 2.53141417247347 
 #>  
-#> Second coefficient: -0.215248525271357 
+#> Second coefficient: 2.70962457612322 
 #>  
-#> Difference to be tested: 0.40558466518984 
+#> Difference to be tested: -0.178210403649746 
 #>  
-#> Variance of the first coefficient: 0.00443420102574495 
+#> Variance of the first coefficient: 0.0434251826455706 
 #>  
-#> Variance of the second coefficient: 0.00425815529488678 
+#> Variance of the second coefficient: 0.0566868791184421 
 #>  
-#> Covariance of the two coefficients: 0.00256233487451444 
+#> Covariance of the two coefficients: 0.0326788510176007 
 #>  
-#> Z-statistic: 6.79028776286495 
+#> Z-statistic: -0.955935099041361 
 #>  
-#> P-statistic: 1.99999999998881 
+#> P-statistic: 0.339105024831357 
 #>  
-#> Lower boundary of 95% confidence interval of the difference between the two coefficients: 0.288513640877804 
+#> Lower boundary of 95% confidence interval of the difference between the two coefficients: -0.543603819482875 
 #>  
-#> Upper boundary of 95% confidence interval of the difference between the two coefficients: 0.522655689501877 
+#> Upper boundary of 95% confidence interval of the difference between the two coefficients: 0.187183012183382 
 #>  
 #> 
 ```

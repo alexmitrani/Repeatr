@@ -21,7 +21,11 @@ Repeatr_4(mydf = NULL)
 A data frame (`results_ml_Repeatr4`) of the mlogit coefficient table:
 one row per model covariate, with columns for the estimate, standard
 error, z-value and p-value. Also saved to
-`data/results_ml_Repeatr4.rda`.
+`data/results_ml_Repeatr4.rda`, alongside the corresponding
+`vcovmat_ml_Repeatr4.rda` (needed by
+[`diffr`](https://alexmitrani.github.io/Repeatr/reference/diffr.md)/[`rankr`](https://alexmitrani.github.io/Repeatr/reference/rankr.md)) -
+both are always written together by this function so they can never go
+out of sync with each other.
 
 ## Examples
 

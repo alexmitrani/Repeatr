@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9197</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9208</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,6 +23,7 @@
     <li><a class="dropdown-item" href="../articles/AllAccess.html">All Access</a></li>
     <li><a class="dropdown-item" href="../articles/au%20clair%20de%20la%20lune.html">Au Clair de la Lune</a></li>
     <li><a class="dropdown-item" href="../articles/CombinationLock.html">Combination Lock</a></li>
+    <li><a class="dropdown-item" href="../articles/Data%20Provenance.html">Data Provenance</a></li>
     <li><a class="dropdown-item" href="../articles/Fugazetteer.html">Fugazetteer</a></li>
     <li><a class="dropdown-item" href="../articles/in%20your%20memory.html">in your memory</a></li>
     <li><a class="dropdown-item" href="../articles/LinkTracks.html">Link Tracks</a></li>
@@ -57,7 +58,14 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">sweepstack</span><span class="op">(</span>number_stacks <span class="op">=</span> <span class="cn">NULL</span>, exclude_poor_sound_quality <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">sweepstack</span><span class="op">(</span></span>
+<span>  number_stacks <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  exclude_poor_sound_quality <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  myduration_data_da <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  mysummary <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  myothervariables <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  mygidsoundquality <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -70,6 +78,14 @@
 
 <dt id="arg-exclude-poor-sound-quality">exclude_poor_sound_quality<a class="anchor" aria-label="anchor" href="#arg-exclude-poor-sound-quality"></a></dt>
 <dd><p>set this to TRUE to exclude shows with sound quality rated as 'Poor'.</p></dd>
+
+
+<dt id="arg-myduration-data-da">myduration_data_da<a class="anchor" aria-label="anchor" href="#arg-myduration-data-da"></a></dt>
+<dd><p>optional <code>duration_data_da</code> dataframe (as produced by <code><a href="Repeatr_1.html">Repeatr_1()</a></code>) to be used for the pool of shows/songs to sweep over. If omitted the currently lazy-loaded default will be used.</p></dd>
+
+
+<dt id="arg-mysummary-myothervariables-mygidsoundquality">mysummary, myothervariables, mygidsoundquality<a class="anchor" aria-label="anchor" href="#arg-mysummary-myothervariables-mygidsoundquality"></a></dt>
+<dd><p>optional lookup tables passed straight through to <code><a href="stacks.html">stacks()</a></code> - see there for details. If omitted the currently lazy-loaded defaults will be used.</p></dd>
 
 </dl></div>
     <div class="section level2">

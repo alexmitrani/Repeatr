@@ -41,7 +41,7 @@ mydf1 <- Repeatr1 %>%
   rename(song1 = song)
 
 print(paste0("There are ", nrow(mydf1), " rows in this dataframe."))
-#> [1] "There are 24578 rows in this dataframe."
+#> [1] "There are 24571 rows in this dataframe."
 
 head(mydf1)
 #> # A tibble: 6 × 3
@@ -75,7 +75,7 @@ mydf3 <- mydf1 %>%
 #> Joining with `by = join_by(gid, song_number)`
 
 print(paste0("There are ", nrow(mydf3), " rows in this dataframe."))
-#> [1] "There are 23620 rows in this dataframe."
+#> [1] "There are 23615 rows in this dataframe."
 
 head(mydf3)
 #> # A tibble: 6 × 4
@@ -124,7 +124,7 @@ numberofsongs <- sum(checknumberofshows$songs)
 numberoftransitions <- numberofsongs - numberofshows
 
 print(paste0("There are ", numberofsongs, " songs, ", numberofshows, " shows, and ", numberoftransitions, " transitions between songs in the Fugazi Live Series data."  ))
-#> [1] "There are 24578 songs, 953 shows, and 23625 transitions between songs in the Fugazi Live Series data."
+#> [1] "There are 24571 songs, 953 shows, and 23618 transitions between songs in the Fugazi Live Series data."
 ```
 
 Now let’s summarise the data to count how many times each transition
@@ -301,7 +301,7 @@ groups of songs:
 
 mysongvarslookup <- songvarslookup %>%
   left_join(songidlookup)
-#> Joining with `by = join_by(song, songid)`
+#> Joining with `by = join_by(song)`
 
 mysongvarslookup <- mysongvarslookup %>%
   mutate(vocals = ifelse(vocals_lally==1,"lally",0)) %>%
@@ -330,9 +330,9 @@ checkvocals
 #> # A tibble: 4 × 3
 #>   vocals       count group
 #>   <chr>        <int> <int>
-#> 1 picciotto       43     1
+#> 1 picciotto       42     1
 #> 2 mackaye         39     2
-#> 3 instrumental     9     3
+#> 3 instrumental     8     3
 #> 4 lally            3     4
 ```
 
@@ -373,15 +373,15 @@ transitions_by_group
 #> # A tibble: 25 × 4
 #>    from_vocals  to_vocals    count proportion
 #>    <chr>        <chr>        <int>      <dbl>
-#>  1 mackaye      picciotto     5163       0.22
-#>  2 picciotto    mackaye       4993       0.21
+#>  1 mackaye      picciotto     5158       0.22
+#>  2 picciotto    mackaye       4989       0.21
 #>  3 NA           mackaye       2679       0.11
-#>  4 mackaye      NA            2562       0.11
-#>  5 picciotto    NA            2483       0.11
-#>  6 NA           picciotto     2273       0.1 
-#>  7 mackaye      mackaye        609       0.03
-#>  8 NA           instrumental   437       0.02
-#>  9 instrumental mackaye        358       0.02
+#>  4 mackaye      NA            2564       0.11
+#>  5 picciotto    NA            2482       0.11
+#>  6 NA           picciotto     2272       0.1 
+#>  7 mackaye      mackaye        608       0.03
+#>  8 NA           instrumental   436       0.02
+#>  9 instrumental mackaye        357       0.02
 #> 10 mackaye      instrumental   296       0.01
 #> # ℹ 15 more rows
 ```

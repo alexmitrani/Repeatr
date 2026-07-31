@@ -61,7 +61,7 @@ it is always excluded from the scrape targets."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9197</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9208</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,6 +77,7 @@ it is always excluded from the scrape targets."></head><body>
     <li><a class="dropdown-item" href="../articles/AllAccess.html">All Access</a></li>
     <li><a class="dropdown-item" href="../articles/au%20clair%20de%20la%20lune.html">Au Clair de la Lune</a></li>
     <li><a class="dropdown-item" href="../articles/CombinationLock.html">Combination Lock</a></li>
+    <li><a class="dropdown-item" href="../articles/Data%20Provenance.html">Data Provenance</a></li>
     <li><a class="dropdown-item" href="../articles/Fugazetteer.html">Fugazetteer</a></li>
     <li><a class="dropdown-item" href="../articles/in%20your%20memory.html">in your memory</a></li>
     <li><a class="dropdown-item" href="../articles/LinkTracks.html">Link Tracks</a></li>
@@ -211,8 +212,15 @@ returned, not written to disk.</p></dd>
 <code>show_date</code>, <code>venue</code>, <code>door_price</code>, <code>attendance</code>, <code>recorded_by</code>,
 <code>mastered_by</code>, <code>original_source</code>, <code>sound_quality</code>, <code>played_with</code>,
 <code>fls_notes</code> (any official note shown on the show's page, e.g. "Previously
-released on CD (FLS29)"; <code>NA</code> when the show has none), and <code>track_1</code> ...
-<code>track_n</code> (as many track columns as the widest tracklist in the result).</p>
+released on CD (FLS29)"; <code>NA</code> when the show has none), <code>tour</code> (the
+touring period, e.g. "1988 Fall European Tour"), <code>city</code>, <code>subdivision</code>
+(<code>NA</code> outside the US, Canada, and Australia, which don't have one to
+show), <code>country</code> - the
+last four all read from the listing page, not the show's own detail
+page (see <code><a href="scrape_fls_listing_data.html">scrape_fls_listing_data</a></code>), so all four are <code>NA</code>
+when <code>gids</code> is supplied directly, since that bypasses the listing-page
+crawl they come from - and <code>track_1</code> ... <code>track_n</code> (as many track
+columns as the widest tracklist in the result).</p>
     </div>
 
     <div class="section level2">

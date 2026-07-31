@@ -40,6 +40,14 @@ dataframe with one row for each release.
 
   RYM rating scaled to the interval between 0 and 1
 
+## Provenance
+
+Derived-cleaned. Produced by
+[`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)
+from the raw, hand-curated `inst/extdata/releases.csv` (which itself
+carries a manually-assigned `colour_code` and an `rym_rating` sourced
+from rateyourmusic.com).
+
 ## Examples
 
 ``` r

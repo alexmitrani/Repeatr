@@ -33,7 +33,12 @@ available in all the Fugazi Live Series shows with data.
 
 - alt:
 
-  alt is the songid variable renamed
+  A dense 1..n index over the `min_song_count`-eligible songs only, in
+  `songid` order - this is the alternative-specific index
+  `mlogit`/[`Repeatr_4`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_4.md)
+  actually sees. See
+  [`altlookup`](https://alexmitrani.github.io/Repeatr/reference/altlookup.md)
+  to translate back to song identity.
 
 - choice:
 
@@ -162,24 +167,32 @@ https://www.dischord.com/fugazi_live_series
 
 https://web.archive.org/web/20201112000517/http://en.wikipedia.org/wiki/Fugazi_discography
 
+## Provenance
+
+Derived-modeled. Produced by
+[`Repeatr_3`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_3.md)
+from `Repeatr2`: variable selection and integer compression, ready for
+[`Repeatr_4`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_4.md)'s
+`mlogit` fit.
+
 ## Examples
 
 ``` r
 Repeatr3
-#> # A tibble: 921,299 × 34
+#> # A tibble: 896,887 × 34
 #>    gid    case song_number   alt choice yearsold vocals_mackaye vocals_picciotto
 #>    <chr> <int>       <int> <dbl>  <dbl>    <int>          <int>            <int>
 #>  1 wash…     1           1    36      0        0              0                0
 #>  2 wash…     1           1    43      0        0              0                0
 #>  3 wash…     1           1    45      1        0              0                0
 #>  4 wash…     1           1    55      0        0              0                0
-#>  5 wash…     1           1    79      0        0              0                0
-#>  6 wash…     1           1    88      0        0              0                0
-#>  7 wash…     1           1    89      0        0              0                0
-#>  8 wash…     1           1    93      0        0              0                0
+#>  5 wash…     1           1    77      0        0              0                0
+#>  6 wash…     1           1    86      0        0              0                0
+#>  7 wash…     1           1    87      0        0              0                0
+#>  8 wash…     1           1    91      0        0              0                0
 #>  9 wash…     3           3    36      0        0              1                0
 #> 10 wash…     3           3    43      0        0              1                0
-#> # ℹ 921,289 more rows
+#> # ℹ 896,877 more rows
 #> # ℹ 26 more variables: vocals_lally <int>, instrumental <int>,
 #> #   first_song <dbl>, last_song <dbl>, duration_seconds <int>,
 #> #   yearsold_0 <int>, yearsold_1 <int>, yearsold_2 <int>, yearsold_3 <int>,

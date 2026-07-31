@@ -80,16 +80,16 @@ head(toursdata, n=10)
 #> # A tibble: 10 × 9
 #>    tour           start      end        shows duration attendance meanattendance
 #>    <chr>          <date>     <date>     <int>    <int>      <int>          <int>
-#>  1 1990 Fall Eur… 1990-09-01 1990-11-07    60       67      43476            724
-#>  2 1995 Spring/S… 1995-05-04 1995-07-14    58       71      71825           1238
-#>  3 1992 Spring E… 1992-05-01 1992-07-11    55       71      52612            956
-#>  4 1995 Fall USA… 1995-09-16 1995-11-20    49       65      68203           1391
-#>  5 1993 Spring U… 1993-04-02 1993-05-31    47       59      73350           1560
+#>  1 1990 Fall Eur… 1990-09-01 1990-11-07    60       67      43481            724
+#>  2 1995 Spring/S… 1995-05-04 1995-07-14    59       71      72080           1221
+#>  3 1992 Spring E… 1992-05-01 1992-07-11    56       71      55412            989
+#>  4 1995 Fall USA… 1995-09-16 1995-11-20    50       65      68903           1378
+#>  5 1993 Spring U… 1993-04-02 1993-05-31    48       59      74550           1553
 #>  6 1990 Spring/S… 1990-05-02 1990-06-30    43       59      24080            560
-#>  7 1993 Fall USA… 1993-08-16 1993-09-29    39       44      58075           1489
-#>  8 1988 Fall Eur… 1988-10-14 1988-12-16    38       63       7708            202
+#>  7 1988 Fall Eur… 1988-10-14 1988-12-16    39       63       7700            197
+#>  8 1993 Fall USA… 1993-08-16 1993-09-29    39       44      58075           1489
 #>  9 1991 Spring U… 1991-05-01 1991-06-14    38       44      27273            717
-#> 10 1989 Spring U… 1989-04-05 1989-06-16    35       72      11152            318
+#> 10 1989 Spring U… 1989-04-05 1989-06-16    35       72      11159            318
 #> # ℹ 2 more variables: startyear <dbl>, endyear <dbl>
 ```
 
@@ -119,7 +119,7 @@ mydf <- songvarslookup %>%
   left_join(releasedates) %>%
   left_join(songidlookup)
 #> Joining with `by = join_by(releaseid)`
-#> Joining with `by = join_by(song, songid)`
+#> Joining with `by = join_by(song)`
 mydf <- mydf %>% 
   select(songid, song, releaseid, releasedate) %>%
   arrange(songid)
@@ -147,18 +147,18 @@ mysummary <- Repeatr::summary %>%
 
 head(mysummary, n = 10)
 #> # A tibble: 10 × 4
-#>    song                 launchdate releasedate lead    
-#>    <chr>                <date>     <date>      <drtn>  
-#>  1 foreman's dog        1998-05-01 1998-04-24   -7 days
-#>  2 life and limb        2001-06-21 2001-10-16  117 days
-#>  3 polish               1991-03-06 1991-08-01  148 days
-#>  4 bulldog front        1988-06-15 1988-11-19  157 days
-#>  5 blueprint            1989-09-23 1990-03-01  159 days
-#>  6 nice new outfit      1991-02-20 1991-08-01  162 days
-#>  7 combination lock     1994-11-27 1995-05-12  166 days
-#>  8 long distance runner 1994-11-27 1995-05-12  166 days
-#>  9 hello morning        2001-04-27 2001-10-16  172 days
-#> 10 do you like me       1994-11-20 1995-05-12  173 days
+#>    song                   launchdate releasedate lead    
+#>    <chr>                  <date>     <date>      <drtn>  
+#>  1 foreman's dog          1998-05-01 1998-04-24   -7 days
+#>  2 provisional            1989-05-03 1989-06-15   43 days
+#>  3 steady diet            1991-04-12 1991-08-01  111 days
+#>  4 life and limb          2001-06-21 2001-10-16  117 days
+#>  5 public witness program 1993-02-05 1993-06-18  133 days
+#>  6 polish                 1991-03-06 1991-08-01  148 days
+#>  7 bulldog front          1988-06-15 1988-11-19  157 days
+#>  8 blueprint              1989-09-23 1990-03-01  159 days
+#>  9 nice new outfit        1991-02-20 1991-08-01  162 days
+#> 10 combination lock       1994-11-27 1995-05-12  166 days
 ```
 
 Surprisingly, there seem to be only 2 songs whose live debuts lagged
@@ -170,7 +170,7 @@ average lead time for all Fugazi songs with a corresponding release?
 ``` r
 
 mean(mysummary$lead)
-#> Time difference of NA days
+#> Time difference of 780.9239 days
 ```
 
 That is over 2 years, but perhaps the mean is biased upwards by a few
@@ -186,16 +186,16 @@ head(mysummary, n = 10)
 #> # A tibble: 10 × 4
 #>    song                 launchdate releasedate lead     
 #>    <chr>                <date>     <date>      <drtn>   
-#>  1 in defense of humans 1987-09-03 2014-11-18  9938 days
-#>  2 furniture            1987-09-03 2001-10-16  5157 days
-#>  3 kyeo                 1987-10-07 1991-08-01  1394 days
-#>  4 number 5             1998-11-21 2001-10-16  1060 days
-#>  5 oh                   1998-11-29 2001-10-16  1052 days
-#>  6 merchandise          1987-09-03 1990-03-01   910 days
-#>  7 long division        1989-04-09 1991-08-01   844 days
-#>  8 joe #1               1987-09-03 1989-12-01   820 days
-#>  9 caustic acrostic     1996-01-30 1998-04-24   815 days
-#> 10 ex-spectator         1999-08-26 2001-10-16   782 days
+#>  1 the word             1987-09-03 2014-11-18  9938 days
+#>  2 turn off your guns   1987-09-03 2014-11-18  9938 days
+#>  3 in defense of humans 1987-09-03 2014-11-18  9938 days
+#>  4 furniture            1987-09-03 2001-10-16  5157 days
+#>  5 kyeo                 1987-10-07 1991-08-01  1394 days
+#>  6 number 5             1998-11-21 2001-10-16  1060 days
+#>  7 oh                   1998-11-29 2001-10-16  1052 days
+#>  8 merchandise          1987-09-03 1990-03-01   910 days
+#>  9 long division        1989-04-09 1991-08-01   844 days
+#> 10 song #1              1987-09-03 1989-12-01   820 days
 ```
 
 The median lead time is probably a more reliable indicator for how long
@@ -205,7 +205,7 @@ discographical release.
 ``` r
 
 median(mysummary$lead)
-#> Time difference of NA days
+#> Time difference of 347 days
 ```
 
 We have discovered several interesting things:
@@ -247,14 +247,14 @@ head(venuesdata, n = 10)
 #> # A tibble: 10 × 6
 #>    venue                 city        country shows  from    to
 #>    <chr>                 <chr>       <chr>   <int> <dbl> <dbl>
-#>  1 Fort Reno             Washington  USA        12  1988  2002
+#>  1 Fort Reno             Washington  USA        13  1988  2002
 #>  2 Liberty Lunch         Austin      USA         9  1988  1998
 #>  3 40 Watt               Athens      USA         8  1988  1999
 #>  4 9:30 Club (1980-1995) Washington  USA         8  1988  1994
 #>  5 First Avenue          Minneapolis USA         8  1991  2001
-#>  6 Wilson Center         Washington  USA         8  1987  1997
-#>  7 Masquerade            Atlanta     USA         7  1990  1999
-#>  8 Maxwell's             Hoboken     USA         7  1988  1995
+#>  6 Maxwell's             Hoboken     USA         8  1988  1998
+#>  7 Wilson Center         Washington  USA         8  1987  1997
+#>  8 Masquerade            Atlanta     USA         7  1990  1999
 #>  9 Cat's Cradle          Chapel Hill USA         6  1987  1993
 #> 10 Hollywood Palladium   Los Angeles USA         6  1991  1993
 ```
@@ -305,7 +305,7 @@ number_venues <- nrow(venuesdata)
 cat(paste0("\n \n There are ", number_venues, " venues in the Fugazi Live Series data. \n \n"))
 #> 
 #>  
-#>  There are 734 venues in the Fugazi Live Series data. 
+#>  There are 750 venues in the Fugazi Live Series data. 
 #> 
 
 overview_venuesdata <- venuesdata %>%
@@ -319,16 +319,16 @@ head(overview_venuesdata, n = 11)
 #> # A tibble: 10 × 3
 #>    shows venues percentage
 #>    <int>  <int>      <dbl>
-#>  1    12      1      0.136
-#>  2     9      1      0.136
-#>  3     8      4      0.545
-#>  4     7      2      0.272
-#>  5     6      3      0.409
-#>  6     5      5      0.681
-#>  7     4     16      2.18 
-#>  8     3     27      3.68 
-#>  9     2     98     13.4  
-#> 10     1    577     78.6
+#>  1    13      1      0.133
+#>  2     9      1      0.133
+#>  3     8      5      0.667
+#>  4     7      1      0.133
+#>  5     6      3      0.4  
+#>  6     5      5      0.667
+#>  7     4     16      2.13 
+#>  8     3     28      3.73 
+#>  9     2     99     13.2  
+#> 10     1    591     78.8
 ```
 
 Fugazi played at 733 venues but played at 79.4% of them only once, twice
@@ -359,20 +359,20 @@ venues_per_city <- venues %>%
   ungroup()
 
 venues_per_city
-#> # A tibble: 402 × 2
+#> # A tibble: 401 × 2
 #>    city          venues
 #>    <chr>          <int>
 #>  1 Washington        22
 #>  2 New York          10
-#>  3 Chicago            7
-#>  4 Houston            7
-#>  5 Sydney             7
-#>  6 London             6
-#>  7 Richmond           6
-#>  8 San Francisco      6
-#>  9 Dallas             5
-#> 10 Dublin             5
-#> # ℹ 392 more rows
+#>  3 Portland           9
+#>  4 Chicago            7
+#>  5 Houston            7
+#>  6 Sydney             7
+#>  7 Columbia           6
+#>  8 London             6
+#>  9 Richmond           6
+#> 10 San Francisco      6
+#> # ℹ 391 more rows
 ```
 
 The city where Fugazi played at the most venues was Washington DC,
@@ -405,7 +405,7 @@ mydf_wide <- mydf %>%
   pivot_wider(names_from = song, values_from = count, values_fill = 0)
 
 head(mydf_wide)
-#> # A tibble: 6 × 137
+#> # A tibble: 6 × 139
 #>   date       furniture `in defense of humans` intro `joe #1` merchandise
 #>   <date>         <int>                  <int> <int>    <int>       <int>
 #> 1 1987-09-03         1                      1     1        1           1
@@ -414,7 +414,7 @@ head(mydf_wide)
 #> 4 1987-10-16         1                      0     0        1           1
 #> 5 1987-11-25         1                      0     1        1           1
 #> 6 1987-12-03         1                      1     1        0           1
-#> # ℹ 131 more variables: `song #1` <int>, `the word` <int>,
+#> # ℹ 133 more variables: `song #1` <int>, `the word` <int>,
 #> #   `turn off your guns` <int>, `waiting room` <int>, `and the same` <int>,
 #> #   `interlude 1` <int>, `interlude 2` <int>, `interlude 3` <int>,
 #> #   `interlude 4` <int>, outro <int>, `interlude 5` <int>, `interlude 6` <int>,
@@ -438,7 +438,7 @@ for(colindex in 2:94) {
 }
 
 head(mydf_wide2)
-#> # A tibble: 6 × 137
+#> # A tibble: 6 × 139
 #>   date       furniture `in defense of humans` intro `joe #1` merchandise
 #>   <date>         <int>                  <int> <int>    <int>       <int>
 #> 1 1987-09-03         1                      1     1        1           1
@@ -447,7 +447,7 @@ head(mydf_wide2)
 #> 4 1987-10-16         4                      3     2        3           4
 #> 5 1987-11-25         5                      3     3        4           5
 #> 6 1987-12-03         6                      4     4        4           6
-#> # ℹ 131 more variables: `song #1` <int>, `the word` <int>,
+#> # ℹ 133 more variables: `song #1` <int>, `the word` <int>,
 #> #   `turn off your guns` <int>, `waiting room` <int>, `and the same` <int>,
 #> #   `interlude 1` <int>, `interlude 2` <int>, `interlude 3` <int>,
 #> #   `interlude 4` <int>, outro <int>, `interlude 5` <int>, `interlude 6` <int>,
@@ -608,11 +608,11 @@ sound_quality_ratings <- sound_quality_ratings %>%
 
 sound_quality_ratings
 #>   index sound_quality shows percentage
-#> 1     1     Excellent    47        5.0
-#> 2     2     Very Good   453       48.6
-#> 3     3          Good   371       39.8
-#> 4     4          Poor    62        6.6
-#> 5     5         Total   933      100.0
+#> 1     1     Excellent    48        5.1
+#> 2     2     Very Good   458       48.2
+#> 3     3          Good   377       39.7
+#> 4     4          Poor    67        7.1
+#> 5     5         Total   950      100.0
 ```
 
 ## Three Repeats, but Only One Two for Tuesdays

@@ -19,10 +19,10 @@
 - [`Repeatr_2()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_2.md)
   : takes a dataframe with one row per show-song and reshapes it long
   again so that the rows are identified by combinations of gid,
-  song_number, and songid.
+  song_number, and alt.
 - [`Repeatr_3()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_3.md)
-  : takes a dataframe with gid, song_number, and songid, and modifies it
-  to make it suitable for choice modelling.
+  : takes a dataframe with gid, song_number, and alt, and modifies it to
+  make it suitable for choice modelling.
 - [`Repeatr_4()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_4.md)
   : prepares data for choice modelling with mlogit, and estimates a
   basic choice model.
@@ -32,6 +32,8 @@
 - [`Repeatr_Updatr()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_Updatr.md)
   : Runs the whole analysis process to update the site and Fugazetteer
   web app from the input data files.
+- [`altlookup`](https://alexmitrani.github.io/Repeatr/reference/altlookup.md)
+  : Fugazi alt id lookup table (choice-model alternative index)
 - [`attendancedata`](https://alexmitrani.github.io/Repeatr/reference/attendancedata.md)
   : Attendance data
 - [`compressr()`](https://alexmitrani.github.io/Repeatr/reference/compressr.md)
@@ -120,6 +122,9 @@
 - [`scrape_fls_dtdd()`](https://alexmitrani.github.io/Repeatr/reference/scrape_fls_dtdd.md)
   : Scrape data from Fugazi Live Series show info tables using dt and dd
   tags.
+- [`scrape_fls_listing_data()`](https://alexmitrani.github.io/Repeatr/reference/scrape_fls_listing_data.md)
+  : Scrape just the gid -\> tour/city/subdivision/country mapping from
+  the FLS listing pages
 - [`scrape_fls_shows()`](https://alexmitrani.github.io/Repeatr/reference/scrape_fls_shows.md)
   : Scrape an up-to-date Fugazi Live Series dataset, including new shows
 - [`sets()`](https://alexmitrani.github.io/Repeatr/reference/sets.md) :
@@ -148,7 +153,5 @@
   : Transitions Data
 - [`vcovmat_ml_Repeatr4`](https://alexmitrani.github.io/Repeatr/reference/vcovmat_ml_Repeatr4.md)
   : Variance-covariance matrix from the model ml.Repeatr4
-- [`venuesdata`](https://alexmitrani.github.io/Repeatr/reference/venuesdata.md)
-  : Venues data
 - [`xray`](https://alexmitrani.github.io/Repeatr/reference/xray.md) :
   xray

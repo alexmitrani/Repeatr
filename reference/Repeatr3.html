@@ -9,7 +9,7 @@ The variables song_number, first_song and last_song were defined after data clea
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9197</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9208</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,6 +25,7 @@ The variables song_number, first_song and last_song were defined after data clea
     <li><a class="dropdown-item" href="../articles/AllAccess.html">All Access</a></li>
     <li><a class="dropdown-item" href="../articles/au%20clair%20de%20la%20lune.html">Au Clair de la Lune</a></li>
     <li><a class="dropdown-item" href="../articles/CombinationLock.html">Combination Lock</a></li>
+    <li><a class="dropdown-item" href="../articles/Data%20Provenance.html">Data Provenance</a></li>
     <li><a class="dropdown-item" href="../articles/Fugazetteer.html">Fugazetteer</a></li>
     <li><a class="dropdown-item" href="../articles/in%20your%20memory.html">in your memory</a></li>
     <li><a class="dropdown-item" href="../articles/LinkTracks.html">Link Tracks</a></li>
@@ -75,7 +76,7 @@ The variables song_number, first_song and last_song were defined after data clea
 <dd><p>The number of the song in the sequence of songs that were performed as part of that show</p></dd>
 
 <dt>alt</dt>
-<dd><p>alt is the songid variable renamed</p></dd>
+<dd><p>A dense 1..n index over the <code>min_song_count</code>-eligible songs only, in <code>songid</code> order - this is the alternative-specific index <code>mlogit</code>/<code><a href="Repeatr_4.html">Repeatr_4</a></code> actually sees. See <code><a href="altlookup.html">altlookup</a></code> to translate back to song identity.</p></dd>
 
 <dt>choice</dt>
 <dd><p>1 if the song was performed at that point in the show, 0 otherwise</p></dd>
@@ -174,24 +175,28 @@ The variables song_number, first_song and last_song were defined after data clea
     <p>https://www.dischord.com/fugazi_live_series</p>
 <p>https://web.archive.org/web/20201112000517/http://en.wikipedia.org/wiki/Fugazi_discography</p>
     </div>
+    <div class="section level2">
+    <h2 id="provenance">Provenance<a class="anchor" aria-label="anchor" href="#provenance"></a></h2>
+    <p>Derived-modeled. Produced by <code><a href="Repeatr_3.html">Repeatr_3</a></code> from <code>Repeatr2</code>: variable selection and integer compression, ready for <code><a href="Repeatr_4.html">Repeatr_4</a></code>'s <code>mlogit</code> fit.</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">Repeatr3</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 921,299 × 34</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 896,887 × 34</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    gid    case song_number   alt choice yearsold vocals_mackaye vocals_picciotto</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> wash…     1           1    36      0        0              0                0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> wash…     1           1    43      0        0              0                0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> wash…     1           1    45      1        0              0                0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> wash…     1           1    55      0        0              0                0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> wash…     1           1    79      0        0              0                0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> wash…     1           1    88      0        0              0                0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> wash…     1           1    89      0        0              0                0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> wash…     1           1    93      0        0              0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> wash…     1           1    77      0        0              0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> wash…     1           1    86      0        0              0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> wash…     1           1    87      0        0              0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> wash…     1           1    91      0        0              0                0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> wash…     3           3    36      0        0              1                0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> wash…     3           3    43      0        0              1                0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 921,289 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 896,877 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 26 more variables: vocals_lally &lt;int&gt;, instrumental &lt;int&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   first_song &lt;dbl&gt;, last_song &lt;dbl&gt;, duration_seconds &lt;int&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   yearsold_0 &lt;int&gt;, yearsold_1 &lt;int&gt;, yearsold_2 &lt;int&gt;, yearsold_3 &lt;int&gt;,</span></span>

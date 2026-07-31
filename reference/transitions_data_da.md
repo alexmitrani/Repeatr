@@ -46,11 +46,17 @@ second song in the Fugazi Live Series data.
 
 https://www.dischord.com/fugazi_live_series
 
+## Provenance
+
+Derived-cleaned. Produced by
+[`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md).
+Not to be confused with the orphaned `transitions` object.
+
 ## Examples
 
 ``` r
 transitions_data_da
-#> # A tibble: 12,623 × 7
+#> # A tibble: 12,610 × 7
 #>    gid                 url                 fls_link date  transition song1 song2
 #>    <chr>               <chr>               <chr>    <chr>      <int> <chr> <chr>
 #>  1 aalst-belgium-92390 https://www.discho… <a href… 1990…          2 turn… bren…
@@ -63,5 +69,5 @@ transitions_data_da
 #>  8 aalst-belgium-92390 https://www.discho… <a href… 1990…         15 shut… two …
 #>  9 aalst-belgium-92390 https://www.discho… <a href… 1990…         16 two … repr…
 #> 10 aalst-belgium-92390 https://www.discho… <a href… 1990…         21 runa… repe…
-#> # ℹ 12,613 more rows
+#> # ℹ 12,600 more rows
 ```

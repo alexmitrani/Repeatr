@@ -50,7 +50,17 @@ available in all the Fugazi Live Series shows with data.
 
 - alt:
 
-  alt is the songid variable renamed
+  A dense 1..n index over the `min_song_count`-eligible songs only, in
+  `songid` order - this is the alternative-specific index
+  `mlogit`/[`Repeatr_4`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_4.md)
+  actually sees. See `songid` below for the stable song identity this is
+  derived from.
+
+- songid:
+
+  The stable, full song identity from
+  [`songidlookup`](https://alexmitrani.github.io/Repeatr/reference/songidlookup.md),
+  kept alongside `alt` rather than overwritten by it.
 
 - song:
 
@@ -125,27 +135,37 @@ https://www.dischord.com/fugazi_live_series
 
 https://web.archive.org/web/20201112000517/http://en.wikipedia.org/wiki/Fugazi_discography
 
+## Provenance
+
+Derived-modeled. Produced by
+[`Repeatr_2`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_2.md):
+this is where the `min_song_count` modelling-eligibility filter is
+applied and the dense `alt` choice-model index is constructed from the
+stable `songid` in
+[`songidlookup`](https://alexmitrani.github.io/Repeatr/reference/songidlookup.md) -
+the analysis-side counterpart to `Repeatr1`'s full, unfiltered song set.
+
 ## Examples
 
 ``` r
 Repeatr2
-#> # A tibble: 921,299 × 24
-#>     case gid        date        year launchdate yearsold song_number   alt song 
-#>    <int> <chr>      <date>     <dbl> <date>        <dbl>       <dbl> <dbl> <chr>
-#>  1     1 washingto… 1987-09-03  1987 1987-09-03        0           1    36 furn…
-#>  2     1 washingto… 1987-09-03  1987 1987-09-03        0           1    43 in d…
-#>  3     1 washingto… 1987-09-03  1987 1987-09-03        0           1    45 joe …
-#>  4     1 washingto… 1987-09-03  1987 1987-09-03        0           1    55 merc…
-#>  5     1 washingto… 1987-09-03  1987 1987-09-03        0           1    79 song…
-#>  6     1 washingto… 1987-09-03  1987 1987-09-03        0           1    88 the …
-#>  7     1 washingto… 1987-09-03  1987 1987-09-03        0           1    89 turn…
-#>  8     1 washingto… 1987-09-03  1987 1987-09-03        0           1    93 wait…
-#>  9     3 washingto… 1987-09-03  1987 1987-09-03        0           3    36 furn…
-#> 10     3 washingto… 1987-09-03  1987 1987-09-03        0           3    43 in d…
-#> # ℹ 921,289 more rows
-#> # ℹ 15 more variables: choice <dbl>, played <dbl>, available_rl <dbl>,
-#> #   available_gl <dbl>, first_song <dbl>, last_song <dbl>, releaseid <int>,
-#> #   release <chr>, track_number <int>, instrumental <int>,
+#> # A tibble: 896,887 × 25
+#>     case gid       date        year launchdate yearsold song_number   alt songid
+#>    <int> <chr>     <date>     <dbl> <date>        <dbl>       <dbl> <dbl>  <int>
+#>  1     1 washingt… 1987-09-03  1987 1987-09-03        0           1    36     36
+#>  2     1 washingt… 1987-09-03  1987 1987-09-03        0           1    43     43
+#>  3     1 washingt… 1987-09-03  1987 1987-09-03        0           1    45     45
+#>  4     1 washingt… 1987-09-03  1987 1987-09-03        0           1    55     55
+#>  5     1 washingt… 1987-09-03  1987 1987-09-03        0           1    77     77
+#>  6     1 washingt… 1987-09-03  1987 1987-09-03        0           1    86     86
+#>  7     1 washingt… 1987-09-03  1987 1987-09-03        0           1    87     87
+#>  8     1 washingt… 1987-09-03  1987 1987-09-03        0           1    91     91
+#>  9     3 washingt… 1987-09-03  1987 1987-09-03        0           3    36     36
+#> 10     3 washingt… 1987-09-03  1987 1987-09-03        0           3    43     43
+#> # ℹ 896,877 more rows
+#> # ℹ 16 more variables: song <chr>, choice <dbl>, played <dbl>,
+#> #   available_rl <dbl>, available_gl <dbl>, first_song <dbl>, last_song <dbl>,
+#> #   releaseid <int>, release <chr>, track_number <int>, instrumental <int>,
 #> #   vocals_picciotto <int>, vocals_mackaye <int>, vocals_lally <int>,
 #> #   duration_seconds <int>, first_song_instrumental <dbl>
 ```
