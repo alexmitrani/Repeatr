@@ -8,7 +8,11 @@ To run the full update: Repeatr_Updatr(really = "really")
 ## Usage
 
 ``` r
-Repeatr_Updatr(really = "not_really", min_song_count = 2)
+Repeatr_Updatr(
+  really = "not_really",
+  min_song_count = 2,
+  update_stacks = FALSE
+)
 ```
 
 ## Arguments
@@ -26,6 +30,12 @@ Repeatr_Updatr(really = "not_really", min_song_count = 2)
   alternative in the choice model. Default 2. Does not affect
   `songid`/`songidlookup`, which cover every classified song regardless
   of this threshold.
+
+- update_stacks:
+
+  if TRUE, the gid_initial_gid_sound_quality data will be refreshed by
+  re-generating a set of stacks considering the full available set of
+  relevant data.
 
 ## Value
 

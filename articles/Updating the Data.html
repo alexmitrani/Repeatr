@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9209</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9210</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -288,7 +288,7 @@ hand too.</p>
 <p>Once any of sources 1-4 is updated, rebuild the package’s data
 objects:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/Repeatr_Updatr.html">Repeatr_Updatr</a></span><span class="op">(</span>really <span class="op">=</span> <span class="st">"really"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/Repeatr_Updatr.html">Repeatr_Updatr</a></span><span class="op">(</span>really <span class="op">=</span> <span class="st">"really"</span>, update_stacks <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>This runs
 <code>Repeatr_1() -&gt; Repeatr_2() -&gt; Repeatr_3() -&gt; Repeatr_4() -&gt; Repeatr_5()</code>
 and saves every downstream dataset (<code>othervariables</code>,
@@ -302,6 +302,12 @@ that stops this running by accident - always pass
 choice model fit in <code><a href="../reference/Repeatr_4.html">Repeatr_4()</a></code> is the slow part), so it’s
 worth checking <code><a href="../reference/Repeatr_1.html">Repeatr_1()</a></code> on its own first if you only
 want to sanity-check the data-ingestion changes.</p>
+<p><code>update_stacks = TRUE</code> also regenerates
+<code>gid_initial_gid_sound_quality</code> (the data behind the Shiny
+app’s “stock” pages, via <code><a href="../reference/Repeatr_6.html">Repeatr_6()</a></code>) -
+<code>data-raw/build_data.R</code>’s rebuild call passes this by
+default, so a normal rebuild keeps it current; omit it only if you
+deliberately want to skip the (slower) stacks regeneration.</p>
 </div>
 <div class="section level2">
 <h2 id="reinstalling-and-redeploying">6. Reinstalling and redeploying<a class="anchor" aria-label="anchor" href="#reinstalling-and-redeploying"></a>

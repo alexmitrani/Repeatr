@@ -29,6 +29,9 @@
 - [`Repeatr_5()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_5.md)
   : produces results using a coefficient table for a choice model
   estimated with mlogit.
+- [`Repeatr_6()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_6.md)
+  : Regenerates gid_initial_gid_sound_quality, a set of "stacks" of
+  shows covering the whole Fugazi repertoire.
 - [`Repeatr_Updatr()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_Updatr.md)
   : Runs the whole analysis process to update the site and Fugazetteer
   web app from the input data files.
@@ -76,7 +79,7 @@
   : fugazi_spotify_data provides basic code for extracting metadata on
   Fugazi songs from the Spotify API. .
 - [`gid_initial_gid_sound_quality`](https://alexmitrani.github.io/Repeatr/reference/gid_initial_gid_sound_quality.md)
-  : 899 stacks of 10-12 shows covering the whole Fugazi repertoire (94
+  : 952 stacks of 10-13 shows covering the whole Fugazi repertoire (92
   songs), one for each show in the Fugazi Live Series.
 - [`gid_sound_quality`](https://alexmitrani.github.io/Repeatr/reference/gid_sound_quality.md)
   : Sound quality data, one record per show

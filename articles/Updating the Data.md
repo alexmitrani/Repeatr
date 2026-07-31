@@ -217,7 +217,7 @@ Once any of sources 1-4 is updated, rebuild the package’s data objects:
 
 ``` r
 
-Repeatr_Updatr(really = "really")
+Repeatr_Updatr(really = "really", update_stacks = TRUE)
 ```
 
 This runs
@@ -233,6 +233,13 @@ is the slow part), so it’s worth checking
 [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)
 on its own first if you only want to sanity-check the data-ingestion
 changes.
+
+`update_stacks = TRUE` also regenerates `gid_initial_gid_sound_quality`
+(the data behind the Shiny app’s “stock” pages, via
+[`Repeatr_6()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_6.md)) -
+`data-raw/build_data.R`’s rebuild call passes this by default, so a
+normal rebuild keeps it current; omit it only if you deliberately want
+to skip the (slower) stacks regeneration.
 
 ## 6. Reinstalling and redeploying
 
