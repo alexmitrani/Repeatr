@@ -3,7 +3,7 @@
 #'
 #' @param mydf dataframs of shows and songs containing the columns gid and song.
 #' @param mygid gig id of initial show as a string, for instance "washington-dc-usa-13196".
-#' @param mynumberofsongs the number of unique songs that are required. the maximum is 94 (the number of songs Fugazi played live  at least twice) and the number of songs in the initial show will be taken as a minimum.
+#' @param mynumberofsongs the number of unique songs that are required. the maximum is 92 (the number of songs Fugazi played live at least twice and that feature in the studio discography) and the number of songs in the initial show will be taken as a minimum.
 #' @param exclude_poor_sound_quality set to TRUE to exclude shows with poor sound quality
 #' @param mysummary optional `summary` dataframe (as produced by `Repeatr_5()`) to be used for song play counts. If omitted the currently lazy-loaded default will be used - pass this explicitly if calling `stacks()` right after a fresh `Repeatr_Updatr()` run in the same session.
 #' @param myothervariables optional `othervariables` dataframe (as produced by `Repeatr_1()`) to be used for show details. If omitted the currently lazy-loaded default will be used.
@@ -79,13 +79,13 @@ stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL, exclude_po
 
   if(is.null(mynumberofsongs)==TRUE) {
 
-    mynumberofsongs <- 94
+    mynumberofsongs <- 92
 
   }
 
-  if(mynumberofsongs > 94) {
+  if(mynumberofsongs > 92) {
 
-    mynumberofsongs <- 94
+    mynumberofsongs <- 92
 
   }
 
