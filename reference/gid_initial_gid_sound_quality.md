@@ -48,18 +48,18 @@ Actively consumed directly by `inst/shiny/Fugazetteer/app.R` for the
 
 ``` r
 gid_initial_gid_sound_quality
-#> # A tibble: 10,846 × 3
-#>    gid_initial         gid                            sound_quality
-#>    <chr>               <chr>                          <chr>        
-#>  1 aalst-belgium-92390 aalst-belgium-92390            Good         
-#>  2 aalst-belgium-92390 baltimore-md-usa-51298         Poor         
-#>  3 aalst-belgium-92390 belfast-northern-ireland-50995 Good         
-#>  4 aalst-belgium-92390 bryan-tx-usa-41193             Very Good    
-#>  5 aalst-belgium-92390 colorado-springs-co-usa-40701  Excellent    
-#>  6 aalst-belgium-92390 glasgow-scotland-102902        Very Good    
-#>  7 aalst-belgium-92390 linz-austria-111088            Good         
-#>  8 aalst-belgium-92390 london-england-110402          Very Good    
-#>  9 aalst-belgium-92390 nijmegen-netherlands-110989    Very Good    
-#> 10 aalst-belgium-92390 victoria-bc-canada-70601       Very Good    
+#> # A tibble: 10,846 × 4
+#>    gid_initial         gid                            sound_quality count
+#>    <chr>               <chr>                          <chr>         <int>
+#>  1 aalst-belgium-92390 aalst-belgium-92390            Good             16
+#>  2 aalst-belgium-92390 baltimore-md-usa-51298         Poor              3
+#>  3 aalst-belgium-92390 belfast-northern-ireland-50995 Good              8
+#>  4 aalst-belgium-92390 bryan-tx-usa-41193             Very Good         3
+#>  5 aalst-belgium-92390 colorado-springs-co-usa-40701  Excellent         9
+#>  6 aalst-belgium-92390 glasgow-scotland-102902        Very Good         1
+#>  7 aalst-belgium-92390 linz-austria-111088            Good              3
+#>  8 aalst-belgium-92390 london-england-110402          Very Good         5
+#>  9 aalst-belgium-92390 nijmegen-netherlands-110989    Very Good         8
+#> 10 aalst-belgium-92390 victoria-bc-canada-70601       Very Good        27
 #> # ℹ 10,836 more rows
 ```
