@@ -4,12 +4,18 @@
 \alias{Repeatr_Updatr}
 \title{Runs the whole analysis process to update the site and Fugazetteer web app from the input data files.}
 \usage{
-Repeatr_Updatr(really = "not_really", min_song_count = 2)
+Repeatr_Updatr(
+  really = "not_really",
+  min_song_count = 2,
+  update_stacks = FALSE
+)
 }
 \arguments{
 \item{really}{set to "really" to actually run the update; any other value (the default, "not_really") does nothing.}
 
 \item{min_song_count}{passed through to \code{\link{Repeatr_2}}: minimum number of performances a song needs to compete as an alternative in the choice model. Default 2. Does not affect \code{songid}/\code{songidlookup}, which cover every classified song regardless of this threshold.}
+
+\item{update_stacks}{if TRUE, the gid_initial_gid_sound_quality data will be refreshed by re-generating a set of stacks considering the full available set of relevant data.}
 }
 \value{
 Invisibly, the list of results from the final \code{Repeatr_5()} call when \code{really = "really"}; \code{NULL} otherwise. The real effect is refreshing all of the package's \verb{data/*.rda} objects in place, ready to be reinstalled.

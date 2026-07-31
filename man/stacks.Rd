@@ -19,7 +19,7 @@ stacks(
 
 \item{mygid}{gig id of initial show as a string, for instance "washington-dc-usa-13196".}
 
-\item{mynumberofsongs}{the number of unique songs that are required. the maximum is 94 (the number of songs Fugazi played live  at least twice) and the number of songs in the initial show will be taken as a minimum.}
+\item{mynumberofsongs}{the number of unique songs that are required. the maximum is 92 (the number of songs Fugazi played live at least twice and that feature in the studio discography) and the number of songs in the initial show will be taken as a minimum.}
 
 \item{exclude_poor_sound_quality}{set to TRUE to exclude shows with poor sound quality}
 

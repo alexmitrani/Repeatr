@@ -58,29 +58,23 @@ Repeatr_Updatr <- function(really = "not_really", min_song_count = 2, update_sta
 
     if(update_stacks == TRUE){
 
-      results <- sweepstack()
-      results1 <- results[[1]]
-      results2 <- results[[2]]
-      results2 <- results2 %>% left_join(gid_sound_quality)
-      gid_initial_gid_sound_quality <- results2 %>%
-        group_by(gid_initial, gid, sound_quality) %>%
-        summarize(count = n()) %>%
-        ungroup()
+      # gid_sound_quality/duration_data_da/othervariables aren't available
+      # fresh via Repeatr_1_results here the way songidlookup etc. are -
+      # gid_sound_quality and duration_data_da are disk-only outputs of
+      # Repeatr_1() (never part of its return list), and Repeatr_1_results[[7]]
+      # (othervariables) is the dirtied post-join copy, not the clean one
+      # stacks() expects. Repeatr_1() unconditionally just wrote fresh, clean
+      # copies of all three to data/ earlier in this exact run - load() them
+      # back rather than falling through to a stale lazy binding.
+      mydatadir <- paste0(getwd(), "/data")
+      load(file.path(mydatadir, "gid_sound_quality.rda"))
+      load(file.path(mydatadir, "duration_data_da.rda"))
+      load(file.path(mydatadir, "othervariables.rda"))
 
-      save(gid_initial_gid_sound_quality, file = "data/gid_initial_gid_sound_quality.rda")
-
-      check_stacks <- gid_initial_gid_sound_quality %>%
-        filter(is.na(sound_quality)==FALSE) %>%
-        group_by(gid_initial) %>%
-        summarize(count = n()) %>%
-        ungroup()
-
-      nstacks <- nrow(check_stacks)
-      minshows <- min(check_stacks$count)
-      maxshows <- max(check_stacks$count)
-
-      stacks_message <- paste0(nstacks, " stacks of ", minshows, " - ", maxshows, " shows.")
-      print(stacks_message)
+      Repeatr_6(myduration_data_da = duration_data_da,
+                mysummary = Repeatr_5_results[[3]],
+                myothervariables = othervariables,
+                mygidsoundquality = gid_sound_quality)
 
     }
 

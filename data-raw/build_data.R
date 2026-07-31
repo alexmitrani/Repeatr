@@ -65,7 +65,7 @@ othervariables <- nscmov()
 # and appear in Repeatr1 by name, they just don't get an `alt` and can't
 # compete as a choice-model alternative.
 
-Repeatr_Updatr(really = "really")
+Repeatr_Updatr(really = "really", update_stacks = TRUE)
 
 # From here: commit the updated inst/extdata/* source files and data/*.rda
 # files, reinstall the package, and redeploy the Shiny app - see the

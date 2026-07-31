@@ -92,10 +92,12 @@ The older `fls_venue_geocoding.csv` file and `nscmov()`'s (`R/nscmov.R`) to-do-l
 Once any of sources 1-4 is updated, rebuild the package's data objects:
 
 ```{r}
-Repeatr_Updatr(really = "really")
+Repeatr_Updatr(really = "really", update_stacks = TRUE)
 ```
 
 This runs `Repeatr_1() -> Repeatr_2() -> Repeatr_3() -> Repeatr_4() -> Repeatr_5()` and saves every downstream dataset (`othervariables`, `Repeatr0`, `Repeatr1`, `gid_sound_quality`, `played_with`, `shows_data`, `xray`, `fls_tags`, `fls_tags_show`, the choice-model outputs, and more) into `data/`. It's the `really = "not_really"` default that stops this running by accident - always pass `really = "really"` explicitly. It can take a while (the choice model fit in `Repeatr_4()` is the slow part), so it's worth checking `Repeatr_1()` on its own first if you only want to sanity-check the data-ingestion changes.
+
+`update_stacks = TRUE` also regenerates `gid_initial_gid_sound_quality` (the data behind the Shiny app's "stock" pages, via `Repeatr_6()`) - `data-raw/build_data.R`'s rebuild call passes this by default, so a normal rebuild keeps it current; omit it only if you deliberately want to skip the (slower) stacks regeneration.
 
 ## 6. Reinstalling and redeploying
 
