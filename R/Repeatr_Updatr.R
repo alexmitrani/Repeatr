@@ -13,6 +13,7 @@
 #'
 #' @param really set to "really" to actually run the update; any other value (the default, "not_really") does nothing.
 #' @param min_song_count passed through to \code{\link{Repeatr_2}}: minimum number of performances a song needs to compete as an alternative in the choice model. Default 2. Does not affect `songid`/`songidlookup`, which cover every classified song regardless of this threshold.
+#' @param update_stacks if TRUE, the gid_initial_gid_sound_quality data will be refreshed by re-generating a set of stacks considering the full available set of relevant data.
 #'
 #' @return Invisibly, the list of results from the final `Repeatr_5()` call when `really = "really"`; `NULL` otherwise. The real effect is refreshing all of the package's `data/*.rda` objects in place, ready to be reinstalled.
 #' @export
@@ -21,7 +22,7 @@
 #' Repeatr_Updatr(really = "not_really")
 #'
 #'
-Repeatr_Updatr <- function(really = "not_really", min_song_count = 2) {
+Repeatr_Updatr <- function(really = "not_really", min_song_count = 2, update_stacks = FALSE) {
 
   if (really == "really") {
 
@@ -55,7 +56,34 @@ Repeatr_Updatr <- function(really = "not_really", min_song_count = 2) {
                                     myreleasesdatalookup = Repeatr_1_results[[6]],
                                     myreleases_data_input = Repeatr_1_results[[12]])
 
-  }
+    if(update_stacks == TRUE){
 
+      results <- sweepstack()
+      results1 <- results[[1]]
+      results2 <- results[[2]]
+      results2 <- results2 %>% left_join(gid_sound_quality)
+      gid_initial_gid_sound_quality <- results2 %>%
+        group_by(gid_initial, gid, sound_quality) %>%
+        summarize(count = n()) %>%
+        ungroup()
+
+      save(gid_initial_gid_sound_quality, file = "data/gid_initial_gid_sound_quality.rda")
+
+      check_stacks <- gid_initial_gid_sound_quality %>%
+        filter(is.na(sound_quality)==FALSE) %>%
+        group_by(gid_initial) %>%
+        summarize(count = n()) %>%
+        ungroup()
+
+      nstacks <- nrow(check_stacks)
+      minshows <- min(check_stacks$count)
+      maxshows <- max(check_stacks$count)
+
+      stacks_message <- paste0(nstacks, " stacks of ", minshows, " - ", maxshows, " shows.")
+      print(stacks_message)
+
+    }
+
+  }
 
 }

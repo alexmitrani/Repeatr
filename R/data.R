@@ -242,7 +242,7 @@
 #' gid_sound_quality
 "gid_sound_quality"
 
-#' 899 stacks of 10-12 shows covering the whole Fugazi repertoire (94 songs), one for each show in the Fugazi Live Series.
+#' 952 stacks of 10-13 shows covering the whole Fugazi repertoire (92 songs), one for each show in the Fugazi Live Series.
 #'
 #' @source https://www.dischord.com/fugazi_live_series
 #' @format dataframe with one row for each combination of initial show and stacked show.
