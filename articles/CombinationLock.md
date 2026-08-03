@@ -279,11 +279,11 @@ The graph shows that Fugazi played a broad selection of transitions
 between songs, with a few favourite transitions that were played again
 and again. However, the band did not play all the possible transitions.
 With 92 songs there are 8372 possible transitions, and in this data
-Fugazi played 3053 of those (36.5%) at least once. The Fugazi Live
-Series data includes 16402 transitions between songs, with some of them
-used repeatedly. The band played enough shows to potentially cover all
-the possible transitions. It is likely that some of the possible
-transitions just did not seem to work and so were never used.
+Fugazi played 4257 of those at least once. The Fugazi Live Series data
+includes 12610 transitions between songs, with some of them used
+repeatedly. The band played enough shows to potentially cover all the
+possible transitions. It is likely that some of the possible transitions
+just did not seem to work and so were never used.
 
 ## Transitions between groups of songs
 

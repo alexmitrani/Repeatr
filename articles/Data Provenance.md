@@ -1,6 +1,6 @@
 # Data Provenance
 
-## Why this vignette exists
+## Introduction
 
 Every dataset in this package is somewhere on a spectrum from “raw,
 exactly as scraped or hand-entered from an external source” to “the
@@ -29,7 +29,7 @@ under the same name as a package dataset without ever touching the
 lazy-loaded original (see the `Frozen-legacy` table below for concrete
 examples of both traps).
 
-## The five tiers
+## Types of data
 
 - **Raw-scraped** - pulled directly from an external website by an
   automated scraper, no hand-editing.
@@ -59,7 +59,7 @@ examples of both traps).
   the raw-hand-curated and Shiny-only datasets below, which also aren’t
   written by the pipeline but are very much in use).
 
-## Pipeline flow
+## Data processing sequence
 
     Raw sources
     ├─ fls_data.csv (scraped, scrape_fls_shows())

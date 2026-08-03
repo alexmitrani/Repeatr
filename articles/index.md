@@ -2,7 +2,7 @@
 
 ### All vignettes
 
-- [94 SONGS](https://alexmitrani.github.io/Repeatr/articles/94songs.md):
+- [92 songs](https://alexmitrani.github.io/Repeatr/articles/92songs.md):
 - [All
   Access](https://alexmitrani.github.io/Repeatr/articles/AllAccess.md):
 - [Au Clair de la
