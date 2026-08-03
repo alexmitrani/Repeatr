@@ -1,8 +1,8 @@
 ---
-title: "94 SONGS"
+title: "92 songs"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{94 SONGS}
+  %\VignetteIndexEntry{92 songs}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -43,7 +43,7 @@ A few of the columns need explanation.
 
 - chosen: the number of times the song was played live. 
 
-- rating: this is an indicator of the strength of preference for the song according to the Fugazi Live Series data, where 1 is the most preferred and 0 is the least preferred. It was calculated by modelling the choices of songs. The data used for this analysis included 17297 choices of songs from 895 shows.  
+- rating: this is an indicator of the strength of preference for the song according to the Fugazi Live Series data, where 1 is the most preferred and 0 is the least preferred. It was calculated by modelling the choices of songs. The data used for this analysis included `r format(sum(Repeatr3$choice), scientific = FALSE)` choices of songs from `r nrow(as.data.frame(unique(Repeatr3$gid)))` shows.  
 
 These are all limited to the data that was available for this analysis. For instance, the launch date of a particular song may not actually be the very first time the song was performed live, but it should be close. 
 

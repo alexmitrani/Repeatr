@@ -15,13 +15,13 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Why this vignette exists
+## Introduction
 
 Every dataset in this package is somewhere on a spectrum from "raw, exactly as scraped or hand-entered from an external source" to "the output of a statistical model." That distinction matters: raw and hand-curated data can only be *wrong* (a typo, a stale lookup), while derived and modelled data can also be *inconsistent with itself* if two different steps compute the same thing two different ways - which is exactly what happened to `songid` (see `?songidlookup` and the `Provenance` section of its help page). This vignette is the single place that catalogues every dataset in `data/` against that spectrum, so that question never again requires cross-referencing `R/data.R`'s `@source` tags, `data-raw/build_data.R`'s comments, and file modification times by hand.
 
 Each dataset's help page (`?Repeatr1`, `?songidlookup`, etc., all documented in `R/data.R`) carries a `Provenance` section using the same five tiers used here. **Before adding a new dataset or reclassifying an existing one, check `inst/shiny/Fugazetteer/app.R` and `vignettes/*.Rmd` for consumers, not just `R/`** - the Shiny app and several vignettes read package data directly without that being visible from a search of `R/` alone, and some of them locally rebuild an object under the same name as a package dataset without ever touching the lazy-loaded original (see the `Frozen-legacy` table below for concrete examples of both traps).
 
-## The five tiers
+## Types of data
 
 -   **Raw-scraped** - pulled directly from an external website by an automated scraper, no hand-editing.
 -   **Raw-hand-curated** - a CSV or text file edited by a human outside of any script, using an external reference source (Wikipedia, Google Maps, a personal MP3 collection, a `liveBPM` reading).
@@ -30,7 +30,7 @@ Each dataset's help page (`?Repeatr1`, `?songidlookup`, etc., all documented in 
 -   **Derived-modeled** - depends on the `mlogit` choice model fit in `Repeatr_4()`, or on the `min_song_count` modelling-eligibility filter applied from `Repeatr_2()` onward.
 -   **Frozen-legacy** - present in `data/` but not written by any current pipeline stage (no `save()` call anywhere in `R/`, not touched by `data-raw/build_data.R`). Confirmed to have no consumers in `R/`, `vignettes/`, or `app.R` either, as of this vignette's last update - flagged here specifically because "not written by the pipeline" is not sufficient evidence of "unused" (see the raw-hand-curated and Shiny-only datasets below, which also aren't written by the pipeline but are very much in use).
 
-## Pipeline flow
+## Data processing sequence
 
 ```
 Raw sources
