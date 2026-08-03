@@ -26,7 +26,7 @@ A web app that presents some of the data from the Repeatr package with interacti
 
 [Ratings](articles/Ratings.html) outlines the process by which song ratings were calculated using the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) metadata.
 
-[94 SONGS](articles/94songs.html) summarises the main results of the data processing and choice modelling as an interactive graph. The graph shows ratings, performance counts and launch dates for the 94 songs that were performed live at least twice.
+[92 songs](articles/92songs.html) summarises the main results of the data processing and choice modelling as an interactive graph. The graph shows ratings, performance counts and launch dates for the 94 songs that were performed live at least twice.
 
 [Combination Lock](articles/CombinationLock.html) explores Fugazi's use of transitions between songs: which ones they played live, and how often compared to others.
 
