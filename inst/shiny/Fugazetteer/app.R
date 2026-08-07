@@ -240,16 +240,6 @@ shows_data <- shows_data %>%
   slice(1) %>%
   ungroup()
 
-# fls_tags_show is grouped by (gid, album) in Repeatr_1.R - two tag batches
-# for the same show under slightly different album text (e.g. an earlier
-# recording later superseded by an official release) produce two rows
-# sharing one gid. Dedupe defensively here too, since this is the only place
-# in the app that reads it.
-fls_tags_show <- fls_tags_show %>%
-  group_by(gid) %>%
-  slice(1) %>%
-  ungroup()
-
 # Joins a vector of band names into a grammatically correct list: "A" for
 # one band, "A and B" for two, "A, B, and C" (Oxford comma) for three or more.
 format_played_with <- function(bands) {
@@ -276,12 +266,10 @@ played_with_flat <- played_with %>%
   summarise(played_with = format_played_with(played_with))
 
 today_data <- shows_data %>%
-  left_join(fls_tags_show, by = "gid") %>%
   left_join(played_with_flat) %>%
-  mutate(where_played = ifelse(is.na(album)==FALSE, substring(album, 10),
-                               paste0(venue, ", ", city,
-                                      ifelse(is.na(subdivision) | subdivision=="", "", paste0(", ", subdivision)),
-                                      ", ", country))) %>%
+  mutate(where_played = paste0(venue, ", ", city,
+                               ifelse(is.na(subdivision) | subdivision=="", "", paste0(", ", subdivision)),
+                               ", ", country)) %>%
   select(date, where_played, gid, fls_link, played_with, attendance, minutes, sound_quality)
 
 linktracksindexdata <- gsheet2tbl('https://docs.google.com/spreadsheets/d/160kJEHPmL_WcF25SQv5J2GztBg1wTft4QLVQ1fhLxsE')

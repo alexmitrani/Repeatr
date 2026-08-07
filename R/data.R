@@ -541,19 +541,13 @@
 #' @format dataframe with one row for each track in the Fugazi Live Series data, including data from the audio file tags.
 #' \describe{
 #' \item{track}{track number}
-#' \item{album}{album name, which includes the date, venue, city, subdivision, and country}
 #' \item{song}{track name}
 #' \item{duration}{duration in period format (lubridate)}
 #' \item{seconds}{duration in seconds}
-#' \item{minutes}{duration in decimal minutes}
 #' \item{date}{date}
-#' \item{venue}{venue}
-#' \item{city}{city}
-#' \item{subdivision}{subdivision, parsed from the album tag text - only ever populated for `country=="USA"`, blank otherwise (unlike \code{\link{shows_data}}'s `subdivision`, which is sourced from the site's own per-show field and also covers Canada/Australia)}
-#' \item{country}{country}
 #' \item{gid}{show id}
 #' }
-#' @section Provenance: Derived-cleaned. Parsed by \code{\link{Repeatr_1}} (via \code{\link{fls_tags_importer}}) from the raw `inst/extdata/fls_tags.txt` kid3 MP3-tag export.
+#' @section Provenance: Derived-cleaned. Parsed by \code{\link{Repeatr_1}} (via \code{\link{fls_tags_importer}}) from the raw `inst/extdata/fls_tags.txt` kid3 MP3-tag export. The raw `album` tag text (`YYYYMMDD Venue, City, State, Country`) is used internally to parse `venue`/`city`/`subdivision`/`country` for a couple of mistagged-track filters and to derive \code{\link{fls_tags_show}}, but those fields (and `album` itself) are dropped before saving, since parsing them by counting commas silently misparses whenever a venue or city name itself contains a comma (e.g. Ypsilanti, Flint, Eau Claire, Osaka), and \code{\link{shows_data}} (joined via `gid`) is the sole authoritative source for them.
 #' @examples
 #' fls_tags
 "fls_tags"
@@ -564,11 +558,10 @@
 #' @format dataframe with one row for each show in the Fugazi Live Series data, including data from the audio file tags.
 #' \describe{
 #' \item{gid}{show id}
-#' \item{album}{album name, which includes the date, venue, city, subdivision, and country}
 #' \item{duration}{duration in period format (lubridate)}
 #' \item{seconds}{duration in seconds}
 #' }
-#' @section Provenance: Derived-cleaned. Produced by \code{\link{Repeatr_1}} from `fls_tags`, grouped by `(gid, album)`. Deliberately does not carry its own venue/city/subdivision/country/date - those are independently re-parsed from the album tag text by counting commas, which silently misparses whenever a venue or city name itself contains a comma (e.g. Ypsilanti, Flint, Eau Claire, Osaka). \code{\link{shows_data}} (joined via `gid`) is the sole authoritative source for those fields.
+#' @section Provenance: Derived-cleaned. Produced by \code{\link{Repeatr_1}} from `fls_tags`, grouped by `(gid, album)` so that two distinct tag batches sharing a `gid` (e.g. an earlier recording later superseded by an official release) produce two rows rather than silently summing their durations together - `album` itself is dropped before saving, since nothing reads it. Deliberately does not carry its own venue/city/subdivision/country/date - those are independently re-parsed from the album tag text by counting commas, which silently misparses whenever a venue or city name itself contains a comma (e.g. Ypsilanti, Flint, Eau Claire, Osaka). \code{\link{shows_data}} (joined via `gid`) is the sole authoritative source for those fields.
 #' @examples
 #' fls_tags_show
 "fls_tags_show"

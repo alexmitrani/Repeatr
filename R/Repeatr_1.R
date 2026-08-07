@@ -564,12 +564,13 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
   fls_tags <- fls_tags %>%
     mutate(song = ifelse(gid=="peoria-il-usa-100995" & song=="dance rap", "interlude 4", song))
 
-  # Grouped by (gid, album) only, not the show's own venue/city/subdivision/
-  # country/date - those are independently re-parsed from the album tag text
-  # by counting commas, which silently misparses whenever a venue or city
-  # name itself contains a comma (e.g. Ypsilanti, Flint, Eau Claire, Osaka).
-  # shows_data (joined via gid) is the sole authoritative source for those
-  # fields now - fls_tags_show only needs to contribute album/duration/seconds.
+  # Grouped by (gid, album) - album (not just gid) is kept as a grouping key
+  # so that two distinct tag batches sharing a gid (e.g. an earlier recording
+  # later superseded by an official release) still produce two rows here
+  # rather than silently summing their durations together; album itself is
+  # dropped from the saved table below since shows_data (joined via gid) is
+  # the sole authoritative source for venue/city/subdivision/country, and
+  # nothing reads fls_tags_show$album.
   fls_tags_show <- fls_tags %>%
     group_by(gid, album) %>%
     summarize(seconds = sum(seconds)) %>%
@@ -577,7 +578,15 @@ Repeatr_1 <- function(mycsvfile = NULL, mysongdatafile = NULL, releasesdatafile 
     ungroup()
 
   fls_tags_show <- fls_tags_show %>%
-    select(gid, album, duration, seconds)
+    select(gid, duration, seconds)
+
+  # venue/city/subdivision/country/album are dropped from the saved table -
+  # they were only ever needed transiently above (the two mistagged-track
+  # filters, and fls_tags_show's group_by(gid, album)). shows_data (joined
+  # via gid) is the sole authoritative source for venue/city/subdivision/
+  # country, and nothing downstream reads fls_tags$album.
+  fls_tags <- fls_tags %>%
+    select(-venue, -city, -subdivision, -country, -album)
 
   setwd(mydatadir)
 

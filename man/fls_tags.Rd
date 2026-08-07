@@ -8,16 +8,10 @@
 dataframe with one row for each track in the Fugazi Live Series data, including data from the audio file tags.
 \describe{
 \item{track}{track number}
-\item{album}{album name, which includes the date, venue, city, subdivision, and country}
 \item{song}{track name}
 \item{duration}{duration in period format (lubridate)}
 \item{seconds}{duration in seconds}
-\item{minutes}{duration in decimal minutes}
 \item{date}{date}
-\item{venue}{venue}
-\item{city}{city}
-\item{subdivision}{subdivision, parsed from the album tag text - only ever populated for \code{country=="USA"}, blank otherwise (unlike \code{\link{shows_data}}'s \code{subdivision}, which is sourced from the site's own per-show field and also covers Canada/Australia)}
-\item{country}{country}
 \item{gid}{show id}
 }
 }
@@ -31,7 +25,7 @@ fls_tags
 Tags data
 }
 \section{Provenance}{
- Derived-cleaned. Parsed by \code{\link{Repeatr_1}} (via \code{\link{fls_tags_importer}}) from the raw \code{inst/extdata/fls_tags.txt} kid3 MP3-tag export.
+ Derived-cleaned. Parsed by \code{\link{Repeatr_1}} (via \code{\link{fls_tags_importer}}) from the raw \code{inst/extdata/fls_tags.txt} kid3 MP3-tag export. The raw \code{album} tag text (\verb{YYYYMMDD Venue, City, State, Country}) is used internally to parse \code{venue}/\code{city}/\code{subdivision}/\code{country} for a couple of mistagged-track filters and to derive \code{\link{fls_tags_show}}, but those fields (and \code{album} itself) are dropped before saving, since parsing them by counting commas silently misparses whenever a venue or city name itself contains a comma (e.g. Ypsilanti, Flint, Eau Claire, Osaka), and \code{\link{shows_data}} (joined via \code{gid}) is the sole authoritative source for them.
 }
 
 \examples{
