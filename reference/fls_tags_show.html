@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9210</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9211</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,9 +66,6 @@
     <p>dataframe with one row for each show in the Fugazi Live Series data, including data from the audio file tags.</p><dl><dt>gid</dt>
 <dd><p>show id</p></dd>
 
-<dt>album</dt>
-<dd><p>album name, which includes the date, venue, city, subdivision, and country</p></dd>
-
 <dt>duration</dt>
 <dd><p>duration in period format (lubridate)</p></dd>
 
@@ -83,25 +80,25 @@
     </div>
     <div class="section level2">
     <h2 id="provenance">Provenance<a class="anchor" aria-label="anchor" href="#provenance"></a></h2>
-    <p>Derived-cleaned. Produced by <code><a href="Repeatr_1.html">Repeatr_1</a></code> from <code>fls_tags</code>, grouped by <code>(gid, album)</code>. Deliberately does not carry its own venue/city/subdivision/country/date - those are independently re-parsed from the album tag text by counting commas, which silently misparses whenever a venue or city name itself contains a comma (e.g. Ypsilanti, Flint, Eau Claire, Osaka). <code><a href="shows_data.html">shows_data</a></code> (joined via <code>gid</code>) is the sole authoritative source for those fields.</p>
+    <p>Derived-cleaned. Produced by <code><a href="Repeatr_1.html">Repeatr_1</a></code> from <code>fls_tags</code>, grouped by <code>(gid, album)</code> so that two distinct tag batches sharing a <code>gid</code> (e.g. an earlier recording later superseded by an official release) produce two rows rather than silently summing their durations together - <code>album</code> itself is dropped before saving, since nothing reads it. Deliberately does not carry its own venue/city/subdivision/country/date - those are independently re-parsed from the album tag text by counting commas, which silently misparses whenever a venue or city name itself contains a comma (e.g. Ypsilanti, Flint, Eau Claire, Osaka). <code><a href="shows_data.html">shows_data</a></code> (joined via <code>gid</code>) is the sole authoritative source for those fields.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">fls_tags_show</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 952 × 4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    gid                          album                         duration   seconds</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                         <span style="color: #949494; font-style: italic;">&lt;Period&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> aalst-belgium-92390          19900923 Netwerk, Aalst, Bel… 1H 13M 33S    <span style="text-decoration: underline;">4</span>413</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> aberdeen-scotland-50499      19990504 Lemon Tree, Aberdee… 1H 18M 54S    <span style="text-decoration: underline;">4</span>734</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> adelaide-australia-111193    19931111 Dom Polski Hall, Ad… 46M 49S       <span style="text-decoration: underline;">2</span>809</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> adelaide-australia-111296    19961112 Adelaide University… 1H 17M 8S     <span style="text-decoration: underline;">4</span>628</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> adelaide-sa-australia-102291 19911022 Le Rox Hotel, Adela… 1H 11M 36S    <span style="text-decoration: underline;">4</span>296</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> akron-oh-usa-62890           19900628 Jackie Lee's Scoote… 1H 22M 28S    <span style="text-decoration: underline;">4</span>948</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> albany-ny-usa-92093          19930920 S.U.N.Y. Albany, Al… 1H 19M 41S    <span style="text-decoration: underline;">4</span>781</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> albuquerque-nm-usa-111395    19951113 Five Points Hall, A… 1H 14M 22S    <span style="text-decoration: underline;">4</span>462</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> albuquerque-nm-usa-40801     20010408 Sunshine Music Hall… 1H 30M 40S    <span style="text-decoration: underline;">5</span>440</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> albuquerque-nm-usa-91191     19910911 Sunshine Music Hall… 1H 7M 50S     <span style="text-decoration: underline;">4</span>070</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 952 × 3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    gid                          duration   seconds</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                        <span style="color: #949494; font-style: italic;">&lt;Period&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> aalst-belgium-92390          1H 13M 33S    <span style="text-decoration: underline;">4</span>413</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> aberdeen-scotland-50499      1H 18M 54S    <span style="text-decoration: underline;">4</span>734</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> adelaide-australia-111193    46M 49S       <span style="text-decoration: underline;">2</span>809</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> adelaide-australia-111296    1H 17M 8S     <span style="text-decoration: underline;">4</span>628</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> adelaide-sa-australia-102291 1H 11M 36S    <span style="text-decoration: underline;">4</span>296</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> akron-oh-usa-62890           1H 22M 28S    <span style="text-decoration: underline;">4</span>948</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> albany-ny-usa-92093          1H 19M 41S    <span style="text-decoration: underline;">4</span>781</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> albuquerque-nm-usa-111395    1H 14M 22S    <span style="text-decoration: underline;">4</span>462</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> albuquerque-nm-usa-40801     1H 30M 40S    <span style="text-decoration: underline;">5</span>440</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> albuquerque-nm-usa-91191     1H 7M 50S     <span style="text-decoration: underline;">4</span>070</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 942 more rows</span></span>
 </code></pre></div>
     </div>
