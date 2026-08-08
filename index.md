@@ -60,7 +60,7 @@ p](https://alexmitrani.github.io/Repeatr/articles/polish-with-a-small-p.md)
 A discussion of the song Polish from the album Steady Diet of Nothing.
 
 [The Emperor’s New
-Outfit](https://alexmitrani.github.io/Repeatr/articles/The-Emperor's-New-Outfit.md)
+Outfit](https://alexmitrani.github.io/Repeatr/articles/The-Emperors-New-Outfit.md)
 A discussion of the song Nice New Outfit from the album Steady Diet of
 Nothing.
 

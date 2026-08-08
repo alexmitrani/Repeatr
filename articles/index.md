@@ -25,7 +25,7 @@
 - [The
   Argument](https://alexmitrani.github.io/Repeatr/articles/The-Argument.md):
 - [The Emperor's New
-  Outfit](https://alexmitrani.github.io/Repeatr/articles/The-Emperor's-New-Outfit.md):
+  Outfit](https://alexmitrani.github.io/Repeatr/articles/The-Emperors-New-Outfit.md):
 - [The Tyranny of
   Distance](https://alexmitrani.github.io/Repeatr/articles/The-Tyranny-of-Distance.md):
 - [Updating the
