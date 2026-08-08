@@ -28,7 +28,7 @@ Repeatr_5(
 
 \item{myreleases_data_input}{optional \code{releases_data_input} dataframe (the \code{releases_data_input} element of \code{Repeatr_1()}'s return list). If omitted the currently lazy-loaded default will be used.}
 
-\item{input_dir}{Optional directory to write the \code{fugazi_song_choice_model.csv}/\code{fugazi_song_preferences.csv}/\code{releases_rated.csv}/\code{summary.csv} output-export CSVs into. If omitted, defaults to this package's own \code{inst/extdata} (these are Repeatr's own downloadable outputs, not primary data, so they are not sourced from \code{fugazi.db}).}
+\item{input_dir}{Optional directory to write the \code{fugazi_song_choice_model.csv}/\code{fugazi_song_preferences.csv}/\code{releases_rated.csv}/\code{summary.csv} output-export CSVs into. If omitted, defaults to this package's own \code{inst/extdata} (these are Repeatr's own downloadable outputs, not primary/raw data).}
 
 \item{output_dir}{Optional directory to save the rebuilt \verb{data/*.rda} objects into. If omitted, defaults to \verb{data/} under the current working directory.}
 }
@@ -39,6 +39,6 @@ A list of 5 elements: \code{fugazi_song_choice_model} (per-variable coefficient 
 Produces a summary table that includes song performance counts, song performance intensities, and ratings based on the estimated choice model parameters.
 }
 \examples{
-Repeatr_5_results <- Repeatr_5(mymodeldf = results_ml_Repeatr4)
+Repeatr_5_results <- Repeatr_5(mymodeldf = results_ml_Repeatr4, output_dir = tempdir(), input_dir = tempdir())
 
 }

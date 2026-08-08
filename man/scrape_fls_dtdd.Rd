@@ -33,7 +33,10 @@ A data frame with one row per scraped show: \code{gid}, \code{fls_id}, and \code
 The dt tags hold the captions and the dd tags hold the data. The user specifies what caption corresponds to the data they are interested in and the function will get the data.
 }
 \examples{
+\dontrun{
+# Makes live requests to dischord.com - not run automatically.
 scraped_data_played_with <- scrape_fls_dtdd(mygiddata = NULL, mylimit = 5, sleepseconds = 1, mycsvfilename = "gid_fls_id_fls_data.csv", mydt_caption = "Played with:")
 scraped_data_original_source <- scrape_fls_dtdd(mygiddata = NULL, mylimit = 5, sleepseconds = 1, mycsvfilename = "gid_fls_id_fls_data.csv", mydt_caption = "Original Source:")
+}
 
 }

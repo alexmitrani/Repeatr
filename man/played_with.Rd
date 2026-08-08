@@ -24,7 +24,7 @@ played_with
 Fugazi Live Series data on bands that fugazi played with in long format
 }
 \section{Provenance}{
- Derived-cleaned. Produced by \code{\link{Repeatr_1}}.
+ Derived-cleaned. Produced by \code{\link{Repeatr_1}}. Exported as-is as fugazi.db's \code{played_with} table by \code{\link{export_fugazidb_data}}.
 }
 
 \examples{

@@ -14,7 +14,7 @@
 #' @param really set to "really" to actually run the update; any other value (the default, "not_really") does nothing.
 #' @param min_song_count passed through to \code{\link{Repeatr_2}}: minimum number of performances a song needs to compete as an alternative in the choice model. Default 2. Does not affect `songid`/`songidlookup`, which cover every classified song regardless of this threshold.
 #' @param update_stacks if TRUE, the gid_initial_gid_sound_quality data will be refreshed by re-generating a set of stacks considering the full available set of relevant data.
-#' @param myfls_data,mysongvarslookup,myreleases,myfls_venue_geocoding,myfls_tags optional data frame overrides passed straight through to \code{\link{Repeatr_1}}. If omitted, \code{Repeatr_1} uses the `fugazi.db` package's own data - see its documentation for each. Useful for pointing the whole rebuild at a local `fugazi.db` checkout (e.g. `myfls_data = fugazidb_data$fls_data`, loaded via `load()`) without reinstalling it.
+#' @param myfls_data,mysongvarslookup,myreleases,myfls_venue_geocoding,myfls_tags optional data frame overrides passed straight through to \code{\link{Repeatr_1}}. If omitted, \code{Repeatr_1} uses this package's own `inst/extdata/` sources - see its documentation for each.
 #' @param input_dir passed through to \code{\link{Repeatr_2}}/\code{\link{Repeatr_5}}: where to write their output-export CSVs. If omitted, defaults to this package's own `inst/extdata`.
 #' @param output_dir passed through to every stage: where to save the rebuilt `data/*.rda` objects. If omitted, defaults to `data/` under the current working directory.
 #'

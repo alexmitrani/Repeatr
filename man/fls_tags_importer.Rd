@@ -19,7 +19,7 @@ fls_tags_importer is used to import a .txt file of duration data generated with 
 fls_tags_importer
 }
 \examples{
-fls_tags_importer(myfilename = "C:/Users/alexm/Music/fls_tags.txt")
+fls_tags_importer(myfilename = system.file("extdata", "fls_tags.txt", package = "Repeatr"))
 
 
 }

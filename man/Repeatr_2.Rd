@@ -19,7 +19,7 @@ Repeatr_2(
 
 \item{min_song_count}{Minimum number of performances a song needs to compete as an alternative in the choice model (\code{Repeatr_4}). Songs performed fewer times still appear in \code{songid}/\code{song} on the output, they just won't get an \code{alt} and can't be chosen as an alternative. Default 2 - songs performed only once can't support a stable alternative-specific intercept in the choice model. This is a choice-model concern only: it does not affect \code{songid}, which \code{\link{Repeatr_1}} assigns to every classified song regardless of this threshold.}
 
-\item{input_dir}{Optional directory to write the \code{fugazi_song_counts.csv}/\code{fugazi_song_performance_intensity.csv} output-export CSVs into. If omitted, defaults to this package's own \code{inst/extdata} (these are Repeatr's own downloadable outputs, not primary data, so they are not sourced from \code{fugazi.db}).}
+\item{input_dir}{Optional directory to write the \code{fugazi_song_counts.csv}/\code{fugazi_song_performance_intensity.csv} output-export CSVs into. If omitted, defaults to this package's own \code{inst/extdata} (these are Repeatr's own downloadable outputs, not primary/raw data).}
 
 \item{output_dir}{Optional directory to save the rebuilt \verb{data/*.rda} objects into. If omitted, defaults to \verb{data/} under the current working directory.}
 }
@@ -34,7 +34,7 @@ washington-dc-usa-90387	FLS0001	03/09/1987	Wilson Center	$5	300	Joey Picuri	Fuga
 "gid" is short for "gig id"
 }
 \examples{
-Repeatr_2_results <- Repeatr_2(mydf = Repeatr1)
+Repeatr_2_results <- Repeatr_2(mydf = Repeatr1, output_dir = tempdir(), input_dir = tempdir())
 Repeatr2 <- Repeatr_2_results[[1]]
 altlookup <- Repeatr_2_results[[2]]
 

@@ -15,12 +15,11 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' # Makes live requests to dischord.com - not run automatically.
 #' scraped_data_1 <- scrape_fls_data(mygiddata = NULL, mylimit = 3, sleepseconds = 1, mycsvfilename = "gid_fls_id_sound_quality.csv", my_data_html_element = "dd strong")
 #' scraped_data_2 <- scrape_fls_data(mygiddata = NULL, mylimit = 3, sleepseconds = 1, mycsvfilename = "gid_fls_id_played_with.csv", my_data_html_element = "dd:nth-child(10)")
-#' mydf <- system.file("extdata", "gid_played_with_8.csv", package = "Repeatr")
-#' scraped_data_3 <- scrape_fls_data(mygiddata = mydf, mylimit = 3, sleepseconds = 1, mycsvfilename = "gid_fls_id_played_with_8.csv", my_data_html_element = "dd:nth-child(8)")
-#' mydf <- system.file("extdata", "gid_played_with_6.csv", package = "Repeatr")
-#' scraped_data_4 <- scrape_fls_data(mygiddata = mydf, mylimit = 3, sleepseconds = 1, mycsvfilename = "gid_fls_id_played_with_6.csv", my_data_html_element = "dd:nth-child(6)")
+#' }
 #'
 scrape_fls_data <- function(mygiddata = NULL, mylimit = 3, sleepseconds = 1, mycsvfilename = "gid_fls_id_sound_quality.csv", my_data_html_element = "dd strong") {
 

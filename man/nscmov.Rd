@@ -14,16 +14,20 @@ The updated \code{othervariables} data frame, with coordinates and \code{checked
 }
 \description{
 Retired from the rebuild pipeline - venue coordinates are
-now maintained directly in \code{fugazi.db::fls_venue_geocoding} (see
+now maintained directly in \code{inst/extdata/fls_venue_geocoding_v2.csv} (see
 \code{vignette("Rebuilding-the-Data")}), with no separate to-do-list workflow.
 Left here for reference; not called anywhere in \code{\link{Repeatr_1}}/
 \code{\link{Repeatr_Updatr}}, and its default argument will resolve to no
-file (\code{fls_venue_geocoding.csv} no longer ships in this package's
-\code{inst/extdata}) unless called with an explicit
+file unless called with an explicit
 \code{fls_venue_geocoding_update_filename}.
 }
 \examples{
-fls_venue_geocoding_update <- system.file("extdata", "fls_venue_geocoding.csv", package = "Repeatr")
+\dontrun{
+# Retired (see @description above) - kept for reference only. Has no
+# output_dir override, so it always writes to data/ under getwd(); not
+# safe to run as a documentation example.
+fls_venue_geocoding_update <- system.file("extdata", "fls_venue_geocoding_v2.csv", package = "Repeatr")
 othervariables <- nscmov(fls_venue_geocoding_update_filename = fls_venue_geocoding_update)
+}
 
 }

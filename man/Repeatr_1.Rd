@@ -14,15 +14,15 @@ Repeatr_1(
 )
 }
 \arguments{
-\item{myfls_data}{Optional data frame of Fugazi Live Series show data to use instead of \code{fugazi.db::fls_data} (same shape: one row per show, as produced by \code{\link{scrape_fls_shows}}).}
+\item{myfls_data}{Optional data frame of Fugazi Live Series show data to use instead of \code{inst/extdata/fls_data.csv} (same shape: one row per show, as produced by \code{\link{scrape_fls_shows}}).}
 
-\item{mysongvarslookup}{Optional data frame of song data to use instead of \code{fugazi.db::songvarslookup}.}
+\item{mysongvarslookup}{Optional data frame of song data to use instead of \code{inst/extdata/releases_songs_durations_wikipedia.csv}.}
 
-\item{myreleases}{Optional data frame of releases data to use instead of \code{fugazi.db::releases}.}
+\item{myreleases}{Optional data frame of releases data to use instead of \code{inst/extdata/releases.csv}.}
 
-\item{myfls_venue_geocoding}{Optional data frame of venue coordinates to use instead of \code{fugazi.db::fls_venue_geocoding}.}
+\item{myfls_venue_geocoding}{Optional data frame of venue coordinates to use instead of \code{inst/extdata/fls_venue_geocoding_v2.csv}.}
 
-\item{myfls_tags}{Optional data frame of tag/duration data to use instead of \code{fugazi.db::fls_tags_raw}.}
+\item{myfls_tags}{Optional data frame of tag/duration data to use instead of \code{inst/extdata/fls_tags.txt}.}
 
 \item{output_dir}{Optional directory to save the rebuilt \verb{data/*.rda} objects into. If omitted, defaults to \verb{data/} under the current working directory (the package root, in the normal \verb{devtools::load_all(); Repeatr_Updatr()} workflow).}
 }
@@ -30,13 +30,13 @@ Repeatr_1(
 A list of 13 elements: \code{Repeatr0}, \code{Repeatr1}, \code{songidlookup}, \code{mycount}, \code{songvarslookup}, \code{releasesdatalookup}, \code{othervariables}, \code{cumulative_song_counts}, \code{fls_tags}, \code{fls_tags_show}, \code{cumulative_duration_counts}, \code{releases_data_input}, and \code{raw_fls_song_list}. As a side effect, these and several other derived datasets (including \code{gid_sound_quality}, \code{played_with}, \code{shows_data}, \code{xray}) are also saved into \verb{data/} (or \code{output_dir}, if supplied). \code{songidlookup} assigns a stable \code{songid} to every classified song, including one-offs and rarities - the modelling-eligibility filter (\code{min_song_count}) that used to be applied here has moved to \code{\link{Repeatr_2}}, which is where it belongs since it's a choice-model concern, not a question of song identity.
 }
 \description{
-Reads its raw inputs from the \code{fugazi.db} package by default: \code{fugazi.db::fls_data} (one row per show, produced by \code{\link{scrape_fls_shows}}; \code{tour}, \code{city}, \code{subdivision}, and \code{country} all come from the FLS listing pages' own filter links/tour headings - see \code{\link{scrape_fls_listing_data}}), \code{fugazi.db::songvarslookup} (Wikipedia discography metadata), \code{fugazi.db::releases} (release metadata), \code{fugazi.db::fls_venue_geocoding} (venue coordinates), and \code{fugazi.db::fls_tags_raw} (tag/duration data). Each can be overridden with an explicit data frame instead - e.g. to run this against a local \code{fugazi.db} checkout without reinstalling it - see the parameters below.
+Reads its raw inputs from this package's own \verb{inst/extdata/} by default: \code{fls_data.csv} (one row per show, produced by \code{\link{scrape_fls_shows}}; \code{tour}, \code{city}, \code{subdivision}, and \code{country} all come from the FLS listing pages' own filter links/tour headings - see \code{\link{scrape_fls_listing_data}}), \code{releases_songs_durations_wikipedia.csv} (Wikipedia discography metadata), \code{releases.csv} (release metadata), \code{fls_venue_geocoding_v2.csv} (venue coordinates), and \code{fls_tags.txt} (tag/duration data, via \code{\link{fls_tags_importer}}). Each can be overridden with an explicit data frame instead - see the parameters below.
 
 "gid" is short for "gig id"
 
-\code{fugazi.db::songvarslookup} contains the following variables: releaseid	track_number	song	instrumental	vocals_picciotto	vocals_mackaye	vocals_lally	duration_seconds. It is joined onto the live, classified song set by \code{song} title text, not by a hardcoded id column - see \code{songid} below.
+\code{songvarslookup} (read from \code{inst/extdata/releases_songs_durations_wikipedia.csv}) contains the following variables: releaseid	track_number	song	instrumental	vocals_picciotto	vocals_mackaye	vocals_lally	duration_seconds. It is joined onto the live, classified song set by \code{song} title text, not by a hardcoded id column - see \code{songid} below.
 }
 \examples{
-Repeatr_1_results <- Repeatr_1()
+Repeatr_1_results <- Repeatr_1(output_dir = tempdir())
 
 }

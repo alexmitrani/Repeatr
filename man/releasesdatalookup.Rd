@@ -23,7 +23,7 @@ releasesdatalookup
 Fugazi releases data
 }
 \section{Provenance}{
- Derived-cleaned. Produced by \code{\link{Repeatr_1}} from \code{fugazi.db::releases} (which itself carries a manually-assigned \code{colour_code} and an \code{rym_rating} sourced from rateyourmusic.com).
+ Derived-cleaned. Produced by \code{\link{Repeatr_1}} from \code{inst/extdata/releases.csv} (which itself carries a manually-assigned \code{colour_code} and an \code{rym_rating} sourced from rateyourmusic.com). Exported (minus \code{colour_code}, minus the four synthetic UI-bucket rows) as fugazi.db's \code{releases} table by \code{\link{export_fugazidb_data}}.
 }
 
 \examples{

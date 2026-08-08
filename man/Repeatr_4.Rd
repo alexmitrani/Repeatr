@@ -18,5 +18,9 @@ A data frame (\code{results_ml_Repeatr4}) of the mlogit coefficient table: one r
 Defines indices, makes changes to variable formats and data structure to prepare for choice modelling with mlogit.
 }
 \examples{
-results_ml_Repeatr4 <- Repeatr_4()
+\dontrun{
+# Fits a real mlogit choice model on the full dataset - the slow step
+# in the pipeline (see vignette("Rebuilding-the-Data")), not run here.
+results_ml_Repeatr4 <- Repeatr_4(output_dir = tempdir())
+}
 }

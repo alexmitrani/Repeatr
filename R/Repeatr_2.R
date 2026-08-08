@@ -14,14 +14,14 @@
 #' @param mydf optional dataframe to be used (the `Repeatr1` element of `Repeatr_1()`'s return list). If omitted the default (currently lazy-loaded) `Repeatr1` dataframe will be used.
 #' @param mysongidlookup optional `songidlookup` dataframe to be used (the `songidlookup` element of `Repeatr_1()`'s return list). If omitted the default (currently lazy-loaded) `songidlookup` dataframe will be used. Pass this explicitly - rather than relying on the default - when calling `Repeatr_2()` right after a fresh `Repeatr_1()` in the same session, since the lazy-loaded default reflects the last build on disk, not the one just computed.
 #' @param min_song_count Minimum number of performances a song needs to compete as an alternative in the choice model (`Repeatr_4`). Songs performed fewer times still appear in `songid`/`song` on the output, they just won't get an `alt` and can't be chosen as an alternative. Default 2 - songs performed only once can't support a stable alternative-specific intercept in the choice model. This is a choice-model concern only: it does not affect `songid`, which \code{\link{Repeatr_1}} assigns to every classified song regardless of this threshold.
-#' @param input_dir Optional directory to write the `fugazi_song_counts.csv`/`fugazi_song_performance_intensity.csv` output-export CSVs into. If omitted, defaults to this package's own `inst/extdata` (these are Repeatr's own downloadable outputs, not primary data, so they are not sourced from `fugazi.db`).
+#' @param input_dir Optional directory to write the `fugazi_song_counts.csv`/`fugazi_song_performance_intensity.csv` output-export CSVs into. If omitted, defaults to this package's own `inst/extdata` (these are Repeatr's own downloadable outputs, not primary/raw data).
 #' @param output_dir Optional directory to save the rebuilt `data/*.rda` objects into. If omitted, defaults to `data/` under the current working directory.
 #'
 #' @return A list of 2 elements: `Repeatr2`, a data frame with one row per gid/song_number/alt combination, prepared for choice modelling (`case` is the choice-situation id, `alt` a dense 1..n index over the `min_song_count`-eligible songs only - this is what `mlogit`/`Repeatr_4` actually sees - `songid` the stable, full identity from `songidlookup` kept alongside `alt` rather than overwritten by it, `choice` whether that song was the one played, availability/played dummy variables, and years-since-launch bucket variables); and `altlookup` (`alt`, `songid`, `song`, `count` - one row per `min_song_count`-eligible song), needed by \code{\link{Repeatr_5}}/\code{\link{rankr}} to translate `mlogit`'s `alt`-indexed coefficients back to song identity. Also saved to `data/Repeatr2.rda` and `data/altlookup.rda`, alongside `fugazi_song_counts` and `fugazi_song_performance_intensity` (which cover every classified song, not just the `min_song_count`-eligible ones).
 #' @export
 #'
 #' @examples
-#' Repeatr_2_results <- Repeatr_2(mydf = Repeatr1)
+#' Repeatr_2_results <- Repeatr_2(mydf = Repeatr1, output_dir = tempdir(), input_dir = tempdir())
 #' Repeatr2 <- Repeatr_2_results[[1]]
 #' altlookup <- Repeatr_2_results[[2]]
 #'

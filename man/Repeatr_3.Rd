@@ -18,6 +18,6 @@ A data frame (\code{Repeatr3}) reduced to the variables needed for mlogit choice
 "gid" is short for "gig id"
 }
 \examples{
-Repeatr3 <- Repeatr_3(mydf = Repeatr2)
+Repeatr3 <- Repeatr_3(mydf = Repeatr2, output_dir = tempdir())
 
 }

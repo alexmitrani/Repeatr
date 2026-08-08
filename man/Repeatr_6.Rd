@@ -37,6 +37,6 @@ Runs sweepstack() over the full available set of shows/songs and rebuilds gid_in
 the dataset behind the Shiny app's "stock" pages (see inst/shiny/Fugazetteer/app.R).
 }
 \examples{
-Repeatr_6(number_stacks = 10, exclude_poor_sound_quality = TRUE)
+Repeatr_6(number_stacks = 10, exclude_poor_sound_quality = TRUE, output_dir = tempdir())
 
 }

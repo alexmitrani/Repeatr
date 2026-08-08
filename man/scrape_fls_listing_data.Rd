@@ -47,7 +47,9 @@ confirmed by inspecting the page, not by executing this code) -
 spot-check with \code{max_listing_pages = 1} before trusting a full crawl.
 }
 \examples{
-# Small-scale test: only the first listing page
+\dontrun{
+# Makes live requests to dischord.com - not run automatically.
 test_listing_data <- scrape_fls_listing_data(max_listing_pages = 1)
+}
 
 }

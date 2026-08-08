@@ -11,7 +11,7 @@
 #' @export
 #'
 #' @examples
-#' fls_tags_importer(myfilename = "C:/Users/alexm/Music/fls_tags.txt")
+#' fls_tags_importer(myfilename = system.file("extdata", "fls_tags.txt", package = "Repeatr"))
 #'
 #'
 fls_tags_importer <- function(myfilename = NULL) {

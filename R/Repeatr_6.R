@@ -23,7 +23,7 @@
 #' @export
 #'
 #' @examples
-#' Repeatr_6(number_stacks = 10, exclude_poor_sound_quality = TRUE)
+#' Repeatr_6(number_stacks = 10, exclude_poor_sound_quality = TRUE, output_dir = tempdir())
 #'
 Repeatr_6 <- function(myduration_data_da = NULL, mysummary = NULL, myothervariables = NULL, mygidsoundquality = NULL,
                        number_stacks = NULL, exclude_poor_sound_quality = FALSE, output_dir = NULL) {
@@ -38,7 +38,12 @@ Repeatr_6 <- function(myduration_data_da = NULL, mysummary = NULL, myothervariab
   # Repeatr_Updatr.R for why threading these through matters when chaining
   # a fresh pipeline run.
   if (is.null(myduration_data_da)==FALSE) { duration_data_da <- myduration_data_da } else { duration_data_da <- duration_data_da }
-  if (is.null(mysummary)==FALSE) { summary <- mysummary } else { summary <- summary }
+  # Bare `summary <- summary` here would shadow-resolve to base::summary()
+  # (a function), not this package's own `summary` dataset, since this is
+  # the first reference to the name in this frame - unlike
+  # duration_data_da/othervariables/gid_sound_quality, "summary" collides
+  # with a near-universally-visible base generic. Explicit :: avoids that.
+  if (is.null(mysummary)==FALSE) { summary <- mysummary } else { summary <- Repeatr::summary }
   if (is.null(myothervariables)==FALSE) { othervariables <- myothervariables } else { othervariables <- othervariables }
   if (is.null(mygidsoundquality)==FALSE) { gid_sound_quality <- mygidsoundquality } else { gid_sound_quality <- gid_sound_quality }
 

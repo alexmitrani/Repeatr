@@ -1,9 +1,9 @@
 
 #' @name Repeatr_1
 #' @title imports raw data (1 row per show), cleans the data, and reshapes it long so that the rows are identified by combinations of gid and song_number.
-#' @description Reads its raw inputs from the \code{fugazi.db} package by default: \code{fugazi.db::fls_data} (one row per show, produced by \code{\link{scrape_fls_shows}}; `tour`, `city`, `subdivision`, and `country` all come from the FLS listing pages' own filter links/tour headings - see \code{\link{scrape_fls_listing_data}}), \code{fugazi.db::songvarslookup} (Wikipedia discography metadata), \code{fugazi.db::releases} (release metadata), \code{fugazi.db::fls_venue_geocoding} (venue coordinates), and \code{fugazi.db::fls_tags_raw} (tag/duration data). Each can be overridden with an explicit data frame instead - e.g. to run this against a local \code{fugazi.db} checkout without reinstalling it - see the parameters below.
+#' @description Reads its raw inputs from this package's own `inst/extdata/` by default: `fls_data.csv` (one row per show, produced by \code{\link{scrape_fls_shows}}; `tour`, `city`, `subdivision`, and `country` all come from the FLS listing pages' own filter links/tour headings - see \code{\link{scrape_fls_listing_data}}), `releases_songs_durations_wikipedia.csv` (Wikipedia discography metadata), `releases.csv` (release metadata), `fls_venue_geocoding_v2.csv` (venue coordinates), and `fls_tags.txt` (tag/duration data, via \code{\link{fls_tags_importer}}). Each can be overridden with an explicit data frame instead - see the parameters below.
 #' @description "gid" is short for "gig id"
-#' @description \code{fugazi.db::songvarslookup} contains the following variables: releaseid	track_number	song	instrumental	vocals_picciotto	vocals_mackaye	vocals_lally	duration_seconds. It is joined onto the live, classified song set by `song` title text, not by a hardcoded id column - see `songid` below.
+#' @description `songvarslookup` (read from `inst/extdata/releases_songs_durations_wikipedia.csv`) contains the following variables: releaseid	track_number	song	instrumental	vocals_picciotto	vocals_mackaye	vocals_lally	duration_seconds. It is joined onto the live, classified song set by `song` title text, not by a hardcoded id column - see `songid` below.
 
 #'
 #' @import dplyr
@@ -14,18 +14,18 @@
 #' @import rlang
 #' @import knitr
 #'
-#' @param myfls_data Optional data frame of Fugazi Live Series show data to use instead of \code{fugazi.db::fls_data} (same shape: one row per show, as produced by \code{\link{scrape_fls_shows}}).
-#' @param mysongvarslookup Optional data frame of song data to use instead of \code{fugazi.db::songvarslookup}.
-#' @param myreleases Optional data frame of releases data to use instead of \code{fugazi.db::releases}.
-#' @param myfls_venue_geocoding Optional data frame of venue coordinates to use instead of \code{fugazi.db::fls_venue_geocoding}.
-#' @param myfls_tags Optional data frame of tag/duration data to use instead of \code{fugazi.db::fls_tags_raw}.
+#' @param myfls_data Optional data frame of Fugazi Live Series show data to use instead of `inst/extdata/fls_data.csv` (same shape: one row per show, as produced by \code{\link{scrape_fls_shows}}).
+#' @param mysongvarslookup Optional data frame of song data to use instead of `inst/extdata/releases_songs_durations_wikipedia.csv`.
+#' @param myreleases Optional data frame of releases data to use instead of `inst/extdata/releases.csv`.
+#' @param myfls_venue_geocoding Optional data frame of venue coordinates to use instead of `inst/extdata/fls_venue_geocoding_v2.csv`.
+#' @param myfls_tags Optional data frame of tag/duration data to use instead of `inst/extdata/fls_tags.txt`.
 #' @param output_dir Optional directory to save the rebuilt `data/*.rda` objects into. If omitted, defaults to `data/` under the current working directory (the package root, in the normal `devtools::load_all(); Repeatr_Updatr()` workflow).
 #'
 #' @return A list of 13 elements: `Repeatr0`, `Repeatr1`, `songidlookup`, `mycount`, `songvarslookup`, `releasesdatalookup`, `othervariables`, `cumulative_song_counts`, `fls_tags`, `fls_tags_show`, `cumulative_duration_counts`, `releases_data_input`, and `raw_fls_song_list`. As a side effect, these and several other derived datasets (including `gid_sound_quality`, `played_with`, `shows_data`, `xray`) are also saved into `data/` (or `output_dir`, if supplied). `songidlookup` assigns a stable `songid` to every classified song, including one-offs and rarities - the modelling-eligibility filter (`min_song_count`) that used to be applied here has moved to \code{\link{Repeatr_2}}, which is where it belongs since it's a choice-model concern, not a question of song identity.
 #' @export
 #'
 #' @examples
-#' Repeatr_1_results <- Repeatr_1()
+#' Repeatr_1_results <- Repeatr_1(output_dir = tempdir())
 #'
 Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = NULL,
                        myfls_venue_geocoding = NULL, myfls_tags = NULL, output_dir = NULL) {
@@ -50,7 +50,7 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   on.exit(setwd(mydir), add = TRUE)
   mydatadir <- if (is.null(output_dir)) paste0(mydir, "/data") else output_dir
 
-  Repeatr0 <- if (is.null(myfls_data)) fugazi.db::fls_data else myfls_data
+  Repeatr0 <- if (is.null(myfls_data)) read.csv(system.file("extdata", "fls_data.csv", package = "Repeatr"), header = TRUE) else myfls_data
 
   # gid_sound_quality used to be a static dataset with no regeneration path -
   # it's now rebuilt live from Repeatr0 every run, same gid/sound_quality
@@ -61,9 +61,14 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     select(gid, sound_quality) %>%
     filter(is.na(sound_quality)==FALSE)
 
-  songvarslookup <- if (is.null(mysongvarslookup)) fugazi.db::songvarslookup else mysongvarslookup
+  songvarslookup <- if (is.null(mysongvarslookup)) read.csv(system.file("extdata", "releases_songs_durations_wikipedia.csv", package = "Repeatr"), header = TRUE) else mysongvarslookup
 
-  releasesdatalookup <- if (is.null(myreleases)) fugazi.db::releases else myreleases
+  save(songvarslookup, file = file.path(mydatadir, "songvarslookup.rda"))
+
+  song_tempo_bpm_data <- read.csv(system.file("extdata", "song_tempo_bpm_data.csv", package = "Repeatr"), header = TRUE)
+  save(song_tempo_bpm_data, file = file.path(mydatadir, "song_tempo_bpm_data.rda"))
+
+  releasesdatalookup <- if (is.null(myreleases)) read.csv(system.file("extdata", "releases.csv", package = "Repeatr"), header = TRUE) else myreleases
   releasesdatalookup$X <- NULL
 
   othervariables <- Repeatr0 %>%
@@ -76,7 +81,7 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     mutate(date = as.Date(date, "%d/%m/%Y"),
            year = lubridate::year(date),
            checked = 0,
-           # x/y start unset here - fugazi.db::fls_data's venue/city/country
+           # x/y start unset here - inst/extdata/fls_data.csv's venue/city/country
            # are already corrected against fls_venue_geocoding's spelling (a
            # one-time cleanup, see vignette("Rebuilding-the-Data")), so there
            # is no longer a baseline coordinate-fallback join at this point -
@@ -304,12 +309,12 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   othervariables <- othervariables %>%
     relocate(checked, .after = year)
 
-  # fugazi.db::fls_venue_geocoding is the source of truth for venue
+  # inst/extdata/fls_venue_geocoding_v2.csv is the source of truth for venue
   # coordinates (a periodically-refreshed local snapshot of a private
   # Google Sheet - not read live, since that sheet isn't reliably
   # available). Every coordinate in this table is treated as
   # checked/confirmed.
-  fls_venue_geocoding_source <- if (is.null(myfls_venue_geocoding)) fugazi.db::fls_venue_geocoding else myfls_venue_geocoding
+  fls_venue_geocoding_source <- if (is.null(myfls_venue_geocoding)) read.csv(system.file("extdata", "fls_venue_geocoding_v2.csv", package = "Repeatr"), header = TRUE) else myfls_venue_geocoding
 
   fls_venue_geocoding_update <- fls_venue_geocoding_source %>%
     select(country, city, venue, x, y) %>%
@@ -346,7 +351,7 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
            city = ifelse(city=="Oxford (USA)", "Oxford", city),
            city = ifelse(city=="Newcastle (Australia)", "Newcastle", city),
            # "Springfield (MO)"/"Springfield (OR)" were disambiguated this way
-           # in fugazi.db::fls_data itself (for the same reason - matching
+           # in inst/extdata/fls_data.csv itself (for the same reason - matching
            # fls_venue_geocoding's join key) but are just as
            # subdivision-disambiguated as Portland, so strip them back here too.
            city = ifelse(city=="Springfield (MO)", "Springfield", city),
@@ -375,11 +380,16 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
 
   # process tags data -------------------------------------------------------
 
-  # fugazi.db::fls_tags_raw's track names have already been hand-corrected
-  # for known typos/spelling variants (a one-time cleanup, see
-  # vignette("Rebuilding-the-Data")) - str_to_lower() below is a generic
-  # normalization applied uniformly, not tied to that correction.
-  fls_tags <- if (is.null(myfls_tags)) fugazi.db::fls_tags_raw else myfls_tags
+  # The underlying MP3 tag data (track/album/song names) is sourced from the
+  # Fugazi Live Series itself, not personal data - it's the FLS site's own
+  # naming for each show/track, exported via kid3 from the personally-tagged
+  # MP3 collection. What follows is the maintainer's own work: a consistent
+  # album-name format applied uniformly, plus a handful of one-off track-title
+  # corrections for known typos/spelling variants (a one-time cleanup, see
+  # vignette("Rebuilding-the-Data")) baked into inst/extdata/fls_tags.txt -
+  # str_to_lower() below is a generic normalization applied uniformly, not
+  # tied to that correction.
+  fls_tags <- if (is.null(myfls_tags)) fls_tags_importer(myfilename = system.file("extdata", "fls_tags.txt", package = "Repeatr")) else myfls_tags
 
   fls_tags <- fls_tags %>%
     mutate(name = str_to_lower(name))
@@ -868,12 +878,12 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   songs_missing_from_songidlookup <- anti_join(songvarslookup, all_classified_songs, by = "song")$song
 
   if (length(songs_missing_from_songvarslookup) > 0) {
-    warning("Repeatr_1(): song(s) classified in the live data have no matching row in fugazi.db::songvarslookup: ",
+    warning("Repeatr_1(): song(s) classified in the live data have no matching row in songvarslookup: ",
             paste(songs_missing_from_songvarslookup, collapse = ", "))
   }
 
   if (length(songs_missing_from_songidlookup) > 0) {
-    warning("Repeatr_1(): song(s) in fugazi.db::songvarslookup have no matching row anywhere in the live classified data (not even as a non-tracktype-1 rarity) - this row may be stale: ",
+    warning("Repeatr_1(): song(s) in songvarslookup have no matching row anywhere in the live classified data (not even as a non-tracktype-1 rarity) - this row may be stale: ",
             paste(songs_missing_from_songidlookup, collapse = ", "))
   }
 
@@ -1527,7 +1537,7 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
       mutate(attendance = round(attendance, 0))
 
     played_with_data <- played_with_data %>%
-      select(fls_link, year, tour, date, venue, city, country, played_with, attendance, sound_quality, latitude, longitude)
+      select(gid, fls_link, year, tour, date, venue, city, country, played_with, attendance, sound_quality, latitude, longitude)
 
     save(played_with_data, file = "played_with_data.rda")
 

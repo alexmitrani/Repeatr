@@ -17,7 +17,7 @@
 #' @export
 #'
 #' @examples
-#' Repeatr3 <- Repeatr_3(mydf = Repeatr2)
+#' Repeatr3 <- Repeatr_3(mydf = Repeatr2, output_dir = tempdir())
 #'
 Repeatr_3 <- function(mydf = NULL, output_dir = NULL) {
 

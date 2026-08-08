@@ -2,12 +2,11 @@
 #' nscmov = No satellite could map our veins.
 #'
 #' @description Retired from the rebuild pipeline - venue coordinates are
-#' now maintained directly in `fugazi.db::fls_venue_geocoding` (see
+#' now maintained directly in `inst/extdata/fls_venue_geocoding_v2.csv` (see
 #' `vignette("Rebuilding-the-Data")`), with no separate to-do-list workflow.
 #' Left here for reference; not called anywhere in \code{\link{Repeatr_1}}/
 #' \code{\link{Repeatr_Updatr}}, and its default argument will resolve to no
-#' file (`fls_venue_geocoding.csv` no longer ships in this package's
-#' `inst/extdata`) unless called with an explicit
+#' file unless called with an explicit
 #' `fls_venue_geocoding_update_filename`.
 #'
 #' @param fls_venue_geocoding_update_filename filename of file with which to update coordinates data in othervariables.rda
@@ -16,8 +15,13 @@
 #' @export
 #'
 #' @examples
-#' fls_venue_geocoding_update <- system.file("extdata", "fls_venue_geocoding.csv", package = "Repeatr")
+#' \dontrun{
+#' # Retired (see @description above) - kept for reference only. Has no
+#' # output_dir override, so it always writes to data/ under getwd(); not
+#' # safe to run as a documentation example.
+#' fls_venue_geocoding_update <- system.file("extdata", "fls_venue_geocoding_v2.csv", package = "Repeatr")
 #' othervariables <- nscmov(fls_venue_geocoding_update_filename = fls_venue_geocoding_update)
+#' }
 #'
 nscmov <- function(fls_venue_geocoding_update_filename=NULL) {
 

@@ -24,7 +24,7 @@ Repeatr_Updatr(
 
 \item{update_stacks}{if TRUE, the gid_initial_gid_sound_quality data will be refreshed by re-generating a set of stacks considering the full available set of relevant data.}
 
-\item{myfls_data, mysongvarslookup, myreleases, myfls_venue_geocoding, myfls_tags}{optional data frame overrides passed straight through to \code{\link{Repeatr_1}}. If omitted, \code{Repeatr_1} uses the \code{fugazi.db} package's own data - see its documentation for each. Useful for pointing the whole rebuild at a local \code{fugazi.db} checkout (e.g. \code{myfls_data = fugazidb_data$fls_data}, loaded via \code{load()}) without reinstalling it.}
+\item{myfls_data, mysongvarslookup, myreleases, myfls_venue_geocoding, myfls_tags}{optional data frame overrides passed straight through to \code{\link{Repeatr_1}}. If omitted, \code{Repeatr_1} uses this package's own \verb{inst/extdata/} sources - see its documentation for each.}
 
 \item{input_dir}{passed through to \code{\link{Repeatr_2}}/\code{\link{Repeatr_5}}: where to write their output-export CSVs. If omitted, defaults to this package's own \code{inst/extdata}.}
 

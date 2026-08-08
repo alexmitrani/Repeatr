@@ -19,7 +19,7 @@ songidlookup
 Fugazi song id lookup table
 }
 \section{Provenance}{
- Derived-classified. Computed live in \code{\link{Repeatr_1}} from \code{Repeatr1}; the single source of truth for song identity - not hand-edited, and (after the songid fix) assigned to every classified song including one-offs, not just those meeting \code{min_song_count}.
+ Derived-classified. Computed live in \code{\link{Repeatr_1}} from \code{Repeatr1}; the single source of truth for song identity - not hand-edited, and (after the songid fix) assigned to every classified song including one-offs, not just those meeting \code{min_song_count}. Exported as-is as fugazi.db's \code{songidlookup} table by \code{\link{export_fugazidb_data}} - pure join-key infrastructure (\code{songid}/\code{song}/\code{count}), with no \code{tracktype}/classification detail included.
 }
 
 \examples{

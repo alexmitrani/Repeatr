@@ -18,7 +18,11 @@
 #' @export
 #'
 #' @examples
-#' results_ml_Repeatr4 <- Repeatr_4()
+#' \dontrun{
+#' # Fits a real mlogit choice model on the full dataset - the slow step
+#' # in the pipeline (see vignette("Rebuilding-the-Data")), not run here.
+#' results_ml_Repeatr4 <- Repeatr_4(output_dir = tempdir())
+#' }
 
 Repeatr_4 <- function(mydf = NULL, output_dir = NULL) {
 

@@ -23,35 +23,46 @@ library(Repeatr)
 
 ## Overview
 
-Primary data - show listings, venue coordinates, tag/duration data, and discography metadata - lives in the companion package [`fugazi.db`](https://github.com/alexmitrani/fugazi.db), not in Repeatr itself. See `vignette("Data-Catalogue", package = "fugazi.db")` for what each of its five independent sources is, how it's hand-curated or scraped, and how to refresh it.
+Primary data - show listings, venue coordinates, tag/duration data, and discography metadata - lives in this package's own `inst/extdata/`, not in a separate package. The companion package [`fugazi.db`](https://github.com/alexmitrani/fugazi.db) is downstream of Repeatr: it's a generated export of Repeatr's own cleaned data, not a source Repeatr reads from. See `vignette("Data-Catalogue", package = "fugazi.db")` for what it contains.
 
-This vignette covers what happens *after* those sources are refreshed: turning `fugazi.db`'s raw tables into every dataset in `data/*.rda`, and getting the rebuilt package and Shiny app back out into the world. `data-raw/build_data.R` is the canonical, runnable version of the three-stage process below - this vignette explains the why, that script is what to actually run.
+This vignette covers the three-stage process of refreshing `inst/extdata/`'s raw sources, rebuilding every dataset in `data/*.rda`, exporting the fugazi.db subset, and getting the rebuilt package and Shiny app back out into the world. `data-raw/build_data.R` is the canonical, runnable version of the process below - this vignette explains the why, that script is what to actually run.
 
-## 1. Refreshing fugazi.db (stages A-B)
+## 1. Refreshing the raw sources (stage A)
 
-Handled entirely in `fugazi.db`'s own workflow - see its `vignette("Data-Catalogue")`. In short: update whichever of its `data-raw/` sources has new material (a fresh `scrape_fls_shows()` run, a synced venue-coordinate sheet, a re-exported tag file, a hand-edited discography CSV), then run `Repeatr::build_fugazidb_data(fugazidb_dir = "../fugazi.db")` to turn those into `fugazi.db`'s `data/*.rda` objects. Commit and push `fugazi.db`, then reinstall it:
+Update whichever of `inst/extdata/`'s raw sources has new material:
 
-```{r}
-devtools::install_github("alexmitrani/fugazi.db")
-```
+- **Show data** - a fresh `scrape_fls_shows()` run, writing to `inst/extdata/fls_data.csv`.
+- **Venue coordinates** - a synced export of the private Google Sheet used to look up/confirm venue locations, overwriting `inst/extdata/fls_venue_geocoding_v2.csv` directly. This file is the single source of truth for coordinates in both Repeatr and fugazi.db.
+- **Tags/duration data** - re-exported from kid3 against the personally-tagged MP3 collection, overwriting `inst/extdata/fls_tags.txt`. If a new show's album string doesn't parse cleanly, the hand-written corrections for specific albums/venues live in the "process tags data" section of `R/Repeatr_1.R`.
+- **Song/release/duration and tempo data** - hand-maintain `inst/extdata/releases_songs_durations_wikipedia.csv`, `inst/extdata/releases.csv`, and `inst/extdata/song_tempo_bpm_data.csv` directly against their sources (Wikipedia, rateyourmusic.com, personal BPM readings).
 
-`Repeatr_1()`'s defaults resolve against the *installed* `fugazi.db`, not a source checkout, so this reinstall is what makes a refreshed source visible to stage C below. For quick local iteration without reinstalling, load `fugazi.db`'s rebuilt objects directly (e.g. via `load()` on its `data/*.rda` files) and pass them into `Repeatr_1()`/`Repeatr_Updatr()` as explicit overrides instead - see `?Repeatr_1` for the full list of override parameters (`myfls_data`, `mysongvarslookup`, `myreleases`, `myfls_venue_geocoding`, `myfls_tags`).
+None of these five need refreshing together - run whichever one has new material.
 
-## 2. Rebuilding everything (stage C)
+## 2. Rebuilding Repeatr's own data (stage B)
 
-Once `fugazi.db` is refreshed and reinstalled, rebuild Repeatr's own data objects:
+Once the raw sources are refreshed, rebuild Repeatr's own data objects:
 
 ```{r}
 Repeatr_Updatr(really = "really", update_stacks = TRUE)
 ```
 
-This runs `Repeatr_1() -> Repeatr_2() -> Repeatr_3() -> Repeatr_4() -> Repeatr_5()` and saves every downstream dataset (`othervariables`, `Repeatr0`, `Repeatr1`, `gid_sound_quality`, `played_with`, `shows_data`, `xray`, `fls_tags`, `fls_tags_show`, the choice-model outputs, and more) into `data/`. It's the `really = "not_really"` default that stops this running by accident - always pass `really = "really"` explicitly. It can take a while (the choice model fit in `Repeatr_4()` is the slow part), so it's worth checking `Repeatr_1()` on its own first if you only want to sanity-check a `fugazi.db` refresh.
+This runs `Repeatr_1() -> Repeatr_2() -> Repeatr_3() -> Repeatr_4() -> Repeatr_5()` and saves every downstream dataset (`othervariables`, `Repeatr0`, `Repeatr1`, `gid_sound_quality`, `played_with`, `shows_data`, `xray`, `fls_tags`, `fls_tags_show`, `songvarslookup`, `song_tempo_bpm_data`, the choice-model outputs, and more) into `data/`. It's the `really = "not_really"` default that stops this running by accident - always pass `really = "really"` explicitly. It can take a while (the choice model fit in `Repeatr_4()` is the slow part), so it's worth checking `Repeatr_1()` on its own first if you only want to sanity-check a raw-source refresh.
 
 `update_stacks = TRUE` also regenerates `gid_initial_gid_sound_quality` (the data behind the Shiny app's "stock" pages, via `Repeatr_6()`) - `data-raw/build_data.R`'s rebuild call passes this by default, so a normal rebuild keeps it current; omit it only if you deliberately want to skip the (slower) stacks regeneration.
 
 `Repeatr_1()` (and `Repeatr_Updatr()`, which threads it through) accepts an `output_dir` argument if you want to redirect the rebuilt `data/*.rda` objects somewhere other than the package root's own `data/` - useful for testing a rebuild without touching your working checkout.
 
-## 3. Reinstalling and redeploying
+## 3. Exporting fugazi.db (stage C)
+
+Once Repeatr's own `data/*.rda` objects are rebuilt, compose fugazi.db's tables from them:
+
+```{r}
+export_fugazidb_data(fugazidb_dir = "../fugazi.db")
+```
+
+This reads Repeatr's own already-saved `data/*.rda` objects (no re-derivation) plus `inst/extdata/fls_venue_geocoding_v2.csv` directly, and writes `fugazidb_dir/data-raw/*.csv` and `fugazidb_dir/data/*.rda` - nine tables in all (`fls_shows`, `fls_venue_geocoding`, `fls_tags`, `releases`, `songvarslookup`, `song_tempo_bpm_data`, `songidlookup`, `played_with`, `played_with_data`). `fugazidb_dir` has no default - point it at a local `fugazi.db` checkout. This is a one-way generation step: it writes files, but does not commit or push anything in that checkout - review and commit fugazi.db's own changes separately, on its own schedule. Nothing in Repeatr's own pipeline depends on fugazi.db being refreshed or reinstalled.
+
+## 4. Reinstalling and redeploying
 
 1.  Commit and push the regenerated `data/*.rda` files.
 2.  Reinstall the package from the updated source (`devtools::install()`, or `devtools::install_github("alexmitrani/Repeatr")` once pushed).

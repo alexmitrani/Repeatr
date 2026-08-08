@@ -7,6 +7,7 @@
 \format{
 dataframe with one row for show and each band that Fugazi played with in the Fugazi Live Series shows with data.
 \describe{
+\item{gid}{gig id.  This is a concatenation of city, country, and date}
 \item{fls_link}{link to the corresponding page on the Fugazi Live Series site}
 \item{year}{year}
 \item{tour}{tour}
@@ -33,7 +34,7 @@ played_with_data
 Fugazi Live Series data on bands that fugazi played with in long format, combined with show data and coordinates
 }
 \section{Provenance}{
- Derived-cleaned. Produced by \code{\link{Repeatr_1}}.
+ Derived-cleaned. Produced by \code{\link{Repeatr_1}}. Exported as-is as fugazi.db's \code{played_with_data} table by \code{\link{export_fugazidb_data}}.
 }
 
 \examples{

@@ -448,6 +448,9 @@ fls_shows_to_dataframe <- function(shows) {
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' # Makes live requests to dischord.com - not run automatically.
+#'
 #' # Small-scale test: only the first listing page, and only 3 new shows
 #' test_shows <- scrape_fls_shows(max_listing_pages = 1, max_shows = 3, sleepseconds = 2)
 #'
@@ -457,8 +460,6 @@ fls_shows_to_dataframe <- function(shows) {
 #'   update_existing = TRUE,
 #'   sleepseconds = 2
 #' )
-#'
-#' \dontrun{
 #' # Full run: only shows not already in the packaged fugotcha.csv, writing
 #' # the result out to a new CSV. This can make 1000+ requests and take
 #' # 30-40 minutes, so it is not run automatically.
@@ -646,8 +647,10 @@ scrape_fls_shows <- function(existing_data = NULL,
 #' @export
 #'
 #' @examples
-#' # Small-scale test: only the first listing page
+#' \dontrun{
+#' # Makes live requests to dischord.com - not run automatically.
 #' test_listing_data <- scrape_fls_listing_data(max_listing_pages = 1)
+#' }
 #'
 scrape_fls_listing_data <- function(max_listing_pages = Inf, sleepseconds = 2) {
 
