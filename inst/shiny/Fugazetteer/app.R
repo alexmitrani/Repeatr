@@ -1,5 +1,5 @@
 
-# pak::pkg_install("alexmitrani/Repeatr")
+# remotes::install_github("alexmitrani/Repeatr", build_vignettes = TRUE, dependencies = TRUE)
 
 library(Repeatr)
 
