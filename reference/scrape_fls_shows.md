@@ -122,15 +122,11 @@ bypasses the listing-page crawl they come from - and `track_1` ...
 ## Examples
 
 ``` r
+if (FALSE) { # \dontrun{
+# Makes live requests to dischord.com - not run automatically.
+
 # Small-scale test: only the first listing page, and only 3 new shows
 test_shows <- scrape_fls_shows(max_listing_pages = 1, max_shows = 3, sleepseconds = 2)
-#> Discovering listing pages from https://www.dischord.com/fugazi_live_series
-#> Found 1 listing page(s) to scrape (site max may be higher if capped by max_listing_pages)
-#> Scraping listing page 1 of 1
-#> Scraping 3 show(s)
-#> Scraping show 1 of 3: washington-dc-usa-90387
-#> Scraping show 2 of 3: washington-dc-usa-92687
-#> Scraping show 3 of 3: chapel-hill-nc-usa-92787
 
 # Re-scrape a few specific, already-known shows (e.g. to spot-check fields)
 known_shows <- scrape_fls_shows(
@@ -138,11 +134,6 @@ known_shows <- scrape_fls_shows(
   update_existing = TRUE,
   sleepseconds = 2
 )
-#> Scraping 2 show(s)
-#> Scraping show 1 of 2: washington-dc-usa-90387
-#> Scraping show 2 of 2: chapel-hill-nc-usa-92787
-
-if (FALSE) { # \dontrun{
 # Full run: only shows not already in the packaged fugotcha.csv, writing
 # the result out to a new CSV. This can make 1000+ requests and take
 # 30-40 minutes, so it is not run automatically.

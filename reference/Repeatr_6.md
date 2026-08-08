@@ -86,8 +86,18 @@ combination). As a side effect, also saved into
 ## Examples
 
 ``` r
-Repeatr_6(number_stacks = 10, exclude_poor_sound_quality = TRUE)
+Repeatr_6(number_stacks = 10, exclude_poor_sound_quality = TRUE, output_dir = tempdir())
 #> stack 1
+#> stack 2
+#> stack 3
+#> stack 4
+#> stack 5
+#> stack 6
+#> stack 7
+#> stack 8
+#> stack 9
+#> stack 10
 #> 
-#> Error in UseMethod("select"): no applicable method for 'select' applied to an object of class "function"
+#> Joining with `by = join_by(gid)`
+#> [1] "10 stacks of 10 - 12 shows."
 ```

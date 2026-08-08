@@ -71,7 +71,7 @@ Repeatr_5(
   `fugazi_song_choice_model.csv`/`fugazi_song_preferences.csv`/`releases_rated.csv`/`summary.csv`
   output-export CSVs into. If omitted, defaults to this package's own
   `inst/extdata` (these are Repeatr's own downloadable outputs, not
-  primary data, so they are not sourced from `fugazi.db`).
+  primary/raw data).
 
 - output_dir:
 
@@ -92,7 +92,17 @@ into `data/`.
 ## Examples
 
 ``` r
-Repeatr_5_results <- Repeatr_5(mymodeldf = results_ml_Repeatr4)
+Repeatr_5_results <- Repeatr_5(mymodeldf = results_ml_Repeatr4, output_dir = tempdir(), input_dir = tempdir())
 #> Joining with `by = join_by(alt)`
-#> Error in setwd(myinputdir): cannot change working directory
+#> Joining with `by = join_by(alt)`
+#> Joining with `by = join_by(songid)`
+#> Joining with `by = join_by(song)`
+#> Joining with `by = join_by(track_number, song)`
+#> Joining with `by = join_by(releaseid)`
+#> Joining with `by = join_by(releaseid)`
+#> Joining with `by = join_by(song)`
+#> Joining with `by = join_by(songid, song)`
+#> Joining with `by = join_by(releaseid)`
+#> Joining with `by = join_by(releaseid, track_number, rating)`
+#> Joining with `by = join_by(releaseid)`
 ```

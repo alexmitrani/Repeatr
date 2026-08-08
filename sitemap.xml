@@ -34,7 +34,6 @@
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/Repeatr_6.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/Repeatr_Updatr.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/altlookup.html</loc></url>
-<url><loc>https://alexmitrani.github.io/Repeatr/reference/build_fugazidb_data.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/compressr.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/cumulative_duration_counts.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/cumulative_song_counts.html</loc></url>
@@ -43,6 +42,7 @@
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/download_table_footer.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/duration_data_da.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/duration_summary.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/export_fugazidb_data.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/fls_tags.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/fls_tags_importer.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/fls_tags_show.html</loc></url>
@@ -74,7 +74,9 @@
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/scrape_fls_shows.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/sets.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/shows_data.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/song_tempo_bpm_data.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/songidlookup.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/songvarslookup.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/stacks.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/summary.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/sweepstack.html</loc></url>

@@ -60,7 +60,7 @@ Repeatr_2(
   `fugazi_song_counts.csv`/`fugazi_song_performance_intensity.csv`
   output-export CSVs into. If omitted, defaults to this package's own
   `inst/extdata` (these are Repeatr's own downloadable outputs, not
-  primary data, so they are not sourced from `fugazi.db`).
+  primary/raw data).
 
 - output_dir:
 
@@ -88,10 +88,15 @@ alongside `fugazi_song_counts` and `fugazi_song_performance_intensity`
 ## Examples
 
 ``` r
-Repeatr_2_results <- Repeatr_2(mydf = Repeatr1)
-#> Error in setwd(mydatadir): cannot change working directory
+Repeatr_2_results <- Repeatr_2(mydf = Repeatr1, output_dir = tempdir(), input_dir = tempdir())
+#> Joining with `by = join_by(songid)`
+#> Joining with `by = join_by(alt)`
+#> Joining with `by = join_by(alt)`
+#> Joining with `by = join_by(songid)`
+#> Joining with `by = join_by(gid, alt)`
+#> Joining with `by = join_by(alt)`
+#> Joining with `by = join_by(alt)`
+#> Joining with `by = join_by(gid, song_number)`
 Repeatr2 <- Repeatr_2_results[[1]]
-#> Error: object 'Repeatr_2_results' not found
 altlookup <- Repeatr_2_results[[2]]
-#> Error: object 'Repeatr_2_results' not found
 ```

@@ -1,8 +1,6 @@
-# Fugazi songs data
+# Song discography metadata (Wikipedia)
 
-Song data from the Fugazi discography pages on Wikipedia. The variables
-attributing lead vocals are simplifications in some cases where lead
-vocals were shared.
+Song discography metadata (Wikipedia)
 
 ## Usage
 
@@ -12,24 +10,20 @@ songvarslookup
 
 ## Format
 
-dataframe with one row for each song in the Fugazi discography, except
-those which never appear in the Fugazi Live Series data.
-
-- song:
-
-  The name of the song. The join key used to attach this data to
-  [`Repeatr1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr1.md) -
-  this file no longer carries its own `songid` column, precisely so it
-  can't drift out of sync with the one computed in
-  [`songidlookup`](https://alexmitrani.github.io/Repeatr/reference/songidlookup.md).
+dataframe with one row for each song in the Fugazi discography.
 
 - releaseid:
 
-  numeric id in ascending chronological order
+  numeric id of the release the song appears on, references
+  [`releasesdatalookup`](https://alexmitrani.github.io/Repeatr/reference/releasesdatalookup.md)
 
 - track_number:
 
   The track number for the song on the release
+
+- song:
+
+  The name of the song
 
 - instrumental:
 
@@ -49,7 +43,7 @@ those which never appear in the Fugazi Live Series data.
 
 - duration_seconds:
 
-  The duration of the song in seconds
+  duration of the studio recording, in seconds
 
 ## Source
 
@@ -57,10 +51,14 @@ https://web.archive.org/web/20201112000517/http://en.wikipedia.org/wiki/Fugazi_d
 
 ## Provenance
 
-Raw-hand-curated. Read directly from
-`inst/extdata/releases_songs_durations_wikipedia.csv`, edited by hand
-against Wikipedia. Joined into `Repeatr1` by song title (`song`), not by
-a hardcoded id column - see the songid fix for why.
+Raw-hand-curated, from
+`inst/extdata/releases_songs_durations_wikipedia.csv`. Read by
+[`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)
+and joined onto the live, classified song set by `song` title text, not
+by a hardcoded id column - see
+`songid`/[`songidlookup`](https://alexmitrani.github.io/Repeatr/reference/songidlookup.md).
+Exported as-is as fugazi.db's `songvarslookup` table by
+[`export_fugazidb_data`](https://alexmitrani.github.io/Repeatr/reference/export_fugazidb_data.md).
 
 ## Examples
 

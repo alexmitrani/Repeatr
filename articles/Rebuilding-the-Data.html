@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9213</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9214</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,49 +84,60 @@
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
 <p>Primary data - show listings, venue coordinates, tag/duration data,
-and discography metadata - lives in the companion package <a href="https://github.com/alexmitrani/fugazi.db" class="external-link"><code>fugazi.db</code></a>,
-not in Repeatr itself. See
+and discography metadata - lives in this package’s own
+<code>inst/extdata/</code>, not in a separate package. The companion
+package <a href="https://github.com/alexmitrani/fugazi.db" class="external-link"><code>fugazi.db</code></a>
+is downstream of Repeatr: it’s a generated export of Repeatr’s own
+cleaned data, not a source Repeatr reads from. See
 <code>vignette("Data-Catalogue", package = "fugazi.db")</code> for what
-each of its five independent sources is, how it’s hand-curated or
-scraped, and how to refresh it.</p>
-<p>This vignette covers what happens <em>after</em> those sources are
-refreshed: turning <code>fugazi.db</code>’s raw tables into every
-dataset in <code>data/*.rda</code>, and getting the rebuilt package and
-Shiny app back out into the world. <code>data-raw/build_data.R</code> is
-the canonical, runnable version of the three-stage process below - this
-vignette explains the why, that script is what to actually run.</p>
+it contains.</p>
+<p>This vignette covers the three-stage process of refreshing
+<code>inst/extdata/</code>’s raw sources, rebuilding every dataset in
+<code>data/*.rda</code>, exporting the fugazi.db subset, and getting the
+rebuilt package and Shiny app back out into the world.
+<code>data-raw/build_data.R</code> is the canonical, runnable version of
+the process below - this vignette explains the why, that script is what
+to actually run.</p>
 </div>
 <div class="section level2">
-<h2 id="refreshing-fugazi-db-stages-a-b">1. Refreshing fugazi.db (stages A-B)<a class="anchor" aria-label="anchor" href="#refreshing-fugazi-db-stages-a-b"></a>
+<h2 id="refreshing-the-raw-sources-stage-a">1. Refreshing the raw sources (stage A)<a class="anchor" aria-label="anchor" href="#refreshing-the-raw-sources-stage-a"></a>
 </h2>
-<p>Handled entirely in <code>fugazi.db</code>’s own workflow - see its
-<code>vignette("Data-Catalogue")</code>. In short: update whichever of
-its <code>data-raw/</code> sources has new material (a fresh
-<code><a href="../reference/scrape_fls_shows.html">scrape_fls_shows()</a></code> run, a synced venue-coordinate sheet, a
-re-exported tag file, a hand-edited discography CSV), then run
-<code>Repeatr::build_fugazidb_data(fugazidb_dir = "../fugazi.db")</code>
-to turn those into <code>fugazi.db</code>’s <code>data/*.rda</code>
-objects. Commit and push <code>fugazi.db</code>, then reinstall it:</p>
+<p>Update whichever of <code>inst/extdata/</code>’s raw sources has new
+material:</p>
+<ul>
+<li>
+<strong>Show data</strong> - a fresh <code><a href="../reference/scrape_fls_shows.html">scrape_fls_shows()</a></code>
+run, writing to <code>inst/extdata/fls_data.csv</code>.</li>
+<li>
+<strong>Venue coordinates</strong> - a synced export of the private
+Google Sheet used to look up/confirm venue locations, overwriting
+<code>inst/extdata/fls_venue_geocoding_v2.csv</code> directly. This file
+is the single source of truth for coordinates in both Repeatr and
+fugazi.db.</li>
+<li>
+<strong>Tags/duration data</strong> - re-exported from kid3 against
+the personally-tagged MP3 collection, overwriting
+<code>inst/extdata/fls_tags.txt</code>. If a new show’s album string
+doesn’t parse cleanly, the hand-written corrections for specific
+albums/venues live in the “process tags data” section of
+<code>R/Repeatr_1.R</code>.</li>
+<li>
+<strong>Song/release/duration and tempo data</strong> -
+hand-maintain
+<code>inst/extdata/releases_songs_durations_wikipedia.csv</code>,
+<code>inst/extdata/releases.csv</code>, and
+<code>inst/extdata/song_tempo_bpm_data.csv</code> directly against their
+sources (Wikipedia, rateyourmusic.com, personal BPM readings).</li>
+</ul>
+<p>None of these five need refreshing together - run whichever one has
+new material.</p>
+</div>
+<div class="section level2">
+<h2 id="rebuilding-repeatrs-own-data-stage-b">2. Rebuilding Repeatr’s own data (stage B)<a class="anchor" aria-label="anchor" href="#rebuilding-repeatrs-own-data-stage-b"></a>
+</h2>
+<p>Once the raw sources are refreshed, rebuild Repeatr’s own data
+objects:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"alexmitrani/fugazi.db"</span><span class="op">)</span></span></code></pre></div>
-<p><code><a href="../reference/Repeatr_1.html">Repeatr_1()</a></code>’s defaults resolve against the
-<em>installed</em> <code>fugazi.db</code>, not a source checkout, so
-this reinstall is what makes a refreshed source visible to stage C
-below. For quick local iteration without reinstalling, load
-<code>fugazi.db</code>’s rebuilt objects directly (e.g. via
-<code><a href="https://rdrr.io/r/base/load.html" class="external-link">load()</a></code> on its <code>data/*.rda</code> files) and pass them
-into <code><a href="../reference/Repeatr_1.html">Repeatr_1()</a></code>/<code><a href="../reference/Repeatr_Updatr.html">Repeatr_Updatr()</a></code> as explicit
-overrides instead - see <code><a href="../reference/Repeatr_1.html">?Repeatr_1</a></code> for the full list of
-override parameters (<code>myfls_data</code>,
-<code>mysongvarslookup</code>, <code>myreleases</code>,
-<code>myfls_venue_geocoding</code>, <code>myfls_tags</code>).</p>
-</div>
-<div class="section level2">
-<h2 id="rebuilding-everything-stage-c">2. Rebuilding everything (stage C)<a class="anchor" aria-label="anchor" href="#rebuilding-everything-stage-c"></a>
-</h2>
-<p>Once <code>fugazi.db</code> is refreshed and reinstalled, rebuild
-Repeatr’s own data objects:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/Repeatr_Updatr.html">Repeatr_Updatr</a></span><span class="op">(</span>really <span class="op">=</span> <span class="st">"really"</span>, update_stacks <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>This runs
 <code>Repeatr_1() -&gt; Repeatr_2() -&gt; Repeatr_3() -&gt; Repeatr_4() -&gt; Repeatr_5()</code>
@@ -134,13 +145,14 @@ and saves every downstream dataset (<code>othervariables</code>,
 <code>Repeatr0</code>, <code>Repeatr1</code>,
 <code>gid_sound_quality</code>, <code>played_with</code>,
 <code>shows_data</code>, <code>xray</code>, <code>fls_tags</code>,
-<code>fls_tags_show</code>, the choice-model outputs, and more) into
-<code>data/</code>. It’s the <code>really = "not_really"</code> default
-that stops this running by accident - always pass
+<code>fls_tags_show</code>, <code>songvarslookup</code>,
+<code>song_tempo_bpm_data</code>, the choice-model outputs, and more)
+into <code>data/</code>. It’s the <code>really = "not_really"</code>
+default that stops this running by accident - always pass
 <code>really = "really"</code> explicitly. It can take a while (the
 choice model fit in <code><a href="../reference/Repeatr_4.html">Repeatr_4()</a></code> is the slow part), so it’s
 worth checking <code><a href="../reference/Repeatr_1.html">Repeatr_1()</a></code> on its own first if you only
-want to sanity-check a <code>fugazi.db</code> refresh.</p>
+want to sanity-check a raw-source refresh.</p>
 <p><code>update_stacks = TRUE</code> also regenerates
 <code>gid_initial_gid_sound_quality</code> (the data behind the Shiny
 app’s “stock” pages, via <code><a href="../reference/Repeatr_6.html">Repeatr_6()</a></code>) -
@@ -154,7 +166,30 @@ other than the package root’s own <code>data/</code> - useful for
 testing a rebuild without touching your working checkout.</p>
 </div>
 <div class="section level2">
-<h2 id="reinstalling-and-redeploying">3. Reinstalling and redeploying<a class="anchor" aria-label="anchor" href="#reinstalling-and-redeploying"></a>
+<h2 id="exporting-fugazi-db-stage-c">3. Exporting fugazi.db (stage C)<a class="anchor" aria-label="anchor" href="#exporting-fugazi-db-stage-c"></a>
+</h2>
+<p>Once Repeatr’s own <code>data/*.rda</code> objects are rebuilt,
+compose fugazi.db’s tables from them:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/export_fugazidb_data.html">export_fugazidb_data</a></span><span class="op">(</span>fugazidb_dir <span class="op">=</span> <span class="st">"../fugazi.db"</span><span class="op">)</span></span></code></pre></div>
+<p>This reads Repeatr’s own already-saved <code>data/*.rda</code>
+objects (no re-derivation) plus
+<code>inst/extdata/fls_venue_geocoding_v2.csv</code> directly, and
+writes <code>fugazidb_dir/data-raw/*.csv</code> and
+<code>fugazidb_dir/data/*.rda</code> - nine tables in all
+(<code>fls_shows</code>, <code>fls_venue_geocoding</code>,
+<code>fls_tags</code>, <code>releases</code>,
+<code>songvarslookup</code>, <code>song_tempo_bpm_data</code>,
+<code>songidlookup</code>, <code>played_with</code>,
+<code>played_with_data</code>). <code>fugazidb_dir</code> has no default
+- point it at a local <code>fugazi.db</code> checkout. This is a one-way
+generation step: it writes files, but does not commit or push anything
+in that checkout - review and commit fugazi.db’s own changes separately,
+on its own schedule. Nothing in Repeatr’s own pipeline depends on
+fugazi.db being refreshed or reinstalled.</p>
+</div>
+<div class="section level2">
+<h2 id="reinstalling-and-redeploying">4. Reinstalling and redeploying<a class="anchor" aria-label="anchor" href="#reinstalling-and-redeploying"></a>
 </h2>
 <ol style="list-style-type: decimal">
 <li>Commit and push the regenerated <code>data/*.rda</code> files.</li>

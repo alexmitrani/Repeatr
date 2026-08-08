@@ -47,17 +47,24 @@ Derived-cleaned. Parsed by
 [`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)
 (via
 [`fls_tags_importer`](https://alexmitrani.github.io/Repeatr/reference/fls_tags_importer.md))
-from the raw `inst/extdata/fls_tags.txt` kid3 MP3-tag export. The raw
-`album` tag text (`YYYYMMDD Venue, City, State, Country`) is used
-internally to parse `venue`/`city`/`subdivision`/`country` for a couple
-of mistagged-track filters and to derive
+from the raw `inst/extdata/fls_tags.txt` kid3 MP3-tag export. The
+underlying track/album/song names themselves are sourced from the Fugazi
+Live Series site, not personal data - Alex Mitrani applied a consistent
+album-name format and a handful of one-off track-title corrections on
+top (see the "process tags data" section of
+[`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)).
+The raw `album` tag text (`YYYYMMDD Venue, City, State, Country`) is
+used internally to parse `venue`/`city`/`subdivision`/`country` for a
+couple of mistagged-track filters and to derive
 [`fls_tags_show`](https://alexmitrani.github.io/Repeatr/reference/fls_tags_show.md),
 but those fields (and `album` itself) are dropped before saving, since
 parsing them by counting commas silently misparses whenever a venue or
 city name itself contains a comma (e.g. Ypsilanti, Flint, Eau Claire,
 Osaka), and
 [`shows_data`](https://alexmitrani.github.io/Repeatr/reference/shows_data.md)
-(joined via `gid`) is the sole authoritative source for them.
+(joined via `gid`) is the sole authoritative source for them. Exported
+(same columns) as fugazi.db's `fls_tags` table by
+[`export_fugazidb_data`](https://alexmitrani.github.io/Repeatr/reference/export_fugazidb_data.md).
 
 ## Examples
 

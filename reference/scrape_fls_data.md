@@ -49,18 +49,9 @@ Also written to `mycsvfilename`.
 ## Examples
 
 ``` r
+if (FALSE) { # \dontrun{
+# Makes live requests to dischord.com - not run automatically.
 scraped_data_1 <- scrape_fls_data(mygiddata = NULL, mylimit = 3, sleepseconds = 1, mycsvfilename = "gid_fls_id_sound_quality.csv", my_data_html_element = "dd strong")
-#> [1] "Scraping https://www.dischord.com/fugazi_live_series/aalst-belgium-92390"
-#> [1] "Scraping https://www.dischord.com/fugazi_live_series/aberdeen-scotland-50499"
-#> [1] "Scraping https://www.dischord.com/fugazi_live_series/adelaide-australia-111193"
 scraped_data_2 <- scrape_fls_data(mygiddata = NULL, mylimit = 3, sleepseconds = 1, mycsvfilename = "gid_fls_id_played_with.csv", my_data_html_element = "dd:nth-child(10)")
-#> [1] "Scraping https://www.dischord.com/fugazi_live_series/aalst-belgium-92390"
-#> [1] "Scraping https://www.dischord.com/fugazi_live_series/aberdeen-scotland-50499"
-#> [1] "Scraping https://www.dischord.com/fugazi_live_series/adelaide-australia-111193"
-mydf <- system.file("extdata", "gid_played_with_8.csv", package = "Repeatr")
-scraped_data_3 <- scrape_fls_data(mygiddata = mydf, mylimit = 3, sleepseconds = 1, mycsvfilename = "gid_fls_id_played_with_8.csv", my_data_html_element = "dd:nth-child(8)")
-#> Error in UseMethod("select"): no applicable method for 'select' applied to an object of class "character"
-mydf <- system.file("extdata", "gid_played_with_6.csv", package = "Repeatr")
-scraped_data_4 <- scrape_fls_data(mygiddata = mydf, mylimit = 3, sleepseconds = 1, mycsvfilename = "gid_fls_id_played_with_6.csv", my_data_html_element = "dd:nth-child(6)")
-#> Error in UseMethod("select"): no applicable method for 'select' applied to an object of class "character"
+} # }
 ```

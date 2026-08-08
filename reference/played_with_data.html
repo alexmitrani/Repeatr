@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9213</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9214</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,7 +63,10 @@
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>dataframe with one row for show and each band that Fugazi played with in the Fugazi Live Series shows with data.</p><dl><dt>fls_link</dt>
+    <p>dataframe with one row for show and each band that Fugazi played with in the Fugazi Live Series shows with data.</p><dl><dt>gid</dt>
+<dd><p>gig id.  This is a concatenation of city, country, and date</p></dd>
+
+<dt>fls_link</dt>
 <dd><p>link to the corresponding page on the Fugazi Live Series site</p></dd>
 
 <dt>year</dt>
@@ -108,27 +111,28 @@
     </div>
     <div class="section level2">
     <h2 id="provenance">Provenance<a class="anchor" aria-label="anchor" href="#provenance"></a></h2>
-    <p>Derived-cleaned. Produced by <code><a href="Repeatr_1.html">Repeatr_1</a></code>.</p>
+    <p>Derived-cleaned. Produced by <code><a href="Repeatr_1.html">Repeatr_1</a></code>. Exported as-is as fugazi.db's <code>played_with_data</code> table by <code><a href="export_fugazidb_data.html">export_fugazidb_data</a></code>.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">played_with_data</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,754 × 12</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    fls_link     year tour  date       venue city  country played_with attendance</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> &lt;a href='h…  <span style="text-decoration: underline;">1</span>990 1990… 1990-09-23 Netw… Aalst Belgium Alice Donut        600</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> &lt;a href='h…  <span style="text-decoration: underline;">1</span>999 1999… 1999-05-04 Lemo… Aber… Scotla… Laeto              550</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> &lt;a href='h…  <span style="text-decoration: underline;">1</span>993 1993… 1993-11-11 Dom … Adel… Austra… Magic Dirt         550</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> &lt;a href='h…  <span style="text-decoration: underline;">1</span>996 1996… 1996-11-12 Adel… Adel… Austra… Sin Dog Je…        913</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> &lt;a href='h…  <span style="text-decoration: underline;">1</span>996 1996… 1996-11-12 Adel… Adel… Austra… Test Eagles        913</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> &lt;a href='h…  <span style="text-decoration: underline;">1</span>991 1991… 1991-10-22 Le R… Adel… Austra… Baba Ganous        450</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> &lt;a href='h…  <span style="text-decoration: underline;">1</span>990 1990… 1990-06-28 Jack… Akron USA     Holy Rolle…        700</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> &lt;a href='h…  <span style="text-decoration: underline;">1</span>990 1990… 1990-06-28 Jack… Akron USA     Hyper as H…        700</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> &lt;a href='h…  <span style="text-decoration: underline;">1</span>993 1993… 1993-09-20 S.U.… Alba… USA     Spinanes          <span style="text-decoration: underline;">1</span>000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> &lt;a href='h…  <span style="text-decoration: underline;">1</span>993 1993… 1993-09-20 S.U.… Alba… USA     Very Pleas…       <span style="text-decoration: underline;">1</span>000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,754 × 13</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    gid           fls_link  year tour  date       venue city  country played_with</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> aalst-belgiu… &lt;a href…  <span style="text-decoration: underline;">1</span>990 1990… 1990-09-23 Netw… Aalst Belgium Alice Donut</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> aberdeen-sco… &lt;a href…  <span style="text-decoration: underline;">1</span>999 1999… 1999-05-04 Lemo… Aber… Scotla… Laeto      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> adelaide-aus… &lt;a href…  <span style="text-decoration: underline;">1</span>993 1993… 1993-11-11 Dom … Adel… Austra… Magic Dirt </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> adelaide-aus… &lt;a href…  <span style="text-decoration: underline;">1</span>996 1996… 1996-11-12 Adel… Adel… Austra… Sin Dog Je…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> adelaide-aus… &lt;a href…  <span style="text-decoration: underline;">1</span>996 1996… 1996-11-12 Adel… Adel… Austra… Test Eagles</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> adelaide-sa-… &lt;a href…  <span style="text-decoration: underline;">1</span>991 1991… 1991-10-22 Le R… Adel… Austra… Baba Ganous</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> akron-oh-usa… &lt;a href…  <span style="text-decoration: underline;">1</span>990 1990… 1990-06-28 Jack… Akron USA     Holy Rolle…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> akron-oh-usa… &lt;a href…  <span style="text-decoration: underline;">1</span>990 1990… 1990-06-28 Jack… Akron USA     Hyper as H…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> albany-ny-us… &lt;a href…  <span style="text-decoration: underline;">1</span>993 1993… 1993-09-20 S.U.… Alba… USA     Spinanes   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> albany-ny-us… &lt;a href…  <span style="text-decoration: underline;">1</span>993 1993… 1993-09-20 S.U.… Alba… USA     Very Pleas…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1,744 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3 more variables: sound_quality &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4 more variables: attendance &lt;dbl&gt;, sound_quality &lt;chr&gt;, latitude &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   longitude &lt;dbl&gt;</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

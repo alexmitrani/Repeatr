@@ -11,7 +11,7 @@ washington-dc-usa-90387	FLS0001	03/09/1987	Wilson Center	$5	300	Joey Picuri	Fuga
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9213</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9214</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,7 +90,7 @@ washington-dc-usa-90387	FLS0001	03/09/1987	Wilson Center	$5	300	Joey Picuri	Fuga
 
 
 <dt id="arg-input-dir">input_dir<a class="anchor" aria-label="anchor" href="#arg-input-dir"></a></dt>
-<dd><p>Optional directory to write the <code>fugazi_song_counts.csv</code>/<code>fugazi_song_performance_intensity.csv</code> output-export CSVs into. If omitted, defaults to this package's own <code>inst/extdata</code> (these are Repeatr's own downloadable outputs, not primary data, so they are not sourced from <code>fugazi.db</code>).</p></dd>
+<dd><p>Optional directory to write the <code>fugazi_song_counts.csv</code>/<code>fugazi_song_performance_intensity.csv</code> output-export CSVs into. If omitted, defaults to this package's own <code>inst/extdata</code> (these are Repeatr's own downloadable outputs, not primary/raw data).</p></dd>
 
 
 <dt id="arg-output-dir">output_dir<a class="anchor" aria-label="anchor" href="#arg-output-dir"></a></dt>
@@ -104,12 +104,17 @@ washington-dc-usa-90387	FLS0001	03/09/1987	Wilson Center	$5	300	Joey Picuri	Fuga
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">Repeatr_2_results</span> <span class="op">&lt;-</span> <span class="fu">Repeatr_2</span><span class="op">(</span>mydf <span class="op">=</span> <span class="va">Repeatr1</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in setwd(mydatadir):</span> cannot change working directory</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">Repeatr_2_results</span> <span class="op">&lt;-</span> <span class="fu">Repeatr_2</span><span class="op">(</span>mydf <span class="op">=</span> <span class="va">Repeatr1</span>, output_dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, input_dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(songid)`</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(alt)`</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(alt)`</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(songid)`</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(gid, alt)`</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(alt)`</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(alt)`</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(gid, song_number)`</span>
 <span class="r-in"><span><span class="va">Repeatr2</span> <span class="op">&lt;-</span> <span class="va">Repeatr_2_results</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'Repeatr_2_results' not found</span>
 <span class="r-in"><span><span class="va">altlookup</span> <span class="op">&lt;-</span> <span class="va">Repeatr_2_results</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'Repeatr_2_results' not found</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

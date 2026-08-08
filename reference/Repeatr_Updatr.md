@@ -49,11 +49,8 @@ Repeatr_Updatr(
 
   optional data frame overrides passed straight through to
   [`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md).
-  If omitted, `Repeatr_1` uses the `fugazi.db` package's own data - see
-  its documentation for each. Useful for pointing the whole rebuild at a
-  local `fugazi.db` checkout (e.g.
-  `myfls_data = fugazidb_data$fls_data`, loaded via
-  [`load()`](https://rdrr.io/r/base/load.html)) without reinstalling it.
+  If omitted, `Repeatr_1` uses this package's own `inst/extdata/`
+  sources - see its documentation for each.
 
 - input_dir:
 

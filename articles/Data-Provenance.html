@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9213</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9214</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -93,15 +93,22 @@ ways - which is exactly what happened to <code>songid</code> (see
 <code><a href="../reference/songidlookup.html">?songidlookup</a></code> and the <code>Provenance</code> section of
 its help page). This vignette catalogues every dataset produced <em>in
 this package</em> against that spectrum.</p>
-<p>Primary/raw data itself - the “raw, exactly as scraped or
-hand-entered” end of the spectrum - lives in the companion package <a href="https://github.com/alexmitrani/fugazi.db" class="external-link"><code>fugazi.db</code></a>,
-not here. See
+<p>Primary/raw data - the “raw, exactly as scraped or hand-entered” end
+of the spectrum - lives in this package’s own <code>inst/extdata/</code>
+(<code>fls_data.csv</code>, <code>fls_tags.txt</code>,
+<code>releases.csv</code>,
+<code>releases_songs_durations_wikipedia.csv</code>,
+<code>song_tempo_bpm_data.csv</code>,
+<code>fls_venue_geocoding_v2.csv</code>). <code><a href="../reference/Repeatr_1.html">Repeatr_1()</a></code> turns
+those six raw sources into everything below.</p>
+<p>The companion package <a href="https://github.com/alexmitrani/fugazi.db" class="external-link"><code>fugazi.db</code></a>
+is downstream of this package, not upstream of it: composes a subset of
+Repeatr’s own Derived-cleaned tier (corrected, reformatted, and keyed
+for joining, but with no joined/summarized/modeled columns and no
+copyrighted free-text show notes) and writes it into a local
+<code>fugazi.db</code> checkout. See
 <code>vignette("Data-Catalogue", package = "fugazi.db")</code> for that
-catalogue: what each raw source is, its columns, its own
-provenance/refresh process, and the join keys (<code>gid</code> above
-all) that tie the raw tables together. Repeatr depends on
-<code>fugazi.db</code> and turns its six raw tables into everything
-below.</p>
+package’s own catalogue and join keys.</p>
 <p><strong>Before adding a new dataset or reclassifying an existing one,
 check <code>inst/shiny/Fugazetteer/app.R</code> and
 <code>vignettes/*.Rmd</code> for consumers, not just
@@ -118,12 +125,13 @@ examples of both traps).</p>
 <ul>
 <li>
 <strong>Raw-scraped</strong> / <strong>Raw-hand-curated</strong> -
-primary data; see <code>fugazi.db</code>’s own vignette, not this
-one.</li>
+primary data, as scraped () or hand-curated directly into this package’s
+own <code>inst/extdata/</code>.</li>
 <li>
 <strong>Derived-cleaned</strong> - mechanically produced from
-<code>fugazi.db</code>’s raw tables by <code><a href="../reference/Repeatr_1.html">Repeatr_1()</a></code>, with no
-judgment calls beyond straightforward joins/typing/renaming.</li>
+<code>inst/extdata/</code>’s raw sources by <code><a href="../reference/Repeatr_1.html">Repeatr_1()</a></code>,
+with no judgment calls beyond straightforward
+joins/typing/renaming.</li>
 <li>
 <strong>Derived-classified</strong> - mechanically produced by
 <code><a href="../reference/Repeatr_1.html">Repeatr_1()</a></code>, but shaped by the hand-written
@@ -147,17 +155,17 @@ as of this vignette’s last update.</li>
 <div class="section level2">
 <h2 id="data-processing-sequence">Data processing sequence<a class="anchor" aria-label="anchor" href="#data-processing-sequence"></a>
 </h2>
-<pre><code>fugazi.db (primary data - see its own vignette("Data-Catalogue"))
-├─ fls_data, fls_venue_geocoding, fls_tags_raw
-├─ songvarslookup, releases
-└─ song_tempo_bpm_data
+<pre><code>inst/extdata/ (primary data - fls_data.csv, fls_tags.txt, releases.csv,
+               releases_songs_durations_wikipedia.csv,
+               song_tempo_bpm_data.csv, fls_venue_geocoding_v2.csv)
         │
         ▼
 Repeatr_1()
 ├─ Repeatr0, othervariables, gid_sound_quality, played_with*, shows_data,
 │  fls_tags*, duration_data_da, duration_summary, cumulative_*, xray,
 │  releasesdatalookup, releases_menu_list, releaseid_variable_colour_code,
-│  transitions_data_da, last_performance_data   [Derived-cleaned]
+│  transitions_data_da, last_performance_data, songvarslookup,
+│  song_tempo_bpm_data                          [Derived-cleaned]
 └─ Repeatr1, songidlookup                        [Derived-classified]
         │
         ▼
@@ -172,12 +180,21 @@ Repeatr_2() ─▶ Repeatr_3() ─▶ Repeatr_4() ─▶ Repeatr_5()
         │
         ▼ (update_stacks = TRUE)
 Repeatr_6()
-└─ gid_initial_gid_sound_quality                  [Derived-modeled: depends on summary]</code></pre>
-<p><code><a href="https://rdrr.io/pkg/fugazi.db/man/songvarslookup.html" class="external-link">fugazi.db::songvarslookup</a></code> is joined into
-<code>Repeatr1</code> by song title, not consumed as its own package
-object here - <code><a href="../reference/Repeatr_1.html">Repeatr_1()</a></code> reads it, but nothing in
-<code>data/</code> re-exports it verbatim; if you need the raw table
-itself, load it from <code>fugazi.db</code> directly.</p>
+└─ gid_initial_gid_sound_quality                  [Derived-modeled: depends on summary]
+
+        │ (from the Derived-cleaned tier only, minus fls_notes)
+        ▼
+export_fugazidb_data()
+└─ fugazi.db: fls_shows, fls_venue_geocoding, fls_tags, releases,
+   songvarslookup, song_tempo_bpm_data, songidlookup, played_with,
+   played_with_data</code></pre>
+<p><code>songvarslookup</code> is joined into <code>Repeatr1</code> by
+song title, not carried forward with its own <code>songid</code> column
+- the hand-maintained CSV behind it
+(<code>inst/extdata/releases_songs_durations_wikipedia.csv</code>)
+doesn’t carry one, precisely so it can’t silently drift out of sync with
+the songid <code><a href="../reference/Repeatr_1.html">Repeatr_1()</a></code> computes; see
+<code><a href="../reference/songidlookup.html">?songidlookup</a></code> for that mapping.</p>
 </div>
 <div class="section level2">
 <h2 id="dataset-catalogue">Dataset catalogue<a class="anchor" aria-label="anchor" href="#dataset-catalogue"></a>
@@ -202,16 +219,18 @@ itself, load it from <code>fugazi.db</code> directly.</p>
 <td><code>Repeatr0</code></td>
 <td>Derived-cleaned</td>
 <td>
-<code><a href="../reference/Repeatr_1.html">Repeatr_1()</a></code>, from <code><a href="https://rdrr.io/pkg/fugazi.db/man/fls_data.html" class="external-link">fugazi.db::fls_data</a></code>
+<code><a href="../reference/Repeatr_1.html">Repeatr_1()</a></code>, from
+<code>inst/extdata/fls_data.csv</code>
 </td>
 </tr>
 <tr class="even">
 <td><code>othervariables</code></td>
 <td>Derived-cleaned</td>
 <td>
-<code><a href="../reference/Repeatr_1.html">Repeatr_1()</a></code>, joining <code><a href="https://rdrr.io/pkg/fugazi.db/man/fls_data.html" class="external-link">fugazi.db::fls_data</a></code>
-with <code><a href="https://rdrr.io/pkg/fugazi.db/man/fls_venue_geocoding.html" class="external-link">fugazi.db::fls_venue_geocoding</a></code>; also read directly by
-<code>app.R</code>
+<code><a href="../reference/Repeatr_1.html">Repeatr_1()</a></code>, joining
+<code>inst/extdata/fls_data.csv</code> with
+<code>inst/extdata/fls_venue_geocoding_v2.csv</code>; also read directly
+by <code>app.R</code>
 </td>
 </tr>
 <tr class="odd">
@@ -252,8 +271,7 @@ with <code><a href="https://rdrr.io/pkg/fugazi.db/man/fls_venue_geocoding.html" 
 <td>Derived-cleaned</td>
 <td>
 <code><a href="../reference/Repeatr_1.html">Repeatr_1()</a></code>, from
-<code><a href="https://rdrr.io/pkg/fugazi.db/man/fls_tags_raw.html" class="external-link">fugazi.db::fls_tags_raw</a></code>
-</td>
+<code>inst/extdata/fls_tags.txt</code> (via )</td>
 </tr>
 <tr class="even">
 <td>
@@ -279,7 +297,24 @@ with <code><a href="https://rdrr.io/pkg/fugazi.db/man/fls_venue_geocoding.html" 
 </td>
 <td>Derived-cleaned</td>
 <td>
-<code><a href="../reference/Repeatr_1.html">Repeatr_1()</a></code>, from <code><a href="https://rdrr.io/pkg/fugazi.db/man/releases.html" class="external-link">fugazi.db::releases</a></code>
+<code><a href="../reference/Repeatr_1.html">Repeatr_1()</a></code>, from
+<code>inst/extdata/releases.csv</code>
+</td>
+</tr>
+<tr class="odd">
+<td><code>songvarslookup</code></td>
+<td>Derived-cleaned/Raw-hand-curated</td>
+<td>
+<code><a href="../reference/Repeatr_1.html">Repeatr_1()</a></code> reads it as-is from
+<code>inst/extdata/releases_songs_durations_wikipedia.csv</code>
+</td>
+</tr>
+<tr class="even">
+<td><code>song_tempo_bpm_data</code></td>
+<td>Raw-hand-curated</td>
+<td>
+<code><a href="../reference/Repeatr_1.html">Repeatr_1()</a></code> reads it as-is from
+<code>inst/extdata/song_tempo_bpm_data.csv</code>
 </td>
 </tr>
 <tr class="odd">
@@ -353,22 +388,22 @@ by <code>app.R</code>
 </tbody>
 </table>
 <p>For the full column-by-column description of any dataset, see its
-help page (e.g. <code><a href="../reference/summary.html">?summary</a></code>). For <code>fugazi.db</code>’s own
-tables (<code>fls_data</code>, <code>fls_tags_raw</code>,
-<code>songvarslookup</code>, <code>releases</code>,
-<code>song_tempo_bpm_data</code>, <code>fls_venue_geocoding</code>), see
-<code>vignette("Data-Catalogue", package = "fugazi.db")</code> or
-e.g. <code><a href="https://rdrr.io/pkg/fugazi.db/man/fls_data.html" class="external-link">?fugazi.db::fls_data</a></code>.</p>
+help page (e.g. <code><a href="../reference/summary.html">?summary</a></code>). For fugazi.db’s own tables
+(<code>fls_shows</code>, <code>fls_venue_geocoding</code>,
+<code>fls_tags</code>, <code>releases</code>,
+<code>songvarslookup</code>, <code>song_tempo_bpm_data</code>,
+<code>songidlookup</code>, <code>played_with</code>,
+<code>played_with_data</code>), see
+<code>vignette("Data-Catalogue", package = "fugazi.db")</code>.</p>
 <p>Note on <code>app.R</code>: it reads <code>song_tempo_bpm_data</code>
-and <code>shows_data</code>/<code>othervariables</code> (via
-<code><a href="https://alexmitrani.github.io/Repeatr">library(Repeatr)</a></code>, which attaches <code>fugazi.db</code>’s
-data alongside Repeatr’s own), but for venue coordinates specifically it
-does <em>not</em> use the package’s own <code>x</code>/<code>y</code> -
-at startup it re-fetches coordinates live from a Google Sheet
-(<code>gsheet2tbl()</code>) and overwrites whatever
-<code>othervariables</code>/<code>shows_data</code> provided. So the
-deployed app’s map coordinates track that live sheet, not any package
-release.</p>
+and <code>shows_data</code>/<code>othervariables</code> directly (via
+<code><a href="https://alexmitrani.github.io/Repeatr">library(Repeatr)</a></code>’s lazy-loaded data), but for venue
+coordinates specifically it does <em>not</em> use the package’s own
+<code>x</code>/<code>y</code> - at startup it re-fetches coordinates
+live from a Google Sheet (<code>gsheet2tbl()</code>) and overwrites
+whatever <code>othervariables</code>/<code>shows_data</code> provided.
+So the deployed app’s map coordinates track that live sheet, not any
+package release.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -13,14 +13,22 @@ exactly what happened to `songid` (see
 and the `Provenance` section of its help page). This vignette catalogues
 every dataset produced *in this package* against that spectrum.
 
-Primary/raw data itself - the “raw, exactly as scraped or hand-entered”
-end of the spectrum - lives in the companion package
-[`fugazi.db`](https://github.com/alexmitrani/fugazi.db), not here. See
-`vignette("Data-Catalogue", package = "fugazi.db")` for that catalogue:
-what each raw source is, its columns, its own provenance/refresh
-process, and the join keys (`gid` above all) that tie the raw tables
-together. Repeatr depends on `fugazi.db` and turns its six raw tables
-into everything below.
+Primary/raw data - the “raw, exactly as scraped or hand-entered” end of
+the spectrum - lives in this package’s own `inst/extdata/`
+(`fls_data.csv`, `fls_tags.txt`, `releases.csv`,
+`releases_songs_durations_wikipedia.csv`, `song_tempo_bpm_data.csv`,
+`fls_venue_geocoding_v2.csv`).
+[`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)
+turns those six raw sources into everything below.
+
+The companion package
+[`fugazi.db`](https://github.com/alexmitrani/fugazi.db) is downstream of
+this package, not upstream of it: composes a subset of Repeatr’s own
+Derived-cleaned tier (corrected, reformatted, and keyed for joining, but
+with no joined/summarized/modeled columns and no copyrighted free-text
+show notes) and writes it into a local `fugazi.db` checkout. See
+`vignette("Data-Catalogue", package = "fugazi.db")` for that package’s
+own catalogue and join keys.
 
 **Before adding a new dataset or reclassifying an existing one, check
 `inst/shiny/Fugazetteer/app.R` and `vignettes/*.Rmd` for consumers, not
@@ -32,10 +40,10 @@ dataset without ever touching the lazy-loaded original (see the
 
 ## Types of data
 
-- **Raw-scraped** / **Raw-hand-curated** - primary data; see
-  `fugazi.db`’s own vignette, not this one.
-- **Derived-cleaned** - mechanically produced from `fugazi.db`’s raw
-  tables by
+- **Raw-scraped** / **Raw-hand-curated** - primary data, as scraped ()
+  or hand-curated directly into this package’s own `inst/extdata/`.
+- **Derived-cleaned** - mechanically produced from `inst/extdata/`’s raw
+  sources by
   [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md),
   with no judgment calls beyond straightforward joins/typing/renaming.
 - **Derived-classified** - mechanically produced by
@@ -57,17 +65,17 @@ dataset without ever touching the lazy-loaded original (see the
 
 ## Data processing sequence
 
-    fugazi.db (primary data - see its own vignette("Data-Catalogue"))
-    ├─ fls_data, fls_venue_geocoding, fls_tags_raw
-    ├─ songvarslookup, releases
-    └─ song_tempo_bpm_data
+    inst/extdata/ (primary data - fls_data.csv, fls_tags.txt, releases.csv,
+                   releases_songs_durations_wikipedia.csv,
+                   song_tempo_bpm_data.csv, fls_venue_geocoding_v2.csv)
             │
             ▼
     Repeatr_1()
     ├─ Repeatr0, othervariables, gid_sound_quality, played_with*, shows_data,
     │  fls_tags*, duration_data_da, duration_summary, cumulative_*, xray,
     │  releasesdatalookup, releases_menu_list, releaseid_variable_colour_code,
-    │  transitions_data_da, last_performance_data   [Derived-cleaned]
+    │  transitions_data_da, last_performance_data, songvarslookup,
+    │  song_tempo_bpm_data                          [Derived-cleaned]
     └─ Repeatr1, songidlookup                        [Derived-classified]
             │
             ▼
@@ -84,12 +92,21 @@ dataset without ever touching the lazy-loaded original (see the
     Repeatr_6()
     └─ gid_initial_gid_sound_quality                  [Derived-modeled: depends on summary]
 
-[`fugazi.db::songvarslookup`](https://rdrr.io/pkg/fugazi.db/man/songvarslookup.html)
-is joined into `Repeatr1` by song title, not consumed as its own package
-object here -
+            │ (from the Derived-cleaned tier only, minus fls_notes)
+            ▼
+    export_fugazidb_data()
+    └─ fugazi.db: fls_shows, fls_venue_geocoding, fls_tags, releases,
+       songvarslookup, song_tempo_bpm_data, songidlookup, played_with,
+       played_with_data
+
+`songvarslookup` is joined into `Repeatr1` by song title, not carried
+forward with its own `songid` column - the hand-maintained CSV behind it
+(`inst/extdata/releases_songs_durations_wikipedia.csv`) doesn’t carry
+one, precisely so it can’t silently drift out of sync with the songid
 [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)
-reads it, but nothing in `data/` re-exports it verbatim; if you need the
-raw table itself, load it from `fugazi.db` directly.
+computes; see
+[`?songidlookup`](https://alexmitrani.github.io/Repeatr/reference/songidlookup.md)
+for that mapping.
 
 ## Dataset catalogue
 
@@ -97,16 +114,18 @@ raw table itself, load it from `fugazi.db` directly.
 
 | Dataset | Tier | Produced by |
 |----|----|----|
-| `Repeatr0` | Derived-cleaned | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md), from [`fugazi.db::fls_data`](https://rdrr.io/pkg/fugazi.db/man/fls_data.html) |
-| `othervariables` | Derived-cleaned | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md), joining [`fugazi.db::fls_data`](https://rdrr.io/pkg/fugazi.db/man/fls_data.html) with [`fugazi.db::fls_venue_geocoding`](https://rdrr.io/pkg/fugazi.db/man/fls_venue_geocoding.html); also read directly by `app.R` |
+| `Repeatr0` | Derived-cleaned | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md), from `inst/extdata/fls_data.csv` |
+| `othervariables` | Derived-cleaned | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md), joining `inst/extdata/fls_data.csv` with `inst/extdata/fls_venue_geocoding_v2.csv`; also read directly by `app.R` |
 | `gid_sound_quality` | Derived-cleaned | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md) |
 | `gid_initial_gid_sound_quality` | Derived-modeled | [`Repeatr_6()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_6.md), via [`sweepstack()`](https://alexmitrani.github.io/Repeatr/reference/sweepstack.md)/[`stacks()`](https://alexmitrani.github.io/Repeatr/reference/stacks.md), whenever [`Repeatr_Updatr()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_Updatr.md) is run with `update_stacks = TRUE`; read directly by `app.R`’s “stock” pages |
 | `played_with`, `played_with_data`, `played_with_summary` | Derived-cleaned | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md) |
 | `shows_data` | Derived-cleaned | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md); also read directly by `app.R` |
-| `fls_tags`, `fls_tags_show` | Derived-cleaned | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md), from [`fugazi.db::fls_tags_raw`](https://rdrr.io/pkg/fugazi.db/man/fls_tags_raw.html) |
+| `fls_tags`, `fls_tags_show` | Derived-cleaned | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md), from `inst/extdata/fls_tags.txt` (via ) |
 | `duration_data_da`, `duration_summary`, `cumulative_duration_counts`, `cumulative_song_counts` | Derived-cleaned | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md) |
 | `last_performance_data`, `xray`, `transitions_data_da` | Derived-cleaned | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md) |
-| `releasesdatalookup`, `releases_menu_list`, `releaseid_variable_colour_code` | Derived-cleaned | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md), from [`fugazi.db::releases`](https://rdrr.io/pkg/fugazi.db/man/releases.html) |
+| `releasesdatalookup`, `releases_menu_list`, `releaseid_variable_colour_code` | Derived-cleaned | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md), from `inst/extdata/releases.csv` |
+| `songvarslookup` | Derived-cleaned/Raw-hand-curated | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md) reads it as-is from `inst/extdata/releases_songs_durations_wikipedia.csv` |
+| `song_tempo_bpm_data` | Raw-hand-curated | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md) reads it as-is from `inst/extdata/song_tempo_bpm_data.csv` |
 | `Repeatr1` | Derived-classified | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md) |
 | `songidlookup` | Derived-classified | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md); the single source of truth for song identity |
 | `Repeatr2`, `Repeatr3` | Derived-modeled | [`Repeatr_2()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_2.md) / [`Repeatr_3()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_3.md) - applies the `min_song_count` filter and builds `alt` |
@@ -119,18 +138,16 @@ raw table itself, load it from `fugazi.db` directly.
 For the full column-by-column description of any dataset, see its help
 page
 (e.g. [`?summary`](https://alexmitrani.github.io/Repeatr/reference/summary.md)).
-For `fugazi.db`’s own tables (`fls_data`, `fls_tags_raw`,
-`songvarslookup`, `releases`, `song_tempo_bpm_data`,
-`fls_venue_geocoding`), see
-`vignette("Data-Catalogue", package = "fugazi.db")` or
-e.g. [`?fugazi.db::fls_data`](https://rdrr.io/pkg/fugazi.db/man/fls_data.html).
+For fugazi.db’s own tables (`fls_shows`, `fls_venue_geocoding`,
+`fls_tags`, `releases`, `songvarslookup`, `song_tempo_bpm_data`,
+`songidlookup`, `played_with`, `played_with_data`), see
+`vignette("Data-Catalogue", package = "fugazi.db")`.
 
 Note on `app.R`: it reads `song_tempo_bpm_data` and
-`shows_data`/`othervariables` (via
-[`library(Repeatr)`](https://alexmitrani.github.io/Repeatr), which
-attaches `fugazi.db`’s data alongside Repeatr’s own), but for venue
-coordinates specifically it does *not* use the package’s own `x`/`y` -
-at startup it re-fetches coordinates live from a Google Sheet
-(`gsheet2tbl()`) and overwrites whatever `othervariables`/`shows_data`
-provided. So the deployed app’s map coordinates track that live sheet,
-not any package release.
+`shows_data`/`othervariables` directly (via
+[`library(Repeatr)`](https://alexmitrani.github.io/Repeatr)’s
+lazy-loaded data), but for venue coordinates specifically it does *not*
+use the package’s own `x`/`y` - at startup it re-fetches coordinates
+live from a Google Sheet (`gsheet2tbl()`) and overwrites whatever
+`othervariables`/`shows_data` provided. So the deployed app’s map
+coordinates track that live sheet, not any package release.

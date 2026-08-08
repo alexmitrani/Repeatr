@@ -59,16 +59,9 @@ A data frame with one row per scraped show: `gid`, `fls_id`, and
 ## Examples
 
 ``` r
+if (FALSE) { # \dontrun{
+# Makes live requests to dischord.com - not run automatically.
 scraped_data_played_with <- scrape_fls_dtdd(mygiddata = NULL, mylimit = 5, sleepseconds = 1, mycsvfilename = "gid_fls_id_fls_data.csv", mydt_caption = "Played with:")
-#> [1] "Scraping https://www.dischord.com/fugazi_live_series/aalst-belgium-92390"
-#> [1] "Scraping https://www.dischord.com/fugazi_live_series/aberdeen-scotland-50499"
-#> [1] "Scraping https://www.dischord.com/fugazi_live_series/adelaide-australia-111193"
-#> [1] "Scraping https://www.dischord.com/fugazi_live_series/adelaide-australia-111296"
-#> [1] "Scraping https://www.dischord.com/fugazi_live_series/adelaide-sa-australia-102291"
 scraped_data_original_source <- scrape_fls_dtdd(mygiddata = NULL, mylimit = 5, sleepseconds = 1, mycsvfilename = "gid_fls_id_fls_data.csv", mydt_caption = "Original Source:")
-#> [1] "Scraping https://www.dischord.com/fugazi_live_series/aalst-belgium-92390"
-#> [1] "Scraping https://www.dischord.com/fugazi_live_series/aberdeen-scotland-50499"
-#> [1] "Scraping https://www.dischord.com/fugazi_live_series/adelaide-australia-111193"
-#> [1] "Scraping https://www.dischord.com/fugazi_live_series/adelaide-australia-111296"
-#> [1] "Scraping https://www.dischord.com/fugazi_live_series/adelaide-sa-australia-102291"
+} # }
 ```

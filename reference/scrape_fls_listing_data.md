@@ -55,9 +55,8 @@ Australia), `country`.
 ## Examples
 
 ``` r
-# Small-scale test: only the first listing page
+if (FALSE) { # \dontrun{
+# Makes live requests to dischord.com - not run automatically.
 test_listing_data <- scrape_fls_listing_data(max_listing_pages = 1)
-#> Discovering listing pages from https://www.dischord.com/fugazi_live_series
-#> Found 1 listing page(s) to scrape (site max may be higher if capped by max_listing_pages)
-#> Scraping listing page 1 of 1
+} # }
 ```

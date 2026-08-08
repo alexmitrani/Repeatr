@@ -51,7 +51,7 @@ spot-check with max_listing_pages = 1 before trusting a full crawl."></head><bod
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9213</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9214</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -148,11 +148,10 @@ Canada, and Australia), <code>country</code>.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Small-scale test: only the first listing page</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+<span class="r-in"><span><span class="co"># Makes live requests to dischord.com - not run automatically.</span></span></span>
 <span class="r-in"><span><span class="va">test_listing_data</span> <span class="op">&lt;-</span> <span class="fu">scrape_fls_listing_data</span><span class="op">(</span>max_listing_pages <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Discovering listing pages from https://www.dischord.com/fugazi_live_series</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Found 1 listing page(s) to scrape (site max may be higher if capped by max_listing_pages)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Scraping listing page 1 of 1</span>
+<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

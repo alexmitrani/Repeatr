@@ -1,30 +1,27 @@
 # imports raw data (1 row per show), cleans the data, and reshapes it long so that the rows are identified by combinations of gid and song_number.
 
-Reads its raw inputs from the `fugazi.db` package by default:
-[`fugazi.db::fls_data`](https://rdrr.io/pkg/fugazi.db/man/fls_data.html)
-(one row per show, produced by
+Reads its raw inputs from this package's own `inst/extdata/` by default:
+`fls_data.csv` (one row per show, produced by
 [`scrape_fls_shows`](https://alexmitrani.github.io/Repeatr/reference/scrape_fls_shows.md);
 `tour`, `city`, `subdivision`, and `country` all come from the FLS
 listing pages' own filter links/tour headings - see
 [`scrape_fls_listing_data`](https://alexmitrani.github.io/Repeatr/reference/scrape_fls_listing_data.md)),
-[`fugazi.db::songvarslookup`](https://rdrr.io/pkg/fugazi.db/man/songvarslookup.html)
-(Wikipedia discography metadata),
-[`fugazi.db::releases`](https://rdrr.io/pkg/fugazi.db/man/releases.html)
-(release metadata),
-[`fugazi.db::fls_venue_geocoding`](https://rdrr.io/pkg/fugazi.db/man/fls_venue_geocoding.html)
-(venue coordinates), and
-[`fugazi.db::fls_tags_raw`](https://rdrr.io/pkg/fugazi.db/man/fls_tags_raw.html)
-(tag/duration data). Each can be overridden with an explicit data frame
-instead - e.g. to run this against a local `fugazi.db` checkout without
-reinstalling it - see the parameters below.
+`releases_songs_durations_wikipedia.csv` (Wikipedia discography
+metadata), `releases.csv` (release metadata),
+`fls_venue_geocoding_v2.csv` (venue coordinates), and `fls_tags.txt`
+(tag/duration data, via
+[`fls_tags_importer`](https://alexmitrani.github.io/Repeatr/reference/fls_tags_importer.md)).
+Each can be overridden with an explicit data frame instead - see the
+parameters below.
 
 "gid" is short for "gig id"
 
-[`fugazi.db::songvarslookup`](https://rdrr.io/pkg/fugazi.db/man/songvarslookup.html)
-contains the following variables: releaseid track_number song
-instrumental vocals_picciotto vocals_mackaye vocals_lally
-duration_seconds. It is joined onto the live, classified song set by
-`song` title text, not by a hardcoded id column - see `songid` below.
+`songvarslookup` (read from
+`inst/extdata/releases_songs_durations_wikipedia.csv`) contains the
+following variables: releaseid track_number song instrumental
+vocals_picciotto vocals_mackaye vocals_lally duration_seconds. It is
+joined onto the live, classified song set by `song` title text, not by a
+hardcoded id column - see `songid` below.
 
 ## Usage
 
@@ -44,29 +41,29 @@ Repeatr_1(
 - myfls_data:
 
   Optional data frame of Fugazi Live Series show data to use instead of
-  [`fugazi.db::fls_data`](https://rdrr.io/pkg/fugazi.db/man/fls_data.html)
-  (same shape: one row per show, as produced by
+  `inst/extdata/fls_data.csv` (same shape: one row per show, as produced
+  by
   [`scrape_fls_shows`](https://alexmitrani.github.io/Repeatr/reference/scrape_fls_shows.md)).
 
 - mysongvarslookup:
 
   Optional data frame of song data to use instead of
-  [`fugazi.db::songvarslookup`](https://rdrr.io/pkg/fugazi.db/man/songvarslookup.html).
+  `inst/extdata/releases_songs_durations_wikipedia.csv`.
 
 - myreleases:
 
   Optional data frame of releases data to use instead of
-  [`fugazi.db::releases`](https://rdrr.io/pkg/fugazi.db/man/releases.html).
+  `inst/extdata/releases.csv`.
 
 - myfls_venue_geocoding:
 
   Optional data frame of venue coordinates to use instead of
-  [`fugazi.db::fls_venue_geocoding`](https://rdrr.io/pkg/fugazi.db/man/fls_venue_geocoding.html).
+  `inst/extdata/fls_venue_geocoding_v2.csv`.
 
 - myfls_tags:
 
   Optional data frame of tag/duration data to use instead of
-  [`fugazi.db::fls_tags_raw`](https://rdrr.io/pkg/fugazi.db/man/fls_tags_raw.html).
+  `inst/extdata/fls_tags.txt`.
 
 - output_dir:
 
@@ -94,8 +91,40 @@ question of song identity.
 ## Examples
 
 ``` r
-Repeatr_1_results <- Repeatr_1()
+Repeatr_1_results <- Repeatr_1(output_dir = tempdir())
 #> Joining with `by = join_by(year)`
 #> Joining with `by = join_by(venue, city, country)`
-#> Error in setwd(mydatadir): cannot change working directory
+#> Rows: 24531 Columns: 5
+#> ── Column specification ────────────────────────────────────────────────────────
+#> Delimiter: ";"
+#> chr (5): track, artist, album, name, duration
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> Joining with `by = join_by(date)`
+#> Joining with `by = join_by(gid)`
+#> Joining with `by = join_by(gid, song)`
+#> Joining with `by = join_by(song)`
+#> Joining with `by = join_by(song)`
+#> Joining with `by = join_by(releaseid)`
+#> Joining with `by = join_by(song)`
+#> Joining with `by = join_by(release)`
+#> Joining with `by = join_by(song)`
+#> Joining with `by = join_by(song)`
+#> Joining with `by = join_by(song)`
+#> Joining with `by = join_by(gid, date, song_number)`
+#> Joining with `by = join_by(date)`
+#> Joining with `by = join_by(releaseid)`
+#> Joining with `by = join_by(releaseid)`
+#> Joining with `by = join_by(gid, song)`
+#> Joining with `by = join_by(gid)`
+#> Joining with `by = join_by(gid)`
+#> Joining with `by = join_by(gid)`
+#> Joining with `by = join_by(releaseid, release)`
+#> Joining with `by = join_by(songid)`
+#> Joining with `by = join_by(song)`
+#> Joining with `by = join_by(gid, song)`
+#> Joining with `by = join_by(gid, song)`
+#> Joining with `by = join_by(gid)`
+#> Joining with `by = join_by(gid)`
 ```

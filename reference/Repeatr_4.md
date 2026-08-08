@@ -36,6 +36,9 @@ out of sync with each other.
 ## Examples
 
 ``` r
-results_ml_Repeatr4 <- Repeatr_4()
-#> Error in setwd(mydatadir): cannot change working directory
+if (FALSE) { # \dontrun{
+# Fits a real mlogit choice model on the full dataset - the slow step
+# in the pipeline (see vignette("Rebuilding-the-Data")), not run here.
+results_ml_Repeatr4 <- Repeatr_4(output_dir = tempdir())
+} # }
 ```

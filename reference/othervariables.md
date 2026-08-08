@@ -103,12 +103,12 @@ https://www.dischord.com/fugazi_live_series
 
 Derived-cleaned. Produced by
 [`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)
-by joining
-[`fugazi.db::fls_data`](https://rdrr.io/pkg/fugazi.db/man/fls_data.html)
-with
-[`fugazi.db::fls_venue_geocoding`](https://rdrr.io/pkg/fugazi.db/man/fls_venue_geocoding.html).
-Actively consumed directly by `inst/shiny/Fugazetteer/app.R` (e.g. its
-attendance/tour reactives).
+by joining `inst/extdata/fls_data.csv` with
+`inst/extdata/fls_venue_geocoding_v2.csv`. Actively consumed directly by
+`inst/shiny/Fugazetteer/app.R` (e.g. its attendance/tour reactives).
+Exported (minus `fls_notes`, plus `sound_quality` and duration) as
+fugazi.db's `fls_shows` table by
+[`export_fugazidb_data`](https://alexmitrani.github.io/Repeatr/reference/export_fugazidb_data.md).
 
 ## Examples
 

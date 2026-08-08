@@ -28,7 +28,27 @@ fls_tags_importer
 ## Examples
 
 ``` r
-fls_tags_importer(myfilename = "C:/Users/alexm/Music/fls_tags.txt")
-#> Error in (function (path, write = FALSE, call = caller_env()) {    if (is.raw(path)) {        return(rawConnection(path, "rb"))    }    if (!is.character(path)) {        return(path)    }    if (is_url(path)) {        ext <- tolower(tools::file_ext(path))        if (ext %in% c("gz", "bz2", "xz", "zip")) {            cli::cli_abort("Remote compressed files must be handled upstream of this function.",                 .internal = TRUE)        }        if (requireNamespace("curl", quietly = TRUE)) {            con <- curl::curl(path)        }        else {            inform("`curl` package not installed, falling back to using `url()`")            con <- url(path)        }        return(con)    }    path <- enc2utf8(path)    if (write) {        path <- normalizePath_utf8(path, mustWork = FALSE)    }    else {        path <- check_path(path)    }    p <- split_path_ext(basename_utf8(path))    extension <- p$extension    formats <- archive_formats(extension)    while (is.null(formats) && nzchar(extension)) {        extension <- split_path_ext(extension)$extension        formats <- archive_formats(extension)    }    needs_archive <- !is.null(formats) && (write || extension !=         "zip")    if (needs_archive) {        reason <- glue("to {if (write) 'write' else 'read'} `.{p$extension}` files.")        rlang::check_installed("archive", reason = reason, call = call)        if (write) {            if (is.null(formats[[1]])) {                return(archive::file_write(path, filter = formats[[2]]))            }            return(archive::archive_write(path, p$path, format = formats[[1]],                 filter = formats[[2]]))        }        if (is.null(formats[[1]])) {            return(archive::file_read(path, filter = formats[[2]]))        }        return(archive::archive_read(path, format = formats[[1]],             filter = formats[[2]]))    }    if (!write) {        compression <- detect_compression(path)    }    else {        compression <- NA    }    if (is.na(compression)) {        compression <- tools::file_ext(path)    }    if (write && compression == "zip") {        cli::cli_abort(c("Can only read from, not write to, {.val .zip} files.",             i = "Install the {.pkg archive} package to write {.val .zip} files."),             call = call)    }    switch(compression, gz = gzfile(path), bz2 = bzfile(path),         xz = xzfile(path), zip = zipfile(path), if (!has_trailing_newline(path)) {            file(path)        } else {            path        })})("C:/Users/alexm/Music/fls_tags.txt"): C:/Users/alexm/Music/fls_tags.txt does not exist.
+fls_tags_importer(myfilename = system.file("extdata", "fls_tags.txt", package = "Repeatr"))
+#> Rows: 24531 Columns: 5
+#> ── Column specification ────────────────────────────────────────────────────────
+#> Delimiter: ";"
+#> chr (5): track, artist, album, name, duration
+#> 
+#> ℹ Use `spec()` to retrieve the full column specification for this data.
+#> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+#> # A tibble: 24,531 × 7
+#>    track artist album                             name  duration seconds minutes
+#>    <chr> <chr>  <chr>                             <chr> <Period>   <dbl>   <dbl>
+#>  1 01    Fugazi 19870903 Wilson Center, Washingt… Joe … 1M 22S        82    1.37
+#>  2 02    Fugazi 19870903 Wilson Center, Washingt… Intro 56S           56    0.93
+#>  3 03    Fugazi 19870903 Wilson Center, Washingt… Song… 2M 46S       166    2.77
+#>  4 04    Fugazi 19870903 Wilson Center, Washingt… Furn… 6M 32S       392    6.53
+#>  5 05    Fugazi 19870903 Wilson Center, Washingt… Merc… 3M 10S       190    3.17
+#>  6 06    Fugazi 19870903 Wilson Center, Washingt… Turn… 4M 56S       296    4.93
+#>  7 07    Fugazi 19870903 Wilson Center, Washingt… In D… 3M 25S       205    3.42
+#>  8 08    Fugazi 19870903 Wilson Center, Washingt… Wait… 3M 52S       232    3.87
+#>  9 09    Fugazi 19870903 Wilson Center, Washingt… the … 4M 59S       299    4.98
+#> 10 01    Fugazi 19870926 St. Stephen's Church Ca… Intro 2M 37S       157    2.62
+#> # ℹ 24,521 more rows
 
 ```

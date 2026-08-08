@@ -32,7 +32,7 @@ Also saved to `data/Repeatr3.rda`.
 ## Examples
 
 ``` r
-Repeatr3 <- Repeatr_3(mydf = Repeatr2)
+Repeatr3 <- Repeatr_3(mydf = Repeatr2, output_dir = tempdir())
 #> Joining with `by = join_by(case)`
 #> Size of Repeatr3 before converting the storage modes of specified variables to integer: 147.171 MB. 
 #> The following variables will have their storage modes converted to integer, if they exist in Repeatr3: 
@@ -52,5 +52,4 @@ Repeatr3 <- Repeatr_3(mydf = Repeatr2)
 #> [27] "yearsold_8_vp"          
 #> Size of Repeatr3 after converting storage mode of variables to integer: 139.996 MB. 
 #> RAM saved: 7.175 MB. 
-#> Error in setwd(mydatadir): cannot change working directory
 ```

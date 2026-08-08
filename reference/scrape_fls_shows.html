@@ -61,7 +61,7 @@ it is always excluded from the scrape targets."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9213</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9214</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -225,15 +225,11 @@ columns as the widest tracklist in the result).</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Small-scale test: only the first listing page, and only 3 new shows</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+<span class="r-in"><span><span class="co"># Makes live requests to dischord.com - not run automatically.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Small-scale test: only the first listing page, and only 3 new shows</span></span></span>
 <span class="r-in"><span><span class="va">test_shows</span> <span class="op">&lt;-</span> <span class="fu">scrape_fls_shows</span><span class="op">(</span>max_listing_pages <span class="op">=</span> <span class="fl">1</span>, max_shows <span class="op">=</span> <span class="fl">3</span>, sleepseconds <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Discovering listing pages from https://www.dischord.com/fugazi_live_series</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Found 1 listing page(s) to scrape (site max may be higher if capped by max_listing_pages)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Scraping listing page 1 of 1</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Scraping 3 show(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Scraping show 1 of 3: washington-dc-usa-90387</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Scraping show 2 of 3: washington-dc-usa-92687</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Scraping show 3 of 3: chapel-hill-nc-usa-92787</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Re-scrape a few specific, already-known shows (e.g. to spot-check fields)</span></span></span>
 <span class="r-in"><span><span class="va">known_shows</span> <span class="op">&lt;-</span> <span class="fu">scrape_fls_shows</span><span class="op">(</span></span></span>
@@ -241,11 +237,6 @@ columns as the widest tracklist in the result).</p>
 <span class="r-in"><span>  update_existing <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>  sleepseconds <span class="op">=</span> <span class="fl">2</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Scraping 2 show(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Scraping show 1 of 2: washington-dc-usa-90387</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Scraping show 2 of 2: chapel-hill-nc-usa-92787</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="co"># Full run: only shows not already in the packaged fugotcha.csv, writing</span></span></span>
 <span class="r-in"><span><span class="co"># the result out to a new CSV. This can make 1000+ requests and take</span></span></span>
 <span class="r-in"><span><span class="co"># 30-40 minutes, so it is not run automatically.</span></span></span>
