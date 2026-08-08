@@ -34,13 +34,13 @@ A web app that presents some of the data from the Repeatr package with interacti
 
 [Playlist](articles/Playlist.html) A list of recommended shows - work in progress.
 
-[polish with a small p](articles/polish%20with%20a%20small%20p.html) A discussion of the song Polish from the album Steady Diet of Nothing.
+[polish with a small p](articles/polish-with-a-small-p.html) A discussion of the song Polish from the album Steady Diet of Nothing.
 
-[The Emperor's New Outfit](articles/The%20Emperor's%20New%20Outfit.html) A discussion of the song Nice New Outfit from the album Steady Diet of Nothing.
+[The Emperor's New Outfit](articles/The-Emperor's-New-Outfit.html) A discussion of the song Nice New Outfit from the album Steady Diet of Nothing.
 
-[Au Clair de la Lune](articles/au%20clair%20de%20la%20lune.html) A discussion of the song Two Beats Off from the album Repeater.
+[Au Clair de la Lune](articles/au-clair-de-la-lune.html) A discussion of the song Two Beats Off from the album Repeater.
 
-[in your memory](articles/in%20your%20memory.html) A discussion of the song Forensic Scene from the album Red Medicine. 
+[in your memory](articles/in-your-memory.html) A discussion of the song Forensic Scene from the album Red Medicine. 
 
 ## Acknowledgements
 
