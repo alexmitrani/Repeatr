@@ -36,7 +36,7 @@ A web app that presents some of the data from the Repeatr package with interacti
 
 [polish with a small p](articles/polish-with-a-small-p.html) A discussion of the song Polish from the album Steady Diet of Nothing.
 
-[The Emperor's New Outfit](articles/The-Emperor's-New-Outfit.html) A discussion of the song Nice New Outfit from the album Steady Diet of Nothing.
+[The Emperor's New Outfit](articles/The-Emperors-New-Outfit.html) A discussion of the song Nice New Outfit from the album Steady Diet of Nothing.
 
 [Au Clair de la Lune](articles/au-clair-de-la-lune.html) A discussion of the song Two Beats Off from the album Repeater.
 
