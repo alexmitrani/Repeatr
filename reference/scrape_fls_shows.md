@@ -127,10 +127,10 @@ test_shows <- scrape_fls_shows(max_listing_pages = 1, max_shows = 3, sleepsecond
 #> Discovering listing pages from https://www.dischord.com/fugazi_live_series
 #> Found 1 listing page(s) to scrape (site max may be higher if capped by max_listing_pages)
 #> Scraping listing page 1 of 1
-#> Detected 2 previously-unavailable show(s) that now show a recording as available - re-scraping them too
-#> Scraping 2 show(s)
-#> Scraping show 1 of 2: rockville-md-usa-40988
-#> Scraping show 2 of 2: clarksville-in-usa-50788
+#> Scraping 3 show(s)
+#> Scraping show 1 of 3: washington-dc-usa-90387
+#> Scraping show 2 of 3: washington-dc-usa-92687
+#> Scraping show 3 of 3: chapel-hill-nc-usa-92787
 
 # Re-scrape a few specific, already-known shows (e.g. to spot-check fields)
 known_shows <- scrape_fls_shows(

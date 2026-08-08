@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9212</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9213</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,10 +48,10 @@
     <li><a class="dropdown-item" href="articles/Playlist.html">Playlist</a></li>
     <li><a class="dropdown-item" href="articles/polish-with-a-small-p.html">polish with a small p</a></li>
     <li><a class="dropdown-item" href="articles/Ratings.html">Ratings</a></li>
+    <li><a class="dropdown-item" href="articles/Rebuilding-the-Data.html">Rebuilding the Data</a></li>
     <li><a class="dropdown-item" href="articles/The-Argument.html">The Argument</a></li>
     <li><a class="dropdown-item" href="articles/The-Emperors-New-Outfit.html">The Emperor's New Outfit</a></li>
     <li><a class="dropdown-item" href="articles/The-Tyranny-of-Distance.html">The Tyranny of Distance</a></li>
-    <li><a class="dropdown-item" href="articles/Updating-the-Data.html">Updating the Data</a></li>
   </ul>
 </li>
       </ul>
@@ -80,6 +80,7 @@
 <p>The Repeatr package can be installed from RStudio using the following command:</p>
 <p>devtools::install_github(“alexmitrani/Repeatr”, build_opts = c(“–no-resave-data”, “–no-manual”))</p>
 <p>The package gives easy access to the functions, dataframes, and related documentation.</p>
+<p>Primary/raw data (show listings, venue coordinates, tag/duration data, discography metadata) lives in the companion data package <a href="https://github.com/alexmitrani/fugazi.db" class="external-link">fugazi.db</a>, which Repeatr depends on. Repeatr itself contains all of the processing code and every derived/modelled dataset - see <code><a href="articles/Data-Provenance.html">vignette("Data-Provenance")</a></code>.</p>
 </div>
 <div class="section level2">
 <h2 id="fugazetteer-web-app">Fugazetteer web app<a class="anchor" aria-label="anchor" href="#fugazetteer-web-app"></a>

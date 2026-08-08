@@ -83,8 +83,8 @@ played_with_data
 #>  1 <a href='h…  1990 1990… 1990-09-23 Netw… Aalst Belgium Alice Donut        600
 #>  2 <a href='h…  1999 1999… 1999-05-04 Lemo… Aber… Scotla… Laeto              550
 #>  3 <a href='h…  1993 1993… 1993-11-11 Dom … Adel… Austra… Magic Dirt         550
-#>  4 <a href='h…  1996 1996… 1996-11-12 Adel… Adel… Austra… Sin Dog Je…        906
-#>  5 <a href='h…  1996 1996… 1996-11-12 Adel… Adel… Austra… Test Eagles        906
+#>  4 <a href='h…  1996 1996… 1996-11-12 Adel… Adel… Austra… Sin Dog Je…        913
+#>  5 <a href='h…  1996 1996… 1996-11-12 Adel… Adel… Austra… Test Eagles        913
 #>  6 <a href='h…  1991 1991… 1991-10-22 Le R… Adel… Austra… Baba Ganous        450
 #>  7 <a href='h…  1990 1990… 1990-06-28 Jack… Akron USA     Holy Rolle…        700
 #>  8 <a href='h…  1990 1990… 1990-06-28 Jack… Akron USA     Hyper as H…        700

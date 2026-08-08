@@ -9,7 +9,7 @@ To run the full update: Repeatr_Updatr(really = "really")'></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9212</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9213</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,10 +33,10 @@ To run the full update: Repeatr_Updatr(really = "really")'></head><body>
     <li><a class="dropdown-item" href="../articles/Playlist.html">Playlist</a></li>
     <li><a class="dropdown-item" href="../articles/polish-with-a-small-p.html">polish with a small p</a></li>
     <li><a class="dropdown-item" href="../articles/Ratings.html">Ratings</a></li>
+    <li><a class="dropdown-item" href="../articles/Rebuilding-the-Data.html">Rebuilding the Data</a></li>
     <li><a class="dropdown-item" href="../articles/The-Argument.html">The Argument</a></li>
     <li><a class="dropdown-item" href="../articles/The-Emperors-New-Outfit.html">The Emperor's New Outfit</a></li>
     <li><a class="dropdown-item" href="../articles/The-Tyranny-of-Distance.html">The Tyranny of Distance</a></li>
-    <li><a class="dropdown-item" href="../articles/Updating-the-Data.html">Updating the Data</a></li>
   </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
@@ -64,7 +64,14 @@ To run the full update: Repeatr_Updatr(really = "really")'></head><body>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">Repeatr_Updatr</span><span class="op">(</span></span>
 <span>  really <span class="op">=</span> <span class="st">"not_really"</span>,</span>
 <span>  min_song_count <span class="op">=</span> <span class="fl">2</span>,</span>
-<span>  update_stacks <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  update_stacks <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  myfls_data <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  mysongvarslookup <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  myreleases <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  myfls_venue_geocoding <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  myfls_tags <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  input_dir <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  output_dir <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -82,6 +89,18 @@ To run the full update: Repeatr_Updatr(really = "really")'></head><body>
 
 <dt id="arg-update-stacks">update_stacks<a class="anchor" aria-label="anchor" href="#arg-update-stacks"></a></dt>
 <dd><p>if TRUE, the gid_initial_gid_sound_quality data will be refreshed by re-generating a set of stacks considering the full available set of relevant data.</p></dd>
+
+
+<dt id="arg-myfls-data-mysongvarslookup-myreleases-myfls-venue-geocoding-myfls-tags">myfls_data, mysongvarslookup, myreleases, myfls_venue_geocoding, myfls_tags<a class="anchor" aria-label="anchor" href="#arg-myfls-data-mysongvarslookup-myreleases-myfls-venue-geocoding-myfls-tags"></a></dt>
+<dd><p>optional data frame overrides passed straight through to <code><a href="Repeatr_1.html">Repeatr_1</a></code>. If omitted, <code>Repeatr_1</code> uses the <code>fugazi.db</code> package's own data - see its documentation for each. Useful for pointing the whole rebuild at a local <code>fugazi.db</code> checkout (e.g. <code>myfls_data = fugazidb_data$fls_data</code>, loaded via <code><a href="https://rdrr.io/r/base/load.html" class="external-link">load()</a></code>) without reinstalling it.</p></dd>
+
+
+<dt id="arg-input-dir">input_dir<a class="anchor" aria-label="anchor" href="#arg-input-dir"></a></dt>
+<dd><p>passed through to <code><a href="Repeatr_2.html">Repeatr_2</a></code>/<code><a href="Repeatr_5.html">Repeatr_5</a></code>: where to write their output-export CSVs. If omitted, defaults to this package's own <code>inst/extdata</code>.</p></dd>
+
+
+<dt id="arg-output-dir">output_dir<a class="anchor" aria-label="anchor" href="#arg-output-dir"></a></dt>
+<dd><p>passed through to every stage: where to save the rebuilt <code>data/*.rda</code> objects. If omitted, defaults to <code>data/</code> under the current working directory.</p></dd>
 
 </dl></div>
     <div class="section level2">

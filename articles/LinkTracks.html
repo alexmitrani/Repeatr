@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9212</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9213</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,10 +46,10 @@
     <li><a class="dropdown-item" href="../articles/Playlist.html">Playlist</a></li>
     <li><a class="dropdown-item" href="../articles/polish-with-a-small-p.html">polish with a small p</a></li>
     <li><a class="dropdown-item" href="../articles/Ratings.html">Ratings</a></li>
+    <li><a class="dropdown-item" href="../articles/Rebuilding-the-Data.html">Rebuilding the Data</a></li>
     <li><a class="dropdown-item" href="../articles/The-Argument.html">The Argument</a></li>
     <li><a class="dropdown-item" href="../articles/The-Emperors-New-Outfit.html">The Emperor's New Outfit</a></li>
     <li><a class="dropdown-item" href="../articles/The-Tyranny-of-Distance.html">The Tyranny of Distance</a></li>
-    <li><a class="dropdown-item" href="../articles/Updating-the-Data.html">Updating the Data</a></li>
   </ul>
 </li>
       </ul>
@@ -158,16 +158,16 @@ the show on youtube</a>.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 9</span></span></span>
 <span><span class="co">#&gt;    tour           start      end        shows duration attendance meanattendance</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 1990 Fall Eur… 1990-09-01 1990-11-07    60       67      <span style="text-decoration: underline;">43</span>481            724</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 1995 Spring/S… 1995-05-04 1995-07-14    59       71      <span style="text-decoration: underline;">72</span>080           <span style="text-decoration: underline;">1</span>221</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 1990 Fall Eur… 1990-09-01 1990-11-07    60       67      <span style="text-decoration: underline;">43</span>476            724</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 1995 Spring/S… 1995-05-04 1995-07-14    59       71      <span style="text-decoration: underline;">72</span>134           <span style="text-decoration: underline;">1</span>222</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 1992 Spring E… 1992-05-01 1992-07-11    56       71      <span style="text-decoration: underline;">55</span>412            989</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 1995 Fall USA… 1995-09-16 1995-11-20    50       65      <span style="text-decoration: underline;">68</span>903           <span style="text-decoration: underline;">1</span>378</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 1993 Spring U… 1993-04-02 1993-05-31    48       59      <span style="text-decoration: underline;">74</span>550           <span style="text-decoration: underline;">1</span>553</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 1990 Spring/S… 1990-05-02 1990-06-30    43       59      <span style="text-decoration: underline;">24</span>080            560</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 1988 Fall Eur… 1988-10-14 1988-12-16    39       63       <span style="text-decoration: underline;">7</span>700            197</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 1988 Fall Eur… 1988-10-14 1988-12-16    39       63       <span style="text-decoration: underline;">7</span>802            200</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 1993 Fall USA… 1993-08-16 1993-09-29    39       44      <span style="text-decoration: underline;">58</span>075           <span style="text-decoration: underline;">1</span>489</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 1991 Spring U… 1991-05-01 1991-06-14    38       44      <span style="text-decoration: underline;">27</span>273            717</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 1989 Spring U… 1989-04-05 1989-06-16    35       72      <span style="text-decoration: underline;">11</span>159            318</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 1989 Spring U… 1989-04-05 1989-06-16    35       72      <span style="text-decoration: underline;">11</span>162            318</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 2 more variables: startyear &lt;dbl&gt;, endyear &lt;dbl&gt;</span></span></span></code></pre></div>
 <p>On the 1990 Fall European Tour, between 1990-09-01 and 1990-11-07,
 Fugazi played 60 shows over 67 days, with a total attendance of 43,478

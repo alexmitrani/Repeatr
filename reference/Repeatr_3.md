@@ -5,7 +5,7 @@
 ## Usage
 
 ``` r
-Repeatr_3(mydf = NULL)
+Repeatr_3(mydf = NULL, output_dir = NULL)
 ```
 
 ## Arguments
@@ -14,6 +14,11 @@ Repeatr_3(mydf = NULL)
 
   optional dataframe to be used. If omitted the default dataframe will
   be used.
+
+- output_dir:
+
+  Optional directory to save the rebuilt `data/Repeatr3.rda` into. If
+  omitted, defaults to `data/` under the current working directory.
 
 ## Value
 

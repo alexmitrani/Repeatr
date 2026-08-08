@@ -13,9 +13,9 @@
   : Fugazi Live Series choice data in long format with related
   discography data and dummy variables for age categories of songs.
 - [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)
-  : imports raw data in CSV format (1 row per show), cleans the data,
-  and reshapes it long so that the rows are identified by combinations
-  of gid and song_number.
+  : imports raw data (1 row per show), cleans the data, and reshapes it
+  long so that the rows are identified by combinations of gid and
+  song_number.
 - [`Repeatr_2()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_2.md)
   : takes a dataframe with one row per show-song and reshapes it long
   again so that the rows are identified by combinations of gid,
@@ -37,8 +37,8 @@
   web app from the input data files.
 - [`altlookup`](https://alexmitrani.github.io/Repeatr/reference/altlookup.md)
   : Fugazi alt id lookup table (choice-model alternative index)
-- [`attendancedata`](https://alexmitrani.github.io/Repeatr/reference/attendancedata.md)
-  : Attendance data
+- [`build_fugazidb_data()`](https://alexmitrani.github.io/Repeatr/reference/build_fugazidb_data.md)
+  : Builds fugazi.db's data/\*.rda objects from its data-raw/ sources
 - [`compressr()`](https://alexmitrani.github.io/Repeatr/reference/compressr.md)
   : changes the type of specified variables to integer
 - [`cumulative_duration_counts`](https://alexmitrani.github.io/Repeatr/reference/cumulative_duration_counts.md)
@@ -103,8 +103,6 @@
   : Undertakes paired comparisons for ranking a set of coefficients,
   considering whether the differences between the coefficients are
   significant or not.
-- [`rawdata`](https://alexmitrani.github.io/Repeatr/reference/rawdata.md)
-  : Fugazi Live Series raw data
 - [`releaseid_variable_colour_code`](https://alexmitrani.github.io/Repeatr/reference/releaseid_variable_colour_code.md)
   : Release ID, variable, colour code
 - [`releases_data_input`](https://alexmitrani.github.io/Repeatr/reference/releases_data_input.md)
@@ -134,12 +132,8 @@
   compares the setlists of two or more shows.
 - [`shows_data`](https://alexmitrani.github.io/Repeatr/reference/shows_data.md)
   : Shows Data
-- [`song_tempo_bpm_data`](https://alexmitrani.github.io/Repeatr/reference/song_tempo_bpm_data.md)
-  : Song tempo BPM data
 - [`songidlookup`](https://alexmitrani.github.io/Repeatr/reference/songidlookup.md)
   : Fugazi song id lookup table
-- [`songvarslookup`](https://alexmitrani.github.io/Repeatr/reference/songvarslookup.md)
-  : Fugazi songs data
 - [`stacks()`](https://alexmitrani.github.io/Repeatr/reference/stacks.md)
   : stacks puts together a set of shows that will contain a specified
   number of unique songs.
@@ -148,10 +142,6 @@
 - [`sweepstack()`](https://alexmitrani.github.io/Repeatr/reference/sweepstack.md)
   : sweepstack runs stacks iteratively over a range of different
   starting shows.
-- [`toursdata`](https://alexmitrani.github.io/Repeatr/reference/toursdata.md)
-  : Tours data
-- [`transitions`](https://alexmitrani.github.io/Repeatr/reference/transitions.md)
-  : Transitions
 - [`transitions_data_da`](https://alexmitrani.github.io/Repeatr/reference/transitions_data_da.md)
   : Transitions Data
 - [`vcovmat_ml_Repeatr4`](https://alexmitrani.github.io/Repeatr/reference/vcovmat_ml_Repeatr4.md)

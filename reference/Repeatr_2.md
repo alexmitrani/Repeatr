@@ -11,7 +11,13 @@ Off Your Guns In Defense Of Humans Waiting Room The Word
 ## Usage
 
 ``` r
-Repeatr_2(mydf = NULL, mysongidlookup = NULL, min_song_count = 2)
+Repeatr_2(
+  mydf = NULL,
+  mysongidlookup = NULL,
+  min_song_count = 2,
+  input_dir = NULL,
+  output_dir = NULL
+)
 ```
 
 ## Arguments
@@ -47,6 +53,19 @@ Repeatr_2(mydf = NULL, mysongidlookup = NULL, min_song_count = 2)
   does not affect `songid`, which
   [`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)
   assigns to every classified song regardless of this threshold.
+
+- input_dir:
+
+  Optional directory to write the
+  `fugazi_song_counts.csv`/`fugazi_song_performance_intensity.csv`
+  output-export CSVs into. If omitted, defaults to this package's own
+  `inst/extdata` (these are Repeatr's own downloadable outputs, not
+  primary data, so they are not sourced from `fugazi.db`).
+
+- output_dir:
+
+  Optional directory to save the rebuilt `data/*.rda` objects into. If
+  omitted, defaults to `data/` under the current working directory.
 
 ## Value
 

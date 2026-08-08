@@ -6,7 +6,7 @@ prepare for choice modelling with mlogit.
 ## Usage
 
 ``` r
-Repeatr_4(mydf = NULL)
+Repeatr_4(mydf = NULL, output_dir = NULL)
 ```
 
 ## Arguments
@@ -15,6 +15,12 @@ Repeatr_4(mydf = NULL)
 
   optional dataframe to be used. If omitted, the default dataframe will
   be used. Example of use: ml_Repeatr4 \<- Repeatr_4()
+
+- output_dir:
+
+  Optional directory to save the rebuilt
+  `data/results_ml_Repeatr4.rda`/`data/vcovmat_ml_Repeatr4.rda` into. If
+  omitted, defaults to `data/` under the current working directory.
 
 ## Value
 

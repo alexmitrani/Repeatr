@@ -83,8 +83,7 @@ dataframe with one row for each show.
 
   The touring period the show belongs to, scraped directly from the FLS
   listing pages (see
-  [`Repeatr0`](https://alexmitrani.github.io/Repeatr/reference/Repeatr0.md)/[`scrape_fls_listing_data`](https://alexmitrani.github.io/Repeatr/reference/scrape_fls_listing_data.md)) -
-  no longer sourced from "fugazi-small.csv".
+  [`Repeatr0`](https://alexmitrani.github.io/Repeatr/reference/Repeatr0.md)/[`scrape_fls_listing_data`](https://alexmitrani.github.io/Repeatr/reference/scrape_fls_listing_data.md)).
 
 - year:
 
@@ -104,10 +103,12 @@ https://www.dischord.com/fugazi_live_series
 
 Derived-cleaned. Produced by
 [`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)
-by joining the raw scrape with the hand-curated venue coordinates and
-the `othervariables_patch.csv` correction table. Actively consumed
-directly by `inst/shiny/Fugazetteer/app.R` (e.g. its attendance/tour
-reactives).
+by joining
+[`fugazi.db::fls_data`](https://rdrr.io/pkg/fugazi.db/man/fls_data.html)
+with
+[`fugazi.db::fls_venue_geocoding`](https://rdrr.io/pkg/fugazi.db/man/fls_venue_geocoding.html).
+Actively consumed directly by `inst/shiny/Fugazetteer/app.R` (e.g. its
+attendance/tour reactives).
 
 ## Examples
 
@@ -119,7 +120,7 @@ othervariables
 #>  1 aalst-be… FLS0… 1990-09-23 Netw… NA              600  Joey Picuri Warren Rus…
 #>  2 aberdeen… FLS0… 1999-05-04 Lemo… 6(pounds)       550  Joey Picuri Jerry Bush…
 #>  3 adelaide… FLS0… 1993-11-11 Dom … 15              550  Joey Picuri Warren Rus…
-#>  4 adelaide… FLS0… 1996-11-12 Adel… NA              906. Nick Pelli… Jerry Bush…
+#>  4 adelaide… FLS0… 1996-11-12 Adel… NA              913. Nick Pelli… Jerry Bush…
 #>  5 adelaide… FLS0… 1991-10-22 Le R… NA              450  Joey Picuri Warren Rus…
 #>  6 akron-oh… FLS0… 1990-06-28 Jack… 5               700  Joey Picuri Warren Rus…
 #>  7 albany-n… FLS0… 1993-09-20 S.U.… 5              1000  Joey Picuri Warren Rus…

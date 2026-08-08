@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9212</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9213</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,10 +31,10 @@
     <li><a class="dropdown-item" href="../articles/Playlist.html">Playlist</a></li>
     <li><a class="dropdown-item" href="../articles/polish-with-a-small-p.html">polish with a small p</a></li>
     <li><a class="dropdown-item" href="../articles/Ratings.html">Ratings</a></li>
+    <li><a class="dropdown-item" href="../articles/Rebuilding-the-Data.html">Rebuilding the Data</a></li>
     <li><a class="dropdown-item" href="../articles/The-Argument.html">The Argument</a></li>
     <li><a class="dropdown-item" href="../articles/The-Emperors-New-Outfit.html">The Emperor's New Outfit</a></li>
     <li><a class="dropdown-item" href="../articles/The-Tyranny-of-Distance.html">The Tyranny of Distance</a></li>
-    <li><a class="dropdown-item" href="../articles/Updating-the-Data.html">Updating the Data</a></li>
   </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
@@ -64,7 +64,9 @@
 <span>  myaltlookup <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  mysongvarslookup <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  myreleasesdatalookup <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  myreleases_data_input <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  myreleases_data_input <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  input_dir <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  output_dir <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -94,6 +96,14 @@
 
 <dt id="arg-myreleases-data-input">myreleases_data_input<a class="anchor" aria-label="anchor" href="#arg-myreleases-data-input"></a></dt>
 <dd><p>optional <code>releases_data_input</code> dataframe (the <code>releases_data_input</code> element of <code><a href="Repeatr_1.html">Repeatr_1()</a></code>'s return list). If omitted the currently lazy-loaded default will be used.</p></dd>
+
+
+<dt id="arg-input-dir">input_dir<a class="anchor" aria-label="anchor" href="#arg-input-dir"></a></dt>
+<dd><p>Optional directory to write the <code>fugazi_song_choice_model.csv</code>/<code>fugazi_song_preferences.csv</code>/<code>releases_rated.csv</code>/<code>summary.csv</code> output-export CSVs into. If omitted, defaults to this package's own <code>inst/extdata</code> (these are Repeatr's own downloadable outputs, not primary data, so they are not sourced from <code>fugazi.db</code>).</p></dd>
+
+
+<dt id="arg-output-dir">output_dir<a class="anchor" aria-label="anchor" href="#arg-output-dir"></a></dt>
+<dd><p>Optional directory to save the rebuilt <code>data/*.rda</code> objects into. If omitted, defaults to <code>data/</code> under the current working directory.</p></dd>
 
 </dl></div>
     <div class="section level2">

@@ -11,7 +11,14 @@ To run the full update: Repeatr_Updatr(really = "really")
 Repeatr_Updatr(
   really = "not_really",
   min_song_count = 2,
-  update_stacks = FALSE
+  update_stacks = FALSE,
+  myfls_data = NULL,
+  mysongvarslookup = NULL,
+  myreleases = NULL,
+  myfls_venue_geocoding = NULL,
+  myfls_tags = NULL,
+  input_dir = NULL,
+  output_dir = NULL
 )
 ```
 
@@ -36,6 +43,30 @@ Repeatr_Updatr(
   if TRUE, the gid_initial_gid_sound_quality data will be refreshed by
   re-generating a set of stacks considering the full available set of
   relevant data.
+
+- myfls_data, mysongvarslookup, myreleases, myfls_venue_geocoding,
+  myfls_tags:
+
+  optional data frame overrides passed straight through to
+  [`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md).
+  If omitted, `Repeatr_1` uses the `fugazi.db` package's own data - see
+  its documentation for each. Useful for pointing the whole rebuild at a
+  local `fugazi.db` checkout (e.g.
+  `myfls_data = fugazidb_data$fls_data`, loaded via
+  [`load()`](https://rdrr.io/r/base/load.html)) without reinstalling it.
+
+- input_dir:
+
+  passed through to
+  [`Repeatr_2`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_2.md)/[`Repeatr_5`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_5.md):
+  where to write their output-export CSVs. If omitted, defaults to this
+  package's own `inst/extdata`.
+
+- output_dir:
+
+  passed through to every stage: where to save the rebuilt `data/*.rda`
+  objects. If omitted, defaults to `data/` under the current working
+  directory.
 
 ## Value
 

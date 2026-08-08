@@ -13,7 +13,8 @@ Repeatr_6(
   myothervariables = NULL,
   mygidsoundquality = NULL,
   number_stacks = NULL,
-  exclude_poor_sound_quality = FALSE
+  exclude_poor_sound_quality = FALSE,
+  output_dir = NULL
 )
 ```
 
@@ -68,6 +69,12 @@ Repeatr_6(
   passed through to
   [`sweepstack()`](https://alexmitrani.github.io/Repeatr/reference/sweepstack.md)/[`stacks()`](https://alexmitrani.github.io/Repeatr/reference/stacks.md) -
   set to TRUE to exclude shows with sound quality rated as 'Poor'.
+
+- output_dir:
+
+  Optional directory to save the rebuilt
+  `data/gid_initial_gid_sound_quality.rda` into. If omitted, defaults to
+  `data/` under the current working directory.
 
 ## Value
 

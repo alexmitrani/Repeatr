@@ -99,7 +99,7 @@ shows_data
 #>  1 aalst-belg… 1990…  1990 1990-09-23 Netw… Aalst ""          Belgium        600
 #>  2 aberdeen-s… 1999…  1999 1999-05-04 Lemo… Aber…  NA         Scotla…        550
 #>  3 adelaide-a… 1993…  1993 1993-11-11 Dom … Adel… "SA"        Austra…        550
-#>  4 adelaide-a… 1996…  1996 1996-11-12 Adel… Adel… "SA"        Austra…        906
+#>  4 adelaide-a… 1996…  1996 1996-11-12 Adel… Adel… "SA"        Austra…        913
 #>  5 adelaide-s… 1991…  1991 1991-10-22 Le R… Adel… "SA"        Austra…        450
 #>  6 akron-oh-u… 1990…  1990 1990-06-28 Jack… Akron "OH"        USA            700
 #>  7 albany-ny-… 1993…  1993 1993-09-20 S.U.… Alba… "NY"        USA           1000

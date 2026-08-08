@@ -21,6 +21,8 @@
 - [polish with a small
   p](https://alexmitrani.github.io/Repeatr/articles/polish-with-a-small-p.md):
 - [Ratings](https://alexmitrani.github.io/Repeatr/articles/Ratings.md):
+- [Rebuilding the
+  Data](https://alexmitrani.github.io/Repeatr/articles/Rebuilding-the-Data.md):
 - [Repeatr](https://alexmitrani.github.io/Repeatr/articles/Repeatr.md):
 - [The
   Argument](https://alexmitrani.github.io/Repeatr/articles/The-Argument.md):
@@ -28,5 +30,3 @@
   Outfit](https://alexmitrani.github.io/Repeatr/articles/The-Emperors-New-Outfit.md):
 - [The Tyranny of
   Distance](https://alexmitrani.github.io/Repeatr/articles/The-Tyranny-of-Distance.md):
-- [Updating the
-  Data](https://alexmitrani.github.io/Repeatr/articles/Updating-the-Data.md):

@@ -9,7 +9,7 @@ the dataset behind the Shiny app's &quot;stock&quot; pages (see inst/shiny/Fugaz
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9212</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9213</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,10 +33,10 @@ the dataset behind the Shiny app's &quot;stock&quot; pages (see inst/shiny/Fugaz
     <li><a class="dropdown-item" href="../articles/Playlist.html">Playlist</a></li>
     <li><a class="dropdown-item" href="../articles/polish-with-a-small-p.html">polish with a small p</a></li>
     <li><a class="dropdown-item" href="../articles/Ratings.html">Ratings</a></li>
+    <li><a class="dropdown-item" href="../articles/Rebuilding-the-Data.html">Rebuilding the Data</a></li>
     <li><a class="dropdown-item" href="../articles/The-Argument.html">The Argument</a></li>
     <li><a class="dropdown-item" href="../articles/The-Emperors-New-Outfit.html">The Emperor's New Outfit</a></li>
     <li><a class="dropdown-item" href="../articles/The-Tyranny-of-Distance.html">The Tyranny of Distance</a></li>
-    <li><a class="dropdown-item" href="../articles/Updating-the-Data.html">Updating the Data</a></li>
   </ul></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
@@ -67,7 +67,8 @@ the dataset behind the Shiny app's "stock" pages (see inst/shiny/Fugazetteer/app
 <span>  myothervariables <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  mygidsoundquality <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  number_stacks <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  exclude_poor_sound_quality <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  exclude_poor_sound_quality <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  output_dir <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -97,6 +98,10 @@ the dataset behind the Shiny app's "stock" pages (see inst/shiny/Fugazetteer/app
 
 <dt id="arg-exclude-poor-sound-quality">exclude_poor_sound_quality<a class="anchor" aria-label="anchor" href="#arg-exclude-poor-sound-quality"></a></dt>
 <dd><p>passed through to <code><a href="sweepstack.html">sweepstack()</a></code>/<code><a href="stacks.html">stacks()</a></code> - set to TRUE to exclude shows with sound quality rated as 'Poor'.</p></dd>
+
+
+<dt id="arg-output-dir">output_dir<a class="anchor" aria-label="anchor" href="#arg-output-dir"></a></dt>
+<dd><p>Optional directory to save the rebuilt <code>data/gid_initial_gid_sound_quality.rda</code> into. If omitted, defaults to <code>data/</code> under the current working directory.</p></dd>
 
 </dl></div>
     <div class="section level2">
