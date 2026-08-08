@@ -4,22 +4,22 @@ pkgdown_sha: ~
 articles:
   92songs: 92songs.html
   AllAccess: AllAccess.html
-  au clair de la lune: au clair de la lune.html
+  au-clair-de-la-lune: au-clair-de-la-lune.html
   CombinationLock: CombinationLock.html
-  Data Provenance: Data Provenance.html
+  Data-Provenance: Data-Provenance.html
   Fugazetteer: Fugazetteer.html
-  in your memory: in your memory.html
+  in-your-memory: in-your-memory.html
   LinkTracks: LinkTracks.html
   Outsiders: Outsiders.html
   Playlist: Playlist.html
-  polish with a small p: polish with a small p.html
+  polish-with-a-small-p: polish-with-a-small-p.html
   Ratings: Ratings.html
   Repeatr: Repeatr.html
-  The Argument: The Argument.html
-  The Emperor's New Outfit: The Emperor's New Outfit.html
-  The Tyranny of Distance: The Tyranny of Distance.html
-  Updating the Data: Updating the Data.html
-last_built: 2026-08-08T00:03Z
+  The-Argument: The-Argument.html
+  The-Emperor's-New-Outfit: The-Emperor's-New-Outfit.html
+  The-Tyranny-of-Distance: The-Tyranny-of-Distance.html
+  Updating-the-Data: Updating-the-Data.html
+last_built: 2026-08-08T00:14Z
 urls:
   reference: https://alexmitrani.github.io/Repeatr/reference
   article: https://alexmitrani.github.io/Repeatr/articles
