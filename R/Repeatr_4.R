@@ -12,6 +12,7 @@
 #'
 #'
 #' @param mydf optional dataframe to be used.  If omitted, the default dataframe will be used.  Example of use: ml_Repeatr4 <- Repeatr_4()
+#' @param output_dir Optional directory to save the rebuilt `data/results_ml_Repeatr4.rda`/`data/vcovmat_ml_Repeatr4.rda` into. If omitted, defaults to `data/` under the current working directory.
 #'
 #' @return A data frame (`results_ml_Repeatr4`) of the mlogit coefficient table: one row per model covariate, with columns for the estimate, standard error, z-value and p-value. Also saved to `data/results_ml_Repeatr4.rda`, alongside the corresponding `vcovmat_ml_Repeatr4.rda` (needed by \code{\link{diffr}}/\code{\link{rankr}}) - both are always written together by this function so they can never go out of sync with each other.
 #' @export
@@ -19,12 +20,11 @@
 #' @examples
 #' results_ml_Repeatr4 <- Repeatr_4()
 
-Repeatr_4 <- function(mydf = NULL) {
+Repeatr_4 <- function(mydf = NULL, output_dir = NULL) {
 
   mydir <- getwd()
   on.exit(setwd(mydir), add = TRUE)
-  myinputdir <- paste0(mydir, "/inst/extdata/")
-  mydatadir <- paste0(mydir, "/data")
+  mydatadir <- if (is.null(output_dir)) paste0(mydir, "/data") else output_dir
 
   # Choice modelling --------------------------------
 

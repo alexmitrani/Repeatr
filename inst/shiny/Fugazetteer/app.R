@@ -140,7 +140,7 @@ quizdata <- quizdata %>%
 discography <- Repeatr::summary %>%
   select(song, release)
 
-song_duration_seconds <- Repeatr::songvarslookup %>%
+song_duration_seconds <- fugazi.db::songvarslookup %>%
   select(song, duration_seconds)
 
 releases_data_input <- Repeatr::releases_data_input %>%

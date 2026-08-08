@@ -10,7 +10,8 @@ Repeatr_6(
   myothervariables = NULL,
   mygidsoundquality = NULL,
   number_stacks = NULL,
-  exclude_poor_sound_quality = FALSE
+  exclude_poor_sound_quality = FALSE,
+  output_dir = NULL
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ Repeatr_6(
 \item{number_stacks}{passed through to \code{sweepstack()} - the number of starting shows to test. If omitted all possible starting shows will be tested.}
 
 \item{exclude_poor_sound_quality}{passed through to \code{sweepstack()}/\code{stacks()} - set to TRUE to exclude shows with sound quality rated as 'Poor'.}
+
+\item{output_dir}{Optional directory to save the rebuilt \code{data/gid_initial_gid_sound_quality.rda} into. If omitted, defaults to \verb{data/} under the current working directory.}
 }
 \value{
 Invisibly, \code{gid_initial_gid_sound_quality} (\code{gid_initial}, \code{gid}, \code{sound_quality}, \code{count} - one row per unique show/stack/sound-quality combination). As a side effect, also saved into \code{data/gid_initial_gid_sound_quality.rda}.

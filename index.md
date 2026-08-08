@@ -12,6 +12,8 @@ devtools::install_github("alexmitrani/Repeatr", build_opts = c("--no-resave-data
 
 The package gives easy access to the functions, dataframes, and related documentation.
 
+Primary/raw data (show listings, venue coordinates, tag/duration data, discography metadata) lives in the companion data package [fugazi.db](https://github.com/alexmitrani/fugazi.db), which Repeatr depends on. Repeatr itself contains all of the processing code and every derived/modelled dataset - see `vignette("Data-Provenance")`.
+
 ## Fugazetteer web app
 
 A web app that presents some of the data from the Repeatr package with interactive controls can be found [here](https://alexmitrani.shinyapps.io/Fugazetteer/).

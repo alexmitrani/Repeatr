@@ -4,10 +4,12 @@
 \alias{Repeatr_3}
 \title{takes a dataframe with gid, song_number, and alt, and modifies it to make it suitable for choice modelling.}
 \usage{
-Repeatr_3(mydf = NULL)
+Repeatr_3(mydf = NULL, output_dir = NULL)
 }
 \arguments{
 \item{mydf}{optional dataframe to be used.  If omitted the default dataframe will be used.}
+
+\item{output_dir}{Optional directory to save the rebuilt \code{data/Repeatr3.rda} into. If omitted, defaults to \verb{data/} under the current working directory.}
 }
 \value{
 A data frame (\code{Repeatr3}) reduced to the variables needed for mlogit choice modelling (\code{case}, \code{song_number}, \code{alt}, \code{choice}, \code{yearsold} buckets and their interactions with vocalist dummies, etc.), with numeric variables compressed to integer storage via \code{compressr()}. Also saved to \code{data/Repeatr3.rda}.

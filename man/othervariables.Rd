@@ -20,7 +20,7 @@ dataframe with one row for each show.
 \item{city}{city - plain city name (e.g. "Portland", "Columbia", "Croydon"); see \code{subdivision}/\code{country} to disambiguate cities that share a name with another Fugazi tour stop. Internally, \code{\link{Repeatr_1}} temporarily suffixes these as "City (ST/Country)" to match the venue-coordinate lookup's join key, then strips the suffix back off once coordinates are resolved - the suffix never persists to this exposed column.}
 \item{subdivision}{Subnational administrative unit (US state, DC, Canadian province, or Australian state/territory), where applicable (\code{NA} outside those three countries) - scraped directly, see \code{\link{Repeatr0}}/\code{\link{scrape_fls_listing_data}}.}
 \item{country}{country}
-\item{tour}{The touring period the show belongs to, scraped directly from the FLS listing pages (see \code{\link{Repeatr0}}/\code{\link{scrape_fls_listing_data}}) - no longer sourced from "fugazi-small.csv".}
+\item{tour}{The touring period the show belongs to, scraped directly from the FLS listing pages (see \code{\link{Repeatr0}}/\code{\link{scrape_fls_listing_data}}).}
 \item{year}{year}
 \item{checked}{checked==1 indicates that the data was checked and updated by Alex Mitrani, in particular making sure that the coordinates indicate as closely as possible the actual locations of the venues.}
 }
@@ -37,7 +37,7 @@ The original data on coordinates, cities and tours data came from The D-I-Y Data
 Rows with checked==1 were updated by Alex Mitrani, in particular making sure that the coordinates indicated the actual locations of the venues for city-level mapping.
 }
 \section{Provenance}{
- Derived-cleaned. Produced by \code{\link{Repeatr_1}} by joining the raw scrape with the hand-curated venue coordinates and the \code{othervariables_patch.csv} correction table. Actively consumed directly by \code{inst/shiny/Fugazetteer/app.R} (e.g. its attendance/tour reactives).
+ Derived-cleaned. Produced by \code{\link{Repeatr_1}} by joining \code{fugazi.db::fls_data} with \code{fugazi.db::fls_venue_geocoding}. Actively consumed directly by \code{inst/shiny/Fugazetteer/app.R} (e.g. its attendance/tour reactives).
 }
 
 \examples{

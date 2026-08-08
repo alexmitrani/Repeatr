@@ -10,7 +10,9 @@ Repeatr_5(
   myaltlookup = NULL,
   mysongvarslookup = NULL,
   myreleasesdatalookup = NULL,
-  myreleases_data_input = NULL
+  myreleases_data_input = NULL,
+  input_dir = NULL,
+  output_dir = NULL
 )
 }
 \arguments{
@@ -25,6 +27,10 @@ Repeatr_5(
 \item{myreleasesdatalookup}{optional \code{releasesdatalookup} dataframe (the \code{releasesdatalookup} element of \code{Repeatr_1()}'s return list). If omitted the currently lazy-loaded default will be used.}
 
 \item{myreleases_data_input}{optional \code{releases_data_input} dataframe (the \code{releases_data_input} element of \code{Repeatr_1()}'s return list). If omitted the currently lazy-loaded default will be used.}
+
+\item{input_dir}{Optional directory to write the \code{fugazi_song_choice_model.csv}/\code{fugazi_song_preferences.csv}/\code{releases_rated.csv}/\code{summary.csv} output-export CSVs into. If omitted, defaults to this package's own \code{inst/extdata} (these are Repeatr's own downloadable outputs, not primary data, so they are not sourced from \code{fugazi.db}).}
+
+\item{output_dir}{Optional directory to save the rebuilt \verb{data/*.rda} objects into. If omitted, defaults to \verb{data/} under the current working directory.}
 }
 \value{
 A list of 5 elements: \code{fugazi_song_choice_model} (per-variable coefficient table with song names substituted in for the intercept terms), \code{fugazi_song_preferences} (songs ranked by estimated preference), \code{summary} (song performance summary combining counts, intensity and rating), \code{releases_rated} (average rating by release), and \code{releases_data_input} (per-song-per-release data enriched with the estimated rating). Each of these, plus \code{releases_summary}, is also saved into \verb{data/}.

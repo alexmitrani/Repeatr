@@ -1,0 +1,61 @@
+---
+title: "Rebuilding the Data"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Rebuilding the Data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  eval = FALSE,
+  fig.width=7,
+  fig.height=5,
+  comment = "#>"
+)
+```
+
+```{r, include = FALSE}
+library(Repeatr)
+```
+
+## Overview
+
+Primary data - show listings, venue coordinates, tag/duration data, and discography metadata - lives in the companion package [`fugazi.db`](https://github.com/alexmitrani/fugazi.db), not in Repeatr itself. See `vignette("Data-Catalogue", package = "fugazi.db")` for what each of its five independent sources is, how it's hand-curated or scraped, and how to refresh it.
+
+This vignette covers what happens *after* those sources are refreshed: turning `fugazi.db`'s raw tables into every dataset in `data/*.rda`, and getting the rebuilt package and Shiny app back out into the world. `data-raw/build_data.R` is the canonical, runnable version of the three-stage process below - this vignette explains the why, that script is what to actually run.
+
+## 1. Refreshing fugazi.db (stages A-B)
+
+Handled entirely in `fugazi.db`'s own workflow - see its `vignette("Data-Catalogue")`. In short: update whichever of its `data-raw/` sources has new material (a fresh `scrape_fls_shows()` run, a synced venue-coordinate sheet, a re-exported tag file, a hand-edited discography CSV), then run `Repeatr::build_fugazidb_data(fugazidb_dir = "../fugazi.db")` to turn those into `fugazi.db`'s `data/*.rda` objects. Commit and push `fugazi.db`, then reinstall it:
+
+```{r}
+devtools::install_github("alexmitrani/fugazi.db")
+```
+
+`Repeatr_1()`'s defaults resolve against the *installed* `fugazi.db`, not a source checkout, so this reinstall is what makes a refreshed source visible to stage C below. For quick local iteration without reinstalling, load `fugazi.db`'s rebuilt objects directly (e.g. via `load()` on its `data/*.rda` files) and pass them into `Repeatr_1()`/`Repeatr_Updatr()` as explicit overrides instead - see `?Repeatr_1` for the full list of override parameters (`myfls_data`, `mysongvarslookup`, `myreleases`, `myfls_venue_geocoding`, `myfls_tags`).
+
+## 2. Rebuilding everything (stage C)
+
+Once `fugazi.db` is refreshed and reinstalled, rebuild Repeatr's own data objects:
+
+```{r}
+Repeatr_Updatr(really = "really", update_stacks = TRUE)
+```
+
+This runs `Repeatr_1() -> Repeatr_2() -> Repeatr_3() -> Repeatr_4() -> Repeatr_5()` and saves every downstream dataset (`othervariables`, `Repeatr0`, `Repeatr1`, `gid_sound_quality`, `played_with`, `shows_data`, `xray`, `fls_tags`, `fls_tags_show`, the choice-model outputs, and more) into `data/`. It's the `really = "not_really"` default that stops this running by accident - always pass `really = "really"` explicitly. It can take a while (the choice model fit in `Repeatr_4()` is the slow part), so it's worth checking `Repeatr_1()` on its own first if you only want to sanity-check a `fugazi.db` refresh.
+
+`update_stacks = TRUE` also regenerates `gid_initial_gid_sound_quality` (the data behind the Shiny app's "stock" pages, via `Repeatr_6()`) - `data-raw/build_data.R`'s rebuild call passes this by default, so a normal rebuild keeps it current; omit it only if you deliberately want to skip the (slower) stacks regeneration.
+
+`Repeatr_1()` (and `Repeatr_Updatr()`, which threads it through) accepts an `output_dir` argument if you want to redirect the rebuilt `data/*.rda` objects somewhere other than the package root's own `data/` - useful for testing a rebuild without touching your working checkout.
+
+## 3. Reinstalling and redeploying
+
+1.  Commit and push the regenerated `data/*.rda` files.
+2.  Reinstall the package from the updated source (`devtools::install()`, or `devtools::install_github("alexmitrani/Repeatr")` once pushed).
+3.  Run the Shiny app locally to check nothing broke: `shiny::runApp("inst/shiny/Fugazetteer")`.
+4.  Redeploy to shinyapps.io (`rsconnect::deployApp("inst/shiny/Fugazetteer")`, or the RStudio "Publish" button from `app.R`).
+
+The app reads the package's lazy-loaded data objects for everything except venue coordinates (fetched live from a Google Sheet - see `vignette("Data-Provenance")`), so as long as stages 1-2 above ran cleanly there's nothing else to change in `app.R` itself.

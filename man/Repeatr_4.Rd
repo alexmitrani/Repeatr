@@ -4,10 +4,12 @@
 \alias{Repeatr_4}
 \title{prepares data for choice modelling with mlogit, and estimates a basic choice model.}
 \usage{
-Repeatr_4(mydf = NULL)
+Repeatr_4(mydf = NULL, output_dir = NULL)
 }
 \arguments{
 \item{mydf}{optional dataframe to be used.  If omitted, the default dataframe will be used.  Example of use: ml_Repeatr4 <- Repeatr_4()}
+
+\item{output_dir}{Optional directory to save the rebuilt \code{data/results_ml_Repeatr4.rda}/\code{data/vcovmat_ml_Repeatr4.rda} into. If omitted, defaults to \verb{data/} under the current working directory.}
 }
 \value{
 A data frame (\code{results_ml_Repeatr4}) of the mlogit coefficient table: one row per model covariate, with columns for the estimate, standard error, z-value and p-value. Also saved to \code{data/results_ml_Repeatr4.rda}, alongside the corresponding \code{vcovmat_ml_Repeatr4.rda} (needed by \code{\link{diffr}}/\code{\link{rankr}}) - both are always written together by this function so they can never go out of sync with each other.

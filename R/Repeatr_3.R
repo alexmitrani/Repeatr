@@ -11,6 +11,7 @@
 #' @import knitr
 #'
 #' @param mydf optional dataframe to be used.  If omitted the default dataframe will be used.
+#' @param output_dir Optional directory to save the rebuilt `data/Repeatr3.rda` into. If omitted, defaults to `data/` under the current working directory.
 #'
 #' @return A data frame (`Repeatr3`) reduced to the variables needed for mlogit choice modelling (`case`, `song_number`, `alt`, `choice`, `yearsold` buckets and their interactions with vocalist dummies, etc.), with numeric variables compressed to integer storage via `compressr()`. Also saved to `data/Repeatr3.rda`.
 #' @export
@@ -18,12 +19,11 @@
 #' @examples
 #' Repeatr3 <- Repeatr_3(mydf = Repeatr2)
 #'
-Repeatr_3 <- function(mydf = NULL) {
+Repeatr_3 <- function(mydf = NULL, output_dir = NULL) {
 
   mydir <- getwd()
   on.exit(setwd(mydir), add = TRUE)
-  myinputdir <- paste0(mydir, "/inst/extdata/")
-  mydatadir <- paste0(mydir, "/data")
+  mydatadir <- if (is.null(output_dir)) paste0(mydir, "/data") else output_dir
 
   if (is.null(mydf)==FALSE) {
 

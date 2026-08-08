@@ -17,6 +17,8 @@
 #' @param mysongvarslookup optional `songvarslookup` dataframe (the `songvarslookup` element of `Repeatr_1()`'s return list). If omitted the currently lazy-loaded default will be used.
 #' @param myreleasesdatalookup optional `releasesdatalookup` dataframe (the `releasesdatalookup` element of `Repeatr_1()`'s return list). If omitted the currently lazy-loaded default will be used.
 #' @param myreleases_data_input optional `releases_data_input` dataframe (the `releases_data_input` element of `Repeatr_1()`'s return list). If omitted the currently lazy-loaded default will be used.
+#' @param input_dir Optional directory to write the `fugazi_song_choice_model.csv`/`fugazi_song_preferences.csv`/`releases_rated.csv`/`summary.csv` output-export CSVs into. If omitted, defaults to this package's own `inst/extdata` (these are Repeatr's own downloadable outputs, not primary data, so they are not sourced from `fugazi.db`).
+#' @param output_dir Optional directory to save the rebuilt `data/*.rda` objects into. If omitted, defaults to `data/` under the current working directory.
 #'
 #' @return A list of 5 elements: `fugazi_song_choice_model` (per-variable coefficient table with song names substituted in for the intercept terms), `fugazi_song_preferences` (songs ranked by estimated preference), `summary` (song performance summary combining counts, intensity and rating), `releases_rated` (average rating by release), and `releases_data_input` (per-song-per-release data enriched with the estimated rating). Each of these, plus `releases_summary`, is also saved into `data/`.
 #' @export
@@ -25,12 +27,13 @@
 #' Repeatr_5_results <- Repeatr_5(mymodeldf = results_ml_Repeatr4)
 #'
 Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NULL, mysongvarslookup = NULL,
-                       myreleasesdatalookup = NULL, myreleases_data_input = NULL) {
+                       myreleasesdatalookup = NULL, myreleases_data_input = NULL,
+                       input_dir = NULL, output_dir = NULL) {
 
   mydir <- getwd()
   on.exit(setwd(mydir), add = TRUE)
-  myinputdir <- paste0(mydir, "/inst/extdata/")
-  mydatadir <- paste0(mydir, "/data")
+  myinputdir <- if (is.null(input_dir)) paste0(mydir, "/inst/extdata/") else paste0(input_dir, "/")
+  mydatadir <- if (is.null(output_dir)) paste0(mydir, "/data") else output_dir
 
   # Use the lookup tables freshly returned by this session's Repeatr_1()/
   # Repeatr_2() calls if supplied, otherwise fall back to whatever is

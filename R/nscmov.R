@@ -1,15 +1,14 @@
 
 #' nscmov = No satellite could map our veins.
 #'
-#' Process for updating coordinates on Shiny app:
-#' 1) pull updated data from github
-#' 2) run nscmov()
-#' 3) run Repeatr_1
-#' 4) Put updated rda files in the data folder
-#' 5) push updates to github
-#' 6) reinstall Repeatr package from github
-#' 7) run shiny app from app.R
-#' 8) reinstall the Shiny app on shinyapps.io
+#' @description Retired from the rebuild pipeline - venue coordinates are
+#' now maintained directly in `fugazi.db::fls_venue_geocoding` (see
+#' `vignette("Rebuilding-the-Data")`), with no separate to-do-list workflow.
+#' Left here for reference; not called anywhere in \code{\link{Repeatr_1}}/
+#' \code{\link{Repeatr_Updatr}}, and its default argument will resolve to no
+#' file (`fls_venue_geocoding.csv` no longer ships in this package's
+#' `inst/extdata`) unless called with an explicit
+#' `fls_venue_geocoding_update_filename`.
 #'
 #' @param fls_venue_geocoding_update_filename filename of file with which to update coordinates data in othervariables.rda
 #'

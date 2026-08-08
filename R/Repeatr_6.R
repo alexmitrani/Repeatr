@@ -17,6 +17,7 @@
 #' @param mygidsoundquality optional `gid_sound_quality` dataframe (as produced by `Repeatr_1()`), passed through to `sweepstack()`/`stacks()` and used again directly here to attach sound quality to each stacked show. If omitted the currently lazy-loaded default will be used.
 #' @param number_stacks passed through to `sweepstack()` - the number of starting shows to test. If omitted all possible starting shows will be tested.
 #' @param exclude_poor_sound_quality passed through to `sweepstack()`/`stacks()` - set to TRUE to exclude shows with sound quality rated as 'Poor'.
+#' @param output_dir Optional directory to save the rebuilt `data/gid_initial_gid_sound_quality.rda` into. If omitted, defaults to `data/` under the current working directory.
 #'
 #' @return Invisibly, `gid_initial_gid_sound_quality` (`gid_initial`, `gid`, `sound_quality`, `count` - one row per unique show/stack/sound-quality combination). As a side effect, also saved into `data/gid_initial_gid_sound_quality.rda`.
 #' @export
@@ -25,11 +26,11 @@
 #' Repeatr_6(number_stacks = 10, exclude_poor_sound_quality = TRUE)
 #'
 Repeatr_6 <- function(myduration_data_da = NULL, mysummary = NULL, myothervariables = NULL, mygidsoundquality = NULL,
-                       number_stacks = NULL, exclude_poor_sound_quality = FALSE) {
+                       number_stacks = NULL, exclude_poor_sound_quality = FALSE, output_dir = NULL) {
 
   mydir <- getwd()
   on.exit(setwd(mydir), add = TRUE)
-  mydatadir <- paste0(mydir, "/data")
+  mydatadir <- if (is.null(output_dir)) paste0(mydir, "/data") else output_dir
 
   # Use the lookup tables freshly returned by this session's Repeatr_1()/
   # Repeatr_5() calls if supplied, otherwise fall back to whatever is

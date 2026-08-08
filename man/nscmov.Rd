@@ -13,17 +13,14 @@ nscmov(fls_venue_geocoding_update_filename = NULL)
 The updated \code{othervariables} data frame, with coordinates and \code{checked} status refreshed from \code{fls_venue_geocoding_update_filename}. Also saved to \code{data/othervariables.rda}, and writes \code{fls_venue_geocoding_update.csv} - a template listing any venues still unresolved (\code{checked == 0}) - to the working directory.
 }
 \description{
-Process for updating coordinates on Shiny app:
-\enumerate{
-\item pull updated data from github
-\item run nscmov()
-\item run Repeatr_1
-\item Put updated rda files in the data folder
-\item push updates to github
-\item reinstall Repeatr package from github
-\item run shiny app from app.R
-\item reinstall the Shiny app on shinyapps.io
-}
+Retired from the rebuild pipeline - venue coordinates are
+now maintained directly in \code{fugazi.db::fls_venue_geocoding} (see
+\code{vignette("Rebuilding-the-Data")}), with no separate to-do-list workflow.
+Left here for reference; not called anywhere in \code{\link{Repeatr_1}}/
+\code{\link{Repeatr_Updatr}}, and its default argument will resolve to no
+file (\code{fls_venue_geocoding.csv} no longer ships in this package's
+\code{inst/extdata}) unless called with an explicit
+\code{fls_venue_geocoding_update_filename}.
 }
 \examples{
 fls_venue_geocoding_update <- system.file("extdata", "fls_venue_geocoding.csv", package = "Repeatr")

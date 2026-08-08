@@ -7,7 +7,14 @@
 Repeatr_Updatr(
   really = "not_really",
   min_song_count = 2,
-  update_stacks = FALSE
+  update_stacks = FALSE,
+  myfls_data = NULL,
+  mysongvarslookup = NULL,
+  myreleases = NULL,
+  myfls_venue_geocoding = NULL,
+  myfls_tags = NULL,
+  input_dir = NULL,
+  output_dir = NULL
 )
 }
 \arguments{
@@ -16,6 +23,12 @@ Repeatr_Updatr(
 \item{min_song_count}{passed through to \code{\link{Repeatr_2}}: minimum number of performances a song needs to compete as an alternative in the choice model. Default 2. Does not affect \code{songid}/\code{songidlookup}, which cover every classified song regardless of this threshold.}
 
 \item{update_stacks}{if TRUE, the gid_initial_gid_sound_quality data will be refreshed by re-generating a set of stacks considering the full available set of relevant data.}
+
+\item{myfls_data, mysongvarslookup, myreleases, myfls_venue_geocoding, myfls_tags}{optional data frame overrides passed straight through to \code{\link{Repeatr_1}}. If omitted, \code{Repeatr_1} uses the \code{fugazi.db} package's own data - see its documentation for each. Useful for pointing the whole rebuild at a local \code{fugazi.db} checkout (e.g. \code{myfls_data = fugazidb_data$fls_data}, loaded via \code{load()}) without reinstalling it.}
+
+\item{input_dir}{passed through to \code{\link{Repeatr_2}}/\code{\link{Repeatr_5}}: where to write their output-export CSVs. If omitted, defaults to this package's own \code{inst/extdata}.}
+
+\item{output_dir}{passed through to every stage: where to save the rebuilt \verb{data/*.rda} objects. If omitted, defaults to \verb{data/} under the current working directory.}
 }
 \value{
 Invisibly, the list of results from the final \code{Repeatr_5()} call when \code{really = "really"}; \code{NULL} otherwise. The real effect is refreshing all of the package's \verb{data/*.rda} objects in place, ready to be reinstalled.
