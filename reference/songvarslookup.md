@@ -57,7 +57,10 @@ Raw-hand-curated, from
 and joined onto the live, classified song set by `song` title text, not
 by a hardcoded id column - see
 `songid`/[`songidlookup`](https://alexmitrani.github.io/Repeatr/reference/songidlookup.md).
-Exported as-is as fugazi.db's `songs` table by
+Exported (renamed `track_number`→`release_track`,
+`duration_seconds`→`release_duration` converted to a `Period` matching
+[`fls_tags`](https://alexmitrani.github.io/Repeatr/reference/fls_tags.md)'s
+`duration`) as fugazi.db's `discography` table by
 [`export_fugazidb_data`](https://alexmitrani.github.io/Repeatr/reference/export_fugazidb_data.md).
 
 ## Examples
