@@ -88,11 +88,16 @@ export_fugazidb_data <- function(fugazidb_dir, repeatr_data_dir = NULL) {
     select(releaseid, release, releasedate, release_date_source)
   releases <- write_table(releases, "releases")
 
-  # songs - Raw-hand-curated discography metadata, as-is. songidlookup isn't
-  # joined in - its only columns (songid, count) are calculated/summary
-  # values, excluded from fugazi.db by design.
-  songs <- load_obj("songvarslookup")
-  songs <- write_table(songs, "songs")
+  # discography - Raw-hand-curated studio discography metadata. songidlookup
+  # isn't joined in - its only columns (songid, count) are calculated/summary
+  # values, excluded from fugazi.db by design. track_number/duration_seconds
+  # renamed to release_track/release_duration (this is the studio release's
+  # own track/duration, distinct from fls_tags's live-tagged track/duration);
+  # release_duration converted to a Period to match fls_tags$duration's format.
+  discography <- load_obj("songvarslookup") %>%
+    rename(release_track = track_number, release_duration = duration_seconds) %>%
+    mutate(release_duration = seconds_to_period(release_duration))
+  discography <- write_table(discography, "discography")
 
   # played_with - one row per real show+co-billed act.
   played_with <- load_obj("played_with") %>% select(gid, played_with)
@@ -103,7 +108,7 @@ export_fugazidb_data <- function(fugazidb_dir, repeatr_data_dir = NULL) {
     fls_venue_geocoding = fls_venue_geocoding,
     fls_tags = fls_tags,
     releases = releases,
-    songs = songs,
+    discography = discography,
     played_with = played_with
   ))
 

@@ -298,7 +298,7 @@
 #' \item{song}{The name of the song}
 #' \item{count}{The number of times the song was performed according to the data. Used by \code{\link{Repeatr_2}} to apply the `min_song_count` choice-model eligibility filter.}
 #' }
-#' @section Provenance: Derived-classified. Computed live in \code{\link{Repeatr_1}} from `Repeatr1`; the single source of truth for song identity - not hand-edited, and (after the songid fix) assigned to every classified song including one-offs, not just those meeting `min_song_count`. Not exported to fugazi.db - `songid` and `count` are calculated/summary values, kept internal to `Repeatr` by design; fugazi.db's `songs` table is \code{\link{songvarslookup}} alone, joined by `song` title text where needed.
+#' @section Provenance: Derived-classified. Computed live in \code{\link{Repeatr_1}} from `Repeatr1`; the single source of truth for song identity - not hand-edited, and (after the songid fix) assigned to every classified song including one-offs, not just those meeting `min_song_count`. Not exported to fugazi.db - `songid` and `count` are calculated/summary values, kept internal to `Repeatr` by design; fugazi.db's `discography` table is \code{\link{songvarslookup}} alone, joined by `song` title text where needed.
 #' @examples
 #' songidlookup
 "songidlookup"
@@ -348,7 +348,7 @@
 #' \item{vocals_lally}{indicates whether or not Joe Lally sang lead vocals on this track}
 #' \item{duration_seconds}{duration of the studio recording, in seconds}
 #' }
-#' @section Provenance: Raw-hand-curated, from `inst/extdata/releases_songs_durations_wikipedia.csv`. Read by \code{\link{Repeatr_1}} and joined onto the live, classified song set by `song` title text, not by a hardcoded id column - see `songid`/\code{\link{songidlookup}}. Exported as-is as fugazi.db's `songs` table by \code{\link{export_fugazidb_data}}.
+#' @section Provenance: Raw-hand-curated, from `inst/extdata/releases_songs_durations_wikipedia.csv`. Read by \code{\link{Repeatr_1}} and joined onto the live, classified song set by `song` title text, not by a hardcoded id column - see `songid`/\code{\link{songidlookup}}. Exported (renamed `track_number`→`release_track`, `duration_seconds`→`release_duration` converted to a `Period` matching \code{\link{fls_tags}}'s `duration`) as fugazi.db's `discography` table by \code{\link{export_fugazidb_data}}.
 #' @examples
 #' songvarslookup
 "songvarslookup"

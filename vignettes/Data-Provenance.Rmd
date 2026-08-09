@@ -67,7 +67,7 @@ Repeatr_6()
         ▼
 export_fugazidb_data()
 └─ fugazi.db: fls_shows, fls_venue_geocoding, fls_tags, releases,
-   songs, played_with
+   discography, played_with
 ```
 
 `songvarslookup` is joined into `Repeatr1` by song title, not carried forward with its own `songid` column - the hand-maintained CSV behind it (`inst/extdata/releases_songs_durations_wikipedia.csv`) doesn't carry one, precisely so it can't silently drift out of sync with the songid `Repeatr_1()` computes; see `?songidlookup` for that mapping.
@@ -99,6 +99,6 @@ export_fugazidb_data()
 | `results_ml_Repeatr4`, `vcovmat_ml_Repeatr4` | Derived-modeled | `Repeatr_4()`, saved together so they always describe the same fit |
 | `fugazi_song_choice_model`, `fugazi_song_preferences`, `releases_rated`, `releases_summary`, `releases_data_input`, `summary` | Derived-modeled | `Repeatr_5()`; `summary` is also read directly by `app.R` |
 
-For the full column-by-column description of any dataset, see its help page (e.g. `?summary`). For fugazi.db's own tables (`fls_shows`, `fls_venue_geocoding`, `fls_tags`, `releases`, `songs`, `played_with`), see `vignette("Data-Catalogue", package = "fugazi.db")`.
+For the full column-by-column description of any dataset, see its help page (e.g. `?summary`). For fugazi.db's own tables (`fls_shows`, `fls_venue_geocoding`, `fls_tags`, `releases`, `discography`, `played_with`), see `vignette("Data-Catalogue", package = "fugazi.db")`.
 
 Note on `app.R`: it reads `song_tempo_bpm_data` and `shows_data`/`othervariables` directly (via `library(Repeatr)`'s lazy-loaded data), but for venue coordinates specifically it does *not* use the package's own `x`/`y` - at startup it re-fetches coordinates live from a Google Sheet (`gsheet2tbl()`) and overwrites whatever `othervariables`/`shows_data` provided. So the deployed app's map coordinates track that live sheet, not any package release.

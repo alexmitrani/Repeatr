@@ -164,13 +164,127 @@ re-verified the export still produces byte-for-byte the same `.rda` files.
   - completed with no errors, confirming the removal has zero effect on the
     app, exactly as predicted during the investigation.
 
+## Follow-up, same session: `songid`/`count` removed from `songs`, "excluded" docs stripped
+
+After the initial cleanup above was committed, the user asked for two more
+changes to `fugazi.db`'s `songs` table and its documentation:
+
+1. **Remove `songid` from `songs`** - not used anywhere; songs are joined by
+   title text, not by id. Implemented in `export_fugazidb_data()` by
+   selecting only `song, count` from `songidlookup` before the `full_join`
+   with `songvarslookup` (rather than joining everything and dropping
+   `songid` after).
+2. **Remove `count` from `songs` too**, on the user's own follow-up
+   ("calculated/summary variables were always supposed to be excluded from
+   fugazi.db"). Once both of `songidlookup`'s useful columns (`songid`,
+   `count`) were gone, the `full_join` with `songidlookup` contributed
+   nothing at all to the output - `songvarslookup` and `songidlookup` cover
+   the identical 92-song set (verified in the original session), so the join
+   was dropped entirely and `songs` simplified to `load_obj("songvarslookup")`
+   as-is. This is a case where a plan agent's original "defensive `full_join`
+   in case the two sources ever diverge" reasoning became moot once the
+   columns it was defending stopped being exported at all - worth remembering
+   if `songs` is ever revisited: there is currently no join to `songidlookup`
+   in `export_fugazidb_data()` at all, by design, not by oversight.
+3. **Remove "what's not included" documentation from fugazi.db** - the user
+   explicitly said not to document what's absent ("lots of things are not
+   included... concentrate the documentation on what is there, not on what
+   is not"). Removed:
+   - The entire `## What's excluded, and why` section from
+     `vignettes/Data-Catalogue.Rmd` (its 4 bullets: free-text show notes,
+     joined/summarized/modelled data, song classification detail, song tempo
+     data) - kept only the closing "how data gets refreshed" pointer
+     sentence, since that's useful navigation, not exclusion-framing.
+   - "Free-text show notes are deliberately excluded..." from `fls_shows`'s
+     roxygen description in `R/data.R` (and its auto-regenerated `.Rd`).
+   - The same sentence (in two places) from `README.md`: the "fact table...
+     excludes any free-text show notes" clause, and "Free-text show notes
+     are deliberately excluded from this package" in the copyright section.
+   - **Scoped to fugazi.db only** - Repeatr's own `R/data.R` provenance lines
+     still say things like "minus `fls_notes`" when describing what
+     `export_fugazidb_data()` selects out of `othervariables`; that's
+     accurate technical documentation of the export function's own behavior
+     (Repeatr's internal docs, not fugazi.db's user-facing catalogue), so it
+     was left alone.
+   - Also fixed one wording leftover caught while re-reading the vignette:
+     the `### song` section heading said "song identity and discography
+     metadata," which no longer made sense with no `songid` concept left -
+     retitled to just "discography metadata."
+
+All of Repeatr's `R/data.R` provenance text for `songidlookup`/
+`songvarslookup` was updated to match (`songidlookup`: "Not exported to
+fugazi.db - `songid` and `count` are calculated/summary values, kept
+internal to `Repeatr` by design"; `songvarslookup`: "Exported as-is as
+fugazi.db's `songs` table"). Re-ran `export_fugazidb_data()` and
+`devtools::document()` on both packages after each change; re-verified
+`fls_tags`↔`songs` unmatched count stayed at exactly 6,253 (unchanged by
+this follow-up, as expected) and `devtools::check()` stayed at 0
+errors/no-new-warnings on both packages throughout.
+
+## Second follow-up, same session: `songs` renamed to `discography`, columns renamed and reformatted
+
+After the round above was committed (fugazi.db `DESCRIPTION` bumped to
+`0.1.4` by the user in that commit), the user asked for a further rename:
+
+1. **`track_number` → `release_track`, `duration_seconds` → `release_duration`**
+   in the `songs` table - both renamed to make clear these are the *studio
+   release's own* track number/duration, distinct from `fls_tags`'s `track`
+   (a specific live/tagged recording's track number).
+2. **`release_duration` reformatted as a lubridate `Period`**, matching
+   `fls_tags$duration`'s format exactly. Investigated how `fls_tags$duration`
+   itself is built (`fls_tags_importer()` parses `"MM:SS"` text via
+   `lubridate::ms()`) and how the closest existing precedent in the same
+   codebase converts a raw-seconds column to a `Period`
+   (`fls_tags_show$duration <- seconds_to_period(seconds)` in
+   `R/Repeatr_1.R`) - reused that same `seconds_to_period()` pattern rather
+   than inventing a new conversion, since `songvarslookup$duration_seconds`
+   is already a plain numeric-seconds column (not `"MM:SS"` text), so
+   `seconds_to_period()` is the correct/only applicable converter here.
+   Verified after conversion: both columns are class `Period` with the same
+   print style (e.g. `discography$release_duration` prints `"6M 41S"`,
+   `fls_tags$duration` prints `"1M 22S"`).
+3. **Table renamed `songs` → `discography`** - "this table is about the
+   studio discography" (the user's words) - distinguishing it from
+   `fls_tags`, which is about live/tagged recordings. Implemented in
+   `export_fugazidb_data()` as a `dplyr::rename()` + `mutate()` chain on
+   `songvarslookup`, written under the new object name; the stale
+   `fugazi.db/data/songs.rda` and `man/songs.Rd` were deleted manually first
+   (`write_table()` only writes the filenames it's given - it doesn't clean
+   up old filenames a table used to have).
+
+Updated all cross-references to the renamed table/columns across both
+packages: Repeatr's `R/data.R` (`songidlookup`/`songvarslookup` provenance
+lines), `vignettes/Data-Provenance.Rmd` (tree diagram + table-list
+sentence), `vignettes/Rebuilding-the-Data.Rmd` (six-table list);
+fugazi.db's `R/data.R` (full doc-block rewrite, plus the `fls_tags$song` and
+`releases$releaseid` cross-references that pointed at `\link{songs}`),
+`README.md`, `vignettes/Data-Catalogue.Rmd` (table row, the `### song`
+section - including renaming its now-unused example variable references -
+and the `### releaseid` section). Re-ran `export_fugazidb_data()` and
+`devtools::document()` on both packages; re-verified `fls_tags`↔`discography`
+unmatched count unchanged at 6,253 and `discography`↔`releases` at 0
+unmatched; `devtools::check()` stayed at 0 errors on both packages, same
+pre-existing warnings/notes on Repeatr, none new.
+
 ## State at end of session
 
-Neither repo committed - left for the user to review and commit separately,
-per standing instructions to only commit when explicitly asked. `git status`
-in both repos matches the plan's file list exactly (see the assistant's
-final summary message in the conversation transcript for the itemized
-diff).
+Repeatr and fugazi.db were committed by the user after the first two rounds
+(not by the assistant, per standing instructions to only commit when
+explicitly asked):
+- Initial cleanup - Repeatr: commit `fc7643c3` ("fugazi.db
+  package-re-structuring"); fugazi.db: commit `89172d4` ("package-re-
+  structuring").
+- `songid`/`count`/exclusion-docs follow-up - Repeatr: commit `64b8c4e6`
+  ("tidying fugazi.db - songid and count removed from songs table");
+  fugazi.db: commit `12c0f4b` ("songid and count removed from songs.
+  documentation simplified."), which also carried a `DESCRIPTION` version
+  bump to `0.1.4` (the user's own edit, following the `0.1.3` convention set
+  in the initial round).
+- The `songs`→`discography` rename (this section) is **implemented and
+  verified but not yet committed** in either repo as of this notes update -
+  left for the user to review and commit, per the same standing convention.
+
+Nothing left pending beyond that pending commit.
 
 ## Suggested next steps (optional, not blocking)
 
@@ -182,8 +296,7 @@ diff).
    duplication, the screenshot filename with a space) remains untouched -
    out of scope for this session, flagged here in case a future cleanup pass
    is wanted.
-3. Once the user has reviewed and committed both repos, consider whether the
-   deployed Shiny app (shinyapps.io) needs redeploying - this session
-   confirmed `app.R` sources cleanly against the updated Repeatr data, but
-   the currently-deployed app is presumably still running against the
-   previous data build.
+3. Consider whether the deployed Shiny app (shinyapps.io) needs redeploying -
+   this session confirmed `app.R` sources cleanly against the updated
+   Repeatr data, but the currently-deployed app is presumably still running
+   against the previous data build.
