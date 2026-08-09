@@ -2,7 +2,7 @@
 % Please edit documentation in R/export_fugazidb_data.R
 \name{export_fugazidb_data}
 \alias{export_fugazidb_data}
-\title{Exports fugazi.db's data-raw/\emph{.csv and data/}.rda objects from Repeatr's own cleaned data}
+\title{Exports fugazi.db's data/*.rda objects from Repeatr's own cleaned data}
 \usage{
 export_fugazidb_data(fugazidb_dir, repeatr_data_dir = NULL)
 }
@@ -16,18 +16,17 @@ current working directory (the package root, after a
 \code{\link{Repeatr_Updatr}} run).}
 }
 \value{
-Invisibly, a named list of the nine objects written. As a side
-effect, writes \verb{fugazidb_dir/data-raw/*.csv} and \verb{fugazidb_dir/data/*.rda}.
+Invisibly, a named list of the six objects written. As a side
+effect, writes \verb{fugazidb_dir/data/*.rda}.
 }
 \description{
-Composes fugazi.db's nine published tables from Repeatr's own
+Composes fugazi.db's six published tables from Repeatr's own
 already-saved \verb{data/*.rda} objects (the "Derived-cleaned" tier produced by
 \code{\link{Repeatr_1}}) and from \code{inst/extdata/fls_venue_geocoding_v2.csv}
-directly - no re-derivation, no new business logic. Writes each table as
-both a \verb{data-raw/*.csv} (plain, human-readable) and a \verb{data/*.rda}
-(lazy-loadable) file directly into a local \code{fugazi.db} checkout. Does not
-commit or push anything in that checkout - review and commit fugazi.db's
-changes separately.
+directly - no re-derivation, no new business logic. Writes each table as a
+\verb{data/*.rda} (lazy-loadable) file directly into a local \code{fugazi.db}
+checkout. Does not commit or push anything in that checkout - review and
+commit fugazi.db's changes separately.
 
 Excludes anything joined/summarized/modeled (e.g. \code{xray},
 \code{duration_summary}, \code{Repeatr1}, and everything from \code{\link{Repeatr_2}}

@@ -22,7 +22,7 @@ fls_tags_show
 Tags data, one record per show
 }
 \section{Provenance}{
- Derived-cleaned. Produced by \code{\link{Repeatr_1}} from \code{fls_tags}, grouped by \verb{(gid, album)} so that two distinct tag batches sharing a \code{gid} (e.g. an earlier recording later superseded by an official release) produce two rows rather than silently summing their durations together - \code{album} itself is dropped before saving, since nothing reads it. Deliberately does not carry its own venue/city/subdivision/country/date - those are independently re-parsed from the album tag text by counting commas, which silently misparses whenever a venue or city name itself contains a comma (e.g. Ypsilanti, Flint, Eau Claire, Osaka). \code{\link{shows_data}} (joined via \code{gid}) is the sole authoritative source for those fields. Not exported as its own fugazi.db table - its \code{seconds} is folded into fugazi.db's \code{fls_shows} table by \code{\link{export_fugazidb_data}}.
+ Derived-cleaned. Produced by \code{\link{Repeatr_1}} from \code{fls_tags}, grouped by \verb{(gid, album)} so that two distinct tag batches sharing a \code{gid} (e.g. an earlier recording later superseded by an official release) produce two rows rather than silently summing their durations together - \code{album} itself is dropped before saving, since nothing reads it. Deliberately does not carry its own venue/city/subdivision/country/date - those are independently re-parsed from the album tag text by counting commas, which silently misparses whenever a venue or city name itself contains a comma (e.g. Ypsilanti, Flint, Eau Claire, Osaka). \code{\link{shows_data}} (joined via \code{gid}) is the sole authoritative source for those fields. Not exported to fugazi.db.
 }
 
 \examples{

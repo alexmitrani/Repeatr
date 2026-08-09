@@ -1539,8 +1539,6 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     played_with_data <- played_with_data %>%
       select(gid, fls_link, year, tour, date, venue, city, country, played_with, attendance, sound_quality, latitude, longitude)
 
-    save(played_with_data, file = "played_with_data.rda")
-
     played_with_summary <- played_with_data %>%
       group_by(year, tour, played_with) %>%
       summarize(shows = n()) %>%

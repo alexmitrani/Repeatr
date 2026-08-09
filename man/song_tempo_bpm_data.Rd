@@ -18,7 +18,7 @@ song_tempo_bpm_data
 Song tempo (BPM) data
 }
 \section{Provenance}{
- Raw-hand-curated, from \code{inst/extdata/song_tempo_bpm_data.csv}. Read as-is by \code{\link{Repeatr_1}}, no transformation. Exported as-is as fugazi.db's \code{song_tempo_bpm_data} table by \code{\link{export_fugazidb_data}}.
+ Raw-hand-curated, from \code{inst/extdata/song_tempo_bpm_data.csv}. Read as-is by \code{\link{Repeatr_1}}, no transformation. Not exported to fugazi.db - kept in \code{Repeatr} only, for its own Shiny app.
 }
 
 \examples{
