@@ -57,7 +57,9 @@ Raw-hand-curated, from
 and joined onto the live, classified song set by `song` title text, not
 by a hardcoded id column - see
 `songid`/[`songidlookup`](https://alexmitrani.github.io/Repeatr/reference/songidlookup.md).
-Exported as-is as fugazi.db's `songvarslookup` table by
+Combined with
+[`songidlookup`](https://alexmitrani.github.io/Repeatr/reference/songidlookup.md)
+(joined by `song` title text) into fugazi.db's `songs` table by
 [`export_fugazidb_data`](https://alexmitrani.github.io/Repeatr/reference/export_fugazidb_data.md).
 
 ## Examples

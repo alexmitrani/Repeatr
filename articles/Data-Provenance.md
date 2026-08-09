@@ -96,8 +96,7 @@ dataset without ever touching the lazy-loaded original (see the
             ▼
     export_fugazidb_data()
     └─ fugazi.db: fls_shows, fls_venue_geocoding, fls_tags, releases,
-       songvarslookup, song_tempo_bpm_data, songidlookup, played_with,
-       played_with_data
+       songs, played_with
 
 `songvarslookup` is joined into `Repeatr1` by song title, not carried
 forward with its own `songid` column - the hand-maintained CSV behind it
@@ -118,7 +117,7 @@ for that mapping.
 | `othervariables` | Derived-cleaned | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md), joining `inst/extdata/fls_data.csv` with `inst/extdata/fls_venue_geocoding_v2.csv`; also read directly by `app.R` |
 | `gid_sound_quality` | Derived-cleaned | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md) |
 | `gid_initial_gid_sound_quality` | Derived-modeled | [`Repeatr_6()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_6.md), via [`sweepstack()`](https://alexmitrani.github.io/Repeatr/reference/sweepstack.md)/[`stacks()`](https://alexmitrani.github.io/Repeatr/reference/stacks.md), whenever [`Repeatr_Updatr()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_Updatr.md) is run with `update_stacks = TRUE`; read directly by `app.R`’s “stock” pages |
-| `played_with`, `played_with_data`, `played_with_summary` | Derived-cleaned | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md) |
+| `played_with`, `played_with_summary` | Derived-cleaned | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md) |
 | `shows_data` | Derived-cleaned | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md); also read directly by `app.R` |
 | `fls_tags`, `fls_tags_show` | Derived-cleaned | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md), from `inst/extdata/fls_tags.txt` (via ) |
 | `duration_data_da`, `duration_summary`, `cumulative_duration_counts`, `cumulative_song_counts` | Derived-cleaned | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md) |
@@ -139,8 +138,7 @@ For the full column-by-column description of any dataset, see its help
 page
 (e.g. [`?summary`](https://alexmitrani.github.io/Repeatr/reference/summary.md)).
 For fugazi.db’s own tables (`fls_shows`, `fls_venue_geocoding`,
-`fls_tags`, `releases`, `songvarslookup`, `song_tempo_bpm_data`,
-`songidlookup`, `played_with`, `played_with_data`), see
+`fls_tags`, `releases`, `songs`, `played_with`), see
 `vignette("Data-Catalogue", package = "fugazi.db")`.
 
 Note on `app.R`: it reads `song_tempo_bpm_data` and

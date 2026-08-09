@@ -186,8 +186,7 @@ Repeatr_6()
         ▼
 export_fugazidb_data()
 └─ fugazi.db: fls_shows, fls_venue_geocoding, fls_tags, releases,
-   songvarslookup, song_tempo_bpm_data, songidlookup, played_with,
-   played_with_data</code></pre>
+   songs, played_with</code></pre>
 <p><code>songvarslookup</code> is joined into <code>Repeatr1</code> by
 song title, not carried forward with its own <code>songid</code> column
 - the hand-maintained CSV behind it
@@ -250,8 +249,7 @@ by <code>app.R</code>
 </tr>
 <tr class="odd">
 <td>
-<code>played_with</code>, <code>played_with_data</code>,
-<code>played_with_summary</code>
+<code>played_with</code>, <code>played_with_summary</code>
 </td>
 <td>Derived-cleaned</td>
 <td><code><a href="../reference/Repeatr_1.html">Repeatr_1()</a></code></td>
@@ -390,10 +388,8 @@ by <code>app.R</code>
 <p>For the full column-by-column description of any dataset, see its
 help page (e.g. <code><a href="../reference/summary.html">?summary</a></code>). For fugazi.db’s own tables
 (<code>fls_shows</code>, <code>fls_venue_geocoding</code>,
-<code>fls_tags</code>, <code>releases</code>,
-<code>songvarslookup</code>, <code>song_tempo_bpm_data</code>,
-<code>songidlookup</code>, <code>played_with</code>,
-<code>played_with_data</code>), see
+<code>fls_tags</code>, <code>releases</code>, <code>songs</code>,
+<code>played_with</code>), see
 <code>vignette("Data-Catalogue", package = "fugazi.db")</code>.</p>
 <p>Note on <code>app.R</code>: it reads <code>song_tempo_bpm_data</code>
 and <code>shows_data</code>/<code>othervariables</code> directly (via

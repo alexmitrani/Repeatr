@@ -37,10 +37,13 @@ Derived-classified. Computed live in
 from `Repeatr1`; the single source of truth for song identity - not
 hand-edited, and (after the songid fix) assigned to every classified
 song including one-offs, not just those meeting `min_song_count`.
-Exported as-is as fugazi.db's `songidlookup` table by
+Combined with
+[`songvarslookup`](https://alexmitrani.github.io/Repeatr/reference/songvarslookup.md)
+(joined by `song` title text) into fugazi.db's `songs` table by
 [`export_fugazidb_data`](https://alexmitrani.github.io/Repeatr/reference/export_fugazidb_data.md) -
-pure join-key infrastructure (`songid`/`song`/`count`), with no
-`tracktype`/classification detail included.
+contributes the pure join-key/performance-count columns
+(`songid`/`song`/`count`), with no `tracktype`/classification detail
+included.
 
 ## Examples
 

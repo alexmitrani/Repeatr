@@ -93,15 +93,14 @@ export_fugazidb_data(fugazidb_dir = "../fugazi.db")
 
 This reads Repeatr’s own already-saved `data/*.rda` objects (no
 re-derivation) plus `inst/extdata/fls_venue_geocoding_v2.csv` directly,
-and writes `fugazidb_dir/data-raw/*.csv` and `fugazidb_dir/data/*.rda` -
-nine tables in all (`fls_shows`, `fls_venue_geocoding`, `fls_tags`,
-`releases`, `songvarslookup`, `song_tempo_bpm_data`, `songidlookup`,
-`played_with`, `played_with_data`). `fugazidb_dir` has no default -
-point it at a local `fugazi.db` checkout. This is a one-way generation
-step: it writes files, but does not commit or push anything in that
-checkout - review and commit fugazi.db’s own changes separately, on its
-own schedule. Nothing in Repeatr’s own pipeline depends on fugazi.db
-being refreshed or reinstalled.
+and writes `fugazidb_dir/data/*.rda` - six tables in all (`fls_shows`,
+`fls_venue_geocoding`, `fls_tags`, `releases`, `songs`, `played_with`).
+`fugazidb_dir` has no default - point it at a local `fugazi.db`
+checkout. This is a one-way generation step: it writes files, but does
+not commit or push anything in that checkout - review and commit
+fugazi.db’s own changes separately, on its own schedule. Nothing in
+Repeatr’s own pipeline depends on fugazi.db being refreshed or
+reinstalled.
 
 ## 4. Reinstalling and redeploying
 

@@ -1,15 +1,14 @@
-# Exports fugazi.db's data-raw/*.csv and data/*.rda objects from Repeatr's own cleaned data
+# Exports fugazi.db's data/\*.rda objects from Repeatr's own cleaned data
 
-Composes fugazi.db's nine published tables from Repeatr's own
+Composes fugazi.db's six published tables from Repeatr's own
 already-saved `data/*.rda` objects (the "Derived-cleaned" tier produced
 by
 [`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md))
 and from `inst/extdata/fls_venue_geocoding_v2.csv` directly - no
-re-derivation, no new business logic. Writes each table as both a
-`data-raw/*.csv` (plain, human-readable) and a `data/*.rda`
-(lazy-loadable) file directly into a local `fugazi.db` checkout. Does
-not commit or push anything in that checkout - review and commit
-fugazi.db's changes separately.
+re-derivation, no new business logic. Writes each table as a
+`data/*.rda` (lazy-loadable) file directly into a local `fugazi.db`
+checkout. Does not commit or push anything in that checkout - review and
+commit fugazi.db's changes separately.
 
 Excludes anything joined/summarized/modeled (e.g. `xray`,
 `duration_summary`, `Repeatr1`, and everything from
@@ -42,8 +41,8 @@ export_fugazidb_data(fugazidb_dir, repeatr_data_dir = NULL)
 
 ## Value
 
-Invisibly, a named list of the nine objects written. As a side effect,
-writes `fugazidb_dir/data-raw/*.csv` and `fugazidb_dir/data/*.rda`.
+Invisibly, a named list of the six objects written. As a side effect,
+writes `fugazidb_dir/data/*.rda`.
 
 ## Examples
 

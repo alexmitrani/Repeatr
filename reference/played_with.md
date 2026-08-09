@@ -35,7 +35,8 @@ https://arquivomotor.wordpress.com/1994/08/12/bhrif-programacao/
 
 Derived-cleaned. Produced by
 [`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md).
-Exported as-is as fugazi.db's `played_with` table by
+Exported (trimmed to `gid`/`played_with`) as fugazi.db's `played_with`
+table by
 [`export_fugazidb_data`](https://alexmitrani.github.io/Repeatr/reference/export_fugazidb_data.md).
 
 ## Examples

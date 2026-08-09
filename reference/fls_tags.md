@@ -63,7 +63,9 @@ city name itself contains a comma (e.g. Ypsilanti, Flint, Eau Claire,
 Osaka), and
 [`shows_data`](https://alexmitrani.github.io/Repeatr/reference/shows_data.md)
 (joined via `gid`) is the sole authoritative source for them. Exported
-(same columns) as fugazi.db's `fls_tags` table by
+(minus `date` - join fugazi.db's `fls_shows` on `gid` instead - and
+`seconds`, which duplicated `duration`; `track` converted from character
+to integer) as fugazi.db's `fls_tags` table by
 [`export_fugazidb_data`](https://alexmitrani.github.io/Repeatr/reference/export_fugazidb_data.md).
 
 ## Examples
