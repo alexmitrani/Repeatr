@@ -88,11 +88,10 @@ export_fugazidb_data <- function(fugazidb_dir, repeatr_data_dir = NULL) {
     select(releaseid, release, releasedate, release_date_source)
   releases <- write_table(releases, "releases")
 
-  # songs - songidlookup (stable numeric songid + performance count) combined
-  # with songvarslookup (discography metadata), joined by song title text.
-  songidlookup <- load_obj("songidlookup")
-  songvarslookup <- load_obj("songvarslookup")
-  songs <- songidlookup %>% full_join(songvarslookup, by = "song")
+  # songs - Raw-hand-curated discography metadata, as-is. songidlookup isn't
+  # joined in - its only columns (songid, count) are calculated/summary
+  # values, excluded from fugazi.db by design.
+  songs <- load_obj("songvarslookup")
   songs <- write_table(songs, "songs")
 
   # played_with - one row per real show+co-billed act.
