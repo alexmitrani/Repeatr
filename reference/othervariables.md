@@ -29,9 +29,16 @@ dataframe with one row for each show.
 
   Venue
 
-- doorprice:
+- price:
 
-  Door price
+  Numeric ticket price, split from the raw scraped door-price text via
+  `inst/extdata/fls_doorprice_currency_lookup.csv` (`NA` where the raw
+  text is blank, ~33% of shows); `0` for shows marked "Free".
+
+- currency:
+
+  ISO 4217 currency code for `price` (`NA` alongside a missing `price`);
+  "Free" shows are `USD` except one 1995 Italy show (`ITL`).
 
 - attendance:
 
@@ -70,10 +77,16 @@ dataframe with one row for each show.
 
 - subdivision:
 
-  Subnational administrative unit (US state, DC, Canadian province, or
-  Australian state/territory), where applicable (`NA` outside those
-  three countries) - scraped directly, see
-  [`Repeatr0`](https://alexmitrani.github.io/Repeatr/reference/Repeatr0.md)/[`scrape_fls_listing_data`](https://alexmitrani.github.io/Repeatr/reference/scrape_fls_listing_data.md).
+  Subnational administrative unit (US state, DC, Canadian province,
+  Australian state/territory, or Brazilian state), where applicable
+  (`NA` elsewhere) - scraped directly for the US/Canada/Australia (see
+  [`Repeatr0`](https://alexmitrani.github.io/Repeatr/reference/Repeatr0.md)/[`scrape_fls_listing_data`](https://alexmitrani.github.io/Repeatr/reference/scrape_fls_listing_data.md));
+  Brazilian state codes are filled in by
+  [`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)
+  from a hand-verified city lookup, since the FLS site's own scrape
+  never populates a subdivision outside the US/Canada/Australia. Any
+  remaining blank (a pre-existing mix of `NA` and `""`) is standardized
+  to `NA`.
 
 - country:
 
@@ -106,32 +119,30 @@ Derived-cleaned. Produced by
 by joining `inst/extdata/fls_data.csv` with
 `inst/extdata/fls_venue_geocoding_v2.csv`. Actively consumed directly by
 `inst/shiny/Fugazetteer/app.R` (e.g. its attendance/tour reactives).
-Exported (minus `fls_notes`, `year`, `checked`, `x`, `y` - venue
+Exported as-is (minus `fls_notes`, `year`, `checked`, `x`, `y` - venue
 coordinates live in fugazi.db's `locations` table instead; plus
-`sound_quality`; `doorprice` split into a numeric `price` and an ISO
-4217 `currency` via `inst/extdata/fls_doorprice_currency_lookup.csv`) as
-fugazi.db's `shows` table by
+`sound_quality` joined in) as fugazi.db's `shows` table by
 [`export_fugazidb_data`](https://alexmitrani.github.io/Repeatr/reference/export_fugazidb_data.md).
 
 ## Examples
 
 ``` r
 othervariables
-#> # A tibble: 1,049 × 18
-#>    gid       flsid date       venue doorprice attendance recorded_by mastered_by
-#>    <chr>     <chr> <date>     <chr> <chr>          <dbl> <chr>       <chr>      
-#>  1 aalst-be… FLS0… 1990-09-23 Netw… NA              600  Joey Picuri Warren Rus…
-#>  2 aberdeen… FLS0… 1999-05-04 Lemo… 6(pounds)       550  Joey Picuri Jerry Bush…
-#>  3 adelaide… FLS0… 1993-11-11 Dom … 15              550  Joey Picuri Warren Rus…
-#>  4 adelaide… FLS0… 1996-11-12 Adel… NA              913. Nick Pelli… Jerry Bush…
-#>  5 adelaide… FLS0… 1991-10-22 Le R… NA              450  Joey Picuri Warren Rus…
-#>  6 akron-oh… FLS0… 1990-06-28 Jack… 5               700  Joey Picuri Warren Rus…
-#>  7 albany-n… FLS0… 1993-09-20 S.U.… 5              1000  Joey Picuri Warren Rus…
-#>  8 albuquer… FLS0… 1995-11-13 Five… 5               895  Joey Picuri Warren Rus…
-#>  9 albuquer… FLS0… 2001-04-08 Suns… 6              1100  Nick Pelli… Warren Rus…
-#> 10 albuquer… FLS0… 1991-09-11 Suns… 5               800  Joey Picuri Warren Rus…
+#> # A tibble: 1,049 × 19
+#>    gid                 flsid date       venue attendance recorded_by mastered_by
+#>    <chr>               <chr> <date>     <chr>      <dbl> <chr>       <chr>      
+#>  1 aalst-belgium-92390 FLS0… 1990-09-23 Netw…       600  Joey Picuri Warren Rus…
+#>  2 aberdeen-scotland-… FLS0… 1999-05-04 Lemo…       550  Joey Picuri Jerry Bush…
+#>  3 adelaide-australia… FLS0… 1993-11-11 Dom …       550  Joey Picuri Warren Rus…
+#>  4 adelaide-australia… FLS0… 1996-11-12 Adel…       913. Nick Pelli… Jerry Bush…
+#>  5 adelaide-sa-austra… FLS0… 1991-10-22 Le R…       450  Joey Picuri Warren Rus…
+#>  6 akron-oh-usa-62890  FLS0… 1990-06-28 Jack…       700  Joey Picuri Warren Rus…
+#>  7 albany-ny-usa-92093 FLS0… 1993-09-20 S.U.…      1000  Joey Picuri Warren Rus…
+#>  8 albuquerque-nm-usa… FLS0… 1995-11-13 Five…       895  Joey Picuri Warren Rus…
+#>  9 albuquerque-nm-usa… FLS0… 2001-04-08 Suns…      1100  Nick Pelli… Warren Rus…
+#> 10 albuquerque-nm-usa… FLS0… 1991-09-11 Suns…       800  Joey Picuri Warren Rus…
 #> # ℹ 1,039 more rows
-#> # ℹ 10 more variables: original_source <chr>, fls_notes <chr>, tour <chr>,
+#> # ℹ 12 more variables: original_source <chr>, fls_notes <chr>, tour <chr>,
 #> #   city <chr>, subdivision <chr>, country <chr>, year <dbl>, checked <dbl>,
-#> #   x <dbl>, y <dbl>
+#> #   x <dbl>, y <dbl>, price <dbl>, currency <chr>
 ```

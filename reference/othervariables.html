@@ -11,7 +11,7 @@ Rows with checked==1 were updated by Alex Mitrani, in particular making sure tha
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9219</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9220</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,8 +78,11 @@ Rows with checked==1 were updated by Alex Mitrani, in particular making sure tha
 <dt>venue</dt>
 <dd><p>Venue</p></dd>
 
-<dt>doorprice</dt>
-<dd><p>Door price</p></dd>
+<dt>price</dt>
+<dd><p>Numeric ticket price, split from the raw scraped door-price text via <code>inst/extdata/fls_doorprice_currency_lookup.csv</code> (<code>NA</code> where the raw text is blank, ~33% of shows); <code>0</code> for shows marked "Free".</p></dd>
+
+<dt>currency</dt>
+<dd><p>ISO 4217 currency code for <code>price</code> (<code>NA</code> alongside a missing <code>price</code>); "Free" shows are <code>USD</code> except one 1995 Italy show (<code>ITL</code>).</p></dd>
 
 <dt>attendance</dt>
 <dd><p>Attendance</p></dd>
@@ -103,7 +106,7 @@ Rows with checked==1 were updated by Alex Mitrani, in particular making sure tha
 <dd><p>city - plain city name (e.g. "Portland", "Columbia", "Croydon"); see <code>subdivision</code>/<code>country</code> to disambiguate cities that share a name with another Fugazi tour stop. Internally, <code><a href="Repeatr_1.html">Repeatr_1</a></code> temporarily suffixes these as "City (ST/Country)" to match the venue-coordinate lookup's join key, then strips the suffix back off once coordinates are resolved - the suffix never persists to this exposed column.</p></dd>
 
 <dt>subdivision</dt>
-<dd><p>Subnational administrative unit (US state, DC, Canadian province, or Australian state/territory), where applicable (<code>NA</code> outside those three countries) - scraped directly, see <code><a href="Repeatr0.html">Repeatr0</a></code>/<code><a href="scrape_fls_listing_data.html">scrape_fls_listing_data</a></code>.</p></dd>
+<dd><p>Subnational administrative unit (US state, DC, Canadian province, Australian state/territory, or Brazilian state), where applicable (<code>NA</code> elsewhere) - scraped directly for the US/Canada/Australia (see <code><a href="Repeatr0.html">Repeatr0</a></code>/<code><a href="scrape_fls_listing_data.html">scrape_fls_listing_data</a></code>); Brazilian state codes are filled in by <code><a href="Repeatr_1.html">Repeatr_1</a></code> from a hand-verified city lookup, since the FLS site's own scrape never populates a subdivision outside the US/Canada/Australia. Any remaining blank (a pre-existing mix of <code>NA</code> and <code>""</code>) is standardized to <code>NA</code>.</p></dd>
 
 <dt>country</dt>
 <dd><p>country</p></dd>
@@ -125,29 +128,29 @@ Rows with checked==1 were updated by Alex Mitrani, in particular making sure tha
     </div>
     <div class="section level2">
     <h2 id="provenance">Provenance<a class="anchor" aria-label="anchor" href="#provenance"></a></h2>
-    <p>Derived-cleaned. Produced by <code><a href="Repeatr_1.html">Repeatr_1</a></code> by joining <code>inst/extdata/fls_data.csv</code> with <code>inst/extdata/fls_venue_geocoding_v2.csv</code>. Actively consumed directly by <code>inst/shiny/Fugazetteer/app.R</code> (e.g. its attendance/tour reactives). Exported (minus <code>fls_notes</code>, <code>year</code>, <code>checked</code>, <code>x</code>, <code>y</code> - venue coordinates live in fugazi.db's <code>locations</code> table instead; plus <code>sound_quality</code>; <code>doorprice</code> split into a numeric <code>price</code> and an ISO 4217 <code>currency</code> via <code>inst/extdata/fls_doorprice_currency_lookup.csv</code>) as fugazi.db's <code>shows</code> table by <code><a href="export_fugazidb_data.html">export_fugazidb_data</a></code>.</p>
+    <p>Derived-cleaned. Produced by <code><a href="Repeatr_1.html">Repeatr_1</a></code> by joining <code>inst/extdata/fls_data.csv</code> with <code>inst/extdata/fls_venue_geocoding_v2.csv</code>. Actively consumed directly by <code>inst/shiny/Fugazetteer/app.R</code> (e.g. its attendance/tour reactives). Exported as-is (minus <code>fls_notes</code>, <code>year</code>, <code>checked</code>, <code>x</code>, <code>y</code> - venue coordinates live in fugazi.db's <code>locations</code> table instead; plus <code>sound_quality</code> joined in) as fugazi.db's <code>shows</code> table by <code><a href="export_fugazidb_data.html">export_fugazidb_data</a></code>.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">othervariables</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,049 × 18</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    gid       flsid date       venue doorprice attendance recorded_by mastered_by</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> aalst-be… FLS0… 1990-09-23 Netw… <span style="color: #BB0000;">NA</span>              600  Joey Picuri Warren Rus…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> aberdeen… FLS0… 1999-05-04 Lemo… 6(pounds)       550  Joey Picuri Jerry Bush…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> adelaide… FLS0… 1993-11-11 Dom … 15              550  Joey Picuri Warren Rus…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> adelaide… FLS0… 1996-11-12 Adel… <span style="color: #BB0000;">NA</span>              913. Nick Pelli… Jerry Bush…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> adelaide… FLS0… 1991-10-22 Le R… <span style="color: #BB0000;">NA</span>              450  Joey Picuri Warren Rus…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> akron-oh… FLS0… 1990-06-28 Jack… 5               700  Joey Picuri Warren Rus…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> albany-n… FLS0… 1993-09-20 S.U.… 5              <span style="text-decoration: underline;">1</span>000  Joey Picuri Warren Rus…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> albuquer… FLS0… 1995-11-13 Five… 5               895  Joey Picuri Warren Rus…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> albuquer… FLS0… 2001-04-08 Suns… 6              <span style="text-decoration: underline;">1</span>100  Nick Pelli… Warren Rus…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> albuquer… FLS0… 1991-09-11 Suns… 5               800  Joey Picuri Warren Rus…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,049 × 19</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    gid                 flsid date       venue attendance recorded_by mastered_by</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> aalst-belgium-92390 FLS0… 1990-09-23 Netw…       600  Joey Picuri Warren Rus…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> aberdeen-scotland-… FLS0… 1999-05-04 Lemo…       550  Joey Picuri Jerry Bush…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> adelaide-australia… FLS0… 1993-11-11 Dom …       550  Joey Picuri Warren Rus…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> adelaide-australia… FLS0… 1996-11-12 Adel…       913. Nick Pelli… Jerry Bush…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> adelaide-sa-austra… FLS0… 1991-10-22 Le R…       450  Joey Picuri Warren Rus…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> akron-oh-usa-62890  FLS0… 1990-06-28 Jack…       700  Joey Picuri Warren Rus…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> albany-ny-usa-92093 FLS0… 1993-09-20 S.U.…      <span style="text-decoration: underline;">1</span>000  Joey Picuri Warren Rus…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> albuquerque-nm-usa… FLS0… 1995-11-13 Five…       895  Joey Picuri Warren Rus…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> albuquerque-nm-usa… FLS0… 2001-04-08 Suns…      <span style="text-decoration: underline;">1</span>100  Nick Pelli… Warren Rus…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> albuquerque-nm-usa… FLS0… 1991-09-11 Suns…       800  Joey Picuri Warren Rus…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1,039 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 10 more variables: original_source &lt;chr&gt;, fls_notes &lt;chr&gt;, tour &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 12 more variables: original_source &lt;chr&gt;, fls_notes &lt;chr&gt;, tour &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   city &lt;chr&gt;, subdivision &lt;chr&gt;, country &lt;chr&gt;, year &lt;dbl&gt;, checked &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   x &lt;dbl&gt;, y &lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   x &lt;dbl&gt;, y &lt;dbl&gt;, price &lt;dbl&gt;, currency &lt;chr&gt;</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

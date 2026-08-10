@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9219</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9220</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -153,6 +153,15 @@ default that stops this running by accident - always pass
 choice model fit in <code><a href="../reference/Repeatr_4.html">Repeatr_4()</a></code> is the slow part), so it’s
 worth checking <code><a href="../reference/Repeatr_1.html">Repeatr_1()</a></code> on its own first if you only
 want to sanity-check a raw-source refresh.</p>
+<p><code><a href="../reference/Repeatr_1.html">Repeatr_1()</a></code> also does two small pieces of cleaning on
+<code>othervariables</code>/<code>shows_data</code> beyond typed/joined
+raw data: it splits the raw scraped door-price text into a numeric
+<code>price</code> and an ISO 4217 <code>currency</code> (via
+<code>inst/extdata/fls_doorprice_currency_lookup.csv</code>), and it
+fills in Brazilian state codes for <code>subdivision</code> (the FLS
+site’s own scrape never populates a subdivision outside the
+US/Canada/Australia) and standardizes any remaining blank
+<code>subdivision</code> to <code>NA</code>.</p>
 <p><code>update_stacks = TRUE</code> also regenerates
 <code>gid_initial_gid_sound_quality</code> (the data behind the Shiny
 app’s “stock” pages, via <code><a href="../reference/Repeatr_6.html">Repeatr_6()</a></code>) -
@@ -174,13 +183,11 @@ compose fugazi.db’s tables from them:</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/export_fugazidb_data.html">export_fugazidb_data</a></span><span class="op">(</span>fugazidb_dir <span class="op">=</span> <span class="st">"../fugazi.db"</span><span class="op">)</span></span></code></pre></div>
 <p>This reads Repeatr’s own already-saved <code>data/*.rda</code>
 objects (no re-derivation) plus
-<code>inst/extdata/fls_venue_geocoding_v2.csv</code>/<code>fls_doorprice_currency_lookup.csv</code>
-directly, and writes <code>fugazidb_dir/data/*.rda</code> - six tables
-in all (<code>shows</code>, <code>locations</code>,
-<code>durations</code>, <code>discography</code>, <code>songs</code>,
-<code>bands</code>). <code>shows</code>’s <code>doorprice</code> is
-split into a numeric <code>price</code> and an ISO 4217
-<code>currency</code>; <code>locations</code>’s coordinates are named
+<code>inst/extdata/fls_venue_geocoding_v2.csv</code> directly, and
+writes <code>fugazidb_dir/data/*.rda</code> - six tables in all
+(<code>shows</code>, <code>locations</code>, <code>durations</code>,
+<code>discography</code>, <code>songs</code>, <code>bands</code>).
+<code>locations</code>’s coordinates are named
 <code>latitude</code>/<code>longitude</code>;
 <code>discography</code>/<code>songs</code> hold what used to be
 <code>releases</code>/<code>discography</code> respectively (renamed so

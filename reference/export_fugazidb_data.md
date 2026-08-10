@@ -4,16 +4,13 @@ Composes fugazi.db's six published tables (`shows`, `locations`,
 `durations`, `discography`, `songs`, `bands`) from Repeatr's own
 already-saved `data/*.rda` objects (the "Derived-cleaned" tier produced
 by
-[`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md))
-and from
-`inst/extdata/fls_venue_geocoding_v2.csv`/`fls_doorprice_currency_lookup.csv`
-directly - almost no re-derivation or new business logic, with two
-small, documented exceptions confined to `shows$subdivision`: Brazilian
-state codes are filled in (Repeatr's own scrape never populates a
-subdivision outside the US/Canada/Australia) from a hand-verified city
-lookup, and any remaining blank subdivision (a pre-existing mix of `NA`
-and `""`) is standardized to `NA`. Also runs basic integrity checks (no
-missing/ duplicate id columns) on each table just before it's written,
+[`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md),
+which already includes the `price`/`currency` split and the
+Brazilian/`NA`-standardized `subdivision` values) and from
+`inst/extdata/fls_venue_geocoding_v2.csv` directly - no re-derivation or
+new business logic, just selecting, renaming, and joining columns
+Repeatr itself already computed. Also runs basic integrity checks (no
+missing/duplicate id columns) on each table just before it's written,
 aborting the export if any fail. Writes each table as a `data/*.rda`
 (lazy-loadable) file directly into a local `fugazi.db` checkout. Does
 not commit or push anything in that checkout - review and commit

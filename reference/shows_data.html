@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9219</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9220</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,7 +82,7 @@
 <dd><p>the city.</p></dd>
 
 <dt>subdivision</dt>
-<dd><p>Subnational administrative unit (US state, DC, Canadian province, or Australian state/territory), where applicable (<code>NA</code> outside those three countries).</p></dd>
+<dd><p>Subnational administrative unit (US state, DC, Canadian province, Australian state/territory, or Brazilian state), where applicable (<code>NA</code> elsewhere) - see <code><a href="othervariables.html">othervariables</a></code> for how Brazilian codes are filled in.</p></dd>
 
 <dt>country</dt>
 <dd><p>The country.</p></dd>
@@ -90,8 +90,11 @@
 <dt>attendance</dt>
 <dd><p>The number of people who attended.</p></dd>
 
-<dt>door_price</dt>
-<dd><p>The ticket price.</p></dd>
+<dt>price</dt>
+<dd><p>Numeric ticket price (<code>NA</code> where unknown, <code>0</code> for free shows) - see <code><a href="othervariables.html">othervariables</a></code> for how this is split from the raw scraped door-price text.</p></dd>
+
+<dt>currency</dt>
+<dd><p>ISO 4217 currency code for <code>price</code>.</p></dd>
 
 <dt>latitude</dt>
 <dd><p>The latitude of the show location.</p></dd>
@@ -125,21 +128,21 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">shows_data</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,049 × 17</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    gid         tour   year date       venue city  subdivision country attendance</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> aalst-belg… 1990…  <span style="text-decoration: underline;">1</span>990 1990-09-23 Netw… Aalst <span style="color: #949494;">""</span>          Belgium        600</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> aberdeen-s… 1999…  <span style="text-decoration: underline;">1</span>999 1999-05-04 Lemo… Aber…  <span style="color: #BB0000;">NA</span>         Scotla…        550</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> adelaide-a… 1993…  <span style="text-decoration: underline;">1</span>993 1993-11-11 Dom … Adel… <span style="color: #949494;">"</span>SA<span style="color: #949494;">"</span>        Austra…        550</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> adelaide-a… 1996…  <span style="text-decoration: underline;">1</span>996 1996-11-12 Adel… Adel… <span style="color: #949494;">"</span>SA<span style="color: #949494;">"</span>        Austra…        913</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> adelaide-s… 1991…  <span style="text-decoration: underline;">1</span>991 1991-10-22 Le R… Adel… <span style="color: #949494;">"</span>SA<span style="color: #949494;">"</span>        Austra…        450</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> akron-oh-u… 1990…  <span style="text-decoration: underline;">1</span>990 1990-06-28 Jack… Akron <span style="color: #949494;">"</span>OH<span style="color: #949494;">"</span>        USA            700</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> albany-ny-… 1993…  <span style="text-decoration: underline;">1</span>993 1993-09-20 S.U.… Alba… <span style="color: #949494;">"</span>NY<span style="color: #949494;">"</span>        USA           <span style="text-decoration: underline;">1</span>000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> albuquerqu… 1995…  <span style="text-decoration: underline;">1</span>995 1995-11-13 Five… Albu… <span style="color: #949494;">"</span>NM<span style="color: #949494;">"</span>        USA            895</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> albuquerqu… 2001…  <span style="text-decoration: underline;">2</span>001 2001-04-08 Suns… Albu… <span style="color: #949494;">"</span>NM<span style="color: #949494;">"</span>        USA           <span style="text-decoration: underline;">1</span>100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> albuquerqu… 1991…  <span style="text-decoration: underline;">1</span>991 1991-09-11 Suns… Albu… <span style="color: #949494;">"</span>NM<span style="color: #949494;">"</span>        USA            800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,049 × 18</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    gid   tour   year date       venue city  subdivision country attendance price</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> aals… 1990…  <span style="text-decoration: underline;">1</span>990 1990-09-23 Netw… Aalst <span style="color: #BB0000;">NA</span>          Belgium        600    <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> aber… 1999…  <span style="text-decoration: underline;">1</span>999 1999-05-04 Lemo… Aber… <span style="color: #BB0000;">NA</span>          Scotla…        550     6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> adel… 1993…  <span style="text-decoration: underline;">1</span>993 1993-11-11 Dom … Adel… SA          Austra…        550    15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> adel… 1996…  <span style="text-decoration: underline;">1</span>996 1996-11-12 Adel… Adel… SA          Austra…        913    <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> adel… 1991…  <span style="text-decoration: underline;">1</span>991 1991-10-22 Le R… Adel… SA          Austra…        450    <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> akro… 1990…  <span style="text-decoration: underline;">1</span>990 1990-06-28 Jack… Akron OH          USA            700     5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> alba… 1993…  <span style="text-decoration: underline;">1</span>993 1993-09-20 S.U.… Alba… NY          USA           <span style="text-decoration: underline;">1</span>000     5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> albu… 1995…  <span style="text-decoration: underline;">1</span>995 1995-11-13 Five… Albu… NM          USA            895     5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> albu… 2001…  <span style="text-decoration: underline;">2</span>001 2001-04-08 Suns… Albu… NM          USA           <span style="text-decoration: underline;">1</span>100     6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> albu… 1991…  <span style="text-decoration: underline;">1</span>991 1991-09-11 Suns… Albu… NM          USA            800     5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1,039 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 8 more variables: door_price &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 8 more variables: currency &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   fls_notes &lt;chr&gt;, urls &lt;chr&gt;, fls_link &lt;chr&gt;, minutes &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sound_quality &lt;chr&gt;</span></span>
 </code></pre></div>

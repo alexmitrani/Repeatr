@@ -66,6 +66,15 @@ is the slow part), so it’s worth checking
 [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)
 on its own first if you only want to sanity-check a raw-source refresh.
 
+[`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)
+also does two small pieces of cleaning on `othervariables`/`shows_data`
+beyond typed/joined raw data: it splits the raw scraped door-price text
+into a numeric `price` and an ISO 4217 `currency` (via
+`inst/extdata/fls_doorprice_currency_lookup.csv`), and it fills in
+Brazilian state codes for `subdivision` (the FLS site’s own scrape never
+populates a subdivision outside the US/Canada/Australia) and
+standardizes any remaining blank `subdivision` to `NA`.
+
 `update_stacks = TRUE` also regenerates `gid_initial_gid_sound_quality`
 (the data behind the Shiny app’s “stock” pages, via
 [`Repeatr_6()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_6.md)) -
@@ -92,12 +101,10 @@ export_fugazidb_data(fugazidb_dir = "../fugazi.db")
 ```
 
 This reads Repeatr’s own already-saved `data/*.rda` objects (no
-re-derivation) plus
-`inst/extdata/fls_venue_geocoding_v2.csv`/`fls_doorprice_currency_lookup.csv`
-directly, and writes `fugazidb_dir/data/*.rda` - six tables in all
-(`shows`, `locations`, `durations`, `discography`, `songs`, `bands`).
-`shows`’s `doorprice` is split into a numeric `price` and an ISO 4217
-`currency`; `locations`’s coordinates are named `latitude`/`longitude`;
+re-derivation) plus `inst/extdata/fls_venue_geocoding_v2.csv` directly,
+and writes `fugazidb_dir/data/*.rda` - six tables in all (`shows`,
+`locations`, `durations`, `discography`, `songs`, `bands`).
+`locations`’s coordinates are named `latitude`/`longitude`;
 `discography`/`songs` hold what used to be `releases`/`discography`
 respectively (renamed so `discography` means what it says).
 `fugazidb_dir` has no default - point it at a local `fugazi.db`
