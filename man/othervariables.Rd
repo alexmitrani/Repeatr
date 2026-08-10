@@ -10,7 +10,8 @@ dataframe with one row for each show.
 \item{gid}{show id}
 \item{flsid}{Fugazi Live Series id}
 \item{venue}{Venue}
-\item{doorprice}{Door price}
+\item{price}{Numeric ticket price, split from the raw scraped door-price text via \code{inst/extdata/fls_doorprice_currency_lookup.csv} (\code{NA} where the raw text is blank, ~33\% of shows); \code{0} for shows marked "Free".}
+\item{currency}{ISO 4217 currency code for \code{price} (\code{NA} alongside a missing \code{price}); "Free" shows are \code{USD} except one 1995 Italy show (\code{ITL}).}
 \item{attendance}{Attendance}
 \item{recorded_by}{Recorded by}
 \item{mastered_by}{Mastered by}
@@ -18,7 +19,7 @@ dataframe with one row for each show.
 \item{x}{longitude}
 \item{y}{latitude}
 \item{city}{city - plain city name (e.g. "Portland", "Columbia", "Croydon"); see \code{subdivision}/\code{country} to disambiguate cities that share a name with another Fugazi tour stop. Internally, \code{\link{Repeatr_1}} temporarily suffixes these as "City (ST/Country)" to match the venue-coordinate lookup's join key, then strips the suffix back off once coordinates are resolved - the suffix never persists to this exposed column.}
-\item{subdivision}{Subnational administrative unit (US state, DC, Canadian province, or Australian state/territory), where applicable (\code{NA} outside those three countries) - scraped directly, see \code{\link{Repeatr0}}/\code{\link{scrape_fls_listing_data}}.}
+\item{subdivision}{Subnational administrative unit (US state, DC, Canadian province, Australian state/territory, or Brazilian state), where applicable (\code{NA} elsewhere) - scraped directly for the US/Canada/Australia (see \code{\link{Repeatr0}}/\code{\link{scrape_fls_listing_data}}); Brazilian state codes are filled in by \code{\link{Repeatr_1}} from a hand-verified city lookup, since the FLS site's own scrape never populates a subdivision outside the US/Canada/Australia. Any remaining blank (a pre-existing mix of \code{NA} and \code{""}) is standardized to \code{NA}.}
 \item{country}{country}
 \item{tour}{The touring period the show belongs to, scraped directly from the FLS listing pages (see \code{\link{Repeatr0}}/\code{\link{scrape_fls_listing_data}}).}
 \item{year}{year}
@@ -37,7 +38,7 @@ The original data on coordinates, cities and tours data came from The D-I-Y Data
 Rows with checked==1 were updated by Alex Mitrani, in particular making sure that the coordinates indicated the actual locations of the venues for city-level mapping.
 }
 \section{Provenance}{
- Derived-cleaned. Produced by \code{\link{Repeatr_1}} by joining \code{inst/extdata/fls_data.csv} with \code{inst/extdata/fls_venue_geocoding_v2.csv}. Actively consumed directly by \code{inst/shiny/Fugazetteer/app.R} (e.g. its attendance/tour reactives). Exported (minus \code{fls_notes}, \code{year}, \code{checked}, \code{x}, \code{y} - venue coordinates live in fugazi.db's \code{locations} table instead; plus \code{sound_quality}; \code{doorprice} split into a numeric \code{price} and an ISO 4217 \code{currency} via \code{inst/extdata/fls_doorprice_currency_lookup.csv}) as fugazi.db's \code{shows} table by \code{\link{export_fugazidb_data}}.
+ Derived-cleaned. Produced by \code{\link{Repeatr_1}} by joining \code{inst/extdata/fls_data.csv} with \code{inst/extdata/fls_venue_geocoding_v2.csv}. Actively consumed directly by \code{inst/shiny/Fugazetteer/app.R} (e.g. its attendance/tour reactives). Exported as-is (minus \code{fls_notes}, \code{year}, \code{checked}, \code{x}, \code{y} - venue coordinates live in fugazi.db's \code{locations} table instead; plus \code{sound_quality} joined in) as fugazi.db's \code{shows} table by \code{\link{export_fugazidb_data}}.
 }
 
 \examples{

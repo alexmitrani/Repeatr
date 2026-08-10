@@ -4,19 +4,16 @@
 #' @description Composes fugazi.db's six published tables (`shows`,
 #' `locations`, `durations`, `discography`, `songs`, `bands`) from Repeatr's
 #' own already-saved `data/*.rda` objects (the "Derived-cleaned" tier
-#' produced by \code{\link{Repeatr_1}}) and from
-#' `inst/extdata/fls_venue_geocoding_v2.csv`/`fls_doorprice_currency_lookup.csv`
-#' directly - almost no re-derivation or new business logic, with two small,
-#' documented exceptions confined to `shows$subdivision`: Brazilian state
-#' codes are filled in (Repeatr's own scrape never populates a subdivision
-#' outside the US/Canada/Australia) from a hand-verified city lookup, and any
-#' remaining blank subdivision (a pre-existing mix of `NA` and `""`) is
-#' standardized to `NA`. Also runs basic integrity checks (no missing/
-#' duplicate id columns) on each table just before it's written, aborting the
-#' export if any fail. Writes each table as a `data/*.rda` (lazy-loadable)
-#' file directly into a local `fugazi.db` checkout. Does not commit or push
-#' anything in that checkout - review and commit fugazi.db's changes
-#' separately.
+#' produced by \code{\link{Repeatr_1}}, which already includes the
+#' `price`/`currency` split and the Brazilian/`NA`-standardized `subdivision`
+#' values) and from `inst/extdata/fls_venue_geocoding_v2.csv` directly - no
+#' re-derivation or new business logic, just selecting, renaming, and
+#' joining columns Repeatr itself already computed. Also runs basic
+#' integrity checks (no missing/duplicate id columns) on each table just
+#' before it's written, aborting the export if any fail. Writes each table
+#' as a `data/*.rda` (lazy-loadable) file directly into a local `fugazi.db`
+#' checkout. Does not commit or push anything in that checkout - review and
+#' commit fugazi.db's changes separately.
 #'
 #' Excludes anything joined/summarized/modeled (e.g. `xray`,
 #' `duration_summary`, `Repeatr1`, and everything from \code{\link{Repeatr_2}}
@@ -71,54 +68,17 @@ export_fugazidb_data <- function(fugazidb_dir, repeatr_data_dir = NULL) {
     if (anyDuplicated(key) > 0) stop(sprintf("%s has duplicate %s", table_name, paste(cols, collapse = "+")), call. = FALSE)
   }
 
-  # shows (was fls_shows) - one row per gid; corrections/sound_quality
-  # already joined in by Repeatr_1(); fls_notes dropped (copyright),
-  # year/checked (maintainer workflow only), x/y (duplicated by locations)
-  # also dropped. doorprice is raw scraped text (currency symbols, foreign-
-  # currency abbreviations, one price range, "Free", ~33% missing) - split
-  # into a numeric price + ISO 4217 currency via a hand-built lookup of its
-  # ~58 distinct raw values (fls_doorprice_currency_lookup.csv), since
-  # currency isn't otherwise recorded and several countries' shows predate
-  # that country's euro adoption. "Free" isn't in the lookup (same text,
-  # different currency depending on the show's own country) - handled by the
-  # mutate() below instead.
+  # shows (was fls_shows) - one row per gid; corrections/sound_quality,
+  # price/currency (split from raw doorprice text), and Brazilian/
+  # NA-standardized subdivision are already computed by Repeatr_1() on
+  # othervariables - this just selects/renames/joins, no re-derivation.
+  # fls_notes dropped (copyright), year/checked (maintainer workflow only),
+  # x/y (duplicated by locations) also dropped.
   othervariables <- load_obj("othervariables")
   gid_sound_quality <- load_obj("gid_sound_quality")
-  doorprice_lookup <- read.csv(system.file("extdata", "fls_doorprice_currency_lookup.csv", package = "Repeatr"), header = TRUE, colClasses = c(doorprice = "character", price = "numeric", currency = "character", note = "character"))
 
-  # subdivision: Repeatr's own scrape never populates this outside the US/
-  # Canada/Australia, so Brazil's 12 tour cities are filled in here from a
-  # hand-verified city lookup (checked against each city's own coordinates in
-  # fls_venue_geocoding_v2.csv). Any subdivision still blank afterward is a
-  # pre-existing mix of NA and "" for non-US/Canada/Australia/Brazil shows -
-  # standardized to NA.
   shows <- othervariables %>%
     left_join(gid_sound_quality, by = "gid") %>%
-    left_join(doorprice_lookup, by = "doorprice") %>%
-    mutate(
-      price = ifelse(doorprice == "Free", 0, price),
-      currency = case_when(
-        doorprice == "Free" & country == "Italy" ~ "ITL",
-        doorprice == "Free" ~ "USD",
-        TRUE ~ currency
-      ),
-      subdivision = case_when(
-        country == "Brazil" & city == "Belo Horizonte" ~ "MG",
-        country == "Brazil" & city == "Brasilia" ~ "DF",
-        country == "Brazil" & city == "Campinas" ~ "SP",
-        country == "Brazil" & city == "Curitiba" ~ "PR",
-        country == "Brazil" & city == "Itaborai" ~ "RJ",
-        country == "Brazil" & city == "Joinville" ~ "SC",
-        country == "Brazil" & city == "Londrina" ~ "PR",
-        country == "Brazil" & city == "Piracicaba" ~ "SP",
-        country == "Brazil" & city == "Rio De Janeiro" ~ "RJ",
-        country == "Brazil" & city == "Santos" ~ "SP",
-        country == "Brazil" & city == "Sao Paulo" ~ "SP",
-        country == "Brazil" & city == "Vitoria" ~ "ES",
-        TRUE ~ subdivision
-      ),
-      subdivision = ifelse(subdivision == "", NA_character_, subdivision)
-    ) %>%
     select(gid, flsid, date, venue, price, currency, attendance, recorded_by,
            mastered_by, original_source, tour, city, subdivision, country, sound_quality)
 

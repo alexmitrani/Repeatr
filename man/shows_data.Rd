@@ -13,10 +13,11 @@ dataframe with one row for each show in the Fugazi Live Series data.
 \item{date}{The date of the show.}
 \item{venue}{the venue,}
 \item{city}{the city.}
-\item{subdivision}{Subnational administrative unit (US state, DC, Canadian province, or Australian state/territory), where applicable (\code{NA} outside those three countries).}
+\item{subdivision}{Subnational administrative unit (US state, DC, Canadian province, Australian state/territory, or Brazilian state), where applicable (\code{NA} elsewhere) - see \code{\link{othervariables}} for how Brazilian codes are filled in.}
 \item{country}{The country.}
 \item{attendance}{The number of people who attended.}
-\item{door_price}{The ticket price.}
+\item{price}{Numeric ticket price (\code{NA} where unknown, \code{0} for free shows) - see \code{\link{othervariables}} for how this is split from the raw scraped door-price text.}
+\item{currency}{ISO 4217 currency code for \code{price}.}
 \item{latitude}{The latitude of the show location.}
 \item{longitude}{The longitude of the show location.}
 \item{urls}{A string used to form the URLs of the corresponding page on the Fugazi Live series site.}

@@ -138,6 +138,56 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
            subdivision = ifelse(country=="Australia" & city=="Sydney", "NSW", subdivision),
            subdivision = ifelse(country=="Australia" & city=="Wollongong", "NSW", subdivision))
 
+  # The FLS site's own scrape never populates subdivision outside the US/
+  # Canada/Australia, so Brazil's 12 tour cities are filled in here from a
+  # hand-verified city lookup (checked against each city's own coordinates in
+  # fls_venue_geocoding_v2.csv).
+  othervariables <- othervariables %>%
+    mutate(subdivision = case_when(
+      country == "Brazil" & city == "Belo Horizonte" ~ "MG",
+      country == "Brazil" & city == "Brasilia" ~ "DF",
+      country == "Brazil" & city == "Campinas" ~ "SP",
+      country == "Brazil" & city == "Curitiba" ~ "PR",
+      country == "Brazil" & city == "Itaborai" ~ "RJ",
+      country == "Brazil" & city == "Joinville" ~ "SC",
+      country == "Brazil" & city == "Londrina" ~ "PR",
+      country == "Brazil" & city == "Piracicaba" ~ "SP",
+      country == "Brazil" & city == "Rio De Janeiro" ~ "RJ",
+      country == "Brazil" & city == "Santos" ~ "SP",
+      country == "Brazil" & city == "Sao Paulo" ~ "SP",
+      country == "Brazil" & city == "Vitoria" ~ "ES",
+      TRUE ~ subdivision
+    ))
+
+  # Any subdivision still blank at this point is a pre-existing mix of NA and
+  # "" for shows outside the US/Canada/Australia/Brazil - standardize to NA.
+  othervariables <- othervariables %>%
+    mutate(subdivision = ifelse(subdivision == "", NA_character_, subdivision))
+
+  # doorprice is raw scraped text (currency symbols, foreign-currency
+  # abbreviations, one price range, "Free", ~33% missing) - split into a
+  # numeric price + ISO 4217 currency via a hand-built lookup of its ~58
+  # distinct raw values (fls_doorprice_currency_lookup.csv), since currency
+  # isn't otherwise recorded and several countries' shows predate that
+  # country's euro adoption. "Free" isn't in the lookup (same text, different
+  # currency depending on the show's own country) - handled by the mutate()
+  # below instead. Two 1990 Yugoslavia shows are priced in Deutsche Mark
+  # ("12 Marks"/"15 Marks") rather than the Yugoslav dinar - kept as DEM, not
+  # the country's nominal currency, since that's what the raw text says.
+  doorprice_lookup <- read.csv(system.file("extdata", "fls_doorprice_currency_lookup.csv", package = "Repeatr"), header = TRUE, colClasses = c(doorprice = "character", price = "numeric", currency = "character", note = "character"))
+
+  othervariables <- othervariables %>%
+    left_join(doorprice_lookup, by = "doorprice") %>%
+    mutate(
+      price = ifelse(doorprice == "Free", 0, price),
+      currency = case_when(
+        doorprice == "Free" & country == "Italy" ~ "ITL",
+        doorprice == "Free" ~ "USD",
+        TRUE ~ currency
+      )
+    ) %>%
+    select(-doorprice, -note)
+
   # Do NOT filter out rows with no x/y here - a show's coordinates may only
   # come from a later source (the disambiguation-corrected city match, the
   # many hardcoded per-venue x/y corrections below, or the
@@ -1353,8 +1403,7 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
       mutate(year = lubridate::year(date)) %>%
       rename(latitude = y) %>%
       rename(longitude = x) %>%
-      select(gid, tour, year, date, venue, city, subdivision, country, attendance, doorprice, latitude, longitude, fls_notes) %>%
-      rename(door_price = doorprice) %>%
+      select(gid, tour, year, date, venue, city, subdivision, country, attendance, price, currency, latitude, longitude, fls_notes) %>%
       mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
       mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>")) %>%
       left_join(gid_minutes) %>%

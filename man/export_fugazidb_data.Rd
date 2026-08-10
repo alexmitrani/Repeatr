@@ -23,19 +23,16 @@ effect, writes \verb{fugazidb_dir/data/*.rda}.
 Composes fugazi.db's six published tables (\code{shows},
 \code{locations}, \code{durations}, \code{discography}, \code{songs}, \code{bands}) from Repeatr's
 own already-saved \verb{data/*.rda} objects (the "Derived-cleaned" tier
-produced by \code{\link{Repeatr_1}}) and from
-\code{inst/extdata/fls_venue_geocoding_v2.csv}/\code{fls_doorprice_currency_lookup.csv}
-directly - almost no re-derivation or new business logic, with two small,
-documented exceptions confined to \code{shows$subdivision}: Brazilian state
-codes are filled in (Repeatr's own scrape never populates a subdivision
-outside the US/Canada/Australia) from a hand-verified city lookup, and any
-remaining blank subdivision (a pre-existing mix of \code{NA} and \code{""}) is
-standardized to \code{NA}. Also runs basic integrity checks (no missing/
-duplicate id columns) on each table just before it's written, aborting the
-export if any fail. Writes each table as a \verb{data/*.rda} (lazy-loadable)
-file directly into a local \code{fugazi.db} checkout. Does not commit or push
-anything in that checkout - review and commit fugazi.db's changes
-separately.
+produced by \code{\link{Repeatr_1}}, which already includes the
+\code{price}/\code{currency} split and the Brazilian/\code{NA}-standardized \code{subdivision}
+values) and from \code{inst/extdata/fls_venue_geocoding_v2.csv} directly - no
+re-derivation or new business logic, just selecting, renaming, and
+joining columns Repeatr itself already computed. Also runs basic
+integrity checks (no missing/duplicate id columns) on each table just
+before it's written, aborting the export if any fail. Writes each table
+as a \verb{data/*.rda} (lazy-loadable) file directly into a local \code{fugazi.db}
+checkout. Does not commit or push anything in that checkout - review and
+commit fugazi.db's changes separately.
 
 Excludes anything joined/summarized/modeled (e.g. \code{xray},
 \code{duration_summary}, \code{Repeatr1}, and everything from \code{\link{Repeatr_2}}

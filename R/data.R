@@ -52,7 +52,8 @@
 #' \item{gid}{show id}
 #' \item{flsid}{Fugazi Live Series id}
 #' \item{venue}{Venue}
-#' \item{doorprice}{Door price}
+#' \item{price}{Numeric ticket price, split from the raw scraped door-price text via `inst/extdata/fls_doorprice_currency_lookup.csv` (`NA` where the raw text is blank, ~33% of shows); `0` for shows marked "Free".}
+#' \item{currency}{ISO 4217 currency code for `price` (`NA` alongside a missing `price`); "Free" shows are `USD` except one 1995 Italy show (`ITL`).}
 #' \item{attendance}{Attendance}
 #' \item{recorded_by}{Recorded by}
 #' \item{mastered_by}{Mastered by}
@@ -60,13 +61,13 @@
 #' \item{x}{longitude}
 #' \item{y}{latitude}
 #' \item{city}{city - plain city name (e.g. "Portland", "Columbia", "Croydon"); see `subdivision`/`country` to disambiguate cities that share a name with another Fugazi tour stop. Internally, \code{\link{Repeatr_1}} temporarily suffixes these as "City (ST/Country)" to match the venue-coordinate lookup's join key, then strips the suffix back off once coordinates are resolved - the suffix never persists to this exposed column.}
-#' \item{subdivision}{Subnational administrative unit (US state, DC, Canadian province, or Australian state/territory), where applicable (`NA` outside those three countries) - scraped directly, see \code{\link{Repeatr0}}/\code{\link{scrape_fls_listing_data}}.}
+#' \item{subdivision}{Subnational administrative unit (US state, DC, Canadian province, Australian state/territory, or Brazilian state), where applicable (`NA` elsewhere) - scraped directly for the US/Canada/Australia (see \code{\link{Repeatr0}}/\code{\link{scrape_fls_listing_data}}); Brazilian state codes are filled in by \code{\link{Repeatr_1}} from a hand-verified city lookup, since the FLS site's own scrape never populates a subdivision outside the US/Canada/Australia. Any remaining blank (a pre-existing mix of `NA` and `""`) is standardized to `NA`.}
 #' \item{country}{country}
 #' \item{tour}{The touring period the show belongs to, scraped directly from the FLS listing pages (see \code{\link{Repeatr0}}/\code{\link{scrape_fls_listing_data}}).}
 #' \item{year}{year}
 #' \item{checked}{checked==1 indicates that the data was checked and updated by Alex Mitrani, in particular making sure that the coordinates indicate as closely as possible the actual locations of the venues.}
 #' }
-#' @section Provenance: Derived-cleaned. Produced by \code{\link{Repeatr_1}} by joining `inst/extdata/fls_data.csv` with `inst/extdata/fls_venue_geocoding_v2.csv`. Actively consumed directly by `inst/shiny/Fugazetteer/app.R` (e.g. its attendance/tour reactives). Exported (minus `fls_notes`, `year`, `checked`, `x`, `y` - venue coordinates live in fugazi.db's `locations` table instead; plus `sound_quality`; `doorprice` split into a numeric `price` and an ISO 4217 `currency` via `inst/extdata/fls_doorprice_currency_lookup.csv`) as fugazi.db's `shows` table by \code{\link{export_fugazidb_data}}.
+#' @section Provenance: Derived-cleaned. Produced by \code{\link{Repeatr_1}} by joining `inst/extdata/fls_data.csv` with `inst/extdata/fls_venue_geocoding_v2.csv`. Actively consumed directly by `inst/shiny/Fugazetteer/app.R` (e.g. its attendance/tour reactives). Exported as-is (minus `fls_notes`, `year`, `checked`, `x`, `y` - venue coordinates live in fugazi.db's `locations` table instead; plus `sound_quality` joined in) as fugazi.db's `shows` table by \code{\link{export_fugazidb_data}}.
 #' @examples
 #' othervariables
 "othervariables"
@@ -270,10 +271,11 @@
 #' \item{date}{The date of the show.}
 #' \item{venue}{the venue,}
 #' \item{city}{the city.}
-#' \item{subdivision}{Subnational administrative unit (US state, DC, Canadian province, or Australian state/territory), where applicable (`NA` outside those three countries).}
+#' \item{subdivision}{Subnational administrative unit (US state, DC, Canadian province, Australian state/territory, or Brazilian state), where applicable (`NA` elsewhere) - see \code{\link{othervariables}} for how Brazilian codes are filled in.}
 #' \item{country}{The country.}
 #' \item{attendance}{The number of people who attended.}
-#' \item{door_price}{The ticket price.}
+#' \item{price}{Numeric ticket price (`NA` where unknown, `0` for free shows) - see \code{\link{othervariables}} for how this is split from the raw scraped door-price text.}
+#' \item{currency}{ISO 4217 currency code for `price`.}
 #' \item{latitude}{The latitude of the show location.}
 #' \item{longitude}{The longitude of the show location.}
 #' \item{urls}{A string used to form the URLs of the corresponding page on the Fugazi Live series site.}
