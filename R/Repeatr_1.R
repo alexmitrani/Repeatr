@@ -403,6 +403,19 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   fls_tags <- fls_tags %>%
     mutate(album = ifelse(album == "20010607 Archie Browning Centre, Victoria, BC, Canada", "20010706 Archie Browning Centre, Victoria, BC, Canada", album))
 
+  # Three more known tagging-date typos (found while tracing NA gid rows in
+  # fugazi.db's durations table back to their source): the tagged album date
+  # doesn't match the FLS-listed show date, so the date-based gid join below
+  # silently fails for these otherwise-real, correctly-listed shows.
+  fls_tags <- fls_tags %>%
+    mutate(album = ifelse(album == "19880122 Eastern Michigan University, Ypsilanti, MI, USA", "19880119 Eastern Michigan University, Ypsilanti, MI, USA", album))
+
+  fls_tags <- fls_tags %>%
+    mutate(album = ifelse(album == "19980726 Asylum, Portland, ME, USA", "19980727 Asylum, Portland, ME, USA", album))
+
+  fls_tags <- fls_tags %>%
+    mutate(album = ifelse(album == "20000409 E9, El Paso, TX, USA", "20010409 E9, El Paso, TX, USA", album))
+
   fls_tags <- fls_tags %>%
     mutate(year = str_sub(album, 1, 4),
            month = str_sub(album, 5, 6),
