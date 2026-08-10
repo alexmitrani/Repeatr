@@ -86,10 +86,20 @@ export_fugazidb_data <- function(fugazidb_dir, repeatr_data_dir = NULL) {
 
   shows <- write_table(shows, "shows")
 
-  # locations (was fls_venue_geocoding) - exact mirror of the hand-maintained
+  # locations (was fls_venue_geocoding) - mirror of the hand-maintained
   # Google Sheet export, minus its Google-Maps-lookup helper columns; y/x
-  # renamed latitude/longitude for clarity.
+  # renamed latitude/longitude for clarity. The raw sheet suffixes a
+  # handful of cities that share a name with another tour stop (Portland,
+  # Columbia, Croydon, Newcastle, Oxford, Springfield) as "City (ST)"/
+  # "City (Country)", purely so it can be joined by city text - the same
+  # trick Repeatr_1() uses internally, temporarily, for the same reason.
+  # shows$city (via othervariables) is always the plain city name, so left
+  # in place that suffix silently broke the shows/locations join for these
+  # venues. Stripped back off here, same as Repeatr_1() already does for
+  # othervariables/shows - country/venue (not city alone) are what actually
+  # keep these rows unique.
   locations <- read.csv(system.file("extdata", "fls_venue_geocoding_v2.csv", package = "Repeatr"), header = TRUE) %>%
+    mutate(city = trimws(gsub("\\s*\\([^)]*\\)$", "", city))) %>%
     select(country, city, venue, latitude = y, longitude = x)
   locations <- write_table(locations, "locations")
 
