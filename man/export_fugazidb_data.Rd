@@ -20,9 +20,11 @@ Invisibly, a named list of the six objects written. As a side
 effect, writes \verb{fugazidb_dir/data/*.rda}.
 }
 \description{
-Composes fugazi.db's six published tables from Repeatr's own
-already-saved \verb{data/*.rda} objects (the "Derived-cleaned" tier produced by
-\code{\link{Repeatr_1}}) and from \code{inst/extdata/fls_venue_geocoding_v2.csv}
+Composes fugazi.db's six published tables (\code{shows},
+\code{locations}, \code{durations}, \code{discography}, \code{songs}, \code{bands}) from Repeatr's
+own already-saved \verb{data/*.rda} objects (the "Derived-cleaned" tier
+produced by \code{\link{Repeatr_1}}) and from
+\code{inst/extdata/fls_venue_geocoding_v2.csv}/\code{fls_doorprice_currency_lookup.csv}
 directly - no re-derivation, no new business logic. Writes each table as a
 \verb{data/*.rda} (lazy-loadable) file directly into a local \code{fugazi.db}
 checkout. Does not commit or push anything in that checkout - review and

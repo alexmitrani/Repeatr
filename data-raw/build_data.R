@@ -79,12 +79,13 @@ Repeatr_Updatr(really = "really", update_stacks = TRUE)
 
 # C. Export fugazi.db's data ------------------------------------------------
 #
-# Composes fugazi.db's nine tables from Repeatr's own already-rebuilt
+# Composes fugazi.db's six tables from Repeatr's own already-rebuilt
 # data/*.rda objects (stage B must have run first) plus
-# inst/extdata/fls_venue_geocoding_v2.csv directly, and writes them into a
-# local fugazi.db checkout's data-raw/*.csv and data/*.rda. Writes files
-# only - does not commit, push, or reinstall anything in that checkout;
-# review and commit fugazi.db's own changes separately, on its own schedule.
-# Nothing in Repeatr's own pipeline depends on fugazi.db being refreshed.
+# inst/extdata/fls_venue_geocoding_v2.csv/fls_doorprice_currency_lookup.csv
+# directly, and writes them into a local fugazi.db checkout's data/*.rda.
+# Writes files only - does not commit, push, or reinstall anything in that
+# checkout; review and commit fugazi.db's own changes separately, on its own
+# schedule. Nothing in Repeatr's own pipeline depends on fugazi.db being
+# refreshed.
 
 export_fugazidb_data(fugazidb_dir = "../fugazi.db")

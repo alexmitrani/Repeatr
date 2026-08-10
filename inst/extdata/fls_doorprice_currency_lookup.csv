@@ -1,0 +1,58 @@
+doorprice,price,currency,note
+$1.99,1.99,USD,
+$3,3,USD,
+$3.50,3.50,USD,
+$4,4,USD,
+$5,5,USD,
+$6,6,USD,
+$6cn,6,CAD,
+10 (can),10,CAD,
+10 Gilders,10,NLG,pre-euro Dutch guilder
+10 SW FR,10,CHF,
+10(can),10,CAD,
+"10,000 Lira",10000,ITL,pre-euro Italian lira
+100 AS,100,ATS,pre-euro Austrian schilling
+11 (can),11,CAD,
+12 (can),12,CAD,
+12 DM,12,DEM,pre-euro German mark
+12 Marks,12,DEM,Yugoslavia show priced in hard currency (Deutsche Mark) rather than the Yugoslav dinar
+12.50DM,12.50,DEM,pre-euro German mark
+12DM,12,DEM,pre-euro German mark
+14DM,14,DEM,pre-euro German mark
+15,15,AUD,
+15 Marks,15,DEM,Yugoslavia show priced in hard currency (Deutsche Mark) rather than the Yugoslav dinar
+2.50 Pounds,2.50,GBP,
+3,3,USD,
+3-5Pounds,4,GBP,range in source text (3 to 5); price is the average
+3 Irish Punts,3,IEP,pre-euro Irish punt
+3 Pounds,3,GBP,
+3.5 (Gilders),3.5,NLG,pre-euro Dutch guilder
+3.50 Pounds,3.50,GBP,
+330 BF,330,BEF,pre-euro Belgian franc
+35 D.Kroner,35,DKK,
+35 N Kroner,35,NOK,
+3500 yen,3500,JPY,
+3500yen,3500,JPY,
+4,4,USD,
+4000 yen,4000,JPY,
+40FR,40,FRF,pre-euro French franc
+5,5,USD,
+50,50,SEK,
+50 S Kroner,50,SEK,
+5000 Lira,5000,ITL,pre-euro Italian lira
+500PS,500,ESP,pre-euro Spanish peseta
+50FR,50,FRF,pre-euro French franc
+6,6,USD,
+6 (ca),6,CAD,
+6 (canadian),6,CAD,
+6(pounds),6,GBP,
+6000 Lira,6000,ITL,pre-euro Italian lira
+7,7,USD,
+7(can),7,CAD,
+7(punts),7,IEP,pre-euro Irish punt
+7.50 Gilders,7.50,NLG,pre-euro Dutch guilder
+7000 Lira,7000,ITL,pre-euro Italian lira
+8,8,USD,
+8DM,8,DEM,pre-euro German mark
+9 (can),9,CAD,
+9(can),9,CAD,

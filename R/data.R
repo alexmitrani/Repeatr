@@ -66,7 +66,7 @@
 #' \item{year}{year}
 #' \item{checked}{checked==1 indicates that the data was checked and updated by Alex Mitrani, in particular making sure that the coordinates indicate as closely as possible the actual locations of the venues.}
 #' }
-#' @section Provenance: Derived-cleaned. Produced by \code{\link{Repeatr_1}} by joining `inst/extdata/fls_data.csv` with `inst/extdata/fls_venue_geocoding_v2.csv`. Actively consumed directly by `inst/shiny/Fugazetteer/app.R` (e.g. its attendance/tour reactives). Exported (minus `fls_notes`, `year`, `checked`, `x`, `y`; plus `sound_quality`) as fugazi.db's `fls_shows` table by \code{\link{export_fugazidb_data}}.
+#' @section Provenance: Derived-cleaned. Produced by \code{\link{Repeatr_1}} by joining `inst/extdata/fls_data.csv` with `inst/extdata/fls_venue_geocoding_v2.csv`. Actively consumed directly by `inst/shiny/Fugazetteer/app.R` (e.g. its attendance/tour reactives). Exported (minus `fls_notes`, `year`, `checked`, `x`, `y` - venue coordinates live in fugazi.db's `locations` table instead; plus `sound_quality`; `doorprice` split into a numeric `price` and an ISO 4217 `currency` via `inst/extdata/fls_doorprice_currency_lookup.csv`) as fugazi.db's `shows` table by \code{\link{export_fugazidb_data}}.
 #' @examples
 #' othervariables
 "othervariables"
@@ -235,7 +235,7 @@
 #' \item{fls_id}{Fugazi Live Series ID}
 #' \item{played_with}{Band name}
 #' }
-#' @section Provenance: Derived-cleaned. Produced by \code{\link{Repeatr_1}}. Exported (trimmed to `gid`/`played_with`) as fugazi.db's `played_with` table by \code{\link{export_fugazidb_data}}.
+#' @section Provenance: Derived-cleaned. Produced by \code{\link{Repeatr_1}}. Exported (trimmed to `gid`/`played_with`, `played_with` renamed `band`) as fugazi.db's `bands` table by \code{\link{export_fugazidb_data}}.
 #' @examples
 #' played_with
 "played_with"
@@ -329,7 +329,7 @@
 #' \item{colour_code}{hex colour code to be used for the release in graphs}
 #' \item{rym_rating}{RYM rating scaled to the interval between 0 and 1}
 #' }
-#' @section Provenance: Derived-cleaned. Produced by \code{\link{Repeatr_1}} from `inst/extdata/releases.csv` (which itself carries a manually-assigned `colour_code` and an `rym_rating` sourced from rateyourmusic.com). Exported (minus `colour_code`, `variable`, `rym_rating`, minus the four synthetic UI-bucket rows) as fugazi.db's `releases` table by \code{\link{export_fugazidb_data}}.
+#' @section Provenance: Derived-cleaned. Produced by \code{\link{Repeatr_1}} from `inst/extdata/releases.csv` (which itself carries a manually-assigned `colour_code` and an `rym_rating` sourced from rateyourmusic.com). Exported (minus `colour_code`, `variable`, `rym_rating`, minus the four synthetic UI-bucket rows) as fugazi.db's `discography` table by \code{\link{export_fugazidb_data}}.
 #' @examples
 #' releasesdatalookup
 "releasesdatalookup"
@@ -348,7 +348,7 @@
 #' \item{vocals_lally}{indicates whether or not Joe Lally sang lead vocals on this track}
 #' \item{duration_seconds}{duration of the studio recording, in seconds}
 #' }
-#' @section Provenance: Raw-hand-curated, from `inst/extdata/releases_songs_durations_wikipedia.csv`. Read by \code{\link{Repeatr_1}} and joined onto the live, classified song set by `song` title text, not by a hardcoded id column - see `songid`/\code{\link{songidlookup}}. Exported (renamed `track_number`→`release_track`, `duration_seconds`→`release_duration` converted to a `Period` matching \code{\link{fls_tags}}'s `duration`) as fugazi.db's `discography` table by \code{\link{export_fugazidb_data}}.
+#' @section Provenance: Raw-hand-curated, from `inst/extdata/releases_songs_durations_wikipedia.csv`. Read by \code{\link{Repeatr_1}} and joined onto the live, classified song set by `song` title text, not by a hardcoded id column - see `songid`/\code{\link{songidlookup}}. Exported (renamed `track_number`→`release_track`, `duration_seconds`→`release_duration` converted to a `Period` matching \code{\link{fls_tags}}'s `duration`) as fugazi.db's `songs` table by \code{\link{export_fugazidb_data}}.
 #' @examples
 #' songvarslookup
 "songvarslookup"
@@ -442,7 +442,7 @@
 #' \item{date}{date}
 #' \item{gid}{show id}
 #' }
-#' @section Provenance: Derived-cleaned. Parsed by \code{\link{Repeatr_1}} (via \code{\link{fls_tags_importer}}) from the raw `inst/extdata/fls_tags.txt` kid3 MP3-tag export. The underlying track/album/song names themselves are sourced from the Fugazi Live Series site, not personal data - Alex Mitrani applied a consistent album-name format and a handful of one-off track-title corrections on top (see the "process tags data" section of \code{\link{Repeatr_1}}). The raw `album` tag text (`YYYYMMDD Venue, City, State, Country`) is used internally to parse `venue`/`city`/`subdivision`/`country` for a couple of mistagged-track filters and to derive \code{\link{fls_tags_show}}, but those fields (and `album` itself) are dropped before saving, since parsing them by counting commas silently misparses whenever a venue or city name itself contains a comma (e.g. Ypsilanti, Flint, Eau Claire, Osaka), and \code{\link{shows_data}} (joined via `gid`) is the sole authoritative source for them. Exported (minus `date` - join fugazi.db's `fls_shows` on `gid` instead - and `seconds`, which duplicated `duration`; `track` converted from character to integer) as fugazi.db's `fls_tags` table by \code{\link{export_fugazidb_data}}.
+#' @section Provenance: Derived-cleaned. Parsed by \code{\link{Repeatr_1}} (via \code{\link{fls_tags_importer}}) from the raw `inst/extdata/fls_tags.txt` kid3 MP3-tag export. The underlying track/album/song names themselves are sourced from the Fugazi Live Series site, not personal data - Alex Mitrani applied a consistent album-name format and a handful of one-off track-title corrections on top (see the "process tags data" section of \code{\link{Repeatr_1}}). The raw `album` tag text (`YYYYMMDD Venue, City, State, Country`) is used internally to parse `venue`/`city`/`subdivision`/`country` for a couple of mistagged-track filters and to derive \code{\link{fls_tags_show}}, but those fields (and `album` itself) are dropped before saving, since parsing them by counting commas silently misparses whenever a venue or city name itself contains a comma (e.g. Ypsilanti, Flint, Eau Claire, Osaka), and \code{\link{shows_data}} (joined via `gid`) is the sole authoritative source for them. Exported (minus `date` - join fugazi.db's `shows` on `gid` instead - and `seconds`, which duplicated `duration`; `track` converted from character to integer) as fugazi.db's `durations` table by \code{\link{export_fugazidb_data}}.
 #' @examples
 #' fls_tags
 "fls_tags"
