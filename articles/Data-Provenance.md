@@ -95,8 +95,8 @@ dataset without ever touching the lazy-loaded original (see the
             │ (from the Derived-cleaned tier only, minus fls_notes)
             ▼
     export_fugazidb_data()
-    └─ fugazi.db: fls_shows, fls_venue_geocoding, fls_tags, releases,
-       discography, played_with
+    └─ fugazi.db: shows, locations, durations, discography,
+       songs, bands
 
 `songvarslookup` is joined into `Repeatr1` by song title, not carried
 forward with its own `songid` column - the hand-maintained CSV behind it
@@ -137,8 +137,8 @@ for that mapping.
 For the full column-by-column description of any dataset, see its help
 page
 (e.g. [`?summary`](https://alexmitrani.github.io/Repeatr/reference/summary.md)).
-For fugazi.db’s own tables (`fls_shows`, `fls_venue_geocoding`,
-`fls_tags`, `releases`, `discography`, `played_with`), see
+For fugazi.db’s own tables (`shows`, `locations`, `durations`,
+`discography`, `songs`, `bands`), see
 `vignette("Data-Catalogue", package = "fugazi.db")`.
 
 Note on `app.R`: it reads `song_tempo_bpm_data` and

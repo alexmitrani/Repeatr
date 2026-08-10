@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9215</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9216</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -174,16 +174,22 @@ compose fugazi.db’s tables from them:</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/export_fugazidb_data.html">export_fugazidb_data</a></span><span class="op">(</span>fugazidb_dir <span class="op">=</span> <span class="st">"../fugazi.db"</span><span class="op">)</span></span></code></pre></div>
 <p>This reads Repeatr’s own already-saved <code>data/*.rda</code>
 objects (no re-derivation) plus
-<code>inst/extdata/fls_venue_geocoding_v2.csv</code> directly, and
-writes <code>fugazidb_dir/data/*.rda</code> - six tables in all
-(<code>fls_shows</code>, <code>fls_venue_geocoding</code>,
-<code>fls_tags</code>, <code>releases</code>, <code>discography</code>,
-<code>played_with</code>). <code>fugazidb_dir</code> has no default -
-point it at a local <code>fugazi.db</code> checkout. This is a one-way
-generation step: it writes files, but does not commit or push anything
-in that checkout - review and commit fugazi.db’s own changes separately,
-on its own schedule. Nothing in Repeatr’s own pipeline depends on
-fugazi.db being refreshed or reinstalled.</p>
+<code>inst/extdata/fls_venue_geocoding_v2.csv</code>/<code>fls_doorprice_currency_lookup.csv</code>
+directly, and writes <code>fugazidb_dir/data/*.rda</code> - six tables
+in all (<code>shows</code>, <code>locations</code>,
+<code>durations</code>, <code>discography</code>, <code>songs</code>,
+<code>bands</code>). <code>shows</code>’s <code>doorprice</code> is
+split into a numeric <code>price</code> and an ISO 4217
+<code>currency</code>; <code>locations</code>’s coordinates are named
+<code>latitude</code>/<code>longitude</code>;
+<code>discography</code>/<code>songs</code> hold what used to be
+<code>releases</code>/<code>discography</code> respectively (renamed so
+<code>discography</code> means what it says). <code>fugazidb_dir</code>
+has no default - point it at a local <code>fugazi.db</code> checkout.
+This is a one-way generation step: it writes files, but does not commit
+or push anything in that checkout - review and commit fugazi.db’s own
+changes separately, on its own schedule. Nothing in Repeatr’s own
+pipeline depends on fugazi.db being refreshed or reinstalled.</p>
 </div>
 <div class="section level2">
 <h2 id="reinstalling-and-redeploying">4. Reinstalling and redeploying<a class="anchor" aria-label="anchor" href="#reinstalling-and-redeploying"></a>

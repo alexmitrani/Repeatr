@@ -48,7 +48,7 @@ from `inst/extdata/releases.csv` (which itself carries a
 manually-assigned `colour_code` and an `rym_rating` sourced from
 rateyourmusic.com). Exported (minus `colour_code`, `variable`,
 `rym_rating`, minus the four synthetic UI-bucket rows) as fugazi.db's
-`releases` table by
+`discography` table by
 [`export_fugazidb_data`](https://alexmitrani.github.io/Repeatr/reference/export_fugazidb_data.md).
 
 ## Examples

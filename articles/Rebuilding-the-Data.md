@@ -92,15 +92,20 @@ export_fugazidb_data(fugazidb_dir = "../fugazi.db")
 ```
 
 This reads Repeatr’s own already-saved `data/*.rda` objects (no
-re-derivation) plus `inst/extdata/fls_venue_geocoding_v2.csv` directly,
-and writes `fugazidb_dir/data/*.rda` - six tables in all (`fls_shows`,
-`fls_venue_geocoding`, `fls_tags`, `releases`, `discography`,
-`played_with`). `fugazidb_dir` has no default - point it at a local
-`fugazi.db` checkout. This is a one-way generation step: it writes
-files, but does not commit or push anything in that checkout - review
-and commit fugazi.db’s own changes separately, on its own schedule.
-Nothing in Repeatr’s own pipeline depends on fugazi.db being refreshed
-or reinstalled.
+re-derivation) plus
+`inst/extdata/fls_venue_geocoding_v2.csv`/`fls_doorprice_currency_lookup.csv`
+directly, and writes `fugazidb_dir/data/*.rda` - six tables in all
+(`shows`, `locations`, `durations`, `discography`, `songs`, `bands`).
+`shows`’s `doorprice` is split into a numeric `price` and an ISO 4217
+`currency`; `locations`’s coordinates are named `latitude`/`longitude`;
+`discography`/`songs` hold what used to be `releases`/`discography`
+respectively (renamed so `discography` means what it says).
+`fugazidb_dir` has no default - point it at a local `fugazi.db`
+checkout. This is a one-way generation step: it writes files, but does
+not commit or push anything in that checkout - review and commit
+fugazi.db’s own changes separately, on its own schedule. Nothing in
+Repeatr’s own pipeline depends on fugazi.db being refreshed or
+reinstalled.
 
 ## 4. Reinstalling and redeploying
 

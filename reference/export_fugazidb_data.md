@@ -1,12 +1,14 @@
 # Exports fugazi.db's data/\*.rda objects from Repeatr's own cleaned data
 
-Composes fugazi.db's six published tables from Repeatr's own
+Composes fugazi.db's six published tables (`shows`, `locations`,
+`durations`, `discography`, `songs`, `bands`) from Repeatr's own
 already-saved `data/*.rda` objects (the "Derived-cleaned" tier produced
 by
 [`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md))
-and from `inst/extdata/fls_venue_geocoding_v2.csv` directly - no
-re-derivation, no new business logic. Writes each table as a
-`data/*.rda` (lazy-loadable) file directly into a local `fugazi.db`
+and from
+`inst/extdata/fls_venue_geocoding_v2.csv`/`fls_doorprice_currency_lookup.csv`
+directly - no re-derivation, no new business logic. Writes each table as
+a `data/*.rda` (lazy-loadable) file directly into a local `fugazi.db`
 checkout. Does not commit or push anything in that checkout - review and
 commit fugazi.db's changes separately.
 

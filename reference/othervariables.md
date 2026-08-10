@@ -106,8 +106,11 @@ Derived-cleaned. Produced by
 by joining `inst/extdata/fls_data.csv` with
 `inst/extdata/fls_venue_geocoding_v2.csv`. Actively consumed directly by
 `inst/shiny/Fugazetteer/app.R` (e.g. its attendance/tour reactives).
-Exported (minus `fls_notes`, `year`, `checked`, `x`, `y`; plus
-`sound_quality`) as fugazi.db's `fls_shows` table by
+Exported (minus `fls_notes`, `year`, `checked`, `x`, `y` - venue
+coordinates live in fugazi.db's `locations` table instead; plus
+`sound_quality`; `doorprice` split into a numeric `price` and an ISO
+4217 `currency` via `inst/extdata/fls_doorprice_currency_lookup.csv`) as
+fugazi.db's `shows` table by
 [`export_fugazidb_data`](https://alexmitrani.github.io/Repeatr/reference/export_fugazidb_data.md).
 
 ## Examples

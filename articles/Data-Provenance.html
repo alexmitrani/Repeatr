@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9215</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9216</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -185,8 +185,8 @@ Repeatr_6()
         │ (from the Derived-cleaned tier only, minus fls_notes)
         ▼
 export_fugazidb_data()
-└─ fugazi.db: fls_shows, fls_venue_geocoding, fls_tags, releases,
-   discography, played_with</code></pre>
+└─ fugazi.db: shows, locations, durations, discography,
+   songs, bands</code></pre>
 <p><code>songvarslookup</code> is joined into <code>Repeatr1</code> by
 song title, not carried forward with its own <code>songid</code> column
 - the hand-maintained CSV behind it
@@ -387,9 +387,8 @@ by <code>app.R</code>
 </table>
 <p>For the full column-by-column description of any dataset, see its
 help page (e.g. <code><a href="../reference/summary.html">?summary</a></code>). For fugazi.db’s own tables
-(<code>fls_shows</code>, <code>fls_venue_geocoding</code>,
-<code>fls_tags</code>, <code>releases</code>, <code>discography</code>,
-<code>played_with</code>), see
+(<code>shows</code>, <code>locations</code>, <code>durations</code>,
+<code>discography</code>, <code>songs</code>, <code>bands</code>), see
 <code>vignette("Data-Catalogue", package = "fugazi.db")</code>.</p>
 <p>Note on <code>app.R</code>: it reads <code>song_tempo_bpm_data</code>
 and <code>shows_data</code>/<code>othervariables</code> directly (via
