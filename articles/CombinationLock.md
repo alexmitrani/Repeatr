@@ -41,7 +41,7 @@ mydf1 <- Repeatr1 %>%
   rename(song1 = song)
 
 print(paste0("There are ", nrow(mydf1), " rows in this dataframe."))
-#> [1] "There are 24571 rows in this dataframe."
+#> [1] "There are 24568 rows in this dataframe."
 
 head(mydf1)
 #> # A tibble: 6 × 3
@@ -75,7 +75,7 @@ mydf3 <- mydf1 %>%
 #> Joining with `by = join_by(gid, song_number)`
 
 print(paste0("There are ", nrow(mydf3), " rows in this dataframe."))
-#> [1] "There are 23615 rows in this dataframe."
+#> [1] "There are 23614 rows in this dataframe."
 
 head(mydf3)
 #> # A tibble: 6 × 4
@@ -106,7 +106,7 @@ checknumberofshows <- Repeatr1 %>%
 numberofshows <- nrow(checknumberofshows)
 
 print(paste0("There are ", numberofshows, " rows in this dataframe."))
-#> [1] "There are 953 rows in this dataframe."
+#> [1] "There are 952 rows in this dataframe."
 
 head(checknumberofshows)
 #> # A tibble: 6 × 2
@@ -124,7 +124,7 @@ numberofsongs <- sum(checknumberofshows$songs)
 numberoftransitions <- numberofsongs - numberofshows
 
 print(paste0("There are ", numberofsongs, " songs, ", numberofshows, " shows, and ", numberoftransitions, " transitions between songs in the Fugazi Live Series data."  ))
-#> [1] "There are 24571 songs, 953 shows, and 23618 transitions between songs in the Fugazi Live Series data."
+#> [1] "There are 24568 songs, 952 shows, and 23616 transitions between songs in the Fugazi Live Series data."
 ```
 
 Now let’s summarise the data to count how many times each transition

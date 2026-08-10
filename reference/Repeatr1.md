@@ -118,7 +118,7 @@ whose edits can shift which songs get a `songid` (see
 
 ``` r
 Repeatr1
-#> # A tibble: 24,571 × 20
+#> # A tibble: 24,568 × 20
 #>    gid           date        year month   day tracktype song_number songid song 
 #>    <chr>         <date>     <dbl> <dbl> <int>     <dbl>       <dbl>  <int> <chr>
 #>  1 aalst-belgiu… 1990-09-23  1990     9    23         0           1     NA intro
@@ -131,7 +131,7 @@ Repeatr1
 #>  8 aalst-belgiu… 1990-09-23  1990     9    23         1           8     13 bull…
 #>  9 aalst-belgiu… 1990-09-23  1990     9    23         1           9     15 burn…
 #> 10 aalst-belgiu… 1990-09-23  1990     9    23         0          10     NA inte…
-#> # ℹ 24,561 more rows
+#> # ℹ 24,558 more rows
 #> # ℹ 11 more variables: number_songs <int>, first_song <dbl>, last_song <dbl>,
 #> #   releaseid <int>, release <chr>, track_number <int>, instrumental <int>,
 #> #   vocals_picciotto <int>, vocals_mackaye <int>, vocals_lally <int>,

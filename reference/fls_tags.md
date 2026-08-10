@@ -72,7 +72,7 @@ to integer) as fugazi.db's `durations` table by
 
 ``` r
 fls_tags
-#> # A tibble: 24,530 × 6
+#> # A tibble: 24,513 × 6
 #> # Rowwise: 
 #>    track song                 duration seconds date       gid                   
 #>    <chr> <chr>                <Period>   <dbl> <date>     <chr>                 
@@ -86,5 +86,5 @@ fls_tags
 #>  8 08    waiting room         3M 52S       232 1987-09-03 washington-dc-usa-903…
 #>  9 09    the word             4M 59S       299 1987-09-03 washington-dc-usa-903…
 #> 10 01    intro                2M 37S       157 1987-09-26 washington-dc-usa-926…
-#> # ℹ 24,520 more rows
+#> # ℹ 24,503 more rows
 ```

@@ -81,16 +81,16 @@ releases_data_input
 #> # A tibble: 92 × 12
 #>    releaseid release   track_number song  last_show colour_code count date      
 #>        <int> <fct>            <int> <fct>     <int> <chr>       <int> <date>    
-#>  1        11 first de…           10 in d…       953 #adb56a        31 1987-09-03
-#>  2        11 first de…            8 turn…       953 #adb56a        17 1987-09-03
-#>  3        11 first de…            5 the …       953 #adb56a        37 1987-09-03
-#>  4        10 furniture            3 hell…       953 #d15743         2 2001-04-27
-#>  5        10 furniture            2 numb…       953 #d15743       120 1998-11-21
-#>  6        10 furniture            1 furn…       953 #d15743       108 1987-09-03
-#>  7         9 the argu…           11 argu…       953 #99c3cb        76 1999-08-26
-#>  8         9 the argu…           10 nigh…       953 #99c3cb        46 1999-08-26
-#>  9         9 the argu…            9 ex-s…       953 #99c3cb        52 1999-08-26
-#> 10         9 the argu…            8 oh          953 #99c3cb        91 1998-11-29
+#>  1        11 first de…           10 in d…       951 #adb56a        31 1987-09-03
+#>  2        11 first de…            8 turn…       951 #adb56a        17 1987-09-03
+#>  3        11 first de…            5 the …       951 #adb56a        37 1987-09-03
+#>  4        10 furniture            3 hell…       951 #d15743         2 2001-04-27
+#>  5        10 furniture            2 numb…       951 #d15743       120 1998-11-21
+#>  6        10 furniture            1 furn…       951 #d15743       108 1987-09-03
+#>  7         9 the argu…           11 argu…       951 #99c3cb        76 1999-08-26
+#>  8         9 the argu…           10 nigh…       951 #99c3cb        46 1999-08-26
+#>  9         9 the argu…            9 ex-s…       951 #99c3cb        52 1999-08-26
+#> 10         9 the argu…            8 oh          951 #99c3cb        91 1998-11-29
 #> # ℹ 82 more rows
 #> # ℹ 4 more variables: show_num <int>, shows <dbl>, intensity <dbl>,
 #> #   rating <dbl>

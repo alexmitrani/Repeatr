@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9216</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9219</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -95,7 +95,7 @@ that were performed live, using data from … how many shows?</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">one_row_per_show</span> <span class="op">&lt;-</span> <span class="va">Repeatr1</span> <span class="op">%&gt;%</span> <span class="fu">group_by</span><span class="op">(</span><span class="va">gid</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">slice</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">one_row_per_show</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 953</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 952</span></span></code></pre></div>
 <p>These frequency counts do not necessarily measure the band’s
 preferences for the songs, as more recently released songs were
 available for fewer shows than older songs.</p>
@@ -1461,7 +1461,7 @@ shows this sort of analysis probably would not be possible.</p>
 by the band during their live shows?</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">Repeatr1</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 24571</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 24568</span></span></code></pre></div>
 <p>This data was used to estimate the strength of preference for each of
 the songs in their live music repertoire.</p>
 <p>Song availability was considered at both repertoire and gig level.
@@ -3038,7 +3038,7 @@ The results are shown below.</p>
 <td align="right">10</td>
 <td align="right">475</td>
 <td align="right">87</td>
-<td align="right">0.5397</td>
+<td align="right">0.5415</td>
 <td align="right">0.7906</td>
 </tr>
 <tr class="even">
@@ -3049,8 +3049,8 @@ The results are shown below.</p>
 <td align="left">1998-04-24</td>
 <td align="right">13</td>
 <td align="right">1429</td>
-<td align="right">237</td>
-<td align="right">0.4697</td>
+<td align="right">235</td>
+<td align="right">0.4738</td>
 <td align="right">0.7824</td>
 </tr>
 <tr class="odd">
@@ -3061,8 +3061,8 @@ The results are shown below.</p>
 <td align="left">1990-03-01</td>
 <td align="right">11</td>
 <td align="right">4062</td>
-<td align="right">895</td>
-<td align="right">0.4126</td>
+<td align="right">893</td>
+<td align="right">0.4135</td>
 <td align="right">0.7681</td>
 </tr>
 <tr class="even">
@@ -3073,8 +3073,8 @@ The results are shown below.</p>
 <td align="left">1988-11-19</td>
 <td align="right">7</td>
 <td align="right">2401</td>
-<td align="right">942</td>
-<td align="right">0.3631</td>
+<td align="right">940</td>
+<td align="right">0.3638</td>
 <td align="right">0.7331</td>
 </tr>
 <tr class="odd">
@@ -3085,8 +3085,8 @@ The results are shown below.</p>
 <td align="left">1995-05-12</td>
 <td align="right">13</td>
 <td align="right">2104</td>
-<td align="right">410</td>
-<td align="right">0.3936</td>
+<td align="right">408</td>
+<td align="right">0.3955</td>
 <td align="right">0.7210</td>
 </tr>
 <tr class="even">
@@ -3097,8 +3097,8 @@ The results are shown below.</p>
 <td align="left">1993-06-18</td>
 <td align="right">12</td>
 <td align="right">2642</td>
-<td align="right">589</td>
-<td align="right">0.3724</td>
+<td align="right">587</td>
+<td align="right">0.3736</td>
 <td align="right">0.7188</td>
 </tr>
 <tr class="odd">
@@ -3109,8 +3109,8 @@ The results are shown below.</p>
 <td align="left">1989-06-15</td>
 <td align="right">6</td>
 <td align="right">1684</td>
-<td align="right">924</td>
-<td align="right">0.3020</td>
+<td align="right">922</td>
+<td align="right">0.3027</td>
 <td align="right">0.7088</td>
 </tr>
 <tr class="even">
@@ -3121,8 +3121,8 @@ The results are shown below.</p>
 <td align="left">1989-12-01</td>
 <td align="right">3</td>
 <td align="right">635</td>
-<td align="right">952</td>
-<td align="right">0.2223</td>
+<td align="right">950</td>
+<td align="right">0.2227</td>
 <td align="right">0.6317</td>
 </tr>
 <tr class="odd">
@@ -3133,8 +3133,8 @@ The results are shown below.</p>
 <td align="left">1991-08-01</td>
 <td align="right">11</td>
 <td align="right">2539</td>
-<td align="right">783</td>
-<td align="right">0.2840</td>
+<td align="right">781</td>
+<td align="right">0.2847</td>
 <td align="right">0.6143</td>
 </tr>
 <tr class="even">
@@ -3145,8 +3145,8 @@ The results are shown below.</p>
 <td align="left">2001-10-16</td>
 <td align="right">3</td>
 <td align="right">230</td>
-<td align="right">386</td>
-<td align="right">0.3048</td>
+<td align="right">385</td>
+<td align="right">0.3065</td>
 <td align="right">0.5552</td>
 </tr>
 <tr class="odd">
@@ -3157,8 +3157,8 @@ The results are shown below.</p>
 <td align="left">2014-11-18</td>
 <td align="right">3</td>
 <td align="right">85</td>
-<td align="right">953</td>
-<td align="right">0.0297</td>
+<td align="right">951</td>
+<td align="right">0.0298</td>
 <td align="right">0.2312</td>
 </tr>
 </tbody>

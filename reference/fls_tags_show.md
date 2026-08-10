@@ -50,7 +50,7 @@ Not exported to fugazi.db.
 
 ``` r
 fls_tags_show
-#> # A tibble: 952 × 3
+#> # A tibble: 951 × 3
 #>    gid                          duration   seconds
 #>    <chr>                        <Period>     <dbl>
 #>  1 aalst-belgium-92390          1H 13M 33S    4413
@@ -63,5 +63,5 @@ fls_tags_show
 #>  8 albuquerque-nm-usa-111395    1H 14M 22S    4462
 #>  9 albuquerque-nm-usa-40801     1H 30M 40S    5440
 #> 10 albuquerque-nm-usa-91191     1H 7M 50S     4070
-#> # ℹ 942 more rows
+#> # ℹ 941 more rows
 ```

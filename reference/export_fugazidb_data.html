@@ -4,10 +4,17 @@ locations, durations, discography, songs, bands) from Repeatr's
 own already-saved data/*.rda objects (the &quot;Derived-cleaned&quot; tier
 produced by Repeatr_1) and from
 inst/extdata/fls_venue_geocoding_v2.csv/fls_doorprice_currency_lookup.csv
-directly - no re-derivation, no new business logic. Writes each table as a
-data/*.rda (lazy-loadable) file directly into a local fugazi.db
-checkout. Does not commit or push anything in that checkout - review and
-commit fugazi.db's changes separately.
+directly - almost no re-derivation or new business logic, with two small,
+documented exceptions confined to shows$subdivision: Brazilian state
+codes are filled in (Repeatr's own scrape never populates a subdivision
+outside the US/Canada/Australia) from a hand-verified city lookup, and any
+remaining blank subdivision (a pre-existing mix of NA and &quot;&quot;) is
+standardized to NA. Also runs basic integrity checks (no missing/
+duplicate id columns) on each table just before it's written, aborting the
+export if any fail. Writes each table as a data/*.rda (lazy-loadable)
+file directly into a local fugazi.db checkout. Does not commit or push
+anything in that checkout - review and commit fugazi.db's changes
+separately.
 Excludes anything joined/summarized/modeled (e.g. xray,
 duration_summary, Repeatr1, and everything from Repeatr_2
 onward) and the copyrighted free-text show notes (fls_notes, scraped
@@ -17,10 +24,17 @@ locations, durations, discography, songs, bands) from Repeatr's
 own already-saved data/*.rda objects (the &quot;Derived-cleaned&quot; tier
 produced by Repeatr_1) and from
 inst/extdata/fls_venue_geocoding_v2.csv/fls_doorprice_currency_lookup.csv
-directly - no re-derivation, no new business logic. Writes each table as a
-data/*.rda (lazy-loadable) file directly into a local fugazi.db
-checkout. Does not commit or push anything in that checkout - review and
-commit fugazi.db's changes separately.
+directly - almost no re-derivation or new business logic, with two small,
+documented exceptions confined to shows$subdivision: Brazilian state
+codes are filled in (Repeatr's own scrape never populates a subdivision
+outside the US/Canada/Australia) from a hand-verified city lookup, and any
+remaining blank subdivision (a pre-existing mix of NA and &quot;&quot;) is
+standardized to NA. Also runs basic integrity checks (no missing/
+duplicate id columns) on each table just before it's written, aborting the
+export if any fail. Writes each table as a data/*.rda (lazy-loadable)
+file directly into a local fugazi.db checkout. Does not commit or push
+anything in that checkout - review and commit fugazi.db's changes
+separately.
 Excludes anything joined/summarized/modeled (e.g. xray,
 duration_summary, Repeatr1, and everything from Repeatr_2
 onward) and the copyrighted free-text show notes (fls_notes, scraped
@@ -33,7 +47,7 @@ vignette(&quot;Data-Provenance&quot;) for the full tier catalogue."></head><body
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9216</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9219</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,10 +98,17 @@ vignette(&quot;Data-Provenance&quot;) for the full tier catalogue."></head><body
 own already-saved <code>data/*.rda</code> objects (the "Derived-cleaned" tier
 produced by <code><a href="Repeatr_1.html">Repeatr_1</a></code>) and from
 <code>inst/extdata/fls_venue_geocoding_v2.csv</code>/<code>fls_doorprice_currency_lookup.csv</code>
-directly - no re-derivation, no new business logic. Writes each table as a
-<code>data/*.rda</code> (lazy-loadable) file directly into a local <code>fugazi.db</code>
-checkout. Does not commit or push anything in that checkout - review and
-commit fugazi.db's changes separately.</p>
+directly - almost no re-derivation or new business logic, with two small,
+documented exceptions confined to <code>shows$subdivision</code>: Brazilian state
+codes are filled in (Repeatr's own scrape never populates a subdivision
+outside the US/Canada/Australia) from a hand-verified city lookup, and any
+remaining blank subdivision (a pre-existing mix of <code>NA</code> and <code>""</code>) is
+standardized to <code>NA</code>. Also runs basic integrity checks (no missing/
+duplicate id columns) on each table just before it's written, aborting the
+export if any fail. Writes each table as a <code>data/*.rda</code> (lazy-loadable)
+file directly into a local <code>fugazi.db</code> checkout. Does not commit or push
+anything in that checkout - review and commit fugazi.db's changes
+separately.</p>
 <p>Excludes anything joined/summarized/modeled (e.g. <code>xray</code>,
 <code>duration_summary</code>, <code>Repeatr1</code>, and everything from <code><a href="Repeatr_2.html">Repeatr_2</a></code>
 onward) and the copyrighted free-text show notes (<code>fls_notes</code>, scraped
