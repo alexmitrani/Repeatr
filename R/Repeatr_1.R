@@ -416,6 +416,15 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   fls_tags <- fls_tags %>%
     mutate(album = ifelse(album == "20000409 E9, El Paso, TX, USA", "20010409 E9, El Paso, TX, USA", album))
 
+  # A fourth tagging-date typo, found while tracing duplicate gid/track rows
+  # in fugazi.db's durations table: this block's tagged date (27th) collided
+  # with the Portland, ME show's date (also the 27th, itself just corrected
+  # above) once that fix went in - both shows' tags were merging onto
+  # portland-me-usa-72698's gid. The FLS listing confirms Hoboken's real date
+  # is the 28th (the very next tour stop after Portland).
+  fls_tags <- fls_tags %>%
+    mutate(album = ifelse(album == "19980727 Maxwell's, Hoboken, NJ, USA", "19980728 Maxwell's, Hoboken, NJ, USA", album))
+
   fls_tags <- fls_tags %>%
     mutate(year = str_sub(album, 1, 4),
            month = str_sub(album, 5, 6),
@@ -485,8 +494,27 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   fls_tags <- fls_tags %>%
     filter(venue!="Democrazy" | gid!="amsterdam-netherlands-101688")
 
+  # ypsilanti-mi-eastern-michigan-university-12288 is tagged twice under two
+  # album-string spellings of the same recording (identical songs/durations
+  # at every track) - one with the short venue text "Eastern Michigan
+  # University" and a date typo (already corrected above), one with the
+  # fuller venue text "McKenny Union Ballroom, Eastern Michigan University"
+  # and the correct date already. Drop the short-venue copy as a duplicate.
+  fls_tags <- fls_tags %>%
+    filter(!(gid=="ypsilanti-mi-eastern-michigan-university-12288" & venue=="Eastern Michigan University"))
+
   fls_tags <- fls_tags %>%
     mutate(song = ifelse(gid=="peoria-il-usa-100995" & song=="dance rap", "interlude 4", song))
+
+  # Two single-track mistagged track numbers, found via the same duplicate
+  # gid/track trace and confirmed against each show's official FLS tracklist
+  # page: each collides with a different song at the wrong track number,
+  # leaving a gap at the track number they should actually have.
+  fls_tags <- fls_tags %>%
+    mutate(track = ifelse(gid=="groningen-netherlands-90390" & song=="repeater", "23", track))
+
+  fls_tags <- fls_tags %>%
+    mutate(track = ifelse(gid=="washington-dc-usa-72089" & song=="two beats off", "16", track))
 
   # Grouped by (gid, album) - album (not just gid) is kept as a grouping key
   # so that two distinct tag batches sharing a gid (e.g. an earlier recording

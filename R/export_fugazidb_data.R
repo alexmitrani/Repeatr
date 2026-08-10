@@ -6,10 +6,17 @@
 #' own already-saved `data/*.rda` objects (the "Derived-cleaned" tier
 #' produced by \code{\link{Repeatr_1}}) and from
 #' `inst/extdata/fls_venue_geocoding_v2.csv`/`fls_doorprice_currency_lookup.csv`
-#' directly - no re-derivation, no new business logic. Writes each table as a
-#' `data/*.rda` (lazy-loadable) file directly into a local `fugazi.db`
-#' checkout. Does not commit or push anything in that checkout - review and
-#' commit fugazi.db's changes separately.
+#' directly - almost no re-derivation or new business logic, with two small,
+#' documented exceptions confined to `shows$subdivision`: Brazilian state
+#' codes are filled in (Repeatr's own scrape never populates a subdivision
+#' outside the US/Canada/Australia) from a hand-verified city lookup, and any
+#' remaining blank subdivision (a pre-existing mix of `NA` and `""`) is
+#' standardized to `NA`. Also runs basic integrity checks (no missing/
+#' duplicate id columns) on each table just before it's written, aborting the
+#' export if any fail. Writes each table as a `data/*.rda` (lazy-loadable)
+#' file directly into a local `fugazi.db` checkout. Does not commit or push
+#' anything in that checkout - review and commit fugazi.db's changes
+#' separately.
 #'
 #' Excludes anything joined/summarized/modeled (e.g. `xray`,
 #' `duration_summary`, `Repeatr1`, and everything from \code{\link{Repeatr_2}}
@@ -55,6 +62,15 @@ export_fugazidb_data <- function(fugazidb_dir, repeatr_data_dir = NULL) {
     df
   }
 
+  check_no_na <- function(df, col, table_name) {
+    if (anyNA(df[[col]])) stop(sprintf("%s$%s has missing values", table_name, col), call. = FALSE)
+  }
+
+  check_unique <- function(df, cols, table_name) {
+    key <- if (length(cols) == 1) df[[cols]] else do.call(paste, df[cols])
+    if (anyDuplicated(key) > 0) stop(sprintf("%s has duplicate %s", table_name, paste(cols, collapse = "+")), call. = FALSE)
+  }
+
   # shows (was fls_shows) - one row per gid; corrections/sound_quality
   # already joined in by Repeatr_1(); fls_notes dropped (copyright),
   # year/checked (maintainer workflow only), x/y (duplicated by locations)
@@ -70,6 +86,12 @@ export_fugazidb_data <- function(fugazidb_dir, repeatr_data_dir = NULL) {
   gid_sound_quality <- load_obj("gid_sound_quality")
   doorprice_lookup <- read.csv(system.file("extdata", "fls_doorprice_currency_lookup.csv", package = "Repeatr"), header = TRUE, colClasses = c(doorprice = "character", price = "numeric", currency = "character", note = "character"))
 
+  # subdivision: Repeatr's own scrape never populates this outside the US/
+  # Canada/Australia, so Brazil's 12 tour cities are filled in here from a
+  # hand-verified city lookup (checked against each city's own coordinates in
+  # fls_venue_geocoding_v2.csv). Any subdivision still blank afterward is a
+  # pre-existing mix of NA and "" for non-US/Canada/Australia/Brazil shows -
+  # standardized to NA.
   shows <- othervariables %>%
     left_join(gid_sound_quality, by = "gid") %>%
     left_join(doorprice_lookup, by = "doorprice") %>%
@@ -79,11 +101,29 @@ export_fugazidb_data <- function(fugazidb_dir, repeatr_data_dir = NULL) {
         doorprice == "Free" & country == "Italy" ~ "ITL",
         doorprice == "Free" ~ "USD",
         TRUE ~ currency
-      )
+      ),
+      subdivision = case_when(
+        country == "Brazil" & city == "Belo Horizonte" ~ "MG",
+        country == "Brazil" & city == "Brasilia" ~ "DF",
+        country == "Brazil" & city == "Campinas" ~ "SP",
+        country == "Brazil" & city == "Curitiba" ~ "PR",
+        country == "Brazil" & city == "Itaborai" ~ "RJ",
+        country == "Brazil" & city == "Joinville" ~ "SC",
+        country == "Brazil" & city == "Londrina" ~ "PR",
+        country == "Brazil" & city == "Piracicaba" ~ "SP",
+        country == "Brazil" & city == "Rio De Janeiro" ~ "RJ",
+        country == "Brazil" & city == "Santos" ~ "SP",
+        country == "Brazil" & city == "Sao Paulo" ~ "SP",
+        country == "Brazil" & city == "Vitoria" ~ "ES",
+        TRUE ~ subdivision
+      ),
+      subdivision = ifelse(subdivision == "", NA_character_, subdivision)
     ) %>%
     select(gid, flsid, date, venue, price, currency, attendance, recorded_by,
            mastered_by, original_source, tour, city, subdivision, country, sound_quality)
 
+  check_no_na(shows, "gid", "shows")
+  check_unique(shows, "gid", "shows")
   shows <- write_table(shows, "shows")
 
   # locations (was fls_venue_geocoding) - mirror of the hand-maintained
@@ -110,6 +150,9 @@ export_fugazidb_data <- function(fugazidb_dir, repeatr_data_dir = NULL) {
   durations <- load_obj("fls_tags") %>%
     select(gid, track, song, duration) %>%
     mutate(track = as.integer(track))
+  check_no_na(durations, "gid", "durations")
+  check_no_na(durations, "track", "durations")
+  check_unique(durations, c("gid", "track"), "durations")
   durations <- write_table(durations, "durations")
 
   # discography (was releases) - drop colour_code (UI-only, stays in
@@ -118,10 +161,14 @@ export_fugazidb_data <- function(fugazidb_dir, repeatr_data_dir = NULL) {
   # released/unreleased/songs/other) that aren't real releases. Table
   # renamed from "releases" to "discography" so the name matches what it
   # actually holds now that the old "discography" (song-level) table is
-  # renamed "songs" below.
+  # renamed "songs" below. release_date_source also dropped - it's a
+  # per-release citation, not a value analysts join on, so it's documented
+  # in fugazi.db's own Roxygen docs instead of shipped as a column.
   discography <- load_obj("releasesdatalookup") %>%
     filter(!releaseid %in% c(12, 13, 14, 15)) %>%
-    select(releaseid, release, releasedate, release_date_source)
+    select(releaseid, release, releasedate)
+  check_no_na(discography, "releaseid", "discography")
+  check_unique(discography, "releaseid", "discography")
   discography <- write_table(discography, "discography")
 
   # songs (was discography) - Raw-hand-curated studio discography metadata.
@@ -134,11 +181,14 @@ export_fugazidb_data <- function(fugazidb_dir, repeatr_data_dir = NULL) {
   songs <- load_obj("songvarslookup") %>%
     rename(release_track = track_number, release_duration = duration_seconds) %>%
     mutate(release_duration = seconds_to_period(release_duration))
+  check_no_na(songs, "song", "songs")
+  check_unique(songs, "song", "songs")
   songs <- write_table(songs, "songs")
 
   # bands (was played_with) - one row per real show+co-billed act;
   # played_with column renamed band now that the table itself is bands.
   bands <- load_obj("played_with") %>% select(gid, band = played_with)
+  check_no_na(bands, "gid", "bands")
   bands <- write_table(bands, "bands")
 
   invisible(list(
