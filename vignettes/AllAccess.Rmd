@@ -2,7 +2,7 @@
 title: "All Access"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{AllAccess}
+  %\VignetteIndexEntry{All Access}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 bibliography: references_all_access.bib

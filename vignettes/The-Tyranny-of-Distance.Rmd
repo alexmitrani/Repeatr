@@ -2,7 +2,7 @@
 title: "The Tyranny of Distance"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{The Argument}
+  %\VignetteIndexEntry{The Tyranny of Distance}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 bibliography: references_the_tyranny_of_distance.bib
