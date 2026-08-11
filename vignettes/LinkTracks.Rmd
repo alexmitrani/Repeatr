@@ -93,9 +93,8 @@ On the 1990 Fall European Tour, between 1990-09-01 and 1990-11-07, Fugazi played
 Most Fugazi songs were performed live for some time before being released on an album or EP. These lead times were often very considerable, measured in months or years. Were there any exceptions, songs whose live launch dates lagged behind the corresponding release dates? To find out, let's start by getting the data on the releases and the corresponding release dates. 
 
 ```{r}
-releasedates <- releasesdatalookup %>% 
-  select(releaseid, releasedate) %>%
-  mutate(releasedate = as.Date(releasedate, "%d/%m/%Y"))
+releasedates <- releasesdatalookup %>%
+  select(releaseid, releasedate)
 
 mydf <- songvarslookup %>% 
   left_join(releasedates) %>%

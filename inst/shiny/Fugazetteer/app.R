@@ -2611,7 +2611,7 @@ server <- function(input, output, session) {
       left_join(songs_data2()) %>%
       left_join(last_performance_data) %>%
       mutate(to = as.Date(ifelse(last_performance<to, last_performance, to), origin = "1970-01-01")) %>%
-      mutate(released = as.Date(releasedate, format = "%d/%m/%Y")) %>%
+      mutate(released = releasedate) %>%
       filter(index<=input$max_songs_renditions)
 
     mydf

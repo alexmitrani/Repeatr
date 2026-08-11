@@ -228,8 +228,7 @@ Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NUL
   # add other variables to summary table
 
   releasedates <- releasesdatalookup %>%
-    select(releaseid, releasedate) %>%
-    mutate(releasedate = as.Date(releasedate, "%d/%m/%Y"))
+    select(releaseid, releasedate)
 
   mydf <- songvarslookup %>%
     left_join(releasedates) %>%
@@ -298,8 +297,7 @@ Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NUL
     ungroup()
 
   releasesdatalookup <- releasesdatalookup %>%
-    select(releaseid, releasedate) %>%
-    mutate(releasedate = as.Date(releasedate, "%d/%m/%Y", origin = "1970-01-01"))
+    select(releaseid, releasedate)
 
   releases_summary <- releases_summary %>%
     left_join(releasesdatalookup) %>%

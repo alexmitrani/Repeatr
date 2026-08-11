@@ -70,6 +70,8 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
 
   releasesdatalookup <- if (is.null(myreleases)) read.csv(system.file("extdata", "releases.csv", package = "Repeatr"), header = TRUE) else myreleases
   releasesdatalookup$X <- NULL
+  releasesdatalookup <- releasesdatalookup %>%
+    mutate(releasedate = as.Date(releasedate, "%d/%m/%Y"))
 
   othervariables <- Repeatr0 %>%
     select(gid, fls_id, show_date, venue, door_price, attendance, recorded_by, mastered_by, original_source, fls_notes, tour, city, subdivision, country)
@@ -1365,8 +1367,7 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     # needs the full version (release, rym_rating, etc.), not just these
     # two columns.
     releasesdatalookup_dates <- releasesdatalookup %>%
-      select(releaseid, releasedate) %>%
-      mutate(releasedate = as.Date(releasedate, "%d/%m/%Y", origin = "1970-01-01"))
+      select(releaseid, releasedate)
 
     releases_summary <- releases_summary %>%
       left_join(releasesdatalookup_dates) %>%
@@ -1436,9 +1437,6 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
 
     xray <- xray %>%
       left_join(releasesdatalookup)
-
-    xray <- xray %>%
-      mutate(releasedate = as.Date(releasedate, "%d/%m/%Y", origin = "1970-01-01"))
 
     xray <- xray %>%
       mutate(unreleased = ifelse(tracktype==2 | (tracktype==1 & date<releasedate),1,0))
