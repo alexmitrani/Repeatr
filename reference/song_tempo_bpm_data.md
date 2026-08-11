@@ -26,7 +26,7 @@ reading.
 Raw-hand-curated, from `inst/extdata/song_tempo_bpm_data.csv`. Read
 as-is by
 [`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md),
-no transformation. Not exported to fugazi.db - kept in `Repeatr` only,
+no transformation. Not exported to fugazibase - kept in `Repeatr` only,
 for its own Shiny app.
 
 ## Examples

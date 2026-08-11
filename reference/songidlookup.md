@@ -37,8 +37,8 @@ Derived-classified. Computed live in
 from `Repeatr1`; the single source of truth for song identity - not
 hand-edited, and (after the songid fix) assigned to every classified
 song including one-offs, not just those meeting `min_song_count`. Not
-exported to fugazi.db - `songid` and `count` are calculated/summary
-values, kept internal to `Repeatr` by design; fugazi.db's `discography`
+exported to fugazibase - `songid` and `count` are calculated/summary
+values, kept internal to `Repeatr` by design; fugazibase's `discography`
 table is
 [`songvarslookup`](https://alexmitrani.github.io/Repeatr/reference/songvarslookup.md)
 alone, joined by `song` title text where needed.

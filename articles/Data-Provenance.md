@@ -22,12 +22,12 @@ the spectrum - lives in this package’s own `inst/extdata/`
 turns those six raw sources into everything below.
 
 The companion package
-[`fugazi.db`](https://github.com/alexmitrani/fugazi.db) is downstream of
-this package, not upstream of it: composes a subset of Repeatr’s own
+[`fugazibase`](https://github.com/alexmitrani/fugazibase) is downstream
+of this package, not upstream of it: composes a subset of Repeatr’s own
 Derived-cleaned tier (corrected, reformatted, and keyed for joining, but
 with no joined/summarized/modeled columns and no copyrighted free-text
-show notes) and writes it into a local `fugazi.db` checkout. See
-`vignette("Data-Catalogue", package = "fugazi.db")` for that package’s
+show notes) and writes it into a local `fugazibase` checkout. See
+`vignette("Data-Catalogue", package = "fugazibase")` for that package’s
 own catalogue and join keys.
 
 **Before adding a new dataset or reclassifying an existing one, check
@@ -94,8 +94,8 @@ dataset without ever touching the lazy-loaded original (see the
 
             │ (from the Derived-cleaned tier only, minus fls_notes)
             ▼
-    export_fugazidb_data()
-    └─ fugazi.db: shows, locations, durations, discography,
+    export_fugazibase_data()
+    └─ fugazibase: shows, locations, durations, discography,
        songs, bands
 
 `songvarslookup` is joined into `Repeatr1` by song title, not carried
@@ -137,9 +137,9 @@ for that mapping.
 For the full column-by-column description of any dataset, see its help
 page
 (e.g. [`?summary`](https://alexmitrani.github.io/Repeatr/reference/summary.md)).
-For fugazi.db’s own tables (`shows`, `locations`, `durations`,
+For fugazibase’s own tables (`shows`, `locations`, `durations`,
 `discography`, `songs`, `bands`), see
-`vignette("Data-Catalogue", package = "fugazi.db")`.
+`vignette("Data-Catalogue", package = "fugazibase")`.
 
 Note on `app.R`: it reads `song_tempo_bpm_data` and
 `shows_data`/`othervariables` directly (via

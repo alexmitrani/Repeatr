@@ -5,15 +5,15 @@
 Primary data - show listings, venue coordinates, tag/duration data, and
 discography metadata - lives in this package’s own `inst/extdata/`, not
 in a separate package. The companion package
-[`fugazi.db`](https://github.com/alexmitrani/fugazi.db) is downstream of
-Repeatr: it’s a generated export of Repeatr’s own cleaned data, not a
+[`fugazibase`](https://github.com/alexmitrani/fugazibase) is downstream
+of Repeatr: it’s a generated export of Repeatr’s own cleaned data, not a
 source Repeatr reads from. See
-`vignette("Data-Catalogue", package = "fugazi.db")` for what it
+`vignette("Data-Catalogue", package = "fugazibase")` for what it
 contains.
 
 This vignette covers the three-stage process of refreshing
 `inst/extdata/`’s raw sources, rebuilding every dataset in `data/*.rda`,
-exporting the fugazi.db subset, and getting the rebuilt package and
+exporting the fugazibase subset, and getting the rebuilt package and
 Shiny app back out into the world. `data-raw/build_data.R` is the
 canonical, runnable version of the process below - this vignette
 explains the why, that script is what to actually run.
@@ -28,7 +28,7 @@ Update whichever of `inst/extdata/`’s raw sources has new material:
 - **Venue coordinates** - a synced export of the private Google Sheet
   used to look up/confirm venue locations, overwriting
   `inst/extdata/fls_venue_geocoding_v2.csv` directly. This file is the
-  single source of truth for coordinates in both Repeatr and fugazi.db.
+  single source of truth for coordinates in both Repeatr and fugazibase.
 - **Tags/duration data** - re-exported from kid3 against the
   personally-tagged MP3 collection, overwriting
   `inst/extdata/fls_tags.txt`. If a new show’s album string doesn’t
@@ -90,28 +90,28 @@ to redirect the rebuilt `data/*.rda` objects somewhere other than the
 package root’s own `data/` - useful for testing a rebuild without
 touching your working checkout.
 
-## 3. Exporting fugazi.db (stage C)
+## 3. Exporting fugazibase (stage C)
 
-Once Repeatr’s own `data/*.rda` objects are rebuilt, compose fugazi.db’s
-tables from them:
+Once Repeatr’s own `data/*.rda` objects are rebuilt, compose
+fugazibase’s tables from them:
 
 ``` r
 
-export_fugazidb_data(fugazidb_dir = "../fugazi.db")
+export_fugazibase_data(fugazibase_dir = "../fugazibase")
 ```
 
 This reads Repeatr’s own already-saved `data/*.rda` objects (no
 re-derivation) plus `inst/extdata/fls_venue_geocoding_v2.csv` directly,
-and writes `fugazidb_dir/data/*.rda` - six tables in all (`shows`,
+and writes `fugazibase_dir/data/*.rda` - six tables in all (`shows`,
 `locations`, `durations`, `discography`, `songs`, `bands`).
 `locations`’s coordinates are named `latitude`/`longitude`;
 `discography`/`songs` hold what used to be `releases`/`discography`
 respectively (renamed so `discography` means what it says).
-`fugazidb_dir` has no default - point it at a local `fugazi.db`
+`fugazibase_dir` has no default - point it at a local `fugazibase`
 checkout. This is a one-way generation step: it writes files, but does
 not commit or push anything in that checkout - review and commit
-fugazi.db’s own changes separately, on its own schedule. Nothing in
-Repeatr’s own pipeline depends on fugazi.db being refreshed or
+fugazibase’s own changes separately, on its own schedule. Nothing in
+Repeatr’s own pipeline depends on fugazibase being refreshed or
 reinstalled.
 
 ## 4. Reinstalling and redeploying

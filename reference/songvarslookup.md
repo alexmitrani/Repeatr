@@ -60,8 +60,8 @@ by a hardcoded id column - see
 Exported (renamed `track_number`→`release_track`,
 `duration_seconds`→`release_duration` converted to a `Period` matching
 [`fls_tags`](https://alexmitrani.github.io/Repeatr/reference/fls_tags.md)'s
-`duration`) as fugazi.db's `songs` table by
-[`export_fugazidb_data`](https://alexmitrani.github.io/Repeatr/reference/export_fugazidb_data.md).
+`duration`) as fugazibase's `songs` table by
+[`export_fugazibase_data`](https://alexmitrani.github.io/Repeatr/reference/export_fugazibase_data.md).
 
 ## Examples
 

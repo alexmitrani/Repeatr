@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9221</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9222</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,7 +80,7 @@
     </div>
     <div class="section level2">
     <h2 id="provenance">Provenance<a class="anchor" aria-label="anchor" href="#provenance"></a></h2>
-    <p>Derived-cleaned. Produced by <code><a href="Repeatr_1.html">Repeatr_1</a></code> from <code>fls_tags</code>, grouped by <code>(gid, album)</code> so that two distinct tag batches sharing a <code>gid</code> (e.g. an earlier recording later superseded by an official release) produce two rows rather than silently summing their durations together - <code>album</code> itself is dropped before saving, since nothing reads it. Deliberately does not carry its own venue/city/subdivision/country/date - those are independently re-parsed from the album tag text by counting commas, which silently misparses whenever a venue or city name itself contains a comma (e.g. Ypsilanti, Flint, Eau Claire, Osaka). <code><a href="shows_data.html">shows_data</a></code> (joined via <code>gid</code>) is the sole authoritative source for those fields. Not exported to fugazi.db.</p>
+    <p>Derived-cleaned. Produced by <code><a href="Repeatr_1.html">Repeatr_1</a></code> from <code>fls_tags</code>, grouped by <code>(gid, album)</code> so that two distinct tag batches sharing a <code>gid</code> (e.g. an earlier recording later superseded by an official release) produce two rows rather than silently summing their durations together - <code>album</code> itself is dropped before saving, since nothing reads it. Deliberately does not carry its own venue/city/subdivision/country/date - those are independently re-parsed from the album tag text by counting commas, which silently misparses whenever a venue or city name itself contains a comma (e.g. Ypsilanti, Flint, Eau Claire, Osaka). <code><a href="shows_data.html">shows_data</a></code> (joined via <code>gid</code>) is the sole authoritative source for those fields. Not exported to fugazibase.</p>
     </div>
 
     <div class="section level2">

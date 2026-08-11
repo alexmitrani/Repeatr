@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9221</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9222</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -86,15 +86,15 @@
 <p>Primary data - show listings, venue coordinates, tag/duration data,
 and discography metadata - lives in this package’s own
 <code>inst/extdata/</code>, not in a separate package. The companion
-package <a href="https://github.com/alexmitrani/fugazi.db" class="external-link"><code>fugazi.db</code></a>
+package <a href="https://github.com/alexmitrani/fugazibase" class="external-link"><code>fugazibase</code></a>
 is downstream of Repeatr: it’s a generated export of Repeatr’s own
 cleaned data, not a source Repeatr reads from. See
-<code>vignette("Data-Catalogue", package = "fugazi.db")</code> for what
+<code>vignette("Data-Catalogue", package = "fugazibase")</code> for what
 it contains.</p>
 <p>This vignette covers the three-stage process of refreshing
 <code>inst/extdata/</code>’s raw sources, rebuilding every dataset in
-<code>data/*.rda</code>, exporting the fugazi.db subset, and getting the
-rebuilt package and Shiny app back out into the world.
+<code>data/*.rda</code>, exporting the fugazibase subset, and getting
+the rebuilt package and Shiny app back out into the world.
 <code>data-raw/build_data.R</code> is the canonical, runnable version of
 the process below - this vignette explains the why, that script is what
 to actually run.</p>
@@ -113,7 +113,7 @@ run, writing to <code>inst/extdata/fls_data.csv</code>.</li>
 Google Sheet used to look up/confirm venue locations, overwriting
 <code>inst/extdata/fls_venue_geocoding_v2.csv</code> directly. This file
 is the single source of truth for coordinates in both Repeatr and
-fugazi.db.</li>
+fugazibase.</li>
 <li>
 <strong>Tags/duration data</strong> - re-exported from kid3 against
 the personally-tagged MP3 collection, overwriting
@@ -175,28 +175,29 @@ other than the package root’s own <code>data/</code> - useful for
 testing a rebuild without touching your working checkout.</p>
 </div>
 <div class="section level2">
-<h2 id="exporting-fugazi-db-stage-c">3. Exporting fugazi.db (stage C)<a class="anchor" aria-label="anchor" href="#exporting-fugazi-db-stage-c"></a>
+<h2 id="exporting-fugazibase-stage-c">3. Exporting fugazibase (stage C)<a class="anchor" aria-label="anchor" href="#exporting-fugazibase-stage-c"></a>
 </h2>
 <p>Once Repeatr’s own <code>data/*.rda</code> objects are rebuilt,
-compose fugazi.db’s tables from them:</p>
+compose fugazibase’s tables from them:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/export_fugazidb_data.html">export_fugazidb_data</a></span><span class="op">(</span>fugazidb_dir <span class="op">=</span> <span class="st">"../fugazi.db"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/export_fugazibase_data.html">export_fugazibase_data</a></span><span class="op">(</span>fugazibase_dir <span class="op">=</span> <span class="st">"../fugazibase"</span><span class="op">)</span></span></code></pre></div>
 <p>This reads Repeatr’s own already-saved <code>data/*.rda</code>
 objects (no re-derivation) plus
 <code>inst/extdata/fls_venue_geocoding_v2.csv</code> directly, and
-writes <code>fugazidb_dir/data/*.rda</code> - six tables in all
+writes <code>fugazibase_dir/data/*.rda</code> - six tables in all
 (<code>shows</code>, <code>locations</code>, <code>durations</code>,
 <code>discography</code>, <code>songs</code>, <code>bands</code>).
 <code>locations</code>’s coordinates are named
 <code>latitude</code>/<code>longitude</code>;
 <code>discography</code>/<code>songs</code> hold what used to be
 <code>releases</code>/<code>discography</code> respectively (renamed so
-<code>discography</code> means what it says). <code>fugazidb_dir</code>
-has no default - point it at a local <code>fugazi.db</code> checkout.
-This is a one-way generation step: it writes files, but does not commit
-or push anything in that checkout - review and commit fugazi.db’s own
-changes separately, on its own schedule. Nothing in Repeatr’s own
-pipeline depends on fugazi.db being refreshed or reinstalled.</p>
+<code>discography</code> means what it says).
+<code>fugazibase_dir</code> has no default - point it at a local
+<code>fugazibase</code> checkout. This is a one-way generation step: it
+writes files, but does not commit or push anything in that checkout -
+review and commit fugazibase’s own changes separately, on its own
+schedule. Nothing in Repeatr’s own pipeline depends on fugazibase being
+refreshed or reinstalled.</p>
 </div>
 <div class="section level2">
 <h2 id="reinstalling-and-redeploying">4. Reinstalling and redeploying<a class="anchor" aria-label="anchor" href="#reinstalling-and-redeploying"></a>

@@ -120,9 +120,9 @@ by joining `inst/extdata/fls_data.csv` with
 `inst/extdata/fls_venue_geocoding_v2.csv`. Actively consumed directly by
 `inst/shiny/Fugazetteer/app.R` (e.g. its attendance/tour reactives).
 Exported as-is (minus `fls_notes`, `year`, `checked`, `x`, `y` - venue
-coordinates live in fugazi.db's `locations` table instead; plus
-`sound_quality` joined in) as fugazi.db's `shows` table by
-[`export_fugazidb_data`](https://alexmitrani.github.io/Repeatr/reference/export_fugazidb_data.md).
+coordinates live in fugazibase's `locations` table instead; plus
+`sound_quality` joined in) as fugazibase's `shows` table by
+[`export_fugazibase_data`](https://alexmitrani.github.io/Repeatr/reference/export_fugazibase_data.md).
 
 ## Examples
 

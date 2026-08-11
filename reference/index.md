@@ -55,8 +55,8 @@
   : Duration Data
 - [`duration_summary`](https://alexmitrani.github.io/Repeatr/reference/duration_summary.md)
   : Fugazi song duration summary data
-- [`export_fugazidb_data()`](https://alexmitrani.github.io/Repeatr/reference/export_fugazidb_data.md)
-  : Exports fugazi.db's data/\*.rda objects from Repeatr's own cleaned
+- [`export_fugazibase_data()`](https://alexmitrani.github.io/Repeatr/reference/export_fugazibase_data.md)
+  : Exports fugazibase's data/\*.rda objects from Repeatr's own cleaned
   data
 - [`fls_tags`](https://alexmitrani.github.io/Repeatr/reference/fls_tags.md)
   : Tags data

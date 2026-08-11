@@ -21,10 +21,10 @@ Repeatr holds all of the raw inputs, processing code, and every
 derived/modelled dataset - see
 [`vignette("Data-Provenance")`](https://alexmitrani.github.io/Repeatr/articles/Data-Provenance.md).
 It also produces the companion data package
-[fugazi.db](https://github.com/alexmitrani/fugazi.db) (show listings,
+[fugazibase](https://github.com/alexmitrani/fugazibase) (show listings,
 venue coordinates, duration data, discography metadata) via
-[`export_fugazidb_data()`](https://alexmitrani.github.io/Repeatr/reference/export_fugazidb_data.md) -
-fugazi.db is downstream of Repeatr, not a source Repeatr reads from.
+[`export_fugazibase_data()`](https://alexmitrani.github.io/Repeatr/reference/export_fugazibase_data.md) -
+fugazibase is downstream of Repeatr, not a source Repeatr reads from.
 
 ## Fugazetteer web app
 
