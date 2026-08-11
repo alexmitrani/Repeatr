@@ -111,9 +111,8 @@ the corresponding release dates.
 
 ``` r
 
-releasedates <- releasesdatalookup %>% 
-  select(releaseid, releasedate) %>%
-  mutate(releasedate = as.Date(releasedate, "%d/%m/%Y"))
+releasedates <- releasesdatalookup %>%
+  select(releaseid, releasedate)
 
 mydf <- songvarslookup %>% 
   left_join(releasedates) %>%

@@ -61,18 +61,18 @@ Derived-cleaned. Produced by
 ``` r
 releases_menu_list
 #>    releaseid                release               variable releasedate
-#> 1          1                 fugazi                 fugazi  19/11/1988
-#> 2          2          margin walker          margin_walker  15/06/1989
-#> 3          3                3 songs            three_songs  01/12/1989
-#> 4          4               repeater               repeater  01/03/1990
-#> 5          5 steady diet of nothing steady_diet_of_nothing  01/08/1991
-#> 6          6    in on the killtaker    in_on_the_killtaker  18/06/1993
-#> 7          7           red medicine           red_medicine  12/05/1995
-#> 8          8               end hits               end_hits  24/04/1998
-#> 9          9           the argument           the_argument  16/10/2001
-#> 10        10              furniture              furniture  16/10/2001
-#> 11        11             first demo             first_demo  18/11/2014
-#> 12        13             unreleased             unreleased            
+#> 1          1                 fugazi                 fugazi  1988-11-19
+#> 2          2          margin walker          margin_walker  1989-06-15
+#> 3          3                3 songs            three_songs  1989-12-01
+#> 4          4               repeater               repeater  1990-03-01
+#> 5          5 steady diet of nothing steady_diet_of_nothing  1991-08-01
+#> 6          6    in on the killtaker    in_on_the_killtaker  1993-06-18
+#> 7          7           red medicine           red_medicine  1995-05-12
+#> 8          8               end hits               end_hits  1998-04-24
+#> 9          9           the argument           the_argument  2001-10-16
+#> 10        10              furniture              furniture  2001-10-16
+#> 11        11             first demo             first_demo  2014-11-18
+#> 12        13             unreleased             unreleased        <NA>
 #>                                                           release_date_source
 #> 1                         https://rateyourmusic.com/release/ep/fugazi/fugazi/
 #> 2                          https://www.dischord.com/release/035/margin-walker

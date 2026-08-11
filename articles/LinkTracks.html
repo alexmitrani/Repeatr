@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9220</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9221</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -186,9 +186,8 @@ songs whose live launch dates lagged behind the corresponding release
 dates? To find out, let’s start by getting the data on the releases and
 the corresponding release dates.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">releasedates</span> <span class="op">&lt;-</span> <span class="va">releasesdatalookup</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="va">releaseid</span>, <span class="va">releasedate</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">mutate</span><span class="op">(</span>releasedate <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="va">releasedate</span>, <span class="st">"%d/%m/%Y"</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">releasedates</span> <span class="op">&lt;-</span> <span class="va">releasesdatalookup</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">releaseid</span>, <span class="va">releasedate</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">mydf</span> <span class="op">&lt;-</span> <span class="va">songvarslookup</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">releasedates</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
