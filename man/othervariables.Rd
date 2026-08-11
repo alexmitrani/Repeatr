@@ -38,7 +38,7 @@ The original data on coordinates, cities and tours data came from The D-I-Y Data
 Rows with checked==1 were updated by Alex Mitrani, in particular making sure that the coordinates indicated the actual locations of the venues for city-level mapping.
 }
 \section{Provenance}{
- Derived-cleaned. Produced by \code{\link{Repeatr_1}} by joining \code{inst/extdata/fls_data.csv} with \code{inst/extdata/fls_venue_geocoding_v2.csv}. Actively consumed directly by \code{inst/shiny/Fugazetteer/app.R} (e.g. its attendance/tour reactives). Exported as-is (minus \code{fls_notes}, \code{year}, \code{checked}, \code{x}, \code{y} - venue coordinates live in fugazi.db's \code{locations} table instead; plus \code{sound_quality} joined in) as fugazi.db's \code{shows} table by \code{\link{export_fugazidb_data}}.
+ Derived-cleaned. Produced by \code{\link{Repeatr_1}} by joining \code{inst/extdata/fls_data.csv} with \code{inst/extdata/fls_venue_geocoding_v2.csv}. Actively consumed directly by \code{inst/shiny/Fugazetteer/app.R} (e.g. its attendance/tour reactives). Exported as-is (minus \code{fls_notes}, \code{year}, \code{checked}, \code{x}, \code{y} - venue coordinates live in fugazibase's \code{locations} table instead; plus \code{sound_quality} joined in) as fugazibase's \code{shows} table by \code{\link{export_fugazibase_data}}.
 }
 
 \examples{

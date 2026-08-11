@@ -1,7 +1,7 @@
 
-#' @name export_fugazidb_data
-#' @title Exports fugazi.db's data/*.rda objects from Repeatr's own cleaned data
-#' @description Composes fugazi.db's six published tables (`shows`,
+#' @name export_fugazibase_data
+#' @title Exports fugazibase's data/*.rda objects from Repeatr's own cleaned data
+#' @description Composes fugazibase's six published tables (`shows`,
 #' `locations`, `durations`, `discography`, `songs`, `bands`) from Repeatr's
 #' own already-saved `data/*.rda` objects (the "Derived-cleaned" tier
 #' produced by \code{\link{Repeatr_1}}, which already includes the
@@ -11,19 +11,19 @@
 #' joining columns Repeatr itself already computed. Also runs basic
 #' integrity checks (no missing/duplicate id columns) on each table just
 #' before it's written, aborting the export if any fail. Writes each table
-#' as a `data/*.rda` (lazy-loadable) file directly into a local `fugazi.db`
+#' as a `data/*.rda` (lazy-loadable) file directly into a local `fugazibase`
 #' checkout. Does not commit or push anything in that checkout - review and
-#' commit fugazi.db's changes separately.
+#' commit fugazibase's changes separately.
 #'
 #' Excludes anything joined/summarized/modeled (e.g. `xray`,
 #' `duration_summary`, `Repeatr1`, and everything from \code{\link{Repeatr_2}}
 #' onward) and the copyrighted free-text show notes (`fls_notes`, scraped
-#' from the Fugazi Live Series site - see fugazi.db's own `LICENSE`) - see
+#' from the Fugazi Live Series site - see fugazibase's own `LICENSE`) - see
 #' `vignette("Data-Provenance")` for the full tier catalogue.
 #'
 #' @import dplyr
 #'
-#' @param fugazidb_dir Path to a local `fugazi.db` checkout. Required - there
+#' @param fugazibase_dir Path to a local `fugazibase` checkout. Required - there
 #' is no default, so a caller's own local path is never hardcoded here.
 #' @param repeatr_data_dir Optional directory to read Repeatr's own already-
 #' saved `data/*.rda` objects from. If omitted, defaults to `data/` under the
@@ -31,20 +31,20 @@
 #' \code{\link{Repeatr_Updatr}} run).
 #'
 #' @return Invisibly, a named list of the six objects written. As a side
-#' effect, writes `fugazidb_dir/data/*.rda`.
+#' effect, writes `fugazibase_dir/data/*.rda`.
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' export_fugazidb_data(fugazidb_dir = "../fugazi.db")
+#' export_fugazibase_data(fugazibase_dir = "../fugazibase")
 #' }
 #'
-export_fugazidb_data <- function(fugazidb_dir, repeatr_data_dir = NULL) {
+export_fugazibase_data <- function(fugazibase_dir, repeatr_data_dir = NULL) {
 
   mydir <- getwd()
   mydatadir <- if (is.null(repeatr_data_dir)) file.path(mydir, "data") else repeatr_data_dir
 
-  out_dir <- file.path(fugazidb_dir, "data")
+  out_dir <- file.path(fugazibase_dir, "data")
 
   load_obj <- function(name) {
     e <- new.env()
@@ -123,7 +123,7 @@ export_fugazidb_data <- function(fugazidb_dir, repeatr_data_dir = NULL) {
   # actually holds now that the old "discography" (song-level) table is
   # renamed "songs" below. release_date_source also dropped - it's a
   # per-release citation, not a value analysts join on, so it's documented
-  # in fugazi.db's own Roxygen docs instead of shipped as a column.
+  # in fugazibase's own Roxygen docs instead of shipped as a column.
   discography <- load_obj("releasesdatalookup") %>%
     filter(!releaseid %in% c(12, 13, 14, 15)) %>%
     select(releaseid, release, releasedate)
@@ -133,7 +133,7 @@ export_fugazidb_data <- function(fugazidb_dir, repeatr_data_dir = NULL) {
 
   # songs (was discography) - Raw-hand-curated studio discography metadata.
   # songidlookup isn't joined in - its only columns (songid, count) are
-  # calculated/summary values, excluded from fugazi.db by design.
+  # calculated/summary values, excluded from fugazibase by design.
   # track_number/duration_seconds renamed to release_track/release_duration
   # (this is the studio release's own track/duration, distinct from
   # durations's live-tagged track/duration); release_duration converted to a

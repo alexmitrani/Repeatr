@@ -12,7 +12,7 @@ devtools::install_github("alexmitrani/Repeatr", build_opts = c("--no-resave-data
 
 The package gives easy access to the functions, dataframes, and related documentation.
 
-Repeatr holds all of the raw inputs, processing code, and every derived/modelled dataset - see `vignette("Data-Provenance")`. It also produces the companion data package [fugazi.db](https://github.com/alexmitrani/fugazi.db) (show listings, venue coordinates, duration data, discography metadata) via `export_fugazidb_data()` - fugazi.db is downstream of Repeatr, not a source Repeatr reads from.
+Repeatr holds all of the raw inputs, processing code, and every derived/modelled dataset - see `vignette("Data-Provenance")`. It also produces the companion data package [fugazibase](https://github.com/alexmitrani/fugazibase) (show listings, venue coordinates, duration data, discography metadata) via `export_fugazibase_data()` - fugazibase is downstream of Repeatr, not a source Repeatr reads from.
 
 ## Fugazetteer web app
 

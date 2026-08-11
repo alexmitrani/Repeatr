@@ -27,7 +27,7 @@ songvarslookup
 Song discography metadata (Wikipedia)
 }
 \section{Provenance}{
- Raw-hand-curated, from \code{inst/extdata/releases_songs_durations_wikipedia.csv}. Read by \code{\link{Repeatr_1}} and joined onto the live, classified song set by \code{song} title text, not by a hardcoded id column - see \code{songid}/\code{\link{songidlookup}}. Exported (renamed \code{track_number}→\code{release_track}, \code{duration_seconds}→\code{release_duration} converted to a \code{Period} matching \code{\link{fls_tags}}'s \code{duration}) as fugazi.db's \code{songs} table by \code{\link{export_fugazidb_data}}.
+ Raw-hand-curated, from \code{inst/extdata/releases_songs_durations_wikipedia.csv}. Read by \code{\link{Repeatr_1}} and joined onto the live, classified song set by \code{song} title text, not by a hardcoded id column - see \code{songid}/\code{\link{songidlookup}}. Exported (renamed \code{track_number}→\code{release_track}, \code{duration_seconds}→\code{release_duration} converted to a \code{Period} matching \code{\link{fls_tags}}'s \code{duration}) as fugazibase's \code{songs} table by \code{\link{export_fugazibase_data}}.
 }
 
 \examples{

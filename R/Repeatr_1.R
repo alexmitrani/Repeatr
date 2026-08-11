@@ -456,7 +456,7 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     mutate(album = ifelse(album == "20010607 Archie Browning Centre, Victoria, BC, Canada", "20010706 Archie Browning Centre, Victoria, BC, Canada", album))
 
   # Three more known tagging-date typos (found while tracing NA gid rows in
-  # fugazi.db's durations table back to their source): the tagged album date
+  # fugazibase's durations table back to their source): the tagged album date
   # doesn't match the FLS-listed show date, so the date-based gid join below
   # silently fails for these otherwise-real, correctly-listed shows.
   fls_tags <- fls_tags %>%
@@ -469,7 +469,7 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     mutate(album = ifelse(album == "20000409 E9, El Paso, TX, USA", "20010409 E9, El Paso, TX, USA", album))
 
   # A fourth tagging-date typo, found while tracing duplicate gid/track rows
-  # in fugazi.db's durations table: this block's tagged date (27th) collided
+  # in fugazibase's durations table: this block's tagged date (27th) collided
   # with the Portland, ME show's date (also the 27th, itself just corrected
   # above) once that fix went in - both shows' tags were merging onto
   # portland-me-usa-72698's gid. The FLS listing confirms Hoboken's real date

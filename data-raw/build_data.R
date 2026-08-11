@@ -7,13 +7,13 @@
 # hand, in order, whenever source data changes.
 #
 # Primary data (raw sources) lives in this package's own inst/extdata, not
-# in a separate package. The companion package fugazi.db is downstream of
+# in a separate package. The companion package fugazibase is downstream of
 # Repeatr, not upstream of it - stage C below generates it from Repeatr's
 # own already-rebuilt data. This script has three stages:
 #
 #   A. Refresh inst/extdata's raw sources (scraping/hand-curation)
 #   B. Rebuild Repeatr's own derived data/*.rda from those raw sources
-#   C. Export the fugazi.db subset from Repeatr's own rebuilt data
+#   C. Export the fugazibase subset from Repeatr's own rebuilt data
 #
 # None of stage A's five sources need to be refreshed together - run
 # whichever one has new material, then B and (optionally) C.
@@ -42,7 +42,7 @@ fls_data <- scrape_fls_shows(
 # up/confirm venue locations on Google Maps. There is no separate
 # to-do-list/fallback-file workflow any more (nscmov() is retired) - the
 # sheet export is the single source of truth for coordinates, used
-# identically by Repeatr's own pipeline and by fugazi.db's export.
+# identically by Repeatr's own pipeline and by fugazibase's export.
 
 # A3. Tags/duration data - no R code here - inst/extdata/fls_tags.txt is
 # exported directly from kid3 (https://kid3.kde.org/) against the
@@ -77,15 +77,15 @@ Repeatr_Updatr(really = "really", update_stacks = TRUE)
 # redeploy the Shiny app - see the "Reinstalling and redeploying" section of
 # vignette("Rebuilding the Data").
 
-# C. Export fugazi.db's data ------------------------------------------------
+# C. Export fugazibase's data ------------------------------------------------
 #
-# Composes fugazi.db's six tables from Repeatr's own already-rebuilt
+# Composes fugazibase's six tables from Repeatr's own already-rebuilt
 # data/*.rda objects (stage B must have run first) plus
 # inst/extdata/fls_venue_geocoding_v2.csv directly, and writes them into a
-# local fugazi.db checkout's data/*.rda.
+# local fugazibase checkout's data/*.rda.
 # Writes files only - does not commit, push, or reinstall anything in that
-# checkout; review and commit fugazi.db's own changes separately, on its own
-# schedule. Nothing in Repeatr's own pipeline depends on fugazi.db being
+# checkout; review and commit fugazibase's own changes separately, on its own
+# schedule. Nothing in Repeatr's own pipeline depends on fugazibase being
 # refreshed.
 
-export_fugazidb_data(fugazidb_dir = "../fugazi.db")
+export_fugazibase_data(fugazibase_dir = "../fugazibase")
