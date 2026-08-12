@@ -15,7 +15,7 @@ stacks(
 )
 }
 \arguments{
-\item{mydf}{dataframs of shows and songs containing the columns gid and song.}
+\item{mydf}{dataframs of shows and songs containing the columns gid and title.}
 
 \item{mygid}{gig id of initial show as a string, for instance "washington-dc-usa-13196".}
 
@@ -30,14 +30,14 @@ stacks(
 \item{mygidsoundquality}{optional \code{gid_sound_quality} dataframe (as produced by \code{Repeatr_1()}) to be used for sound quality filtering/display. If omitted the currently lazy-loaded default will be used.}
 }
 \value{
-A list of two data frames: \code{stack_songs} (\code{gid}, \code{song} - one row per unique song in the stack, and the show it came from) and \code{stack_shows_songs} (one row per show included in the stack, with venue/date/sound-quality details and the number of new songs it contributed).
+A list of two data frames: \code{stack_songs} (\code{gid}, \code{title} - one row per unique song in the stack, and the show it came from) and \code{stack_shows_songs} (one row per show included in the stack, with venue/date/sound-quality details and the number of new songs it contributed).
 }
 \description{
 stacks puts together a set of shows that will contain a specified number of unique songs.
 }
 \examples{
 gid_song <- duration_data_da \%>\%
-  select(gid, song)
+  select(gid, title)
 
 results <- stacks(mydf = gid_song, mygid = "washington-dc-usa-13196", mynumberofsongs = 94)
 stack1 <- results[[1]]

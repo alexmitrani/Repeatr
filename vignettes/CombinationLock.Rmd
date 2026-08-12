@@ -38,8 +38,8 @@ Let's get the data, limit it to the columns that we will be using, and have a lo
 ```{r }
 
 mydf1 <- Repeatr1 %>%
-  select(gid,song_number,song) %>%
-  rename(song1 = song)
+  select(gid,song_number,title) %>%
+  rename(title1 = title)
 
 print(paste0("There are ", nrow(mydf1), " rows in this dataframe."))
 
@@ -52,13 +52,13 @@ In order to look at the transitions between songs, let's get the list of songs t
 ```{r}
 
 mydf2 <- Repeatr1 %>%
-  select(gid,song_number,song) %>%
+  select(gid,song_number,title) %>%
   mutate(song_number = song_number-1) %>%
-  rename(song2 = song)
+  rename(title2 = title)
 
 mydf3 <- mydf1 %>%
   left_join(mydf2) %>%
-  filter(is.na(song2)==FALSE) %>%
+  filter(is.na(title2)==FALSE) %>%
   rename(transition_number = song_number)
 
 print(paste0("There are ", nrow(mydf3), " rows in this dataframe."))
@@ -96,9 +96,9 @@ Now let's summarise the data to count how many times each transition occurs.
 ```{r}
 
 transitions <- mydf3 %>%
-  select(song1, song2) %>%
-  rename(from = song1) %>%
-  rename(to = song2)
+  select(title1, title2) %>%
+  rename(from = title1) %>%
+  rename(to = title2)
 
 transitions <- transitions %>%
   group_by(from, to) %>%
@@ -118,16 +118,16 @@ This already gives us a good idea of what the most common transitions were. Howe
 
 ```{r}
 
-transitions$song <- transitions$from
+transitions$title <- transitions$from
 
 mylookup <- fugazi_song_performance_intensity %>%
-  select(song, available_rl)
+  select(title, available_rl)
 
 transitions <- transitions %>%
   left_join(mylookup) %>%
   rename(from_available_rl = available_rl)
 
-transitions$song <- transitions$to
+transitions$title <- transitions$to
 
 transitions <- transitions %>%
   left_join(mylookup) %>%
@@ -155,7 +155,7 @@ Let's use a heatmap to give an overview of all of the transitions and their rela
 launchdateindex_from <- fugazi_song_counts %>%
   arrange(launchdate) %>%
   mutate(launchdateindex_from = row_number()) %>%
-  rename(from = song) %>%
+  rename(from = title) %>%
   select(from, launchdateindex_from)
 
 launchdateindex_to <- launchdateindex_from %>%
@@ -208,7 +208,7 @@ mysongvarslookup <- mysongvarslookup %>%
   mutate(vocals = ifelse(vocals_mackaye==1,"mackaye",vocals)) %>%
   mutate(vocals = ifelse(vocals_picciotto==1,"picciotto",vocals)) %>%
   mutate(vocals = ifelse(instrumental==1,"instrumental",vocals)) %>%
-  select(song, vocals)
+  select(title, vocals)
 
 head(mysongvarslookup)
 
@@ -227,9 +227,9 @@ Transitions between some of these groups were probably much more common than oth
 
 ```{r}
 
-mysongvarslookup1 <- mysongvarslookup %>% rename(from = song, from_vocals = vocals)
+mysongvarslookup1 <- mysongvarslookup %>% rename(from = title, from_vocals = vocals)
 
-mysongvarslookup2 <- mysongvarslookup %>% rename(to = song, to_vocals = vocals)
+mysongvarslookup2 <- mysongvarslookup %>% rename(to = title, to_vocals = vocals)
 
 transitions3 <- transitions %>%
   left_join(mysongvarslookup1) %>%
@@ -271,7 +271,7 @@ checkvocals_to <- checkvocals %>%
 launchdateindex_from <- fugazi_song_counts %>%
   arrange(launchdate) %>%
   mutate(launchdateindex_from = row_number()) %>%
-  rename(from = song) %>%
+  rename(from = title) %>%
   select(from, launchdateindex_from)
 
 launchdateindex_to <- launchdateindex_from %>%

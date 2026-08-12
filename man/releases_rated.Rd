@@ -7,9 +7,9 @@
 \format{
 dataframe with one row for each release.
 \describe{
-\item{release}{The name of the release.}
-\item{releaseid}{numeric id in ascending chronological order}
-\item{releasedate}{The date of the release}
+\item{release_title}{The name of the release.}
+\item{rid}{numeric id in ascending chronological order}
+\item{release_date}{The date of the release}
 \item{songs_rated}{The number of songs on the release that were rated}
 \item{rating}{The average rating across the rated songs on the release}
 }

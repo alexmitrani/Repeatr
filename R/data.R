@@ -56,8 +56,8 @@
 #' \item{currency}{ISO 4217 currency code for `price` (`NA` alongside a missing `price`); "Free" shows are `USD` except one 1995 Italy show (`ITL`).}
 #' \item{attendance}{Attendance}
 #' \item{recorded_by}{Recorded by}
-#' \item{mastered_by}{Mastered by}
-#' \item{original_source}{Original source}
+#' \item{mastered_by}{Mastered by. A handful of typo'd values ("Warren Russell Smith" missing its hyphen) are corrected here.}
+#' \item{original_source}{Original source. A handful of terse raw values ("?", "VHS", "VHS Tape") are standardized here to "Unknown"/"VHS audio".}
 #' \item{x}{longitude}
 #' \item{y}{latitude}
 #' \item{city}{city - plain city name (e.g. "Portland", "Columbia", "Croydon"); see `subdivision`/`country` to disambiguate cities that share a name with another Fugazi tour stop. Internally, \code{\link{Repeatr_1}} temporarily suffixes these as "City (ST/Country)" to match the venue-coordinate lookup's join key, then strips the suffix back off once coordinates are resolved - the suffix never persists to this exposed column.}
@@ -89,12 +89,12 @@
 #' \item{tracktype}{0 = interlude, 1 = song, 2 = other music}
 #' \item{song_number}{The number of the song in the sequence of songs that were performed as part of that show}
 #' \item{songid}{numeric id for each song}
-#' \item{song}{The name of the song}
+#' \item{title}{The name of the song}
 #' \item{number_songs}{The number of songs that were performed as part of that show}
 #' \item{first_song}{Identifies the first song of the set}
 #' \item{last_song}{Identifies the last song of the set}
-#' \item{releaseid}{numeric id in ascending chronological order}
-#' \item{release}{name of album or EP}
+#' \item{rid}{numeric id in ascending chronological order}
+#' \item{release_title}{name of album or EP}
 #' \item{track_number}{The track number for the song on the release}
 #' \item{instrumental}{Indicates whether or not the piece is an instrumental}
 #' \item{vocals_picciotto}{indicates whether or not Guy Picciotto sang lead vocals on this track}
@@ -125,15 +125,15 @@
 #' \item{song_number}{The number of the song in the sequence of songs that were performed as part of that show}
 #' \item{alt}{A dense 1..n index over the `min_song_count`-eligible songs only, in `songid` order - this is the alternative-specific index `mlogit`/\code{\link{Repeatr_4}} actually sees. See `songid` below for the stable song identity this is derived from.}
 #' \item{songid}{The stable, full song identity from \code{\link{songidlookup}}, kept alongside `alt` rather than overwritten by it.}
-#' \item{song}{The name of the song}
+#' \item{title}{The name of the song}
 #' \item{choice}{1 if the song was performed at that point in the show, 0 otherwise}
 #' \item{played}{1 if the song was performed at or before that point in the show, 0 otherwise}
 #' \item{available_rl}{Repertoire-level availability: 1 if the song was available in the repertoire for this show, 0 otherwise}
 #' \item{available_gl}{Gig-level availability: 1 if the song was available in the repertoire and was available to be played at this point in this show, 0 otherwise}
 #' \item{first_song}{Identifies the first song of the set}
 #' \item{last_song}{Identifies the last song of the set}
-#' \item{releaseid}{numeric id in ascending chronological order}
-#' \item{release}{name of album or EP}
+#' \item{rid}{numeric id in ascending chronological order}
+#' \item{release_title}{name of album or EP}
 #' \item{track_number}{The track number for the song on the release}
 #' \item{instrumental}{Indicates whether or not the piece is an instrumental}
 #' \item{vocals_picciotto}{indicates whether or not Guy Picciotto sang lead vocals on this track}
@@ -297,10 +297,10 @@
 #' @format dataframe with one row for each song in the Fugazi discography, except those which never appear in the Fugazi Live Series data.
 #' \describe{
 #' \item{songid}{numeric id for each song, based on the alphabetical order of the song names. Assigned to every classified song, including one-off performances and rarities below `min_song_count`.}
-#' \item{song}{The name of the song}
+#' \item{title}{The name of the song}
 #' \item{count}{The number of times the song was performed according to the data. Used by \code{\link{Repeatr_2}} to apply the `min_song_count` choice-model eligibility filter.}
 #' }
-#' @section Provenance: Derived-classified. Computed live in \code{\link{Repeatr_1}} from `Repeatr1`; the single source of truth for song identity - not hand-edited, and (after the songid fix) assigned to every classified song including one-offs, not just those meeting `min_song_count`. Not exported to fugazibase - `songid` and `count` are calculated/summary values, kept internal to `Repeatr` by design; fugazibase's `discography` table is \code{\link{songvarslookup}} alone, joined by `song` title text where needed.
+#' @section Provenance: Derived-classified. Computed live in \code{\link{Repeatr_1}} from `Repeatr1`; the single source of truth for song identity - not hand-edited, and (after the songid fix) assigned to every classified song including one-offs, not just those meeting `min_song_count`. Not exported to fugazibase - `songid` and `count` are calculated/summary values, kept internal to `Repeatr` by design; fugazibase's `songs` table is \code{\link{songvarslookup}} alone, joined by `title` text where needed.
 #' @examples
 #' songidlookup
 "songidlookup"
@@ -311,10 +311,10 @@
 #' \describe{
 #' \item{alt}{Dense 1..n index over the `min_song_count`-eligible songs, in `songid` order. The alternative-specific index `mlogit`/\code{\link{Repeatr_4}} actually sees - not the same as `songid`, which spans every classified song.}
 #' \item{songid}{The stable, full song identity from \code{\link{songidlookup}}.}
-#' \item{song}{The name of the song}
+#' \item{title}{The name of the song}
 #' \item{count}{The number of times the song was performed according to the data}
 #' }
-#' @section Provenance: Derived-modeled. Computed live in \code{\link{Repeatr_2}}; the translation table between `alt` (what the choice model sees) and `songid`/`song` (stable identity) used by \code{\link{Repeatr_5}} and \code{\link{rankr}}.
+#' @section Provenance: Derived-modeled. Computed live in \code{\link{Repeatr_2}}; the translation table between `alt` (what the choice model sees) and `songid`/`title` (stable identity) used by \code{\link{Repeatr_5}} and \code{\link{rankr}}.
 #' @examples
 #' altlookup
 "altlookup"
@@ -323,15 +323,15 @@
 #'
 #' @format dataframe with one row for each release.
 #' \describe{
-#' \item{releaseid}{numeric id in ascending chronological order}
-#' \item{release}{release name}
+#' \item{rid}{numeric id in ascending chronological order}
+#' \item{release_title}{release name}
 #' \item{variable}{release names for use as variable names}
-#' \item{releasedate}{release date}
+#' \item{release_date}{release date}
 #' \item{release_date_source}{source of the release date}
 #' \item{colour_code}{hex colour code to be used for the release in graphs}
 #' \item{rym_rating}{RYM rating scaled to the interval between 0 and 1}
 #' }
-#' @section Provenance: Derived-cleaned. Produced by \code{\link{Repeatr_1}} from `inst/extdata/releases.csv` (which itself carries a manually-assigned `colour_code` and an `rym_rating` sourced from rateyourmusic.com). Exported (minus `colour_code`, `variable`, `rym_rating`, minus the four synthetic UI-bucket rows) as fugazibase's `discography` table by \code{\link{export_fugazibase_data}}.
+#' @section Provenance: Derived-cleaned. Produced by \code{\link{Repeatr_1}} from `inst/extdata/releases.csv` (which itself carries a manually-assigned `colour_code` and an `rym_rating` sourced from rateyourmusic.com); `releaseid`/`release`/`releasedate` renamed `rid`/`release_title`/`release_date` at read time. Exported (minus `colour_code`, `variable`, `rym_rating`, minus the four synthetic UI-bucket rows) as fugazibase's `discography` table by \code{\link{export_fugazibase_data}}.
 #' @examples
 #' releasesdatalookup
 "releasesdatalookup"
@@ -341,16 +341,16 @@
 #' @source https://web.archive.org/web/20201112000517/http://en.wikipedia.org/wiki/Fugazi_discography
 #' @format dataframe with one row for each song in the Fugazi discography.
 #' \describe{
-#' \item{releaseid}{numeric id of the release the song appears on, references \code{\link{releasesdatalookup}}}
+#' \item{rid}{numeric id of the release the song appears on, references \code{\link{releasesdatalookup}}}
 #' \item{track_number}{The track number for the song on the release}
-#' \item{song}{The name of the song}
+#' \item{title}{The name of the song}
 #' \item{instrumental}{Indicates whether or not the piece is an instrumental}
 #' \item{vocals_picciotto}{indicates whether or not Guy Picciotto sang lead vocals on this track}
 #' \item{vocals_mackaye}{indicates whether or not Ian Mackaye sang lead vocals on this track}
 #' \item{vocals_lally}{indicates whether or not Joe Lally sang lead vocals on this track}
 #' \item{duration_seconds}{duration of the studio recording, in seconds}
 #' }
-#' @section Provenance: Raw-hand-curated, from `inst/extdata/releases_songs_durations_wikipedia.csv`. Read by \code{\link{Repeatr_1}} and joined onto the live, classified song set by `song` title text, not by a hardcoded id column - see `songid`/\code{\link{songidlookup}}. Exported (renamed `track_number`→`release_track`, `duration_seconds`→`release_duration` converted to a `Period` matching \code{\link{fls_tags}}'s `duration`) as fugazibase's `songs` table by \code{\link{export_fugazibase_data}}.
+#' @section Provenance: Raw-hand-curated, from `inst/extdata/releases_songs_durations_wikipedia.csv`; `releaseid`/`song` renamed `rid`/`title` at read time. Read by \code{\link{Repeatr_1}} and joined onto the live, classified song set by `title` text, not by a hardcoded id column - see `songid`/\code{\link{songidlookup}}. Exported (renamed `track_number`→`release_track`, `duration_seconds`→`release_duration` converted to a `Period` matching \code{\link{fls_tags}}'s `duration`) as fugazibase's `songs` table by \code{\link{export_fugazibase_data}}.
 #' @examples
 #' songvarslookup
 "songvarslookup"
@@ -360,10 +360,10 @@
 #' @source https://www.dischord.com/fugazi_live_series
 #' @format dataframe with one row for each song in the Fugazi discography, except those which never appear in the Fugazi Live Series data.
 #' \describe{
-#' \item{releaseid}{numeric id in ascending chronological order}
-#' \item{release}{release name}
+#' \item{rid}{numeric id in ascending chronological order}
+#' \item{release_title}{release name}
 #' \item{track_number}{The track number for the song on the release}
-#' \item{song}{The name of the song}
+#' \item{title}{The name of the song}
 #' \item{last_show}{The number of the last show in the series}
 #' \item{colour_code}{The hex colour code used for the corresponding release}
 #' \item{count}{The number of times the song was performed according to the data}
@@ -383,8 +383,8 @@
 #' @source https://www.dischord.com/fugazi_live_series
 #' @format dataframe with one row for each release in the Fugazi discography, except those which never appear in the Fugazi Live Series data.
 #' \describe{
-#' \item{releaseid}{A unique identifier for the release based on the alphabetical order of the titles.}
-#' \item{release}{The name of the release.}
+#' \item{rid}{A unique identifier for the release based on the alphabetical order of the titles.}
+#' \item{release_title}{The name of the release.}
 #' \item{variable}{The name of the release in snake case.}
 #' \item{first_debut}{the date of the first debut from this release}
 #' \item{release_date}{this is an assumption based on the available evidence. Actual release dates will have been different in different places.}
@@ -402,7 +402,7 @@
 #' @source https://www.dischord.com/fugazi_live_series
 #' @format dataframe with one row for each release in the Fugazi discography.
 #' \describe{
-#' \item{release}{The name of the release.}
+#' \item{release_title}{The name of the release.}
 #' \item{first_debut}{the date of the first debut from this release}
 #' \item{last_debut}{the date of the last debut from this release}
 #' \item{release_date}{this is an assumption based on the available evidence. Actual release dates will have been different in different places.}
@@ -421,7 +421,7 @@
 #' @source https://www.dischord.com/fugazi_live_series
 #' @format dataframe with one row for each release in the Fugazi discography, except those which never appear in the Fugazi Live Series data.
 #' \describe{
-#' \item{releaseid}{A unique identifier for the release based on the alphabetical order of the titles.}
+#' \item{rid}{A unique identifier for the release based on the alphabetical order of the titles.}
 #' \item{variable}{The name of the release in snake case.}
 #' \item{colour code}{Hex code of the colour used for this release in graphs.}
 #' }
@@ -438,13 +438,13 @@
 #' @format dataframe with one row for each track in the Fugazi Live Series data, including data from the audio file tags.
 #' \describe{
 #' \item{track}{track number}
-#' \item{song}{track name}
+#' \item{title}{track name}
 #' \item{duration}{duration in period format (lubridate)}
 #' \item{seconds}{duration in seconds}
 #' \item{date}{date}
 #' \item{gid}{show id}
 #' }
-#' @section Provenance: Derived-cleaned. Parsed by \code{\link{Repeatr_1}} (via \code{\link{fls_tags_importer}}) from the raw `inst/extdata/fls_tags.txt` kid3 MP3-tag export. The underlying track/album/song names themselves are sourced from the Fugazi Live Series site, not personal data - Alex Mitrani applied a consistent album-name format and a handful of one-off track-title corrections on top (see the "process tags data" section of \code{\link{Repeatr_1}}). The raw `album` tag text (`YYYYMMDD Venue, City, State, Country`) is used internally to parse `venue`/`city`/`subdivision`/`country` for a couple of mistagged-track filters and to derive \code{\link{fls_tags_show}}, but those fields (and `album` itself) are dropped before saving, since parsing them by counting commas silently misparses whenever a venue or city name itself contains a comma (e.g. Ypsilanti, Flint, Eau Claire, Osaka), and \code{\link{shows_data}} (joined via `gid`) is the sole authoritative source for them. Exported (minus `date` - join fugazibase's `shows` on `gid` instead - and `seconds`, which duplicated `duration`; `track` converted from character to integer) as fugazibase's `durations` table by \code{\link{export_fugazibase_data}}.
+#' @section Provenance: Derived-cleaned. Parsed by \code{\link{Repeatr_1}} (via \code{\link{fls_tags_importer}}) from the raw `inst/extdata/fls_tags.txt` kid3 MP3-tag export; the raw tag's `name` field is renamed `title` at read time. The underlying track/album/song names themselves are sourced from the Fugazi Live Series site, not personal data - Alex Mitrani applied a consistent album-name format and a handful of one-off track-title corrections on top (see the "process tags data" section of \code{\link{Repeatr_1}}). The raw `album` tag text (`YYYYMMDD Venue, City, State, Country`) is used internally to parse `venue`/`city`/`subdivision`/`country` for a couple of mistagged-track filters and to derive \code{\link{fls_tags_show}}, but those fields (and `album` itself) are dropped before saving, since parsing them by counting commas silently misparses whenever a venue or city name itself contains a comma (e.g. Ypsilanti, Flint, Eau Claire, Osaka), and \code{\link{shows_data}} (joined via `gid`) is the sole authoritative source for them. Exported (minus `date` - join fugazibase's `shows` on `gid` instead - and `seconds`, which duplicated `duration`; `track` converted from character to integer) as fugazibase's `durations` table by \code{\link{export_fugazibase_data}}.
 #' @examples
 #' fls_tags
 "fls_tags"
@@ -467,7 +467,7 @@
 #'
 #' @format dataframe with one row for each song with a personally-measured tempo reading.
 #' \describe{
-#' \item{song}{The name of the song}
+#' \item{title}{The name of the song}
 #' \item{tempo_bpm}{Tempo, in beats per minute, measured personally by Alex Mitrani}
 #' }
 #' @section Provenance: Raw-hand-curated, from `inst/extdata/song_tempo_bpm_data.csv`. Read as-is by \code{\link{Repeatr_1}}, no transformation. Not exported to fugazibase - kept in `Repeatr` only, for its own Shiny app.
@@ -483,7 +483,7 @@
 #' \item{gid}{Unique identifier for the show}
 #' \item{date}{The date of the show.}
 #' \item{song_number}{this is the number of the song in the set, where 1 is the first song in that show. Larger numbers will indicate that the song was played later in the set,}
-#' \item{song}{the name of the song}
+#' \item{title}{the name of the song}
 #' \item{urls}{A string used to form the URLs of the corresponding page on the Fugazi Live series site.}
 #' \item{fls_link}{a link to the corresponding page of the Fugazi Live Series site.}
 #' \item{minutes}{duration of the song in minutes}
@@ -500,7 +500,7 @@
 #' @source https://www.dischord.com/fugazi_live_series
 #' @format dataframe with one row for each song in the Fugazi discography, except those which never appear in the Fugazi Live Series data.
 #' \describe{
-#' \item{song}{Name of the song}
+#' \item{title}{Name of the song}
 #' \item{renditions}{The number of times the song was played live according to the available recordings.}
 #' \item{minutes_min}{The minimum duration. In many cases this will be as short as it is because the recording was cut off, not because the band played the song really fast.}
 #' \item{minutes_median}{The median duration: if all the renditions were lined up in order from shortest to longest this would be the middle one.}
@@ -520,8 +520,8 @@
 #' @format dataframe with one row for each combination of song and duration in the Fugazi Live Series data.
 #' \describe{
 #' \item{minutes}{Duration of the show in minutes}
-#' \item{song}{Name of the song}
-#' \item{release}{Name of the corresponding discographical release}
+#' \item{title}{Name of the song}
+#' \item{release_title}{Name of the corresponding discographical release}
 #' \item{count}{The cumulative count of the number of times the song had been performed up to and including this duration.}
 #' }
 #' @section Provenance: Derived-cleaned. Produced by \code{\link{Repeatr_1}}.
@@ -535,8 +535,8 @@
 #' @format dataframe with one row for each combination of song and date in the Fugazi Live Series data.
 #' \describe{
 #' \item{date}{Date of the show}
-#' \item{song}{Name of the song}
-#' \item{release}{Name of the corresponding discographical release}
+#' \item{title}{Name of the song}
+#' \item{release_title}{Name of the corresponding discographical release}
 #' \item{count}{The cumulative count of the number of times the song had been performed up to and including this performance.}
 #' }
 #' @section Provenance: Derived-cleaned. Produced by \code{\link{Repeatr_1}}.
@@ -550,7 +550,7 @@
 #' @format dataframe with one row for each song in the Fugazi discography, except those which never appear in the Fugazi Live Series data.
 #' \describe{
 #' \item{songid}{numeric id for each song}
-#' \item{song}{The name of the song}
+#' \item{title}{The name of the song}
 #' \item{launchdate}{The date on which the song was first performed according to the data}
 #' \item{count}{The number of times the song was performed according to the data}
 #' }
@@ -565,7 +565,7 @@
 #' @format dataframe with one row for each song in the Fugazi discography, except those which never appear in the Fugazi Live Series data.
 #' \describe{
 #' \item{songid}{numeric id for each song}
-#' \item{song}{The name of the song}
+#' \item{title}{The name of the song}
 #' \item{launchdate}{The date on which the song was first performed according to the data}
 #' \item{chosen}{The number of times the song was performed according to the data}
 #' \item{available_rl}{The number of shows for which the song was available in the band's repertoire}
@@ -581,7 +581,7 @@
 #' @source https://www.dischord.com/fugazi_live_series
 #' @format dataframe with one row for each song that was performed at least twice in the Fugazi Live Series data.
 #' \describe{
-#' \item{song}{name of the song}
+#' \item{title}{name of the song}
 #' \item{last_performance}{date of the last performance.}
 #' }
 #' @section Provenance: Derived-cleaned. Produced by \code{\link{Repeatr_1}}.
@@ -649,7 +649,7 @@
 #' \describe{
 #' \item{rank_rating}{Rank of the song by estimated preference, 1 = most preferred}
 #' \item{songid}{numeric id for each song}
-#' \item{song}{The name of the song}
+#' \item{title}{The name of the song}
 #' \item{Estimate}{The estimated intercept for this song (0 for the omitted reference song)}
 #' \item{z-value}{The z-value of the estimate (NA for the omitted reference song)}
 #' }
@@ -665,9 +665,9 @@
 #' @source https://www.dischord.com/fugazi_live_series
 #' @format dataframe with one row for each release.
 #' \describe{
-#' \item{release}{The name of the release.}
-#' \item{releaseid}{numeric id in ascending chronological order}
-#' \item{releasedate}{The date of the release}
+#' \item{release_title}{The name of the release.}
+#' \item{rid}{numeric id in ascending chronological order}
+#' \item{release_date}{The date of the release}
 #' \item{songs_rated}{The number of songs on the release that were rated}
 #' \item{rating}{The average rating across the rated songs on the release}
 #' }
@@ -683,21 +683,21 @@
 #' \describe{
 #' \item{rank_rating}{The rank of the song in terms of the rating derived from the choice modelling, with the highest-rated song in the first position.}
 #' \item{songid}{numeric id for each song}
-#' \item{song}{The name of the song}
+#' \item{title}{The name of the song}
 #' \item{launchdate}{The date on which the song was first performed according to the data}
 #' \item{duration_seconds}{The duration of the song in seconds}
 #' \item{chosen}{The number of times the song was performed according to the data}
 #' \item{available_rl}{The number of shows for which the song was available in the band's repertoire}
 #' \item{intensity}{The performance intensity is the ratio of chosen/available_rl}
 #' \item{rating}{Rating on the interval between 0 and 1 where 1 is the highest rating and 0 the lowest.}
-#' \item{releaseid}{numeric id in ascending chronological order}
-#' \item{release}{release name}
+#' \item{rid}{numeric id in ascending chronological order}
+#' \item{release_title}{release name}
 #' \item{track_number}{The track number for the song on the release}
 #' \item{instrumental}{Indicates whether or not the piece is an instrumental}
 #' \item{vocals_picciotto}{indicates whether or not Guy Picciotto sang lead vocals on this track}
 #' \item{vocals_mackaye}{indicates whether or not Ian Mackaye sang lead vocals on this track}
 #' \item{vocals_lally}{indicates whether or not Joe Lally sang lead vocals on this track}
-#' \item{releasedate}{The date of the corresponding release}
+#' \item{release_date}{The date of the corresponding release}
 #' \item{lead}{The number of days between the launch date and the release date}
 #' \item{launchyear}{The year in which the song was first performed}
 #' \item{releaseyear}{The year in which the song was released}
@@ -720,8 +720,8 @@
 #' \item{fls_link}{provides a link to the corresponding page of the Fugazi Live Series site}
 #' \item{date}{date of the show}
 #' \item{transition}{Number of the transition in the show}
-#' \item{song1}{Name of the first song}
-#' \item{song2}{Name of the second song}
+#' \item{title1}{Name of the first song}
+#' \item{title2}{Name of the second song}
 #' }
 #' @section Provenance: Derived-cleaned. Produced by \code{\link{Repeatr_1}}. Not to be confused with the orphaned `transitions` object.
 #' @examples

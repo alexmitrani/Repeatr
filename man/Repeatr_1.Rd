@@ -34,7 +34,7 @@ Reads its raw inputs from this package's own \verb{inst/extdata/} by default: \c
 
 "gid" is short for "gig id"
 
-\code{songvarslookup} (read from \code{inst/extdata/releases_songs_durations_wikipedia.csv}) contains the following variables: releaseid	track_number	song	instrumental	vocals_picciotto	vocals_mackaye	vocals_lally	duration_seconds. It is joined onto the live, classified song set by \code{song} title text, not by a hardcoded id column - see \code{songid} below.
+\code{songvarslookup} (read from \code{inst/extdata/releases_songs_durations_wikipedia.csv}) contains the following variables: rid	track_number	title	instrumental	vocals_picciotto	vocals_mackaye	vocals_lally	duration_seconds. It is joined onto the live, classified song set by \code{title} text, not by a hardcoded id column - see \code{songid} below.
 }
 \examples{
 Repeatr_1_results <- Repeatr_1(output_dir = tempdir())

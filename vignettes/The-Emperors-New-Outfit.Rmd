@@ -34,8 +34,8 @@ Judging from the dates of debut live performances in the Fugazi Live Series, the
 
 ```{r echo=FALSE}
 releases_data_input %>%
-  filter(release=="steady diet of nothing") %>%
-  select(song, date) %>%
+  filter(release_title=="steady diet of nothing") %>%
+  select(title, date) %>%
   rename(debut = date) %>%
   arrange(debut)
 

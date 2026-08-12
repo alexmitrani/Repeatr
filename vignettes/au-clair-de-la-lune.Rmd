@@ -33,8 +33,8 @@ Two Beats Off was launched as an instrumental at the 40 Watt in Athens, Georgia 
 
 ```{r echo=FALSE}
 releases_data_input %>%
-  filter(release=="repeater") %>%
-  select(song, date) %>%
+  filter(release_title=="repeater") %>%
+  select(title, date) %>%
   rename(debut = date) %>%
   arrange(debut)
 

@@ -13,7 +13,8 @@
 #'
 #' @param mymodeldf optional choice model coefficients dataframe to be used to generate the results. If omitted, the default choice model coefficients dataframe will be used, which is results_ml_Repeatr4.
 #' @param mysongidlookup optional `songidlookup` dataframe (the `songidlookup` element of `Repeatr_1()`'s return list). If omitted the currently lazy-loaded default will be used.
-#' @param myaltlookup optional `altlookup` dataframe (the second element of `Repeatr_2()`'s return list) used to translate `mymodeldf`'s `alt`-indexed intercept coefficients back to `songid`/`song`. If omitted the currently lazy-loaded default will be used.
+#' @param myaltlookup optional `altlookup` dataframe (the second element of `Repeatr_2()`'s return list) used to translate `mymodeldf`'s `alt`-indexed intercept coefficients back to `songid`/`title`. If omitted the currently lazy-loaded default will be used.
+#' @param myfugazi_song_performance_intensity optional `fugazi_song_performance_intensity` dataframe (the third element of `Repeatr_2()`'s return list). If omitted the currently lazy-loaded default will be used - pass this explicitly when calling `Repeatr_5()` right after a fresh `Repeatr_2()` in the same session, since the lazy-loaded default reflects the last build on disk, not the one just computed.
 #' @param mysongvarslookup optional `songvarslookup` dataframe (the `songvarslookup` element of `Repeatr_1()`'s return list). If omitted the currently lazy-loaded default will be used.
 #' @param myreleasesdatalookup optional `releasesdatalookup` dataframe (the `releasesdatalookup` element of `Repeatr_1()`'s return list). If omitted the currently lazy-loaded default will be used.
 #' @param myreleases_data_input optional `releases_data_input` dataframe (the `releases_data_input` element of `Repeatr_1()`'s return list). If omitted the currently lazy-loaded default will be used.
@@ -26,7 +27,8 @@
 #' @examples
 #' Repeatr_5_results <- Repeatr_5(mymodeldf = results_ml_Repeatr4, output_dir = tempdir(), input_dir = tempdir())
 #'
-Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NULL, mysongvarslookup = NULL,
+Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NULL,
+                       myfugazi_song_performance_intensity = NULL, mysongvarslookup = NULL,
                        myreleasesdatalookup = NULL, myreleases_data_input = NULL,
                        input_dir = NULL, output_dir = NULL) {
 
@@ -42,6 +44,7 @@ Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NUL
   # a fresh pipeline run.
   if (is.null(mysongidlookup)==FALSE) { songidlookup <- mysongidlookup } else { songidlookup <- songidlookup }
   if (is.null(myaltlookup)==FALSE) { altlookup <- myaltlookup } else { altlookup <- altlookup }
+  if (is.null(myfugazi_song_performance_intensity)==FALSE) { fugazi_song_performance_intensity <- myfugazi_song_performance_intensity } else { fugazi_song_performance_intensity <- fugazi_song_performance_intensity }
   if (is.null(mysongvarslookup)==FALSE) { songvarslookup <- mysongvarslookup } else { songvarslookup <- songvarslookup }
   if (is.null(myreleasesdatalookup)==FALSE) { releasesdatalookup <- myreleasesdatalookup } else { releasesdatalookup <- releasesdatalookup }
   if (is.null(myreleases_data_input)==FALSE) { releases_data_input <- myreleases_data_input } else { releases_data_input <- releases_data_input }
@@ -67,13 +70,13 @@ Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NUL
     mutate(alt = ifelse(grepl("(Intercept)",variable)==TRUE,readr::parse_number(variable),NA))
 
   fugazi_song_choice_model <- fugazi_song_choice_model %>%
-    left_join(altlookup %>% select(alt, song))
+    left_join(altlookup %>% select(alt, title))
 
   fugazi_song_choice_model <- fugazi_song_choice_model %>%
-    mutate(variable = ifelse(grepl("(Intercept)",variable)==TRUE,song,variable))
+    mutate(variable = ifelse(grepl("(Intercept)",variable)==TRUE,title,variable))
 
   fugazi_song_choice_model$alt <- NULL
-  fugazi_song_choice_model$song <- NULL
+  fugazi_song_choice_model$title <- NULL
 
   knitr::kable(fugazi_song_choice_model, "pipe")
 
@@ -100,10 +103,10 @@ Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NUL
     mutate(alt = ifelse(grepl("(Intercept)",variable)==TRUE,readr::parse_number(variable),NA))
 
   results.mymodel <- results.mymodel %>%
-    left_join(altlookup %>% select(alt, songid, song))
+    left_join(altlookup %>% select(alt, songid, title))
 
   results.mymodel <- results.mymodel %>%
-    select(songid, song, Estimate, "z-value")
+    select(songid, title, Estimate, "z-value")
 
   # Add back in the omitted reference song, whose intercept mlogit fixes to
   # zero by definition rather than estimating. as.factor(alt) in Repeatr_4()
@@ -112,7 +115,7 @@ Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NUL
   # always the one with the smallest alt, not a fixed song name/songid.
   results.mymodel.os <- altlookup %>%
     filter(alt==min(alt)) %>%
-    select(songid, song) %>%
+    select(songid, title) %>%
     mutate(Estimate = 0) %>%
     mutate("z-value" = NA)
 
@@ -142,7 +145,7 @@ Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NUL
   mydf <- fugazi_song_preferences
 
   mydf <- mydf %>%
-    select(rank_rating, songid, song, Estimate)
+    select(rank_rating, songid, title, Estimate)
 
   mymin <- min(mydf$Estimate)
 
@@ -175,7 +178,7 @@ Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NUL
     relocate(duration_seconds, .after=launchdate)
 
   summary <- mydf2 %>%
-    select(songid, track_number, song, launchdate, duration_seconds, chosen, available_rl, intensity, rating) %>%
+    select(songid, track_number, title, launchdate, duration_seconds, chosen, available_rl, intensity, rating) %>%
     arrange(desc(rating)) %>%
     mutate(rank = row_number()) %>%
     relocate(rank) %>%
@@ -189,13 +192,13 @@ Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NUL
     left_join(songvarslookup)
 
   mydf2 <- mydf2 %>%
-    select(songid, releaseid, song, rating)
+    select(songid, rid, title, rating)
 
   mydf2 <- mydf2 %>%
     left_join(mydf)
 
   mydf2 <- mydf2 %>%
-    group_by(release, releaseid, rym_rating, releasedate) %>%
+    group_by(release_title, rid, rym_rating, release_date) %>%
     summarise(rating = mean(rating), songs_rated = n()) %>%
     ungroup()
 
@@ -204,14 +207,14 @@ Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NUL
 
   # remove First Demo and Unreleased as they are not comparable to the others.
   releases_rated <- mydf2 %>%
-    filter(releaseid!=11) %>%
-    filter(releaseid!=13)
+    filter(rid!=11) %>%
+    filter(rid!=13)
 
   releases_rated <- releases_rated %>%
-    filter(is.na(releaseid)==FALSE)
+    filter(is.na(rid)==FALSE)
 
   releases_rated <- releases_rated %>%
-    select(release, releaseid, releasedate, songs_rated, rating)
+    select(release_title, rid, release_date, songs_rated, rating)
 
   setwd(myinputdir)
 
@@ -228,38 +231,38 @@ Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NUL
   # add other variables to summary table
 
   releasedates <- releasesdatalookup %>%
-    select(releaseid, releasedate)
+    select(rid, release_date)
 
   mydf <- songvarslookup %>%
     left_join(releasedates) %>%
     left_join(songidlookup)
 
   mydf <- mydf %>%
-    select(songid, song, releaseid, releasedate) %>%
+    select(songid, title, rid, release_date) %>%
     arrange(songid)
 
   summary <- summary %>%
     left_join(mydf) %>%
     mutate(launchdate = as.Date(launchdate, "%d/%m/%Y")) %>%
-    mutate(lead = releasedate - launchdate) %>%
+    mutate(lead = release_date - launchdate) %>%
     arrange(desc(rating))
 
   summary$launchyear <- lubridate::year(summary$launchdate)
-  summary$releaseyear <- lubridate::year(summary$releasedate)
+  summary$releaseyear <- lubridate::year(summary$release_date)
 
   summary$songid <- as.integer(summary$songid)
   summary$chosen <- as.integer(summary$chosen)
   summary$available_rl <- as.integer(summary$available_rl)
-  summary$releaseid <- as.integer(summary$releaseid)
+  summary$rid <- as.integer(summary$rid)
   summary$lead <- as.integer(summary$lead)
 
   releaseid_release <- releasesdatalookup %>%
-    select(releaseid, release)
+    select(rid, release_title)
 
   summary <- summary %>%
     left_join(releaseid_release) %>%
-    relocate(release, .after = releaseid) %>%
-    arrange(releaseid, track_number)
+    relocate(release_title, .after = rid) %>%
+    arrange(rid, track_number)
 
   setwd(myinputdir)
 
@@ -272,7 +275,7 @@ Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NUL
   setwd(mydir)
 
   summary_selected <- summary %>%
-    select(releaseid, track_number, rating)
+    select(rid, track_number, rating)
 
   releases_data_input <- releases_data_input %>%
     left_join(summary_selected) %>%
@@ -285,7 +288,7 @@ Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NUL
   setwd(mydir)
 
   releases_summary <- releases_data_input %>%
-    group_by(releaseid, release, last_show) %>%
+    group_by(rid, release_title, last_show) %>%
     summarize(count = sum(count),
               songs=n(),
               first_debut=min(date),
@@ -297,13 +300,12 @@ Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NUL
     ungroup()
 
   releasesdatalookup <- releasesdatalookup %>%
-    select(releaseid, releasedate)
+    select(rid, release_date)
 
   releases_summary <- releases_summary %>%
     left_join(releasesdatalookup) %>%
-    select(releaseid, release, first_debut, last_debut, releasedate, songs, count, shows, intensity, rating) %>%
-    rename(release_date = releasedate) %>%
-    filter(releaseid>0)
+    select(rid, release_title, first_debut, last_debut, release_date, songs, count, shows, intensity, rating) %>%
+    filter(rid>0)
 
   setwd(mydatadir)
 

@@ -94,24 +94,24 @@ Most Fugazi songs were performed live for some time before being released on an 
 
 ```{r}
 releasedates <- releasesdatalookup %>%
-  select(releaseid, releasedate)
+  select(rid, release_date)
 
-mydf <- songvarslookup %>% 
+mydf <- songvarslookup %>%
   left_join(releasedates) %>%
   left_join(songidlookup)
-mydf <- mydf %>% 
-  select(songid, song, releaseid, releasedate) %>%
+mydf <- mydf %>%
+  select(songid, title, rid, release_date) %>%
   arrange(songid)
 head(mydf)
 
 ```
-Now let's calculate leads and lags by getting summary data on the songs and comparing the song launch dates to the corresponding release dates.  
+Now let's calculate leads and lags by getting summary data on the songs and comparing the song launch dates to the corresponding release dates.
 
 ```{r}
-mysummary <- Repeatr::summary %>% 
+mysummary <- Repeatr::summary %>%
   left_join(mydf) %>%
-  mutate(lead = releasedate - launchdate) %>%
-  select(song, launchdate, releasedate, lead) %>%
+  mutate(lead = release_date - launchdate) %>%
+  select(title, launchdate, release_date, lead) %>%
   arrange(lead)
 
 head(mysummary, n = 10)
@@ -126,7 +126,7 @@ That is over 2 years, but perhaps the mean is biased upwards by a few extreme va
 
 ```{r}
 mysummary <- mysummary %>%
-  select(song, launchdate, releasedate, lead) %>%
+  select(title, launchdate, release_date, lead) %>%
   arrange(desc(lead))
 
 head(mysummary, n = 10)
@@ -223,14 +223,14 @@ If songs were picked at random from all available songs, the performance count f
 
 ```{r}
 
-mydf <- Repeatr1 %>% select(date, song)
+mydf <- Repeatr1 %>% select(date, title)
 
-mydf <- mydf %>% 
-  group_by(date, song) %>% 
+mydf <- mydf %>%
+  group_by(date, title) %>%
   summarize(count=n()) %>% ungroup()
 
-mydf_wide <- mydf %>% 
-  pivot_wider(names_from = song, values_from = count, values_fill = 0)
+mydf_wide <- mydf %>%
+  pivot_wider(names_from = title, values_from = count, values_fill = 0)
 
 head(mydf_wide)
 
@@ -257,7 +257,7 @@ Now, we can reformat the data again to make it a long list of song counts that s
 ```{r}
 
 mydf_long <- mydf_wide2 %>%
-  pivot_longer(!date, names_to = "song", values_to = "count") %>%
+  pivot_longer(!date, names_to = "title", values_to = "count") %>%
   filter(count>0)
 
 head(mydf_long)
@@ -271,31 +271,31 @@ Here is a selection of interesting songs to look at.  It would be too cluttered 
 ```{r}
 
 mydf_long %>%
-  filter(song=="furniture" | song=="waiting room" | song=="shut the door" | song=="kyeo" | song=="polish" | song=="steady diet" | song=="smallpox champion" | song=="birthday pony" | song=="break" | song=="nightshop") %>%
-  ggplot(aes(date, count, color = song)) +
+  filter(title=="furniture" | title=="waiting room" | title=="shut the door" | title=="kyeo" | title=="polish" | title=="steady diet" | title=="smallpox champion" | title=="birthday pony" | title=="break" | title=="nightshop") %>%
+  ggplot(aes(date, count, color = title)) +
   geom_line()
 
 ```
 
-Another approach is to group the songs by release.  
+Another approach is to group the songs by release.
 
 ```{r}
 releases_lookup <- Repeatr1 %>%
-  group_by(song, release) %>%
+  group_by(title, release_title) %>%
   summarize(count = n()) %>%
   ungroup() %>%
-  select(song, release)
+  select(title, release_title)
 
 mydf_long <- mydf_long %>%
   left_join(releases_lookup)
 
 mydf_long %>%
-  filter(release=="steady diet of nothing") %>%
-  ggplot(aes(date, count, color = song)) +
+  filter(release_title=="steady diet of nothing") %>%
+  ggplot(aes(date, count, color = title)) +
   geom_line()
 
 cumulative_song_counts <- mydf_long %>%
-  select(date, song, release, count)
+  select(date, title, release_title, count)
 ```
 
 
@@ -357,9 +357,9 @@ sound_quality_ratings
 There is a small number of shows where the same song was performed twice, for different reasons. Some are easier to find than others and there are a few false positives. Let's have a look, shall we? 
 
 ```{r}
-two_for_tuesdays <- Repeatr1 %>% 
-  filter(tracktype==1) %>% 
-  group_by(date, gid, song) %>% 
+two_for_tuesdays <- Repeatr1 %>%
+  filter(tracktype==1) %>%
+  group_by(date, gid, title) %>%
   summarize(count = n()) %>% 
   ungroup() %>% 
   filter(count>=2)

@@ -7,7 +7,7 @@
 \format{
 dataframe with one row for each release in the Fugazi discography.
 \describe{
-\item{release}{The name of the release.}
+\item{release_title}{The name of the release.}
 \item{first_debut}{the date of the first debut from this release}
 \item{last_debut}{the date of the last debut from this release}
 \item{release_date}{this is an assumption based on the available evidence. Actual release dates will have been different in different places.}

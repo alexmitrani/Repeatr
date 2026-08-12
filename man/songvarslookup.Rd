@@ -7,9 +7,9 @@
 \format{
 dataframe with one row for each song in the Fugazi discography.
 \describe{
-\item{releaseid}{numeric id of the release the song appears on, references \code{\link{releasesdatalookup}}}
+\item{rid}{numeric id of the release the song appears on, references \code{\link{releasesdatalookup}}}
 \item{track_number}{The track number for the song on the release}
-\item{song}{The name of the song}
+\item{title}{The name of the song}
 \item{instrumental}{Indicates whether or not the piece is an instrumental}
 \item{vocals_picciotto}{indicates whether or not Guy Picciotto sang lead vocals on this track}
 \item{vocals_mackaye}{indicates whether or not Ian Mackaye sang lead vocals on this track}
@@ -27,7 +27,7 @@ songvarslookup
 Song discography metadata (Wikipedia)
 }
 \section{Provenance}{
- Raw-hand-curated, from \code{inst/extdata/releases_songs_durations_wikipedia.csv}. Read by \code{\link{Repeatr_1}} and joined onto the live, classified song set by \code{song} title text, not by a hardcoded id column - see \code{songid}/\code{\link{songidlookup}}. Exported (renamed \code{track_number}→\code{release_track}, \code{duration_seconds}→\code{release_duration} converted to a \code{Period} matching \code{\link{fls_tags}}'s \code{duration}) as fugazibase's \code{songs} table by \code{\link{export_fugazibase_data}}.
+ Raw-hand-curated, from \code{inst/extdata/releases_songs_durations_wikipedia.csv}; \code{releaseid}/\code{song} renamed \code{rid}/\code{title} at read time. Read by \code{\link{Repeatr_1}} and joined onto the live, classified song set by \code{title} text, not by a hardcoded id column - see \code{songid}/\code{\link{songidlookup}}. Exported (renamed \code{track_number}→\code{release_track}, \code{duration_seconds}→\code{release_duration} converted to a \code{Period} matching \code{\link{fls_tags}}'s \code{duration}) as fugazibase's \code{songs} table by \code{\link{export_fugazibase_data}}.
 }
 
 \examples{

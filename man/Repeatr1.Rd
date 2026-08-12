@@ -15,12 +15,12 @@ dataframe with one row for show and each song performed in all the Fugazi Live S
 \item{tracktype}{0 = interlude, 1 = song, 2 = other music}
 \item{song_number}{The number of the song in the sequence of songs that were performed as part of that show}
 \item{songid}{numeric id for each song}
-\item{song}{The name of the song}
+\item{title}{The name of the song}
 \item{number_songs}{The number of songs that were performed as part of that show}
 \item{first_song}{Identifies the first song of the set}
 \item{last_song}{Identifies the last song of the set}
-\item{releaseid}{numeric id in ascending chronological order}
-\item{release}{name of album or EP}
+\item{rid}{numeric id in ascending chronological order}
+\item{release_title}{name of album or EP}
 \item{track_number}{The track number for the song on the release}
 \item{instrumental}{Indicates whether or not the piece is an instrumental}
 \item{vocals_picciotto}{indicates whether or not Guy Picciotto sang lead vocals on this track}

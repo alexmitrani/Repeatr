@@ -14,11 +14,11 @@ test_that("every song in songidlookup has a matching row in songvarslookup", {
   # Every tracktype==1 song (i.e. everything in songidlookup) should have
   # Wikipedia metadata - a gap here means a song is missing release/
   # duration/vocalist data downstream.
-  missing_from_songvarslookup <- dplyr::anti_join(songidlookup, songvarslookup, by = "song")
+  missing_from_songvarslookup <- dplyr::anti_join(songidlookup, songvarslookup, by = "title")
 
   expect_equal(nrow(missing_from_songvarslookup), 0,
                info = paste("song(s) with no match in songvarslookup:",
-                             paste(missing_from_songvarslookup$song, collapse = ", ")))
+                             paste(missing_from_songvarslookup$title, collapse = ", ")))
 })
 
 test_that("every song in songvarslookup matches some classified song, of any tracktype", {
@@ -28,12 +28,12 @@ test_that("every song in songvarslookup matches some classified song, of any tra
   # this checks against every classified song in Repeatr1, not just
   # songidlookup's tracktype==1 subset. See the matching comment in
   # R/Repeatr_1.R's reconciliation check.
-  all_classified_songs <- dplyr::distinct(Repeatr1, song)
-  missing_from_classified_songs <- dplyr::anti_join(songvarslookup, all_classified_songs, by = "song")
+  all_classified_songs <- dplyr::distinct(Repeatr1, title)
+  missing_from_classified_songs <- dplyr::anti_join(songvarslookup, all_classified_songs, by = "title")
 
   expect_equal(nrow(missing_from_classified_songs), 0,
                info = paste("song(s) in songvarslookup with no match anywhere in the live classified data:",
-                             paste(missing_from_classified_songs$song, collapse = ", ")))
+                             paste(missing_from_classified_songs$title, collapse = ", ")))
 })
 
 test_that("alt in Repeatr2 is dense 1:n over the min_song_count-eligible songs", {

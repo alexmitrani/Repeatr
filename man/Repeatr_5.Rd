@@ -8,6 +8,7 @@ Repeatr_5(
   mymodeldf = NULL,
   mysongidlookup = NULL,
   myaltlookup = NULL,
+  myfugazi_song_performance_intensity = NULL,
   mysongvarslookup = NULL,
   myreleasesdatalookup = NULL,
   myreleases_data_input = NULL,
@@ -20,7 +21,9 @@ Repeatr_5(
 
 \item{mysongidlookup}{optional \code{songidlookup} dataframe (the \code{songidlookup} element of \code{Repeatr_1()}'s return list). If omitted the currently lazy-loaded default will be used.}
 
-\item{myaltlookup}{optional \code{altlookup} dataframe (the second element of \code{Repeatr_2()}'s return list) used to translate \code{mymodeldf}'s \code{alt}-indexed intercept coefficients back to \code{songid}/\code{song}. If omitted the currently lazy-loaded default will be used.}
+\item{myaltlookup}{optional \code{altlookup} dataframe (the second element of \code{Repeatr_2()}'s return list) used to translate \code{mymodeldf}'s \code{alt}-indexed intercept coefficients back to \code{songid}/\code{title}. If omitted the currently lazy-loaded default will be used.}
+
+\item{myfugazi_song_performance_intensity}{optional \code{fugazi_song_performance_intensity} dataframe (the third element of \code{Repeatr_2()}'s return list). If omitted the currently lazy-loaded default will be used - pass this explicitly when calling \code{Repeatr_5()} right after a fresh \code{Repeatr_2()} in the same session, since the lazy-loaded default reflects the last build on disk, not the one just computed.}
 
 \item{mysongvarslookup}{optional \code{songvarslookup} dataframe (the \code{songvarslookup} element of \code{Repeatr_1()}'s return list). If omitted the currently lazy-loaded default will be used.}
 

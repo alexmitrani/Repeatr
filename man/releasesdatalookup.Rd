@@ -7,10 +7,10 @@
 \format{
 dataframe with one row for each release.
 \describe{
-\item{releaseid}{numeric id in ascending chronological order}
-\item{release}{release name}
+\item{rid}{numeric id in ascending chronological order}
+\item{release_title}{release name}
 \item{variable}{release names for use as variable names}
-\item{releasedate}{release date}
+\item{release_date}{release date}
 \item{release_date_source}{source of the release date}
 \item{colour_code}{hex colour code to be used for the release in graphs}
 \item{rym_rating}{RYM rating scaled to the interval between 0 and 1}
@@ -23,7 +23,7 @@ releasesdatalookup
 Fugazi releases data
 }
 \section{Provenance}{
- Derived-cleaned. Produced by \code{\link{Repeatr_1}} from \code{inst/extdata/releases.csv} (which itself carries a manually-assigned \code{colour_code} and an \code{rym_rating} sourced from rateyourmusic.com). Exported (minus \code{colour_code}, \code{variable}, \code{rym_rating}, minus the four synthetic UI-bucket rows) as fugazibase's \code{discography} table by \code{\link{export_fugazibase_data}}.
+ Derived-cleaned. Produced by \code{\link{Repeatr_1}} from \code{inst/extdata/releases.csv} (which itself carries a manually-assigned \code{colour_code} and an \code{rym_rating} sourced from rateyourmusic.com); \code{releaseid}/\code{release}/\code{releasedate} renamed \code{rid}/\code{release_title}/\code{release_date} at read time. Exported (minus \code{colour_code}, \code{variable}, \code{rym_rating}, minus the four synthetic UI-bucket rows) as fugazibase's \code{discography} table by \code{\link{export_fugazibase_data}}.
 }
 
 \examples{

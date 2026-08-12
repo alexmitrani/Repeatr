@@ -5,7 +5,7 @@
 #' @description the first is a table with the list of shows in the rows and the shows in the columns, including a total column showing how many shows each song was played in. .
 #' @description the second is a summary table of the number of shows in which songs appear, with one row per number of shows, the number of songs in each category, and the proportion of the total number of songs.
 #'
-#' @param mydf the dataframe to use. must contain the columns "gid" and "song".
+#' @param mydf the dataframe to use. must contain the columns "gid" and "title".
 #' @param shows a list of show ids
 #'
 #' @return A list of two data frames, as described above: the show-by-song table (first element) and the shows-per-song-count summary table (second element). Both are `NULL` if `shows` is not supplied.
@@ -23,12 +23,12 @@ sets <- function(mydf = NULL, shows = NULL) {
   if(is.null(shows)==FALSE) {
 
     mydf <- mydf %>%
-      select(gid, song) %>%
-      group_by(gid, song) %>%
+      select(gid, title) %>%
+      group_by(gid, title) %>%
       mutate(instance = row_number()) %>%
       ungroup() %>%
       filter(instance==1) %>%
-      select(gid, song)
+      select(gid, title)
 
 
     sets <- mydf %>%
@@ -37,13 +37,13 @@ sets <- function(mydf = NULL, shows = NULL) {
 
     sets <- sets %>%
       pivot_wider(names_from = gid, values_from = played) %>%
-      arrange(song)
+      arrange(title)
 
     sets <- sets %>% replace(is.na(.), 0)
 
     songs <- sets  %>%
       mutate(shows = rowSums(across(where(is.numeric)), na.rm=TRUE))  %>%
-      arrange(desc(shows), song)
+      arrange(desc(shows), title)
 
     total_songs <- nrow(songs)
 

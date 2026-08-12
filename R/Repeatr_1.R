@@ -3,7 +3,7 @@
 #' @title imports raw data (1 row per show), cleans the data, and reshapes it long so that the rows are identified by combinations of gid and song_number.
 #' @description Reads its raw inputs from this package's own `inst/extdata/` by default: `fls_data.csv` (one row per show, produced by \code{\link{scrape_fls_shows}}; `tour`, `city`, `subdivision`, and `country` all come from the FLS listing pages' own filter links/tour headings - see \code{\link{scrape_fls_listing_data}}), `releases_songs_durations_wikipedia.csv` (Wikipedia discography metadata), `releases.csv` (release metadata), `fls_venue_geocoding_v2.csv` (venue coordinates), and `fls_tags.txt` (tag/duration data, via \code{\link{fls_tags_importer}}). Each can be overridden with an explicit data frame instead - see the parameters below.
 #' @description "gid" is short for "gig id"
-#' @description `songvarslookup` (read from `inst/extdata/releases_songs_durations_wikipedia.csv`) contains the following variables: releaseid	track_number	song	instrumental	vocals_picciotto	vocals_mackaye	vocals_lally	duration_seconds. It is joined onto the live, classified song set by `song` title text, not by a hardcoded id column - see `songid` below.
+#' @description `songvarslookup` (read from `inst/extdata/releases_songs_durations_wikipedia.csv`) contains the following variables: rid	track_number	title	instrumental	vocals_picciotto	vocals_mackaye	vocals_lally	duration_seconds. It is joined onto the live, classified song set by `title` text, not by a hardcoded id column - see `songid` below.
 
 #'
 #' @import dplyr
@@ -62,16 +62,21 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     filter(is.na(sound_quality)==FALSE)
 
   songvarslookup <- if (is.null(mysongvarslookup)) read.csv(system.file("extdata", "releases_songs_durations_wikipedia.csv", package = "Repeatr"), header = TRUE) else mysongvarslookup
+  songvarslookup <- songvarslookup %>%
+    rename(title = song, rid = releaseid)
 
   save(songvarslookup, file = file.path(mydatadir, "songvarslookup.rda"))
 
   song_tempo_bpm_data <- read.csv(system.file("extdata", "song_tempo_bpm_data.csv", package = "Repeatr"), header = TRUE)
+  song_tempo_bpm_data <- song_tempo_bpm_data %>%
+    rename(title = song)
   save(song_tempo_bpm_data, file = file.path(mydatadir, "song_tempo_bpm_data.rda"))
 
   releasesdatalookup <- if (is.null(myreleases)) read.csv(system.file("extdata", "releases.csv", package = "Repeatr"), header = TRUE) else myreleases
   releasesdatalookup$X <- NULL
   releasesdatalookup <- releasesdatalookup %>%
-    mutate(releasedate = as.Date(releasedate, "%d/%m/%Y"))
+    rename(rid = releaseid, release_title = release, release_date = releasedate) %>%
+    mutate(release_date = as.Date(release_date, "%d/%m/%Y"))
 
   othervariables <- Repeatr0 %>%
     select(gid, fls_id, show_date, venue, door_price, attendance, recorded_by, mastered_by, original_source, fls_notes, tour, city, subdivision, country)
@@ -110,6 +115,17 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
 
   othervariables <- othervariables %>%
     mutate(city = ifelse(city=="Wesleyan", "Middletown", city))
+
+  # mastered_by/original_source cleanup: a handful of raw scraped values are
+  # a typo (missing hyphen) or too terse to be useful downstream.
+  othervariables <- othervariables %>%
+    mutate(mastered_by = ifelse(mastered_by=="Warren Russell Smith", "Warren Russell-Smith", mastered_by),
+           original_source = case_when(
+             original_source == "?" ~ "Unknown",
+             original_source == "VHS" ~ "VHS audio",
+             original_source == "VHS Tape" ~ "VHS audio",
+             TRUE ~ original_source
+           ))
 
   # One-off data-entry error on the site: this Hobart show's own "State"
   # filter link reads "TZ", while every other Hobart/Launceston show says
@@ -447,7 +463,7 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     mutate(name = str_to_lower(name))
 
   fls_tags <- fls_tags %>%
-    rename(song = name)
+    rename(title = name)
 
   fls_tags <- fls_tags %>%
     mutate(album = ifelse(album == "20220218 40 Watt, Athens, GA, USA", "19930218 40 Watt, Athens, GA, USA", album))
@@ -532,7 +548,7 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     mutate(subdivision = ifelse(country=="USA", str_sub(album, lastcomma-2, lastcomma-1),""))
 
   fls_tags <- fls_tags %>%
-    select(track, album, song, duration, seconds, date, venue, city, subdivision, country)
+    select(track, album, title, duration, seconds, date, venue, city, subdivision, country)
 
   date_gid <- othervariables %>%
     select(date, gid)
@@ -556,17 +572,17 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     filter(!(gid=="ypsilanti-mi-eastern-michigan-university-12288" & venue=="Eastern Michigan University"))
 
   fls_tags <- fls_tags %>%
-    mutate(song = ifelse(gid=="peoria-il-usa-100995" & song=="dance rap", "interlude 4", song))
+    mutate(title = ifelse(gid=="peoria-il-usa-100995" & title=="dance rap", "interlude 4", title))
 
   # Two single-track mistagged track numbers, found via the same duplicate
   # gid/track trace and confirmed against each show's official FLS tracklist
   # page: each collides with a different song at the wrong track number,
   # leaving a gap at the track number they should actually have.
   fls_tags <- fls_tags %>%
-    mutate(track = ifelse(gid=="groningen-netherlands-90390" & song=="repeater", "23", track))
+    mutate(track = ifelse(gid=="groningen-netherlands-90390" & title=="repeater", "23", track))
 
   fls_tags <- fls_tags %>%
-    mutate(track = ifelse(gid=="washington-dc-usa-72089" & song=="two beats off", "16", track))
+    mutate(track = ifelse(gid=="washington-dc-usa-72089" & title=="two beats off", "16", track))
 
   # Grouped by (gid, album) - album (not just gid) is kept as a grouping key
   # so that two distinct tag batches sharing a gid (e.g. an earlier recording
@@ -633,7 +649,7 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
       cols = dplyr::starts_with("track_"),
       names_to = "song_number",
       names_prefix = "track_",
-      values_to = "song"
+      values_to = "title"
     ) %>%
     mutate(song_number = as.integer(song_number))
 
@@ -641,77 +657,77 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
 # check list of songs with minimal changes to the names ------------------------
 
   raw_fls_song_list <- Repeatr1 %>%
-    mutate(song = ifelse(song=="And the Same", "And The Same", song)) %>%
-    mutate(song = ifelse(song=="Back To Base", "Back to Base", song)) %>%
-    mutate(song = ifelse(song=="Bed For The Scraping (continued)", "Bed For The Scraping", song)) %>%
-    mutate(song = ifelse(song=="Bed for the Scraping", "Bed For The Scraping", song)) %>%
-    mutate(song = ifelse(song=="Bed for the Scraping", "Bed For The Scraping", song)) %>%
-    mutate(song = ifelse(song=="Give Me the Cure", "Give Me The Cure", song)) %>%
-    mutate(song = ifelse(song=="Give me the Cure", "Give Me The Cure", song)) %>%
-    mutate(song = ifelse(song=="In Defense of Humans", "In Defense Of Humans", song)) %>%
-    mutate(song = ifelse(song=="Last Chance For a Slow Dance", "Last Chance For A Slow Dance", song)) %>%
-    mutate(song = ifelse(song=="Last Chance for a Slow Dance", "Last Chance For A Slow Dance", song)) %>%
-    mutate(song = ifelse(song=="Life And Limb", "Life and Limb", song)) %>%
-    mutate(song = ifelse(song=="Life And Limb", "Life and Limb", song)) %>%
-    mutate(song = ifelse(song=="Rend it", "Rend It", song)) %>%
-    mutate(song = ifelse(song=="Returning the Screw", "Returning The Screw", song)) %>%
-    mutate(song = ifelse(song=="Shut The Door", "Shut the Door", song)) %>%
-    mutate(song = ifelse(song=="Sieve-Fisted FInd", "Sieve-Fisted Find", song)) %>%
-    mutate(song = ifelse(song=="Sweet and Low", "Sweet And Low", song))
+    mutate(title = ifelse(title=="And the Same", "And The Same", title)) %>%
+    mutate(title = ifelse(title=="Back To Base", "Back to Base", title)) %>%
+    mutate(title = ifelse(title=="Bed For The Scraping (continued)", "Bed For The Scraping", title)) %>%
+    mutate(title = ifelse(title=="Bed for the Scraping", "Bed For The Scraping", title)) %>%
+    mutate(title = ifelse(title=="Bed for the Scraping", "Bed For The Scraping", title)) %>%
+    mutate(title = ifelse(title=="Give Me the Cure", "Give Me The Cure", title)) %>%
+    mutate(title = ifelse(title=="Give me the Cure", "Give Me The Cure", title)) %>%
+    mutate(title = ifelse(title=="In Defense of Humans", "In Defense Of Humans", title)) %>%
+    mutate(title = ifelse(title=="Last Chance For a Slow Dance", "Last Chance For A Slow Dance", title)) %>%
+    mutate(title = ifelse(title=="Last Chance for a Slow Dance", "Last Chance For A Slow Dance", title)) %>%
+    mutate(title = ifelse(title=="Life And Limb", "Life and Limb", title)) %>%
+    mutate(title = ifelse(title=="Life And Limb", "Life and Limb", title)) %>%
+    mutate(title = ifelse(title=="Rend it", "Rend It", title)) %>%
+    mutate(title = ifelse(title=="Returning the Screw", "Returning The Screw", title)) %>%
+    mutate(title = ifelse(title=="Shut The Door", "Shut the Door", title)) %>%
+    mutate(title = ifelse(title=="Sieve-Fisted FInd", "Sieve-Fisted Find", title)) %>%
+    mutate(title = ifelse(title=="Sweet and Low", "Sweet And Low", title))
 
   raw_fls_song_list <- raw_fls_song_list %>%
-    filter(is.na(song)==FALSE) %>%
-    group_by(song) %>%
+    filter(is.na(title)==FALSE) %>%
+    group_by(title) %>%
     summarize(count = n()) %>%
     ungroup() %>%
-    arrange(song)
+    arrange(title)
 
   raw_fls_song_list$tracktype <- 1
 
-  raw_fls_song_list$song2 <- str_to_lower(raw_fls_song_list$song)
+  raw_fls_song_list$title2 <- str_to_lower(raw_fls_song_list$title)
 
   raw_fls_song_list <- raw_fls_song_list %>%
-    mutate(tracktype=ifelse(grepl("interlude", song2)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("interlude", title2)==TRUE, 0, tracktype))
 
   raw_fls_song_list <- raw_fls_song_list %>%
-    mutate(tracktype=ifelse(grepl("encore", song2)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("encore", title2)==TRUE, 0, tracktype))
 
   raw_fls_song_list <- raw_fls_song_list %>%
-    mutate(tracktype=ifelse(grepl("intro", song2)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("intro", title2)==TRUE, 0, tracktype))
 
   raw_fls_song_list <- raw_fls_song_list %>%
-    mutate(tracktype=ifelse(grepl("track", song2)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("track", title2)==TRUE, 0, tracktype))
 
   raw_fls_song_list <- raw_fls_song_list %>%
-    mutate(tracktype=ifelse(grepl("remarks", song2)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("remarks", title2)==TRUE, 0, tracktype))
 
   raw_fls_song_list <- raw_fls_song_list %>%
-    mutate(tracktype=ifelse(grepl("crowd", song2)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("crowd", title2)==TRUE, 0, tracktype))
 
   raw_fls_song_list <- raw_fls_song_list %>%
-    mutate(tracktype=ifelse(grepl("outro", song2)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("outro", title2)==TRUE, 0, tracktype))
 
   raw_fls_song_list <- raw_fls_song_list %>%
-    mutate(tracktype=ifelse(grepl("untitled", song2)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("untitled", title2)==TRUE, 0, tracktype))
 
   raw_fls_song_list <- raw_fls_song_list %>%
-    mutate(tracktype=ifelse(grepl("instrumental interlude", song2)==TRUE, 1, tracktype))
+    mutate(tracktype=ifelse(grepl("instrumental interlude", title2)==TRUE, 1, tracktype))
 
   raw_fls_song_list <- raw_fls_song_list %>%
-    mutate(tracktype=ifelse(grepl("comedy of life", song2)==TRUE, 1, tracktype))
+    mutate(tracktype=ifelse(grepl("comedy of life", title2)==TRUE, 1, tracktype))
 
   raw_fls_song_list <- raw_fls_song_list %>%
-    mutate(tracktype=ifelse(grepl("link track", song2)==TRUE, 1, tracktype))
+    mutate(tracktype=ifelse(grepl("link track", title2)==TRUE, 1, tracktype))
 
-  raw_fls_song_list$song2 <- NULL
+  raw_fls_song_list$title2 <- NULL
 
   Repeatr1 <- Repeatr1 %>%
     arrange(gid, song_number)
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(song = str_to_lower(song))
+    mutate(title = str_to_lower(title))
 
-  Repeatr1$nchar <- nchar(Repeatr1$song)
+  Repeatr1$nchar <- nchar(Repeatr1$title)
 
   Repeatr1 <- Repeatr1 %>%
     filter(nchar>0)
@@ -721,8 +737,8 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   # add on outros
 
   Repeatr1_outro <- fls_tags %>%
-    filter(song=="outro") %>%
-    select(gid, date, track, song) %>%
+    filter(title=="outro") %>%
+    select(gid, date, track, title) %>%
     rename(song_number = track) %>%
     mutate(song_number = as.numeric(song_number))
 
@@ -745,35 +761,35 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
 
   # Recode variants of song titles to the main song title only in cases where there is ambiguity or inconsistency -------------------
 
-  # keep the original song as a different variable song_original before any changes are made, so no information is lost
+  # keep the original title as a different variable title_original before any changes are made, so no information is lost
   Repeatr1 <- Repeatr1 %>%
-    mutate(song_original = song)
+    mutate(title_original = title)
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(song = str_replace(song, " instrumental", ""))
+    mutate(title = str_replace(title, " instrumental", ""))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(song = str_replace(song, " acapella", ""))
+    mutate(title = str_replace(title, " acapella", ""))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(song = str_replace(song, " drum and bass jam", ""))
+    mutate(title = str_replace(title, " drum and bass jam", ""))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(song = ifelse(song=="bed for the scraping (continued)", "bed for the scraping", song))
+    mutate(title = ifelse(title=="bed for the scraping (continued)", "bed for the scraping", title))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(song = ifelse(song=="the argument", "argument", song))
+    mutate(title = ifelse(title=="the argument", "argument", title))
 
   # 'promises bit' and 'promises coda' refer to the same thing but it is only the end part of promises, not the whole song.
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(song = ifelse(song=="promises bit soundcheck", "promises coda", song))
+    mutate(title = ifelse(title=="promises bit soundcheck", "promises coda", title))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(song = ifelse(song=="promises coda instrumental", "promises coda", song))
+    mutate(title = ifelse(title=="promises coda instrumental", "promises coda", title))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(song = ifelse(song=="promises bit", "promises coda", song))
+    mutate(title = ifelse(title=="promises bit", "promises coda", title))
 
 
   # define track types: intros, interludes, sound checks -----------------------------------------------------------------
@@ -786,93 +802,93 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   Repeatr1$tracktype <- 1
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("interlude", song)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("interlude", title)==TRUE, 0, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("encore", song)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("encore", title)==TRUE, 0, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("intro", song)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("intro", title)==TRUE, 0, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("track", song)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("track", title)==TRUE, 0, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("remarks", song)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("remarks", title)==TRUE, 0, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("outside", song)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("outside", title)==TRUE, 0, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("sound check", song)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("sound check", title)==TRUE, 0, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("soundcheck", song)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("soundcheck", title)==TRUE, 0, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("crowd", song)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("crowd", title)==TRUE, 0, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("outro", song)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("outro", title)==TRUE, 0, tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("untitled", song)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("untitled", title)==TRUE, 0, tracktype))
 
   # Filter to remove unreleased songs or improvised one-offs ---------------------------------------
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("heart on my chest", song)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("heart on my chest", title)==TRUE, 2, tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("lock dug", song)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("lock dug", title)==TRUE, 2, tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("nedcars", song)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("nedcars", title)==TRUE, 2, tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("noisy dub", song)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("noisy dub", title)==TRUE, 2, tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("nsa", song)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("nsa", title)==TRUE, 2, tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("set the charges", song)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("set the charges", title)==TRUE, 2, tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("she is blind", song)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("she is blind", title)==TRUE, 2, tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("surf tune", song)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("surf tune", title)==TRUE, 2, tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("world beat", song)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("world beat", title)==TRUE, 2, tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("preprovisional", song)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("preprovisional", title)==TRUE, 2, tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("hello morning seed", song)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("hello morning seed", title)==TRUE, 2, tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("i spent it all", song)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("i spent it all", title)==TRUE, 2, tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("strange disclosure", song)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("strange disclosure", title)==TRUE, 2, tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("promises coda", song)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("promises coda", title)==TRUE, 2, tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("ice cream", song)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("ice cream", title)==TRUE, 2, tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("provisional medley", song)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("provisional medley", title)==TRUE, 2, tracktype))
 
   # Summarise the data to check frequency counts for all songs --------------
 
   mycount <- Repeatr1 %>%
     filter(tracktype==1) %>%
-    group_by(song) %>%
+    group_by(title) %>%
     summarise(count= n()) %>%
     ungroup()
 
@@ -888,7 +904,7 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   # get an id and Wikipedia metadata (via songvarslookup) even though they
   # can't compete as a choice-model alternative.
   mycount <- mycount %>%
-    arrange((song))
+    arrange((title))
 
   mycount <- mycount %>% mutate(songid = row_number())
   mycount <- mycount %>% relocate(songid)
@@ -921,7 +937,7 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     ungroup()
 
   Repeatr1a <- Repeatr1a %>%
-    select(gid, song, number_songs, first_song, last_song)
+    select(gid, title, number_songs, first_song, last_song)
 
   Repeatr1b <- Repeatr1a %>%
     group_by(gid) %>%
@@ -947,7 +963,7 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   # hand-maintained CSV behind songvarslookup no longer carries its own
   # songid, precisely so it can't silently drift out of sync with the
   # songid computed above (see the reconciliation check just below).
-  songvarslookup <- songvarslookup %>% select(song, releaseid, track_number, instrumental, vocals_picciotto, vocals_mackaye, vocals_lally, duration_seconds)
+  songvarslookup <- songvarslookup %>% select(title, rid, track_number, instrumental, vocals_picciotto, vocals_mackaye, vocals_lally, duration_seconds)
 
   Repeatr1 <- Repeatr1 %>%
     left_join(songvarslookup)
@@ -965,10 +981,10 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   # a songid at all - that's expected, not drift, so this direction is
   # checked against every classified song regardless of tracktype, not just
   # songidlookup's tracktype==1 subset.
-  all_classified_songs <- Repeatr1 %>% distinct(song)
+  all_classified_songs <- Repeatr1 %>% distinct(title)
 
-  songs_missing_from_songvarslookup <- anti_join(songidlookup, songvarslookup, by = "song")$song
-  songs_missing_from_songidlookup <- anti_join(songvarslookup, all_classified_songs, by = "song")$song
+  songs_missing_from_songvarslookup <- anti_join(songidlookup, songvarslookup, by = "title")$title
+  songs_missing_from_songidlookup <- anti_join(songvarslookup, all_classified_songs, by = "title")$title
 
   if (length(songs_missing_from_songvarslookup) > 0) {
     warning("Repeatr_1(): song(s) classified in the live data have no matching row in songvarslookup: ",
@@ -985,7 +1001,7 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   # Save disaggregate data -----------------------------------
 
   Repeatr1 <- Repeatr1 %>%
-    select(gid, date, year, month, day, tracktype, song_number, songid, song, number_songs, first_song, last_song, releaseid,	release, track_number, instrumental,	vocals_picciotto,	vocals_mackaye,	vocals_lally,	duration_seconds) %>%
+    select(gid, date, year, month, day, tracktype, song_number, songid, title, number_songs, first_song, last_song, rid,	release_title, track_number, instrumental,	vocals_picciotto,	vocals_mackaye,	vocals_lally,	duration_seconds) %>%
     arrange(date, song_number)
 
   # remove duplicates
@@ -1007,15 +1023,15 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
 
   mydf <- Repeatr1 %>%
     filter(tracktype==1) %>%
-    select(date, song)
+    select(date, title)
 
   mydf <- mydf %>%
-    group_by(date, song) %>%
+    group_by(date, title) %>%
     summarize(count=n()) %>%
     ungroup()
 
   mydf_wide <- mydf %>%
-    pivot_wider(names_from = song, values_from = count, values_fill = 0)
+    pivot_wider(names_from = title, values_from = count, values_fill = 0)
 
   mydf_wide2 <- mydf_wide
 
@@ -1028,25 +1044,25 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   }
 
   mydf_long <- mydf_wide2 %>%
-    pivot_longer(!date, names_to = "song", values_to = "count") %>%
+    pivot_longer(!date, names_to = "title", values_to = "count") %>%
     filter(count>0)
 
   releases_lookup <- Repeatr1 %>%
-    group_by(song, release) %>%
+    group_by(title, release_title) %>%
     summarize(count = n()) %>%
     ungroup() %>%
-    select(song, release)
+    select(title, release_title)
 
   mydf_long <- mydf_long %>%
     left_join(releases_lookup)
 
   cumulative_song_counts <- mydf_long %>%
-    select(date, song, release, count)
+    select(date, title, release_title, count)
 
   cumulative_song_counts <- cumulative_song_counts %>%
-    mutate(release = tolower(release)) %>%
+    mutate(release_title = tolower(release_title)) %>%
     left_join(releasesdatalookup) %>%
-    select(date, song, release, count, releasedate)
+    select(date, title, release_title, count, release_date)
 
   setwd(mydatadir)
 
@@ -1059,13 +1075,13 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
 
   song_songid <- Repeatr1 %>%
     filter(tracktype==1) %>%
-    group_by(song, songid) %>%
+    group_by(title, songid) %>%
     slice(1) %>%
-    select(song, songid) %>%
+    select(title, songid) %>%
     ungroup()
 
   mydf <- fls_tags %>%
-    select(song, seconds) %>%
+    select(title, seconds) %>%
     mutate(minutes = round(seconds/60, digits = 2)) %>%
     select(-seconds) %>%
     left_join(song_songid) %>%
@@ -1073,11 +1089,11 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     select(-songid)
 
   mydf <- mydf %>%
-    group_by(minutes, song) %>%
+    group_by(minutes, title) %>%
     summarize(count=n()) %>% ungroup()
 
   mydf_wide <- mydf %>%
-    pivot_wider(names_from = song, values_from = count, values_fill = 0)
+    pivot_wider(names_from = title, values_from = count, values_fill = 0)
 
   mydf_wide2 <- mydf_wide
 
@@ -1090,22 +1106,22 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   }
 
   mydf_long <- mydf_wide2 %>%
-    pivot_longer(!minutes, names_to = "song", values_to = "count") %>%
+    pivot_longer(!minutes, names_to = "title", values_to = "count") %>%
     filter(count>0)
 
   releases_lookup <- Repeatr1 %>%
-    group_by(song, release) %>%
+    group_by(title, release_title) %>%
     summarize(count = n()) %>%
     ungroup() %>%
-    select(song, release) %>%
-    filter(song!="crowd")
+    select(title, release_title) %>%
+    filter(title!="crowd")
 
   mydf_long <- mydf_long %>%
     left_join(releases_lookup)
 
   cumulative_duration_counts <- mydf_long %>%
-    select(minutes, song, release, count) %>%
-    mutate(release = ifelse(is.na(release)==TRUE, "unreleased", release))
+    select(minutes, title, release_title, count) %>%
+    mutate(release_title = ifelse(is.na(release_title)==TRUE, "unreleased", release_title))
 
   setwd(mydatadir)
 
@@ -1117,14 +1133,14 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
 
   song_songid <- Repeatr1 %>%
     filter(tracktype==1) %>%
-    group_by(song, songid) %>%
+    group_by(title, songid) %>%
     slice(1) %>%
-    select(song, songid) %>%
+    select(title, songid) %>%
     ungroup() %>%
-    filter(song!="crowd")
+    filter(title!="crowd")
 
   duration_summary <- fls_tags %>%
-    group_by(song) %>%
+    group_by(title) %>%
     summarize(renditions = n(),
               minutes_min = round(min(seconds)/60, digits = 2),
               minutes_median = round(median(seconds)/60, digits = 2),
@@ -1282,28 +1298,28 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     setwd(mydatadir)
 
     releaseid_variable_colour_code <- releasesdatalookup %>%
-      select(releaseid, variable, colour_code)
+      select(rid, variable, colour_code)
 
     save(releaseid_variable_colour_code, file = "releaseid_variable_colour_code.rda")
 
     transitions_data_da1 <- Repeatr1 %>%
       filter(tracktype==1) %>%
-      select(gid,date,song_number,song) %>%
-      rename(song1 = song)
+      select(gid,date,song_number,title) %>%
+      rename(title1 = title)
 
     transitions_data_da2 <- Repeatr1 %>%
       filter(tracktype==1) %>%
-      select(gid,date,song_number,song) %>%
+      select(gid,date,song_number,title) %>%
       mutate(song_number = song_number-1) %>%
-      rename(song2 = song)
+      rename(title2 = title)
 
     transitions_data_da <- transitions_data_da1 %>%
       left_join(transitions_data_da2) %>%
-      filter(is.na(song2)==FALSE) %>%
+      filter(is.na(title2)==FALSE) %>%
       rename(transition = song_number) %>%
       mutate(url = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
       mutate(fls_link = paste0("<a href='",  url, "' target='_blank'>", gid, "</a>")) %>%
-      select(gid, url, fls_link, date, transition, song1, song2) %>%
+      select(gid, url, fls_link, date, transition, title1, title2) %>%
       mutate(transition = as.integer(transition))
 
     transitions_data_da$date <- format(transitions_data_da$date,'%Y-%m-%d')
@@ -1321,37 +1337,37 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
              last_show = max(show_num))
 
     releases_menu_list <- releasesdatalookup %>%
-      arrange(releaseid) %>%
-      filter(releaseid!=12 & releaseid!=14 & releaseid!=15)
+      arrange(rid) %>%
+      filter(rid!=12 & rid!=14 & rid!=15)
 
     save(releases_menu_list, file = "releases_menu_list.rda")
 
     colour_code <- releasesdatalookup %>%
-      arrange(releaseid) %>%
-      filter(releaseid>0) %>%
-      select(releaseid, colour_code)
+      arrange(rid) %>%
+      filter(rid>0) %>%
+      select(rid, colour_code)
 
     releases_data_input <- Repeatr1 %>%
       left_join(show_sequence) %>%
       left_join(colour_code) %>%
-      group_by(releaseid, release, track_number, song, last_show, colour_code) %>%
+      group_by(rid, release_title, track_number, title, last_show, colour_code) %>%
       summarize(count = n(),
                 date=min(date),
                 show_num = min(show_num)) %>%
       ungroup()
 
     releases_data_input <- releases_data_input %>%
-      arrange(desc(releaseid), desc(track_number)) %>%
-      mutate(song = factor(song, levels=unique(song))) %>%
-      mutate(release = factor(release, levels=rev(unique(release)))) %>%
+      arrange(desc(rid), desc(track_number)) %>%
+      mutate(title = factor(title, levels=unique(title))) %>%
+      mutate(release_title = factor(release_title, levels=rev(unique(release_title)))) %>%
       mutate(shows = last_show-show_num+1,
              intensity = round(count / shows, digits=4)) %>%
-      filter(releaseid>0)
+      filter(rid>0)
 
     save(releases_data_input, file = "releases_data_input.rda")
 
     releases_summary <- releases_data_input %>%
-      group_by(releaseid, release, last_show) %>%
+      group_by(rid, release_title, last_show) %>%
       summarize(count = sum(count),
                 songs=n(),
                 first_debut=min(date),
@@ -1364,16 +1380,15 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     # Named distinctly (not reassigned to `releasesdatalookup`) so this
     # local date-only trim doesn't clobber the full `releasesdatalookup`
     # that gets saved to data/ and returned from this function - Repeatr_5()
-    # needs the full version (release, rym_rating, etc.), not just these
+    # needs the full version (release_title, rym_rating, etc.), not just these
     # two columns.
     releasesdatalookup_dates <- releasesdatalookup %>%
-      select(releaseid, releasedate)
+      select(rid, release_date)
 
     releases_summary <- releases_summary %>%
       left_join(releasesdatalookup_dates) %>%
-      select(releaseid, release, first_debut, last_debut, releasedate, songs, count, shows, intensity) %>%
-      rename(release_date = releasedate) %>%
-      filter(releaseid>0)
+      select(rid, release_title, first_debut, last_debut, release_date, songs, count, shows, intensity) %>%
+      filter(rid>0)
 
     save(releases_summary, file = "releases_summary.rda")
 
@@ -1384,7 +1399,7 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
 
     gid_song_minutes <- fls_tags %>%
       mutate(minutes = round(seconds/60, digits = 2)) %>%
-      select(gid, song, minutes)
+      select(gid, title, minutes)
 
     checkmatch <- Repeatr1 %>%
       full_join(gid_song_minutes) %>%
@@ -1425,8 +1440,8 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
 
     last_performance_data <- Repeatr1 %>%
       filter(tracktype==1) %>%
-      select(date, song)%>%
-      group_by(song) %>%
+      select(date, title)%>%
+      group_by(title) %>%
       summarize(last_performance=max(date)) %>%
       ungroup()
 
@@ -1439,7 +1454,7 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
       left_join(releasesdatalookup)
 
     xray <- xray %>%
-      mutate(unreleased = ifelse(tracktype==2 | (tracktype==1 & date<releasedate),1,0))
+      mutate(unreleased = ifelse(tracktype==2 | (tracktype==1 & date<release_date),1,0))
 
     xray2 <- Repeatr::summary %>%
       select(songid, launchdate)
@@ -1471,23 +1486,23 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
              songtrack = ifelse(tracktype==1, 1, 0))
 
     xray <- xray %>%
-      mutate(release = ifelse(is.na(release)==TRUE, "other", release))
+      mutate(release_title = ifelse(is.na(release_title)==TRUE, "other", release_title))
 
     xray_tracks <- xray %>%
       mutate(units = "tracks") %>%
       mutate(year = lubridate::year(date)) %>%
-      mutate(fugazi = ifelse(release=="fugazi",1,0),
-             margin_walker = ifelse(release=="margin walker",1,0),
-             three_songs = ifelse(release=="3 songs",1,0),
-             repeater = ifelse(release=="repeater",1,0),
-             steady_diet_of_nothing = ifelse(release=="steady diet of nothing",1,0),
-             in_on_the_killtaker = ifelse(release=="in on the killtaker",1,0),
-             red_medicine = ifelse(release=="red medicine",1,0),
-             end_hits = ifelse(release=="end hits",1,0),
-             the_argument = ifelse(release=="the argument",1,0),
-             furniture = ifelse(release=="furniture",1,0),
-             first_demo = ifelse(release=="first demo",1,0),
-             other = ifelse(release=="other",1,0),
+      mutate(fugazi = ifelse(release_title=="fugazi",1,0),
+             margin_walker = ifelse(release_title=="margin walker",1,0),
+             three_songs = ifelse(release_title=="3 songs",1,0),
+             repeater = ifelse(release_title=="repeater",1,0),
+             steady_diet_of_nothing = ifelse(release_title=="steady diet of nothing",1,0),
+             in_on_the_killtaker = ifelse(release_title=="in on the killtaker",1,0),
+             red_medicine = ifelse(release_title=="red medicine",1,0),
+             end_hits = ifelse(release_title=="end hits",1,0),
+             the_argument = ifelse(release_title=="the argument",1,0),
+             furniture = ifelse(release_title=="furniture",1,0),
+             first_demo = ifelse(release_title=="first demo",1,0),
+             other = ifelse(release_title=="other",1,0),
              unreleased = ifelse(unreleased==1,1,0),
              songs = ifelse(songtrack==1,1,0))
 
@@ -1519,18 +1534,18 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     xray_minutes <- xray %>%
       mutate(units = "minutes") %>%
       mutate(year = lubridate::year(date)) %>%
-      mutate(fugazi = ifelse(release=="fugazi",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
-             margin_walker = ifelse(release=="margin walker",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
-             three_songs = ifelse(release=="3 songs",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
-             repeater = ifelse(release=="repeater",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
-             steady_diet_of_nothing = ifelse(release=="steady diet of nothing",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
-             in_on_the_killtaker = ifelse(release=="in on the killtaker",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
-             red_medicine = ifelse(release=="red medicine",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
-             end_hits = ifelse(release=="end hits",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
-             the_argument = ifelse(release=="the argument",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
-             furniture = ifelse(release=="furniture",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
-             first_demo = ifelse(release=="first demo",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
-             other = ifelse(release=="other",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
+      mutate(fugazi = ifelse(release_title=="fugazi",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
+             margin_walker = ifelse(release_title=="margin walker",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
+             three_songs = ifelse(release_title=="3 songs",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
+             repeater = ifelse(release_title=="repeater",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
+             steady_diet_of_nothing = ifelse(release_title=="steady diet of nothing",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
+             in_on_the_killtaker = ifelse(release_title=="in on the killtaker",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
+             red_medicine = ifelse(release_title=="red medicine",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
+             end_hits = ifelse(release_title=="end hits",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
+             the_argument = ifelse(release_title=="the argument",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
+             furniture = ifelse(release_title=="furniture",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
+             first_demo = ifelse(release_title=="first demo",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
+             other = ifelse(release_title=="other",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
              unreleased = ifelse(unreleased==1,ifelse(is.na(minutes)==TRUE, 0, minutes),0),
              songs = ifelse(songtrack==1,ifelse(is.na(minutes)==TRUE, 0, minutes),0))
 
@@ -1578,7 +1593,7 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
 
     duration_data_da <- Repeatr1 %>%
       filter(tracktype==1) %>%
-      select(gid,date, song_number, song) %>%
+      select(gid,date, song_number, title) %>%
       mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
       mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>")) %>%
       left_join(gid_song_minutes)

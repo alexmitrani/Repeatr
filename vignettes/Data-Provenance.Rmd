@@ -70,7 +70,7 @@ export_fugazibase_data()
    songs, bands
 ```
 
-`songvarslookup` is joined into `Repeatr1` by song title, not carried forward with its own `songid` column - the hand-maintained CSV behind it (`inst/extdata/releases_songs_durations_wikipedia.csv`) doesn't carry one, precisely so it can't silently drift out of sync with the songid `Repeatr_1()` computes; see `?songidlookup` for that mapping.
+`songvarslookup` is joined into `Repeatr1` by `title` text, not carried forward with its own `songid` column - the hand-maintained CSV behind it (`inst/extdata/releases_songs_durations_wikipedia.csv`) doesn't carry one, precisely so it can't silently drift out of sync with the songid `Repeatr_1()` computes; see `?songidlookup` for that mapping.
 
 ## Dataset catalogue
 
@@ -93,7 +93,7 @@ export_fugazibase_data()
 | `Repeatr1` | Derived-classified | `Repeatr_1()` |
 | `songidlookup` | Derived-classified | `Repeatr_1()`; the single source of truth for song identity |
 | `Repeatr2`, `Repeatr3` | Derived-modeled | `Repeatr_2()` / `Repeatr_3()` - applies the `min_song_count` filter and builds `alt` |
-| `altlookup` | Derived-modeled | `Repeatr_2()`; the `alt` <-> `songid`/`song` translation table used by `Repeatr_5()`/`rankr()` |
+| `altlookup` | Derived-modeled | `Repeatr_2()`; the `alt` <-> `songid`/`title` translation table used by `Repeatr_5()`/`rankr()` |
 | `fugazi_song_counts` | Derived-modeled | `Repeatr_2()`; covers every classified song, not just the `min_song_count`-eligible ones |
 | `fugazi_song_performance_intensity` | Derived-modeled | `Repeatr_2()`; `min_song_count`-eligible songs only |
 | `results_ml_Repeatr4`, `vcovmat_ml_Repeatr4` | Derived-modeled | `Repeatr_4()`, saved together so they always describe the same fit |

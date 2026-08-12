@@ -16,15 +16,15 @@ dataframe with one row for each show, each song performed and each song availabl
 \item{song_number}{The number of the song in the sequence of songs that were performed as part of that show}
 \item{alt}{A dense 1..n index over the \code{min_song_count}-eligible songs only, in \code{songid} order - this is the alternative-specific index \code{mlogit}/\code{\link{Repeatr_4}} actually sees. See \code{songid} below for the stable song identity this is derived from.}
 \item{songid}{The stable, full song identity from \code{\link{songidlookup}}, kept alongside \code{alt} rather than overwritten by it.}
-\item{song}{The name of the song}
+\item{title}{The name of the song}
 \item{choice}{1 if the song was performed at that point in the show, 0 otherwise}
 \item{played}{1 if the song was performed at or before that point in the show, 0 otherwise}
 \item{available_rl}{Repertoire-level availability: 1 if the song was available in the repertoire for this show, 0 otherwise}
 \item{available_gl}{Gig-level availability: 1 if the song was available in the repertoire and was available to be played at this point in this show, 0 otherwise}
 \item{first_song}{Identifies the first song of the set}
 \item{last_song}{Identifies the last song of the set}
-\item{releaseid}{numeric id in ascending chronological order}
-\item{release}{name of album or EP}
+\item{rid}{numeric id in ascending chronological order}
+\item{release_title}{name of album or EP}
 \item{track_number}{The track number for the song on the release}
 \item{instrumental}{Indicates whether or not the piece is an instrumental}
 \item{vocals_picciotto}{indicates whether or not Guy Picciotto sang lead vocals on this track}

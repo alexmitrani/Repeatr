@@ -7,10 +7,10 @@
 \format{
 dataframe with one row for each song in the Fugazi discography, except those which never appear in the Fugazi Live Series data.
 \describe{
-\item{releaseid}{numeric id in ascending chronological order}
-\item{release}{release name}
+\item{rid}{numeric id in ascending chronological order}
+\item{release_title}{release name}
 \item{track_number}{The track number for the song on the release}
-\item{song}{The name of the song}
+\item{title}{The name of the song}
 \item{last_show}{The number of the last show in the series}
 \item{colour_code}{The hex colour code used for the corresponding release}
 \item{count}{The number of times the song was performed according to the data}

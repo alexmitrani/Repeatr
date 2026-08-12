@@ -31,7 +31,7 @@ Let's get the data, limit it to the columns that we will be using, and have a lo
 ```{r }
 
 mygraphdata <- summary %>%
-  select(song, launchdate, chosen, release, rating)
+  select(title, launchdate, chosen, release_title, rating)
 
 head(mygraphdata)
 
@@ -52,7 +52,7 @@ Now let's graph the data. Each song will be plotted as a bubble, with the x-coor
 ```{r }
 
 p <- mygraphdata %>%
-  ggplot( aes(x=launchdate, y=rating, size = chosen, color=release, label=song)) +
+  ggplot( aes(x=launchdate, y=rating, size = chosen, color=release_title, label=title)) +
   geom_point(shape = 1) +
   theme_bw()
 

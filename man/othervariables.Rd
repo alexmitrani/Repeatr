@@ -14,8 +14,8 @@ dataframe with one row for each show.
 \item{currency}{ISO 4217 currency code for \code{price} (\code{NA} alongside a missing \code{price}); "Free" shows are \code{USD} except one 1995 Italy show (\code{ITL}).}
 \item{attendance}{Attendance}
 \item{recorded_by}{Recorded by}
-\item{mastered_by}{Mastered by}
-\item{original_source}{Original source}
+\item{mastered_by}{Mastered by. A handful of typo'd values ("Warren Russell Smith" missing its hyphen) are corrected here.}
+\item{original_source}{Original source. A handful of terse raw values ("?", "VHS", "VHS Tape") are standardized here to "Unknown"/"VHS audio".}
 \item{x}{longitude}
 \item{y}{latitude}
 \item{city}{city - plain city name (e.g. "Portland", "Columbia", "Croydon"); see \code{subdivision}/\code{country} to disambiguate cities that share a name with another Fugazi tour stop. Internally, \code{\link{Repeatr_1}} temporarily suffixes these as "City (ST/Country)" to match the venue-coordinate lookup's join key, then strips the suffix back off once coordinates are resolved - the suffix never persists to this exposed column.}

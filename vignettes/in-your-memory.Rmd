@@ -33,8 +33,8 @@ Forensic Scene was played live for the first time at Colégio Leão XIII in Itab
 
 ```{r echo=FALSE}
 releases_data_input %>%
-  filter(release=="red medicine") %>%
-  select(song, date) %>%
+  filter(release_title=="red medicine") %>%
+  select(title, date) %>%
   rename(debut = date) %>%
   arrange(debut)
 

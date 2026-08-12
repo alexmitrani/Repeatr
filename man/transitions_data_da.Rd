@@ -12,8 +12,8 @@ dataframe with one row for each combination of show, first song and second song 
 \item{fls_link}{provides a link to the corresponding page of the Fugazi Live Series site}
 \item{date}{date of the show}
 \item{transition}{Number of the transition in the show}
-\item{song1}{Name of the first song}
-\item{song2}{Name of the second song}
+\item{title1}{Name of the first song}
+\item{title2}{Name of the second song}
 }
 }
 \source{

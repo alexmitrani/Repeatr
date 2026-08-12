@@ -20,13 +20,13 @@ sourcestext = c(timestamptext, "https://alexmitrani.shinyapps.io/Fugazetteer/","
 datestring <- datestampr()
 
 year_tour_release <- Repeatr1 %>%
-  select(year, gid, release) %>%
-  group_by(year, gid, release) %>%
-  filter(is.na(release)==FALSE) %>%
+  select(year, gid, release_title) %>%
+  group_by(year, gid, release_title) %>%
+  filter(is.na(release_title)==FALSE) %>%
   summarize(count = n()) %>%
   ungroup() %>%
   left_join(othervariables) %>%
-  select(year, gid, release, tour, count)
+  select(year, gid, release_title, tour, count)
 
 fls_link_year_tour <- shows_data %>%
   select(fls_link, year, tour)
@@ -35,7 +35,7 @@ transitions_data_da <- transitions_data_da %>%
   left_join(fls_link_year_tour)
 
 song_release <- summary %>%
-  select(song, release)
+  select(title, release_title)
 
 duration_data_da <- duration_data_da %>%
   left_join(song_release)
@@ -109,7 +109,7 @@ played_with <- played_with %>%
 
 year_tour_gid_song <- duration_data_da %>%
   left_join(othervariables) %>%
-  select(year, tour, gid, song)
+  select(year, tour, gid, title)
 
 quizdata <- gsheet2tbl('https://docs.google.com/spreadsheets/d/1-QGRAxeGRNBnx2ao7FXUjcK77uTfZ-_XnN3M7mqqjMc')
 
@@ -138,28 +138,28 @@ quizdata <- quizdata %>%
   select(name, timestamp, points, total, percentage)
 
 discography <- Repeatr::summary %>%
-  select(song, release)
+  select(title, release_title)
 
 song_duration_seconds <- Repeatr::songvarslookup %>%
-  select(song, duration_seconds)
+  select(title, duration_seconds)
 
 releases_data_input <- Repeatr::releases_data_input %>%
   left_join(song_tempo_bpm_data) %>%
   left_join(song_duration_seconds) %>%
-  arrange(desc(releaseid), desc(track_number)) %>%
+  arrange(desc(rid), desc(track_number)) %>%
   mutate(minutes = round(duration_seconds/60, 3)) %>%
-  mutate(song = factor(song, levels=unique(song)))
+  mutate(title = factor(title, levels=unique(title)))
 
 release_tempo_bpm_minutes <- releases_data_input %>%
   mutate(tempo_bpm_minutes = tempo_bpm*minutes) %>%
-  group_by(release) %>%
+  group_by(release_title) %>%
   summarise(tempo_bpm_minutes = sum(tempo_bpm_minutes),
             minutes = sum(minutes)) %>%
   ungroup() %>%
   mutate(tempo_bpm = round(tempo_bpm_minutes/minutes, 3)) %>%
-  mutate(release = as.character(release)) %>%
+  mutate(release_title = as.character(release_title)) %>%
   mutate(minutes = round(minutes, 3)) %>%
-  select(release, tempo_bpm, minutes)
+  select(release_title, tempo_bpm, minutes)
 
 discography_tempo_bpm <- release_tempo_bpm_minutes %>%
   mutate(tempo_bpm_minutes = tempo_bpm*minutes) %>%
@@ -975,7 +975,7 @@ tabPanel("stock",
 
              column(12,
                     selectizeInput("Input_releases", "releases:",
-                                   releases_menu_list$release,
+                                   releases_menu_list$release_title,
                                    selected=NULL, multiple =TRUE)
              )
 
@@ -2382,21 +2382,21 @@ server <- function(input, output, session) {
       xray_data2 <- xray_data() %>%
         filter(variable!="songs" & variable!="released" & variable!="unreleased" & variable!="debut" & variable!="farewell" & variable!="incumbent" & variable!="other") %>%
         filter(value>0) %>%
-        arrange(releaseid)
+        arrange(rid)
 
     } else if(input$xrayGraph_choice=="unreleased") {
 
       xray_data2 <- xray_data() %>%
         filter(variable=="released" | variable=="unreleased") %>%
         filter(value>0) %>%
-        arrange(releaseid)
+        arrange(rid)
 
     } else {
 
       xray_data2 <- xray_data() %>%
         filter(variable=="songs" | variable=="other") %>%
         filter(value>0) %>%
-        arrange(releaseid)
+        arrange(rid)
 
     }
 
@@ -2410,7 +2410,7 @@ server <- function(input, output, session) {
   xray_data3 <- reactive({
 
     data <- xray_data2()  %>%
-      select(-release, -colour_code, -releaseid, -units)  %>%
+      select(-release, -colour_code, -rid, -units)  %>%
       pivot_wider(names_from = variable, values_from = value) %>%
       select(-year, -tour) %>%
       arrange(date)
@@ -2499,23 +2499,23 @@ server <- function(input, output, session) {
     if (is.null(input$yearInput_shows)==FALSE) {
       menudata <- year_tour_release %>%
         filter(year %in% input$yearInput_shows) %>%
-        arrange(release)
+        arrange(release_title)
     } else {
       menudata <- year_tour_release %>%
-        arrange(release)
+        arrange(release_title)
     }
 
     if (is.null(input$tourInput_shows)==FALSE) {
       menudata <- menudata %>%
         filter(tour %in% input$tourInput_shows) %>%
-        arrange(release)
+        arrange(release_title)
     } else {
       menudata <- menudata %>%
-        arrange(release)
+        arrange(release_title)
     }
 
     selectizeInput("releaseInput", "releases",
-                   choices = c(unique(menudata$release)), multiple =TRUE)
+                   choices = c(unique(menudata$release_title)), multiple =TRUE)
 
   })
 
@@ -2523,15 +2523,15 @@ server <- function(input, output, session) {
 
     if (is.null(input$releaseInput)==FALSE) {
       menudata <- cumulative_song_counts %>%
-        filter(release %in% input$releaseInput) %>%
-        arrange(song)
+        filter(release_title %in% input$releaseInput) %>%
+        arrange(title)
     } else {
       menudata <- cumulative_song_counts %>%
-        arrange(song)
+        arrange(title)
     }
 
     selectizeInput("songInput", "songs",
-                   choices = c(unique(menudata$song)), multiple =TRUE)
+                   choices = c(unique(menudata$title)), multiple =TRUE)
 
   })
 
@@ -2562,20 +2562,20 @@ server <- function(input, output, session) {
       mydf <- cumulative_song_counts %>%
         filter(date >= date1 &
                  date <= date2 &
-                 release %in% input$releaseInput &
-                 song %in% input$songInput)
+                 release_title %in% input$releaseInput &
+                 title %in% input$songInput)
 
     } else if (is.null(input$releaseInput)==FALSE & is.null(input$songInput)==TRUE) {
       mydf <- cumulative_song_counts %>%
         filter(date >= date1 &
                  date <= date2 &
-                 release %in% input$releaseInput)
+                 release_title %in% input$releaseInput)
 
     } else if (is.null(input$releaseInput)==TRUE & is.null(input$songInput)==FALSE) {
       mydf <- cumulative_song_counts %>%
         filter(date >= date1 &
                  date <= date2 &
-                 song %in% input$songInput)
+                 title %in% input$songInput)
 
     } else {
       mydf <- cumulative_song_counts %>%
@@ -2591,7 +2591,7 @@ server <- function(input, output, session) {
   songs_data2 <- reactive({
 
     mysongs <- songs_data() %>%
-      group_by(song, releasedate) %>%
+      group_by(title, release_date) %>%
       summarize(renditions = max(count) - min(count) + 1,
                 pcnt_change = (max(count) - min(count) + 1)/(min(count)+1),
                 from = min(date),
@@ -2599,7 +2599,7 @@ server <- function(input, output, session) {
       ungroup() %>%
       arrange(desc(pcnt_change)) %>%
       mutate(index = row_number()) %>%
-      select(song, index, from, to, releasedate, pcnt_change)
+      select(title, index, from, to, release_date, pcnt_change)
 
     mysongs
 
@@ -2611,7 +2611,7 @@ server <- function(input, output, session) {
       left_join(songs_data2()) %>%
       left_join(last_performance_data) %>%
       mutate(to = as.Date(ifelse(last_performance<to, last_performance, to), origin = "1970-01-01")) %>%
-      mutate(released = releasedate) %>%
+      mutate(released = release_date) %>%
       filter(index<=input$max_songs_renditions)
 
     mydf
@@ -2621,7 +2621,7 @@ server <- function(input, output, session) {
   songs_data4 <- reactive({
 
     mydf <- songs_data3() %>%
-      group_by(release, song, from, to, released) %>%
+      group_by(release_title, title, from, to, released) %>%
       summarize(renditions = max(count) - min(count) + 1) %>%
       ungroup() %>%
       arrange(desc(renditions))
@@ -2645,7 +2645,7 @@ server <- function(input, output, session) {
 
   output$performance_count_plot <- renderPlotly({
 
-    p <- ggplot(songs_data3(), aes(x = date, y = count, color = song)) +
+    p <- ggplot(songs_data3(), aes(x = date, y = count, color = title)) +
       geom_line() +
       xlab("date") +
       ylab("cumulative renditions")
@@ -2703,27 +2703,27 @@ server <- function(input, output, session) {
     mydf1 <- Repeatr1 %>%
       filter(tracktype==1) %>%
       left_join(tourdata) %>%
-      select(gid,year,date,song_number,song, tour) %>%
-      rename(song1 = song)
+      select(gid,year,date,song_number,title, tour) %>%
+      rename(title1 = title)
 
     mydf2 <- Repeatr1 %>%
       filter(tracktype==1) %>%
-      select(gid,year,date,song_number,song) %>%
+      select(gid,year,date,song_number,title) %>%
       mutate(song_number = song_number-1) %>%
-      rename(song2 = song)
+      rename(title2 = title)
 
     mydf3 <- mydf1 %>%
       left_join(mydf2) %>%
-      filter(is.na(song2)==FALSE) %>%
+      filter(is.na(title2)==FALSE) %>%
       rename(transition_number = song_number) %>%
       filter(date >= date1 &
                date <= date2)
 
 
     mytransitions <- mydf3 %>%
-      select(song1, song2) %>%
-      rename(from = song1) %>%
-      rename(to = song2)
+      select(title1, title2) %>%
+      rename(from = title1) %>%
+      rename(to = title2)
 
     mytransitions <- mytransitions %>%
       group_by(from, to) %>%
@@ -2813,11 +2813,11 @@ server <- function(input, output, session) {
 
 
     searchmenudata <- transitions_shows_data_filtered() %>%
-        arrange(song1)
+        arrange(title1)
 
 
     selectizeInput("search_from_song", "from:",
-                   choices = c(unique(searchmenudata$song1)), multiple =TRUE)
+                   choices = c(unique(searchmenudata$title1)), multiple =TRUE)
 
   })
 
@@ -2825,15 +2825,15 @@ server <- function(input, output, session) {
 
     if (is.null(input$search_from_song)==FALSE) {
       searchmenudata <- transitions_shows_data_filtered() %>%
-        filter(song1 %in% input$search_from_song) %>%
-        arrange(song2)
+        filter(title1 %in% input$search_from_song) %>%
+        arrange(title2)
     } else {
       searchmenudata <- transitions_shows_data_filtered() %>%
-        arrange(song2)
+        arrange(title2)
     }
 
     selectizeInput("searchInput_to_song", "to:",
-                   choices = c(unique(searchmenudata$song2)), multiple =TRUE)
+                   choices = c(unique(searchmenudata$title2)), multiple =TRUE)
 
   })
 
@@ -2841,16 +2841,16 @@ server <- function(input, output, session) {
 
     if (is.null(input$search_from_song)==FALSE & is.null(input$searchInput_to_song)==FALSE) {
       transitions_data_da_results <- transitions_shows_data_filtered() %>%
-        filter(song1 %in% input$search_from_song &
-                 song2 %in% input$searchInput_to_song)
+        filter(title1 %in% input$search_from_song &
+                 title2 %in% input$searchInput_to_song)
 
     } else if (is.null(input$search_from_song)==FALSE & is.null(input$searchInput_to_song)==TRUE) {
       transitions_data_da_results <- transitions_shows_data_filtered() %>%
-        filter(song1 %in% input$search_from_song)
+        filter(title1 %in% input$search_from_song)
 
     } else if (is.null(input$search_from_song)==TRUE & is.null(input$searchInput_to_song)==FALSE) {
       transitions_data_da_results <- transitions_shows_data_filtered() %>%
-        filter(song2 %in% input$searchInput_to_song)
+        filter(title2 %in% input$searchInput_to_song)
 
     } else {
 
@@ -2859,7 +2859,7 @@ server <- function(input, output, session) {
     }
 
     transitions_data_da_results %>%
-      select(gid, url, fls_link, date, transition, song1, song2) %>%
+      select(gid, url, fls_link, date, transition, title1, title2) %>%
       arrange(date)
 
   })
@@ -2958,9 +2958,9 @@ server <- function(input, output, session) {
     if(is.null(songs)==FALSE){
 
       songs <- songs %>%
-        arrange(song) %>%
+        arrange(title) %>%
         relocate(shows) %>%
-        relocate(song)
+        relocate(title)
 
     }
 
@@ -3023,10 +3023,10 @@ server <- function(input, output, session) {
       data <- discography %>%
         left_join(sets_songs_data()) %>%
         relocate(shows) %>%
-        relocate(release) %>%
-        relocate(song) %>%
+        relocate(release_title) %>%
+        relocate(title) %>%
         replace(is.na(.), 0) %>%
-        arrange(desc(shows), release, song)
+        arrange(desc(shows), release_title, title)
 
     } else {
 
@@ -3224,7 +3224,7 @@ server <- function(input, output, session) {
 
     data <- stacks_songs_data() %>%
       relocate(shows) %>%
-      relocate(song)
+      relocate(title)
 
     data
 
@@ -3246,13 +3246,13 @@ server <- function(input, output, session) {
 
     if (is.null(input$Input_releases)==FALSE) {
       releases_data <- releases_data_input %>%
-        filter(release %in% input$Input_releases) %>%
-        arrange(releaseid, track_number)
+        filter(release_title %in% input$Input_releases) %>%
+        arrange(rid, track_number)
 
     } else {
 
       releases_data <- releases_data_input %>%
-        arrange(releaseid, track_number)
+        arrange(rid, track_number)
 
     }
 
@@ -3264,7 +3264,7 @@ server <- function(input, output, session) {
 
     if (is.null(input$Input_releases)==FALSE) {
       releases_summary_filtered <- releases_summary %>%
-        filter(release %in% input$Input_releases)
+        filter(release_title %in% input$Input_releases)
 
     } else {
 
@@ -3282,9 +3282,9 @@ server <- function(input, output, session) {
 
     if(input$Input_releases_var == "rating") {
 
-        releases_plot <- ggplot(releases_data(), aes(x = song,
+        releases_plot <- ggplot(releases_data(), aes(x = title,
                                                    y = rating,
-                                                   fill = release)) +
+                                                   fill = release_title)) +
           geom_bar(stat="identity") +
           xlab("track") +
           ylab("rating") +
@@ -3299,9 +3299,9 @@ server <- function(input, output, session) {
 
     } else if (input$Input_releases_var == "intensity") {
 
-      releases_plot <- ggplot(releases_data(), aes(x = song,
+      releases_plot <- ggplot(releases_data(), aes(x = title,
                                                    y = intensity,
-                                                   fill = release)) +
+                                                   fill = release_title)) +
         geom_bar(stat="identity") +
         xlab("track") +
         ylab("intensity") +
@@ -3316,9 +3316,9 @@ server <- function(input, output, session) {
 
     } else if (input$Input_releases_var == "count") {
 
-      releases_plot <- ggplot(releases_data(), aes(x = song,
+      releases_plot <- ggplot(releases_data(), aes(x = title,
                                                    y = count,
-                                                   fill = release)) +
+                                                   fill = release_title)) +
         geom_bar(stat="identity") +
         xlab("track") +
         ylab("count") +
@@ -3333,9 +3333,9 @@ server <- function(input, output, session) {
 
     } else if (input$Input_releases_var == "minutes") {
 
-      releases_plot <- ggplot(releases_data(), aes(x = song,
+      releases_plot <- ggplot(releases_data(), aes(x = title,
                                                    y = minutes,
-                                                   fill = release)) +
+                                                   fill = release_title)) +
         geom_bar(stat="identity") +
         xlab("track") +
         ylab("minutes") +
@@ -3350,9 +3350,9 @@ server <- function(input, output, session) {
 
     } else {
 
-        releases_plot <- ggplot(releases_data(), aes(x = song,
+        releases_plot <- ggplot(releases_data(), aes(x = title,
                                                      y = tempo_bpm,
-                                                     fill = release)) +
+                                                     fill = release_title)) +
           geom_bar(stat="identity") +
           xlab("track") +
           ylab("tempo_bpm") +
@@ -3400,13 +3400,13 @@ server <- function(input, output, session) {
     if (is.null(input$Input_releases)==FALSE) {
 
       releases_data_table <- releases_data() %>%
-        select(release, track_number, song, date, count, intensity, rating, tempo_bpm, minutes) %>%
+        select(release_title, track_number, title, date, count, intensity, rating, tempo_bpm, minutes) %>%
         rename(debut = date)
 
     } else {
 
       releases_data_table <- releases_summary %>%
-        select(-releaseid)
+        select(-rid)
 
     }
 
@@ -3448,15 +3448,15 @@ server <- function(input, output, session) {
 
     if (is.null(input$Input_releases)==FALSE) {
       menudata <- cumulative_duration_counts %>%
-        filter(release %in% input$Input_releases) %>%
-        arrange(song)
+        filter(release_title %in% input$Input_releases) %>%
+        arrange(title)
     } else {
       menudata <- cumulative_duration_counts %>%
-        arrange(song)
+        arrange(title)
     }
 
     selectizeInput("variation_songInput", "songs",
-                   choices = c(unique(menudata$song)), multiple =TRUE)
+                   choices = c(unique(menudata$title)), multiple =TRUE)
 
   })
 
@@ -3465,7 +3465,7 @@ server <- function(input, output, session) {
     if (is.null(input$Input_releases)==FALSE) {
 
       mydf <- cumulative_duration_counts %>%
-        filter(release %in% input$Input_releases)
+        filter(release_title %in% input$Input_releases)
 
     } else {
 
@@ -3476,7 +3476,7 @@ server <- function(input, output, session) {
     if (is.null(input$variation_songInput)==FALSE) {
 
       mydf <- mydf %>%
-        filter(song %in% input$variation_songInput)
+        filter(title %in% input$variation_songInput)
 
     } else {
 
@@ -3492,12 +3492,12 @@ server <- function(input, output, session) {
 
     mydf <- variation_data() %>%
       left_join(duration_summary) %>%
-      group_by(song) %>%
+      group_by(title) %>%
       summarize(minutes_sd = mean(minutes_sd)) %>%
       ungroup() %>%
       arrange(desc(minutes_sd)) %>%
       mutate(index = row_number()) %>%
-      select(song, index)
+      select(title, index)
 
     mydf
 
@@ -3516,7 +3516,7 @@ server <- function(input, output, session) {
   variation_data4 <- reactive({
 
     mydf <- variation_data3() %>%
-      group_by(song) %>%
+      group_by(title) %>%
       summarize(renditions = max(count)) %>%
       ungroup() %>%
       left_join(duration_summary) %>%
@@ -3541,7 +3541,7 @@ server <- function(input, output, session) {
 
   output$variation_count_plot <- renderPlotly({
 
-    p <- ggplot(variation_data3(), aes(x = minutes, y = count, color = song)) +
+    p <- ggplot(variation_data3(), aes(x = minutes, y = count, color = title)) +
       geom_line() +
       xlab("minutes") +
       ylab("cumulative renditions")
@@ -3572,15 +3572,15 @@ server <- function(input, output, session) {
 
     if (is.null(input$Input_releases)==FALSE) {
       menudata <- cumulative_duration_counts %>%
-        filter(release %in% input$Input_releases) %>%
-        arrange(song)
+        filter(release_title %in% input$Input_releases) %>%
+        arrange(title)
     } else {
       menudata <- cumulative_duration_counts %>%
-        arrange(song)
+        arrange(title)
     }
 
     selectizeInput("duration_song", "songs",
-                   choices = c(unique(menudata$song)), multiple =TRUE)
+                   choices = c(unique(menudata$title)), multiple =TRUE)
 
   })
 
@@ -3589,12 +3589,12 @@ server <- function(input, output, session) {
 
     if (is.null(input$duration_song)==FALSE) {
       duration_data_da_results <- duration_data_da %>%
-        filter(song %in% input$duration_song)
+        filter(title %in% input$duration_song)
 
     } else if (is.null(input$Input_releases)==FALSE) {
 
       duration_data_da_results <- duration_data_da %>%
-        filter(release %in% input$Input_releases)
+        filter(release_title %in% input$Input_releases)
 
     } else {
 
@@ -3609,7 +3609,7 @@ server <- function(input, output, session) {
   duration_shows_data2 <- reactive({
 
     mydf <- duration_shows_data() %>%
-      select(fls_link, date, song_number, song, minutes) %>%
+      select(fls_link, date, song_number, title, minutes) %>%
       arrange(date, song_number)
 
     mydf
@@ -3620,7 +3620,7 @@ server <- function(input, output, session) {
 
     mydf <- duration_shows_data() %>%
       mutate(url = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
-      select(url, date, song_number, song, minutes) %>%
+      select(url, date, song_number, title, minutes) %>%
       arrange(date, song_number)
 
     mydf <- download_table_footer(mydf = mydf, nblankrows = 1, textcolumnname = "sources", rowtext = sourcestext)
@@ -3657,15 +3657,15 @@ server <- function(input, output, session) {
 
     if (is.null(input$Input_releases)==FALSE) {
       menudata <- cumulative_duration_counts %>%
-        filter(release %in% input$Input_releases) %>%
-        arrange(song)
+        filter(release_title %in% input$Input_releases) %>%
+        arrange(title)
     } else {
       menudata <- cumulative_duration_counts %>%
-        arrange(song)
+        arrange(title)
     }
 
     selectizeInput("search_songs", "songs",
-                   choices = c(unique(menudata$song)), multiple =TRUE)
+                   choices = c(unique(menudata$title)), multiple =TRUE)
 
   })
 
@@ -3675,7 +3675,7 @@ server <- function(input, output, session) {
 
       mysearch <- input$search_songs
       mysearch <- as.data.frame(mysearch)
-      names(mysearch)[1]<-"song"
+      names(mysearch)[1]<-"title"
       mysearch <- mysearch %>% mutate(hits = 1)
 
       search_data_da_results <- duration_data_da %>%
@@ -3691,7 +3691,7 @@ server <- function(input, output, session) {
     } else if (is.null(input$Input_releases)==FALSE){
 
       search_data_results <- duration_data_da %>%
-        filter(release %in% input$Input_releases) %>%
+        filter(release_title %in% input$Input_releases) %>%
         left_join(gid_sound_quality) %>%
         group_by(gid, fls_link, date, sound_quality) %>%
         summarize(hits = n()) %>%

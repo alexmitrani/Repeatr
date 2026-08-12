@@ -23,7 +23,7 @@ sweepstack(
 \item{mysummary, myothervariables, mygidsoundquality}{optional lookup tables passed straight through to \code{stacks()} - see there for details. If omitted the currently lazy-loaded defaults will be used.}
 }
 \value{
-A list of two data frames: \code{stack_summary} (\code{gid}, \code{shows} - one row per starting show tested, and the number of shows needed to reach the target unique-song count) and \code{stack_details} (\code{gid_initial}, \code{gid}, \code{song} - the full, deduplicated set of shows and songs behind every stack tested).
+A list of two data frames: \code{stack_summary} (\code{gid}, \code{shows} - one row per starting show tested, and the number of shows needed to reach the target unique-song count) and \code{stack_details} (\code{gid_initial}, \code{gid}, \code{title} - the full, deduplicated set of shows and songs behind every stack tested).
 }
 \description{
 it returns a dataframe with two columns, "gid" and "shows".  gid is the gig id of the starting show used for the test.  shows is the number of shows included in the resulting stack.

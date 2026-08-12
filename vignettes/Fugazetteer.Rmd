@@ -321,9 +321,9 @@ The data table shows summary information for each song over the specified period
 
 The data table offers the following columns:
 
--   release
+-   release_title
 
--   song
+-   title
 
 -   from - first time performed (within the selected time period)
 
@@ -381,9 +381,9 @@ The data table includes:
 
 -   transition - this is the number of the transition in the set, where 1 is the first transition in that show. Larger numbers will indicate that the transition was played later in the set.
 
--   song1 - the first song in the transition
+-   title1 - the first song in the transition
 
--   song2 - the second song in the transition
+-   title2 - the second song in the transition
 
 ## sets
 
@@ -461,7 +461,7 @@ If no release filter has been applied, the data table will show summary informat
 
 The data table includes the following columns, all of which can be sorted:
 
--   release
+-   release_title
 
 -   first_debut - the date of the first debut from this release
 
@@ -493,11 +493,11 @@ If one or more releases are specified using the top-level menu, both the graph a
 
 The data table includes the following columns, all of which can be sorted:
 
--   release
+-   release_title
 
 -   track_number
 
--   song
+-   title
 
 -   count - total number of performances of each song
 
@@ -547,7 +547,7 @@ On this page you can select a song and get a table listing all the shows contain
 
 -   song_number- this is the number of the song in the set, where 1 is the first song in that show. Larger numbers will indicate that the song was played later in the set.
 
--   song - the name of the song
+-   title - the name of the song
 
 -   duration - the duration of the song in minutes.
 

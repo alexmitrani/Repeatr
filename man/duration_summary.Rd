@@ -7,7 +7,7 @@
 \format{
 dataframe with one row for each song in the Fugazi discography, except those which never appear in the Fugazi Live Series data.
 \describe{
-\item{song}{Name of the song}
+\item{title}{Name of the song}
 \item{renditions}{The number of times the song was played live according to the available recordings.}
 \item{minutes_min}{The minimum duration. In many cases this will be as short as it is because the recording was cut off, not because the band played the song really fast.}
 \item{minutes_median}{The median duration: if all the renditions were lined up in order from shortest to longest this would be the middle one.}

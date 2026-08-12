@@ -8,8 +8,8 @@
 dataframe with one row for each combination of song and date in the Fugazi Live Series data.
 \describe{
 \item{date}{Date of the show}
-\item{song}{Name of the song}
-\item{release}{Name of the corresponding discographical release}
+\item{title}{Name of the song}
+\item{release_title}{Name of the corresponding discographical release}
 \item{count}{The cumulative count of the number of times the song had been performed up to and including this performance.}
 }
 }

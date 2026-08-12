@@ -1,4 +1,4 @@
-"","rank","songid","track_number","song","launchdate","duration","chosen","available_rl","intensity","rating","releaseid","release","releasedate","lead","launchyear","releaseyear"
+"","rank","songid","track_number","title","launchdate","duration","chosen","available_rl","intensity","rating","rid","release_title","release_date","lead","launchyear","releaseyear"
 "1",8,91,1,"waiting room",1987-09-03,173,675,952,0.709033613445378,0.916075014221071,1,"fugazi",1988-11-19,443,1987,1988
 "2",54,13,2,"bulldog front",1988-06-15,173,249,925,0.269189189189189,0.693937356296742,1,"fugazi",1988-11-19,157,1988,1988
 "3",45,6,3,"bad mouth",1987-10-16,155,312,949,0.328767123287671,0.750669486686725,1,"fugazi",1988-11-19,400,1987,1988

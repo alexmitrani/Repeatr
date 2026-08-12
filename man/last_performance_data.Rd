@@ -7,7 +7,7 @@
 \format{
 dataframe with one row for each song that was performed at least twice in the Fugazi Live Series data.
 \describe{
-\item{song}{name of the song}
+\item{title}{name of the song}
 \item{last_performance}{date of the last performance.}
 }
 }

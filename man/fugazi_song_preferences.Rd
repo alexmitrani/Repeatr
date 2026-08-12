@@ -9,7 +9,7 @@ dataframe with one row for each song, ranked by estimated preference.
 \describe{
 \item{rank_rating}{Rank of the song by estimated preference, 1 = most preferred}
 \item{songid}{numeric id for each song}
-\item{song}{The name of the song}
+\item{title}{The name of the song}
 \item{Estimate}{The estimated intercept for this song (0 for the omitted reference song)}
 \item{z-value}{The z-value of the estimate (NA for the omitted reference song)}
 }

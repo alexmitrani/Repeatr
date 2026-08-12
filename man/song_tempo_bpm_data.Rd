@@ -7,7 +7,7 @@
 \format{
 dataframe with one row for each song with a personally-measured tempo reading.
 \describe{
-\item{song}{The name of the song}
+\item{title}{The name of the song}
 \item{tempo_bpm}{Tempo, in beats per minute, measured personally by Alex Mitrani}
 }
 }

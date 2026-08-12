@@ -9,7 +9,7 @@ dataframe with one row for each song meeting \code{min_song_count} in \code{\lin
 \describe{
 \item{alt}{Dense 1..n index over the \code{min_song_count}-eligible songs, in \code{songid} order. The alternative-specific index \code{mlogit}/\code{\link{Repeatr_4}} actually sees - not the same as \code{songid}, which spans every classified song.}
 \item{songid}{The stable, full song identity from \code{\link{songidlookup}}.}
-\item{song}{The name of the song}
+\item{title}{The name of the song}
 \item{count}{The number of times the song was performed according to the data}
 }
 }
@@ -20,7 +20,7 @@ altlookup
 Fugazi alt id lookup table (choice-model alternative index)
 }
 \section{Provenance}{
- Derived-modeled. Computed live in \code{\link{Repeatr_2}}; the translation table between \code{alt} (what the choice model sees) and \code{songid}/\code{song} (stable identity) used by \code{\link{Repeatr_5}} and \code{\link{rankr}}.
+ Derived-modeled. Computed live in \code{\link{Repeatr_2}}; the translation table between \code{alt} (what the choice model sees) and \code{songid}/\code{title} (stable identity) used by \code{\link{Repeatr_5}} and \code{\link{rankr}}.
 }
 
 \examples{

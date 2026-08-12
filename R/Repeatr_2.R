@@ -13,17 +13,18 @@
 #'
 #' @param mydf optional dataframe to be used (the `Repeatr1` element of `Repeatr_1()`'s return list). If omitted the default (currently lazy-loaded) `Repeatr1` dataframe will be used.
 #' @param mysongidlookup optional `songidlookup` dataframe to be used (the `songidlookup` element of `Repeatr_1()`'s return list). If omitted the default (currently lazy-loaded) `songidlookup` dataframe will be used. Pass this explicitly - rather than relying on the default - when calling `Repeatr_2()` right after a fresh `Repeatr_1()` in the same session, since the lazy-loaded default reflects the last build on disk, not the one just computed.
-#' @param min_song_count Minimum number of performances a song needs to compete as an alternative in the choice model (`Repeatr_4`). Songs performed fewer times still appear in `songid`/`song` on the output, they just won't get an `alt` and can't be chosen as an alternative. Default 2 - songs performed only once can't support a stable alternative-specific intercept in the choice model. This is a choice-model concern only: it does not affect `songid`, which \code{\link{Repeatr_1}} assigns to every classified song regardless of this threshold.
+#' @param min_song_count Minimum number of performances a song needs to compete as an alternative in the choice model (`Repeatr_4`). Songs performed fewer times still appear in `songid`/`title` on the output, they just won't get an `alt` and can't be chosen as an alternative. Default 2 - songs performed only once can't support a stable alternative-specific intercept in the choice model. This is a choice-model concern only: it does not affect `songid`, which \code{\link{Repeatr_1}} assigns to every classified song regardless of this threshold.
 #' @param input_dir Optional directory to write the `fugazi_song_counts.csv`/`fugazi_song_performance_intensity.csv` output-export CSVs into. If omitted, defaults to this package's own `inst/extdata` (these are Repeatr's own downloadable outputs, not primary/raw data).
 #' @param output_dir Optional directory to save the rebuilt `data/*.rda` objects into. If omitted, defaults to `data/` under the current working directory.
 #'
-#' @return A list of 2 elements: `Repeatr2`, a data frame with one row per gid/song_number/alt combination, prepared for choice modelling (`case` is the choice-situation id, `alt` a dense 1..n index over the `min_song_count`-eligible songs only - this is what `mlogit`/`Repeatr_4` actually sees - `songid` the stable, full identity from `songidlookup` kept alongside `alt` rather than overwritten by it, `choice` whether that song was the one played, availability/played dummy variables, and years-since-launch bucket variables); and `altlookup` (`alt`, `songid`, `song`, `count` - one row per `min_song_count`-eligible song), needed by \code{\link{Repeatr_5}}/\code{\link{rankr}} to translate `mlogit`'s `alt`-indexed coefficients back to song identity. Also saved to `data/Repeatr2.rda` and `data/altlookup.rda`, alongside `fugazi_song_counts` and `fugazi_song_performance_intensity` (which cover every classified song, not just the `min_song_count`-eligible ones).
+#' @return A list of 3 elements: `Repeatr2`, a data frame with one row per gid/song_number/alt combination, prepared for choice modelling (`case` is the choice-situation id, `alt` a dense 1..n index over the `min_song_count`-eligible songs only - this is what `mlogit`/`Repeatr_4` actually sees - `songid` the stable, full identity from `songidlookup` kept alongside `alt` rather than overwritten by it, `choice` whether that song was the one played, availability/played dummy variables, and years-since-launch bucket variables); `altlookup` (`alt`, `songid`, `title`, `count` - one row per `min_song_count`-eligible song), needed by \code{\link{Repeatr_5}}/\code{\link{rankr}} to translate `mlogit`'s `alt`-indexed coefficients back to song identity; and `fugazi_song_performance_intensity` (`min_song_count`-eligible songs only), needed by \code{\link{Repeatr_5}} - returned explicitly (not just saved to disk) so a fresh `Repeatr_Updatr()` run can thread it through rather than falling back to a stale lazy-loaded binding. Also saved to `data/Repeatr2.rda` and `data/altlookup.rda`, alongside `fugazi_song_counts` (which covers every classified song, not just the `min_song_count`-eligible ones).
 #' @export
 #'
 #' @examples
 #' Repeatr_2_results <- Repeatr_2(mydf = Repeatr1, output_dir = tempdir(), input_dir = tempdir())
 #' Repeatr2 <- Repeatr_2_results[[1]]
 #' altlookup <- Repeatr_2_results[[2]]
+#' fugazi_song_performance_intensity <- Repeatr_2_results[[3]]
 #'
 
 Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, min_song_count = 2,
@@ -65,7 +66,7 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, min_song_count = 2,
   # rankr() need it to map mlogit's alt-indexed coefficients back to a
   # stable song identity, since Repeatr_3()/Repeatr_4() only ever see `alt`.
   altlookup <- songidlookup_model %>%
-    select(alt, songid, song, count)
+    select(alt, songid, title, count)
 
   setwd(mydatadir)
   save(altlookup, file = "altlookup.rda")
@@ -97,7 +98,7 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, min_song_count = 2,
   # performances and rarities are still visible here even though they
   # can't compete as a choice-model alternative.
   fugazi_song_counts <- Repeatr2 %>%
-    group_by(songid, song) %>%
+    group_by(songid, title) %>%
     summarize(count = n()) %>%
     ungroup()
 
@@ -108,8 +109,8 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, min_song_count = 2,
   for(myalt in 1:nsongs) {
 
     myvarname <- paste0("song.", myalt)
-    mysongname <- songidlookup_model %>% filter(alt == myalt) %>% pull(song)
-    Repeatr2 <- Repeatr2 %>% mutate(!!myvarname := ifelse(song == mysongname,1,0))
+    mysongname <- songidlookup_model %>% filter(alt == myalt) %>% pull(title)
+    Repeatr2 <- Repeatr2 %>% mutate(!!myvarname := ifelse(title == mysongname,1,0))
 
   }
 
@@ -132,7 +133,7 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, min_song_count = 2,
 
   }
 
-  Repeatr2$song <- NULL
+  Repeatr2$title <- NULL
   Repeatr2$nchar <- NULL
 
   ncols <- ncol(Repeatr2)
@@ -186,7 +187,7 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, min_song_count = 2,
   fugazi_song_counts <- fugazi_song_counts %>%
     left_join(songidlookup_model %>% select(songid, alt)) %>%
     left_join(mylaunchdatelookup) %>%
-    select(songid, song, launchdate, count)
+    select(songid, title, launchdate, count)
 
   knitr::kable(fugazi_song_counts, "pipe")
 
@@ -214,13 +215,13 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, min_song_count = 2,
     arrange(desc(intensity))
 
   mycount2_sl <- mycount2_sl %>%
-    left_join(songidlookup_model %>% select(alt, songid, song))
+    left_join(songidlookup_model %>% select(alt, songid, title))
 
   mycount2_sl <- mycount2_sl %>%
-    left_join(fugazi_song_counts %>% select(-song))
+    left_join(fugazi_song_counts %>% select(-title))
 
   fugazi_song_performance_intensity <- mycount2_sl %>%
-    select(songid, song, launchdate, chosen, available_rl, intensity)
+    select(songid, title, launchdate, chosen, available_rl, intensity)
 
   knitr::kable(fugazi_song_performance_intensity, "pipe")
 
@@ -237,8 +238,8 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, min_song_count = 2,
   # merge on repertoire-level availability
   Repeatr2$available_rl <- NULL
   Repeatr2 <- Repeatr2 %>% left_join(available_rl_lookup)
-  Repeatr2 <- Repeatr2 %>% left_join(songidlookup_model %>% select(alt, songid, song))
-  Repeatr2 <- Repeatr2 %>% select(gid, date, song_number, alt, songid, song, chosen, played, available_rl, first_song, last_song, releaseid,	release, track_number, instrumental,	vocals_picciotto,	vocals_mackaye,	vocals_lally,	duration_seconds)
+  Repeatr2 <- Repeatr2 %>% left_join(songidlookup_model %>% select(alt, songid, title))
+  Repeatr2 <- Repeatr2 %>% select(gid, date, song_number, alt, songid, title, chosen, played, available_rl, first_song, last_song, rid,	release_title, track_number, instrumental,	vocals_picciotto,	vocals_mackaye,	vocals_lally,	duration_seconds)
   Repeatr2 <- Repeatr2 %>% arrange(date, gid, song_number, alt)
 
   # Merge on the launch date of each song and calculate how many years old each song is at the time of each gig
@@ -249,7 +250,7 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, min_song_count = 2,
 
   # set the song "provisional" to unavailable after the launch of "reprovisional"
   Repeatr2 <- Repeatr2 %>%
-    mutate(available_rl=ifelse((date>="1989-12-29" & song=="provisional"), 0, available_rl))
+    mutate(available_rl=ifelse((date>="1989-12-29" & title=="provisional"), 0, available_rl))
 
   # available_gl is gig-level availability.  A song is considered available at the gig level if it is available in the repertoire and it has not already been played.
   Repeatr2 <- Repeatr2 %>% mutate(available_gl=ifelse((played==1 & chosen==0),0,available_rl))
@@ -303,7 +304,7 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, min_song_count = 2,
 
   setwd(mydir)
 
-  return(list(Repeatr2, altlookup))
+  return(list(Repeatr2, altlookup, fugazi_song_performance_intensity))
 
 }
 

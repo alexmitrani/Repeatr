@@ -8,7 +8,7 @@
 dataframe with one row for each track in the Fugazi Live Series data, including data from the audio file tags.
 \describe{
 \item{track}{track number}
-\item{song}{track name}
+\item{title}{track name}
 \item{duration}{duration in period format (lubridate)}
 \item{seconds}{duration in seconds}
 \item{date}{date}
@@ -25,7 +25,7 @@ fls_tags
 Tags data
 }
 \section{Provenance}{
- Derived-cleaned. Parsed by \code{\link{Repeatr_1}} (via \code{\link{fls_tags_importer}}) from the raw \code{inst/extdata/fls_tags.txt} kid3 MP3-tag export. The underlying track/album/song names themselves are sourced from the Fugazi Live Series site, not personal data - Alex Mitrani applied a consistent album-name format and a handful of one-off track-title corrections on top (see the "process tags data" section of \code{\link{Repeatr_1}}). The raw \code{album} tag text (\verb{YYYYMMDD Venue, City, State, Country}) is used internally to parse \code{venue}/\code{city}/\code{subdivision}/\code{country} for a couple of mistagged-track filters and to derive \code{\link{fls_tags_show}}, but those fields (and \code{album} itself) are dropped before saving, since parsing them by counting commas silently misparses whenever a venue or city name itself contains a comma (e.g. Ypsilanti, Flint, Eau Claire, Osaka), and \code{\link{shows_data}} (joined via \code{gid}) is the sole authoritative source for them. Exported (minus \code{date} - join fugazibase's \code{shows} on \code{gid} instead - and \code{seconds}, which duplicated \code{duration}; \code{track} converted from character to integer) as fugazibase's \code{durations} table by \code{\link{export_fugazibase_data}}.
+ Derived-cleaned. Parsed by \code{\link{Repeatr_1}} (via \code{\link{fls_tags_importer}}) from the raw \code{inst/extdata/fls_tags.txt} kid3 MP3-tag export; the raw tag's \code{name} field is renamed \code{title} at read time. The underlying track/album/song names themselves are sourced from the Fugazi Live Series site, not personal data - Alex Mitrani applied a consistent album-name format and a handful of one-off track-title corrections on top (see the "process tags data" section of \code{\link{Repeatr_1}}). The raw \code{album} tag text (\verb{YYYYMMDD Venue, City, State, Country}) is used internally to parse \code{venue}/\code{city}/\code{subdivision}/\code{country} for a couple of mistagged-track filters and to derive \code{\link{fls_tags_show}}, but those fields (and \code{album} itself) are dropped before saving, since parsing them by counting commas silently misparses whenever a venue or city name itself contains a comma (e.g. Ypsilanti, Flint, Eau Claire, Osaka), and \code{\link{shows_data}} (joined via \code{gid}) is the sole authoritative source for them. Exported (minus \code{date} - join fugazibase's \code{shows} on \code{gid} instead - and \code{seconds}, which duplicated \code{duration}; \code{track} converted from character to integer) as fugazibase's \code{durations} table by \code{\link{export_fugazibase_data}}.
 }
 
 \examples{

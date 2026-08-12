@@ -1,7 +1,7 @@
 
 #' @title stacks puts together a set of shows that will contain a specified number of unique songs.
 #'
-#' @param mydf dataframs of shows and songs containing the columns gid and song.
+#' @param mydf dataframs of shows and songs containing the columns gid and title.
 #' @param mygid gig id of initial show as a string, for instance "washington-dc-usa-13196".
 #' @param mynumberofsongs the number of unique songs that are required. the maximum is 92 (the number of songs Fugazi played live at least twice and that feature in the studio discography) and the number of songs in the initial show will be taken as a minimum.
 #' @param exclude_poor_sound_quality set to TRUE to exclude shows with poor sound quality
@@ -9,12 +9,12 @@
 #' @param myothervariables optional `othervariables` dataframe (as produced by `Repeatr_1()`) to be used for show details. If omitted the currently lazy-loaded default will be used.
 #' @param mygidsoundquality optional `gid_sound_quality` dataframe (as produced by `Repeatr_1()`) to be used for sound quality filtering/display. If omitted the currently lazy-loaded default will be used.
 #'
-#' @return A list of two data frames: `stack_songs` (`gid`, `song` - one row per unique song in the stack, and the show it came from) and `stack_shows_songs` (one row per show included in the stack, with venue/date/sound-quality details and the number of new songs it contributed).
+#' @return A list of two data frames: `stack_songs` (`gid`, `title` - one row per unique song in the stack, and the show it came from) and `stack_shows_songs` (one row per show included in the stack, with venue/date/sound-quality details and the number of new songs it contributed).
 #' @export
 #'
 #' @examples
 #' gid_song <- duration_data_da %>%
-#'   select(gid, song)
+#'   select(gid, title)
 #'
 #' results <- stacks(mydf = gid_song, mygid = "washington-dc-usa-13196", mynumberofsongs = 94)
 #' stack1 <- results[[1]]
@@ -33,13 +33,13 @@ stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL, exclude_po
   if (is.null(mygidsoundquality)==FALSE) { gid_sound_quality <- mygidsoundquality } else { gid_sound_quality <- gid_sound_quality }
 
   song_chosen <- summarydf %>%
-    select(song, chosen) %>%
+    select(title, chosen) %>%
     arrange(chosen)
 
   if(is.null(mydf)==TRUE){
 
     mydf <- duration_data_da %>%
-      select(gid, song)
+      select(gid, title)
 
   }
 
@@ -52,7 +52,7 @@ stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL, exclude_po
 
     mydf <- mydf %>%
       filter(sound_quality!="Poor") %>%
-      select(gid, song)
+      select(gid, title)
 
   }
 
@@ -72,7 +72,7 @@ stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL, exclude_po
 
   stack_songs <- mydf %>%
     filter(gid==mygid) %>%
-    select(gid, song) %>%
+    select(gid, title) %>%
     mutate(stack=1)
 
   minimumsongs <- nrow(stack_songs)
@@ -102,14 +102,14 @@ stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL, exclude_po
   repeat{
 
     gid_song_stack <- mydf %>%
-      left_join(stack_songs, by = c("song")) %>%
+      left_join(stack_songs, by = c("title")) %>%
       rename(gid = gid.x) %>%
-      select(gid, song, stack)
+      select(gid, title, stack)
 
     gid_song_new <- gid_song_stack %>%
       replace(is.na(.), 0)  %>%
       mutate(new = 1-stack)  %>%
-      select(gid, song, new)
+      select(gid, title, new)
 
     # restrict the data to shows with the next rarest song
 
@@ -146,11 +146,11 @@ stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL, exclude_po
     stack <- as.data.frame(rbind(stack_songs, stack2))
 
     stack_songs <- stack %>%
-      group_by(song) %>%
+      group_by(title) %>%
       mutate(number = row_number()) %>%
       ungroup() %>%
       filter(number == 1) %>%
-      select(gid, song, stack)
+      select(gid, title, stack)
 
     unique_songs <- nrow(stack_songs)
 
@@ -182,7 +182,7 @@ stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL, exclude_po
   }
 
   stack_songs <- stack_songs %>%
-    select(gid, song)
+    select(gid, title)
 
 
   mystacks <- list(stack_songs, stack_shows_songs)

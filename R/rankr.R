@@ -10,7 +10,7 @@
 #' @param mysongidlist a dataframe containing the list of song ids to be tested.  It can contain other variables but only songid will be used.
 #' @param myaltlookup optional `altlookup` dataframe (the second element of `Repeatr_2()`'s return list) used to translate `mysongidlist`'s `songid` values into `coeftable`'s `alt`-indexed rows, and to attach song names to the results - `songid` and `alt` are different scales (`songid` spans every classified song, `alt` only the `min_song_count`-eligible ones actually fit by the model), so this translation is required, not optional bookkeeping. If omitted the currently lazy-loaded default will be used. Songs in `mysongidlist` that aren't in `altlookup` (i.e. below `min_song_count`) are dropped with a warning, since they have no coefficient to compare.
 #'
-#' @return A data frame with one row per adjacent pair of songs tested, giving `song1`, `song2`, their coefficients (`mycoef1`, `mycoef2`), the coefficient difference and its z-statistic, p-value and 95% confidence interval (as produced by `diffr()`).
+#' @return A data frame with one row per adjacent pair of songs tested, giving `title1`, `title2`, their coefficients (`mycoef1`, `mycoef2`), the coefficient difference and its z-statistic, p-value and 95% confidence interval (as produced by `diffr()`).
 #' @export
 #'
 #' @examples
@@ -71,14 +71,14 @@ rankr <- function(coeftable = NULL, vcovmat = NULL, mysongidlist = NULL, myaltlo
     mutate(alt2 = parse_number(var2))
 
   altlookup1 <- altlookup %>%
-    select(alt, song) %>%
+    select(alt, title) %>%
     rename(alt1 = alt) %>%
-    rename(song1 = song)
+    rename(title1 = title)
 
   altlookup2 <- altlookup %>%
-    select(alt, song) %>%
+    select(alt, title) %>%
     rename(alt2 = alt) %>%
-    rename(song2 = song)
+    rename(title2 = title)
 
   myresultsdf <- myresultsdf %>%
     left_join(altlookup1)
@@ -87,10 +87,10 @@ rankr <- function(coeftable = NULL, vcovmat = NULL, mysongidlist = NULL, myaltlo
     left_join(altlookup2)
 
   myresultsdf <- myresultsdf %>%
-    relocate(song1, song2)
+    relocate(title1, title2)
 
   myresultsdf <- myresultsdf %>%
-    select(song1, song2, mycoef1, mycoef2, mycoefdiff, myz, myp, lower95ci, upper95ci)
+    select(title1, title2, mycoef1, mycoef2, mycoefdiff, myz, myp, lower95ci, upper95ci)
 
   return(myresultsdf)
 

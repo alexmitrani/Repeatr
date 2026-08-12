@@ -7,7 +7,7 @@
 sets(mydf = NULL, shows = NULL)
 }
 \arguments{
-\item{mydf}{the dataframe to use. must contain the columns "gid" and "song".}
+\item{mydf}{the dataframe to use. must contain the columns "gid" and "title".}
 
 \item{shows}{a list of show ids}
 }

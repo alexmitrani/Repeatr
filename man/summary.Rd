@@ -9,21 +9,21 @@ dataframe with one row for each song in the Fugazi discography, except those whi
 \describe{
 \item{rank_rating}{The rank of the song in terms of the rating derived from the choice modelling, with the highest-rated song in the first position.}
 \item{songid}{numeric id for each song}
-\item{song}{The name of the song}
+\item{title}{The name of the song}
 \item{launchdate}{The date on which the song was first performed according to the data}
 \item{duration_seconds}{The duration of the song in seconds}
 \item{chosen}{The number of times the song was performed according to the data}
 \item{available_rl}{The number of shows for which the song was available in the band's repertoire}
 \item{intensity}{The performance intensity is the ratio of chosen/available_rl}
 \item{rating}{Rating on the interval between 0 and 1 where 1 is the highest rating and 0 the lowest.}
-\item{releaseid}{numeric id in ascending chronological order}
-\item{release}{release name}
+\item{rid}{numeric id in ascending chronological order}
+\item{release_title}{release name}
 \item{track_number}{The track number for the song on the release}
 \item{instrumental}{Indicates whether or not the piece is an instrumental}
 \item{vocals_picciotto}{indicates whether or not Guy Picciotto sang lead vocals on this track}
 \item{vocals_mackaye}{indicates whether or not Ian Mackaye sang lead vocals on this track}
 \item{vocals_lally}{indicates whether or not Joe Lally sang lead vocals on this track}
-\item{releasedate}{The date of the corresponding release}
+\item{release_date}{The date of the corresponding release}
 \item{lead}{The number of days between the launch date and the release date}
 \item{launchyear}{The year in which the song was first performed}
 \item{releaseyear}{The year in which the song was released}

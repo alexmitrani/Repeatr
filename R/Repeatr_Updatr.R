@@ -49,6 +49,7 @@ Repeatr_Updatr <- function(really = "not_really", min_song_count = 2, update_sta
 
     Repeatr2 <- Repeatr_2_results[[1]]
     altlookup <- Repeatr_2_results[[2]]
+    fugazi_song_performance_intensity <- Repeatr_2_results[[3]]
 
     Repeatr3 <- Repeatr_3(mydf = Repeatr2, output_dir = output_dir)
 
@@ -57,6 +58,7 @@ Repeatr_Updatr <- function(really = "not_really", min_song_count = 2, update_sta
     Repeatr_5_results <- Repeatr_5(mymodeldf = ml_Repeatr4,
                                     mysongidlookup = Repeatr_1_results[[3]],
                                     myaltlookup = altlookup,
+                                    myfugazi_song_performance_intensity = fugazi_song_performance_intensity,
                                     mysongvarslookup = Repeatr_1_results[[5]],
                                     myreleasesdatalookup = Repeatr_1_results[[6]],
                                     myreleases_data_input = Repeatr_1_results[[12]],

@@ -69,9 +69,10 @@ export_fugazibase_data <- function(fugazibase_dir, repeatr_data_dir = NULL) {
   }
 
   # shows (was fls_shows) - one row per gid; corrections/sound_quality,
-  # price/currency (split from raw doorprice text), and Brazilian/
-  # NA-standardized subdivision are already computed by Repeatr_1() on
-  # othervariables - this just selects/renames/joins, no re-derivation.
+  # price/currency (split from raw doorprice text), Brazilian/
+  # NA-standardized subdivision, and mastered_by/original_source value
+  # corrections are already computed by Repeatr_1() on othervariables -
+  # this just selects/renames/joins, no re-derivation.
   # fls_notes dropped (copyright), year/checked (maintainer workflow only),
   # x/y (duplicated by locations) also dropped.
   othervariables <- load_obj("othervariables")
@@ -106,9 +107,9 @@ export_fugazibase_data <- function(fugazibase_dir, repeatr_data_dir = NULL) {
   # durations (was fls_tags) - already carries gid (joined in Repeatr_1()'s
   # tag-processing section); date dropped (join shows on gid instead),
   # seconds dropped (duplicates duration), track normalized from character
-  # to integer.
+  # to integer. song renamed title.
   durations <- load_obj("fls_tags") %>%
-    select(gid, track, song, duration) %>%
+    select(gid, track, title, duration) %>%
     mutate(track = as.integer(track))
   check_no_na(durations, "gid", "durations")
   check_no_na(durations, "track", "durations")
@@ -124,11 +125,12 @@ export_fugazibase_data <- function(fugazibase_dir, repeatr_data_dir = NULL) {
   # renamed "songs" below. release_date_source also dropped - it's a
   # per-release citation, not a value analysts join on, so it's documented
   # in fugazibase's own Roxygen docs instead of shipped as a column.
+  # releaseid/release/releasedate renamed rid/release_title/release_date.
   discography <- load_obj("releasesdatalookup") %>%
-    filter(!releaseid %in% c(12, 13, 14, 15)) %>%
-    select(releaseid, release, releasedate)
-  check_no_na(discography, "releaseid", "discography")
-  check_unique(discography, "releaseid", "discography")
+    filter(!rid %in% c(12, 13, 14, 15)) %>%
+    select(rid, release_title, release_date)
+  check_no_na(discography, "rid", "discography")
+  check_unique(discography, "rid", "discography")
   discography <- write_table(discography, "discography")
 
   # songs (was discography) - Raw-hand-curated studio discography metadata.
@@ -137,12 +139,13 @@ export_fugazibase_data <- function(fugazibase_dir, repeatr_data_dir = NULL) {
   # track_number/duration_seconds renamed to release_track/release_duration
   # (this is the studio release's own track/duration, distinct from
   # durations's live-tagged track/duration); release_duration converted to a
-  # Period to match durations$duration's format.
+  # Period to match durations$duration's format. song/releaseid renamed
+  # title/rid, matching discography/durations.
   songs <- load_obj("songvarslookup") %>%
     rename(release_track = track_number, release_duration = duration_seconds) %>%
     mutate(release_duration = seconds_to_period(release_duration))
-  check_no_na(songs, "song", "songs")
-  check_unique(songs, "song", "songs")
+  check_no_na(songs, "title", "songs")
+  check_unique(songs, "title", "songs")
   songs <- write_table(songs, "songs")
 
   # bands (was played_with) - one row per real show+co-billed act;
