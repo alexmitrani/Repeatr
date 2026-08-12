@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9222</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9223</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -187,49 +187,49 @@ dates? To find out, let’s start by getting the data on the releases and
 the corresponding release dates.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">releasedates</span> <span class="op">&lt;-</span> <span class="va">releasesdatalookup</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="va">releaseid</span>, <span class="va">releasedate</span><span class="op">)</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">rid</span>, <span class="va">release_date</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">mydf</span> <span class="op">&lt;-</span> <span class="va">songvarslookup</span> <span class="op">%&gt;%</span> </span>
+<span><span class="va">mydf</span> <span class="op">&lt;-</span> <span class="va">songvarslookup</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">releasedates</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">songidlookup</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Joining with `by = join_by(releaseid)`</span></span>
-<span><span class="co">#&gt; Joining with `by = join_by(song)`</span></span>
-<span><span class="va">mydf</span> <span class="op">&lt;-</span> <span class="va">mydf</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="va">songid</span>, <span class="va">song</span>, <span class="va">releaseid</span>, <span class="va">releasedate</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span><span class="co">#&gt; Joining with `by = join_by(rid)`</span></span>
+<span><span class="co">#&gt; Joining with `by = join_by(title)`</span></span>
+<span><span class="va">mydf</span> <span class="op">&lt;-</span> <span class="va">mydf</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">songid</span>, <span class="va">title</span>, <span class="va">rid</span>, <span class="va">release_date</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">arrange</span><span class="op">(</span><span class="va">songid</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mydf</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   songid         song releaseid releasedate</span></span>
-<span><span class="co">#&gt; 1      1 23 beats off         6  1993-06-18</span></span>
-<span><span class="co">#&gt; 2      2 and the same         2  1989-06-15</span></span>
-<span><span class="co">#&gt; 3      3     argument         9  2001-10-16</span></span>
-<span><span class="co">#&gt; 4      4  arpeggiator         8  1998-04-24</span></span>
-<span><span class="co">#&gt; 5      5 back to base         7  1995-05-12</span></span>
-<span><span class="co">#&gt; 6      6    bad mouth         1  1988-11-19</span></span></code></pre></div>
+<span><span class="co">#&gt;   songid        title rid release_date</span></span>
+<span><span class="co">#&gt; 1      1 23 beats off   6   1993-06-18</span></span>
+<span><span class="co">#&gt; 2      2 and the same   2   1989-06-15</span></span>
+<span><span class="co">#&gt; 3      3     argument   9   2001-10-16</span></span>
+<span><span class="co">#&gt; 4      4  arpeggiator   8   1998-04-24</span></span>
+<span><span class="co">#&gt; 5      5 back to base   7   1995-05-12</span></span>
+<span><span class="co">#&gt; 6      6    bad mouth   1   1988-11-19</span></span></code></pre></div>
 <p>Now let’s calculate leads and lags by getting summary data on the
 songs and comparing the song launch dates to the corresponding release
 dates.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mysummary</span> <span class="op">&lt;-</span> <span class="fu">Repeatr</span><span class="fu">::</span><span class="va"><a href="../reference/summary.html">summary</a></span> <span class="op">%&gt;%</span> </span>
+<code class="sourceCode R"><span><span class="va">mysummary</span> <span class="op">&lt;-</span> <span class="fu">Repeatr</span><span class="fu">::</span><span class="va"><a href="../reference/summary.html">summary</a></span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">mydf</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">mutate</span><span class="op">(</span>lead <span class="op">=</span> <span class="va">releasedate</span> <span class="op">-</span> <span class="va">launchdate</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="va">song</span>, <span class="va">launchdate</span>, <span class="va">releasedate</span>, <span class="va">lead</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>lead <span class="op">=</span> <span class="va">release_date</span> <span class="op">-</span> <span class="va">launchdate</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">title</span>, <span class="va">launchdate</span>, <span class="va">release_date</span>, <span class="va">lead</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">arrange</span><span class="op">(</span><span class="va">lead</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Joining with `by = join_by(songid, song, releaseid, releasedate)`</span></span>
+<span><span class="co">#&gt; Joining with `by = join_by(songid, title, rid, release_date)`</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mysummary</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 4</span></span></span>
-<span><span class="co">#&gt;    song                   launchdate releasedate lead    </span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;drtn&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> foreman's dog          1998-05-01 1998-04-24   -7 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> provisional            1989-05-03 1989-06-15   43 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> steady diet            1991-04-12 1991-08-01  111 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> life and limb          2001-06-21 2001-10-16  117 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> public witness program 1993-02-05 1993-06-18  133 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> polish                 1991-03-06 1991-08-01  148 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> bulldog front          1988-06-15 1988-11-19  157 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> blueprint              1989-09-23 1990-03-01  159 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> nice new outfit        1991-02-20 1991-08-01  162 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> combination lock       1994-11-27 1995-05-12  166 days</span></span></code></pre></div>
+<span><span class="co">#&gt;    title                  launchdate release_date lead    </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;drtn&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> foreman's dog          1998-05-01 1998-04-24    -7 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> provisional            1989-05-03 1989-06-15    43 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> steady diet            1991-04-12 1991-08-01   111 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> life and limb          2001-06-21 2001-10-16   117 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> public witness program 1993-02-05 1993-06-18   133 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> polish                 1991-03-06 1991-08-01   148 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> bulldog front          1988-06-15 1988-11-19   157 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> blueprint              1989-09-23 1990-03-01   159 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> nice new outfit        1991-02-20 1991-08-01   162 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> combination lock       1994-11-27 1995-05-12   166 days</span></span></code></pre></div>
 <p>Surprisingly, there seem to be only 2 songs whose live debuts lagged
 behind the corresponding release dates: Styrofoam which was first played
 live 58 days after the launch of Repeater, and Foreman’s Dog which was
@@ -242,23 +242,23 @@ average lead time for all Fugazi songs with a corresponding release?</p>
 extreme values…</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mysummary</span> <span class="op">&lt;-</span> <span class="va">mysummary</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="va">song</span>, <span class="va">launchdate</span>, <span class="va">releasedate</span>, <span class="va">lead</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">title</span>, <span class="va">launchdate</span>, <span class="va">release_date</span>, <span class="va">lead</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">lead</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mysummary</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 4</span></span></span>
-<span><span class="co">#&gt;    song                 launchdate releasedate lead     </span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;drtn&gt;</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> the word             1987-09-03 2014-11-18  9938 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> turn off your guns   1987-09-03 2014-11-18  9938 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> in defense of humans 1987-09-03 2014-11-18  9938 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> furniture            1987-09-03 2001-10-16  5157 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> kyeo                 1987-10-07 1991-08-01  1394 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> number 5             1998-11-21 2001-10-16  1060 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> oh                   1998-11-29 2001-10-16  1052 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> merchandise          1987-09-03 1990-03-01   910 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> long division        1989-04-09 1991-08-01   844 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> song #1              1987-09-03 1989-12-01   820 days</span></span></code></pre></div>
+<span><span class="co">#&gt;    title                launchdate release_date lead     </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;drtn&gt;</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> the word             1987-09-03 2014-11-18   9938 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> turn off your guns   1987-09-03 2014-11-18   9938 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> in defense of humans 1987-09-03 2014-11-18   9938 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> furniture            1987-09-03 2001-10-16   5157 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> kyeo                 1987-10-07 1991-08-01   1394 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> number 5             1998-11-21 2001-10-16   1060 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> oh                   1998-11-29 2001-10-16   1052 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> merchandise          1987-09-03 1990-03-01    910 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> long division        1989-04-09 1991-08-01    844 days</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> song #1              1987-09-03 1989-12-01    820 days</span></span></code></pre></div>
 <p>The median lead time is probably a more reliable indicator for how
 long Fugazi would tend to play a song live before it featuring on a
 discographical release.</p>
@@ -431,20 +431,20 @@ format, so that it will be easy to count the number of times each song
 was played.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
-<span><span class="va">mydf</span> <span class="op">&lt;-</span> <span class="va">Repeatr1</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">date</span>, <span class="va">song</span><span class="op">)</span></span>
+<span><span class="va">mydf</span> <span class="op">&lt;-</span> <span class="va">Repeatr1</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">date</span>, <span class="va">title</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">mydf</span> <span class="op">&lt;-</span> <span class="va">mydf</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">date</span>, <span class="va">song</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span><span class="va">mydf</span> <span class="op">&lt;-</span> <span class="va">mydf</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">date</span>, <span class="va">title</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">summarize</span><span class="op">(</span>count<span class="op">=</span><span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; `summarise()` has regrouped the output.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Summaries were computed grouped by <span style="color: #0000BB;">date</span> and <span style="color: #0000BB;">song</span>.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Summaries were computed grouped by <span style="color: #0000BB;">date</span> and <span style="color: #0000BB;">title</span>.</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Output is grouped by <span style="color: #0000BB;">date</span>.</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use `summarise(.groups = "drop_last")` to silence this message.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use `summarise(.by = c(date, song))` for per-operation grouping</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use `summarise(.by = c(date, title))` for per-operation grouping</span></span>
 <span><span class="co">#&gt;   (`?dplyr::dplyr_by`) instead.</span></span>
 <span></span>
-<span><span class="va">mydf_wide</span> <span class="op">&lt;-</span> <span class="va">mydf</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">song</span>, values_from <span class="op">=</span> <span class="va">count</span>, values_fill <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="va">mydf_wide</span> <span class="op">&lt;-</span> <span class="va">mydf</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">title</span>, values_from <span class="op">=</span> <span class="va">count</span>, values_fill <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mydf_wide</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 139</span></span></span>
@@ -498,12 +498,12 @@ up over time.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">mydf_long</span> <span class="op">&lt;-</span> <span class="va">mydf_wide2</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">pivot_longer</span><span class="op">(</span><span class="op">!</span><span class="va">date</span>, names_to <span class="op">=</span> <span class="st">"song"</span>, values_to <span class="op">=</span> <span class="st">"count"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">pivot_longer</span><span class="op">(</span><span class="op">!</span><span class="va">date</span>, names_to <span class="op">=</span> <span class="st">"title"</span>, values_to <span class="op">=</span> <span class="st">"count"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">count</span><span class="op">&gt;</span><span class="fl">0</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mydf_long</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 3</span></span></span>
-<span><span class="co">#&gt;   date       song                 count</span></span>
+<span><span class="co">#&gt;   date       title                count</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 1987-09-03 furniture                1</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 1987-09-03 in defense of humans     1</span></span>
@@ -518,37 +518,37 @@ cluttered to plot all the songs at once!</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">mydf_long</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">song</span><span class="op">==</span><span class="st">"furniture"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"waiting room"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"shut the door"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"kyeo"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"polish"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"steady diet"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"smallpox champion"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"birthday pony"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"break"</span> <span class="op">|</span> <span class="va">song</span><span class="op">==</span><span class="st">"nightshop"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">date</span>, <span class="va">count</span>, color <span class="op">=</span> <span class="va">song</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">title</span><span class="op">==</span><span class="st">"furniture"</span> <span class="op">|</span> <span class="va">title</span><span class="op">==</span><span class="st">"waiting room"</span> <span class="op">|</span> <span class="va">title</span><span class="op">==</span><span class="st">"shut the door"</span> <span class="op">|</span> <span class="va">title</span><span class="op">==</span><span class="st">"kyeo"</span> <span class="op">|</span> <span class="va">title</span><span class="op">==</span><span class="st">"polish"</span> <span class="op">|</span> <span class="va">title</span><span class="op">==</span><span class="st">"steady diet"</span> <span class="op">|</span> <span class="va">title</span><span class="op">==</span><span class="st">"smallpox champion"</span> <span class="op">|</span> <span class="va">title</span><span class="op">==</span><span class="st">"birthday pony"</span> <span class="op">|</span> <span class="va">title</span><span class="op">==</span><span class="st">"break"</span> <span class="op">|</span> <span class="va">title</span><span class="op">==</span><span class="st">"nightshop"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">date</span>, <span class="va">count</span>, color <span class="op">=</span> <span class="va">title</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="LinkTracks_files/figure-html/unnamed-chunk-16-1.png" class="r-plt" alt="" width="672"></p>
 <p>Another approach is to group the songs by release.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">releases_lookup</span> <span class="op">&lt;-</span> <span class="va">Repeatr1</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">song</span>, <span class="va">release</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">title</span>, <span class="va">release_title</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">summarize</span><span class="op">(</span>count <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="va">song</span>, <span class="va">release</span><span class="op">)</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">title</span>, <span class="va">release_title</span><span class="op">)</span></span>
 <span><span class="co">#&gt; `summarise()` has regrouped the output.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Summaries were computed grouped by <span style="color: #0000BB;">song</span> and <span style="color: #0000BB;">release</span>.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Output is grouped by <span style="color: #0000BB;">song</span>.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Summaries were computed grouped by <span style="color: #0000BB;">title</span> and <span style="color: #0000BB;">release_title</span>.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Output is grouped by <span style="color: #0000BB;">title</span>.</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use `summarise(.groups = "drop_last")` to silence this message.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use `summarise(.by = c(song, release))` for per-operation grouping</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use `summarise(.by = c(title, release_title))` for per-operation grouping</span></span>
 <span><span class="co">#&gt;   (`?dplyr::dplyr_by`) instead.</span></span>
 <span></span>
 <span><span class="va">mydf_long</span> <span class="op">&lt;-</span> <span class="va">mydf_long</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">releases_lookup</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Joining with `by = join_by(song)`</span></span>
+<span><span class="co">#&gt; Joining with `by = join_by(title)`</span></span>
 <span></span>
 <span><span class="va">mydf_long</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">release</span><span class="op">==</span><span class="st">"steady diet of nothing"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">date</span>, <span class="va">count</span>, color <span class="op">=</span> <span class="va">song</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">release_title</span><span class="op">==</span><span class="st">"steady diet of nothing"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span><span class="va">date</span>, <span class="va">count</span>, color <span class="op">=</span> <span class="va">title</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_line</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="LinkTracks_files/figure-html/unnamed-chunk-17-1.png" class="r-plt" alt="" width="672"></p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">cumulative_song_counts</span> <span class="op">&lt;-</span> <span class="va">mydf_long</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="va">date</span>, <span class="va">song</span>, <span class="va">release</span>, <span class="va">count</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">date</span>, <span class="va">title</span>, <span class="va">release_title</span>, <span class="va">count</span><span class="op">)</span></span></code></pre></div>
 <p>Returning to the initial question of whether Fugazi picked songs
 randomly, the short answer is no, it doesn’t look like it. Their choices
 indicate preferences that became clearer over time, as can be seen in
@@ -634,22 +634,22 @@ level on the scale from Poor to Excellent.</p>
 twice, for different reasons. Some are easier to find than others and
 there are a few false positives. Let’s have a look, shall we?</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">two_for_tuesdays</span> <span class="op">&lt;-</span> <span class="va">Repeatr1</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">tracktype</span><span class="op">==</span><span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">date</span>, <span class="va">gid</span>, <span class="va">song</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<code class="sourceCode R"><span><span class="va">two_for_tuesdays</span> <span class="op">&lt;-</span> <span class="va">Repeatr1</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">tracktype</span><span class="op">==</span><span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">group_by</span><span class="op">(</span><span class="va">date</span>, <span class="va">gid</span>, <span class="va">title</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">summarize</span><span class="op">(</span>count <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">ungroup</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">count</span><span class="op">&gt;=</span><span class="fl">2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; `summarise()` has regrouped the output.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Summaries were computed grouped by <span style="color: #0000BB;">date</span>, <span style="color: #0000BB;">gid</span>, and <span style="color: #0000BB;">song</span>.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Summaries were computed grouped by <span style="color: #0000BB;">date</span>, <span style="color: #0000BB;">gid</span>, and <span style="color: #0000BB;">title</span>.</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Output is grouped by <span style="color: #0000BB;">date</span> and <span style="color: #0000BB;">gid</span>.</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use `summarise(.groups = "drop_last")` to silence this message.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use `summarise(.by = c(date, gid, song))` for per-operation grouping</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use `summarise(.by = c(date, gid, title))` for per-operation grouping</span></span>
 <span><span class="co">#&gt;   (`?dplyr::dplyr_by`) instead.</span></span>
 <span></span>
 <span><span class="va">two_for_tuesdays</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 17 × 4</span></span></span>
-<span><span class="co">#&gt;    date       gid                       song                 count</span></span>
+<span><span class="co">#&gt;    date       gid                       title                count</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 1988-02-06 annapolis-md-usa-20688    break-in                 2</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 1991-04-12 washington-dc-usa-41291   blueprint                2</span></span>

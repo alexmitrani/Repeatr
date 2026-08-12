@@ -50,11 +50,13 @@ dataframe with one row for each show.
 
 - mastered_by:
 
-  Mastered by
+  Mastered by. A handful of typo'd values ("Warren Russell Smith"
+  missing its hyphen) are corrected here.
 
 - original_source:
 
-  Original source
+  Original source. A handful of terse raw values ("?", "VHS", "VHS
+  Tape") are standardized here to "Unknown"/"VHS audio".
 
 - x:
 

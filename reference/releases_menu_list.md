@@ -13,12 +13,12 @@ releases_menu_list
 dataframe with one row for each release in the Fugazi discography,
 except those which never appear in the Fugazi Live Series data.
 
-- releaseid:
+- rid:
 
   A unique identifier for the release based on the alphabetical order of
   the titles.
 
-- release:
+- release_title:
 
   The name of the release.
 
@@ -60,19 +60,19 @@ Derived-cleaned. Produced by
 
 ``` r
 releases_menu_list
-#>    releaseid                release               variable releasedate
-#> 1          1                 fugazi                 fugazi  1988-11-19
-#> 2          2          margin walker          margin_walker  1989-06-15
-#> 3          3                3 songs            three_songs  1989-12-01
-#> 4          4               repeater               repeater  1990-03-01
-#> 5          5 steady diet of nothing steady_diet_of_nothing  1991-08-01
-#> 6          6    in on the killtaker    in_on_the_killtaker  1993-06-18
-#> 7          7           red medicine           red_medicine  1995-05-12
-#> 8          8               end hits               end_hits  1998-04-24
-#> 9          9           the argument           the_argument  2001-10-16
-#> 10        10              furniture              furniture  2001-10-16
-#> 11        11             first demo             first_demo  2014-11-18
-#> 12        13             unreleased             unreleased        <NA>
+#>    rid          release_title               variable release_date
+#> 1    1                 fugazi                 fugazi   1988-11-19
+#> 2    2          margin walker          margin_walker   1989-06-15
+#> 3    3                3 songs            three_songs   1989-12-01
+#> 4    4               repeater               repeater   1990-03-01
+#> 5    5 steady diet of nothing steady_diet_of_nothing   1991-08-01
+#> 6    6    in on the killtaker    in_on_the_killtaker   1993-06-18
+#> 7    7           red medicine           red_medicine   1995-05-12
+#> 8    8               end hits               end_hits   1998-04-24
+#> 9    9           the argument           the_argument   2001-10-16
+#> 10  10              furniture              furniture   2001-10-16
+#> 11  11             first demo             first_demo   2014-11-18
+#> 12  13             unreleased             unreleased         <NA>
 #>                                                           release_date_source
 #> 1                         https://rateyourmusic.com/release/ep/fugazi/fugazi/
 #> 2                          https://www.dischord.com/release/035/margin-walker

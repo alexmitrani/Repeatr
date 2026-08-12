@@ -14,7 +14,7 @@ release on Repeater which was released around the 1 March 1990 ([Fugazi
 would be released on Repeater.
 
     #> # A tibble: 11 × 2
-    #>    song              debut     
+    #>    title             debut     
     #>    <fct>             <date>    
     #>  1 merchandise       1987-09-03
     #>  2 reprovisional     1988-12-29

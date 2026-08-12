@@ -18,18 +18,18 @@ have a look at the first few rows.
 
 
 mygraphdata <- summary %>%
-  select(song, launchdate, chosen, release, rating)
+  select(title, launchdate, chosen, release_title, rating)
 
 head(mygraphdata)
 #> # A tibble: 6 × 5
-#>   song             launchdate chosen release rating
-#>   <chr>            <date>      <int> <chr>    <dbl>
-#> 1 waiting room     1987-09-03    675 fugazi   0.916
-#> 2 bulldog front    1988-06-15    249 fugazi   0.694
-#> 3 bad mouth        1987-10-16    312 fugazi   0.751
-#> 4 burning          1988-02-06    243 fugazi   0.682
-#> 5 give me the cure 1988-03-30    401 fugazi   0.779
-#> 6 suggestion       1987-12-03    373 fugazi   0.763
+#>   title            launchdate chosen release_title rating
+#>   <chr>            <date>      <int> <chr>          <dbl>
+#> 1 waiting room     1987-09-03    675 fugazi         0.916
+#> 2 bulldog front    1988-06-15    249 fugazi         0.694
+#> 3 bad mouth        1987-10-16    312 fugazi         0.751
+#> 4 burning          1988-02-06    243 fugazi         0.682
+#> 5 give me the cure 1988-03-30    401 fugazi         0.779
+#> 6 suggestion       1987-12-03    373 fugazi         0.763
 ```
 
 A few of the columns need explanation.
@@ -60,7 +60,7 @@ a lot of information packed into this graph!
 
 
 p <- mygraphdata %>%
-  ggplot( aes(x=launchdate, y=rating, size = chosen, color=release, label=song)) +
+  ggplot( aes(x=launchdate, y=rating, size = chosen, color=release_title, label=title)) +
   geom_point(shape = 1) +
   theme_bw()
 

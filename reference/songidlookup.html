@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9222</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9223</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,7 +66,7 @@
     <p>dataframe with one row for each song in the Fugazi discography, except those which never appear in the Fugazi Live Series data.</p><dl><dt>songid</dt>
 <dd><p>numeric id for each song, based on the alphabetical order of the song names. Assigned to every classified song, including one-off performances and rarities below <code>min_song_count</code>.</p></dd>
 
-<dt>song</dt>
+<dt>title</dt>
 <dd><p>The name of the song</p></dd>
 
 <dt>count</dt>
@@ -76,14 +76,14 @@
 </dl></div>
     <div class="section level2">
     <h2 id="provenance">Provenance<a class="anchor" aria-label="anchor" href="#provenance"></a></h2>
-    <p>Derived-classified. Computed live in <code><a href="Repeatr_1.html">Repeatr_1</a></code> from <code>Repeatr1</code>; the single source of truth for song identity - not hand-edited, and (after the songid fix) assigned to every classified song including one-offs, not just those meeting <code>min_song_count</code>. Not exported to fugazibase - <code>songid</code> and <code>count</code> are calculated/summary values, kept internal to <code>Repeatr</code> by design; fugazibase's <code>discography</code> table is <code><a href="songvarslookup.html">songvarslookup</a></code> alone, joined by <code>song</code> title text where needed.</p>
+    <p>Derived-classified. Computed live in <code><a href="Repeatr_1.html">Repeatr_1</a></code> from <code>Repeatr1</code>; the single source of truth for song identity - not hand-edited, and (after the songid fix) assigned to every classified song including one-offs, not just those meeting <code>min_song_count</code>. Not exported to fugazibase - <code>songid</code> and <code>count</code> are calculated/summary values, kept internal to <code>Repeatr</code> by design; fugazibase's <code>songs</code> table is <code><a href="songvarslookup.html">songvarslookup</a></code> alone, joined by <code>title</code> text where needed.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">songidlookup</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 92 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    songid song                 count</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    songid title                count</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>      1 23 beats off            27</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>      2 and the same           397</span>

@@ -20,7 +20,7 @@ vocals on 2 March 1995, after it was recorded and not long before the
 release of Red Medicine.
 
     #> # A tibble: 13 × 2
-    #>    song                 debut     
+    #>    title                debut     
     #>    <fct>                <date>    
     #>  1 by you               1993-04-24
     #>  2 fell, destroyed      1993-08-16

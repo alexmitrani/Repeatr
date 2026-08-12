@@ -98,7 +98,7 @@ dataset without ever touching the lazy-loaded original (see the
     └─ fugazibase: shows, locations, durations, discography,
        songs, bands
 
-`songvarslookup` is joined into `Repeatr1` by song title, not carried
+`songvarslookup` is joined into `Repeatr1` by `title` text, not carried
 forward with its own `songid` column - the hand-maintained CSV behind it
 (`inst/extdata/releases_songs_durations_wikipedia.csv`) doesn’t carry
 one, precisely so it can’t silently drift out of sync with the songid
@@ -128,7 +128,7 @@ for that mapping.
 | `Repeatr1` | Derived-classified | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md) |
 | `songidlookup` | Derived-classified | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md); the single source of truth for song identity |
 | `Repeatr2`, `Repeatr3` | Derived-modeled | [`Repeatr_2()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_2.md) / [`Repeatr_3()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_3.md) - applies the `min_song_count` filter and builds `alt` |
-| `altlookup` | Derived-modeled | [`Repeatr_2()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_2.md); the `alt` \<-\> `songid`/`song` translation table used by [`Repeatr_5()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_5.md)/[`rankr()`](https://alexmitrani.github.io/Repeatr/reference/rankr.md) |
+| `altlookup` | Derived-modeled | [`Repeatr_2()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_2.md); the `alt` \<-\> `songid`/`title` translation table used by [`Repeatr_5()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_5.md)/[`rankr()`](https://alexmitrani.github.io/Repeatr/reference/rankr.md) |
 | `fugazi_song_counts` | Derived-modeled | [`Repeatr_2()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_2.md); covers every classified song, not just the `min_song_count`-eligible ones |
 | `fugazi_song_performance_intensity` | Derived-modeled | [`Repeatr_2()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_2.md); `min_song_count`-eligible songs only |
 | `results_ml_Repeatr4`, `vcovmat_ml_Repeatr4` | Derived-modeled | [`Repeatr_4()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_4.md), saved together so they always describe the same fit |

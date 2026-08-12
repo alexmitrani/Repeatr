@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9222</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9223</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,13 +63,13 @@
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>dataframe with one row for each song in the Fugazi discography.</p><dl><dt>releaseid</dt>
+    <p>dataframe with one row for each song in the Fugazi discography.</p><dl><dt>rid</dt>
 <dd><p>numeric id of the release the song appears on, references <code><a href="releasesdatalookup.html">releasesdatalookup</a></code></p></dd>
 
 <dt>track_number</dt>
 <dd><p>The track number for the song on the release</p></dd>
 
-<dt>song</dt>
+<dt>title</dt>
 <dd><p>The name of the song</p></dd>
 
 <dt>instrumental</dt>
@@ -95,198 +95,198 @@
     </div>
     <div class="section level2">
     <h2 id="provenance">Provenance<a class="anchor" aria-label="anchor" href="#provenance"></a></h2>
-    <p>Raw-hand-curated, from <code>inst/extdata/releases_songs_durations_wikipedia.csv</code>. Read by <code><a href="Repeatr_1.html">Repeatr_1</a></code> and joined onto the live, classified song set by <code>song</code> title text, not by a hardcoded id column - see <code>songid</code>/<code><a href="songidlookup.html">songidlookup</a></code>. Exported (renamed <code>track_number</code>→<code>release_track</code>, <code>duration_seconds</code>→<code>release_duration</code> converted to a <code>Period</code> matching <code><a href="fls_tags.html">fls_tags</a></code>'s <code>duration</code>) as fugazibase's <code>songs</code> table by <code><a href="export_fugazibase_data.html">export_fugazibase_data</a></code>.</p>
+    <p>Raw-hand-curated, from <code>inst/extdata/releases_songs_durations_wikipedia.csv</code>; <code>releaseid</code>/<code>song</code> renamed <code>rid</code>/<code>title</code> at read time. Read by <code><a href="Repeatr_1.html">Repeatr_1</a></code> and joined onto the live, classified song set by <code>title</code> text, not by a hardcoded id column - see <code>songid</code>/<code><a href="songidlookup.html">songidlookup</a></code>. Exported (renamed <code>track_number</code>→<code>release_track</code>, <code>duration_seconds</code>→<code>release_duration</code> converted to a <code>Period</code> matching <code><a href="fls_tags.html">fls_tags</a></code>'s <code>duration</code>) as fugazibase's <code>songs</code> table by <code><a href="export_fugazibase_data.html">export_fugazibase_data</a></code>.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">songvarslookup</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    releaseid track_number                         song instrumental</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          6            6                 23 beats off            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2          2            2                 and the same            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3          9           11                     argument            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4          8           10                  arpeggiator            1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5          7           11                 back to base            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6          1            3                    bad mouth            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7          7            2         bed for the scraping            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8          7            4                birthday pony            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9          4            5                    blueprint            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10         8            1                        break            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11         3            3                     break-in            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12         4            3                   brendan #1            1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13         1            2                bulldog front            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14         1            4                      burning            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15         2            3                  burning too            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16         7            8                       by you            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17         9            2                      cashout            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18         6            8                   cassavetes            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19         8            6             caustic acrostic            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20         8            7             closed captioned            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21         7            6             combination lock            1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22         5           10          dear justice letter            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23         7            1               do you like me            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24         7           12                  downed city            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25         9            4                 epic problem            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26         5            1                    exit only            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27         9            9                 ex-spectator            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28         6            1                facet squared            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29         8           13                           fd            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30         7            7              fell, destroyed            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31         8            5            five corporations            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32         8            8                 floating boy            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33         8            9                foreman's dog            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34         7            5               forensic scene            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35         9            3              full disclosure            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36        10            1                    furniture            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37         1            5             give me the cure            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38         1            7                      glueman            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39         6            9                    great cop            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40         4            7                        greed            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 41         8           11                guilford fall            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42        10            3                hello morning            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43        11           10         in defense of humans            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 44         6           11                   instrument            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45         3            2                       joe #1            1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46         5           11                         kyeo            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47         6           12 last chance for a slow dance            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48         7            3              latest disgrace            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 49         5            5                  latin roots            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 50         9            5                life and limb            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 51         2            5                     lockdown            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 52         7           13         long distance runner            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 53         5            7                long division            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 54         2            1                margin walker            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 55         4            4                  merchandise            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 56         5            3              nice new outfit            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 57         9           10                    nightshop            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58         8            4                  no surprise            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 59        10            2                     number 5            1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 60         9            8                           oh            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 61         8           12                  pink frosty            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 62         8            2               place position            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 63         5            9                       polish            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 64         2            6                     promises            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 65         2            4                  provisional            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 66         6            2       public witness program            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 67         8            3                recap modotti            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 68         5            2                  reclamation            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 69         6            5                      rend it            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 70         4            2                     repeater            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 71         4           10                reprovisional            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 72         6            3          returning the screw            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 73         5            8               runaway return            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 74         4           11                shut the door            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 75         4            6            sieve-fisted find            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76         6            4            smallpox champion            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 77         3            1                      song #1            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 78         5            4                       stacks            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 79         5            6                  steady diet            1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 80         9            7                 strangelight            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 81         4            9                    styrofoam            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 82         1            6                   suggestion            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83         6            7                sweet and low            1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 84         7           10                       target            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 85         9            6                     the kill            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 86        11            5                     the word            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 87        11            8           turn off your guns            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 88         4            1                     turnover            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 89         4            8                two beats off            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 90         7            9                      version            1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 91         1            1                 waiting room            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 92         6           10            walken's syndrome            0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    vocals_picciotto vocals_mackaye vocals_lally duration_seconds</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                 0              1            0              401</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                 0              1            0              207</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                 0              1            0              267</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                 0              0            0              268</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                 0              1            0              105</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                 0              1            0              155</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                 0              1            0              170</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                 0              1            0              188</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                 1              0            0              232</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                0              1            0              132</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                1              0            0               92</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                0              0            0              152</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                1              0            0              173</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                1              0            0              159</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15                0              1            0              170</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16                0              0            1              311</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17                0              1            0              264</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18                1              0            0              150</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19                1              0            0              121</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20                0              1            0              292</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21                0              0            0              186</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22                1              0            0              207</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23                1              0            0              196</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24                1              0            0              173</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25                0              1            0              239</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26                1              0            0              191</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27                0              1            0              258</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28                0              1            0              162</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29                0              1            0              222</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30                1              0            0              226</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31                0              1            0              149</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32                1              0            0              345</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33                1              0            0              261</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34                1              0            0              185</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35                1              0            0              233</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36                0              1            0              215</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37                1              0            0              178</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38                1              0            0              263</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39                0              1            0              112</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40                0              1            0              107</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 41                1              0            0              177</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42                1              0            0              126</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43                0              1            0              167</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 44                0              1            0              223</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45                0              0            0              181</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46                0              1            0              178</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47                1              0            0              278</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48                1              0            0              214</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 49                1              0            0              193</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 50                1              0            0              189</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 51                1              0            0              130</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 52                0              1            0              257</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 53                0              1            0              132</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 54                1              0            0              150</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 55                0              1            0              179</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 56                1              0            0              206</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 57                1              0            0              242</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58                1              0            0              252</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 59                0              0            0              189</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 60                1              0            0              269</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 61                0              1            0              249</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 62                1              0            0              165</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 63                0              1            0              218</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 64                0              1            0              242</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 65                1              0            0              137</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 66                1              0            0              124</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 67                0              0            1              230</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 68                0              1            0              201</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 69                1              0            0              228</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 70                0              1            0              181</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 71                1              0            0              138</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 72                0              1            0              193</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 73                1              0            0              238</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 74                0              1            0              289</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 75                1              0            0              204</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76                1              0            0              241</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 77                0              1            0              174</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 78                0              1            0              188</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 79                0              0            0              222</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 80                1              0            0              353</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 81                0              1            0              154</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 82                0              1            0              284</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83                0              0            0              216</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 84                1              0            0              212</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 85                0              0            1              327</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 86                0              1            0              278</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 87                0              1            0              223</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 88                1              0            0              256</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 89                1              0            0              208</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 90                0              0            0              200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 91                0              1            0              173</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 92                1              0            0              198</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    rid track_number                        title instrumental vocals_picciotto</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    6            6                 23 beats off            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    2            2                 and the same            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    9           11                     argument            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    8           10                  arpeggiator            1                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    7           11                 back to base            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    1            3                    bad mouth            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7    7            2         bed for the scraping            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8    7            4                birthday pony            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9    4            5                    blueprint            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10   8            1                        break            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11   3            3                     break-in            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12   4            3                   brendan #1            1                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13   1            2                bulldog front            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14   1            4                      burning            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15   2            3                  burning too            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16   7            8                       by you            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17   9            2                      cashout            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18   6            8                   cassavetes            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19   8            6             caustic acrostic            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20   8            7             closed captioned            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21   7            6             combination lock            1                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22   5           10          dear justice letter            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23   7            1               do you like me            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24   7           12                  downed city            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25   9            4                 epic problem            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26   5            1                    exit only            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27   9            9                 ex-spectator            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28   6            1                facet squared            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29   8           13                           fd            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30   7            7              fell, destroyed            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31   8            5            five corporations            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32   8            8                 floating boy            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33   8            9                foreman's dog            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34   7            5               forensic scene            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35   9            3              full disclosure            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36  10            1                    furniture            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37   1            5             give me the cure            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38   1            7                      glueman            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39   6            9                    great cop            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40   4            7                        greed            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41   8           11                guilford fall            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42  10            3                hello morning            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43  11           10         in defense of humans            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44   6           11                   instrument            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45   3            2                       joe #1            1                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46   5           11                         kyeo            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47   6           12 last chance for a slow dance            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48   7            3              latest disgrace            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49   5            5                  latin roots            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50   9            5                life and limb            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 51   2            5                     lockdown            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 52   7           13         long distance runner            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 53   5            7                long division            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 54   2            1                margin walker            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 55   4            4                  merchandise            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 56   5            3              nice new outfit            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57   9           10                    nightshop            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58   8            4                  no surprise            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 59  10            2                     number 5            1                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 60   9            8                           oh            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 61   8           12                  pink frosty            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 62   8            2               place position            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 63   5            9                       polish            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 64   2            6                     promises            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 65   2            4                  provisional            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 66   6            2       public witness program            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 67   8            3                recap modotti            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 68   5            2                  reclamation            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 69   6            5                      rend it            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 70   4            2                     repeater            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 71   4           10                reprovisional            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 72   6            3          returning the screw            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 73   5            8               runaway return            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 74   4           11                shut the door            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 75   4            6            sieve-fisted find            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 76   6            4            smallpox champion            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 77   3            1                      song #1            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 78   5            4                       stacks            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 79   5            6                  steady diet            1                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 80   9            7                 strangelight            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 81   4            9                    styrofoam            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 82   1            6                   suggestion            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83   6            7                sweet and low            1                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 84   7           10                       target            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 85   9            6                     the kill            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 86  11            5                     the word            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 87  11            8           turn off your guns            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 88   4            1                     turnover            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 89   4            8                two beats off            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 90   7            9                      version            1                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 91   1            1                 waiting room            0                0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 92   6           10            walken's syndrome            0                1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    vocals_mackaye vocals_lally duration_seconds</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1               1            0              401</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2               1            0              207</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3               1            0              267</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4               0            0              268</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5               1            0              105</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6               1            0              155</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7               1            0              170</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8               1            0              188</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9               0            0              232</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10              1            0              132</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11              0            0               92</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12              0            0              152</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13              0            0              173</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14              0            0              159</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15              1            0              170</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16              0            1              311</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17              1            0              264</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18              0            0              150</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19              0            0              121</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20              1            0              292</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21              0            0              186</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22              0            0              207</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23              0            0              196</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24              0            0              173</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25              1            0              239</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26              0            0              191</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27              1            0              258</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28              1            0              162</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29              1            0              222</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30              0            0              226</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31              1            0              149</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32              0            0              345</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33              0            0              261</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34              0            0              185</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35              0            0              233</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36              1            0              215</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37              0            0              178</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38              0            0              263</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39              1            0              112</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40              1            0              107</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41              0            0              177</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42              0            0              126</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43              1            0              167</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44              1            0              223</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45              0            0              181</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46              1            0              178</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47              0            0              278</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48              0            0              214</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49              0            0              193</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50              0            0              189</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 51              0            0              130</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 52              1            0              257</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 53              1            0              132</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 54              0            0              150</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 55              1            0              179</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 56              0            0              206</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57              0            0              242</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58              0            0              252</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 59              0            0              189</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 60              0            0              269</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 61              1            0              249</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 62              0            0              165</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 63              1            0              218</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 64              1            0              242</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 65              0            0              137</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 66              0            0              124</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 67              0            1              230</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 68              1            0              201</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 69              0            0              228</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 70              1            0              181</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 71              0            0              138</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 72              1            0              193</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 73              0            0              238</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 74              1            0              289</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 75              0            0              204</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 76              0            0              241</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 77              1            0              174</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 78              1            0              188</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 79              0            0              222</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 80              0            0              353</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 81              1            0              154</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 82              1            0              284</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83              0            0              216</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 84              0            0              212</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 85              0            1              327</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 86              1            0              278</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 87              1            0              223</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 88              0            0              256</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 89              0            0              208</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 90              0            0              200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 91              1            0              173</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 92              0            0              198</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

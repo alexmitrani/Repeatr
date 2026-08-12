@@ -62,7 +62,7 @@ available in all the Fugazi Live Series shows with data.
   [`songidlookup`](https://alexmitrani.github.io/Repeatr/reference/songidlookup.md),
   kept alongside `alt` rather than overwritten by it.
 
-- song:
+- title:
 
   The name of the song
 
@@ -93,11 +93,11 @@ available in all the Fugazi Live Series shows with data.
 
   Identifies the last song of the set
 
-- releaseid:
+- rid:
 
   numeric id in ascending chronological order
 
-- release:
+- release_title:
 
   name of album or EP
 
@@ -163,9 +163,9 @@ Repeatr2
 #>  9     3 washingt… 1987-09-03  1987 1987-09-03        0           3    36     36
 #> 10     3 washingt… 1987-09-03  1987 1987-09-03        0           3    43     43
 #> # ℹ 896,877 more rows
-#> # ℹ 16 more variables: song <chr>, choice <dbl>, played <dbl>,
+#> # ℹ 16 more variables: title <chr>, choice <dbl>, played <dbl>,
 #> #   available_rl <dbl>, available_gl <dbl>, first_song <dbl>, last_song <dbl>,
-#> #   releaseid <int>, release <chr>, track_number <int>, instrumental <int>,
+#> #   rid <int>, release_title <chr>, track_number <int>, instrumental <int>,
 #> #   vocals_picciotto <int>, vocals_mackaye <int>, vocals_lally <int>,
 #> #   duration_seconds <int>, first_song_instrumental <dbl>
 ```

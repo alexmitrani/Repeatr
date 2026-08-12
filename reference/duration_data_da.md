@@ -27,7 +27,7 @@ Live Series data.
   in that show. Larger numbers will indicate that the song was played
   later in the set,
 
-- song:
+- title:
 
   the name of the song
 
@@ -60,7 +60,7 @@ Also a direct input to
 ``` r
 duration_data_da
 #> # A tibble: 18,287 × 7
-#>    gid                 date       song_number song        urls  fls_link minutes
+#>    gid                 date       song_number title       urls  fls_link minutes
 #>    <chr>               <date>           <dbl> <chr>       <chr> <chr>      <dbl>
 #>  1 aalst-belgium-92390 1990-09-23           2 turnover    http… <a href…    4.43
 #>  2 aalst-belgium-92390 1990-09-23           3 brendan #1  http… <a href…    2.93

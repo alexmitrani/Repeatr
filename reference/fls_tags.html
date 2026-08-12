@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9222</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9223</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,7 +66,7 @@
     <p>dataframe with one row for each track in the Fugazi Live Series data, including data from the audio file tags.</p><dl><dt>track</dt>
 <dd><p>track number</p></dd>
 
-<dt>song</dt>
+<dt>title</dt>
 <dd><p>track name</p></dd>
 
 <dt>duration</dt>
@@ -89,7 +89,7 @@
     </div>
     <div class="section level2">
     <h2 id="provenance">Provenance<a class="anchor" aria-label="anchor" href="#provenance"></a></h2>
-    <p>Derived-cleaned. Parsed by <code><a href="Repeatr_1.html">Repeatr_1</a></code> (via <code><a href="fls_tags_importer.html">fls_tags_importer</a></code>) from the raw <code>inst/extdata/fls_tags.txt</code> kid3 MP3-tag export. The underlying track/album/song names themselves are sourced from the Fugazi Live Series site, not personal data - Alex Mitrani applied a consistent album-name format and a handful of one-off track-title corrections on top (see the "process tags data" section of <code><a href="Repeatr_1.html">Repeatr_1</a></code>). The raw <code>album</code> tag text (<code>YYYYMMDD Venue, City, State, Country</code>) is used internally to parse <code>venue</code>/<code>city</code>/<code>subdivision</code>/<code>country</code> for a couple of mistagged-track filters and to derive <code><a href="fls_tags_show.html">fls_tags_show</a></code>, but those fields (and <code>album</code> itself) are dropped before saving, since parsing them by counting commas silently misparses whenever a venue or city name itself contains a comma (e.g. Ypsilanti, Flint, Eau Claire, Osaka), and <code><a href="shows_data.html">shows_data</a></code> (joined via <code>gid</code>) is the sole authoritative source for them. Exported (minus <code>date</code> - join fugazibase's <code>shows</code> on <code>gid</code> instead - and <code>seconds</code>, which duplicated <code>duration</code>; <code>track</code> converted from character to integer) as fugazibase's <code>durations</code> table by <code><a href="export_fugazibase_data.html">export_fugazibase_data</a></code>.</p>
+    <p>Derived-cleaned. Parsed by <code><a href="Repeatr_1.html">Repeatr_1</a></code> (via <code><a href="fls_tags_importer.html">fls_tags_importer</a></code>) from the raw <code>inst/extdata/fls_tags.txt</code> kid3 MP3-tag export; the raw tag's <code>name</code> field is renamed <code>title</code> at read time. The underlying track/album/song names themselves are sourced from the Fugazi Live Series site, not personal data - Alex Mitrani applied a consistent album-name format and a handful of one-off track-title corrections on top (see the "process tags data" section of <code><a href="Repeatr_1.html">Repeatr_1</a></code>). The raw <code>album</code> tag text (<code>YYYYMMDD Venue, City, State, Country</code>) is used internally to parse <code>venue</code>/<code>city</code>/<code>subdivision</code>/<code>country</code> for a couple of mistagged-track filters and to derive <code><a href="fls_tags_show.html">fls_tags_show</a></code>, but those fields (and <code>album</code> itself) are dropped before saving, since parsing them by counting commas silently misparses whenever a venue or city name itself contains a comma (e.g. Ypsilanti, Flint, Eau Claire, Osaka), and <code><a href="shows_data.html">shows_data</a></code> (joined via <code>gid</code>) is the sole authoritative source for them. Exported (minus <code>date</code> - join fugazibase's <code>shows</code> on <code>gid</code> instead - and <code>seconds</code>, which duplicated <code>duration</code>; <code>track</code> converted from character to integer) as fugazibase's <code>durations</code> table by <code><a href="export_fugazibase_data.html">export_fugazibase_data</a></code>.</p>
     </div>
 
     <div class="section level2">
@@ -97,7 +97,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">fls_tags</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 24,513 × 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Rowwise: </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    track song                 duration seconds date       gid                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    track title                duration seconds date       gid                   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;Period&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 01    joe #1               1M 22S        82 1987-09-03 washington-dc-usa-903…</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 02    intro                56S           56 1987-09-03 washington-dc-usa-903…</span>

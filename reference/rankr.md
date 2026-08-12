@@ -50,7 +50,7 @@ rankr(
 ## Value
 
 A data frame with one row per adjacent pair of songs tested, giving
-`song1`, `song2`, their coefficients (`mycoef1`, `mycoef2`), the
+`title1`, `title2`, their coefficients (`mycoef1`, `mycoef2`), the
 coefficient difference and its z-statistic, p-value and 95% confidence
 interval (as produced by
 [`diffr()`](https://alexmitrani.github.io/Repeatr/reference/diffr.md)).
@@ -266,7 +266,7 @@ mycomparisons <- rankr(coeftable = results_ml_Repeatr4, vcovmat = vcovmat_ml_Rep
 #> Joining with `by = join_by(alt1)`
 #> Joining with `by = join_by(alt2)`
 mycomparisons
-#>                 song1               song2  mycoef1   mycoef2 mycoefdiff
+#>                title1              title2  mycoef1   mycoef2 mycoefdiff
 #> 1        waiting room         provisional 3.151607  1.180477  1.9711300
 #> 2         provisional           blueprint 1.180477  2.991250 -1.8107733
 #> 3           blueprint              stacks 2.991250  1.554973  1.4362773

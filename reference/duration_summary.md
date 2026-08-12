@@ -13,7 +13,7 @@ duration_summary
 dataframe with one row for each song in the Fugazi discography, except
 those which never appear in the Fugazi Live Series data.
 
-- song:
+- title:
 
   Name of the song
 
@@ -64,7 +64,7 @@ Derived-cleaned. Produced by
 ``` r
 duration_summary
 #> # A tibble: 92 × 8
-#>    song           renditions minutes_min minutes_median minutes_max minutes_mean
+#>    title          renditions minutes_min minutes_median minutes_max minutes_mean
 #>    <chr>               <int>       <dbl>          <dbl>       <dbl>        <dbl>
 #>  1 23 beats off           28        3.1            3.78        4.6          3.75
 #>  2 and the same          396        0.62           4.42        8.57         4.46

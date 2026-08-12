@@ -22,7 +22,7 @@ those which never appear in the Fugazi Live Series data.
 
   numeric id for each song
 
-- song:
+- title:
 
   The name of the song
 
@@ -52,11 +52,11 @@ those which never appear in the Fugazi Live Series data.
   Rating on the interval between 0 and 1 where 1 is the highest rating
   and 0 the lowest.
 
-- releaseid:
+- rid:
 
   numeric id in ascending chronological order
 
-- release:
+- release_title:
 
   release name
 
@@ -80,7 +80,7 @@ those which never appear in the Fugazi Live Series data.
 
   indicates whether or not Joe Lally sang lead vocals on this track
 
-- releasedate:
+- release_date:
 
   The date of the corresponding release
 
@@ -112,7 +112,7 @@ consumed directly by `inst/shiny/Fugazetteer/app.R`.
 ``` r
 summary
 #> # A tibble: 92 × 16
-#>     rank songid track_number song        launchdate duration chosen available_rl
+#>     rank songid track_number title       launchdate duration chosen available_rl
 #>    <int>  <int>        <int> <chr>       <date>        <int>  <int>        <int>
 #>  1     8     91            1 waiting ro… 1987-09-03      173    675          952
 #>  2    54     13            2 bulldog fr… 1988-06-15      173    249          925
@@ -125,7 +125,7 @@ summary
 #>  9    30      2            2 and the sa… 1987-09-26      207    397          951
 #> 10    57     15            3 burning too 1988-07-28      170    238          921
 #> # ℹ 82 more rows
-#> # ℹ 8 more variables: intensity <dbl>, rating <dbl>, releaseid <int>,
-#> #   release <chr>, releasedate <date>, lead <int>, launchyear <dbl>,
+#> # ℹ 8 more variables: intensity <dbl>, rating <dbl>, rid <int>,
+#> #   release_title <chr>, release_date <date>, lead <int>, launchyear <dbl>,
 #> #   releaseyear <dbl>
 ```

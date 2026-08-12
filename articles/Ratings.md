@@ -32,7 +32,7 @@ fugazi_song_counts <- fugazi_song_counts %>%
 knitr::kable(fugazi_song_counts, "pipe")
 ```
 
-| songid | song                         | launchdate | count |
+| songid | title                        | launchdate | count |
 |-------:|:-----------------------------|:-----------|------:|
 |     91 | waiting room                 | 1987-09-03 |   675 |
 |     68 | reclamation                  | 1990-05-05 |   612 |
@@ -145,7 +145,7 @@ The results of this analysis look like this:
 knitr::kable(fugazi_song_performance_intensity, "pipe")
 ```
 
-| songid | song                         | launchdate | chosen | available_rl | intensity |
+| songid | title                        | launchdate | chosen | available_rl | intensity |
 |-------:|:-----------------------------|:-----------|-------:|-------------:|----------:|
 |     17 | cashout                      | 2000-06-04 |     67 |           74 | 0.9054054 |
 |     20 | closed captioned             | 1997-06-18 |    169 |          211 | 0.8009479 |
@@ -356,7 +356,7 @@ myresults <- fugazi_song_preferences %>%
 knitr::kable((myresults), "pipe")
 ```
 
-| rank_rating | songid | song                         |   Estimate |    z-value |
+| rank_rating | songid | title                        |   Estimate |    z-value |
 |------------:|-------:|:-----------------------------|-----------:|-----------:|
 |           1 |      7 | bed for the scraping         |  3.6086886 | 17.7473206 |
 |           2 |     68 | reclamation                  |  3.6041238 | 18.0365751 |
@@ -482,10 +482,10 @@ intervals.
 
 ``` r
 
-knitr::kable(summary %>% select(song, chosen, intensity, rating) %>% arrange(desc(rating)), "pipe")
+knitr::kable(summary %>% select(title, chosen, intensity, rating) %>% arrange(desc(rating)), "pipe")
 ```
 
-| song                         | chosen | intensity |    rating |
+| title                        | chosen | intensity |    rating |
 |:-----------------------------|-------:|----------:|----------:|
 | bed for the scraping         |    310 | 0.7888041 | 1.0000000 |
 | reclamation                  |    612 | 0.7463415 | 0.9991618 |
@@ -597,7 +597,7 @@ mycomparisons <- rankr(coeftable = results_ml_Repeatr4, vcovmat = vcovmat_ml_Rep
 #> Joining with `by = join_by(alt1)`
 #> Joining with `by = join_by(alt2)`
 mycomparisons <- mycomparisons %>%
-  select(song1, song2, mycoef1, mycoef2, mycoefdiff, myz) %>%
+  select(title1, title2, mycoef1, mycoef2, mycoefdiff, myz) %>%
   rename(coef1 = mycoef1, coef2 = mycoef2, coefdiff = mycoefdiff, z = myz)
 ```
 
@@ -606,7 +606,7 @@ mycomparisons <- mycomparisons %>%
 knitr::kable(mycomparisons, format = "pipe", digits = 3)
 ```
 
-| song1        | song2         | coef1 | coef2 | coefdiff |     z |
+| title1       | title2        | coef1 | coef2 | coefdiff |     z |
 |:-------------|:--------------|------:|------:|---------:|------:|
 | waiting room | bulldog front | 3.152 | 1.942 |     1.21 | 15.94 |
 
@@ -624,7 +624,7 @@ mycomparisons <- rankr(coeftable = results_ml_Repeatr4, vcovmat = vcovmat_ml_Rep
 #> Joining with `by = join_by(alt1)`
 #> Joining with `by = join_by(alt2)`
 mycomparisons <- mycomparisons %>%
-  select(song1, song2, mycoef1, mycoef2, mycoefdiff, myz) %>%
+  select(title1, title2, mycoef1, mycoef2, mycoefdiff, myz) %>%
   rename(coef1 = mycoef1, coef2 = mycoef2, coefdiff = mycoefdiff, z = myz)
 ```
 
@@ -633,7 +633,7 @@ mycomparisons <- mycomparisons %>%
 knitr::kable(mycomparisons, format = "pipe", digits = 3)
 ```
 
-| song1               | song2               | coef1 |  coef2 | coefdiff |       z |
+| title1              | title2              | coef1 |  coef2 | coefdiff |       z |
 |:--------------------|:--------------------|------:|-------:|---------:|--------:|
 | waiting room        | and the same        | 3.152 |  2.531 |    0.620 |   9.542 |
 | and the same        | turnover            | 2.531 |  2.758 |   -0.226 |  -3.056 |
@@ -663,7 +663,7 @@ releases_data <- releases_summary
 knitr::kable(releases_data %>% arrange(desc(rating)), "pipe")
 ```
 
-| releaseid | release | first_debut | last_debut | release_date | songs | count | shows | intensity | rating |
+| rid | release_title | first_debut | last_debut | release_date | songs | count | shows | intensity | rating |
 |---:|:---|:---|:---|:---|---:|---:|---:|---:|---:|
 | 9 | the argument | 1998-11-29 | 2001-06-21 | 2001-10-16 | 10 | 475 | 87 | 0.5415 | 0.7906 |
 | 8 | end hits | 1996-01-30 | 1998-05-01 | 1998-04-24 | 13 | 1429 | 235 | 0.4738 | 0.7824 |

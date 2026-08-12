@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9222</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9223</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,7 +69,7 @@
 <dt>songid</dt>
 <dd><p>numeric id for each song</p></dd>
 
-<dt>song</dt>
+<dt>title</dt>
 <dd><p>The name of the song</p></dd>
 
 <dt>launchdate</dt>
@@ -90,10 +90,10 @@
 <dt>rating</dt>
 <dd><p>Rating on the interval between 0 and 1 where 1 is the highest rating and 0 the lowest.</p></dd>
 
-<dt>releaseid</dt>
+<dt>rid</dt>
 <dd><p>numeric id in ascending chronological order</p></dd>
 
-<dt>release</dt>
+<dt>release_title</dt>
 <dd><p>release name</p></dd>
 
 <dt>track_number</dt>
@@ -111,7 +111,7 @@
 <dt>vocals_lally</dt>
 <dd><p>indicates whether or not Joe Lally sang lead vocals on this track</p></dd>
 
-<dt>releasedate</dt>
+<dt>release_date</dt>
 <dd><p>The date of the corresponding release</p></dd>
 
 <dt>lead</dt>
@@ -138,7 +138,7 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">summary</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 92 × 16</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     rank songid track_number song        launchdate duration chosen available_rl</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     rank songid track_number title       launchdate duration chosen available_rl</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>     8     91            1 waiting ro… 1987-09-03      173    675          952</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>    54     13            2 bulldog fr… 1988-06-15      173    249          925</span>
@@ -151,8 +151,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>    30      2            2 and the sa… 1987-09-26      207    397          951</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>    57     15            3 burning too 1988-07-28      170    238          921</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 82 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 8 more variables: intensity &lt;dbl&gt;, rating &lt;dbl&gt;, releaseid &lt;int&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   release &lt;chr&gt;, releasedate &lt;date&gt;, lead &lt;int&gt;, launchyear &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 8 more variables: intensity &lt;dbl&gt;, rating &lt;dbl&gt;, rid &lt;int&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   release_title &lt;chr&gt;, release_date &lt;date&gt;, lead &lt;int&gt;, launchyear &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   releaseyear &lt;dbl&gt;</span></span>
 </code></pre></div>
     </div>

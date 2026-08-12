@@ -27,7 +27,7 @@ dataframe with one row for each song, ranked by estimated preference.
 
   numeric id for each song
 
-- song:
+- title:
 
   The name of the song
 
@@ -50,7 +50,7 @@ from `results_ml_Repeatr4`.
 
 ``` r
 fugazi_song_preferences
-#>    rank_rating songid                         song    Estimate    z-value
+#>    rank_rating songid                        title    Estimate    z-value
 #> 1            1      7         bed for the scraping  3.60868862 17.7473206
 #> 2            2     68                  reclamation  3.60412379 18.0365751
 #> 3            3     10                        break  3.56122317 16.7066562

@@ -16,7 +16,7 @@ times in a period of about 3 years and 3 months, from October 1987 to
 January 1991.
 
     #> # A tibble: 11 × 2
-    #>    song                debut     
+    #>    title               debut     
     #>    <fct>               <date>    
     #>  1 kyeo                1987-10-07
     #>  2 long division       1989-04-09

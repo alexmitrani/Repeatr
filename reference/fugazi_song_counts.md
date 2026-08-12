@@ -17,7 +17,7 @@ those which never appear in the Fugazi Live Series data.
 
   numeric id for each song
 
-- song:
+- title:
 
   The name of the song
 
@@ -46,7 +46,7 @@ here too.
 ``` r
 fugazi_song_counts
 #> # A tibble: 92 × 4
-#>    songid song                 launchdate count
+#>    songid title                launchdate count
 #>     <int> <chr>                <date>     <int>
 #>  1      1 23 beats off         1992-10-23    27
 #>  2      2 and the same         1987-09-26   397

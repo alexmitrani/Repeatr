@@ -17,7 +17,7 @@ those which never appear in the Fugazi Live Series data.
 
   numeric id for each song
 
-- song:
+- title:
 
   The name of the song
 
@@ -55,7 +55,7 @@ which is only tracked for songs that got an `alt`) - unlike
 ``` r
 fugazi_song_performance_intensity
 #> # A tibble: 92 × 6
-#>    songid song                 launchdate chosen available_rl intensity
+#>    songid title                launchdate chosen available_rl intensity
 #>     <int> <chr>                <date>      <dbl>        <dbl>     <dbl>
 #>  1     17 cashout              2000-06-04     67           74     0.905
 #>  2     20 closed captioned     1997-06-18    169          211     0.801

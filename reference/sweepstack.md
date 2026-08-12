@@ -46,7 +46,7 @@ sweepstack(
 
 A list of two data frames: `stack_summary` (`gid`, `shows` - one row per
 starting show tested, and the number of shows needed to reach the target
-unique-song count) and `stack_details` (`gid_initial`, `gid`, `song` -
+unique-song count) and `stack_details` (`gid_initial`, `gid`, `title` -
 the full, deduplicated set of shows and songs behind every stack
 tested).
 

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9222</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9223</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,16 +63,16 @@
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>dataframe with one row for each release.</p><dl><dt>releaseid</dt>
+    <p>dataframe with one row for each release.</p><dl><dt>rid</dt>
 <dd><p>numeric id in ascending chronological order</p></dd>
 
-<dt>release</dt>
+<dt>release_title</dt>
 <dd><p>release name</p></dd>
 
 <dt>variable</dt>
 <dd><p>release names for use as variable names</p></dd>
 
-<dt>releasedate</dt>
+<dt>release_date</dt>
 <dd><p>release date</p></dd>
 
 <dt>release_date_source</dt>
@@ -88,28 +88,28 @@
 </dl></div>
     <div class="section level2">
     <h2 id="provenance">Provenance<a class="anchor" aria-label="anchor" href="#provenance"></a></h2>
-    <p>Derived-cleaned. Produced by <code><a href="Repeatr_1.html">Repeatr_1</a></code> from <code>inst/extdata/releases.csv</code> (which itself carries a manually-assigned <code>colour_code</code> and an <code>rym_rating</code> sourced from rateyourmusic.com). Exported (minus <code>colour_code</code>, <code>variable</code>, <code>rym_rating</code>, minus the four synthetic UI-bucket rows) as fugazibase's <code>discography</code> table by <code><a href="export_fugazibase_data.html">export_fugazibase_data</a></code>.</p>
+    <p>Derived-cleaned. Produced by <code><a href="Repeatr_1.html">Repeatr_1</a></code> from <code>inst/extdata/releases.csv</code> (which itself carries a manually-assigned <code>colour_code</code> and an <code>rym_rating</code> sourced from rateyourmusic.com); <code>releaseid</code>/<code>release</code>/<code>releasedate</code> renamed <code>rid</code>/<code>release_title</code>/<code>release_date</code> at read time. Exported (minus <code>colour_code</code>, <code>variable</code>, <code>rym_rating</code>, minus the four synthetic UI-bucket rows) as fugazibase's <code>discography</code> table by <code><a href="export_fugazibase_data.html">export_fugazibase_data</a></code>.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">releasesdatalookup</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    releaseid                release               variable releasedate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          1                 fugazi                 fugazi  1988-11-19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2          2          margin walker          margin_walker  1989-06-15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3          3                3 songs            three_songs  1989-12-01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4          4               repeater               repeater  1990-03-01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5          5 steady diet of nothing steady_diet_of_nothing  1991-08-01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6          6    in on the killtaker    in_on_the_killtaker  1993-06-18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7          7           red medicine           red_medicine  1995-05-12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8          8               end hits               end_hits  1998-04-24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9          9           the argument           the_argument  2001-10-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10        10              furniture              furniture  2001-10-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11        11             first demo             first_demo  2014-11-18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12        12               released               released        &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13        13             unreleased             unreleased        &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14        14                  songs                  songs        &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15        15                  other                  other        &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    rid          release_title               variable release_date</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    1                 fugazi                 fugazi   1988-11-19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    2          margin walker          margin_walker   1989-06-15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    3                3 songs            three_songs   1989-12-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    4               repeater               repeater   1990-03-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    5 steady diet of nothing steady_diet_of_nothing   1991-08-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    6    in on the killtaker    in_on_the_killtaker   1993-06-18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7    7           red medicine           red_medicine   1995-05-12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8    8               end hits               end_hits   1998-04-24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9    9           the argument           the_argument   2001-10-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10  10              furniture              furniture   2001-10-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11  11             first demo             first_demo   2014-11-18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12  12               released               released         &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13  13             unreleased             unreleased         &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14  14                  songs                  songs         &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15  15                  other                  other         &lt;NA&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                           release_date_source</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                         https://rateyourmusic.com/release/ep/fugazi/fugazi/</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2                          https://www.dischord.com/release/035/margin-walker</span>

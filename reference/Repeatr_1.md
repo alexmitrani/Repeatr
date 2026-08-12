@@ -18,9 +18,9 @@ parameters below.
 
 `songvarslookup` (read from
 `inst/extdata/releases_songs_durations_wikipedia.csv`) contains the
-following variables: releaseid track_number song instrumental
+following variables: rid track_number title instrumental
 vocals_picciotto vocals_mackaye vocals_lally duration_seconds. It is
-joined onto the live, classified song set by `song` title text, not by a
+joined onto the live, classified song set by `title` text, not by a
 hardcoded id column - see `songid` below.
 
 ## Usage
@@ -103,28 +103,28 @@ Repeatr_1_results <- Repeatr_1(output_dir = tempdir())
 #> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 #> Joining with `by = join_by(date)`
 #> Joining with `by = join_by(gid)`
-#> Joining with `by = join_by(gid, song)`
-#> Joining with `by = join_by(song)`
-#> Joining with `by = join_by(song)`
-#> Joining with `by = join_by(releaseid)`
-#> Joining with `by = join_by(song)`
-#> Joining with `by = join_by(release)`
-#> Joining with `by = join_by(song)`
-#> Joining with `by = join_by(song)`
-#> Joining with `by = join_by(song)`
+#> Joining with `by = join_by(gid, title)`
+#> Joining with `by = join_by(title)`
+#> Joining with `by = join_by(title)`
+#> Joining with `by = join_by(rid)`
+#> Joining with `by = join_by(title)`
+#> Joining with `by = join_by(release_title)`
+#> Joining with `by = join_by(title)`
+#> Joining with `by = join_by(title)`
+#> Joining with `by = join_by(title)`
 #> Joining with `by = join_by(gid, date, song_number)`
 #> Joining with `by = join_by(date)`
-#> Joining with `by = join_by(releaseid)`
-#> Joining with `by = join_by(releaseid)`
-#> Joining with `by = join_by(gid, song)`
+#> Joining with `by = join_by(rid)`
+#> Joining with `by = join_by(rid)`
+#> Joining with `by = join_by(gid, title)`
 #> Joining with `by = join_by(gid)`
 #> Joining with `by = join_by(gid)`
 #> Joining with `by = join_by(gid)`
-#> Joining with `by = join_by(releaseid, release)`
+#> Joining with `by = join_by(rid, release_title)`
 #> Joining with `by = join_by(songid)`
-#> Joining with `by = join_by(song)`
-#> Joining with `by = join_by(gid, song)`
-#> Joining with `by = join_by(gid, song)`
+#> Joining with `by = join_by(title)`
+#> Joining with `by = join_by(gid, title)`
+#> Joining with `by = join_by(gid, title)`
 #> Joining with `by = join_by(gid)`
 #> Joining with `by = join_by(gid)`
 ```

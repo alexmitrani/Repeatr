@@ -20,7 +20,7 @@ sets(mydf = NULL, shows = NULL)
 
 - mydf:
 
-  the dataframe to use. must contain the columns "gid" and "song".
+  the dataframe to use. must contain the columns "gid" and "title".
 
 - shows:
 
@@ -42,7 +42,7 @@ sets
 sets <- sets(mydf = duration_data_da, shows = c("aalst-belgium-92390", "aberdeen-scotland-50499", "leeds-england-103102", "washington-dc-usa-73198"))
 sets[[1]]
 #> # A tibble: 60 × 6
-#>    song      `aalst-belgium-92390` aberdeen-scotland-50…¹ `leeds-england-103102`
+#>    title     `aalst-belgium-92390` aberdeen-scotland-50…¹ `leeds-england-103102`
 #>    <chr>                     <dbl>                  <dbl>                  <dbl>
 #>  1 arpeggia…                     0                      1                      1
 #>  2 bed for …                     0                      1                      1

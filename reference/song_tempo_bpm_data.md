@@ -13,7 +13,7 @@ song_tempo_bpm_data
 dataframe with one row for each song with a personally-measured tempo
 reading.
 
-- song:
+- title:
 
   The name of the song
 
@@ -33,7 +33,7 @@ for its own Shiny app.
 
 ``` r
 song_tempo_bpm_data
-#>                            song tempo_bpm
+#>                           title tempo_bpm
 #> 1                  23 beats off     110.0
 #> 2                  and the same     148.5
 #> 3                      argument     102.0

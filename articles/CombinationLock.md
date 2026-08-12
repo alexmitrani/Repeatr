@@ -37,15 +37,15 @@ have a look at the first few rows.
 
 
 mydf1 <- Repeatr1 %>%
-  select(gid,song_number,song) %>%
-  rename(song1 = song)
+  select(gid,song_number,title) %>%
+  rename(title1 = title)
 
 print(paste0("There are ", nrow(mydf1), " rows in this dataframe."))
 #> [1] "There are 24568 rows in this dataframe."
 
 head(mydf1)
 #> # A tibble: 6 × 3
-#>   gid                 song_number song1            
+#>   gid                 song_number title1           
 #>   <chr>                     <dbl> <chr>            
 #> 1 aalst-belgium-92390           1 intro            
 #> 2 aalst-belgium-92390           2 turnover         
@@ -64,13 +64,13 @@ of data for each transition between songs.
 
 
 mydf2 <- Repeatr1 %>%
-  select(gid,song_number,song) %>%
+  select(gid,song_number,title) %>%
   mutate(song_number = song_number-1) %>%
-  rename(song2 = song)
+  rename(title2 = title)
 
 mydf3 <- mydf1 %>%
   left_join(mydf2) %>%
-  filter(is.na(song2)==FALSE) %>%
+  filter(is.na(title2)==FALSE) %>%
   rename(transition_number = song_number)
 #> Joining with `by = join_by(gid, song_number)`
 
@@ -79,7 +79,7 @@ print(paste0("There are ", nrow(mydf3), " rows in this dataframe."))
 
 head(mydf3)
 #> # A tibble: 6 × 4
-#>   gid                 transition_number song1             song2            
+#>   gid                 transition_number title1            title2           
 #>   <chr>                           <dbl> <chr>             <chr>            
 #> 1 aalst-belgium-92390                 1 intro             turnover         
 #> 2 aalst-belgium-92390                 2 turnover          brendan #1       
@@ -134,9 +134,9 @@ occurs.
 
 
 transitions <- mydf3 %>%
-  select(song1, song2) %>%
-  rename(from = song1) %>%
-  rename(to = song2)
+  select(title1, title2) %>%
+  rename(from = title1) %>%
+  rename(to = title2)
 
 transitions <- transitions %>%
   group_by(from, to) %>%
@@ -184,17 +184,17 @@ repertoire.
 ``` r
 
 
-transitions$song <- transitions$from
+transitions$title <- transitions$from
 
 mylookup <- fugazi_song_performance_intensity %>%
-  select(song, available_rl)
+  select(title, available_rl)
 
 transitions <- transitions %>%
   left_join(mylookup) %>%
   rename(from_available_rl = available_rl)
-#> Joining with `by = join_by(song)`
+#> Joining with `by = join_by(title)`
 
-transitions$song <- transitions$to
+transitions$title <- transitions$to
 
 transitions <- transitions %>%
   left_join(mylookup) %>%
@@ -203,7 +203,7 @@ transitions <- transitions %>%
   mutate(count_scaled = count/available_rl) %>%
   select(from, to, from_available_rl, to_available_rl, available_rl, count, count_scaled) %>%
   arrange(desc(count_scaled))
-#> Joining with `by = join_by(song)`
+#> Joining with `by = join_by(title)`
 
 head(transitions)
 #> # A tibble: 6 × 7
@@ -239,7 +239,7 @@ the origin.
 launchdateindex_from <- fugazi_song_counts %>%
   arrange(launchdate) %>%
   mutate(launchdateindex_from = row_number()) %>%
-  rename(from = song) %>%
+  rename(from = title) %>%
   select(from, launchdateindex_from)
 
 launchdateindex_to <- launchdateindex_from %>%
@@ -301,17 +301,17 @@ groups of songs:
 
 mysongvarslookup <- songvarslookup %>%
   left_join(songidlookup)
-#> Joining with `by = join_by(song)`
+#> Joining with `by = join_by(title)`
 
 mysongvarslookup <- mysongvarslookup %>%
   mutate(vocals = ifelse(vocals_lally==1,"lally",0)) %>%
   mutate(vocals = ifelse(vocals_mackaye==1,"mackaye",vocals)) %>%
   mutate(vocals = ifelse(vocals_picciotto==1,"picciotto",vocals)) %>%
   mutate(vocals = ifelse(instrumental==1,"instrumental",vocals)) %>%
-  select(song, vocals)
+  select(title, vocals)
 
 head(mysongvarslookup)
-#>           song       vocals
+#>          title       vocals
 #> 1 23 beats off      mackaye
 #> 2 and the same      mackaye
 #> 3     argument      mackaye
@@ -343,9 +343,9 @@ group of each song to the data on transitions between songs.
 ``` r
 
 
-mysongvarslookup1 <- mysongvarslookup %>% rename(from = song, from_vocals = vocals)
+mysongvarslookup1 <- mysongvarslookup %>% rename(from = title, from_vocals = vocals)
 
-mysongvarslookup2 <- mysongvarslookup %>% rename(to = song, to_vocals = vocals)
+mysongvarslookup2 <- mysongvarslookup %>% rename(to = title, to_vocals = vocals)
 
 transitions3 <- transitions %>%
   left_join(mysongvarslookup1) %>%
@@ -418,7 +418,7 @@ checkvocals_to <- checkvocals %>%
 launchdateindex_from <- fugazi_song_counts %>%
   arrange(launchdate) %>%
   mutate(launchdateindex_from = row_number()) %>%
-  rename(from = song) %>%
+  rename(from = title) %>%
   select(from, launchdateindex_from)
 
 launchdateindex_to <- launchdateindex_from %>%

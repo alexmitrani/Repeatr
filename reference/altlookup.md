@@ -27,7 +27,7 @@ i.e. every song that competes as a `mlogit` alternative.
   The stable, full song identity from
   [`songidlookup`](https://alexmitrani.github.io/Repeatr/reference/songidlookup.md).
 
-- song:
+- title:
 
   The name of the song
 
@@ -40,7 +40,7 @@ i.e. every song that competes as a `mlogit` alternative.
 Derived-modeled. Computed live in
 [`Repeatr_2`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_2.md);
 the translation table between `alt` (what the choice model sees) and
-`songid`/`song` (stable identity) used by
+`songid`/`title` (stable identity) used by
 [`Repeatr_5`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_5.md)
 and [`rankr`](https://alexmitrani.github.io/Repeatr/reference/rankr.md).
 
@@ -49,7 +49,7 @@ and [`rankr`](https://alexmitrani.github.io/Repeatr/reference/rankr.md).
 ``` r
 altlookup
 #> # A tibble: 92 × 4
-#>      alt songid song                 count
+#>      alt songid title                count
 #>    <int>  <int> <chr>                <int>
 #>  1     1      1 23 beats off            27
 #>  2     2      2 and the same           397

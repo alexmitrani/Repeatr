@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9222</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9223</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -188,8 +188,8 @@ export_fugazibase_data()
 └─ fugazibase: shows, locations, durations, discography,
    songs, bands</code></pre>
 <p><code>songvarslookup</code> is joined into <code>Repeatr1</code> by
-song title, not carried forward with its own <code>songid</code> column
-- the hand-maintained CSV behind it
+<code>title</code> text, not carried forward with its own
+<code>songid</code> column - the hand-maintained CSV behind it
 (<code>inst/extdata/releases_songs_durations_wikipedia.csv</code>)
 doesn’t carry one, precisely so it can’t silently drift out of sync with
 the songid <code><a href="../reference/Repeatr_1.html">Repeatr_1()</a></code> computes; see
@@ -342,7 +342,7 @@ identity</td>
 <td>Derived-modeled</td>
 <td>
 <code><a href="../reference/Repeatr_2.html">Repeatr_2()</a></code>; the <code>alt</code> &lt;-&gt;
-<code>songid</code>/<code>song</code> translation table used by
+<code>songid</code>/<code>title</code> translation table used by
 <code><a href="../reference/Repeatr_5.html">Repeatr_5()</a></code>/<code><a href="../reference/rankr.html">rankr()</a></code>
 </td>
 </tr>

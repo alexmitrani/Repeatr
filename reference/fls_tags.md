@@ -17,7 +17,7 @@ including data from the audio file tags.
 
   track number
 
-- song:
+- title:
 
   track name
 
@@ -47,9 +47,10 @@ Derived-cleaned. Parsed by
 [`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)
 (via
 [`fls_tags_importer`](https://alexmitrani.github.io/Repeatr/reference/fls_tags_importer.md))
-from the raw `inst/extdata/fls_tags.txt` kid3 MP3-tag export. The
-underlying track/album/song names themselves are sourced from the Fugazi
-Live Series site, not personal data - Alex Mitrani applied a consistent
+from the raw `inst/extdata/fls_tags.txt` kid3 MP3-tag export; the raw
+tag's `name` field is renamed `title` at read time. The underlying
+track/album/song names themselves are sourced from the Fugazi Live
+Series site, not personal data - Alex Mitrani applied a consistent
 album-name format and a handful of one-off track-title corrections on
 top (see the "process tags data" section of
 [`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md)).
@@ -74,7 +75,7 @@ to integer) as fugazibase's `durations` table by
 fls_tags
 #> # A tibble: 24,513 × 6
 #> # Rowwise: 
-#>    track song                 duration seconds date       gid                   
+#>    track title                duration seconds date       gid                   
 #>    <chr> <chr>                <Period>   <dbl> <date>     <chr>                 
 #>  1 01    joe #1               1M 22S        82 1987-09-03 washington-dc-usa-903…
 #>  2 02    intro                56S           56 1987-09-03 washington-dc-usa-903…

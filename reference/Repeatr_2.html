@@ -11,7 +11,7 @@ washington-dc-usa-90387	FLS0001	03/09/1987	Wilson Center	$5	300	Joey Picuri	Fuga
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9222</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9223</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -86,7 +86,7 @@ washington-dc-usa-90387	FLS0001	03/09/1987	Wilson Center	$5	300	Joey Picuri	Fuga
 
 
 <dt id="arg-min-song-count">min_song_count<a class="anchor" aria-label="anchor" href="#arg-min-song-count"></a></dt>
-<dd><p>Minimum number of performances a song needs to compete as an alternative in the choice model (<code>Repeatr_4</code>). Songs performed fewer times still appear in <code>songid</code>/<code>song</code> on the output, they just won't get an <code>alt</code> and can't be chosen as an alternative. Default 2 - songs performed only once can't support a stable alternative-specific intercept in the choice model. This is a choice-model concern only: it does not affect <code>songid</code>, which <code><a href="Repeatr_1.html">Repeatr_1</a></code> assigns to every classified song regardless of this threshold.</p></dd>
+<dd><p>Minimum number of performances a song needs to compete as an alternative in the choice model (<code>Repeatr_4</code>). Songs performed fewer times still appear in <code>songid</code>/<code>title</code> on the output, they just won't get an <code>alt</code> and can't be chosen as an alternative. Default 2 - songs performed only once can't support a stable alternative-specific intercept in the choice model. This is a choice-model concern only: it does not affect <code>songid</code>, which <code><a href="Repeatr_1.html">Repeatr_1</a></code> assigns to every classified song regardless of this threshold.</p></dd>
 
 
 <dt id="arg-input-dir">input_dir<a class="anchor" aria-label="anchor" href="#arg-input-dir"></a></dt>
@@ -99,7 +99,7 @@ washington-dc-usa-90387	FLS0001	03/09/1987	Wilson Center	$5	300	Joey Picuri	Fuga
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A list of 2 elements: <code>Repeatr2</code>, a data frame with one row per gid/song_number/alt combination, prepared for choice modelling (<code>case</code> is the choice-situation id, <code>alt</code> a dense 1..n index over the <code>min_song_count</code>-eligible songs only - this is what <code>mlogit</code>/<code>Repeatr_4</code> actually sees - <code>songid</code> the stable, full identity from <code>songidlookup</code> kept alongside <code>alt</code> rather than overwritten by it, <code>choice</code> whether that song was the one played, availability/played dummy variables, and years-since-launch bucket variables); and <code>altlookup</code> (<code>alt</code>, <code>songid</code>, <code>song</code>, <code>count</code> - one row per <code>min_song_count</code>-eligible song), needed by <code><a href="Repeatr_5.html">Repeatr_5</a></code>/<code><a href="rankr.html">rankr</a></code> to translate <code>mlogit</code>'s <code>alt</code>-indexed coefficients back to song identity. Also saved to <code>data/Repeatr2.rda</code> and <code>data/altlookup.rda</code>, alongside <code>fugazi_song_counts</code> and <code>fugazi_song_performance_intensity</code> (which cover every classified song, not just the <code>min_song_count</code>-eligible ones).</p>
+    <p>A list of 3 elements: <code>Repeatr2</code>, a data frame with one row per gid/song_number/alt combination, prepared for choice modelling (<code>case</code> is the choice-situation id, <code>alt</code> a dense 1..n index over the <code>min_song_count</code>-eligible songs only - this is what <code>mlogit</code>/<code>Repeatr_4</code> actually sees - <code>songid</code> the stable, full identity from <code>songidlookup</code> kept alongside <code>alt</code> rather than overwritten by it, <code>choice</code> whether that song was the one played, availability/played dummy variables, and years-since-launch bucket variables); <code>altlookup</code> (<code>alt</code>, <code>songid</code>, <code>title</code>, <code>count</code> - one row per <code>min_song_count</code>-eligible song), needed by <code><a href="Repeatr_5.html">Repeatr_5</a></code>/<code><a href="rankr.html">rankr</a></code> to translate <code>mlogit</code>'s <code>alt</code>-indexed coefficients back to song identity; and <code>fugazi_song_performance_intensity</code> (<code>min_song_count</code>-eligible songs only), needed by <code><a href="Repeatr_5.html">Repeatr_5</a></code> - returned explicitly (not just saved to disk) so a fresh <code><a href="Repeatr_Updatr.html">Repeatr_Updatr()</a></code> run can thread it through rather than falling back to a stale lazy-loaded binding. Also saved to <code>data/Repeatr2.rda</code> and <code>data/altlookup.rda</code>, alongside <code>fugazi_song_counts</code> (which covers every classified song, not just the <code>min_song_count</code>-eligible ones).</p>
     </div>
 
     <div class="section level2">
@@ -115,6 +115,7 @@ washington-dc-usa-90387	FLS0001	03/09/1987	Wilson Center	$5	300	Joey Picuri	Fuga
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(gid, song_number)`</span>
 <span class="r-in"><span><span class="va">Repeatr2</span> <span class="op">&lt;-</span> <span class="va">Repeatr_2_results</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></span>
 <span class="r-in"><span><span class="va">altlookup</span> <span class="op">&lt;-</span> <span class="va">Repeatr_2_results</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">fugazi_song_performance_intensity</span> <span class="op">&lt;-</span> <span class="va">Repeatr_2_results</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

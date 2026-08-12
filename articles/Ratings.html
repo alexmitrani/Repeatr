@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9222</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9223</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -108,7 +108,7 @@ count, are as follows:</p>
 <table class="table">
 <thead><tr class="header">
 <th align="right">songid</th>
-<th align="left">song</th>
+<th align="left">title</th>
 <th align="left">launchdate</th>
 <th align="right">count</th>
 </tr></thead>
@@ -691,7 +691,7 @@ it was performed.</p>
 </colgroup>
 <thead><tr class="header">
 <th align="right">songid</th>
-<th align="left">song</th>
+<th align="left">title</th>
 <th align="left">launchdate</th>
 <th align="right">chosen</th>
 <th align="right">available_rl</th>
@@ -1580,7 +1580,7 @@ order of preference:</p>
 <thead><tr class="header">
 <th align="right">rank_rating</th>
 <th align="right">songid</th>
-<th align="left">song</th>
+<th align="left">title</th>
 <th align="right">Estimate</th>
 <th align="right">z-value</th>
 </tr></thead>
@@ -2263,10 +2263,10 @@ value of 1 and the lowest a value of 0. This way it will be easy to
 scale these values for comparison with ratings defined on other
 intervals.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">summary</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">song</span>, <span class="va">chosen</span>, <span class="va">intensity</span>, <span class="va">rating</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">rating</span><span class="op">)</span><span class="op">)</span>, <span class="st">"pipe"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">summary</span> <span class="op">%&gt;%</span> <span class="fu">select</span><span class="op">(</span><span class="va">title</span>, <span class="va">chosen</span>, <span class="va">intensity</span>, <span class="va">rating</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">rating</span><span class="op">)</span><span class="op">)</span>, <span class="st">"pipe"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
-<th align="left">song</th>
+<th align="left">title</th>
 <th align="right">chosen</th>
 <th align="right">intensity</th>
 <th align="right">rating</th>
@@ -2843,14 +2843,14 @@ preferred over “Reclamation”?</p>
 <span><span class="co">#&gt; Joining with `by = join_by(alt1)`</span></span>
 <span><span class="co">#&gt; Joining with `by = join_by(alt2)`</span></span>
 <span><span class="va">mycomparisons</span> <span class="op">&lt;-</span> <span class="va">mycomparisons</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="va">song1</span>, <span class="va">song2</span>, <span class="va">mycoef1</span>, <span class="va">mycoef2</span>, <span class="va">mycoefdiff</span>, <span class="va">myz</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">title1</span>, <span class="va">title2</span>, <span class="va">mycoef1</span>, <span class="va">mycoef2</span>, <span class="va">mycoefdiff</span>, <span class="va">myz</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">rename</span><span class="op">(</span>coef1 <span class="op">=</span> <span class="va">mycoef1</span>, coef2 <span class="op">=</span> <span class="va">mycoef2</span>, coefdiff <span class="op">=</span> <span class="va">mycoefdiff</span>, z <span class="op">=</span> <span class="va">myz</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">mycomparisons</span>, format <span class="op">=</span> <span class="st">"pipe"</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
-<th align="left">song1</th>
-<th align="left">song2</th>
+<th align="left">title1</th>
+<th align="left">title2</th>
 <th align="right">coef1</th>
 <th align="right">coef2</th>
 <th align="right">coefdiff</th>
@@ -2878,7 +2878,7 @@ below.</p>
 <span><span class="co">#&gt; Joining with `by = join_by(alt1)`</span></span>
 <span><span class="co">#&gt; Joining with `by = join_by(alt2)`</span></span>
 <span><span class="va">mycomparisons</span> <span class="op">&lt;-</span> <span class="va">mycomparisons</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="va">song1</span>, <span class="va">song2</span>, <span class="va">mycoef1</span>, <span class="va">mycoef2</span>, <span class="va">mycoefdiff</span>, <span class="va">myz</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">title1</span>, <span class="va">title2</span>, <span class="va">mycoef1</span>, <span class="va">mycoef2</span>, <span class="va">mycoefdiff</span>, <span class="va">myz</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">rename</span><span class="op">(</span>coef1 <span class="op">=</span> <span class="va">mycoef1</span>, coef2 <span class="op">=</span> <span class="va">mycoef2</span>, coefdiff <span class="op">=</span> <span class="va">mycoefdiff</span>, z <span class="op">=</span> <span class="va">myz</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">mycomparisons</span>, format <span class="op">=</span> <span class="st">"pipe"</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
@@ -2892,8 +2892,8 @@ below.</p>
 <col width="11%">
 </colgroup>
 <thead><tr class="header">
-<th align="left">song1</th>
-<th align="left">song2</th>
+<th align="left">title1</th>
+<th align="left">title2</th>
 <th align="right">coef1</th>
 <th align="right">coef2</th>
 <th align="right">coefdiff</th>
@@ -3003,22 +3003,22 @@ The results are shown below.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">releases_data</span> <span class="op">&lt;-</span> <span class="va">releases_summary</span> </span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">releases_data</span> <span class="op">%&gt;%</span> <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">rating</span><span class="op">)</span><span class="op">)</span>, <span class="st">"pipe"</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
-<col width="9%">
-<col width="22%">
-<col width="11%">
-<col width="10%">
+<col width="4%">
+<col width="23%">
 <col width="12%">
-<col width="5%">
-<col width="5%">
-<col width="5%">
-<col width="9%">
+<col width="11%">
+<col width="13%">
 <col width="6%">
+<col width="6%">
+<col width="6%">
+<col width="10%">
+<col width="7%">
 </colgroup>
 <thead><tr class="header">
-<th align="right">releaseid</th>
-<th align="left">release</th>
+<th align="right">rid</th>
+<th align="left">release_title</th>
 <th align="left">first_debut</th>
 <th align="left">last_debut</th>
 <th align="left">release_date</th>

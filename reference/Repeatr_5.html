@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9222</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9223</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,6 +62,7 @@
 <span>  mymodeldf <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  mysongidlookup <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  myaltlookup <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  myfugazi_song_performance_intensity <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  mysongvarslookup <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  myreleasesdatalookup <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  myreleases_data_input <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -83,7 +84,11 @@
 
 
 <dt id="arg-myaltlookup">myaltlookup<a class="anchor" aria-label="anchor" href="#arg-myaltlookup"></a></dt>
-<dd><p>optional <code>altlookup</code> dataframe (the second element of <code><a href="Repeatr_2.html">Repeatr_2()</a></code>'s return list) used to translate <code>mymodeldf</code>'s <code>alt</code>-indexed intercept coefficients back to <code>songid</code>/<code>song</code>. If omitted the currently lazy-loaded default will be used.</p></dd>
+<dd><p>optional <code>altlookup</code> dataframe (the second element of <code><a href="Repeatr_2.html">Repeatr_2()</a></code>'s return list) used to translate <code>mymodeldf</code>'s <code>alt</code>-indexed intercept coefficients back to <code>songid</code>/<code>title</code>. If omitted the currently lazy-loaded default will be used.</p></dd>
+
+
+<dt id="arg-myfugazi-song-performance-intensity">myfugazi_song_performance_intensity<a class="anchor" aria-label="anchor" href="#arg-myfugazi-song-performance-intensity"></a></dt>
+<dd><p>optional <code>fugazi_song_performance_intensity</code> dataframe (the third element of <code><a href="Repeatr_2.html">Repeatr_2()</a></code>'s return list). If omitted the currently lazy-loaded default will be used - pass this explicitly when calling <code>Repeatr_5()</code> right after a fresh <code><a href="Repeatr_2.html">Repeatr_2()</a></code> in the same session, since the lazy-loaded default reflects the last build on disk, not the one just computed.</p></dd>
 
 
 <dt id="arg-mysongvarslookup">mysongvarslookup<a class="anchor" aria-label="anchor" href="#arg-mysongvarslookup"></a></dt>
@@ -117,15 +122,15 @@
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(alt)`</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(alt)`</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(songid)`</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(song)`</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(track_number, song)`</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(releaseid)`</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(releaseid)`</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(song)`</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(songid, song)`</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(releaseid)`</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(releaseid, track_number, rating)`</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(releaseid)`</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(title)`</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(track_number, title)`</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(rid)`</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(rid)`</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(title)`</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(songid, title)`</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(rid)`</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(rid, track_number, rating)`</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Joining with `by = join_by(rid)`</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

@@ -112,24 +112,24 @@ the corresponding release dates.
 ``` r
 
 releasedates <- releasesdatalookup %>%
-  select(releaseid, releasedate)
+  select(rid, release_date)
 
-mydf <- songvarslookup %>% 
+mydf <- songvarslookup %>%
   left_join(releasedates) %>%
   left_join(songidlookup)
-#> Joining with `by = join_by(releaseid)`
-#> Joining with `by = join_by(song)`
-mydf <- mydf %>% 
-  select(songid, song, releaseid, releasedate) %>%
+#> Joining with `by = join_by(rid)`
+#> Joining with `by = join_by(title)`
+mydf <- mydf %>%
+  select(songid, title, rid, release_date) %>%
   arrange(songid)
 head(mydf)
-#>   songid         song releaseid releasedate
-#> 1      1 23 beats off         6  1993-06-18
-#> 2      2 and the same         2  1989-06-15
-#> 3      3     argument         9  2001-10-16
-#> 4      4  arpeggiator         8  1998-04-24
-#> 5      5 back to base         7  1995-05-12
-#> 6      6    bad mouth         1  1988-11-19
+#>   songid        title rid release_date
+#> 1      1 23 beats off   6   1993-06-18
+#> 2      2 and the same   2   1989-06-15
+#> 3      3     argument   9   2001-10-16
+#> 4      4  arpeggiator   8   1998-04-24
+#> 5      5 back to base   7   1995-05-12
+#> 6      6    bad mouth   1   1988-11-19
 ```
 
 Now let’s calculate leads and lags by getting summary data on the songs
@@ -137,27 +137,27 @@ and comparing the song launch dates to the corresponding release dates.
 
 ``` r
 
-mysummary <- Repeatr::summary %>% 
+mysummary <- Repeatr::summary %>%
   left_join(mydf) %>%
-  mutate(lead = releasedate - launchdate) %>%
-  select(song, launchdate, releasedate, lead) %>%
+  mutate(lead = release_date - launchdate) %>%
+  select(title, launchdate, release_date, lead) %>%
   arrange(lead)
-#> Joining with `by = join_by(songid, song, releaseid, releasedate)`
+#> Joining with `by = join_by(songid, title, rid, release_date)`
 
 head(mysummary, n = 10)
 #> # A tibble: 10 × 4
-#>    song                   launchdate releasedate lead    
-#>    <chr>                  <date>     <date>      <drtn>  
-#>  1 foreman's dog          1998-05-01 1998-04-24   -7 days
-#>  2 provisional            1989-05-03 1989-06-15   43 days
-#>  3 steady diet            1991-04-12 1991-08-01  111 days
-#>  4 life and limb          2001-06-21 2001-10-16  117 days
-#>  5 public witness program 1993-02-05 1993-06-18  133 days
-#>  6 polish                 1991-03-06 1991-08-01  148 days
-#>  7 bulldog front          1988-06-15 1988-11-19  157 days
-#>  8 blueprint              1989-09-23 1990-03-01  159 days
-#>  9 nice new outfit        1991-02-20 1991-08-01  162 days
-#> 10 combination lock       1994-11-27 1995-05-12  166 days
+#>    title                  launchdate release_date lead    
+#>    <chr>                  <date>     <date>       <drtn>  
+#>  1 foreman's dog          1998-05-01 1998-04-24    -7 days
+#>  2 provisional            1989-05-03 1989-06-15    43 days
+#>  3 steady diet            1991-04-12 1991-08-01   111 days
+#>  4 life and limb          2001-06-21 2001-10-16   117 days
+#>  5 public witness program 1993-02-05 1993-06-18   133 days
+#>  6 polish                 1991-03-06 1991-08-01   148 days
+#>  7 bulldog front          1988-06-15 1988-11-19   157 days
+#>  8 blueprint              1989-09-23 1990-03-01   159 days
+#>  9 nice new outfit        1991-02-20 1991-08-01   162 days
+#> 10 combination lock       1994-11-27 1995-05-12   166 days
 ```
 
 Surprisingly, there seem to be only 2 songs whose live debuts lagged
@@ -178,23 +178,23 @@ extreme values…
 ``` r
 
 mysummary <- mysummary %>%
-  select(song, launchdate, releasedate, lead) %>%
+  select(title, launchdate, release_date, lead) %>%
   arrange(desc(lead))
 
 head(mysummary, n = 10)
 #> # A tibble: 10 × 4
-#>    song                 launchdate releasedate lead     
-#>    <chr>                <date>     <date>      <drtn>   
-#>  1 the word             1987-09-03 2014-11-18  9938 days
-#>  2 turn off your guns   1987-09-03 2014-11-18  9938 days
-#>  3 in defense of humans 1987-09-03 2014-11-18  9938 days
-#>  4 furniture            1987-09-03 2001-10-16  5157 days
-#>  5 kyeo                 1987-10-07 1991-08-01  1394 days
-#>  6 number 5             1998-11-21 2001-10-16  1060 days
-#>  7 oh                   1998-11-29 2001-10-16  1052 days
-#>  8 merchandise          1987-09-03 1990-03-01   910 days
-#>  9 long division        1989-04-09 1991-08-01   844 days
-#> 10 song #1              1987-09-03 1989-12-01   820 days
+#>    title                launchdate release_date lead     
+#>    <chr>                <date>     <date>       <drtn>   
+#>  1 the word             1987-09-03 2014-11-18   9938 days
+#>  2 turn off your guns   1987-09-03 2014-11-18   9938 days
+#>  3 in defense of humans 1987-09-03 2014-11-18   9938 days
+#>  4 furniture            1987-09-03 2001-10-16   5157 days
+#>  5 kyeo                 1987-10-07 1991-08-01   1394 days
+#>  6 number 5             1998-11-21 2001-10-16   1060 days
+#>  7 oh                   1998-11-29 2001-10-16   1052 days
+#>  8 merchandise          1987-09-03 1990-03-01    910 days
+#>  9 long division        1989-04-09 1991-08-01    844 days
+#> 10 song #1              1987-09-03 1989-12-01    820 days
 ```
 
 The median lead time is probably a more reliable indicator for how long
@@ -388,20 +388,20 @@ will be easy to count the number of times each song was played.
 ``` r
 
 
-mydf <- Repeatr1 %>% select(date, song)
+mydf <- Repeatr1 %>% select(date, title)
 
-mydf <- mydf %>% 
-  group_by(date, song) %>% 
+mydf <- mydf %>%
+  group_by(date, title) %>%
   summarize(count=n()) %>% ungroup()
 #> `summarise()` has regrouped the output.
-#> ℹ Summaries were computed grouped by date and song.
+#> ℹ Summaries were computed grouped by date and title.
 #> ℹ Output is grouped by date.
 #> ℹ Use `summarise(.groups = "drop_last")` to silence this message.
-#> ℹ Use `summarise(.by = c(date, song))` for per-operation grouping
+#> ℹ Use `summarise(.by = c(date, title))` for per-operation grouping
 #>   (`?dplyr::dplyr_by`) instead.
 
-mydf_wide <- mydf %>% 
-  pivot_wider(names_from = song, values_from = count, values_fill = 0)
+mydf_wide <- mydf %>%
+  pivot_wider(names_from = title, values_from = count, values_fill = 0)
 
 head(mydf_wide)
 #> # A tibble: 6 × 139
@@ -463,12 +463,12 @@ up over time.
 
 
 mydf_long <- mydf_wide2 %>%
-  pivot_longer(!date, names_to = "song", values_to = "count") %>%
+  pivot_longer(!date, names_to = "title", values_to = "count") %>%
   filter(count>0)
 
 head(mydf_long)
 #> # A tibble: 6 × 3
-#>   date       song                 count
+#>   date       title                count
 #>   <date>     <chr>                <int>
 #> 1 1987-09-03 furniture                1
 #> 2 1987-09-03 in defense of humans     1
@@ -488,8 +488,8 @@ cluttered to plot all the songs at once!
 
 
 mydf_long %>%
-  filter(song=="furniture" | song=="waiting room" | song=="shut the door" | song=="kyeo" | song=="polish" | song=="steady diet" | song=="smallpox champion" | song=="birthday pony" | song=="break" | song=="nightshop") %>%
-  ggplot(aes(date, count, color = song)) +
+  filter(title=="furniture" | title=="waiting room" | title=="shut the door" | title=="kyeo" | title=="polish" | title=="steady diet" | title=="smallpox champion" | title=="birthday pony" | title=="break" | title=="nightshop") %>%
+  ggplot(aes(date, count, color = title)) +
   geom_line()
 ```
 
@@ -500,24 +500,24 @@ Another approach is to group the songs by release.
 ``` r
 
 releases_lookup <- Repeatr1 %>%
-  group_by(song, release) %>%
+  group_by(title, release_title) %>%
   summarize(count = n()) %>%
   ungroup() %>%
-  select(song, release)
+  select(title, release_title)
 #> `summarise()` has regrouped the output.
-#> ℹ Summaries were computed grouped by song and release.
-#> ℹ Output is grouped by song.
+#> ℹ Summaries were computed grouped by title and release_title.
+#> ℹ Output is grouped by title.
 #> ℹ Use `summarise(.groups = "drop_last")` to silence this message.
-#> ℹ Use `summarise(.by = c(song, release))` for per-operation grouping
+#> ℹ Use `summarise(.by = c(title, release_title))` for per-operation grouping
 #>   (`?dplyr::dplyr_by`) instead.
 
 mydf_long <- mydf_long %>%
   left_join(releases_lookup)
-#> Joining with `by = join_by(song)`
+#> Joining with `by = join_by(title)`
 
 mydf_long %>%
-  filter(release=="steady diet of nothing") %>%
-  ggplot(aes(date, count, color = song)) +
+  filter(release_title=="steady diet of nothing") %>%
+  ggplot(aes(date, count, color = title)) +
   geom_line()
 ```
 
@@ -527,7 +527,7 @@ mydf_long %>%
 
 
 cumulative_song_counts <- mydf_long %>%
-  select(date, song, release, count)
+  select(date, title, release_title, count)
 ```
 
 Returning to the initial question of whether Fugazi picked songs
@@ -622,22 +622,22 @@ there are a few false positives. Let’s have a look, shall we?
 
 ``` r
 
-two_for_tuesdays <- Repeatr1 %>% 
-  filter(tracktype==1) %>% 
-  group_by(date, gid, song) %>% 
+two_for_tuesdays <- Repeatr1 %>%
+  filter(tracktype==1) %>%
+  group_by(date, gid, title) %>%
   summarize(count = n()) %>% 
   ungroup() %>% 
   filter(count>=2)
 #> `summarise()` has regrouped the output.
-#> ℹ Summaries were computed grouped by date, gid, and song.
+#> ℹ Summaries were computed grouped by date, gid, and title.
 #> ℹ Output is grouped by date and gid.
 #> ℹ Use `summarise(.groups = "drop_last")` to silence this message.
-#> ℹ Use `summarise(.by = c(date, gid, song))` for per-operation grouping
+#> ℹ Use `summarise(.by = c(date, gid, title))` for per-operation grouping
 #>   (`?dplyr::dplyr_by`) instead.
 
 two_for_tuesdays
 #> # A tibble: 17 × 4
-#>    date       gid                       song                 count
+#>    date       gid                       title                count
 #>    <date>     <chr>                     <chr>                <int>
 #>  1 1988-02-06 annapolis-md-usa-20688    break-in                 2
 #>  2 1991-04-12 washington-dc-usa-41291   blueprint                2

@@ -17,11 +17,11 @@ Fugazi Live Series data.
 
   Duration of the show in minutes
 
-- song:
+- title:
 
   Name of the song
 
-- release:
+- release_title:
 
   Name of the corresponding discographical release
 
@@ -44,7 +44,7 @@ Derived-cleaned. Produced by
 ``` r
 cumulative_duration_counts
 #> # A tibble: 44,680 × 4
-#>    minutes song                   release             count
+#>    minutes title                  release_title       count
 #>      <dbl> <chr>                  <chr>               <int>
 #>  1    0.05 cassavetes             in on the killtaker     1
 #>  2    0.05 public witness program in on the killtaker     1

@@ -19,7 +19,7 @@ those which never appear in the Fugazi Live Series data.
   names. Assigned to every classified song, including one-off
   performances and rarities below `min_song_count`.
 
-- song:
+- title:
 
   The name of the song
 
@@ -38,17 +38,17 @@ from `Repeatr1`; the single source of truth for song identity - not
 hand-edited, and (after the songid fix) assigned to every classified
 song including one-offs, not just those meeting `min_song_count`. Not
 exported to fugazibase - `songid` and `count` are calculated/summary
-values, kept internal to `Repeatr` by design; fugazibase's `discography`
-table is
+values, kept internal to `Repeatr` by design; fugazibase's `songs` table
+is
 [`songvarslookup`](https://alexmitrani.github.io/Repeatr/reference/songvarslookup.md)
-alone, joined by `song` title text where needed.
+alone, joined by `title` text where needed.
 
 ## Examples
 
 ``` r
 songidlookup
 #> # A tibble: 92 × 3
-#>    songid song                 count
+#>    songid title                count
 #>     <int> <chr>                <int>
 #>  1      1 23 beats off            27
 #>  2      2 and the same           397

@@ -11,6 +11,7 @@ Repeatr_5(
   mymodeldf = NULL,
   mysongidlookup = NULL,
   myaltlookup = NULL,
+  myfugazi_song_performance_intensity = NULL,
   mysongvarslookup = NULL,
   myreleasesdatalookup = NULL,
   myreleases_data_input = NULL,
@@ -39,8 +40,20 @@ Repeatr_5(
   optional `altlookup` dataframe (the second element of
   [`Repeatr_2()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_2.md)'s
   return list) used to translate `mymodeldf`'s `alt`-indexed intercept
-  coefficients back to `songid`/`song`. If omitted the currently
+  coefficients back to `songid`/`title`. If omitted the currently
   lazy-loaded default will be used.
+
+- myfugazi_song_performance_intensity:
+
+  optional `fugazi_song_performance_intensity` dataframe (the third
+  element of
+  [`Repeatr_2()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_2.md)'s
+  return list). If omitted the currently lazy-loaded default will be
+  used - pass this explicitly when calling `Repeatr_5()` right after a
+  fresh
+  [`Repeatr_2()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_2.md)
+  in the same session, since the lazy-loaded default reflects the last
+  build on disk, not the one just computed.
 
 - mysongvarslookup:
 
@@ -96,13 +109,13 @@ Repeatr_5_results <- Repeatr_5(mymodeldf = results_ml_Repeatr4, output_dir = tem
 #> Joining with `by = join_by(alt)`
 #> Joining with `by = join_by(alt)`
 #> Joining with `by = join_by(songid)`
-#> Joining with `by = join_by(song)`
-#> Joining with `by = join_by(track_number, song)`
-#> Joining with `by = join_by(releaseid)`
-#> Joining with `by = join_by(releaseid)`
-#> Joining with `by = join_by(song)`
-#> Joining with `by = join_by(songid, song)`
-#> Joining with `by = join_by(releaseid)`
-#> Joining with `by = join_by(releaseid, track_number, rating)`
-#> Joining with `by = join_by(releaseid)`
+#> Joining with `by = join_by(title)`
+#> Joining with `by = join_by(track_number, title)`
+#> Joining with `by = join_by(rid)`
+#> Joining with `by = join_by(rid)`
+#> Joining with `by = join_by(title)`
+#> Joining with `by = join_by(songid, title)`
+#> Joining with `by = join_by(rid)`
+#> Joining with `by = join_by(rid, track_number, rating)`
+#> Joining with `by = join_by(rid)`
 ```

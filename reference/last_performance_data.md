@@ -13,7 +13,7 @@ last_performance_data
 dataframe with one row for each song that was performed at least twice
 in the Fugazi Live Series data.
 
-- song:
+- title:
 
   name of the song
 
@@ -35,7 +35,7 @@ Derived-cleaned. Produced by
 ``` r
 last_performance_data
 #> # A tibble: 92 × 2
-#>    song                 last_performance
+#>    title                last_performance
 #>    <chr>                <date>          
 #>  1 23 beats off         1996-04-07      
 #>  2 and the same         2002-11-02      

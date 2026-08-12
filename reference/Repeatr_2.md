@@ -46,7 +46,7 @@ Repeatr_2(
 
   Minimum number of performances a song needs to compete as an
   alternative in the choice model (`Repeatr_4`). Songs performed fewer
-  times still appear in `songid`/`song` on the output, they just won't
+  times still appear in `songid`/`title` on the output, they just won't
   get an `alt` and can't be chosen as an alternative. Default 2 - songs
   performed only once can't support a stable alternative-specific
   intercept in the choice model. This is a choice-model concern only: it
@@ -69,21 +69,27 @@ Repeatr_2(
 
 ## Value
 
-A list of 2 elements: `Repeatr2`, a data frame with one row per
+A list of 3 elements: `Repeatr2`, a data frame with one row per
 gid/song_number/alt combination, prepared for choice modelling (`case`
 is the choice-situation id, `alt` a dense 1..n index over the
 `min_song_count`-eligible songs only - this is what `mlogit`/`Repeatr_4`
 actually sees - `songid` the stable, full identity from `songidlookup`
 kept alongside `alt` rather than overwritten by it, `choice` whether
 that song was the one played, availability/played dummy variables, and
-years-since-launch bucket variables); and `altlookup` (`alt`, `songid`,
-`song`, `count` - one row per `min_song_count`-eligible song), needed by
+years-since-launch bucket variables); `altlookup` (`alt`, `songid`,
+`title`, `count` - one row per `min_song_count`-eligible song), needed
+by
 [`Repeatr_5`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_5.md)/[`rankr`](https://alexmitrani.github.io/Repeatr/reference/rankr.md)
 to translate `mlogit`'s `alt`-indexed coefficients back to song
-identity. Also saved to `data/Repeatr2.rda` and `data/altlookup.rda`,
-alongside `fugazi_song_counts` and `fugazi_song_performance_intensity`
-(which cover every classified song, not just the
-`min_song_count`-eligible ones).
+identity; and `fugazi_song_performance_intensity`
+(`min_song_count`-eligible songs only), needed by
+[`Repeatr_5`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_5.md) -
+returned explicitly (not just saved to disk) so a fresh
+[`Repeatr_Updatr()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_Updatr.md)
+run can thread it through rather than falling back to a stale
+lazy-loaded binding. Also saved to `data/Repeatr2.rda` and
+`data/altlookup.rda`, alongside `fugazi_song_counts` (which covers every
+classified song, not just the `min_song_count`-eligible ones).
 
 ## Examples
 
@@ -99,4 +105,5 @@ Repeatr_2_results <- Repeatr_2(mydf = Repeatr1, output_dir = tempdir(), input_di
 #> Joining with `by = join_by(gid, song_number)`
 Repeatr2 <- Repeatr_2_results[[1]]
 altlookup <- Repeatr_2_results[[2]]
+fugazi_song_performance_intensity <- Repeatr_2_results[[3]]
 ```
