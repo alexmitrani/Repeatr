@@ -485,6 +485,30 @@ played.
 The summary table can be downloaded to a CSV file using the download
 button at the top of the page to the right of the ‘stack’ selection box.
 
+### recap
+
+Here you can choose any single show (out of the shows with set lists
+available to date) and see everything about it in one place: the venue
+and date with a link to the corresponding page of the [Fugazi Live
+Series](https://www.dischord.com/fugazi_live_series) site, where it fits
+in its tour, how many times Fugazi had previously played in that
+country, state/province, city and venue, and (if a recording of the show
+exists) how many songs were played, how long the recording runs, its
+sound quality rating, and which releases its songs are drawn from.
+
+A map shows the location of the show.
+
+If a recording exists, a detailed tracklist is also shown, giving each
+song’s duration, its maximum recorded duration across all Fugazi shows,
+the release (and release date) it is drawn from, which numbered
+rendition of the song this was, its total number of recorded renditions,
+its position in the set, and its average position across all recorded
+renditions.
+
+The whole page can be downloaded as a self-contained HTML take-away
+document using the download button at the top of the page to the right
+of the ‘show’ selection box.
+
 ## stock
 
 > Laws of stimulation /  

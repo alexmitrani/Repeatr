@@ -175,6 +175,9 @@ Thanks.
   file.
 - [`fls_tags_show`](https://alexmitrani.github.io/Repeatr/reference/fls_tags_show.md)
   : Tags data, one record per show
+- [`format_ordinal()`](https://alexmitrani.github.io/Repeatr/reference/format_ordinal.md)
+  : format_ordinal formats an integer as an ordinal string, e.g. 1 -\>
+  "1st", 2 -\> "2nd", 3 -\> "3rd", 4 -\> "4th", 11 -\> "11th".
 - [`fugazi_song_choice_model`](https://alexmitrani.github.io/Repeatr/reference/fugazi_song_choice_model.md)
   : Fugazi song choice model results, with song names substituted in for
   intercept terms
@@ -212,6 +215,12 @@ Thanks.
   : Undertakes paired comparisons for ranking a set of coefficients,
   considering whether the differences between the coefficients are
   significant or not.
+- [`recap()`](https://alexmitrani.github.io/Repeatr/reference/recap.md)
+  : recap brings together all the notable facts about a single Fugazi
+  show: date, venue, tour context, how many times the band had
+  previously played in that country/state/city/venue, the previous and
+  next show of the tour, and (if a recording exists) a detailed
+  tracklist with duration, release and rendition statistics.
 - [`releaseid_variable_colour_code`](https://alexmitrani.github.io/Repeatr/reference/releaseid_variable_colour_code.md)
   : Release ID, variable, colour code
 - [`releases_data_input`](https://alexmitrani.github.io/Repeatr/reference/releases_data_input.md)
