@@ -958,7 +958,7 @@ tabPanel("flow",
                       tags$br(),
 
                       fluidRow(
-                        column(4, uiOutput("menuOptions_gid_recap")),
+                        column(8, uiOutput("menuOptions_gid_recap")),
                         # Button
                         column(2, style = "margin-top: 29px;", downloadButton("downloadRecapDoc", ""))
                       ),
@@ -970,6 +970,7 @@ tabPanel("flow",
                         tags$br(),
 
                         uiOutput("recap_title"),
+                        uiOutput("recap_link"),
 
                         tags$br(),
 
@@ -3347,51 +3348,24 @@ server <- function(input, output, session) {
 
     ctx <- recap_result()$context
 
-    h3(HTML(paste0(ctx$where_played, " — ", ctx$datestring, " (",
-                   "<a href='", ctx$url, "' target='_blank'>Fugazi Live Series page</a>", ")")))
+    h3(paste0(ctx$where_played, " — ", ctx$datestring))
+
+  })
+
+  output$recap_link <- renderUI({
+
+    ctx <- recap_result()$context
+
+    HTML(paste0("<a href='", ctx$url, "' target='_blank'>", ctx$gid, "</a>"))
 
   })
 
   output$recap_summary_text1 <- renderText({
-
-    ctx <- recap_result()$context
-
-    tour_sentence <- paste0("This was the ", format_ordinal(ctx$tour_position), " of ", ctx$tour_total,
-                            " shows on the '", ctx$tour, "' tour.")
-
-    visits_pieces <- c(
-      paste0("the ", format_ordinal(ctx$country_visit_number), " time Fugazi played in ", ctx$country),
-      if (is.na(ctx$subdivision_visit_number)==FALSE) paste0("the ", format_ordinal(ctx$subdivision_visit_number), " time in ", ctx$subdivision),
-      paste0("the ", format_ordinal(ctx$city_visit_number), " time in ", ctx$city),
-      paste0("the ", format_ordinal(ctx$venue_visit_number), " time at ", ctx$venue)
-    )
-
-    visits_sentence <- paste0("This was ", paste(visits_pieces, collapse = ", "), ".")
-
-    tour_context_sentence <- paste0(
-      ifelse(is.na(ctx$previous_show_text), "This was the first show of the tour.", paste0("The previous show of the tour was at ", ctx$previous_show_text, ".")),
-      " ",
-      ifelse(is.na(ctx$next_show_text), "This was the last show of the tour.", paste0("The following show of the tour was at ", ctx$next_show_text, "."))
-    )
-
-    paste0("On ", ctx$datestring, ", Fugazi played ", ctx$where_played, ctx$played_with_text, ". ",
-           tour_sentence, " ", visits_sentence, " ", tour_context_sentence)
-
+    recap_result()$context$paragraph1
   })
 
   output$recap_summary_text2 <- renderText({
-
-    ctx <- recap_result()$context
-
-    if (ctx$has_recording==FALSE) {
-      return("")
-    }
-
-    paste0("A recording of this show is available, with ", ctx$n_songs, " songs and a total duration of ",
-           ctx$minutes, " minutes",
-           ifelse(is.na(ctx$sound_quality), "", paste0(", rated '", ctx$sound_quality, "' for sound quality")),
-           ". The songs are drawn from: ", ctx$release_breakdown_text, ".")
-
+    recap_result()$context$paragraph2
   })
 
   output$recap_has_recording <- reactive({
@@ -3406,19 +3380,11 @@ server <- function(input, output, session) {
     df <- data.frame(latitude = shows_data %>% filter(gid==ctx$gid) %>% pull(latitude),
                      longitude = shows_data %>% filter(gid==ctx$gid) %>% pull(longitude))
 
-    margin_value <- 0.15
-
-    min_latitude <- df$latitude-margin_value
-    min_longitude <- df$longitude-margin_value
-
-    max_latitude <- df$latitude+margin_value
-    max_longitude <- df$longitude+margin_value
-
     leaflet(data = df, options = leafletOptions(zoomControl = FALSE)) %>%
       htmlwidgets::onRender("function(el, x) {
         L.control.zoom({ position: 'bottomleft' }).addTo(this)
       }") %>%
-      fitBounds(lng1 = min_longitude, lat1 = min_latitude, lng2 = max_longitude, lat2 = max_latitude) %>%
+      setView(lng = df$longitude, lat = df$latitude, zoom = 13) %>%
       addProviderTiles("OpenStreetMap.Mapnik") %>%
       addScaleBar() %>%
       addCircles(
@@ -3448,7 +3414,8 @@ server <- function(input, output, session) {
     data
 
   },
-  style = "bootstrap"))
+  style = "bootstrap",
+  options = list(pageLength = -1, lengthMenu = list(c(-1, 10, 25, 50), c("All", "10", "25", "50")))))
 
   output$downloadRecapDoc <- downloadHandler(
     filename = function() paste0(datestring, "_Fugazetteer_Recap_", input$search_shows_recap, ".html"),

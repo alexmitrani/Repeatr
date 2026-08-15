@@ -167,3 +167,103 @@ Files touched: `R/recap.R` (new), `inst/shiny/Fugazetteer/app.R`,
 2. Not run this session: `devtools::check()` on the full package, or a real PDF export path —
    the user was told upfront that PDF would need new infra (tinytex or webshot2/chromote) and
    chose the HTML takeaway instead.
+
+## Follow-up: fixes from the user's live testing
+
+The user tried the tab and reported several concrete issues, all addressed in this same
+session (`DESCRIPTION` bumped `0.0.0.9225` → `0.0.0.9226`):
+
+- **Show selector too narrow** — widened from `column(4, ...)` to `column(8, ...)` in `app.R`'s
+  recap `fluidRow`, matching the combined width of stacks' two selector columns; the gid now
+  fits on one line.
+- **Title link too prominent** — split `output$recap_title` (plain `h3`, no link) from a new
+  `output$recap_link` (`renderUI`, normal-size text, gid as the link label — same style as the
+  `fls_link` column used in other tables) on its own row below the title. Mirrored in
+  `recap_template.Rmd`.
+- **Attendance missing from the prose** — added `context$attendance` to `recap()`'s return, and
+  an `attendance_clause` that reads "Fugazi played to N people in {where_played}..." when
+  attendance is known, falling back to the original wording when it's `NA`.
+- **Repetitive/disjointed sentences** — moved *all* prose assembly from being duplicated in
+  `app.R` and `recap_template.Rmd` into `recap()` itself (`context$paragraph1`/`paragraph2`,
+  ready-made strings), both to fix the wording and to stop the two call sites from drifting out
+  of sync (exactly what caused the earlier ordinal bug). Added an `oxford_join()` internal
+  helper (generalizing the existing band-list joiner) and reused it for the location clauses
+  ("It was the Nth time Fugazi played in {country}, the Nth show in {city}, and the Nth show at
+  {venue}.") and the release breakdown ("N songs: X from A (year), ..., and Y from Z (year).").
+  Also dropped the redundant trailing "tour" word ("on the '...Tour' tour." → "on the
+  '...Tour'.") and switched `tour_position` to a plain cardinal number ("show 47 of 56") instead
+  of an ordinal.
+- **Map too wide / not showing local detail** — replaced the `fitBounds`-with-margin idiom
+  (borrowed from the multi-point maps, degenerate for a single point) with a direct
+  `setView(lng, lat, zoom = 13)`. Zoom 15 was tried first (scale bar read "200 m", still too
+  tight/zoomed-in relative to what the user described); zoom 13 gives a "1 km" scale bar,
+  matching the user's own description of the zoom level they wanted. Changed in both `app.R`
+  and `recap_template.Rmd`.
+- **Tracklist `track_number` wrong and unordered** — the original `track_number` was
+  `Repeatr1`'s *studio release* track number (e.g. position on the "Repeater" LP), unrelated to
+  the show's own set order, which is why DT's default sort-by-column-1 produced a seemingly
+  random row order. Fixed by dropping that column entirely and deriving `track_number` as a
+  dense `row_number()` after `arrange(song_number)` — i.e. the song's actual sequence number
+  within this recording, always ascending and always consistent with `position`.
+- **Tracklist only showing 10 rows by default** — added
+  `options = list(pageLength = -1, lengthMenu = list(c(-1, 10, 25, 50), c("All", "10", "25",
+  "50")))` to the `recap_tracklist_datatable`'s `DT::datatable()` call, defaulting to "All"
+  while still letting the user pick a smaller page size.
+- **Download title/footer** — `recap_template.Rmd`'s YAML `title` changed from "Fugazi Live
+  Series — Recap" to "Fugazetteer — Recap". Added a footer chunk reproducing the same three
+  lines every CSV download's `sourcestext`/`download_table_footer()` embeds (`Made with Repeatr
+  version X, updated Y.` / shinyapps.io URL / dischord.com URL), computed independently inside
+  the Rmd (via `packageVersion()`/`packageDate()`) since the template renders in its own
+  process outside the live Shiny session. Deliberately scoped to the downloaded document only,
+  per the user's wording ("the download should have...") — did not add footer rows to the live
+  on-screen tracklist table, unlike how the CSV-download tabs embed their footer directly in the
+  displayed table via `download_table_footer()`, since inserting text rows into recap's
+  numeric-heavy table would look messy and wasn't what was asked for.
+
+### Verification
+
+Re-ran the full live-app + Claude-in-Chrome browser flow against `berlin-germany-62892` (the
+user's own example show, chosen specifically to reproduce their reported wording:
+attendance 2800, tour position 47/56, Berlin visit count 4, etc.). Confirmed word-for-word
+against the user's requested phrasing:
+- "On Sunday the 28th of June 1992, Fugazi played to 2800 people in Tempodrom, Berlin, Germany
+  with Tech Ahead and The Notwist."
+- "This was show 47 of 56 on the '1992 Spring European Tour'. It was the 36th time Fugazi
+  played in Germany, the 4th show in Berlin, and the 1st show at Tempodrom."
+- "21 songs: 4 from fugazi (1988), 3 from margin walker (1989), 1 from 3 songs (1989), 4 from
+  repeater (1990), 4 from steady diet of nothing (1991), and 5 from in on the killtaker (1993)."
+
+Also confirmed: show selector fits the gid on one line; title/link split correctly; map's
+scale-bar element resolves to literal text "1 km" (checked via the browser accessibility tree,
+not just visually); tracklist shows all 21 rows by default, `track_number` ascending 1-21 and
+monotonic with `position`; download re-tested end to end through the running app (not just a
+standalone `rmarkdown::render()` call) — produced a valid file, title tag confirmed as
+"Fugazetteer — Recap" in the rendered HTML, footer text present. Test download artifacts
+deleted from the real Downloads folder afterward.
+
+Files touched (in addition to the first round): `R/recap.R`, `inst/shiny/Fugazetteer/app.R`,
+`inst/shiny/Fugazetteer/recap_template.Rmd`, `man/recap.Rd`, `DESCRIPTION`.
+
+## Follow-up 2: tracklist column width
+
+The user asked for an average-duration column between the actual and maximum duration
+(`mins`/`mean_mins`/`max_mins`), plus (in a follow-up message sent mid-turn) a general request
+to reduce the tracklist's overall column width. `DESCRIPTION` bumped `0.0.0.9226` → `0.0.0.9227`
+per `CLAUDE.md` convention. Changes, all in `recap()`'s tracklist assembly in `R/recap.R`:
+
+- Joined `minutes_mean` in from `duration_summary` alongside the existing `minutes_max`.
+- Renamed the duration columns for brevity: `minutes`→`mins`, `minutes_mean`→`mean_mins`,
+  `minutes_max`→`max_mins`, ordered mins/mean_mins/max_mins as requested.
+- Went further on the general "reduce column width" ask by merging what were two separate
+  columns, `release_title` and `release_date`, into one `release` column formatted the same
+  way as the prose release-breakdown sentence (e.g. "in on the killtaker (1993)") - one fewer
+  column, and reuses a format the user had already approved in the paragraph text. Also
+  shortened `track_number`→`track`, `rendition_number`→`rendition`, `position_mean`→`mean_pos`
+  for narrower headers.
+- Final tracklist column order: `track, title, mins, mean_mins, max_mins, release, rendition,
+  renditions, position, mean_pos`.
+
+No `app.R`/`recap_template.Rmd` changes needed - both just display whatever columns `recap()`
+returns. Verified via a direct `recap()` call (confirmed the full, untruncated `release` string
+values) and a live browser check (DT column headers matched exactly, table rendered with no
+errors, release column merge confirmed visually for `berlin-germany-62892`).

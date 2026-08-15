@@ -1,5 +1,5 @@
 ---
-title: "Fugazi Live Series — Recap"
+title: "Fugazetteer — Recap"
 output:
   html_document:
     self_contained: true
@@ -19,37 +19,15 @@ ctx <- result$context
 
 ## `r ctx$where_played` — `r ctx$datestring`
 
-[View this show on the Fugazi Live Series site](`r ctx$url`)
+`r HTML(paste0("<a href='", ctx$url, "' target='_blank'>", ctx$gid, "</a>"))`
 
 ```{r summary-text-1, results='asis'}
-tour_sentence <- paste0("This was the ", format_ordinal(ctx$tour_position), " of ", ctx$tour_total,
-                        " shows on the '", ctx$tour, "' tour.")
-
-visits_pieces <- c(
-  paste0("the ", format_ordinal(ctx$country_visit_number), " time Fugazi played in ", ctx$country),
-  if (is.na(ctx$subdivision_visit_number)==FALSE) paste0("the ", format_ordinal(ctx$subdivision_visit_number), " time in ", ctx$subdivision),
-  paste0("the ", format_ordinal(ctx$city_visit_number), " time in ", ctx$city),
-  paste0("the ", format_ordinal(ctx$venue_visit_number), " time at ", ctx$venue)
-)
-
-visits_sentence <- paste0("This was ", paste(visits_pieces, collapse = ", "), ".")
-
-tour_context_sentence <- paste0(
-  ifelse(is.na(ctx$previous_show_text), "This was the first show of the tour.", paste0("The previous show of the tour was at ", ctx$previous_show_text, ".")),
-  " ",
-  ifelse(is.na(ctx$next_show_text), "This was the last show of the tour.", paste0("The following show of the tour was at ", ctx$next_show_text, "."))
-)
-
-cat(paste0("On ", ctx$datestring, ", Fugazi played ", ctx$where_played, ctx$played_with_text, ". ",
-           tour_sentence, " ", visits_sentence, " ", tour_context_sentence))
+cat(ctx$paragraph1)
 ```
 
 ```{r summary-text-2, results='asis'}
 if (ctx$has_recording) {
-  cat(paste0("A recording of this show is available, with ", ctx$n_songs, " songs and a total duration of ",
-             ctx$minutes, " minutes",
-             ifelse(is.na(ctx$sound_quality), "", paste0(", rated '", ctx$sound_quality, "' for sound quality")),
-             ". The songs are drawn from: ", ctx$release_breakdown_text, "."))
+  cat(ctx$paragraph2)
 } else {
   cat("No recording of this show is currently available.")
 }
@@ -60,11 +38,8 @@ if (ctx$has_recording) {
 ```{r map}
 df <- shows_data %>% filter(gid == ctx$gid)
 
-margin_value <- 0.15
-
 leaflet(data = df, options = leafletOptions(zoomControl = FALSE)) %>%
-  fitBounds(lng1 = df$longitude - margin_value, lat1 = df$latitude - margin_value,
-            lng2 = df$longitude + margin_value, lat2 = df$latitude + margin_value) %>%
+  setView(lng = df$longitude, lat = df$latitude, zoom = 13) %>%
   addProviderTiles("OpenStreetMap.Mapnik") %>%
   addScaleBar() %>%
   addCircles(
@@ -84,4 +59,14 @@ leaflet(data = df, options = leafletOptions(zoomControl = FALSE)) %>%
 
 ```{r tracklist, eval=ctx$has_recording}
 knitr::kable(result$tracklist, row.names = FALSE)
+```
+
+```{r footer, results='asis'}
+cat(paste0(
+  "<hr><p>",
+  "Made with Repeatr version ", as.character(packageVersion("Repeatr")), ", updated ", packageDate("Repeatr"), ".<br>",
+  "<a href='https://alexmitrani.shinyapps.io/Fugazetteer/' target='_blank'>https://alexmitrani.shinyapps.io/Fugazetteer/</a><br>",
+  "<a href='https://dischord.com/fugazi_live_series' target='_blank'>https://dischord.com/fugazi_live_series</a>",
+  "</p>"
+))
 ```

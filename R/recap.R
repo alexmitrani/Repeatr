@@ -24,6 +24,21 @@ format_ordinal <- function(n) {
   }
 }
 
+# Joins a vector of strings into a grammatically correct list: "A" for one
+# item, "A and B" for two, "A, B, and C" (Oxford comma) for three or more.
+oxford_join <- function(x) {
+  n <- length(x)
+  if (n==0) {
+    ""
+  } else if (n==1) {
+    x
+  } else if (n==2) {
+    paste(x, collapse = " and ")
+  } else {
+    paste0(paste(x[seq_len(n-1)], collapse = ", "), ", and ", x[n])
+  }
+}
+
 #' @title recap brings together all the notable facts about a single Fugazi show: date, venue, tour context, how many times the band had previously played in that country/state/city/venue, the previous and next show of the tour, and (if a recording exists) a detailed tracklist with duration, release and rendition statistics.
 #'
 #' @param mygid gig id of the show to recap, as a string, for instance "washington-dc-usa-13196".
@@ -35,7 +50,7 @@ format_ordinal <- function(n) {
 #' @param myposition_summary optional `position_summary` dataframe (as produced by `Repeatr_1()`) to be used for each song's average recorded set position. If omitted the currently lazy-loaded default will be used.
 #' @param myplayed_with optional `played_with` dataframe (as produced by `Repeatr_1()`) to be used for the bands Fugazi played with at the show. If omitted the currently lazy-loaded default will be used.
 #'
-#' @return A list of three elements: `context` (a named list of the show's prose-summary facts), `tracklist` (a dataframe with one row per song on the recording, or `NULL` if no recording exists) and `release_breakdown` (a dataframe of song counts by release for this show, or `NULL` if no recording exists).
+#' @return A list of three elements: `context` (a named list of the show's prose-summary facts, including ready-made `paragraph1`/`paragraph2` strings), `tracklist` (a dataframe with one row per song on the recording, or `NULL` if no recording exists) and `release_breakdown` (a dataframe of song counts by release for this show, or `NULL` if no recording exists).
 #' @export
 #'
 #' @examples
@@ -80,20 +95,19 @@ recap <- function(mygid,
 
   bands <- played_with %>% filter(gid==mygid) %>% pull(played_with)
 
-  # Joins a vector of band names into a grammatically correct list: "A" for
-  # one band, "A and B" for two, "A, B, and C" (Oxford comma) for three or more.
-  played_with_text <- if (length(bands)==0) {
-    ""
-  } else if (length(bands)==1) {
-    paste0(" with ", bands)
-  } else if (length(bands)==2) {
-    paste0(" with ", paste(bands, collapse = " and "))
-  } else {
-    paste0(" with ", paste(bands[seq_len(length(bands)-1)], collapse = ", "), ", and ", bands[length(bands)])
-  }
+  played_with_text <- if (length(bands)==0) "" else paste0(" with ", oxford_join(bands))
 
   url <- paste0("https://www.dischord.com/fugazi_live_series/", mygid)
   fls_link <- paste0("<a href='", url, "' target='_blank'>", mygid, "</a>")
+
+  attendance <- this_show$attendance
+
+  attendance_clause <- if (is.na(attendance)) {
+    paste0("Fugazi played ", where_played, played_with_text, ".")
+  } else {
+    paste0("Fugazi played to ", format(round(attendance), big.mark = "", scientific = FALSE), " people in ",
+           where_played, played_with_text, ".")
+  }
 
 # tour position and previous/next show on the same tour -----------------------------------------------------------------------
 
@@ -126,6 +140,12 @@ recap <- function(mygid,
            " on ", format(tour_ranked$next_date, "%d %B %Y"))
   }
 
+  tour_context_sentence <- paste0(
+    ifelse(is.na(previous_show_text), "This was the first show of the tour.", paste0("The previous show of the tour was at ", previous_show_text, ".")),
+    " ",
+    ifelse(is.na(next_show_text), "This was the last show of the tour.", paste0("The following show of the tour was at ", next_show_text, "."))
+  )
+
 # prior-visit counts, strictly before this show's date ------------------------------------------------------------------------
 
   country_visit_number <- sum(shows_data$country==this_show$country & shows_data$date<this_show$date) + 1
@@ -143,6 +163,20 @@ recap <- function(mygid,
           shows_data$date<this_show$date, na.rm = TRUE) + 1
   }
 
+  location_pieces <- c(
+    paste0("the ", format_ordinal(country_visit_number), " time Fugazi played in ", this_show$country),
+    if (is.na(subdivision_visit_number)==FALSE) paste0("the ", format_ordinal(subdivision_visit_number), " show in ", this_show$subdivision),
+    paste0("the ", format_ordinal(city_visit_number), " show in ", this_show$city),
+    paste0("the ", format_ordinal(venue_visit_number), " show at ", this_show$venue)
+  )
+
+  location_sentence <- paste0("It was ", oxford_join(location_pieces), ".")
+
+  tour_sentence <- paste0("This was show ", tour_position, " of ", tour_total, " on the '", tour_ranked$tour, "'.")
+
+  paragraph1 <- paste0("On ", datestring, ", ", attendance_clause, " ",
+                       tour_sentence, " ", location_sentence, " ", tour_context_sentence)
+
 # recording-derived stats ------------------------------------------------------------------------------------------------------
 
   show_renditions <- duration_data_da %>% filter(gid==mygid)
@@ -156,6 +190,7 @@ recap <- function(mygid,
   release_breakdown <- NULL
   release_breakdown_text <- NA_character_
   tracklist <- NULL
+  paragraph2 <- ""
 
   if (has_recording) {
 
@@ -170,7 +205,7 @@ recap <- function(mygid,
       mutate(piece = paste0(n_songs, " from ", release_title,
                              ifelse(is.na(release_date), "", paste0(" (", lubridate::year(release_date), ")")))) %>%
       pull(piece) %>%
-      paste(collapse = ", ")
+      oxford_join()
 
     # nth recorded rendition of each song, across the whole series
     rendition_ranked <- duration_data_da %>%
@@ -181,20 +216,33 @@ recap <- function(mygid,
       filter(gid==mygid) %>%
       select(gid, song_number, rendition_number)
 
+    # release/track lookup - only rid/release_title are needed here; the
+    # show's own song_number (below) becomes the displayed track number, not
+    # Repeatr1's studio-release track_number, which is unrelated to set order.
     track_lookup <- Repeatr1 %>%
       filter(gid==mygid, tracktype==1) %>%
-      select(gid, song_number, track_number, rid, release_title)
+      select(gid, song_number, rid, release_title)
 
     tracklist <- show_renditions %>%
       select(gid, song_number, title, minutes, position) %>%
       left_join(track_lookup, by = c("gid", "song_number")) %>%
       left_join(releasesdatalookup %>% select(rid, release_date), by = "rid") %>%
-      left_join(duration_summary %>% select(title, minutes_max, renditions), by = "title") %>%
+      left_join(duration_summary %>% select(title, minutes_mean, minutes_max, renditions), by = "title") %>%
       left_join(position_summary %>% select(title, position_mean), by = "title") %>%
       left_join(rendition_ranked, by = c("gid", "song_number")) %>%
       arrange(song_number) %>%
-      select(track_number, title, minutes, minutes_max, release_title, release_date,
-             rendition_number, renditions, position, position_mean)
+      mutate(track_number = row_number(),
+             release = paste0(release_title,
+                              ifelse(is.na(release_date), "", paste0(" (", lubridate::year(release_date), ")")))) %>%
+      select(track = track_number, title, mins = minutes, mean_mins = minutes_mean, max_mins = minutes_max,
+             release, rendition = rendition_number, renditions, position, mean_pos = position_mean)
+
+    recording_sentence <- paste0("A recording of this show is available, with a total duration of ", minutes, " minutes",
+                                 ifelse(is.na(sound_quality), "", paste0(", rated '", sound_quality, "' for sound quality")), ".")
+
+    songs_sentence <- paste0(n_songs, " songs: ", release_breakdown_text, ".")
+
+    paragraph2 <- paste0(recording_sentence, " ", songs_sentence)
 
   }
 
@@ -208,6 +256,7 @@ recap <- function(mygid,
     country = this_show$country,
     where_played = where_played,
     played_with_text = played_with_text,
+    attendance = attendance,
     tour = this_show$tour,
     tour_position = tour_position,
     tour_total = tour_total,
@@ -222,6 +271,8 @@ recap <- function(mygid,
     minutes = minutes,
     sound_quality = sound_quality,
     release_breakdown_text = release_breakdown_text,
+    paragraph1 = paragraph1,
+    paragraph2 = paragraph2,
     url = url,
     fls_link = fls_link
   )
