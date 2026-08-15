@@ -81,9 +81,10 @@ recap(
 ## Value
 
 A list of three elements: `context` (a named list of the show's
-prose-summary facts), `tracklist` (a dataframe with one row per song on
-the recording, or `NULL` if no recording exists) and `release_breakdown`
-(a dataframe of song counts by release for this show, or `NULL` if no
+prose-summary facts, including ready-made `paragraph1`/`paragraph2`
+strings), `tracklist` (a dataframe with one row per song on the
+recording, or `NULL` if no recording exists) and `release_breakdown` (a
+dataframe of song counts by release for this show, or `NULL` if no
 recording exists).
 
 ## Examples
@@ -94,27 +95,26 @@ result$context$where_played
 #> [1] "9:30 Club, Washington, DC, USA"
 result$tracklist
 #> # A tibble: 19 × 10
-#>    track_number title             minutes minutes_max release_title release_date
-#>           <int> <chr>               <dbl>       <dbl> <chr>         <date>      
-#>  1            3 brendan #1           3.18        4.13 repeater      1990-03-01  
-#>  2            2 bed for the scra…    2.88        5.03 red medicine  1995-05-12  
-#>  3            1 do you like me       2.5         6.48 red medicine  1995-05-12  
-#>  4            2 and the same         4.48        8.57 margin walker 1989-06-15  
-#>  5            1 margin walker        2.73        5.1  margin walker 1989-06-15  
-#>  6            9 styrofoam            2.87        8.55 repeater      1990-03-01  
-#>  7            6 caustic acrostic     2.43        2.65 end hits      1998-04-24  
-#>  8           11 shut the door        8.63       11.8  repeater      1990-03-01  
-#>  9            5 forensic scene       3.43        5.13 red medicine  1995-05-12  
-#> 10            8 by you               4.62        6.2  red medicine  1995-05-12  
-#> 11            9 great cop            1.75        3.33 in on the ki… 1993-06-18  
-#> 12           10 target               3.82        5.85 red medicine  1995-05-12  
-#> 13           11 instrument           3.52        7.57 in on the ki… 1993-06-18  
-#> 14            2 public witness p…    1.87        4.13 in on the ki… 1993-06-18  
-#> 15           11 back to base         1.87        2.67 red medicine  1995-05-12  
-#> 16            7 fell, destroyed      4.52        5.55 red medicine  1995-05-12  
-#> 17            7 long division        2.62        5.95 steady diet … 1991-08-01  
-#> 18            9 version              5.82        7.4  red medicine  1995-05-12  
-#> 19            8 two beats off        8.32        8.32 repeater      1990-03-01  
-#> # ℹ 4 more variables: rendition_number <int>, renditions <int>, position <dbl>,
-#> #   position_mean <dbl>
+#>    track title     mins mean_mins max_mins release rendition renditions position
+#>    <int> <chr>    <dbl>     <dbl>    <dbl> <chr>       <int>      <int>    <dbl>
+#>  1     1 brendan…  3.18      2.95     4.13 repeat…       161        170     0   
+#>  2     2 bed for…  2.88      3.03     5.03 red me…       123        310     0.05
+#>  3     3 do you …  2.5       2.69     6.48 red me…       107        282     0.1 
+#>  4     4 and the…  4.48      4.46     8.57 margin…       301        396     0.14
+#>  5     5 margin …  2.73      2.7      5.1  margin…       384        464     0.19
+#>  6     6 styrofo…  2.87      2.85     8.55 repeat…       242        292     0.24
+#>  7     7 caustic…  2.43      2.07     2.65 end hi…         2         53     0.29
+#>  8     8 shut th…  8.63      6.56    11.8  repeat…       304        340     0.38
+#>  9     9 forensi…  3.43      3.36     5.13 red me…       116        204     0.43
+#> 10    10 by you    4.62      4.38     6.2  red me…       136        237     0.48
+#> 11    11 great c…  1.75      1.92     3.33 in on …       197        277     0.57
+#> 12    12 target    3.82      3.86     5.85 red me…       104        267     0.62
+#> 13    13 instrum…  3.52      3.59     7.57 in on …       218        282     0.67
+#> 14    14 public …  1.87      2        4.13 in on …       138        274     0.76
+#> 15    15 back to…  1.87      1.75     2.67 red me…        72        142     0.81
+#> 16    16 fell, d…  4.52      3.96     5.55 red me…       112        137     0.86
+#> 17    17 long di…  2.62      2.52     5.95 steady…       348        522     0.9 
+#> 18    18 version   5.82      5.01     7.4  red me…         9         36     0.95
+#> 19    19 two bea…  8.32      4.62     8.32 repeat…       356        390     1   
+#> # ℹ 1 more variable: mean_pos <dbl>
 ```
