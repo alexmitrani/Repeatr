@@ -216,12 +216,12 @@ recap <- function(mygid,
       filter(gid==mygid) %>%
       select(gid, song_number, rendition_number)
 
-    # release/track lookup - only rid/release_title are needed here; the
-    # show's own song_number (below) becomes the displayed track number, not
-    # Repeatr1's studio-release track_number, which is unrelated to set order.
+    # release/track lookup - only rid is needed here to bring in release_date;
+    # the show's own song_number (below) becomes the displayed track number,
+    # not Repeatr1's studio-release track_number, which is unrelated to set order.
     track_lookup <- Repeatr1 %>%
       filter(gid==mygid, tracktype==1) %>%
-      select(gid, song_number, rid, release_title)
+      select(gid, song_number, rid)
 
     tracklist <- show_renditions %>%
       select(gid, song_number, title, minutes, position) %>%
@@ -231,11 +231,9 @@ recap <- function(mygid,
       left_join(position_summary %>% select(title, position_mean), by = "title") %>%
       left_join(rendition_ranked, by = c("gid", "song_number")) %>%
       arrange(song_number) %>%
-      mutate(track_number = row_number(),
-             release = paste0(release_title,
-                              ifelse(is.na(release_date), "", paste0(" (", lubridate::year(release_date), ")")))) %>%
-      select(track = track_number, title, mins = minutes, mean_mins = minutes_mean, max_mins = minutes_max,
-             release, rendition = rendition_number, renditions, position, mean_pos = position_mean)
+      mutate(track_number = row_number()) %>%
+      select(track = track_number, title, minutes, mins_mean = minutes_mean, mins_max = minutes_max,
+             position, pos_mean = position_mean, rendition = rendition_number, renditions, release_date)
 
     recording_sentence <- paste0("A recording of this show is available, with a total duration of ", minutes, " minutes",
                                  ifelse(is.na(sound_quality), "", paste0(", rated '", sound_quality, "' for sound quality")), ".")

@@ -7,6 +7,15 @@ params:
   gid: NA
 ---
 
+<style>
+table { font-size: 0.85em; }
+@media print {
+  @page { size: landscape; }
+  table { font-size: 7pt; }
+  th, td { padding: 2px 4px; }
+}
+</style>
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 library(Repeatr)
@@ -32,8 +41,6 @@ if (ctx$has_recording) {
   cat("No recording of this show is currently available.")
 }
 ```
-
-### Map
 
 ```{r map}
 df <- shows_data %>% filter(gid == ctx$gid)

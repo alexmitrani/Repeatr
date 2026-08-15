@@ -960,7 +960,7 @@ tabPanel("flow",
                       fluidRow(
                         column(8, uiOutput("menuOptions_gid_recap")),
                         # Button
-                        column(2, style = "margin-top: 29px;", downloadButton("downloadRecapDoc", ""))
+                        column(2, offset = 2, style = "margin-top: 29px;", downloadButton("downloadRecapDoc", ""))
                       ),
 
                       conditionalPanel(
@@ -992,8 +992,6 @@ tabPanel("flow",
                           condition = "output.recap_has_recording == true",
 
                           hr(),
-                          tags$br(),
-                          h3("Tracklist"),
                           tags$br(),
 
                           fluidRow(

@@ -267,3 +267,44 @@ No `app.R`/`recap_template.Rmd` changes needed - both just display whatever colu
 returns. Verified via a direct `recap()` call (confirmed the full, untruncated `release` string
 values) and a live browser check (DT column headers matched exactly, table rendered with no
 errors, release column merge confirmed visually for `berlin-germany-62892`).
+
+## Follow-up 3: button placement, page headers, print-to-PDF, final column layout
+
+Further feedback after the user tried the widened/renamed table (`DESCRIPTION` bumped
+`0.0.0.9227` → `0.0.0.9228`):
+
+- **Download button off-center** - the recap `fluidRow` summed to 10/12 bootstrap columns
+  (`column(8, selector)` + `column(2, button)`), leaving a 2-column gap at the true right edge
+  that other tabs (e.g. "sets", which sums to 12) don't have. Fixed by adding `offset = 2` to
+  the button's column (`column(2, offset = 2, ...)`), summing to 12 and pushing the button
+  flush right without narrowing the selector back down.
+- **"Map"/"Tracklist" mid-page headers removed** - `app.R` never had a "Map" header (only
+  `recap_template.Rmd`'s `### Map` did - removed there); `app.R`'s `h3("Tracklist")` above the
+  tracklist `DT::dataTableOutput` was dropped too (kept the `hr()`/`tags$br()` divider, just not
+  the text label), matching how the rest of the page flows straight from section to section.
+- **Tracklist columns finalized**: dropped the `release` (title+year) merge entirely per this
+  round's feedback - it was still too wide and wrapped to multiple lines, inflating the table's
+  height. Replaced with plain `release_date` (kept from `releasesdatalookup`, `release_title`
+  no longer selected into the tracklist pipeline at all - `track_lookup` narrowed accordingly).
+  Renamed the duration/position columns to match the naming the user associated with the
+  "variation" tab (`minutes`, `mins_mean`, `mins_max`, `position`, `pos_mean` - note this isn't
+  literally what `app.R`'s current `variation_data4()` reactive outputs, which still uses
+  unabbreviated `minutes_mean`/`position_mean` etc.; followed the user's explicit spelled-out
+  names rather than the literal existing code). Final column order: `track, title, minutes,
+  mins_mean, mins_max, position, pos_mean, rendition, renditions, release_date`.
+- **Print-to-PDF**: the user separately asked whether the downloaded HTML could be made to
+  print more narrowly so it isn't cut off. Added inline CSS to `recap_template.Rmd`
+  (`<style>` block right after the YAML header): `@media print { @page { size: landscape; }
+  table { font-size: 7pt; } th, td { padding: 2px 4px; } }`, plus a general `table { font-size:
+  0.85em; }` for on-screen viewing. Verified this actually works, not just visually: rendered
+  the template, then ran real headless-Chrome `--print-to-pdf` against the output and inspected
+  the resulting PDF's `/MediaBox` (792×612pt = US Letter **landscape**, confirming the `@page`
+  rule took effect) and extracted its text with `pypdf` - the entire 8-row tracklist for
+  `washington-dc-usa-90387`, all 9 columns, prints on a single page with nothing missing.
+  Documented this in `vignettes/Fugazetteer.Rmd`'s `## recap` section (also fixed that
+  section's now-stale tracklist description, which still mentioned "release" and omitted
+  `mins_mean`/`pos_mean`).
+
+Verified via a full live-app + browser pass on `berlin-germany-62892`: download button flush
+right like "sets"; no "Map"/"Tracklist" headers; tracklist table shows the new column set in
+the new order with narrower cells and no wrapped `release` text.
