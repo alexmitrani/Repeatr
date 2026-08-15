@@ -61,6 +61,14 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     select(gid, sound_quality) %>%
     filter(is.na(sound_quality)==FALSE)
 
+  # washington-dc-usa-100688 (10/6/88) has no surviving recording - the FLS
+  # site's own page comments confirm this, and the audio posted there is
+  # actually a mislabeled copy of the 6/15/88 recording (gid
+  # washington-dc-usa-61588, correctly dated in fls_tags). Its sound_quality
+  # rating describes that other recording, not a real one for this date.
+  gid_sound_quality <- gid_sound_quality %>%
+    filter(gid!="washington-dc-usa-100688")
+
   songvarslookup <- if (is.null(mysongvarslookup)) read.csv(system.file("extdata", "releases_songs_durations_wikipedia.csv", package = "Repeatr"), header = TRUE) else mysongvarslookup
   songvarslookup <- songvarslookup %>%
     rename(title = song, rid = releaseid)
@@ -126,6 +134,17 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
              original_source == "VHS Tape" ~ "VHS audio",
              TRUE ~ original_source
            ))
+
+  # washington-dc-usa-100688 (10/6/88) is a real, distinct show (confirmed
+  # against the site's own flyer - date/venue/played_with/door
+  # price/attendance are untouched), but the page's own comments confirm no
+  # recording survives for this date - the audio posted there is actually a
+  # mislabeled copy of the 6/15/88 recording. These three fields describe
+  # that other recording, not one that exists for this show.
+  othervariables <- othervariables %>%
+    mutate(recorded_by = ifelse(gid=="washington-dc-usa-100688", NA_character_, recorded_by),
+           mastered_by = ifelse(gid=="washington-dc-usa-100688", NA_character_, mastered_by),
+           original_source = ifelse(gid=="washington-dc-usa-100688", NA_character_, original_source))
 
   # One-off data-entry error on the site: this Hobart show's own "State"
   # filter link reads "TZ", while every other Hobart/Launceston show says
@@ -1129,38 +1148,10 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
 
   setwd(mydir)
 
-  # calculate duration summary -----------------------------------
-
-  song_songid <- Repeatr1 %>%
-    filter(tracktype==1) %>%
-    group_by(title, songid) %>%
-    slice(1) %>%
-    select(title, songid) %>%
-    ungroup() %>%
-    filter(title!="crowd")
-
-  duration_summary <- fls_tags %>%
-    group_by(title) %>%
-    summarize(renditions = n(),
-              minutes_min = round(min(seconds)/60, digits = 2),
-              minutes_median = round(median(seconds)/60, digits = 2),
-              minutes_max = round(max(seconds)/60, digits = 2),
-              minutes_mean = round(mean(seconds)/60, digits = 2),
-              minutes_sd = round(sd(seconds)/60, digits = 2)) %>%
-    ungroup() %>%
-    left_join(song_songid) %>%
-    filter(is.na(songid)==FALSE) %>%
-    select(-songid)
-
-    duration_summary <- duration_summary %>%
-      mutate(minutes_total = round(renditions*minutes_mean, digits = 2))
-
-    setwd(mydatadir)
-
-    save(duration_summary, file = "duration_summary.rda")
-
-    setwd(mydir)
-
+  # duration_summary is calculated later, alongside position_summary, once
+  # duration_data_da exists - both are now derived from the same table (see
+  # the comment there) rather than duration_summary being computed
+  # separately from raw fls_tags, which used to let the two silently diverge.
 
 # Played with data --------------------------------------------------------
 
@@ -1397,9 +1388,20 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
       mutate(minutes = round(seconds/60, digits = 2)) %>%
       select(-seconds)
 
+    # occurrence: within-show rank of each tagged appearance of a title, by
+    # tag/track order - needed so a song repeated within one show (e.g. two
+    # "interlude"-style or reprised tracks) pairs up with the matching
+    # Repeatr1 occurrence below instead of joining ambiguously on (gid,
+    # title) alone, which either cross-multiplies rows (when both sides
+    # repeat) or silently duplicates one duration onto every repeat (when
+    # only Repeatr1's side does).
     gid_song_minutes <- fls_tags %>%
       mutate(minutes = round(seconds/60, digits = 2)) %>%
-      select(gid, title, minutes)
+      arrange(gid, title, as.numeric(track)) %>%
+      group_by(gid, title) %>%
+      mutate(occurrence = row_number()) %>%
+      ungroup() %>%
+      select(gid, title, occurrence, minutes)
 
     checkmatch <- Repeatr1 %>%
       full_join(gid_song_minutes) %>%
@@ -1473,8 +1475,16 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
       mutate(last_performance=ifelse(date==last_performance,1,0)) %>%
       mutate(last_performance = ifelse(is.na(last_performance)==TRUE,0,last_performance))
 
+    # occurrence: matches gid_song_minutes's own within-(gid,title) rank (see
+    # its construction above) so a title repeated within one show pairs up
+    # with the correct tagged occurrence, same reasoning as duration_data_da.
     xray <- xray %>%
-      left_join(gid_song_minutes)
+      arrange(gid, title, song_number) %>%
+      group_by(gid, title) %>%
+      mutate(occurrence = row_number()) %>%
+      ungroup() %>%
+      left_join(gid_song_minutes, by = c("gid", "title", "occurrence")) %>%
+      select(-occurrence)
 
     # remove tracks from front-end data that were not actually included in the MP3 download
 
@@ -1591,36 +1601,37 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
 
     save(xray, file = "xray.rda")
 
+    # occurrence: within-show rank of each song_number by title, matched
+    # against gid_song_minutes's own by-tag-order rank (see its own comment
+    # above) - pairs repeated performances of the same song within a show up
+    # correctly instead of joining ambiguously on (gid, title) alone. This
+    # replaces what used to be five hardcoded per-gid/song_number filters
+    # patching a handful of "fake duplicates" the old (gid, title)-only join
+    # produced - no longer needed once the join itself is unambiguous.
     duration_data_da <- Repeatr1 %>%
       filter(tracktype==1) %>%
       select(gid,date, song_number, title) %>%
       mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
       mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>")) %>%
-      left_join(gid_song_minutes)
+      arrange(gid, title, song_number) %>%
+      group_by(gid, title) %>%
+      mutate(occurrence = row_number()) %>%
+      ungroup() %>%
+      left_join(gid_song_minutes, by = c("gid", "title", "occurrence")) %>%
+      select(-occurrence)
 
-    # need to knock out a few fake duplicates caused by the match not being done on all the required variables
-
+    # A gid with no recording at all (every row above unmatched) shouldn't
+    # appear here as a phantom all-NA "recording" - e.g.
+    # washington-dc-usa-100688 is a real show per the FLS site's own flyer,
+    # but its page comments confirm no recording survives for it (the audio
+    # posted there is a mislabeled copy of washington-dc-usa-61588's).
+    # Besides being wrong on its own terms, leaving such rows in would
+    # occupy real slots in the rendition-count ranking downstream (recap())
+    # for every title involved.
     duration_data_da <- duration_data_da %>%
-      filter(gid!="annapolis-md-usa-20688" | song_number!=13 | minutes!=1.57) %>%
-      filter(gid!="annapolis-md-usa-20688" | song_number!=16 | minutes!=1.48)
-
-    duration_data_da <- duration_data_da %>%
-      filter(gid!="canberra-australia-111793" | song_number!=5 | minutes!=1.88) %>%
-      filter(gid!="canberra-australia-111793" | song_number!=7 | minutes!=2.93)
-
-    duration_data_da <- duration_data_da %>%
-      filter(gid!="peoria-il-usa-100995" | song_number!=12 | minutes!=2.75) %>%
-      filter(gid!="peoria-il-usa-100995" | song_number!=14 | minutes!=1.48)
-
-    duration_data_da <- duration_data_da %>%
-      filter(gid!="richmond-va-usa-51198" | song_number!=10 | minutes!=1.97) %>%
-      filter(gid!="richmond-va-usa-51198" | song_number!=22 | minutes!=1.75)
-
-    duration_data_da <- duration_data_da %>%
-      filter(gid!="washington-dc-usa-73198" | song_number!=4 | minutes!=5.35) %>%
-      filter(gid!="washington-dc-usa-73198" | song_number!=23 | minutes!=4.08) %>%
-      filter(gid!="washington-dc-usa-73198" | song_number!=9 | minutes!=5.20) %>%
-      filter(gid!="washington-dc-usa-73198" | song_number!=22 | minutes!=5.02)
+      group_by(gid) %>%
+      filter(any(is.na(minutes)==FALSE)) %>%
+      ungroup()
 
     duration_data_da <- duration_data_da %>%
       group_by(gid) %>%
@@ -1671,6 +1682,31 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
       ungroup()
 
     save(position_summary, file = "position_summary.rda")
+
+    # duration_summary used to be calculated straight from raw fls_tags,
+    # independently of duration_data_da/position_summary - the two tables'
+    # renditions counts would then silently diverge whenever fls_tags and
+    # Repeatr1's tracktype==1 classification disagreed on how many times a
+    # song was recorded (repeated-within-show mismatches, mainly). Deriving
+    # it from duration_data_da instead, the same way position_summary is
+    # built just above, means the two are consistent by construction. A
+    # handful of individual occurrences have no matched duration (fls_tags
+    # tagged fewer repeats of a title than Repeatr1 classified within that
+    # show - a real, pre-existing data gap) - na.rm=TRUE skips only those
+    # rows' minutes, not the whole title, and they still count toward
+    # renditions since the performance itself is real.
+    duration_summary <- duration_data_da %>%
+      group_by(title) %>%
+      summarize(renditions = n(),
+                minutes_min = round(min(minutes, na.rm = TRUE), digits = 2),
+                minutes_median = round(median(minutes, na.rm = TRUE), digits = 2),
+                minutes_max = round(max(minutes, na.rm = TRUE), digits = 2),
+                minutes_mean = round(mean(minutes, na.rm = TRUE), digits = 2),
+                minutes_sd = round(sd(minutes, na.rm = TRUE), digits = 2)) %>%
+      ungroup() %>%
+      mutate(minutes_total = round(renditions*minutes_mean, digits = 2))
+
+    save(duration_summary, file = "duration_summary.rda")
 
     othervariables <- othervariables %>%
       left_join(gid_sound_quality) %>%

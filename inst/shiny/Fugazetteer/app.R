@@ -3730,20 +3730,27 @@ server <- function(input, output, session) {
 
     if (input$variation_metric == "position") {
 
+      # renditions here is deliberately this reactive's own cumulative tag
+      # count (matching the plot above), not position_summary's own
+      # renditions column - excluding it from the join keeps dplyr's
+      # implicit by= from picking up both "title" and "renditions" as join
+      # keys, which would silently drop every row where the two counts
+      # differ instead of just bringing in the position stats by title.
       mydf <- variation_data3() %>%
         group_by(title) %>%
         summarize(renditions = max(count)) %>%
         ungroup() %>%
-        left_join(position_summary) %>%
+        left_join(position_summary %>% select(-renditions), by = "title") %>%
         arrange(desc(position_sd))
 
     } else {
 
+      # same reasoning as the position branch above.
       mydf <- variation_data3() %>%
         group_by(title) %>%
         summarize(renditions = max(count)) %>%
         ungroup() %>%
-        left_join(duration_summary) %>%
+        left_join(duration_summary %>% select(-renditions), by = "title") %>%
         arrange(desc(minutes_sd))
 
     }
