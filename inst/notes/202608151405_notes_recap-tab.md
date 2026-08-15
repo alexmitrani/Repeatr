@@ -308,3 +308,119 @@ Further feedback after the user tried the widened/renamed table (`DESCRIPTION` b
 Verified via a full live-app + browser pass on `berlin-germany-62892`: download button flush
 right like "sets"; no "Map"/"Tracklist" headers; tracklist table shows the new column set in
 the new order with narrower cells and no wrapped `release` text.
+
+## Follow-up 4: prose overhaul (tour wording, visit-count redundancy, recording credits, door price) + print width fix
+
+The user tested `washington-dc-usa-33088` and requested a substantial rewrite of the prose
+logic (`DESCRIPTION` bumped `0.0.0.9228` → `0.0.0.9229`). All of this lives in `R/recap.R`
+only - `app.R`/`recap_template.Rmd` needed no prose-logic changes since paragraph text is
+built once in `recap()` and both call sites just `cat`/render `context$paragraph1`/`paragraph2`
+(the whole point of centralizing it there in Follow-up 1).
+
+- **Tour sentence**: `"...on the '{tour}' tour."` → `"...of the {tour}."` - no quotes, "of"
+  instead of "on", and the trailing generic "tour" word dropped (redundant when the tour's own
+  name is stated, and wrong-sounding for non-"Tour"-named touring periods like "Regional
+  Dates"). Applies uniformly regardless of what the touring period is called.
+- **New `overall_show_number` metric**: `shows_data` ranked by date across the *whole* series
+  (recorded or not - `arrange(date) %>% mutate(overall_show_number = row_number())`), leading
+  the location sentence as "the Xth Fugazi show" - replacing what used to be a per-country
+  visit count ("the Nth time Fugazi played in USA"), which is no longer shown at all.
+- **Redundancy-collapsing for city/subdivision/venue**: built a small broad-to-narrow chain
+  (subdivision if present, then city, then venue) and merge any *consecutive* levels whose
+  visit counts are equal into one clause using only the narrowest label - e.g. "the 7th show in
+  Washington, DC" (subdivision+city merged) or, on a venue debut in a single-venue city, just
+  "the 1st show at Tempodrom" (subdivision+city+venue all merged). This is **count-driven, not
+  hardcoded** - two levels merge whenever the narrower level has never (so far, as of this
+  show's date) hosted a show the broader level didn't, which is exactly the "Washington is the
+  only city in DC" / "Canberra is the only city in ACT" fact the user described, evaluated
+  historically per-show rather than as a permanent geographic list. If `overall_show_number==1`
+  (the very first Fugazi show ever), all group clauses are skipped entirely, since every count
+  is trivially 1 already. Verified this generalizes correctly with `canberra-australia-111793`
+  (second Canberra show, different venue from the first): "the 2nd show in Canberra, ACT, and
+  the 1st show at A.N.U. Bar" - subdivision+city stay merged (ACT has only ever hosted
+  Canberra), venue splits out separately (different venue this time). Checked Brasilia/DF too
+  (the user's contrasting example) - in the *current* dataset DF has in fact only ever hosted
+  Brasilia (both its shows are even at the same venue), so it fully collapses; this isn't a bug
+  in the logic, just a reflection of what's actually in the data right now - the algorithm
+  would automatically stop collapsing DF+city the moment an earlier-dated non-Brasilia DF show
+  existed in the data, with no code change needed.
+  Location-piece joining uses a new `oxford_join(..., force_comma = TRUE)` variant that always
+  puts a comma before "and" (even for 2 items) - needed because a merged label like "Washington,
+  DC" already contains a comma, and the band-list join (`played_with_text`) still uses the
+  original comma-optional form since band names don't have this problem.
+- **Previous/next show sentence**: merged into one sentence for the normal (has both) case
+  ("The previous show was at X, and the following show was at Y.") and dropped "of the tour"
+  from it entirely - the tour was already named in the tour_sentence just before it. The
+  first/last/only-show edge cases now name the touring period explicitly ("This was the first
+  show of the 1988 Winter/Spring Regional Dates.") instead of using the generic word "tour",
+  and a new "This was the only show of the {tour}." case was added for single-show touring
+  periods (there are 12 of these in the dataset - verified with
+  `washington-dc-usa-122988`).
+- **Door price**: `shows_data` already carries `price`/`currency` (no new join needed) - added
+  a clause right after the attendance sentence: `" The door price was {currency} {price}."`,
+  `" The show was free."` when `price==0` (verified with `baltimore-md-usa-42997`), or omitted
+  entirely when `price` is `NA`. New `format_price()` helper avoids a spurious ".0" on whole
+  numbers.
+- **Recording credits**: added a `myothervariables` parameter to `recap()` (`othervariables` is
+  where `recorded_by`/`mastered_by`/`original_source` actually live - `shows_data` doesn't
+  carry them), wired through in `app.R`'s `recap_result` reactive
+  (`myothervariables = othervariables`); the Rmd template picks up the lazy-loaded package
+  default automatically, same pattern as every other `my*` argument. New
+  `fix_caps()` helper sentence-cases any ALL-CAPS word (e.g. raw data value `"ANON"` →
+  `"Anon"`) while leaving already-mixed-case names alone - verified against
+  `amsterdam-netherlands-101688`, one of several real `recorded_by=="ANON"` rows in
+  `othervariables`. Sentence assembly handles all 2^3 combinations of the three fields being
+  present/absent (e.g. "Recorded by Anon on Cassette, mastered by Warren Russell-Smith." /
+  "Mastered by Fugazi." alone / omitted entirely if none are available), with the first letter
+  of the resulting sentence capitalized regardless of which clause ends up leading.
+- **Print width**: separately, the user noticed the downloaded document's tracklist table's
+  `title` column was roughly twice as wide as its content needed, with the landscape-print
+  workaround from Follow-up 3 just papering over that. Root cause: pandoc's bootstrap theme
+  applies `.table { width: 100%; }`, and under `table-layout: auto` a wide `width:100%` table
+  hands its slack disproportionately to the one free-text column. Fixed by adding
+  `table.table { width: auto !important; }` to `recap_template.Rmd`'s inline `<style>` block,
+  which lets the table shrink-wrap to its actual content width - and removed the forced
+  `@page { size: landscape; }` print rule entirely, since it's no longer needed. Verified this
+  properly, not just visually: rendered a temporary copy of the template with the landscape
+  rule stripped, ran real headless-Chrome `--print-to-pdf` against both the 8-row
+  (`washington-dc-usa-90387`) and 21-row (`berlin-germany-62892`, including its longest title
+  "last chance for a slow dance") tracklists, confirmed via `/MediaBox` (612×792pt = portrait
+  US Letter) and `pypdf` text extraction that every column of every row prints intact - the
+  table now just paginates normally across 2 pages by row count, no column is cut off. Updated
+  the vignette's print-to-PDF sentence to stop claiming landscape orientation.
+
+Verification: every scenario above was checked with a direct `recap()` call against the real
+gid it exercises (not synthetic data), and the final DC-show wording was additionally
+reproduced end-to-end in a live browser session against the running app (not just the
+standalone function) to confirm `app.R`'s `myothervariables` wiring works with the app's own
+locally-rebuilt `othervariables` object, not just the package default.
+
+## Follow-up 5: bring the country-level count back
+
+Follow-up 4 dropped the per-country visit count entirely in favor of the new overall-series
+count. The user asked for it back - "still interesting to know how many times they played in
+each country" - positioned right after the overall count (`DESCRIPTION` bumped `0.0.0.9229` →
+`0.0.0.9230`).
+
+Rather than bolting country on as an always-shown, never-collapsed extra clause, it was folded
+into the *same* redundancy-collapsing hierarchy as subdivision/city/venue (`R/recap.R`'s
+`level_names`/`level_counts` chain now starts with `"country"` instead of starting at
+subdivision) - consistent with the original principle from Follow-up 4 ("first show in Germany
+implies first in the city and venue too"), which applies identically one level further out
+(first show in a country implies first in whatever subdivision/city/venue it's in). Added a
+final fallback branch to the clause-formatting `if/else` for when a merged group contains only
+`"country"` (nothing narrower merged with it): `"the Nth time Fugazi played in {country}"`,
+distinct in phrasing from the "show in/at" wording used for subdivision/city/venue, matching
+the phrasing used before country was dropped in Follow-up 4.
+
+Verified: `washington-dc-usa-33088` now reads "...It was the 20th Fugazi show, the 20th time
+Fugazi played in USA, the 7th show in Washington, DC, and the 3rd show at dc space..." (country
+happens to coincide with the overall count here purely by coincidence - this is a very early
+Fugazi show where every prior show had indeed been in the USA; the two are never merged with
+each other, only the country/subdivision/city/venue chain merges internally, so both numbers
+are always shown even when equal - this was a deliberate scope decision, not a gap, since the
+user's ask was specifically to reinstate the country figure, not to extend the merge logic to
+the overall count). `berlin-germany-62892` and the Canberra/ACT second-show case
+(`canberra-australia-111793`) re-checked to confirm the subdivision/city/venue collapsing
+still works correctly with country now leading the chain. Reproduced live in the browser
+against the running app.

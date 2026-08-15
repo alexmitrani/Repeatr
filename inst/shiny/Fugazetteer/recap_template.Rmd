@@ -8,9 +8,9 @@ params:
 ---
 
 <style>
+table.table { width: auto !important; }
 table { font-size: 0.85em; }
 @media print {
-  @page { size: landscape; }
   table { font-size: 7pt; }
   th, td { padding: 2px 4px; }
 }

@@ -3338,7 +3338,8 @@ server <- function(input, output, session) {
           myreleasesdatalookup = releasesdatalookup,
           myduration_summary = duration_summary,
           myposition_summary = position_summary,
-          myplayed_with = played_with)
+          myplayed_with = played_with,
+          myothervariables = othervariables)
 
   })
 

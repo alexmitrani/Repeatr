@@ -12,7 +12,8 @@ recap(
   myreleasesdatalookup = NULL,
   myduration_summary = NULL,
   myposition_summary = NULL,
-  myplayed_with = NULL
+  myplayed_with = NULL,
+  myothervariables = NULL
 )
 }
 \arguments{
@@ -31,6 +32,8 @@ recap(
 \item{myposition_summary}{optional \code{position_summary} dataframe (as produced by \code{Repeatr_1()}) to be used for each song's average recorded set position. If omitted the currently lazy-loaded default will be used.}
 
 \item{myplayed_with}{optional \code{played_with} dataframe (as produced by \code{Repeatr_1()}) to be used for the bands Fugazi played with at the show. If omitted the currently lazy-loaded default will be used.}
+
+\item{myothervariables}{optional \code{othervariables} dataframe (as produced by \code{Repeatr_1()}) to be used for recording credits (recorded by/mastered by/original source). If omitted the currently lazy-loaded default will be used.}
 }
 \value{
 A list of three elements: \code{context} (a named list of the show's prose-summary facts, including ready-made \code{paragraph1}/\code{paragraph2} strings), \code{tracklist} (a dataframe with one row per song on the recording, or \code{NULL} if no recording exists) and \code{release_breakdown} (a dataframe of song counts by release for this show, or \code{NULL} if no recording exists).

@@ -26,16 +26,46 @@ format_ordinal <- function(n) {
 
 # Joins a vector of strings into a grammatically correct list: "A" for one
 # item, "A and B" for two, "A, B, and C" (Oxford comma) for three or more.
-oxford_join <- function(x) {
+# force_comma=TRUE always uses the comma-before-"and" form even for two items
+# (needed when an item's own label already contains a comma, e.g. "Washington, DC").
+oxford_join <- function(x, force_comma = FALSE) {
   n <- length(x)
   if (n==0) {
     ""
   } else if (n==1) {
     x
   } else if (n==2) {
-    paste(x, collapse = " and ")
+    if (force_comma) paste0(x[1], ", and ", x[2]) else paste(x, collapse = " and ")
   } else {
     paste0(paste(x[seq_len(n-1)], collapse = ", "), ", and ", x[n])
+  }
+}
+
+# Converts any ALL-CAPS word in a string to sentence case (e.g. "ANON." -> "Anon."),
+# leaving already mixed-case words (and non-letter tokens) untouched.
+fix_caps <- function(x) {
+  if (is.na(x)) {
+    return(x)
+  }
+  words <- strsplit(x, " ")[[1]]
+  words <- vapply(words, function(w) {
+    if (w==toupper(w) & w!=tolower(w)) {
+      paste0(toupper(substr(w, 1, 1)), tolower(substr(w, 2, nchar(w))))
+    } else {
+      w
+    }
+  }, character(1))
+  paste(words, collapse = " ")
+}
+
+# Formats a numeric price without a spurious trailing ".0".
+format_price <- function(p) {
+  if (is.na(p)) {
+    NA_character_
+  } else if (p==round(p)) {
+    as.character(round(p))
+  } else {
+    as.character(round(p, 2))
   }
 }
 
@@ -49,6 +79,7 @@ oxford_join <- function(x) {
 #' @param myduration_summary optional `duration_summary` dataframe (as produced by `Repeatr_1()`) to be used for each song's maximum recorded duration and total number of recorded renditions. If omitted the currently lazy-loaded default will be used.
 #' @param myposition_summary optional `position_summary` dataframe (as produced by `Repeatr_1()`) to be used for each song's average recorded set position. If omitted the currently lazy-loaded default will be used.
 #' @param myplayed_with optional `played_with` dataframe (as produced by `Repeatr_1()`) to be used for the bands Fugazi played with at the show. If omitted the currently lazy-loaded default will be used.
+#' @param myothervariables optional `othervariables` dataframe (as produced by `Repeatr_1()`) to be used for recording credits (recorded by/mastered by/original source). If omitted the currently lazy-loaded default will be used.
 #'
 #' @return A list of three elements: `context` (a named list of the show's prose-summary facts, including ready-made `paragraph1`/`paragraph2` strings), `tracklist` (a dataframe with one row per song on the recording, or `NULL` if no recording exists) and `release_breakdown` (a dataframe of song counts by release for this show, or `NULL` if no recording exists).
 #' @export
@@ -62,7 +93,7 @@ recap <- function(mygid,
                    myshows_data = NULL, myduration_data_da = NULL,
                    myrepeatr1 = NULL, myreleasesdatalookup = NULL,
                    myduration_summary = NULL, myposition_summary = NULL,
-                   myplayed_with = NULL) {
+                   myplayed_with = NULL, myothervariables = NULL) {
 
 # pre-processing to check that all required parameters are defined -----------------------------------------------------------
 
@@ -75,6 +106,7 @@ recap <- function(mygid,
   if (is.null(myduration_summary)==FALSE) { duration_summary <- myduration_summary } else { duration_summary <- Repeatr::duration_summary }
   if (is.null(myposition_summary)==FALSE) { position_summary <- myposition_summary } else { position_summary <- Repeatr::position_summary }
   if (is.null(myplayed_with)==FALSE) { played_with <- myplayed_with } else { played_with <- Repeatr::played_with }
+  if (is.null(myothervariables)==FALSE) { othervariables <- myothervariables } else { othervariables <- Repeatr::othervariables }
 
   this_show <- shows_data %>% filter(gid==mygid)
 
@@ -109,7 +141,27 @@ recap <- function(mygid,
            where_played, played_with_text, ".")
   }
 
-# tour position and previous/next show on the same tour -----------------------------------------------------------------------
+  price <- this_show$price
+  currency <- this_show$currency
+
+  door_price_clause <- if (is.na(price)) {
+    ""
+  } else if (price==0) {
+    " The show was free."
+  } else {
+    paste0(" The door price was ", currency, " ", format_price(price), ".")
+  }
+
+# overall show number, across the whole series (recorded or not) --------------------------------------------------------------
+
+  overall_rank <- shows_data %>%
+    arrange(date) %>%
+    mutate(overall_show_number = row_number()) %>%
+    filter(gid==mygid)
+
+  overall_show_number <- overall_rank$overall_show_number
+
+# tour position and previous/next show on the same touring period -------------------------------------------------------------
 
   tour_ranked <- shows_data %>%
     arrange(tour, date) %>%
@@ -140,11 +192,22 @@ recap <- function(mygid,
            " on ", format(tour_ranked$next_date, "%d %B %Y"))
   }
 
-  tour_context_sentence <- paste0(
-    ifelse(is.na(previous_show_text), "This was the first show of the tour.", paste0("The previous show of the tour was at ", previous_show_text, ".")),
-    " ",
-    ifelse(is.na(next_show_text), "This was the last show of the tour.", paste0("The following show of the tour was at ", next_show_text, "."))
-  )
+  tour_sentence <- paste0("This was show ", tour_position, " of ", tour_total, " of the ", this_show$tour, ".")
+
+  # The generic word "tour" is only used when there both is and isn't a
+  # previous/next show to report - i.e. the edge cases - and even then the
+  # touring period is named explicitly (works just as well for a "Tour" as
+  # for a set of "Regional Dates"). The middle case never needs the name at
+  # all, since the tour sentence above has already established it.
+  tour_context_sentence <- if (is.na(previous_show_text) & is.na(next_show_text)) {
+    paste0("This was the only show of the ", this_show$tour, ".")
+  } else if (is.na(previous_show_text)) {
+    paste0("This was the first show of the ", this_show$tour, ". The following show was at ", next_show_text, ".")
+  } else if (is.na(next_show_text)) {
+    paste0("The previous show was at ", previous_show_text, ". This was the last show of the ", this_show$tour, ".")
+  } else {
+    paste0("The previous show was at ", previous_show_text, ", and the following show was at ", next_show_text, ".")
+  }
 
 # prior-visit counts, strictly before this show's date ------------------------------------------------------------------------
 
@@ -163,18 +226,69 @@ recap <- function(mygid,
           shows_data$date<this_show$date, na.rm = TRUE) + 1
   }
 
-  location_pieces <- c(
-    paste0("the ", format_ordinal(country_visit_number), " time Fugazi played in ", this_show$country),
-    if (is.na(subdivision_visit_number)==FALSE) paste0("the ", format_ordinal(subdivision_visit_number), " show in ", this_show$subdivision),
-    paste0("the ", format_ordinal(city_visit_number), " show in ", this_show$city),
-    paste0("the ", format_ordinal(venue_visit_number), " show at ", this_show$venue)
-  )
+  # Build the country/subdivision/city/venue hierarchy (broad to narrow) and
+  # collapse any consecutive levels that share the same visit count into one
+  # clause, using only the narrowest level's label/preposition - since equal
+  # counts mean the broader level has never (so far) hosted a show anywhere
+  # else, making it redundant to state both (e.g. Washington is the only city
+  # ever visited in DC, so "the Nth show in Washington, DC" says it once;
+  # Tempodrom being the only venue visited in Berlin on a debut show collapses
+  # further to just "the 1st show at Tempodrom").
+  level_names <- c("country")
+  level_counts <- c(country_visit_number)
 
-  location_sentence <- paste0("It was ", oxford_join(location_pieces), ".")
+  if (is.na(subdivision_visit_number)==FALSE) {
+    level_names <- c(level_names, "subdivision")
+    level_counts <- c(level_counts, subdivision_visit_number)
+  }
+  level_names <- c(level_names, "city")
+  level_counts <- c(level_counts, city_visit_number)
+  level_names <- c(level_names, "venue")
+  level_counts <- c(level_counts, venue_visit_number)
 
-  tour_sentence <- paste0("This was show ", tour_position, " of ", tour_total, " on the '", tour_ranked$tour, "'.")
+  group_clauses <- c()
 
-  paragraph1 <- paste0("On ", datestring, ", ", attendance_clause, " ",
+  # If this is the very first Fugazi show ever, every location-level count is
+  # trivially 1 too - already said, no need to spell any of them out.
+  if (overall_show_number>1) {
+
+    n_levels <- length(level_names)
+    i <- 1
+
+    while (i<=n_levels) {
+
+      j <- i
+      while (j<n_levels && level_counts[j+1]==level_counts[i]) {
+        j <- j + 1
+      }
+
+      group_names <- level_names[i:j]
+      count <- level_counts[i]
+
+      clause <- if ("venue" %in% group_names) {
+        paste0("the ", format_ordinal(count), " show at ", this_show$venue)
+      } else if ("city" %in% group_names & "subdivision" %in% group_names) {
+        paste0("the ", format_ordinal(count), " show in ", this_show$city, ", ", this_show$subdivision)
+      } else if ("city" %in% group_names) {
+        paste0("the ", format_ordinal(count), " show in ", this_show$city)
+      } else if ("subdivision" %in% group_names) {
+        paste0("the ", format_ordinal(count), " show in ", this_show$subdivision)
+      } else {
+        paste0("the ", format_ordinal(count), " time Fugazi played in ", this_show$country)
+      }
+
+      group_clauses <- c(group_clauses, clause)
+      i <- j + 1
+
+    }
+
+  }
+
+  overall_clause <- paste0("the ", format_ordinal(overall_show_number), " Fugazi show")
+
+  location_sentence <- paste0("It was ", oxford_join(c(overall_clause, group_clauses), force_comma = TRUE), ".")
+
+  paragraph1 <- paste0("On ", datestring, ", ", attendance_clause, door_price_clause, " ",
                        tour_sentence, " ", location_sentence, " ", tour_context_sentence)
 
 # recording-derived stats ------------------------------------------------------------------------------------------------------
@@ -191,8 +305,19 @@ recap <- function(mygid,
   release_breakdown_text <- NA_character_
   tracklist <- NULL
   paragraph2 <- ""
+  recorded_by <- NA_character_
+  mastered_by <- NA_character_
+  original_source <- NA_character_
 
   if (has_recording) {
+
+    show_othervars <- othervariables %>% filter(gid==mygid)
+
+    if (nrow(show_othervars)==1) {
+      recorded_by <- fix_caps(show_othervars$recorded_by[1])
+      mastered_by <- fix_caps(show_othervars$mastered_by[1])
+      original_source <- fix_caps(show_othervars$original_source[1])
+    }
 
     release_breakdown <- Repeatr1 %>%
       filter(gid==mygid, tracktype==1) %>%
@@ -238,9 +363,37 @@ recap <- function(mygid,
     recording_sentence <- paste0("A recording of this show is available, with a total duration of ", minutes, " minutes",
                                  ifelse(is.na(sound_quality), "", paste0(", rated '", sound_quality, "' for sound quality")), ".")
 
+    has_recorded_by <- is.na(recorded_by)==FALSE & recorded_by!=""
+    has_mastered_by <- is.na(mastered_by)==FALSE & mastered_by!=""
+    has_original_source <- is.na(original_source)==FALSE & original_source!=""
+
+    recorded_clause <- if (has_recorded_by & has_original_source) {
+      paste0("Recorded by ", recorded_by, " on ", original_source)
+    } else if (has_recorded_by) {
+      paste0("Recorded by ", recorded_by)
+    } else if (has_original_source) {
+      paste0("Recorded on ", original_source)
+    } else {
+      NA_character_
+    }
+
+    mastered_clause <- if (has_mastered_by) paste0("mastered by ", mastered_by) else NA_character_
+
+    detail_pieces <- c(recorded_clause, mastered_clause)
+    detail_pieces <- detail_pieces[is.na(detail_pieces)==FALSE]
+
+    recording_detail_sentence <- if (length(detail_pieces)==0) {
+      ""
+    } else {
+      detail_text <- paste(detail_pieces, collapse = ", ")
+      paste0(toupper(substr(detail_text, 1, 1)), substr(detail_text, 2, nchar(detail_text)), ".")
+    }
+
     songs_sentence <- paste0(n_songs, " songs: ", release_breakdown_text, ".")
 
-    paragraph2 <- paste0(recording_sentence, " ", songs_sentence)
+    paragraph2 <- paste0(recording_sentence,
+                         ifelse(recording_detail_sentence=="", "", paste0(" ", recording_detail_sentence)),
+                         " ", songs_sentence)
 
   }
 
@@ -255,6 +408,9 @@ recap <- function(mygid,
     where_played = where_played,
     played_with_text = played_with_text,
     attendance = attendance,
+    price = price,
+    currency = currency,
+    overall_show_number = overall_show_number,
     tour = this_show$tour,
     tour_position = tour_position,
     tour_total = tour_total,
@@ -268,6 +424,9 @@ recap <- function(mygid,
     n_songs = n_songs,
     minutes = minutes,
     sound_quality = sound_quality,
+    recorded_by = recorded_by,
+    mastered_by = mastered_by,
+    original_source = original_source,
     release_breakdown_text = release_breakdown_text,
     paragraph1 = paragraph1,
     paragraph2 = paragraph2,
