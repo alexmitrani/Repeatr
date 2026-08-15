@@ -499,15 +499,18 @@ sound quality rating, and which releases its songs are drawn from.
 A map shows the location of the show.
 
 If a recording exists, a detailed tracklist is also shown, giving each
-song’s duration, its maximum recorded duration across all Fugazi shows,
-the release (and release date) it is drawn from, which numbered
-rendition of the song this was, its total number of recorded renditions,
-its position in the set, and its average position across all recorded
-renditions.
+song’s duration, its average and maximum recorded duration across all
+Fugazi shows, its position in the set and its average position across
+all recorded renditions, which numbered rendition of the song this was,
+its total number of recorded renditions, and the release date it is
+drawn from.
 
 The whole page can be downloaded as a self-contained HTML take-away
 document using the download button at the top of the page to the right
-of the ‘show’ selection box.
+of the ‘show’ selection box. The downloaded document can also be printed
+to PDF directly from the browser (e.g. File \> Print \> Save as PDF): it
+is set up to print in landscape orientation with a smaller table font so
+the tracklist fits the page without being cut off.
 
 ## stock
 
