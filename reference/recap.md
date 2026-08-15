@@ -17,7 +17,8 @@ recap(
   myreleasesdatalookup = NULL,
   myduration_summary = NULL,
   myposition_summary = NULL,
-  myplayed_with = NULL
+  myplayed_with = NULL,
+  myothervariables = NULL
 )
 ```
 
@@ -77,6 +78,13 @@ recap(
   [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md))
   to be used for the bands Fugazi played with at the show. If omitted
   the currently lazy-loaded default will be used.
+
+- myothervariables:
+
+  optional `othervariables` dataframe (as produced by
+  [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md))
+  to be used for recording credits (recorded by/mastered by/original
+  source). If omitted the currently lazy-loaded default will be used.
 
 ## Value
 

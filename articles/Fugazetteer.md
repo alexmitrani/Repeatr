@@ -508,9 +508,8 @@ drawn from.
 The whole page can be downloaded as a self-contained HTML take-away
 document using the download button at the top of the page to the right
 of the ‘show’ selection box. The downloaded document can also be printed
-to PDF directly from the browser (e.g. File \> Print \> Save as PDF): it
-is set up to print in landscape orientation with a smaller table font so
-the tracklist fits the page without being cut off.
+to PDF directly from the browser (e.g. File \> Print \> Save as PDF):
+the tracklist table is sized to fit the page width so it isn’t cut off.
 
 ## stock
 
