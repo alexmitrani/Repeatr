@@ -78,13 +78,15 @@ format_price <- function(p) {
 }
 
 # Describes another show (the previous or following one) relative to this
-# one: names the venue unless it's the same as this show's own venue ("the
-# same venue"), and skips the date in favor of adjacent_phrase (e.g. "the
-# night before"/"the next night") when it's literally the adjacent calendar
-# day - spelling out a matching venue/city/country and an adjacent date in
-# full reads as needless repetition on multi-night stands.
-describe_other_show <- function(venue, city, country, date, this_show, is_adjacent_day, adjacent_phrase) {
-  location_part <- if (venue==this_show$venue & city==this_show$city & country==this_show$country) {
+# one: names the venue in full unless same_venue says it's safe to collapse
+# to "the same venue" (the caller decides this, not just a raw venue==venue
+# comparison - see the note where previous/next_collapses_venue are built,
+# on why the *following* show's clause can't always collapse even when its
+# venue does match), and skips the date in favor of adjacent_phrase (e.g.
+# "the night before"/"the next night") when it's literally the adjacent
+# calendar day.
+describe_other_show <- function(venue, city, country, date, same_venue, is_adjacent_day, adjacent_phrase) {
+  location_part <- if (same_venue) {
     "the same venue"
   } else {
     paste0(venue, ", ", city, ", ", country)
@@ -204,11 +206,30 @@ recap <- function(mygid,
   tour_position <- tour_ranked$tour_position
   tour_total <- tour_ranked$tour_total
 
+  previous_same_venue <- is.na(tour_ranked$previous_date)==FALSE &
+    tour_ranked$previous_venue==this_show$venue & tour_ranked$previous_city==this_show$city &
+    tour_ranked$previous_country==this_show$country
+
+  next_same_venue <- is.na(tour_ranked$next_date)==FALSE &
+    tour_ranked$next_venue==this_show$venue & tour_ranked$next_city==this_show$city &
+    tour_ranked$next_country==this_show$country
+
+  # The following-show clause can only collapse to "the same venue" when the
+  # previous-show clause hasn't just named a *different* venue - otherwise
+  # "the same venue" reads as anaphoric to whichever venue was mentioned
+  # immediately before it (the previous show's) rather than to this show's
+  # own, e.g. on the first night of a stand: "...at Academy, Bristol,
+  # England, the night before, and the following show was at the same
+  # venue..." would wrongly imply the *next* show was also in Bristol.
+  # The previous-show clause has no such risk, since nothing else in the
+  # sentence has been named yet when it appears.
+  next_collapses_venue <- next_same_venue & (is.na(tour_ranked$previous_date) | previous_same_venue)
+
   previous_show_text <- if (is.na(tour_ranked$previous_date)) {
     NA_character_
   } else {
     describe_other_show(tour_ranked$previous_venue, tour_ranked$previous_city, tour_ranked$previous_country,
-                         tour_ranked$previous_date, this_show,
+                         tour_ranked$previous_date, same_venue = previous_same_venue,
                          is_adjacent_day = (tour_ranked$previous_date==this_show$date-1),
                          adjacent_phrase = "the night before")
   }
@@ -217,7 +238,7 @@ recap <- function(mygid,
     NA_character_
   } else {
     describe_other_show(tour_ranked$next_venue, tour_ranked$next_city, tour_ranked$next_country,
-                         tour_ranked$next_date, this_show,
+                         tour_ranked$next_date, same_venue = next_collapses_venue,
                          is_adjacent_day = (tour_ranked$next_date==this_show$date+1),
                          adjacent_phrase = "the next night")
   }
