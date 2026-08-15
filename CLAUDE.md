@@ -22,6 +22,9 @@
 - when making changes, make sure that the data in fugazibase and the
   data in Repeatr stay consistent - changes to the data used by one
   package should affect the other package.
+- bump version by a small increment every time implementation of changes
+  is completed (should be once per work session unless no changes are
+  made).
 
 # Session notes
 

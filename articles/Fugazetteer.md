@@ -6,63 +6,43 @@
 easy to get some insights and answer questions about the Fugazi Live
 Series. It also provides several new ways of finding shows to listen to.
 
-![](images/paste-4B1DA5E2.png)
+The sections and headings below follow the app’s own page structure, so
+open the app itself alongside this vignette and follow along in the
+corresponding section/page as you read.
 
 The app has 15 pages spread across 5 sections:
 
 - today (1 page) - provides a summary of Fugazi shows on this day in
   history.
 
-  ![](images/paste-AA94891E.png)
-
 - flow (9 pages) - includes top-level menus for ‘year’ and ‘tour’ which
   will filter the contents of all the pages in this section.
-
-  ![](images/paste-B24A6D35.png)
 
 - stock (4 pages) - includes a top-level menu for ‘release’ which will
   filter the contents of all the pages in this section.
 
-  ![](images/paste-50A7389F.png)
-
 - quiz (1 page) - links to Fugazi Live Series Quiz \#1 and shows the
   high scores to date.
-
-  ![](images/paste-DC822963.png)
 
 - index (1 page) - links to Fugazi Live Series Link Track Index and
   shows the contents of the index.
 
-  ![](images/paste-CC15C5E6.png)
-
 Most of the pages have a visualisation (map or graph) and a data table
-further down the page, with the exception of ‘transition’, ‘duration’
-and ‘search’ which only have data tables.
+further down the page, with the exception of ‘transition’, ‘details’ and
+‘search’ which only have data tables.
 
 Most pages have a download button located to the right of the menu
 controls, or at the bottom of the page if there are no menu controls,
 which can be used to download the data table as a CSV file.
-
-![](images/paste-9F81855C.png)
 
 Most of the input boxes are ‘selectize’ controls - when you select the
 control a menu will appear, and if you start typing the menu will be
 filtered by what you type. You can select any number of items or none at
 all.
 
-![‘Selectize’ control for tours on the ‘shows’
-page.](images/paste-ECE7F969.png)
-
-‘Selectize’ control for tours on the ‘shows’ page.
-
 A few of the input boxes are menus where you can only select one
 option - these have a little down arrow to the right side of the input
 box.
-
-![Selectize control for variable on the ‘releases’
-page.](images/paste-1F7CA3DC.png)
-
-Selectize control for variable on the ‘releases’ page.
 
 The data for songs is limited to songs that were played live at least
 twice in the Fugazi Live Series. That is 92 songs which feature in the
@@ -103,8 +83,6 @@ By default your local date and time will be shown - today. If you wish,
 you can edit the date in the input box to see the Fugazi shows on
 another date.
 
-![](images/paste-85995EA5.png)
-
 ## flow
 
 > pulse stalls  
@@ -126,12 +104,6 @@ that variable. The selections apply sequentially from left to right and
 from top to bottom. For instance, if you select a year the remaining
 menus will be filtered to show only data for the selected year.
 
-![Select controls on ‘shows’ page showing sequential selection
-functionality.](images/paste-88B8512B.png)
-
-Select controls on ‘shows’ page showing sequential selection
-functionality.
-
 ### shows
 
 The map shows the locations of the Fugazi shows and the table below the
@@ -139,17 +111,11 @@ map has some details of each show and a link to the corresponding page
 on the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series)
 site.
 
-![](images/paste-1D915FB5.png)
-
 The marker colours go from dark red to light red in chronological order,
 with the most recent shows having the lightest colour.
 
-![](images/paste-E1EA4F10.png)
-
 The data can be filtered by typing in the selection boxes for countries
 and cities.
-
-![](images/paste-3C34068D.png)
 
 The map has zoom controls and by clicking and dragging you can pan the
 map view. The area of the red circle for each show is proportional to
@@ -158,18 +124,12 @@ pop-up will appear with the date, the venue, the city, the attendance,
 and the coordinates - in case you should want to look for a place using
 a different mapping application.
 
-![](images/paste-709B80CA.png)
-
 The timeline slider below the map allows filtering the data by date. The
 position of the slider control corresponds to the oldest date of the
 selection, so if you move the slider forward from left to right you will
 progressively filter out older shows.
 
-![](images/paste-04B569C8.png)
-
-There are some specific controls for use with the timeline slider.
-
-![](images/paste-8255316C.png)
+There are some specific controls for use with the timeline slider:
 
 - the ‘map marker’ button will change the period to 1 week and the step
   to 1 day, starting at the date selected with the timeline slider. It
@@ -178,26 +138,16 @@ There are some specific controls for use with the timeline slider.
   through the tour one day at a time, or use the ‘play’ button to the
   bottom-right of the timeline to animate the tour.
 
-  ![](images/paste-BFCB64BD.png)
-
 - ‘fast-forward’ will move the selection forward in time by one step
 
-  ![](images/paste-121A7DF1.png)
-
 - ‘rewind’ will move the selection back in time by one step
-
-  ![](images/paste-56BF5277.png)
 
 - ‘home’ will move the timeline slider back to the beginning and set the
   period to 792 weeks again, to select the entire series. It is
   recommended to use the home button before changing the selections in
   the selection boxes above the map.
 
-  ![](images/paste-3FFF004B.png)
-
-Notice that pressing the ‘home’ button reveals additional controls:
-
-![](images/paste-3CFB23A6.png)
+Pressing the ‘home’ button reveals additional controls:
 
 - period_weeks indicates the duration of the selected period in weeks.
   It is initially set to 792 weeks which covers the full duration of the
@@ -219,8 +169,6 @@ be especially useful on mobile devices with small screens.
 
 The data table below the map and the timeline controls shows summary
 data for the selected shows.
-
-![](images/paste-62A3D4E1.png)
 
 Each of the following columns can be sorted using the sort controls to
 the right of the variable name:
@@ -259,13 +207,9 @@ either a summary and a map:
 The map will show the show locations, using a different colour for each
 band.
 
-![](images/paste-337FE285.png)
-
 The data table accompanying the map shows details for each show and a
 link that can be used to navigate to the corresponding page of the
 Fugazi Live Series site.
-
-![](images/paste-C17B4091.png)
 
 #### summary
 
@@ -274,12 +218,8 @@ information will be limited to the top 20 bands if no bands are
 specified. If you specify one or more bands, the bar chart and the table
 will show the data for these bands.
 
-![](images/paste-9D4E78B1.png)
-
 The summary data table will detail the number of shows with each band in
 descending order.
-
-![](images/paste-69F8D526.png)
 
 ### attendance
 
@@ -289,17 +229,11 @@ This page offers a choice between ‘summary’ and ‘details’.
 
 If you choose ‘summary’ the graph will show cumulative attendance.
 
-![](images/paste-4E645C95.png)
-
 The colours identify specific tours. The graph is interactive - if you
 hover over a point it will display details of the date, the cumulative
 attendance and the tour.
 
 The ‘summary’ data table will show summary data for each tour.
-
-![Extract from attendance data table.](images/paste-3C6573F9.png)
-
-Extract from attendance data table.
 
 Each of the following columns can be sorted using the sort controls to
 the right of the variable name:
@@ -325,12 +259,8 @@ If ‘detailed’ is chosen, the graph will show the attendance of each show
 in the selected period, this is most useful when you want to focus on a
 specific tour.
 
-![](images/paste-DF650D6D.png)
-
 The data table will show information for the specific shows in the
 selected period.
-
-![](images/paste-2CDA2754.png)
 
 Each of the following columns can be sorted using the sort controls to
 the right of the variable name:
@@ -352,8 +282,6 @@ the right of the variable name:
 This page offers a stacked bar chart designed to show the composition of
 each show in a variety of ways.
 
-![](images/paste-626A58E7.png)
-
 The ‘graph’ menu offers three options:
 
 - releases - show how many songs were drawn from each release. This
@@ -372,22 +300,12 @@ The ‘units’ menu offers two options:
 
 - minutes - y-axis of the graph in units of minutes
 
-![1996 Southern USA Tour: minutes by release](images/plot1.png)
-
-1996 Southern USA Tour: minutes by release
-
-![1996 Southern USA Tour: minutes by released /
-unreleased](images/plot2.png)
-
-1996 Southern USA Tour: minutes by released / unreleased
-
-![1996 Southern USA Tour: minutes by songs / other](images/plot3.png)
-
-1996 Southern USA Tour: minutes by songs / other
+Try the different combinations of ‘graph’ and ‘units’ to see, for
+example, how the composition of a tour by release compares to its
+composition by released/unreleased status, or by songs versus other
+material.
 
 The data table below the graph provides summary data for each show:
-
-![](images/paste-3419E207.png)
 
 - fls_link - a link to the corresponding page of the [Fugazi Live
   Series](https://www.dischord.com/fugazi_live_series) site
@@ -406,11 +324,10 @@ particular release, and so on.
 ### renditions
 
 Here you can select specific songs and see information on how the number
-of times they were played varied over time. For instance, here the
-selected songs were all played a limited number of times, often over a
-very limited period of time:
-
-![](images/paste-973341C3.png)
+of times they were played varied over time. For instance, you could
+select songs that were all played a limited number of times, often over
+a very limited period of time, to see how their rendition counts grew
+over that period.
 
 The graph shows the cumulative rendition counts for a selection of songs
 that were played in the specified period. To avoid the graph getting
@@ -418,8 +335,6 @@ cluttered the songs are sorted in descending order of growth rate over
 the period, and the song selection is limited to a maximum number of
 songs. The maximum number of songs to be shown can be varied using the
 slider control under the graph.
-
-![](images/paste-204EC938.png)
 
 The data can be filtered by the following variables:
 
@@ -436,8 +351,6 @@ for significant periods.
 
 The data table shows summary information for each song over the
 specified period.
-
-![](images/paste-5D982D39.png)
 
 The data table offers the following columns:
 
@@ -468,15 +381,9 @@ showing ‘to’ (song), ‘from’ (song) and ‘count’ - the number of times
 transition was performed. The maximum number of transitions to be shown
 can be varied using the slider control beneath the graph.
 
-![](images/paste-1DAC5087.png)
-
 The data table shows the number of times each transition featured in the
 specified period. The transitions are shown in descending order of
 plays.
-
-![Data table on the ‘transitions’ page.](images/paste-6E1FFB77.png)
-
-Data table on the ‘transitions’ page.
 
 The data table includes:
 
@@ -502,8 +409,6 @@ The filters are applied sequentially from left to right, so for instance
 if you specify ‘life and limb’ in ‘from’, the menu for ‘to’ will only
 show songs which followed ‘life and limb’.
 
-![](images/paste-7A7D16CF.png)
-
 Both filters are optional. If only one song is specified shows
 containing that song will be listed. If no song is specified all the
 shows will be listed. There is a subtle difference between searching for
@@ -513,8 +418,6 @@ set, and the ‘to’ box will omit shows where the song was the first one
 of the set. This is why searching for ‘glueman’ with ‘from’ yields only
 25 shows but searching for ‘glueman’ with ‘to’ yields 131 results -
 ‘glueman’ was a hard song to follow!
-
-![](images/paste-8936397B.png)
 
 The data table includes:
 
@@ -540,8 +443,6 @@ the full series or you can filter first by year and/or tour to pick
 shows from a shorter list. For example, we can compare the three Swedish
 shows from the 2000 North European tour.
 
-![](images/paste-71564DE5.png)
-
 Note that the show identifiers are the same as those used on the Fugazi
 Live Series website and have the following format:
 city-country-(m)m-dd-yy. The month will be one or two digits depending
@@ -549,8 +450,6 @@ on which month it is.
 
 Once shows have been selected, two results tables will appear. The first
 is a summary table.
-
-![](images/paste-8668F948.png)
 
 The summary table tells us that 52 unique songs were played: 32 songs
 were played only once, 12 songs were played twice, and 8 songs were
@@ -562,8 +461,6 @@ which show or shows it was performed at. The table is sorted in
 descending order of the number of shows each song was performed at, so
 in this case the top part of the table lists the 8 songs that were
 performed at all 3 shows.
-
-![](images/paste-9AFEBC56.png)
 
 The ‘details’ table can be downloaded as a CSV file using the download
 button at the top of the page to the right of the ‘shows’ selection box.
@@ -579,17 +476,11 @@ in many stacks. Once you have chosen a show and a stack, you will get a
 short sequence of 9-12 shows including the selected shows and covering
 all 94 songs that Fugazi played live at least twice.
 
-![](images/paste-29DAE6BE.png)
-
 Once a stack has been selected, two results tables will appear. The
 first is a summary table, including links to the shows.
 
-![](images/paste-FD566AEF.png)
-
 The second table provides details of the shows in which each song was
 played.
-
-![](images/paste-9D4C7C1C.png)
 
 The summary table can be downloaded to a CSV file using the download
 button at the top of the page to the right of the ‘stack’ selection box.
@@ -608,14 +499,8 @@ The bar chart shows summary data for each song of each Fugazi release,
 sorted in ascending order of release date and track number from top to
 bottom.
 
-![Bar chart on the ‘discography’ page.](images/AAAAAElFTkSuQmCC.png)
-
-Bar chart on the ‘discography’ page.
-
 The legend can be turned on or off - you may prefer to have it off if
 you are using a device with a small screen.
-
-![](images/paste-AECA59DC.png)
 
 The ‘variable’ menu has five options:
 
@@ -642,8 +527,6 @@ or more releases have been specified.
 
 If no release filter has been applied, the data table will show summary
 information for each release.
-
-![](images/paste-7A5A3649.png)
 
 The data table includes the following columns, all of which can be
 sorted:
@@ -688,8 +571,6 @@ effects of age from the implied preferences.
 If one or more releases are specified using the top-level menu, both the
 graph and the data table will adapt to focus on the selected releases.
 
-![](images/paste-E0A5044D.png)
-
 The data table includes the following columns, all of which can be
 sorted:
 
@@ -713,21 +594,20 @@ sorted:
 
 ### variation
 
-This page shows cumulative distributions of song durations and summary
-data for the renditions of each song. You can filter the contents to be
-displayed on the graph by release or by song, and in both cases several
-can be chosen. The graph will show by default a maximum of 10 songs -
-this maximum number of songs can be varied using the slider beneath the
-graph.
-
-![](images/paste-7303E27E.png)
+This page shows cumulative distributions and summary data for the
+renditions of each song, using either of two metrics selectable from the
+“metric” dropdown next to the songs selector: **duration** (the length
+of the rendition, in minutes) or **position** (the song’s normalized
+position within the show’s setlist, from 0 for the first song to 1 for
+the last song). You can filter the contents to be displayed on the graph
+by release or by song, and in both cases several can be chosen. The
+graph will show by default a maximum of 10 songs - this maximum number
+of songs can be varied using the slider beneath the graph.
 
 The data table below the graph shows summary data for renditions of the
 selected songs.
 
-![](images/paste-8B14AFDD.png)
-
-The data table includes:
+When **duration** is selected, the data table includes:
 
 - renditions - the number of times the song was played
 
@@ -746,20 +626,45 @@ The data table includes:
   measure of spread, it indicates how much variation there is across all
   of the renditions.
 
-- minutes_total - the total duration of all the times the song was
-  played.
+When **position** is selected, the data table includes the equivalent
+columns for the song’s position in the setlist instead:
 
-### duration
+- renditions - the number of times the song was played
+
+- position_min - the minimum normalized position (0 = first song in the
+  set).
+
+- position_median - the median normalized position: if all the
+  renditions were lined up in order from earliest to latest in the set
+  this would be the middle one.
+
+- position_max - the maximum normalized position (1 = last song in the
+  set).
+
+- position_mean - the average normalized position.
+
+- position_sd - the standard deviation of the normalized position - this
+  is a measure of spread, it indicates how much variation there is in
+  where the song falls in the set across all of the renditions.
+
+Neither view includes a total column in the app - it isn’t a meaningful
+figure for position, and for consistency it’s left out of the duration
+view too.
+
+The data table can be downloaded as a CSV file using the download button
+at the top of the page; the downloaded file reflects whichever metric is
+currently selected.
+
+### details
 
 On this page you can select a song and get a table listing all the shows
-containing the specified song and the duration of each specific
-rendition (in minutes). You can also select more than one song. The
-table headers can be used to sort the data, so for instance you can find
-the shows with the longest (or shortest) renditions of a particular
-song. The search box can be used to filter for a particular show so you
-can see the durations of all the songs played in that show.
-
-![](images/paste-D775DE2A.png)
+containing the specified song, its position in that show’s setlist, and
+the duration of each specific rendition (in minutes). You can also
+select more than one song. The table headers can be used to sort the
+data, so for instance you can find the shows with the longest (or
+shortest) renditions of a particular song, or the earliest/latest it was
+played in a set. The search box can be used to filter for a particular
+show so you can see the details of all the songs played in that show.
 
 - fls_link provides a link to the corresponding page of the [Fugazi Live
   Series](https://www.dischord.com/fugazi_live_series) site
@@ -770,16 +675,20 @@ can see the durations of all the songs played in that show.
   first song in that show. Larger numbers will indicate that the song
   was played later in the set.
 
+- position - the song’s normalized position in the set, from 0 (first
+  song) to 1 (last song).
+
 - title - the name of the song
 
 - duration - the duration of the song in minutes.
 
+The table can be downloaded as a CSV file using the download button at
+the top of the page.
+
 ### search
 
 This page allows you to search for shows that contain a specific
-selection of songs. For instance:
-
-![](images/paste-0C1634D7.png)
+selection of songs.
 
 The data table lists the shows that contain any of the specified songs
 (or all the shows if none were specified), including the following
@@ -798,18 +707,14 @@ columns:
 
 If you filter by release but not songs the data will be limited to all
 shows containing songs from the specified release. This provides a neat
-way of finding shows with many songs from your favourite album, for
-instance if you like ‘End Hits’ sorting in descending order of hits
-gives you these results:
-
-![](images/paste-41122B16.png)
+way of finding shows with many songs from your favourite album - for
+instance, filtering by ‘End Hits’ and sorting in descending order of
+hits will surface the shows with the most ‘End Hits’ songs in the set.
 
 ## quiz
 
 For further information about the quiz, follow the link at the top of
 the quiz page. If you are ready for a challenge, give it a try!
-
-![](images/paste-04B2C4FD.png)
 
 The top half of the scores will be included in the High Scores table. If
 you complete the quiz and place in the top half, your entry will be
@@ -831,16 +736,14 @@ generic names like “intro”, “interlude”, “encore”, or “link track�
 noticed there are a few of these that get played repeatedly, sometimes
 over a period of years, so I started giving them index numbers to make
 it easier to find and compare these pieces of music. So far I have found
-3 different link tracks that got played live at least twice - see the
-image. I’ve given them the same index number if they seem to be the same
-piece of music. The idea is to add new numbers to the link track index
-for other link tracks that are different from the ones that have been
-found so far. Please add to the link track index if you come across any
-other ones - using the ‘Link Track Index’ link will take you to a form
-where you can enter information. Any link track information you add
-using the form will be included in the link track index shown on this
-page of the Fugazetteer site.
-
-![](images/paste-37A45C32.png)
+3 different link tracks that got played live at least twice. I’ve given
+them the same index number if they seem to be the same piece of music.
+The idea is to add new numbers to the link track index for other link
+tracks that are different from the ones that have been found so far.
+Please add to the link track index if you come across any other ones -
+using the ‘Link Track Index’ link will take you to a form where you can
+enter information. Any link track information you add using the form
+will be included in the link track index shown on this page of the
+Fugazetteer site.
 
 Thanks.

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9223</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9224</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,6 +84,9 @@
 <dt>minutes</dt>
 <dd><p>duration of the song in minutes</p></dd>
 
+<dt>position</dt>
+<dd><p>normalized position of the song within the show's setlist, from 0 (first song) to 1 (last song), rounded to 2 decimal places</p></dd>
+
 
 </dl></div>
     <div class="section level2">
@@ -98,19 +101,19 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">duration_data_da</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 18,287 × 7</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    gid                 date       song_number title       urls  fls_link minutes</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> aalst-belgium-92390 1990-09-23           2 turnover    http… &lt;a href…    4.43</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> aalst-belgium-92390 1990-09-23           3 brendan #1  http… &lt;a href…    2.93</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> aalst-belgium-92390 1990-09-23           4 merchandise http… &lt;a href…    3.07</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> aalst-belgium-92390 1990-09-23           5 sieve-fist… http… &lt;a href…    3.58</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> aalst-belgium-92390 1990-09-23           6 and the sa… http… &lt;a href…    4.3 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> aalst-belgium-92390 1990-09-23           8 bulldog fr… http… &lt;a href…    2.75</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> aalst-belgium-92390 1990-09-23           9 burning too http… &lt;a href…    2.72</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> aalst-belgium-92390 1990-09-23          11 suggestion  http… &lt;a href…    6.4 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> aalst-belgium-92390 1990-09-23          13 reclamation http… &lt;a href…    3.52</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> aalst-belgium-92390 1990-09-23          14 blueprint   http… &lt;a href…    4.33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 18,287 × 8</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    gid              date       song_number title urls  fls_link minutes position</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> aalst-belgium-9… 1990-09-23           2 turn… http… &lt;a href…    4.43     0   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> aalst-belgium-9… 1990-09-23           3 bren… http… &lt;a href…    2.93     0.05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> aalst-belgium-9… 1990-09-23           4 merc… http… &lt;a href…    3.07     0.1 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> aalst-belgium-9… 1990-09-23           5 siev… http… &lt;a href…    3.58     0.15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> aalst-belgium-9… 1990-09-23           6 and … http… &lt;a href…    4.3      0.2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> aalst-belgium-9… 1990-09-23           8 bull… http… &lt;a href…    2.75     0.3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> aalst-belgium-9… 1990-09-23           9 burn… http… &lt;a href…    2.72     0.35</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> aalst-belgium-9… 1990-09-23          11 sugg… http… &lt;a href…    6.4      0.45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> aalst-belgium-9… 1990-09-23          13 recl… http… &lt;a href…    3.52     0.55</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> aalst-belgium-9… 1990-09-23          14 blue… http… &lt;a href…    4.33     0.6 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 18,277 more rows</span></span>
 </code></pre></div>
     </div>

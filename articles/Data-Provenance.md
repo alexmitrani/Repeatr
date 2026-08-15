@@ -72,7 +72,8 @@ dataset without ever touching the lazy-loaded original (see the
             ▼
     Repeatr_1()
     ├─ Repeatr0, othervariables, gid_sound_quality, played_with*, shows_data,
-    │  fls_tags*, duration_data_da, duration_summary, cumulative_*, xray,
+    │  fls_tags*, duration_data_da, duration_summary, position_summary,
+    │  cumulative_*, xray,
     │  releasesdatalookup, releases_menu_list, releaseid_variable_colour_code,
     │  transitions_data_da, last_performance_data, songvarslookup,
     │  song_tempo_bpm_data                          [Derived-cleaned]
@@ -120,7 +121,7 @@ for that mapping.
 | `played_with`, `played_with_summary` | Derived-cleaned | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md) |
 | `shows_data` | Derived-cleaned | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md); also read directly by `app.R` |
 | `fls_tags`, `fls_tags_show` | Derived-cleaned | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md), from `inst/extdata/fls_tags.txt` (via ) |
-| `duration_data_da`, `duration_summary`, `cumulative_duration_counts`, `cumulative_song_counts` | Derived-cleaned | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md) |
+| `duration_data_da`, `duration_summary`, `position_summary`, `cumulative_duration_counts`, `cumulative_position_counts`, `cumulative_song_counts` | Derived-cleaned | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md) |
 | `last_performance_data`, `xray`, `transitions_data_da` | Derived-cleaned | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md) |
 | `releasesdatalookup`, `releases_menu_list`, `releaseid_variable_colour_code` | Derived-cleaned | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md), from `inst/extdata/releases.csv` |
 | `songvarslookup` | Derived-cleaned/Raw-hand-curated | [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md) reads it as-is from `inst/extdata/releases_songs_durations_wikipedia.csv` |

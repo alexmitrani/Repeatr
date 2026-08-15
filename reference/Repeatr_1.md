@@ -125,6 +125,7 @@ Repeatr_1_results <- Repeatr_1(output_dir = tempdir())
 #> Joining with `by = join_by(title)`
 #> Joining with `by = join_by(gid, title)`
 #> Joining with `by = join_by(gid, title)`
+#> Joining with `by = join_by(title)`
 #> Joining with `by = join_by(gid)`
 #> Joining with `by = join_by(gid)`
 ```

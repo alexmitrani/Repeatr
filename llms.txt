@@ -148,6 +148,8 @@ Thanks.
   : changes the type of specified variables to integer
 - [`cumulative_duration_counts`](https://alexmitrani.github.io/Repeatr/reference/cumulative_duration_counts.md)
   : Cumulative Duration Counts
+- [`cumulative_position_counts`](https://alexmitrani.github.io/Repeatr/reference/cumulative_position_counts.md)
+  : Cumulative Position Counts
 - [`cumulative_song_counts`](https://alexmitrani.github.io/Repeatr/reference/cumulative_song_counts.md)
   : Cumulative Song Counts
 - [`datestampr()`](https://alexmitrani.github.io/Repeatr/reference/datestampr.md)
@@ -204,6 +206,8 @@ Thanks.
   : Fugazi Live Series summary data on bands that fugazi played with,
   one row per combination of year, tour and band, with corresponding
   number of shows.
+- [`position_summary`](https://alexmitrani.github.io/Repeatr/reference/position_summary.md)
+  : Fugazi song position summary data
 - [`rankr()`](https://alexmitrani.github.io/Repeatr/reference/rankr.md)
   : Undertakes paired comparisons for ranking a set of coefficients,
   considering whether the differences between the coefficients are
