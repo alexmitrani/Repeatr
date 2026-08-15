@@ -14,6 +14,7 @@ dataframe with one row for each rendition of each song in the Fugazi Live Series
 \item{urls}{A string used to form the URLs of the corresponding page on the Fugazi Live series site.}
 \item{fls_link}{a link to the corresponding page of the Fugazi Live Series site.}
 \item{minutes}{duration of the song in minutes}
+\item{position}{normalized position of the song within the show's setlist, from 0 (first song) to 1 (last song), rounded to 2 decimal places}
 }
 }
 \source{

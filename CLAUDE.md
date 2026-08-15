@@ -12,6 +12,7 @@
 - when making changes, make sure the documentation stays up to date both in Repeatr and in fugazibase
 - when making changes, make sure the Shiny app continues to work and produces consistent results with the initial version, unless differences are expected
 - when making changes, make sure that the data in fugazibase and the data in Repeatr stay consistent - changes to the data used by one package should affect the other package. 
+- bump version by a small increment every time implementation of changes is completed (should be once per work session unless no changes are made). 
 
 # Session notes
 

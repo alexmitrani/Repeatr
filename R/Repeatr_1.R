@@ -1622,7 +1622,55 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
       filter(gid!="washington-dc-usa-73198" | song_number!=9 | minutes!=5.20) %>%
       filter(gid!="washington-dc-usa-73198" | song_number!=22 | minutes!=5.02)
 
+    duration_data_da <- duration_data_da %>%
+      group_by(gid) %>%
+      mutate(first_song_number = min(song_number),
+             last_song_number = max(song_number),
+             position = ifelse(last_song_number > first_song_number,
+                                round((song_number - first_song_number) / (last_song_number - first_song_number), digits = 2),
+                                0)) %>%
+      ungroup() %>%
+      select(-first_song_number, -last_song_number)
+
     save(duration_data_da, file = "duration_data_da.rda")
+
+    mydf_pos <- duration_data_da %>%
+      select(position, title) %>%
+      group_by(position, title) %>%
+      summarize(count = n()) %>%
+      ungroup()
+
+    mydf_pos_wide <- mydf_pos %>%
+      pivot_wider(names_from = title, values_from = count, values_fill = 0)
+
+    mydf_pos_wide2 <- mydf_pos_wide
+    number_columns_pos <- ncol(mydf_pos_wide2)
+    for (colindex in 2:number_columns_pos) {
+      mydf_pos_wide2[,colindex] <- cumsum(mydf_pos_wide2[,colindex])
+    }
+
+    mydf_pos_long <- mydf_pos_wide2 %>%
+      pivot_longer(!position, names_to = "title", values_to = "count") %>%
+      filter(count>0) %>%
+      left_join(releases_lookup)
+
+    cumulative_position_counts <- mydf_pos_long %>%
+      select(position, title, release_title, count) %>%
+      mutate(release_title = ifelse(is.na(release_title)==TRUE, "unreleased", release_title))
+
+    save(cumulative_position_counts, file = "cumulative_position_counts.rda")
+
+    position_summary <- duration_data_da %>%
+      group_by(title) %>%
+      summarize(renditions = n(),
+                position_min = round(min(position), digits = 2),
+                position_median = round(median(position), digits = 2),
+                position_max = round(max(position), digits = 2),
+                position_mean = round(mean(position), digits = 2),
+                position_sd = round(sd(position), digits = 2)) %>%
+      ungroup()
+
+    save(position_summary, file = "position_summary.rda")
 
     othervariables <- othervariables %>%
       left_join(gid_sound_quality) %>%

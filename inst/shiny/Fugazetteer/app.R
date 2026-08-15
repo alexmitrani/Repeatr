@@ -1043,9 +1043,11 @@ tabPanel("variation",
            tags$br(),
 
            fluidRow(
-             column(10,
+             column(7,
                     uiOutput("variation_songInput")
              ),
+             column(3, selectInput("variation_metric", "metric:",
+                                    choices = c("duration", "position"), selected = "duration")),
              column(2, style = "margin-top: 29px;", downloadButton("downloadVariationData", ""))
 
            ),
@@ -1085,9 +1087,9 @@ tabPanel("variation",
 
 
 
-# duration -------------------------------------------------------------
+# details -------------------------------------------------------------
 
-                  tabPanel("duration",
+                  tabPanel("details",
 
                            fluidPage(
 
@@ -1095,8 +1097,8 @@ tabPanel("variation",
 
                              # Create a new Row in the UI for selectInputs
                              fluidRow(
-                               column(10, uiOutput("menuOptions_duration_song")),
-                               column(2, style = "margin-top: 29px;", downloadButton("downloadDurationData", ""))
+                               column(10, uiOutput("menuOptions_details_song")),
+                               column(2, style = "margin-top: 29px;", downloadButton("downloadDetailsData", ""))
                              ),
 
                              hr(),
@@ -1104,7 +1106,7 @@ tabPanel("variation",
 
                              fluidRow(
                                column(12,
-                                      DT::dataTableOutput("duration_shows_datatable")
+                                      DT::dataTableOutput("details_datatable")
                                )
                              )
 
@@ -3462,14 +3464,16 @@ server <- function(input, output, session) {
 
   variation_data <- reactive({
 
+    mycumulative_counts <- if (input$variation_metric == "position") cumulative_position_counts else cumulative_duration_counts
+
     if (is.null(input$Input_releases)==FALSE) {
 
-      mydf <- cumulative_duration_counts %>%
+      mydf <- mycumulative_counts %>%
         filter(release_title %in% input$Input_releases)
 
     } else {
 
-      mydf <- cumulative_duration_counts
+      mydf <- mycumulative_counts
 
     }
 
@@ -3490,14 +3494,29 @@ server <- function(input, output, session) {
 
   variation_data2 <- reactive({
 
-    mydf <- variation_data() %>%
-      left_join(duration_summary) %>%
-      group_by(title) %>%
-      summarize(minutes_sd = mean(minutes_sd)) %>%
-      ungroup() %>%
-      arrange(desc(minutes_sd)) %>%
-      mutate(index = row_number()) %>%
-      select(title, index)
+    if (input$variation_metric == "position") {
+
+      mydf <- variation_data() %>%
+        left_join(position_summary) %>%
+        group_by(title) %>%
+        summarize(position_sd = mean(position_sd)) %>%
+        ungroup() %>%
+        arrange(desc(position_sd)) %>%
+        mutate(index = row_number()) %>%
+        select(title, index)
+
+    } else {
+
+      mydf <- variation_data() %>%
+        left_join(duration_summary) %>%
+        group_by(title) %>%
+        summarize(minutes_sd = mean(minutes_sd)) %>%
+        ungroup() %>%
+        arrange(desc(minutes_sd)) %>%
+        mutate(index = row_number()) %>%
+        select(title, index)
+
+    }
 
     mydf
 
@@ -3515,12 +3534,29 @@ server <- function(input, output, session) {
 
   variation_data4 <- reactive({
 
-    mydf <- variation_data3() %>%
-      group_by(title) %>%
-      summarize(renditions = max(count)) %>%
-      ungroup() %>%
-      left_join(duration_summary) %>%
-      arrange(desc(minutes_sd))
+    if (input$variation_metric == "position") {
+
+      mydf <- variation_data3() %>%
+        group_by(title) %>%
+        summarize(renditions = max(count)) %>%
+        ungroup() %>%
+        left_join(position_summary) %>%
+        arrange(desc(position_sd))
+
+    } else {
+
+      mydf <- variation_data3() %>%
+        group_by(title) %>%
+        summarize(renditions = max(count)) %>%
+        ungroup() %>%
+        left_join(duration_summary) %>%
+        arrange(desc(minutes_sd))
+
+    }
+
+    if ("minutes_total" %in% colnames(mydf)) {
+      mydf <- mydf %>% select(-minutes_total)
+    }
 
     mydf
 
@@ -3541,9 +3577,11 @@ server <- function(input, output, session) {
 
   output$variation_count_plot <- renderPlotly({
 
-    p <- ggplot(variation_data3(), aes(x = minutes, y = count, color = title)) +
+    xvar <- if (input$variation_metric == "position") "position" else "minutes"
+
+    p <- ggplot(variation_data3(), aes(x = .data[[xvar]], y = count, color = title)) +
       geom_line() +
-      xlab("minutes") +
+      xlab(xvar) +
       ylab("cumulative renditions")
 
     plotly::ggplotly(p)
@@ -3565,10 +3603,10 @@ server <- function(input, output, session) {
   )
 
 
-# duration -------------------------------------------------------------
+# details -------------------------------------------------------------
 
 
-  output$menuOptions_duration_song <- renderUI({
+  output$menuOptions_details_song <- renderUI({
 
     if (is.null(input$Input_releases)==FALSE) {
       menudata <- cumulative_duration_counts %>%
@@ -3579,17 +3617,17 @@ server <- function(input, output, session) {
         arrange(title)
     }
 
-    selectizeInput("duration_song", "songs",
+    selectizeInput("details_song", "songs",
                    choices = c(unique(menudata$title)), multiple =TRUE)
 
   })
 
 
-  duration_shows_data <- reactive({
+  details_data <- reactive({
 
-    if (is.null(input$duration_song)==FALSE) {
+    if (is.null(input$details_song)==FALSE) {
       duration_data_da_results <- duration_data_da %>%
-        filter(title %in% input$duration_song)
+        filter(title %in% input$details_song)
 
     } else if (is.null(input$Input_releases)==FALSE) {
 
@@ -3606,21 +3644,21 @@ server <- function(input, output, session) {
 
   })
 
-  duration_shows_data2 <- reactive({
+  details_data2 <- reactive({
 
-    mydf <- duration_shows_data() %>%
-      select(fls_link, date, song_number, title, minutes) %>%
+    mydf <- details_data() %>%
+      select(fls_link, date, song_number, position, title, minutes) %>%
       arrange(date, song_number)
 
     mydf
 
   })
 
-  duration_shows_data3 <- reactive({
+  details_data3 <- reactive({
 
-    mydf <- duration_shows_data() %>%
+    mydf <- details_data() %>%
       mutate(url = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
-      select(url, date, song_number, title, minutes) %>%
+      select(url, date, song_number, position, title, minutes) %>%
       arrange(date, song_number)
 
     mydf <- download_table_footer(mydf = mydf, nblankrows = 1, textcolumnname = "sources", rowtext = sourcestext)
@@ -3632,19 +3670,19 @@ server <- function(input, output, session) {
   })
 
 
-  output$duration_shows_datatable <- DT::renderDataTable(DT::datatable({
+  output$details_datatable <- DT::renderDataTable(DT::datatable({
 
-    data <- duration_shows_data2()
+    data <- details_data2()
 
     data
 
   }, escape = c(-2),
   style = "bootstrap"))
 
-  output$downloadDurationData <- downloadHandler(
-    filename = paste0(datestring, "_Fugazetteer_Duration.csv"),
+  output$downloadDetailsData <- downloadHandler(
+    filename = paste0(datestring, "_Fugazetteer_Details.csv"),
     content = function(file) {
-      write.csv(duration_shows_data3(), file, row.names = FALSE)
+      write.csv(details_data3(), file, row.names = FALSE)
     }
   )
 

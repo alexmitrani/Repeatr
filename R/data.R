@@ -487,6 +487,7 @@
 #' \item{urls}{A string used to form the URLs of the corresponding page on the Fugazi Live series site.}
 #' \item{fls_link}{a link to the corresponding page of the Fugazi Live Series site.}
 #' \item{minutes}{duration of the song in minutes}
+#' \item{position}{normalized position of the song within the show's setlist, from 0 (first song) to 1 (last song), rounded to 2 decimal places}
 #' }
 #' @section Provenance: Derived-cleaned. Produced by \code{\link{Repeatr_1}}. Also a direct input to \code{\link{sweepstack}}/\code{\link{stacks}}.
 #' @examples
@@ -514,6 +515,26 @@
 #' duration_summary
 "duration_summary"
 
+#' Fugazi song position summary data
+#'
+#' Summary data on each song's normalized position within the setlist, across the Fugazi Live Series.
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format dataframe with one row for each song in the Fugazi discography that appears in \code{\link{duration_data_da}}.
+#' \describe{
+#' \item{title}{Name of the song}
+#' \item{renditions}{The number of times the song was played live according to the available recordings.}
+#' \item{position_min}{The minimum normalized position (0 = first song in the set).}
+#' \item{position_median}{The median normalized position: if all the renditions were lined up in order from earliest to latest in the set this would be the middle one.}
+#' \item{position_max}{The maximum normalized position (1 = last song in the set).}
+#' \item{position_mean}{The average normalized position.}
+#' \item{position_sd}{The standard deviation of the normalized position - this is a measure of spread, it indicates how much variation there is in where the song falls in the set across all of the renditions.}
+#' }
+#' @section Provenance: Derived-cleaned. Produced by \code{\link{Repeatr_1}}.
+#' @examples
+#' position_summary
+"position_summary"
+
 #' Cumulative Duration Counts
 #'
 #' @source https://www.dischord.com/fugazi_live_series
@@ -528,6 +549,21 @@
 #' @examples
 #' cumulative_duration_counts
 "cumulative_duration_counts"
+
+#' Cumulative Position Counts
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format dataframe with one row for each combination of song and normalized setlist position in the Fugazi Live Series data.
+#' \describe{
+#' \item{position}{Normalized position of the song within the show's setlist, from 0 (first song) to 1 (last song)}
+#' \item{title}{Name of the song}
+#' \item{release_title}{Name of the corresponding discographical release}
+#' \item{count}{The cumulative count of the number of times the song had been performed up to and including this position.}
+#' }
+#' @section Provenance: Derived-cleaned. Produced by \code{\link{Repeatr_1}}.
+#' @examples
+#' cumulative_position_counts
+"cumulative_position_counts"
 
 #' Cumulative Song Counts
 #'
