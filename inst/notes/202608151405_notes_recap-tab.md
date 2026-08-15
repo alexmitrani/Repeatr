@@ -424,3 +424,47 @@ the overall count). `berlin-germany-62892` and the Canberra/ACT second-show case
 (`canberra-australia-111793`) re-checked to confirm the subdivision/city/venue collapsing
 still works correctly with country now leading the chain. Reproduced live in the browser
 against the running app.
+
+## Follow-up 6: de-duplicate the tour-context sentences, and consistent date formatting
+
+The user flagged real redundancy, visible on any first/last/only show of a touring period
+(`DESCRIPTION` bumped `0.0.0.9230` → `0.0.0.9231`) - e.g. `washington-dc-usa-90387` used to
+read "...This was show 1 of 11 of the 1987 Fall/Winter Regional Dates. It was the 1st Fugazi
+show. **This was the first show of the 1987 Fall/Winter Regional Dates.** The following show
+was at..." - the bolded sentence says nothing "show 1 of 11" hadn't already said.
+
+Fix, entirely in `R/recap.R`:
+- The standalone `tour_sentence` ("This was show X of Y of the {tour}.") was removed and folded
+  into the *same* oxford-joined list as the overall/country/subdivision/city/venue clauses, as
+  `tour_clause = "show X of Y of the {tour}"` (no "This was" prefix - it's now just one list
+  item among several, e.g. "It was the 1st Fugazi show, and show 1 of 11 of the 1987
+  Fall/Winter Regional Dates."). Per the user's explicit instruction, the overall show-number
+  clause always leads this list, before the tour-position clause, before the
+  country/subdivision/city/venue clauses - `oxford_join(c(overall_clause, tour_clause,
+  group_clauses), force_comma = TRUE)`.
+- `tour_context_sentence` no longer announces "This was the first/last/only show of the
+  {tour}." at all, on the reasoning that "show X of Y" already conveys first/last/only-ness on
+  its own - it now only ever states the actual previous/next show when one exists, and is the
+  empty string (contributing nothing to `paragraph1`) for a single-show touring period where
+  neither exists.
+- Separately, `previous_show_text`/`next_show_text` used to format their dates as "25 March
+  1988" while the show's own headline date used "Wednesday the 30th of March 1988" - a second,
+  unrelated inconsistency the user asked to be fixed (and explicitly asked to keep the weekday
+  in, rather than drop it from the main date to match the shorter style). Factored the existing
+  ordinal-date logic out of the old `datestring <- paste0(weekdays(...), ...)` inline block into
+  a new shared `format_show_date(date)` helper, used for the headline date and both
+  previous/next dates, so every date in the prose now reads "Weekday the Nth of Month Year".
+
+Verified directly against every gid already used as a test case in this notes file
+(`washington-dc-usa-90387` matches the user's exact corrected wording character-for-character;
+`washington-dc-usa-33088`, `berlin-germany-62892`, the single-show-tour/last-show-of-tour/free-
+show/Canberra/Brasilia edge cases from Follow-up 4 all re-run clean with no stray "first/last/
+only show of the tour" sentence and consistent dates throughout), plus one new edge case at the
+user's request: the very last show in the whole series chronologically -
+`london-england-110402` (4 November 2002, confirmed by `shows_data %>% arrange(date) %>%
+slice_tail(n=1)`) - reads correctly with no "following show" clause (there is none) and no
+crash at the end-of-series boundary. Also re-confirmed the `app.R` wiring still works end to
+end using the app's own preprocessed `othervariables`/`shows_data` objects (via the same
+`app_preprocessing_only.R` harness used in Follow-up 4), since the Claude-in-Chrome browser
+extension was intermittently unavailable this round and a live click-through pass could not be
+completed as well as in prior rounds.

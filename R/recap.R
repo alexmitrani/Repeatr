@@ -58,6 +58,14 @@ fix_caps <- function(x) {
   paste(words, collapse = " ")
 }
 
+# Formats a Date as "Weekday the Nth of Month Year", e.g. "Thursday the 3rd
+# of September 1987" - used everywhere a show date is mentioned in prose, so
+# every date in the text reads the same way.
+format_show_date <- function(date) {
+  day_num <- lubridate::day(date)
+  paste0(weekdays(date), " the ", format_ordinal(day_num), " of ", format(date, "%B"), " ", lubridate::year(date))
+}
+
 # Formats a numeric price without a spurious trailing ".0".
 format_price <- function(p) {
   if (is.na(p)) {
@@ -116,10 +124,7 @@ recap <- function(mygid,
 
 # date string and location text -----------------------------------------------------------------------------------------------
 
-  day_num <- lubridate::day(this_show$date)
-
-  datestring <- paste0(weekdays(this_show$date), " the ", format_ordinal(day_num), " of ",
-                        format(this_show$date, "%B"), " ", lubridate::year(this_show$date))
+  datestring <- format_show_date(this_show$date)
 
   where_played <- paste0(this_show$venue, ", ", this_show$city,
                           ifelse(is.na(this_show$subdivision) | this_show$subdivision=="", "", paste0(", ", this_show$subdivision)),
@@ -182,29 +187,27 @@ recap <- function(mygid,
     NA_character_
   } else {
     paste0(tour_ranked$previous_venue, ", ", tour_ranked$previous_city, ", ", tour_ranked$previous_country,
-           " on ", format(tour_ranked$previous_date, "%d %B %Y"))
+           " on ", format_show_date(tour_ranked$previous_date))
   }
 
   next_show_text <- if (is.na(tour_ranked$next_date)) {
     NA_character_
   } else {
     paste0(tour_ranked$next_venue, ", ", tour_ranked$next_city, ", ", tour_ranked$next_country,
-           " on ", format(tour_ranked$next_date, "%d %B %Y"))
+           " on ", format_show_date(tour_ranked$next_date))
   }
 
-  tour_sentence <- paste0("This was show ", tour_position, " of ", tour_total, " of the ", this_show$tour, ".")
+  tour_clause <- paste0("show ", tour_position, " of ", tour_total, " of the ", this_show$tour)
 
-  # The generic word "tour" is only used when there both is and isn't a
-  # previous/next show to report - i.e. the edge cases - and even then the
-  # touring period is named explicitly (works just as well for a "Tour" as
-  # for a set of "Regional Dates"). The middle case never needs the name at
-  # all, since the tour sentence above has already established it.
+  # Whether this is the first/last/only show of the touring period is already
+  # conveyed by "show X of Y" above, so this sentence sticks to naming the
+  # actual previous/next show (if any) and never repeats "first"/"last"/"only".
   tour_context_sentence <- if (is.na(previous_show_text) & is.na(next_show_text)) {
-    paste0("This was the only show of the ", this_show$tour, ".")
+    ""
   } else if (is.na(previous_show_text)) {
-    paste0("This was the first show of the ", this_show$tour, ". The following show was at ", next_show_text, ".")
+    paste0("The following show was at ", next_show_text, ".")
   } else if (is.na(next_show_text)) {
-    paste0("The previous show was at ", previous_show_text, ". This was the last show of the ", this_show$tour, ".")
+    paste0("The previous show was at ", previous_show_text, ".")
   } else {
     paste0("The previous show was at ", previous_show_text, ", and the following show was at ", next_show_text, ".")
   }
@@ -284,12 +287,14 @@ recap <- function(mygid,
 
   }
 
+  # The overall show number always leads, before any other ordinal fact.
   overall_clause <- paste0("the ", format_ordinal(overall_show_number), " Fugazi show")
 
-  location_sentence <- paste0("It was ", oxford_join(c(overall_clause, group_clauses), force_comma = TRUE), ".")
+  location_sentence <- paste0("It was ", oxford_join(c(overall_clause, tour_clause, group_clauses), force_comma = TRUE), ".")
 
   paragraph1 <- paste0("On ", datestring, ", ", attendance_clause, door_price_clause, " ",
-                       tour_sentence, " ", location_sentence, " ", tour_context_sentence)
+                       location_sentence,
+                       ifelse(tour_context_sentence=="", "", paste0(" ", tour_context_sentence)))
 
 # recording-derived stats ------------------------------------------------------------------------------------------------------
 
