@@ -947,6 +947,66 @@ tabPanel("flow",
 
                     )
 
+           ),
+
+           # recap -------------------------------------------------------------
+
+           tabPanel("recap",
+
+                    fluidPage(
+
+                      tags$br(),
+
+                      fluidRow(
+                        column(4, uiOutput("menuOptions_gid_recap")),
+                        # Button
+                        column(2, style = "margin-top: 29px;", downloadButton("downloadRecapDoc", ""))
+                      ),
+
+                      conditionalPanel(
+                        condition = "input.search_shows_recap!=''",
+
+                        hr(),
+                        tags$br(),
+
+                        uiOutput("recap_title"),
+
+                        tags$br(),
+
+                        textOutput("recap_summary_text1"),
+
+                        tags$br(),
+
+                        conditionalPanel(
+                          condition = "output.recap_has_recording == true",
+                          textOutput("recap_summary_text2"),
+                          tags$br()
+                        ),
+
+                        leafletOutput("recap_map"),
+
+                        tags$br(),
+
+                        conditionalPanel(
+                          condition = "output.recap_has_recording == true",
+
+                          hr(),
+                          tags$br(),
+                          h3("Tracklist"),
+                          tags$br(),
+
+                          fluidRow(
+                            column(12,
+                                   DT::dataTableOutput("recap_tracklist_datatable")
+                            )
+                          )
+
+                        )
+
+                      )
+
+                    )
+
            )
 
 
@@ -3237,6 +3297,174 @@ server <- function(input, output, session) {
     filename = paste0(datestring, "_Fugazetteer_Stacks.csv"),
     content = function(file) {
       write.csv(stacks_shows_data4(), file, row.names = FALSE)
+    }
+  )
+
+
+
+# recap ---------------------------------------------------------------------------
+
+  recap_shows_data_filtered <- reactive({
+
+    if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==FALSE) {
+      data <- shows_data %>% filter(year %in% input$yearInput_shows & tour %in% input$tourInput_shows)
+    } else if (is.null(input$yearInput_shows)==FALSE & is.null(input$tourInput_shows)==TRUE) {
+      data <- shows_data %>% filter(year %in% input$yearInput_shows)
+    } else if (is.null(input$yearInput_shows)==TRUE & is.null(input$tourInput_shows)==FALSE) {
+      data <- shows_data %>% filter(tour %in% input$tourInput_shows)
+    } else {
+      data <- shows_data
+    }
+
+    data %>% arrange(date)
+
+  })
+
+  output$menuOptions_gid_recap <- renderUI({
+
+    selectizeInput("search_shows_recap", "show:",
+                   choices = unique(recap_shows_data_filtered()$gid), multiple = FALSE,
+                   options = list(placeholder = '', onInitialize = I('function() { this.setValue(""); }')))
+
+  })
+
+  recap_result <- reactive({
+
+    req(input$search_shows_recap)
+
+    recap(mygid = input$search_shows_recap,
+          myshows_data = shows_data,
+          myduration_data_da = duration_data_da,
+          myrepeatr1 = Repeatr1,
+          myreleasesdatalookup = releasesdatalookup,
+          myduration_summary = duration_summary,
+          myposition_summary = position_summary,
+          myplayed_with = played_with)
+
+  })
+
+  output$recap_title <- renderUI({
+
+    ctx <- recap_result()$context
+
+    h3(HTML(paste0(ctx$where_played, " — ", ctx$datestring, " (",
+                   "<a href='", ctx$url, "' target='_blank'>Fugazi Live Series page</a>", ")")))
+
+  })
+
+  output$recap_summary_text1 <- renderText({
+
+    ctx <- recap_result()$context
+
+    tour_sentence <- paste0("This was the ", format_ordinal(ctx$tour_position), " of ", ctx$tour_total,
+                            " shows on the '", ctx$tour, "' tour.")
+
+    visits_pieces <- c(
+      paste0("the ", format_ordinal(ctx$country_visit_number), " time Fugazi played in ", ctx$country),
+      if (is.na(ctx$subdivision_visit_number)==FALSE) paste0("the ", format_ordinal(ctx$subdivision_visit_number), " time in ", ctx$subdivision),
+      paste0("the ", format_ordinal(ctx$city_visit_number), " time in ", ctx$city),
+      paste0("the ", format_ordinal(ctx$venue_visit_number), " time at ", ctx$venue)
+    )
+
+    visits_sentence <- paste0("This was ", paste(visits_pieces, collapse = ", "), ".")
+
+    tour_context_sentence <- paste0(
+      ifelse(is.na(ctx$previous_show_text), "This was the first show of the tour.", paste0("The previous show of the tour was at ", ctx$previous_show_text, ".")),
+      " ",
+      ifelse(is.na(ctx$next_show_text), "This was the last show of the tour.", paste0("The following show of the tour was at ", ctx$next_show_text, "."))
+    )
+
+    paste0("On ", ctx$datestring, ", Fugazi played ", ctx$where_played, ctx$played_with_text, ". ",
+           tour_sentence, " ", visits_sentence, " ", tour_context_sentence)
+
+  })
+
+  output$recap_summary_text2 <- renderText({
+
+    ctx <- recap_result()$context
+
+    if (ctx$has_recording==FALSE) {
+      return("")
+    }
+
+    paste0("A recording of this show is available, with ", ctx$n_songs, " songs and a total duration of ",
+           ctx$minutes, " minutes",
+           ifelse(is.na(ctx$sound_quality), "", paste0(", rated '", ctx$sound_quality, "' for sound quality")),
+           ". The songs are drawn from: ", ctx$release_breakdown_text, ".")
+
+  })
+
+  output$recap_has_recording <- reactive({
+    recap_result()$context$has_recording
+  })
+  outputOptions(output, "recap_has_recording", suspendWhenHidden = FALSE)
+
+  output$recap_map <- renderLeaflet({
+
+    ctx <- recap_result()$context
+
+    df <- data.frame(latitude = shows_data %>% filter(gid==ctx$gid) %>% pull(latitude),
+                     longitude = shows_data %>% filter(gid==ctx$gid) %>% pull(longitude))
+
+    margin_value <- 0.15
+
+    min_latitude <- df$latitude-margin_value
+    min_longitude <- df$longitude-margin_value
+
+    max_latitude <- df$latitude+margin_value
+    max_longitude <- df$longitude+margin_value
+
+    leaflet(data = df, options = leafletOptions(zoomControl = FALSE)) %>%
+      htmlwidgets::onRender("function(el, x) {
+        L.control.zoom({ position: 'bottomleft' }).addTo(this)
+      }") %>%
+      fitBounds(lng1 = min_longitude, lat1 = min_latitude, lng2 = max_longitude, lat2 = max_latitude) %>%
+      addProviderTiles("OpenStreetMap.Mapnik") %>%
+      addScaleBar() %>%
+      addCircles(
+        data = df,
+        radius = 200,
+        color = "#c94040",
+        fillColor = "#c94040",
+        fillOpacity = 0.7,
+        popup = paste0(
+          "<strong>Date: </strong>", ctx$datestring, "<br>",
+          "<strong>Venue: </strong>", ctx$venue, "<br>",
+          "<strong>City: </strong>", ctx$city, "<br>",
+          "<strong>Country: </strong>", ctx$country
+        )
+      )
+
+  })
+
+  recap_tracklist_data <- reactive({
+    recap_result()$tracklist
+  })
+
+  output$recap_tracklist_datatable <- DT::renderDataTable(DT::datatable({
+
+    data <- recap_tracklist_data()
+
+    data
+
+  },
+  style = "bootstrap"))
+
+  output$downloadRecapDoc <- downloadHandler(
+    filename = function() paste0(datestring, "_Fugazetteer_Recap_", input$search_shows_recap, ".html"),
+    content = function(file) {
+
+      template_src <- "recap_template.Rmd"
+      tmp_rmd <- file.path(tempdir(), "recap_template.Rmd")
+      file.copy(template_src, tmp_rmd, overwrite = TRUE)
+
+      rmarkdown::render(
+        input = tmp_rmd,
+        output_file = file,
+        params = list(gid = input$search_shows_recap),
+        envir = new.env(parent = globalenv())
+      )
+
     }
   )
 
