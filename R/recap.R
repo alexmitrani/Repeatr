@@ -77,6 +77,25 @@ format_price <- function(p) {
   }
 }
 
+# Describes another show (the previous or following one) relative to this
+# one: names the venue unless it's the same as this show's own venue ("the
+# same venue"), and skips the date in favor of adjacent_phrase (e.g. "the
+# night before"/"the next night") when it's literally the adjacent calendar
+# day - spelling out a matching venue/city/country and an adjacent date in
+# full reads as needless repetition on multi-night stands.
+describe_other_show <- function(venue, city, country, date, this_show, is_adjacent_day, adjacent_phrase) {
+  location_part <- if (venue==this_show$venue & city==this_show$city & country==this_show$country) {
+    "the same venue"
+  } else {
+    paste0(venue, ", ", city, ", ", country)
+  }
+  if (is_adjacent_day) {
+    paste0(location_part, ", ", adjacent_phrase)
+  } else {
+    paste0(location_part, " on ", format_show_date(date))
+  }
+}
+
 #' @title recap brings together all the notable facts about a single Fugazi show: date, venue, tour context, how many times the band had previously played in that country/state/city/venue, the previous and next show of the tour, and (if a recording exists) a detailed tracklist with duration, release and rendition statistics.
 #'
 #' @param mygid gig id of the show to recap, as a string, for instance "washington-dc-usa-13196".
@@ -166,6 +185,8 @@ recap <- function(mygid,
 
   overall_show_number <- overall_rank$overall_show_number
 
+  last_show_sentence <- if (overall_show_number==nrow(shows_data)) "This was the last Fugazi show to date." else ""
+
 # tour position and previous/next show on the same touring period -------------------------------------------------------------
 
   tour_ranked <- shows_data %>%
@@ -186,15 +207,19 @@ recap <- function(mygid,
   previous_show_text <- if (is.na(tour_ranked$previous_date)) {
     NA_character_
   } else {
-    paste0(tour_ranked$previous_venue, ", ", tour_ranked$previous_city, ", ", tour_ranked$previous_country,
-           " on ", format_show_date(tour_ranked$previous_date))
+    describe_other_show(tour_ranked$previous_venue, tour_ranked$previous_city, tour_ranked$previous_country,
+                         tour_ranked$previous_date, this_show,
+                         is_adjacent_day = (tour_ranked$previous_date==this_show$date-1),
+                         adjacent_phrase = "the night before")
   }
 
   next_show_text <- if (is.na(tour_ranked$next_date)) {
     NA_character_
   } else {
-    paste0(tour_ranked$next_venue, ", ", tour_ranked$next_city, ", ", tour_ranked$next_country,
-           " on ", format_show_date(tour_ranked$next_date))
+    describe_other_show(tour_ranked$next_venue, tour_ranked$next_city, tour_ranked$next_country,
+                         tour_ranked$next_date, this_show,
+                         is_adjacent_day = (tour_ranked$next_date==this_show$date+1),
+                         adjacent_phrase = "the next night")
   }
 
   tour_clause <- paste0("show ", tour_position, " of ", tour_total, " of the ", this_show$tour)
@@ -294,7 +319,8 @@ recap <- function(mygid,
 
   paragraph1 <- paste0("On ", datestring, ", ", attendance_clause, door_price_clause, " ",
                        location_sentence,
-                       ifelse(tour_context_sentence=="", "", paste0(" ", tour_context_sentence)))
+                       ifelse(tour_context_sentence=="", "", paste0(" ", tour_context_sentence)),
+                       ifelse(last_show_sentence=="", "", paste0(" ", last_show_sentence)))
 
 # recording-derived stats ------------------------------------------------------------------------------------------------------
 
