@@ -14,7 +14,8 @@ recap(
   myposition_summary = NULL,
   myplayed_with = NULL,
   myothervariables = NULL,
-  mytransitions_data_da = NULL
+  mytransitions_data_da = NULL,
+  myfls_tags = NULL
 )
 }
 \arguments{
@@ -37,6 +38,8 @@ recap(
 \item{myothervariables}{optional \code{othervariables} dataframe (as produced by \code{Repeatr_1()}) to be used for recording credits (recorded by/mastered by/original source). If omitted the currently lazy-loaded default will be used.}
 
 \item{mytransitions_data_da}{optional \code{transitions_data_da} dataframe (as produced by \code{Repeatr_1()}) to be used for song-to-song transition occurrence counts. If omitted the currently lazy-loaded default will be used.}
+
+\item{myfls_tags}{optional \code{fls_tags} dataframe (as produced by \code{Repeatr_1()}) to be used for the raw per-track tagged duration of non-song tracks (interludes, intro/outro, etc.), which have no duration elsewhere. If omitted the currently lazy-loaded default will be used.}
 }
 \value{
 A list of three elements: \code{context} (a named list of the show's prose-summary facts, including ready-made \code{paragraph1}/\code{paragraph2} strings), \code{tracklist} (a dataframe with one row per track on the recording, songs and non-song tracks alike, or \code{NULL} if no recording exists) and \code{release_breakdown} (a dataframe of song counts by release for this show, or \code{NULL} if no recording exists).

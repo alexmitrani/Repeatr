@@ -65,6 +65,7 @@ leaflet(data = df, options = leafletOptions(zoomControl = FALSE)) %>%
 ```
 
 ```{r tracklist, eval=ctx$has_recording}
+options(knitr.kable.NA = "")
 knitr::kable(result$tracklist, row.names = FALSE)
 ```
 
