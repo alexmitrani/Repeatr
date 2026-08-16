@@ -468,8 +468,20 @@ recap <- function(mygid,
     music_minutes <- sum(show_renditions$minutes, na.rm = TRUE)
     music_proportion <- round(music_minutes / minutes * 100)
 
+    # If music_minutes equals the total, no non-song content was tracked
+    # separately for this recording (interludes/banter/etc. always exist in
+    # some form) - meaning the music/other split isn't actually known for
+    # this show, not that the whole recording was literally music, so the
+    # bracketed figure is omitted rather than implying a precision we don't
+    # have.
+    music_bracket <- if (round(music_minutes, digits = 2) < round(minutes, digits = 2)) {
+      paste0(" (", music_minutes, " minutes of music)")
+    } else {
+      ""
+    }
+
     recording_sentence <- paste0("A recording of this show is available, with a total duration of ", minutes, " minutes",
-                                 " (", music_minutes, " minutes of music)",
+                                 music_bracket,
                                  ifelse(is.na(sound_quality), "", paste0(", rated '", sound_quality, "' for sound quality")), ".")
 
     has_recorded_by <- is.na(recorded_by)==FALSE & recorded_by!=""

@@ -56,6 +56,42 @@ minutes figure appears in the prose now.
 - `devtools::document()` — only `man/recap.Rd` changed (new `myfls_tags`
   param), no other diffs.
 
+## Follow-up: vignette update
+
+The user noticed `vignettes/Fugazetteer.Rmd`'s "recap" section was left
+describing the pre-fix behavior (tracklist as songs-only, no mention of
+transitions/non-song duration, and the old two-sentence recording-duration
+wording). Updated the two relevant paragraphs to describe the tracklist as
+covering every track (songs and non-song content alike), list the new
+transition-occurrence stats, and match the new single-sentence recording
+wording ("...how long the recording runs and how many of those minutes
+were music..."). `Data-Provenance.Rmd` needed no changes - it documents
+dataset lineage, not which app features consume which datasets, and none
+of that changed (`fls_tags`/`transitions_data_da`/`xray` were already
+correctly documented as `Repeatr_1()` outputs; `recap()` now also *reads*
+`fls_tags`/`transitions_data_da`, but that's a consumer-side detail, not a
+provenance change). No NEWS.md exists in this package to update.
+
+## Follow-up: drop the music-minutes bracket when the split isn't known
+
+The user pointed out that if `music_minutes` exactly equals the total
+recording duration, that implies non-song content (interludes, banter,
+etc. - which always exist in some form) wasn't tagged separately for that
+recording, not that the whole show was literally 100% music. Showing the
+bracketed figure in that case implies a precision that doesn't exist.
+
+Fix, in `R/recap.R`: `music_bracket` is now only included in
+`recording_sentence` when `round(music_minutes, 2) < round(minutes, 2)` -
+i.e. there's a genuine, separately-tracked gap between music and total
+duration. Verified against `auckland-new-zealand-62797` (a real gid where
+music_minutes == total minutes: paragraph2 now omits the bracket) and
+`aalst-belgium-92390` (a real gap: bracket still shown). Also softened the
+vignette's "recap" paragraph to say the music-minutes figure appears "where
+the recording's non-song content was tagged separately," matching the new
+conditional behavior.
+
 ## Version
 
-Bumped `DESCRIPTION` from `0.0.0.9236` to `0.0.0.9237`.
+Bumped `DESCRIPTION` from `0.0.0.9236` to `0.0.0.9239` (0.0.0.9237 covered
+the tracklist/wording polish above; 0.0.0.9238 covered the vignette
+update; 0.0.0.9239 covers this conditional-bracket fix).
