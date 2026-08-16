@@ -1586,6 +1586,19 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     xray <- xray %>%
       arrange(units, date)
 
+    # `other`'s per-track minutes rely on a (gid, title, occurrence) join to
+    # gid_song_minutes that fails for hand-relabeled non-song titles (e.g.
+    # "interlude 1") not matching the raw tag text, silently undercounting
+    # other by up to 30+ minutes on some shows. songs' own join is reliable
+    # (verified: matches sum(duration_data_da$minutes) exactly on every
+    # show), so redefine other as the residual instead, which is correct by
+    # construction and only applies to the minutes rows (tracks rows count
+    # tracktype directly and aren't affected by this join at all).
+    xray <- xray %>%
+      left_join(gid_minutes %>% rename(total_minutes = minutes), by = "gid") %>%
+      mutate(other = ifelse(units=="minutes", total_minutes - songs, other)) %>%
+      select(-total_minutes)
+
     xray <- xray %>%
       mutate(released = songs - unreleased,
              incumbent = songs - debut - farewell)

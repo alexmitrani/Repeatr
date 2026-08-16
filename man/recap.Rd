@@ -13,7 +13,8 @@ recap(
   myduration_summary = NULL,
   myposition_summary = NULL,
   myplayed_with = NULL,
-  myothervariables = NULL
+  myothervariables = NULL,
+  mytransitions_data_da = NULL
 )
 }
 \arguments{
@@ -34,9 +35,11 @@ recap(
 \item{myplayed_with}{optional \code{played_with} dataframe (as produced by \code{Repeatr_1()}) to be used for the bands Fugazi played with at the show. If omitted the currently lazy-loaded default will be used.}
 
 \item{myothervariables}{optional \code{othervariables} dataframe (as produced by \code{Repeatr_1()}) to be used for recording credits (recorded by/mastered by/original source). If omitted the currently lazy-loaded default will be used.}
+
+\item{mytransitions_data_da}{optional \code{transitions_data_da} dataframe (as produced by \code{Repeatr_1()}) to be used for song-to-song transition occurrence counts. If omitted the currently lazy-loaded default will be used.}
 }
 \value{
-A list of three elements: \code{context} (a named list of the show's prose-summary facts, including ready-made \code{paragraph1}/\code{paragraph2} strings), \code{tracklist} (a dataframe with one row per song on the recording, or \code{NULL} if no recording exists) and \code{release_breakdown} (a dataframe of song counts by release for this show, or \code{NULL} if no recording exists).
+A list of three elements: \code{context} (a named list of the show's prose-summary facts, including ready-made \code{paragraph1}/\code{paragraph2} strings), \code{tracklist} (a dataframe with one row per track on the recording, songs and non-song tracks alike, or \code{NULL} if no recording exists) and \code{release_breakdown} (a dataframe of song counts by release for this show, or \code{NULL} if no recording exists).
 }
 \description{
 recap brings together all the notable facts about a single Fugazi show: date, venue, tour context, how many times the band had previously played in that country/state/city/venue, the previous and next show of the tour, and (if a recording exists) a detailed tracklist with duration, release and rendition statistics.

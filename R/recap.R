@@ -114,8 +114,9 @@ describe_other_show <- function(venue, city, subdivision, country, date, same_ve
 #' @param myposition_summary optional `position_summary` dataframe (as produced by `Repeatr_1()`) to be used for each song's average recorded set position. If omitted the currently lazy-loaded default will be used.
 #' @param myplayed_with optional `played_with` dataframe (as produced by `Repeatr_1()`) to be used for the bands Fugazi played with at the show. If omitted the currently lazy-loaded default will be used.
 #' @param myothervariables optional `othervariables` dataframe (as produced by `Repeatr_1()`) to be used for recording credits (recorded by/mastered by/original source). If omitted the currently lazy-loaded default will be used.
+#' @param mytransitions_data_da optional `transitions_data_da` dataframe (as produced by `Repeatr_1()`) to be used for song-to-song transition occurrence counts. If omitted the currently lazy-loaded default will be used.
 #'
-#' @return A list of three elements: `context` (a named list of the show's prose-summary facts, including ready-made `paragraph1`/`paragraph2` strings), `tracklist` (a dataframe with one row per song on the recording, or `NULL` if no recording exists) and `release_breakdown` (a dataframe of song counts by release for this show, or `NULL` if no recording exists).
+#' @return A list of three elements: `context` (a named list of the show's prose-summary facts, including ready-made `paragraph1`/`paragraph2` strings), `tracklist` (a dataframe with one row per track on the recording, songs and non-song tracks alike, or `NULL` if no recording exists) and `release_breakdown` (a dataframe of song counts by release for this show, or `NULL` if no recording exists).
 #' @export
 #'
 #' @examples
@@ -127,7 +128,8 @@ recap <- function(mygid,
                    myshows_data = NULL, myduration_data_da = NULL,
                    myrepeatr1 = NULL, myreleasesdatalookup = NULL,
                    myduration_summary = NULL, myposition_summary = NULL,
-                   myplayed_with = NULL, myothervariables = NULL) {
+                   myplayed_with = NULL, myothervariables = NULL,
+                   mytransitions_data_da = NULL) {
 
 # pre-processing to check that all required parameters are defined -----------------------------------------------------------
 
@@ -141,6 +143,7 @@ recap <- function(mygid,
   if (is.null(myposition_summary)==FALSE) { position_summary <- myposition_summary } else { position_summary <- Repeatr::position_summary }
   if (is.null(myplayed_with)==FALSE) { played_with <- myplayed_with } else { played_with <- Repeatr::played_with }
   if (is.null(myothervariables)==FALSE) { othervariables <- myothervariables } else { othervariables <- Repeatr::othervariables }
+  if (is.null(mytransitions_data_da)==FALSE) { transitions_data_da <- mytransitions_data_da } else { transitions_data_da <- Repeatr::transitions_data_da }
 
   this_show <- shows_data %>% filter(gid==mygid)
 
@@ -361,6 +364,8 @@ recap <- function(mygid,
   n_songs <- nrow(show_renditions)
   minutes <- this_show$minutes
   sound_quality <- this_show$sound_quality
+  music_minutes <- NA_real_
+  music_proportion <- NA_real_
 
   release_breakdown <- NULL
   release_breakdown_text <- NA_character_
@@ -402,6 +407,19 @@ recap <- function(mygid,
       filter(gid==mygid) %>%
       select(gid, song_number, rendition_number)
 
+    # nth occurrence of each (title1, title2) transition pair, and its total
+    # count, across the whole series - attached to the *destination* song's
+    # row (destination song_number = transition + 1, by construction; see
+    # transitions_data_da's build in Repeatr_1.R), per issue #252.
+    transition_ranked <- transitions_data_da %>%
+      arrange(date, transition) %>%
+      group_by(title1, title2) %>%
+      mutate(transition_number = row_number(), transition_count = n()) %>%
+      ungroup() %>%
+      filter(gid==mygid) %>%
+      mutate(song_number = transition + 1) %>%
+      select(gid, song_number, transition_number, transition_count)
+
     # release/track lookup - only rid is needed here to bring in release_date;
     # the show's own song_number (below) becomes the displayed track number,
     # not Repeatr1's studio-release track_number, which is unrelated to set order.
@@ -409,20 +427,35 @@ recap <- function(mygid,
       filter(gid==mygid, tracktype==1) %>%
       select(gid, song_number, rid)
 
-    tracklist <- show_renditions %>%
-      select(gid, song_number, title, minutes, position) %>%
+    # Every track as actually sequenced in the recording, including non-song
+    # tracks (interludes, intro/outro, crowd noise, etc. - tracktype 0/2).
+    # song_number already reflects true position across ALL tracks, so it
+    # doubles as the displayed track number once every track has a row.
+    all_tracks <- Repeatr1 %>%
+      filter(gid==mygid) %>%
+      select(gid, song_number, title)
+
+    tracklist <- all_tracks %>%
+      left_join(show_renditions %>% select(gid, song_number, minutes, position), by = c("gid", "song_number")) %>%
       left_join(track_lookup, by = c("gid", "song_number")) %>%
       left_join(releasesdatalookup %>% select(rid, release_date), by = "rid") %>%
       left_join(duration_summary %>% select(title, minutes_mean, minutes_max, renditions), by = "title") %>%
       left_join(position_summary %>% select(title, position_mean), by = "title") %>%
       left_join(rendition_ranked, by = c("gid", "song_number")) %>%
+      left_join(transition_ranked, by = c("gid", "song_number")) %>%
       arrange(song_number) %>%
-      mutate(track_number = row_number()) %>%
-      select(track = track_number, title, minutes, mins_mean = minutes_mean, mins_max = minutes_max,
-             position, pos_mean = position_mean, rendition = rendition_number, renditions, release_date)
+      select(track = song_number, title, minutes, mins_mean = minutes_mean, mins_max = minutes_max,
+             position, pos_mean = position_mean, rendition = rendition_number, renditions,
+             transition = transition_number, transitions = transition_count, release_date)
 
     recording_sentence <- paste0("A recording of this show is available, with a total duration of ", minutes, " minutes",
                                  ifelse(is.na(sound_quality), "", paste0(", rated '", sound_quality, "' for sound quality")), ".")
+
+    music_minutes <- sum(show_renditions$minutes, na.rm = TRUE)
+    music_proportion <- round(music_minutes / minutes * 100)
+
+    music_proportion_sentence <- paste0("Music accounted for ", round(music_minutes),
+                                        " of the show's ", minutes, " minutes (", music_proportion, "%).")
 
     has_recorded_by <- is.na(recorded_by)==FALSE & recorded_by!=""
     has_mastered_by <- is.na(mastered_by)==FALSE & mastered_by!=""
@@ -453,6 +486,7 @@ recap <- function(mygid,
     songs_sentence <- paste0(n_songs, " songs: ", release_breakdown_text, ".")
 
     paragraph2 <- paste0(recording_sentence,
+                         " ", music_proportion_sentence,
                          ifelse(recording_detail_sentence=="", "", paste0(" ", recording_detail_sentence)),
                          " ", songs_sentence)
 
@@ -484,6 +518,8 @@ recap <- function(mygid,
     has_recording = has_recording,
     n_songs = n_songs,
     minutes = minutes,
+    music_minutes = round(music_minutes, digits = 2),
+    music_proportion = music_proportion,
     sound_quality = sound_quality,
     recorded_by = recorded_by,
     mastered_by = mastered_by,

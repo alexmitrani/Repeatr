@@ -3414,6 +3414,7 @@ server <- function(input, output, session) {
 
   },
   style = "bootstrap",
+  rownames = FALSE,
   options = list(pageLength = -1, lengthMenu = list(c(-1, 10, 25, 50), c("All", "10", "25", "50")))))
 
   output$downloadRecapDoc <- downloadHandler(
