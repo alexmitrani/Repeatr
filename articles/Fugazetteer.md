@@ -493,17 +493,23 @@ and date with a link to the corresponding page of the [Fugazi Live
 Series](https://www.dischord.com/fugazi_live_series) site, where it fits
 in its tour, how many times Fugazi had previously played in that
 country, state/province, city and venue, and (if a recording of the show
-exists) how many songs were played, how long the recording runs, its
-sound quality rating, and which releases its songs are drawn from.
+exists) how many songs were played, how long the recording runs (and,
+where the recording’s non-song content was tagged separately, how many
+of those minutes were music), its sound quality rating, and which
+releases its songs are drawn from.
 
 A map shows the location of the show.
 
-If a recording exists, a detailed tracklist is also shown, giving each
-song’s duration, its average and maximum recorded duration across all
-Fugazi shows, its position in the set and its average position across
-all recorded renditions, which numbered rendition of the song this was,
-its total number of recorded renditions, and the release date it is
-drawn from.
+If a recording exists, a detailed tracklist is also shown, listing every
+track on the recording - songs and non-song content alike (interludes,
+intros, outros, encores and other one-offs) - with each track’s
+duration. For songs, it also gives: the song’s average and maximum
+recorded duration across all Fugazi shows; its position in the set and
+its average position across all recorded renditions; which numbered
+rendition of the song this was and its total number of recorded
+renditions; if it followed directly on from another song, which numbered
+occurrence of that song-to-song transition this was and its total number
+of occurrences across all shows; and the release date it is drawn from.
 
 The whole page can be downloaded as a self-contained HTML take-away
 document using the download button at the top of the page to the right
