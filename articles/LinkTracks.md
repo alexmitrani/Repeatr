@@ -608,10 +608,10 @@ sound_quality_ratings <- sound_quality_ratings %>%
 sound_quality_ratings
 #>   index sound_quality shows percentage
 #> 1     1     Excellent    48        5.1
-#> 2     2     Very Good   458       48.2
+#> 2     2     Very Good   457       48.2
 #> 3     3          Good   377       39.7
 #> 4     4          Poor    67        7.1
-#> 5     5         Total   950      100.0
+#> 5     5         Total   949      100.0
 ```
 
 ## Three Repeats, but Only One Two for Tuesdays

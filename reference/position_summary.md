@@ -68,10 +68,10 @@ position_summary
 #>  3 argument           76            0            0.59         1             0.61
 #>  4 arpeggiat…        163            0            0.78         1             0.73
 #>  5 back to b…        142            0            0.56         1             0.49
-#>  6 bad mouth         312            0            0.44         1             0.45
+#>  6 bad mouth         311            0            0.44         1             0.45
 #>  7 bed for t…        310            0            0.33         1             0.4 
 #>  8 birthday …        203            0            0.29         0.97          0.36
-#>  9 blueprint         609            0            0.65         1             0.6 
+#>  9 blueprint         608            0            0.66         1             0.6 
 #> 10 break             179            0            0.15         1             0.27
 #> # ℹ 82 more rows
 #> # ℹ 1 more variable: position_sd <dbl>
