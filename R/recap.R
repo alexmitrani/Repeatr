@@ -42,14 +42,19 @@ oxford_join <- function(x, force_comma = FALSE) {
 }
 
 # Converts any ALL-CAPS word in a string to sentence case (e.g. "ANON." -> "Anon."),
-# leaving already mixed-case words (and non-letter tokens) untouched.
+# leaving already mixed-case words, non-letter tokens, and known acronyms
+# (e.g. "DAT"/"CD"/"PRS", which should stay all-caps rather than become
+# "Dat"/"Cd"/"Prs") untouched.
 fix_caps <- function(x) {
   if (is.na(x)) {
     return(x)
   }
+  acronyms <- c("DAT", "CD", "PRS")
   words <- strsplit(x, " ")[[1]]
   words <- vapply(words, function(w) {
-    if (w==toupper(w) & w!=tolower(w)) {
+    if (gsub("[[:punct:]]", "", w) %in% acronyms) {
+      w
+    } else if (w==toupper(w) & w!=tolower(w)) {
       paste0(toupper(substr(w, 1, 1)), tolower(substr(w, 2, nchar(w))))
     } else {
       w
