@@ -19,7 +19,8 @@ recap(
   myposition_summary = NULL,
   myplayed_with = NULL,
   myothervariables = NULL,
-  mytransitions_data_da = NULL
+  mytransitions_data_da = NULL,
+  myfls_tags = NULL
 )
 ```
 
@@ -94,6 +95,14 @@ recap(
   to be used for song-to-song transition occurrence counts. If omitted
   the currently lazy-loaded default will be used.
 
+- myfls_tags:
+
+  optional `fls_tags` dataframe (as produced by
+  [`Repeatr_1()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md))
+  to be used for the raw per-track tagged duration of non-song tracks
+  (interludes, intro/outro, etc.), which have no duration elsewhere. If
+  omitted the currently lazy-loaded default will be used.
+
 ## Value
 
 A list of three elements: `context` (a named list of the show's
@@ -113,7 +122,7 @@ result$tracklist
 #> # A tibble: 24 × 12
 #>    track title minutes mins_mean mins_max position pos_mean rendition renditions
 #>    <dbl> <chr>   <dbl>     <dbl>    <dbl>    <dbl>    <dbl>     <int>      <int>
-#>  1     1 open…   NA        NA       NA       NA       NA           NA         NA
+#>  1     1 open…    3.32     NA       NA       NA       NA           NA         NA
 #>  2     2 bren…    3.18      2.95     4.13     0        0.17       161        170
 #>  3     3 bed …    2.88      3.03     5.03     0.05     0.4        123        310
 #>  4     4 do y…    2.5       2.69     6.48     0.1      0.34       107        282
@@ -121,7 +130,7 @@ result$tracklist
 #>  6     6 marg…    2.73      2.7      5.1      0.19     0.45       384        467
 #>  7     7 styr…    2.87      2.85     8.55     0.24     0.29       242        294
 #>  8     8 caus…    2.43      2.07     2.65     0.29     0.4          2         53
-#>  9     9 inte…   NA        NA       NA       NA       NA           NA         NA
+#>  9     9 inte…    0.78     NA       NA       NA       NA           NA         NA
 #> 10    10 shut…    8.63      6.56    11.8      0.38     0.7        304        342
 #> # ℹ 14 more rows
 #> # ℹ 3 more variables: transition <int>, transitions <int>, release_date <date>

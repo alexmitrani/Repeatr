@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9236</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9237</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,7 +68,8 @@
 <span>  myposition_summary <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  myplayed_with <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  myothervariables <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  mytransitions_data_da <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  mytransitions_data_da <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  myfls_tags <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -115,6 +116,10 @@
 <dt id="arg-mytransitions-data-da">mytransitions_data_da<a class="anchor" aria-label="anchor" href="#arg-mytransitions-data-da"></a></dt>
 <dd><p>optional <code>transitions_data_da</code> dataframe (as produced by <code><a href="Repeatr_1.html">Repeatr_1()</a></code>) to be used for song-to-song transition occurrence counts. If omitted the currently lazy-loaded default will be used.</p></dd>
 
+
+<dt id="arg-myfls-tags">myfls_tags<a class="anchor" aria-label="anchor" href="#arg-myfls-tags"></a></dt>
+<dd><p>optional <code>fls_tags</code> dataframe (as produced by <code><a href="Repeatr_1.html">Repeatr_1()</a></code>) to be used for the raw per-track tagged duration of non-song tracks (interludes, intro/outro, etc.), which have no duration elsewhere. If omitted the currently lazy-loaded default will be used.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -130,7 +135,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 24 × 12</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    track title minutes mins_mean mins_max position pos_mean rendition renditions</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>     1 open…   <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>     1 open…    3.32     <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>     2 bren…    3.18      2.95     4.13     0        0.17       161        170</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>     3 bed …    2.88      3.03     5.03     0.05     0.4        123        310</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>     4 do y…    2.5       2.69     6.48     0.1      0.34       107        282</span>
@@ -138,7 +143,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>     6 marg…    2.73      2.7      5.1      0.19     0.45       384        467</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>     7 styr…    2.87      2.85     8.55     0.24     0.29       242        294</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>     8 caus…    2.43      2.07     2.65     0.29     0.4          2         53</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>     9 inte…   <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>     9 inte…    0.78     <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>    10 shut…    8.63      6.56    11.8      0.38     0.7        304        342</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 14 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3 more variables: transition &lt;int&gt;, transitions &lt;int&gt;, release_date &lt;date&gt;</span></span>
