@@ -60,10 +60,13 @@ fix_caps <- function(x) {
 
 # Formats a Date as "Weekday the Nth of Month Year", e.g. "Thursday the 3rd
 # of September 1987" - used everywhere a show date is mentioned in prose, so
-# every date in the text reads the same way.
-format_show_date <- function(date) {
+# every date in the text reads the same way. include_year=FALSE drops the
+# trailing year (used when it's already obvious from context, e.g. a
+# previous/next show in the same calendar year as the show being recapped).
+format_show_date <- function(date, include_year = TRUE) {
   day_num <- lubridate::day(date)
-  paste0(weekdays(date), " the ", format_ordinal(day_num), " of ", format(date, "%B"), " ", lubridate::year(date))
+  paste0(weekdays(date), " the ", format_ordinal(day_num), " of ", format(date, "%B"),
+         if (include_year) paste0(" ", lubridate::year(date)) else "")
 }
 
 # Formats a numeric price without a spurious trailing ".0".
@@ -78,24 +81,26 @@ format_price <- function(p) {
 }
 
 # Describes another show (the previous or following one) relative to this
-# one: names the venue in full unless same_venue says it's safe to collapse
-# to "the same venue" (the caller decides this, not just a raw venue==venue
-# comparison - see the note where previous/next_collapses_venue are built,
-# on why the *following* show's clause can't always collapse even when its
-# venue does match), and skips the date in favor of adjacent_phrase (e.g.
-# "the night before"/"the next night") when it's literally the adjacent
-# calendar day.
-describe_other_show <- function(venue, city, country, date, same_venue, is_adjacent_day, adjacent_phrase) {
+# one: names the venue, city, subdivision (if any) and country in full unless
+# same_venue says it's safe to collapse to "the same venue" (the caller
+# decides this, not just a raw venue==venue comparison - see the note where
+# previous/next_collapses_venue are built, on why the *following* show's
+# clause can't always collapse even when its venue does match). Always states
+# the explicit date (an earlier version substituted "the night before"/"the
+# next night" for literally-adjacent calendar days, but that read as
+# ambiguous when the sentence already names another explicit date - see
+# issue #253), omitting only the year when it's the same as this_show_date's,
+# since same-tour shows are usually within one calendar year.
+describe_other_show <- function(venue, city, subdivision, country, date, same_venue, this_show_date) {
   location_part <- if (same_venue) {
     "the same venue"
   } else {
-    paste0(venue, ", ", city, ", ", country)
+    paste0(venue, ", ", city,
+           ifelse(is.na(subdivision) | subdivision=="", "", paste0(", ", subdivision)),
+           ", ", country)
   }
-  if (is_adjacent_day) {
-    paste0(location_part, ", ", adjacent_phrase)
-  } else {
-    paste0(location_part, " on ", format_show_date(date))
-  }
+  paste0(location_part, " on ",
+         format_show_date(date, include_year = lubridate::year(date)!=lubridate::year(this_show_date)))
 }
 
 #' @title recap brings together all the notable facts about a single Fugazi show: date, venue, tour context, how many times the band had previously played in that country/state/city/venue, the previous and next show of the tour, and (if a recording exists) a detailed tracklist with duration, release and rendition statistics.
@@ -197,8 +202,10 @@ recap <- function(mygid,
     mutate(tour_position = row_number(),
            tour_total = n(),
            previous_venue = dplyr::lag(venue), previous_city = dplyr::lag(city),
+           previous_subdivision = dplyr::lag(subdivision),
            previous_country = dplyr::lag(country), previous_date = dplyr::lag(date),
            next_venue = dplyr::lead(venue), next_city = dplyr::lead(city),
+           next_subdivision = dplyr::lead(subdivision),
            next_country = dplyr::lead(country), next_date = dplyr::lead(date)) %>%
     ungroup() %>%
     filter(gid==mygid)
@@ -228,19 +235,17 @@ recap <- function(mygid,
   previous_show_text <- if (is.na(tour_ranked$previous_date)) {
     NA_character_
   } else {
-    describe_other_show(tour_ranked$previous_venue, tour_ranked$previous_city, tour_ranked$previous_country,
-                         tour_ranked$previous_date, same_venue = previous_same_venue,
-                         is_adjacent_day = (tour_ranked$previous_date==this_show$date-1),
-                         adjacent_phrase = "the night before")
+    describe_other_show(tour_ranked$previous_venue, tour_ranked$previous_city, tour_ranked$previous_subdivision,
+                         tour_ranked$previous_country, tour_ranked$previous_date,
+                         same_venue = previous_same_venue, this_show_date = this_show$date)
   }
 
   next_show_text <- if (is.na(tour_ranked$next_date)) {
     NA_character_
   } else {
-    describe_other_show(tour_ranked$next_venue, tour_ranked$next_city, tour_ranked$next_country,
-                         tour_ranked$next_date, same_venue = next_collapses_venue,
-                         is_adjacent_day = (tour_ranked$next_date==this_show$date+1),
-                         adjacent_phrase = "the next night")
+    describe_other_show(tour_ranked$next_venue, tour_ranked$next_city, tour_ranked$next_subdivision,
+                         tour_ranked$next_country, tour_ranked$next_date,
+                         same_venue = next_collapses_venue, this_show_date = this_show$date)
   }
 
   tour_clause <- paste0("show ", tour_position, " of ", tour_total, " of the ", this_show$tour)
@@ -277,12 +282,16 @@ recap <- function(mygid,
 
   # Build the country/subdivision/city/venue hierarchy (broad to narrow) and
   # collapse any consecutive levels that share the same visit count into one
-  # clause, using only the narrowest level's label/preposition - since equal
+  # clause, using only the broadest level's label/preposition - since equal
   # counts mean the broader level has never (so far) hosted a show anywhere
   # else, making it redundant to state both (e.g. Washington is the only city
   # ever visited in DC, so "the Nth show in Washington, DC" says it once;
-  # Tempodrom being the only venue visited in Berlin on a debut show collapses
-  # further to just "the 1st show at Tempodrom").
+  # Jönköping's only venue being Kulturhuset on a city debut collapses
+  # further to just "the 1st show in Jönköping", leaving the venue implicit
+  # rather than the city). Priority is broadest-first for the same reason a
+  # country debut always wins outright: every deeper level is trivially also
+  # a debut (count 1) whenever the country is, so there's nothing narrower
+  # left worth naming.
   level_names <- c("country")
   level_counts <- c(country_visit_number)
 
@@ -314,8 +323,8 @@ recap <- function(mygid,
       group_names <- level_names[i:j]
       count <- level_counts[i]
 
-      clause <- if ("venue" %in% group_names) {
-        paste0("the ", format_ordinal(count), " show at ", this_show$venue)
+      clause <- if ("country" %in% group_names) {
+        paste0("the ", format_ordinal(count), " time Fugazi played in ", this_show$country)
       } else if ("city" %in% group_names & "subdivision" %in% group_names) {
         paste0("the ", format_ordinal(count), " show in ", this_show$city, ", ", this_show$subdivision)
       } else if ("city" %in% group_names) {
@@ -323,7 +332,7 @@ recap <- function(mygid,
       } else if ("subdivision" %in% group_names) {
         paste0("the ", format_ordinal(count), " show in ", this_show$subdivision)
       } else {
-        paste0("the ", format_ordinal(count), " time Fugazi played in ", this_show$country)
+        paste0("the ", format_ordinal(count), " show at ", this_show$venue)
       }
 
       group_clauses <- c(group_clauses, clause)
