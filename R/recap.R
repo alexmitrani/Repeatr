@@ -973,12 +973,12 @@ recap <- function(mygid,
       note_out_of_position(tracklist_full, position_deviation_threshold = position_deviation_threshold,
                             position_edge_threshold = position_edge_threshold),
       note_repeated_song(mygid, Repeatr1),
+      note_untracked_interludes(music_minutes, minutes, has_interlude_track),
       note_record_rendition(tracklist_full, mygid, duration_data_da, percentile = rendition_percentile, min_renditions = rendition_min_count, incomplete_seconds = rendition_incomplete_seconds),
       note_first_last_rendition(mygid, this_show$date, show_renditions, duration_data_da),
       note_record_show_duration(minutes, shows_data, duration_data_da),
       note_soundcheck(mygid, Repeatr1),
-      note_curated(mygid),
-      note_untracked_interludes(music_minutes, minutes, has_interlude_track)
+      note_curated(mygid)
     )
 
   }
