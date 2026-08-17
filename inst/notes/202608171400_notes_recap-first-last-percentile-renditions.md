@@ -84,8 +84,73 @@ paragraph).
 `devtools::document()` - only `man/recap.Rd` changed (new
 `rendition_percentile` parameter documented).
 
+### 4. `min_renditions` threshold parameterized
+
+The user asked to confirm the "very few renditions" eligibility cutoff
+(previously a literal `20` inside `note_record_rendition()`) was
+parameterized rather than hardcoded - it wasn't, so fixed: added
+`min_renditions` as a parameter of `note_record_rendition()` (default
+`20`, unchanged behavior), and `rendition_min_count = 20` as a matching new
+`recap()` parameter, threaded through the same way `rendition_percentile`
+already is. Verified: `rendition_min_count = 1000` on
+`victoria-bc-canada-70601` correctly suppresses both its percentile-based
+rendition notes (which need enough data to be meaningful), while leaving
+the rare-track/first-last-rendition/recording-duration notes (unrelated to
+this threshold) untouched; the default (`20`) reproduces the exact same
+`paragraph3` as before this change, confirmed via the full regression
+suite.
+
+### 5. Remaining hardcoded thresholds parameterized too
+
+Per the user's explicit "I don't like hard-coded assumptions" - audited
+every `note_*()` function for similar magic numbers and parameterized the
+two genuine "how much counts as noteworthy" cutoffs found:
+
+- `note_rare_tracks()`'s `<20` rarity threshold → new `rare_max_count`
+  parameter (default `20`), exposed via `recap(rare_track_max_count = ...)`.
+- `note_out_of_position()`'s `>0.8` set-position deviation threshold → new
+  `position_deviation_threshold` parameter (default `0.8`), exposed
+  identically via `recap()`.
+
+`note_repeated_song()`'s `>=2` wasn't touched, since "performed twice" is
+the literal definition of that note, not a tunable judgment call.
+
+### 6. "Near the start/end of the set" bucket boundary parameterized too
+
+The `0.7`/`0.3` phrasing buckets flagged as left-alone above turned out to
+be wanted too. Replaced with a single symmetric `position_edge_threshold`
+(default `0.3`, preserving existing behavior): a position `<=` this value
+reads as "near the start of the set", `>=` `1 -` this value reads as "near
+the end", anything in between as "mid-set" - one parameter instead of two
+independent literals, since there's no reason a show's start and end
+should be described using different margins. Exposed via
+`recap(position_edge_threshold = ...)`, same as the other new parameters.
+
+Verified both new parameters: `rare_track_max_count = 1` on
+`victoria-bc-canada-70601` correctly drops its rare-track note (hello
+morning has 2 occurrences, below the new stricter cutoff) while leaving
+everything else in `paragraph3` unchanged; `position_deviation_threshold
+= 0.99` on `nagold-germany-110488` correctly drops the glueman
+out-of-position note, while `= 0.1` correctly catches many more songs
+(nearly every song in the set becomes "notably" off its average position
+at that loose a threshold, as expected). Defaults reproduce byte-identical
+output to before this change, confirmed via the full regression suite.
+
+Verified `position_edge_threshold` separately: with the deviation
+threshold loosened to `0.3` (to surface enough out-of-position cases to
+see the boundary matter), narrowing `position_edge_threshold` from the
+default `0.3` to `0.05` on `nagold-germany-110488` flips "furniture,
+normally performed mid-set, was performed near the start of the set this
+time" to "...was performed mid-set this time" - confirming the wording
+genuinely tracks the parameter. Defaults again reproduce byte-identical
+`paragraph3` output to before this change, confirmed via the full
+regression suite.
+
 ## Version
 
-Bumped `DESCRIPTION` from `0.0.0.9241` to `0.0.0.9243` (`0.0.0.9242`
-covered the initial implementation; `0.0.0.9243` covers the
-all-renditions/wording correction).
+Bumped `DESCRIPTION` from `0.0.0.9241` to `0.0.0.9246` (`0.0.0.9242`
+covered the initial implementation; `0.0.0.9243` covered the
+all-renditions/wording correction; `0.0.0.9244` covered the
+`rendition_min_count` parameterization; `0.0.0.9245` covered
+`rare_track_max_count`/`position_deviation_threshold`; `0.0.0.9246` covers
+`position_edge_threshold`).

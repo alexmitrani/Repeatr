@@ -16,7 +16,11 @@ recap(
   myothervariables = NULL,
   mytransitions_data_da = NULL,
   myfls_tags = NULL,
-  rendition_percentile = 5
+  rendition_percentile = 5,
+  rendition_min_count = 20,
+  rare_track_max_count = 20,
+  position_deviation_threshold = 0.8,
+  position_edge_threshold = 0.3
 )
 }
 \arguments{
@@ -43,6 +47,14 @@ recap(
 \item{myfls_tags}{optional \code{fls_tags} dataframe (as produced by \code{Repeatr_1()}) to be used for the raw per-track tagged duration of non-song tracks (interludes, intro/outro, etc.), which have no duration elsewhere. If omitted the currently lazy-loaded default will be used.}
 
 \item{rendition_percentile}{the percentile threshold (as a plain number, e.g. \code{5} for the top/bottom 5\%) used by the "exceptionally long/short rendition" note: a rendition that isn't the outright longest/shortest ever recorded, but still falls among the top/bottom percentage of every recorded rendition of the same song (this one included), is called out with wording like "one of the 5\% longest recorded renditions of this song". Defaults to \code{5}.}
+
+\item{rendition_min_count}{the minimum number of recorded renditions a song must have across the whole series before the "longest/shortest/exceptionally long/short rendition" note will consider it at all - below this, neither an all-time record nor a percentile claim is meaningfully established. Defaults to \code{20}.}
+
+\item{rare_track_max_count}{the maximum number of total recorded occurrences (across the whole series) a track can have before the "rarely performed track" note stops considering it rare. Defaults to \code{20}.}
+
+\item{position_deviation_threshold}{how far (on the show's own 0-1 first-to-last scale) a song's position in the set must differ from its series-wide average position before the "performed out of its usual set position" note is triggered. Defaults to \code{0.8}.}
+
+\item{position_edge_threshold}{how close to either end of the set (on the show's own 0-1 first-to-last scale) counts as "near the start"/"near the end" of the set, versus "mid-set", when describing a song's usual or actual set position - a position \code{<=} this value is "near the start", \code{>=} \verb{1 -} this value is "near the end". Defaults to \code{0.3}.}
 }
 \value{
 A list of three elements: \code{context} (a named list of the show's prose-summary facts, including ready-made \code{paragraph1}/\code{paragraph2}/\code{paragraph3} strings), \code{tracklist} (a dataframe with one row per track on the recording, songs and non-song tracks alike, or \code{NULL} if no recording exists) and \code{release_breakdown} (a dataframe of song counts by release for this show, or \code{NULL} if no recording exists).

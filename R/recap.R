@@ -116,10 +116,10 @@ describe_other_show <- function(venue, city, subdivision, country, date, same_ve
 # NAs, and space-joins what's left into paragraph3.
 
 # Songs performed at this show that are rare across the whole series (fewer
-# than 20 total recorded occurrences, tracktype 1/2 only - non-song
-# tracktype 0 content like interludes/soundcheck is a different kind of
-# rarity, handled by note_soundcheck() instead).
-note_rare_tracks <- function(mygid, Repeatr1) {
+# than `rare_max_count` total recorded occurrences, tracktype 1/2 only -
+# non-song tracktype 0 content like interludes/soundcheck is a different
+# kind of rarity, handled by note_soundcheck() instead).
+note_rare_tracks <- function(mygid, Repeatr1, rare_max_count = 20) {
 
   show_titles <- Repeatr1 %>%
     filter(gid==mygid, tracktype %in% c(1, 2)) %>%
@@ -130,7 +130,7 @@ note_rare_tracks <- function(mygid, Repeatr1) {
     filter(tracktype %in% c(1, 2)) %>%
     count(title)
 
-  rare_titles <- show_titles[show_titles %in% series_counts$title[series_counts$n<20]]
+  rare_titles <- show_titles[show_titles %in% series_counts$title[series_counts$n<rare_max_count]]
 
   if (length(rare_titles)==0) {
     NA_character_
@@ -143,16 +143,21 @@ note_rare_tracks <- function(mygid, Repeatr1) {
 }
 
 # Songs performed noticeably earlier or later in the set than usual - more
-# than 0.8 away (on the show's own 0-1 first-to-last scale) from the song's
-# series-wide mean position. tracklist_full is the pre-select tracklist
-# join (see recap()'s tracklist-building code), so non-song tracks (with no
-# position_mean) are automatically excluded.
-note_out_of_position <- function(tracklist_full) {
+# than `position_deviation_threshold` away (on the show's own 0-1
+# first-to-last scale) from the song's series-wide mean position.
+# tracklist_full is the pre-select tracklist join (see recap()'s
+# tracklist-building code), so non-song tracks (with no position_mean) are
+# automatically excluded. `position_edge_threshold` sets how close to
+# either end of the set counts as "near the start"/"near the end" for the
+# wording (position <= threshold, or >= 1 - threshold, respectively) -
+# symmetric around the midpoint, since there's no reason a show's start
+# and end should be described using different margins.
+note_out_of_position <- function(tracklist_full, position_deviation_threshold = 0.8, position_edge_threshold = 0.3) {
 
   position_bucket <- function(p) {
-    if (p>=0.7) {
+    if (p>=(1-position_edge_threshold)) {
       "near the end of the set"
-    } else if (p<=0.3) {
+    } else if (p<=position_edge_threshold) {
       "near the start of the set"
     } else {
       "mid-set"
@@ -160,7 +165,7 @@ note_out_of_position <- function(tracklist_full) {
   }
 
   out_of_position <- tracklist_full %>%
-    filter(is.na(position)==FALSE, is.na(position_mean)==FALSE, abs(position - position_mean)>0.8)
+    filter(is.na(position)==FALSE, is.na(position_mean)==FALSE, abs(position - position_mean)>position_deviation_threshold)
 
   if (nrow(out_of_position)==0) {
     return(NA_character_)
@@ -203,18 +208,18 @@ note_repeated_song <- function(mygid, Repeatr1) {
 
 # Songs whose duration at this show is unusual relative to every recorded
 # rendition of that song (this one included), restricted to songs with at
-# least 20 recorded renditions - below that neither an all-time record nor
-# a percentile claim is meaningfully "record-setting". The absolute
-# longest/shortest ever gets the strongest phrasing; a rendition merely
-# among the top/bottom `percentile`% (without being the outright record)
-# gets "one of the X% longest/shortest recorded renditions" instead, using
-# the percentile parameter itself as X, not the exact computed rank, so
-# every rendition in that band reads the same way and the wording adapts
-# cleanly if the parameter changes.
-note_record_rendition <- function(tracklist_full, mygid, duration_data_da, percentile = 5) {
+# least `min_renditions` recorded renditions - below that neither an
+# all-time record nor a percentile claim is meaningfully "record-setting".
+# The absolute longest/shortest ever gets the strongest phrasing; a
+# rendition merely among the top/bottom `percentile`% (without being the
+# outright record) gets "one of the X% longest/shortest recorded
+# renditions" instead, using the percentile parameter itself as X, not the
+# exact computed rank, so every rendition in that band reads the same way
+# and the wording adapts cleanly if the parameter changes.
+note_record_rendition <- function(tracklist_full, mygid, duration_data_da, percentile = 5, min_renditions = 20) {
 
   eligible <- tracklist_full %>%
-    filter(is.na(renditions)==FALSE, renditions>=20)
+    filter(is.na(renditions)==FALSE, renditions>=min_renditions)
 
   if (nrow(eligible)==0) {
     return(NA_character_)
@@ -453,6 +458,10 @@ note_festival <- function(venue, shows_data) {
 #' @param mytransitions_data_da optional `transitions_data_da` dataframe (as produced by `Repeatr_1()`) to be used for song-to-song transition occurrence counts. If omitted the currently lazy-loaded default will be used.
 #' @param myfls_tags optional `fls_tags` dataframe (as produced by `Repeatr_1()`) to be used for the raw per-track tagged duration of non-song tracks (interludes, intro/outro, etc.), which have no duration elsewhere. If omitted the currently lazy-loaded default will be used.
 #' @param rendition_percentile the percentile threshold (as a plain number, e.g. `5` for the top/bottom 5%) used by the "exceptionally long/short rendition" note: a rendition that isn't the outright longest/shortest ever recorded, but still falls among the top/bottom percentage of every recorded rendition of the same song (this one included), is called out with wording like "one of the 5% longest recorded renditions of this song". Defaults to `5`.
+#' @param rendition_min_count the minimum number of recorded renditions a song must have across the whole series before the "longest/shortest/exceptionally long/short rendition" note will consider it at all - below this, neither an all-time record nor a percentile claim is meaningfully established. Defaults to `20`.
+#' @param rare_track_max_count the maximum number of total recorded occurrences (across the whole series) a track can have before the "rarely performed track" note stops considering it rare. Defaults to `20`.
+#' @param position_deviation_threshold how far (on the show's own 0-1 first-to-last scale) a song's position in the set must differ from its series-wide average position before the "performed out of its usual set position" note is triggered. Defaults to `0.8`.
+#' @param position_edge_threshold how close to either end of the set (on the show's own 0-1 first-to-last scale) counts as "near the start"/"near the end" of the set, versus "mid-set", when describing a song's usual or actual set position - a position `<=` this value is "near the start", `>=` `1 -` this value is "near the end". Defaults to `0.3`.
 #'
 #' @return A list of three elements: `context` (a named list of the show's prose-summary facts, including ready-made `paragraph1`/`paragraph2`/`paragraph3` strings), `tracklist` (a dataframe with one row per track on the recording, songs and non-song tracks alike, or `NULL` if no recording exists) and `release_breakdown` (a dataframe of song counts by release for this show, or `NULL` if no recording exists).
 #' @export
@@ -468,7 +477,9 @@ recap <- function(mygid,
                    myduration_summary = NULL, myposition_summary = NULL,
                    myplayed_with = NULL, myothervariables = NULL,
                    mytransitions_data_da = NULL, myfls_tags = NULL,
-                   rendition_percentile = 5) {
+                   rendition_percentile = 5, rendition_min_count = 20,
+                   rare_track_max_count = 20, position_deviation_threshold = 0.8,
+                   position_edge_threshold = 0.3) {
 
 # pre-processing to check that all required parameters are defined -----------------------------------------------------------
 
@@ -883,10 +894,11 @@ recap <- function(mygid,
     # dropped; if none apply, paragraph3 is "" like this file's other
     # optional sentences.
     note_pieces <- c(
-      note_rare_tracks(mygid, Repeatr1),
-      note_out_of_position(tracklist_full),
+      note_rare_tracks(mygid, Repeatr1, rare_max_count = rare_track_max_count),
+      note_out_of_position(tracklist_full, position_deviation_threshold = position_deviation_threshold,
+                            position_edge_threshold = position_edge_threshold),
       note_repeated_song(mygid, Repeatr1),
-      note_record_rendition(tracklist_full, mygid, duration_data_da, percentile = rendition_percentile),
+      note_record_rendition(tracklist_full, mygid, duration_data_da, percentile = rendition_percentile, min_renditions = rendition_min_count),
       note_first_last_rendition(mygid, this_show$date, show_renditions, duration_data_da),
       note_record_show_duration(minutes, shows_data, duration_data_da),
       note_soundcheck(mygid, Repeatr1),
