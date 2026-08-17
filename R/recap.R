@@ -404,10 +404,8 @@ note_record_show_duration <- function(minutes, shows_data, duration_data_da) {
 # itself is the reliable signal, not its size.
 note_untracked_interludes <- function(music_minutes, minutes, has_interlude_track) {
 
-  if (round(music_minutes, digits = 2) >= round(minutes, digits = 2)) {
-    "Interludes and other non-song content were not tracked separately for this recording, so song durations shown may be slightly over-estimated."
-  } else if (has_interlude_track==FALSE) {
-    "This show has no interlude tracks. Some song durations may be exaggerated due to possible inclusion of interludes."
+  if (has_interlude_track==FALSE) {
+    "This show has no interlude tracks. Some song durations may be exaggerated due to possible inclusion of interludes. The estimated total duration of music included in this recording might be over-estimated."
   } else {
     NA_character_
   }
