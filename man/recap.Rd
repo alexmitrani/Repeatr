@@ -18,6 +18,7 @@ recap(
   myfls_tags = NULL,
   rendition_percentile = 5,
   rendition_min_count = 20,
+  rendition_incomplete_seconds = 60,
   rare_track_max_count = 20,
   position_deviation_threshold = 0.8,
   position_edge_threshold = 0.3
@@ -49,6 +50,8 @@ recap(
 \item{rendition_percentile}{the percentile threshold (as a plain number, e.g. \code{5} for the top/bottom 5\%) used by the "exceptionally long/short rendition" note: a rendition that isn't the outright longest/shortest ever recorded, but still falls among the top/bottom percentage of every recorded rendition of the same song (this one included), is called out with wording like "one of the 5\% longest recorded renditions of this song". Defaults to \code{5}.}
 
 \item{rendition_min_count}{the minimum number of recorded renditions a song must have across the whole series before the "longest/shortest/exceptionally long/short rendition" note will consider it at all - below this, neither an all-time record nor a percentile claim is meaningfully established. Defaults to \code{20}.}
+
+\item{rendition_incomplete_seconds}{the duration (in seconds) below which a song flagged as an unusually short rendition (the shortest ever recorded, or among the bottom \code{rendition_percentile}\%) is additionally called out by name as possibly having an incomplete recording. Defaults to \code{60}.}
 
 \item{rare_track_max_count}{the maximum number of total recorded occurrences (across the whole series) a track can have before the "rarely performed track" note stops considering it rare. Defaults to \code{20}.}
 

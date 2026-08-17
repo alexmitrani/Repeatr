@@ -215,8 +215,17 @@ note_repeated_song <- function(mygid, Repeatr1) {
 # outright record) gets "one of the X% longest/shortest recorded
 # renditions" instead, using the percentile parameter itself as X, not the
 # exact computed rank, so every rendition in that band reads the same way
-# and the wording adapts cleanly if the parameter changes.
-note_record_rendition <- function(tracklist_full, mygid, duration_data_da, percentile = 5, min_renditions = 20) {
+# and the wording adapts cleanly if the parameter changes. Songs are
+# bucketed by which of the four categories they fall into (a song only
+# ever matches one, in this priority order) and each non-empty bucket
+# becomes a single oxford-joined sentence, rather than one sentence per
+# song, to avoid a run of near-identical consecutive sentences (issue
+# #257). A flagged short rendition under `incomplete_seconds` gets named
+# in a separate trailing "may be incomplete" sentence, rather than folded
+# into the shortest-rendition sentence itself, since which songs are
+# unusually short and which are possibly-incomplete-short are related but
+# distinct claims.
+note_record_rendition <- function(tracklist_full, mygid, duration_data_da, percentile = 5, min_renditions = 20, incomplete_seconds = 60) {
 
   eligible <- tracklist_full %>%
     filter(is.na(renditions)==FALSE, renditions>=min_renditions)
@@ -225,7 +234,15 @@ note_record_rendition <- function(tracklist_full, mygid, duration_data_da, perce
     return(NA_character_)
   }
 
-  sentences <- vapply(seq_len(nrow(eligible)), function(i) {
+  longest_record <- character(0)
+  longest_percentile <- character(0)
+  shortest_record <- character(0)
+  shortest_percentile <- character(0)
+  incomplete_titles <- character(0)
+
+  incomplete_minutes <- incomplete_seconds/60
+
+  for (i in seq_len(nrow(eligible))) {
 
     row_title <- eligible$title[i]
     row_minutes <- eligible$minutes[i]
@@ -236,26 +253,58 @@ note_record_rendition <- function(tracklist_full, mygid, duration_data_da, perce
     all_minutes <- all_minutes[is.na(all_minutes)==FALSE]
 
     if (length(all_minutes)==0 | is.na(row_minutes)) {
-      return(NA_character_)
+      next
     }
 
     top_fraction <- mean(all_minutes>=row_minutes)
     bottom_fraction <- mean(all_minutes<=row_minutes)
 
     if (row_minutes>=max(all_minutes)) {
-      paste0("This show includes the longest rendition of ", row_title, " recorded anywhere in the Fugazi Live Series.")
+      longest_record <- c(longest_record, row_title)
     } else if (top_fraction<=percentile/100) {
-      paste0("This show includes one of the ", percentile, "% longest recorded renditions of ", row_title, ".")
+      longest_percentile <- c(longest_percentile, row_title)
     } else if (row_minutes<=min(all_minutes)) {
-      paste0("This show includes the shortest rendition of ", row_title,
-             " recorded anywhere in the Fugazi Live Series, which may indicate the recording is incomplete.")
+      shortest_record <- c(shortest_record, row_title)
+      if (row_minutes<incomplete_minutes) { incomplete_titles <- c(incomplete_titles, row_title) }
     } else if (bottom_fraction<=percentile/100) {
-      paste0("This show includes one of the ", percentile, "% shortest recorded renditions of ", row_title, ".")
-    } else {
-      NA_character_
+      shortest_percentile <- c(shortest_percentile, row_title)
+      if (row_minutes<incomplete_minutes) { incomplete_titles <- c(incomplete_titles, row_title) }
     }
 
-  }, character(1))
+  }
+
+  rendition_sentence <- function(titles, singular_lead, plural_lead, tail) {
+    if (length(titles)==0) {
+      NA_character_
+    } else if (length(titles)==1) {
+      paste0(singular_lead, titles, tail)
+    } else {
+      paste0(plural_lead, oxford_join(titles), tail)
+    }
+  }
+
+  sentences <- c(
+    rendition_sentence(longest_record,
+                        "This show includes the longest rendition of ",
+                        "This show includes the longest renditions of ",
+                        " recorded anywhere in the Fugazi Live Series."),
+    rendition_sentence(longest_percentile,
+                        paste0("This show includes one of the ", percentile, "% longest recorded renditions of "),
+                        paste0("This show includes one of the ", percentile, "% longest recorded renditions of "),
+                        "."),
+    rendition_sentence(shortest_record,
+                        "This show includes the shortest rendition of ",
+                        "This show includes the shortest renditions of ",
+                        " recorded anywhere in the Fugazi Live Series."),
+    rendition_sentence(shortest_percentile,
+                        paste0("This show includes one of the ", percentile, "% shortest recorded renditions of "),
+                        paste0("This show includes one of the ", percentile, "% shortest recorded renditions of "),
+                        "."),
+    rendition_sentence(incomplete_titles,
+                        "The recording of ",
+                        "The recordings of ",
+                        " may be incomplete.")
+  )
 
   sentences <- sentences[is.na(sentences)==FALSE]
 
@@ -459,6 +508,7 @@ note_festival <- function(venue, shows_data) {
 #' @param myfls_tags optional `fls_tags` dataframe (as produced by `Repeatr_1()`) to be used for the raw per-track tagged duration of non-song tracks (interludes, intro/outro, etc.), which have no duration elsewhere. If omitted the currently lazy-loaded default will be used.
 #' @param rendition_percentile the percentile threshold (as a plain number, e.g. `5` for the top/bottom 5%) used by the "exceptionally long/short rendition" note: a rendition that isn't the outright longest/shortest ever recorded, but still falls among the top/bottom percentage of every recorded rendition of the same song (this one included), is called out with wording like "one of the 5% longest recorded renditions of this song". Defaults to `5`.
 #' @param rendition_min_count the minimum number of recorded renditions a song must have across the whole series before the "longest/shortest/exceptionally long/short rendition" note will consider it at all - below this, neither an all-time record nor a percentile claim is meaningfully established. Defaults to `20`.
+#' @param rendition_incomplete_seconds the duration (in seconds) below which a song flagged as an unusually short rendition (the shortest ever recorded, or among the bottom `rendition_percentile`%) is additionally called out by name as possibly having an incomplete recording. Defaults to `60`.
 #' @param rare_track_max_count the maximum number of total recorded occurrences (across the whole series) a track can have before the "rarely performed track" note stops considering it rare. Defaults to `20`.
 #' @param position_deviation_threshold how far (on the show's own 0-1 first-to-last scale) a song's position in the set must differ from its series-wide average position before the "performed out of its usual set position" note is triggered. Defaults to `0.8`.
 #' @param position_edge_threshold how close to either end of the set (on the show's own 0-1 first-to-last scale) counts as "near the start"/"near the end" of the set, versus "mid-set", when describing a song's usual or actual set position - a position `<=` this value is "near the start", `>=` `1 -` this value is "near the end". Defaults to `0.3`.
@@ -478,6 +528,7 @@ recap <- function(mygid,
                    myplayed_with = NULL, myothervariables = NULL,
                    mytransitions_data_da = NULL, myfls_tags = NULL,
                    rendition_percentile = 5, rendition_min_count = 20,
+                   rendition_incomplete_seconds = 60,
                    rare_track_max_count = 20, position_deviation_threshold = 0.8,
                    position_edge_threshold = 0.3) {
 
@@ -898,7 +949,7 @@ recap <- function(mygid,
       note_out_of_position(tracklist_full, position_deviation_threshold = position_deviation_threshold,
                             position_edge_threshold = position_edge_threshold),
       note_repeated_song(mygid, Repeatr1),
-      note_record_rendition(tracklist_full, mygid, duration_data_da, percentile = rendition_percentile, min_renditions = rendition_min_count),
+      note_record_rendition(tracklist_full, mygid, duration_data_da, percentile = rendition_percentile, min_renditions = rendition_min_count, incomplete_seconds = rendition_incomplete_seconds),
       note_first_last_rendition(mygid, this_show$date, show_renditions, duration_data_da),
       note_record_show_duration(minutes, shows_data, duration_data_da),
       note_soundcheck(mygid, Repeatr1),
