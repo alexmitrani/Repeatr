@@ -15,7 +15,8 @@ recap(
   myplayed_with = NULL,
   myothervariables = NULL,
   mytransitions_data_da = NULL,
-  myfls_tags = NULL
+  myfls_tags = NULL,
+  rendition_percentile = 5
 )
 }
 \arguments{
@@ -40,6 +41,8 @@ recap(
 \item{mytransitions_data_da}{optional \code{transitions_data_da} dataframe (as produced by \code{Repeatr_1()}) to be used for song-to-song transition occurrence counts. If omitted the currently lazy-loaded default will be used.}
 
 \item{myfls_tags}{optional \code{fls_tags} dataframe (as produced by \code{Repeatr_1()}) to be used for the raw per-track tagged duration of non-song tracks (interludes, intro/outro, etc.), which have no duration elsewhere. If omitted the currently lazy-loaded default will be used.}
+
+\item{rendition_percentile}{the percentile threshold (as a plain number, e.g. \code{5} for the top/bottom 5\%) used by the "exceptionally long/short rendition" note: a rendition that isn't the outright longest/shortest ever recorded, but still falls among the top/bottom percentage of every recorded rendition of the same song (this one included), is called out with wording like "one of the 5\% longest recorded renditions of this song". Defaults to \code{5}.}
 }
 \value{
 A list of three elements: \code{context} (a named list of the show's prose-summary facts, including ready-made \code{paragraph1}/\code{paragraph2}/\code{paragraph3} strings), \code{tracklist} (a dataframe with one row per track on the recording, songs and non-song tracks alike, or \code{NULL} if no recording exists) and \code{release_breakdown} (a dataframe of song counts by release for this show, or \code{NULL} if no recording exists).

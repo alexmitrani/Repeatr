@@ -201,31 +201,122 @@ note_repeated_song <- function(mygid, Repeatr1) {
 
 }
 
-# Songs whose duration at this show set an all-time record (longest or
-# shortest ever recorded rendition), restricted to songs with at least 20
-# recorded renditions - below that a single show could shift the record
-# without it being meaningfully "record-setting". tracklist_full already
-# carries each title's series-wide minutes_min/minutes_max/renditions.
-note_record_rendition <- function(tracklist_full) {
+# Songs whose duration at this show is unusual relative to every recorded
+# rendition of that song (this one included), restricted to songs with at
+# least 20 recorded renditions - below that neither an all-time record nor
+# a percentile claim is meaningfully "record-setting". The absolute
+# longest/shortest ever gets the strongest phrasing; a rendition merely
+# among the top/bottom `percentile`% (without being the outright record)
+# gets "one of the X% longest/shortest recorded renditions" instead, using
+# the percentile parameter itself as X, not the exact computed rank, so
+# every rendition in that band reads the same way and the wording adapts
+# cleanly if the parameter changes.
+note_record_rendition <- function(tracklist_full, mygid, duration_data_da, percentile = 5) {
 
   eligible <- tracklist_full %>%
     filter(is.na(renditions)==FALSE, renditions>=20)
 
-  longest_titles <- unique(eligible %>% filter(minutes==minutes_max) %>% pull(title))
-  shortest_titles <- unique(eligible %>% filter(minutes==minutes_min) %>% pull(title))
+  if (nrow(eligible)==0) {
+    return(NA_character_)
+  }
 
-  longest_sentences <- vapply(longest_titles, function(x) {
-    paste0("This show includes the longest rendition of ", x, " recorded anywhere in the Fugazi Live Series.")
+  sentences <- vapply(seq_len(nrow(eligible)), function(i) {
+
+    row_title <- eligible$title[i]
+    row_minutes <- eligible$minutes[i]
+
+    all_minutes <- duration_data_da %>%
+      filter(title==row_title) %>%
+      pull(minutes)
+    all_minutes <- all_minutes[is.na(all_minutes)==FALSE]
+
+    if (length(all_minutes)==0 | is.na(row_minutes)) {
+      return(NA_character_)
+    }
+
+    top_fraction <- mean(all_minutes>=row_minutes)
+    bottom_fraction <- mean(all_minutes<=row_minutes)
+
+    if (row_minutes>=max(all_minutes)) {
+      paste0("This show includes the longest rendition of ", row_title, " recorded anywhere in the Fugazi Live Series.")
+    } else if (top_fraction<=percentile/100) {
+      paste0("This show includes one of the ", percentile, "% longest recorded renditions of ", row_title, ".")
+    } else if (row_minutes<=min(all_minutes)) {
+      paste0("This show includes the shortest rendition of ", row_title,
+             " recorded anywhere in the Fugazi Live Series, which may indicate the recording is incomplete.")
+    } else if (bottom_fraction<=percentile/100) {
+      paste0("This show includes one of the ", percentile, "% shortest recorded renditions of ", row_title, ".")
+    } else {
+      NA_character_
+    }
+
   }, character(1))
 
-  shortest_sentences <- vapply(shortest_titles, function(x) {
-    paste0("This show includes the shortest rendition of ", x,
-           " recorded anywhere in the Fugazi Live Series, which may indicate the recording is incomplete.")
-  }, character(1))
+  sentences <- sentences[is.na(sentences)==FALSE]
 
-  all_sentences <- c(longest_sentences, shortest_sentences)
+  if (length(sentences)==0) NA_character_ else paste(sentences, collapse = " ")
 
-  if (length(all_sentences)==0) NA_character_ else paste(all_sentences, collapse = " ")
+}
+
+# Songs whose rendition at this show is the first or last one recorded
+# anywhere in the series (a debut or, to date, a farewell), skipped
+# entirely for the earliest and latest recorded shows themselves, since
+# every song in those two setlists would trivially qualify (there being
+# nothing recorded before/after them to compare against) rather than any
+# one song being individually noteworthy for it. A song with only one
+# recorded rendition ever, performed at this show, is both at once - that
+# gets its own "only recorded rendition" phrasing rather than stating the
+# same fact twice.
+note_first_last_rendition <- function(mygid, this_show_date, show_renditions, duration_data_da) {
+
+  earliest_date <- min(duration_data_da$date)
+  latest_date <- max(duration_data_da$date)
+
+  if (this_show_date==earliest_date | this_show_date==latest_date) {
+    return(NA_character_)
+  }
+
+  title_dates <- duration_data_da %>%
+    group_by(title) %>%
+    summarize(first_date = min(date), last_date = max(date)) %>%
+    ungroup()
+
+  show_titles <- show_renditions %>%
+    distinct(title) %>%
+    left_join(title_dates, by = "title")
+
+  only_titles <- show_titles %>% filter(first_date==this_show_date, last_date==this_show_date) %>% pull(title)
+  debut_titles <- show_titles %>% filter(first_date==this_show_date, last_date!=this_show_date) %>% pull(title)
+  farewell_titles <- show_titles %>% filter(first_date!=this_show_date, last_date==this_show_date) %>% pull(title)
+
+  only_sentence <- if (length(only_titles)==0) {
+    NA_character_
+  } else if (length(only_titles)==1) {
+    paste0("This show includes the only recorded rendition of ", only_titles, ".")
+  } else {
+    paste0("This show includes the only recorded renditions of ", oxford_join(only_titles), ".")
+  }
+
+  debut_sentence <- if (length(debut_titles)==0) {
+    NA_character_
+  } else if (length(debut_titles)==1) {
+    paste0("This show includes the first ever recorded rendition of ", debut_titles, ".")
+  } else {
+    paste0("This show includes the first ever recorded renditions of ", oxford_join(debut_titles), ".")
+  }
+
+  farewell_sentence <- if (length(farewell_titles)==0) {
+    NA_character_
+  } else if (length(farewell_titles)==1) {
+    paste0("This show includes the last recorded rendition of ", farewell_titles, " to date.")
+  } else {
+    paste0("This show includes the last recorded renditions of ", oxford_join(farewell_titles), " to date.")
+  }
+
+  sentences <- c(only_sentence, debut_sentence, farewell_sentence)
+  sentences <- sentences[is.na(sentences)==FALSE]
+
+  if (length(sentences)==0) NA_character_ else paste(sentences, collapse = " ")
 
 }
 
@@ -361,6 +452,7 @@ note_festival <- function(venue, shows_data) {
 #' @param myothervariables optional `othervariables` dataframe (as produced by `Repeatr_1()`) to be used for recording credits (recorded by/mastered by/original source). If omitted the currently lazy-loaded default will be used.
 #' @param mytransitions_data_da optional `transitions_data_da` dataframe (as produced by `Repeatr_1()`) to be used for song-to-song transition occurrence counts. If omitted the currently lazy-loaded default will be used.
 #' @param myfls_tags optional `fls_tags` dataframe (as produced by `Repeatr_1()`) to be used for the raw per-track tagged duration of non-song tracks (interludes, intro/outro, etc.), which have no duration elsewhere. If omitted the currently lazy-loaded default will be used.
+#' @param rendition_percentile the percentile threshold (as a plain number, e.g. `5` for the top/bottom 5%) used by the "exceptionally long/short rendition" note: a rendition that isn't the outright longest/shortest ever recorded, but still falls among the top/bottom percentage of every recorded rendition of the same song (this one included), is called out with wording like "one of the 5% longest recorded renditions of this song". Defaults to `5`.
 #'
 #' @return A list of three elements: `context` (a named list of the show's prose-summary facts, including ready-made `paragraph1`/`paragraph2`/`paragraph3` strings), `tracklist` (a dataframe with one row per track on the recording, songs and non-song tracks alike, or `NULL` if no recording exists) and `release_breakdown` (a dataframe of song counts by release for this show, or `NULL` if no recording exists).
 #' @export
@@ -375,7 +467,8 @@ recap <- function(mygid,
                    myrepeatr1 = NULL, myreleasesdatalookup = NULL,
                    myduration_summary = NULL, myposition_summary = NULL,
                    myplayed_with = NULL, myothervariables = NULL,
-                   mytransitions_data_da = NULL, myfls_tags = NULL) {
+                   mytransitions_data_da = NULL, myfls_tags = NULL,
+                   rendition_percentile = 5) {
 
 # pre-processing to check that all required parameters are defined -----------------------------------------------------------
 
@@ -793,7 +886,8 @@ recap <- function(mygid,
       note_rare_tracks(mygid, Repeatr1),
       note_out_of_position(tracklist_full),
       note_repeated_song(mygid, Repeatr1),
-      note_record_rendition(tracklist_full),
+      note_record_rendition(tracklist_full, mygid, duration_data_da, percentile = rendition_percentile),
+      note_first_last_rendition(mygid, this_show$date, show_renditions, duration_data_da),
       note_record_show_duration(minutes, shows_data, duration_data_da),
       note_soundcheck(mygid, Repeatr1),
       note_curated(mygid),
