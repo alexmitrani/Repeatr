@@ -985,7 +985,7 @@ tabPanel("flow",
                         ),
 
                         conditionalPanel(
-                          condition = "output.recap_has_recording == true && output.recap_has_notes == true",
+                          condition = "output.recap_has_notes == true",
                           uiOutput("recap_summary_text3"),
                           tags$br()
                         ),

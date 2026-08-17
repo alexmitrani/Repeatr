@@ -43,7 +43,7 @@ if (ctx$has_recording) {
 ```
 
 ```{r summary-text-3, results='asis'}
-if (ctx$has_recording & ctx$paragraph3!="") {
+if (ctx$paragraph3!="") {
   cat(ctx$paragraph3)
 }
 ```

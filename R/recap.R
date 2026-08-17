@@ -442,8 +442,9 @@ note_curated <- function(mygid) {
 }
 
 # Whether this show's attendance is the largest or smallest of any Fugazi
-# show (independent of has_recording - called from paragraph1, not
-# collected into paragraph3).
+# show (independent of has_recording, so computed and folded into
+# paragraph3's "Notes:" list even for shows with no surviving recording,
+# unlike the rest of that list).
 note_record_attendance <- function(attendance, shows_data) {
 
   if (attendance==max(shows_data$attendance, na.rm = TRUE)) {
@@ -458,8 +459,8 @@ note_record_attendance <- function(attendance, shows_data) {
 
 # Whether this show's ticket price is the highest of any USD-denominated
 # Fugazi show - restricted to USD since foreign-currency prices aren't
-# directly comparable without conversion (independent of has_recording -
-# called from paragraph1, not collected into paragraph3).
+# directly comparable without conversion (independent of has_recording, so
+# folded into paragraph3 even for shows with no surviving recording).
 note_record_price <- function(price, currency, shows_data) {
 
   if (is.na(price) | is.na(currency) | currency!="USD") {
@@ -478,9 +479,9 @@ note_record_price <- function(price, currency, shows_data) {
 
 # Whether this show was a festival - Fugazi played very few, and there's no
 # separate flag for it in the data, so it's detected from the venue name
-# itself (independent of has_recording - called from paragraph1, not
-# collected into paragraph3). The "only N" count is computed live, same
-# principle as note_soundcheck().
+# itself (independent of has_recording, so folded into paragraph3 even for
+# shows with no surviving recording). The "only N" count is computed live,
+# same principle as note_soundcheck().
 note_festival <- function(venue, shows_data) {
 
   if (grepl("festival", venue, ignore.case = TRUE)==FALSE) {
@@ -752,9 +753,13 @@ recap <- function(mygid,
 
   location_sentence <- paste0("It was ", oxford_join(c(overall_clause, tour_clause, group_clauses), force_comma = TRUE), ".")
 
-  # Facts about the show itself (not the recording), so unlike paragraph3
-  # these apply even when has_recording is FALSE - e.g. the smallest-
-  # attendance show in the whole series has no surviving recording.
+  # Facts about the show itself (not the recording), so unlike the rest of
+  # paragraph3 these apply even when has_recording is FALSE - e.g. the
+  # smallest-attendance show in the whole series has no surviving
+  # recording. Folded into paragraph3's "Notes:" list (below) rather than
+  # paragraph1, alongside every other "something unusual about this show"
+  # fact, instead of being singled out as trailing clauses on the opening
+  # paragraph.
   attendance_record_note <- note_record_attendance(attendance, shows_data)
   price_record_note <- note_record_price(price, currency, shows_data)
   festival_note <- note_festival(this_show$venue, shows_data)
@@ -762,10 +767,7 @@ recap <- function(mygid,
   paragraph1 <- paste0("On ", datestring, ", ", attendance_clause, door_price_clause, " ",
                        location_sentence,
                        ifelse(tour_context_sentence=="", "", paste0(" ", tour_context_sentence)),
-                       ifelse(last_show_sentence=="", "", paste0(" ", last_show_sentence)),
-                       ifelse(is.na(attendance_record_note), "", paste0(" ", attendance_record_note)),
-                       ifelse(is.na(price_record_note), "", paste0(" ", price_record_note)),
-                       ifelse(is.na(festival_note), "", paste0(" ", festival_note)))
+                       ifelse(last_show_sentence=="", "", paste0(" ", last_show_sentence)))
 
 # recording-derived stats ------------------------------------------------------------------------------------------------------
 
@@ -783,7 +785,7 @@ recap <- function(mygid,
   release_breakdown_text <- NA_character_
   tracklist <- NULL
   paragraph2 <- ""
-  paragraph3 <- ""
+  note_pieces <- character(0)
   recorded_by <- NA_character_
   mastered_by <- NA_character_
   original_source <- NA_character_
@@ -936,21 +938,18 @@ recap <- function(mygid,
                          ifelse(recording_detail_sentence=="", "", paste0(" ", recording_detail_sentence)),
                          " ", songs_sentence)
 
-    # paragraph3 collects whichever noteworthy facts apply to this show -
-    # content-notable ones first (rare tracks, unusual set position,
-    # repeats, record-setting renditions/recordings, soundcheck, curated
-    # one-offs), the untracked-interludes technical caveat last, since it
-    # qualifies the numbers just given rather than describing the show
-    # itself. Each note_*() function returns either NA_character_ (nothing
-    # to say, dropped) or a character vector of one or more independent
-    # notes/facts - c() flattens those straight into note_pieces, so a
-    # function surfacing several facts (e.g. several out-of-position songs)
-    # contributes several separate bullets rather than one run-on sentence.
-    # Rendered as an HTML "Notes:" heading plus a bullet list rather than a
-    # prose paragraph, since a flat list of independent facts reads more
-    # naturally that way than as consecutive sentences (issue #257); if
-    # none apply, paragraph3 is "" like this file's other optional
-    # sentences.
+    # Recording-derived noteworthy facts (rare tracks, unusual set
+    # position, repeats, record-setting renditions/recordings, soundcheck,
+    # curated one-offs), the untracked-interludes technical caveat last,
+    # since it qualifies the numbers just given rather than describing the
+    # show itself. Combined below (after this has_recording block) with
+    # the recording-independent facts (attendance/price/festival records)
+    # into paragraph3's "Notes:" list. Each note_*() function returns
+    # either NA_character_ (nothing to say, dropped) or a character vector
+    # of one or more independent notes/facts - c() flattens those straight
+    # into note_pieces, so a function surfacing several facts (e.g.
+    # several out-of-position songs) contributes several separate bullets
+    # rather than one run-on sentence.
     note_pieces <- c(
       note_rare_tracks(mygid, Repeatr1, rare_max_count = rare_track_max_count),
       note_out_of_position(tracklist_full, position_deviation_threshold = position_deviation_threshold,
@@ -964,16 +963,24 @@ recap <- function(mygid,
       note_untracked_interludes(music_minutes, minutes)
     )
 
-    note_pieces <- note_pieces[is.na(note_pieces)==FALSE]
+  }
 
-    paragraph3 <- if (length(note_pieces)==0) {
-      ""
-    } else {
-      paste0("<p><strong>Notes:</strong></p><ul>",
-             paste0("<li>", note_pieces, "</li>", collapse = ""),
-             "</ul>")
-    }
+  # paragraph3 collects every "something unusual about this show" fact -
+  # the attendance/price/festival records first (these apply even without
+  # a recording), then whichever recording-derived facts above applied.
+  # Rendered as an HTML "Notes:" heading plus a bullet list rather than a
+  # prose paragraph, since a flat list of independent facts reads more
+  # naturally that way than as consecutive sentences (issue #257); if none
+  # apply, paragraph3 is "" like this file's other optional sentences.
+  note_pieces <- c(attendance_record_note, price_record_note, festival_note, note_pieces)
+  note_pieces <- note_pieces[is.na(note_pieces)==FALSE]
 
+  paragraph3 <- if (length(note_pieces)==0) {
+    ""
+  } else {
+    paste0("<p><strong>Notes:</strong></p><ul>",
+           paste0("<li>", note_pieces, "</li>", collapse = ""),
+           "</ul>")
   }
 
   context <- list(

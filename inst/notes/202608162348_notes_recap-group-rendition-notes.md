@@ -185,7 +185,63 @@ together at the top of the page instead of splitting it across both ends.
   render/print-to-PDF check is still worth doing where pandoc is
   available.
 
+## Follow-up 2: attendance/price/festival records moved into the "Notes:" list (2026-08-17)
+
+Noticed that `paragraph1` still had a few "unusual about this show"
+sentences trailing off the end of it - largest/smallest-attendance
+(`note_record_attendance()`), most-expensive-in-USD (`note_record_price()`),
+and festival-show (`note_festival()`) - while every other "unusual about
+this show" fact lived in the `paragraph3` "Notes:" list. Moved all three
+into the Notes list for consistency, so it's now the single place for
+"anything unusual about this show," recording or no recording.
+
+These three notes are the only ones in `paragraph3` that are independent
+of `has_recording` (e.g. `bethesda-md-usa-120287`, the smallest-attendance
+show in the whole series, has no surviving recording at all). Restructuring
+required moving `paragraph3` assembly to run unconditionally, after the
+`if (has_recording) {...}` block, rather than only inside it:
+`note_pieces` is now initialized to `character(0)` before that block (in
+place of the old `paragraph3 <- ""` default), populated with the
+recording-derived facts inside the block as before, then combined as
+`c(attendance_record_note, price_record_note, festival_note, note_pieces)`
+- in that order, so the show-level record facts lead - once the block
+closes; the final NA-filtering and `<ul>` markup construction moved down
+to this combined step. `paragraph1`'s trailing `ifelse(...)` clauses for
+these three notes were deleted.
+
+Also caught and fixed a latent UI bug this surfaces: `app.R`'s
+conditionalPanel for the notes section, and `recap_template.Rmd`'s
+`summary-text-3` chunk, both gated on `has_recording == true` in addition
+to `has_notes == true` (left over from when everything in `paragraph3` did
+require a recording) - dropped the `has_recording` condition from both, so
+a no-recording show with an attendance/price/festival record still shows
+its "Notes:" list.
+
+Vignette's "recap" section updated to describe the attendance/ticket-price/
+festival callouts as part of the Notes list (explicitly noting they apply
+even without a recording) instead of as part of the opening paragraph.
+
+### Verification
+
+- `recap(mygid = "bethesda-md-usa-120287")` (smallest-attendance show,
+  no recording): `paragraph1` no longer mentions attendance being a
+  record; `paragraph3` is `<p><strong>Notes:</strong></p><ul><li>This show
+  had the smallest attendance of any Fugazi show.</li></ul>` - confirms
+  the Notes list now appears even with `has_recording == FALSE`.
+- `recap(mygid = "san-francisco-ca-usa-60400")` (largest-attendance show,
+  has a recording): attendance-record bullet now leads `paragraph3`,
+  followed by the recording-derived notes, in that order.
+- Spot-checked the most-expensive-in-USD show
+  (`anchorage-ak-usa-110195`) and two festival shows
+  (`belo-horizonte-brazil-81594`, `bologna-italy-61695`) - all three
+  correctly lead their Notes list with the price/festival bullet.
+- Confirmed a show with genuinely nothing to say (`athens-ga-usa-60388`)
+  still gets `paragraph3 == ""` - no stray "Notes:" heading.
+- Re-ran the full-corpus scan (`recap()` on all 1049 shows) - 0 errors.
+
 ## Version
 
 Bumped `DESCRIPTION` from `0.0.0.9246` to `0.0.0.9247` for the grouping
-fix, then to `0.0.0.9248` for the bullet-list/reordering follow-up.
+fix, `0.0.0.9248` for the bullet-list/reordering follow-up, and
+`0.0.0.9249` for moving the attendance/price/festival notes into the
+"Notes:" list.
