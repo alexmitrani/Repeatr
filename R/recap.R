@@ -108,6 +108,246 @@ describe_other_show <- function(venue, city, subdivision, country, date, same_ve
          format_show_date(date, include_year = lubridate::year(date)!=lubridate::year(this_show_date)))
 }
 
+# paragraph3 note-generators -----------------------------------------------------------------------------------------------
+# Each note_* function inspects one specific kind of noteworthy fact about a
+# single show's recording and returns either NA_character_ ("nothing to
+# say") or one or more complete, capitalized, period-terminated sentences as
+# a single string. recap() collects whichever of these apply, drops the
+# NAs, and space-joins what's left into paragraph3.
+
+# Songs performed at this show that are rare across the whole series (fewer
+# than 20 total recorded occurrences, tracktype 1/2 only - non-song
+# tracktype 0 content like interludes/soundcheck is a different kind of
+# rarity, handled by note_soundcheck() instead).
+note_rare_tracks <- function(mygid, Repeatr1) {
+
+  show_titles <- Repeatr1 %>%
+    filter(gid==mygid, tracktype %in% c(1, 2)) %>%
+    distinct(title) %>%
+    pull(title)
+
+  series_counts <- Repeatr1 %>%
+    filter(tracktype %in% c(1, 2)) %>%
+    count(title)
+
+  rare_titles <- show_titles[show_titles %in% series_counts$title[series_counts$n<20]]
+
+  if (length(rare_titles)==0) {
+    NA_character_
+  } else if (length(rare_titles)==1) {
+    paste0("This show features a rarely performed track: ", rare_titles, ".")
+  } else {
+    paste0("This show features rarely performed tracks: ", oxford_join(rare_titles), ".")
+  }
+
+}
+
+# Songs performed noticeably earlier or later in the set than usual - more
+# than 0.8 away (on the show's own 0-1 first-to-last scale) from the song's
+# series-wide mean position. tracklist_full is the pre-select tracklist
+# join (see recap()'s tracklist-building code), so non-song tracks (with no
+# position_mean) are automatically excluded.
+note_out_of_position <- function(tracklist_full) {
+
+  position_bucket <- function(p) {
+    if (p>=0.7) {
+      "near the end of the set"
+    } else if (p<=0.3) {
+      "near the start of the set"
+    } else {
+      "mid-set"
+    }
+  }
+
+  out_of_position <- tracklist_full %>%
+    filter(is.na(position)==FALSE, is.na(position_mean)==FALSE, abs(position - position_mean)>0.8)
+
+  if (nrow(out_of_position)==0) {
+    return(NA_character_)
+  }
+
+  sentences <- vapply(seq_len(nrow(out_of_position)), function(i) {
+    title <- out_of_position$title[i]
+    usual <- position_bucket(out_of_position$position_mean[i])
+    actual <- position_bucket(out_of_position$position[i])
+    paste0(toupper(substr(title, 1, 1)), substr(title, 2, nchar(title)),
+           ", normally performed ", usual, ", was performed ", actual, " this time.")
+  }, character(1))
+
+  paste(sentences, collapse = " ")
+
+}
+
+# Songs performed more than once within this show.
+note_repeated_song <- function(mygid, Repeatr1) {
+
+  repeat_counts <- Repeatr1 %>%
+    filter(gid==mygid, tracktype==1) %>%
+    count(title) %>%
+    filter(n>=2)
+
+  if (nrow(repeat_counts)==0) {
+    return(NA_character_)
+  }
+
+  sentences <- vapply(seq_len(nrow(repeat_counts)), function(i) {
+    title <- repeat_counts$title[i]
+    times_word <- ifelse(repeat_counts$n[i]==2, "twice", paste0(repeat_counts$n[i], " times"))
+    paste0(toupper(substr(title, 1, 1)), substr(title, 2, nchar(title)),
+           " was performed ", times_word, " in this show.")
+  }, character(1))
+
+  paste(sentences, collapse = " ")
+
+}
+
+# Songs whose duration at this show set an all-time record (longest or
+# shortest ever recorded rendition), restricted to songs with at least 20
+# recorded renditions - below that a single show could shift the record
+# without it being meaningfully "record-setting". tracklist_full already
+# carries each title's series-wide minutes_min/minutes_max/renditions.
+note_record_rendition <- function(tracklist_full) {
+
+  eligible <- tracklist_full %>%
+    filter(is.na(renditions)==FALSE, renditions>=20)
+
+  longest_titles <- unique(eligible %>% filter(minutes==minutes_max) %>% pull(title))
+  shortest_titles <- unique(eligible %>% filter(minutes==minutes_min) %>% pull(title))
+
+  longest_sentences <- vapply(longest_titles, function(x) {
+    paste0("This show includes the longest rendition of ", x, " recorded anywhere in the Fugazi Live Series.")
+  }, character(1))
+
+  shortest_sentences <- vapply(shortest_titles, function(x) {
+    paste0("This show includes the shortest rendition of ", x,
+           " recorded anywhere in the Fugazi Live Series, which may indicate the recording is incomplete.")
+  }, character(1))
+
+  all_sentences <- c(longest_sentences, shortest_sentences)
+
+  if (length(all_sentences)==0) NA_character_ else paste(all_sentences, collapse = " ")
+
+}
+
+# Whether this show's own total recording duration is the longest or
+# shortest of any Fugazi show with a surviving recording.
+note_record_show_duration <- function(minutes, shows_data, duration_data_da) {
+
+  recorded_shows <- shows_data %>% semi_join(duration_data_da, by = "gid")
+
+  if (minutes==max(recorded_shows$minutes, na.rm = TRUE)) {
+    "This is the longest Fugazi recording in the Fugazi Live Series."
+  } else if (minutes==min(recorded_shows$minutes, na.rm = TRUE)) {
+    "This is the shortest Fugazi recording in the Fugazi Live Series."
+  } else {
+    NA_character_
+  }
+
+}
+
+# When this recording's non-song content (interludes, banter, crowd noise,
+# etc.) wasn't tagged separately, song durations shown may run slightly
+# long - the same condition already used to omit music_bracket, just above.
+note_untracked_interludes <- function(music_minutes, minutes) {
+
+  if (round(music_minutes, digits = 2) < round(minutes, digits = 2)) {
+    NA_character_
+  } else {
+    "Interludes and other non-song content were not tracked separately for this recording, so song durations shown may be slightly over-estimated."
+  }
+
+}
+
+# Whether this show's recording includes a soundcheck - rare enough across
+# the whole series to flag, with the "only N shows" count computed live so
+# it stays correct as new soundcheck recordings are added.
+note_soundcheck <- function(mygid, Repeatr1) {
+
+  soundcheck_gids <- Repeatr1 %>%
+    filter(tracktype==0, grepl("sound.?check", title, ignore.case = TRUE)) %>%
+    distinct(gid) %>%
+    pull(gid)
+
+  if (mygid %in% soundcheck_gids==FALSE) {
+    NA_character_
+  } else {
+    paste0("This is one of only ", length(soundcheck_gids), " Fugazi Live Series recordings that include a soundcheck.")
+  }
+
+}
+
+# Curated one-off notes for shows whose noteworthy fact has no generic
+# detection signal elsewhere in this file (e.g. bonus/alternate material
+# included in the download, which doesn't correlate with any measurable
+# property of the recording itself). One more line here is all a new case
+# needs - no other code changes required.
+note_curated <- function(mygid) {
+
+  curated_notes <- c(
+    "dallas-tx-usa-50490" = "This show's download also includes an alternate recording, \"Outside the Gig!\", of the crowd outside the venue after the police forced the audience out of the building.",
+    "birmingham-al-usa-52191" = "Greed was performed twice at this show, in the actual \"Two for Tuesdays\" bit that gave the phrase its name - but the two renditions are merged into a single track in this recording, so they don't appear as separate rows in the tracklist above."
+  )
+
+  if (mygid %in% names(curated_notes)) {
+    unname(curated_notes[mygid])
+  } else {
+    NA_character_
+  }
+
+}
+
+# Whether this show's attendance is the largest or smallest of any Fugazi
+# show (independent of has_recording - called from paragraph1, not
+# collected into paragraph3).
+note_record_attendance <- function(attendance, shows_data) {
+
+  if (attendance==max(shows_data$attendance, na.rm = TRUE)) {
+    "This show had the largest attendance of any Fugazi show."
+  } else if (attendance==min(shows_data$attendance, na.rm = TRUE)) {
+    "This show had the smallest attendance of any Fugazi show."
+  } else {
+    NA_character_
+  }
+
+}
+
+# Whether this show's ticket price is the highest of any USD-denominated
+# Fugazi show - restricted to USD since foreign-currency prices aren't
+# directly comparable without conversion (independent of has_recording -
+# called from paragraph1, not collected into paragraph3).
+note_record_price <- function(price, currency, shows_data) {
+
+  if (is.na(price) | is.na(currency) | currency!="USD") {
+    return(NA_character_)
+  }
+
+  usd_prices <- shows_data$price[is.na(shows_data$currency)==FALSE & shows_data$currency=="USD" & is.na(shows_data$price)==FALSE]
+
+  if (price==max(usd_prices)) {
+    "This was the most expensive Fugazi show (in USD)."
+  } else {
+    NA_character_
+  }
+
+}
+
+# Whether this show was a festival - Fugazi played very few, and there's no
+# separate flag for it in the data, so it's detected from the venue name
+# itself (independent of has_recording - called from paragraph1, not
+# collected into paragraph3). The "only N" count is computed live, same
+# principle as note_soundcheck().
+note_festival <- function(venue, shows_data) {
+
+  if (grepl("festival", venue, ignore.case = TRUE)==FALSE) {
+    return(NA_character_)
+  }
+
+  n_festivals <- sum(grepl("festival", shows_data$venue, ignore.case = TRUE))
+
+  paste0("This was one of only ", n_festivals, " festival shows Fugazi ever played.")
+
+}
+
 #' @title recap brings together all the notable facts about a single Fugazi show: date, venue, tour context, how many times the band had previously played in that country/state/city/venue, the previous and next show of the tour, and (if a recording exists) a detailed tracklist with duration, release and rendition statistics.
 #'
 #' @param mygid gig id of the show to recap, as a string, for instance "washington-dc-usa-13196".
@@ -122,7 +362,7 @@ describe_other_show <- function(venue, city, subdivision, country, date, same_ve
 #' @param mytransitions_data_da optional `transitions_data_da` dataframe (as produced by `Repeatr_1()`) to be used for song-to-song transition occurrence counts. If omitted the currently lazy-loaded default will be used.
 #' @param myfls_tags optional `fls_tags` dataframe (as produced by `Repeatr_1()`) to be used for the raw per-track tagged duration of non-song tracks (interludes, intro/outro, etc.), which have no duration elsewhere. If omitted the currently lazy-loaded default will be used.
 #'
-#' @return A list of three elements: `context` (a named list of the show's prose-summary facts, including ready-made `paragraph1`/`paragraph2` strings), `tracklist` (a dataframe with one row per track on the recording, songs and non-song tracks alike, or `NULL` if no recording exists) and `release_breakdown` (a dataframe of song counts by release for this show, or `NULL` if no recording exists).
+#' @return A list of three elements: `context` (a named list of the show's prose-summary facts, including ready-made `paragraph1`/`paragraph2`/`paragraph3` strings), `tracklist` (a dataframe with one row per track on the recording, songs and non-song tracks alike, or `NULL` if no recording exists) and `release_breakdown` (a dataframe of song counts by release for this show, or `NULL` if no recording exists).
 #' @export
 #'
 #' @examples
@@ -357,10 +597,20 @@ recap <- function(mygid,
 
   location_sentence <- paste0("It was ", oxford_join(c(overall_clause, tour_clause, group_clauses), force_comma = TRUE), ".")
 
+  # Facts about the show itself (not the recording), so unlike paragraph3
+  # these apply even when has_recording is FALSE - e.g. the smallest-
+  # attendance show in the whole series has no surviving recording.
+  attendance_record_note <- note_record_attendance(attendance, shows_data)
+  price_record_note <- note_record_price(price, currency, shows_data)
+  festival_note <- note_festival(this_show$venue, shows_data)
+
   paragraph1 <- paste0("On ", datestring, ", ", attendance_clause, door_price_clause, " ",
                        location_sentence,
                        ifelse(tour_context_sentence=="", "", paste0(" ", tour_context_sentence)),
-                       ifelse(last_show_sentence=="", "", paste0(" ", last_show_sentence)))
+                       ifelse(last_show_sentence=="", "", paste0(" ", last_show_sentence)),
+                       ifelse(is.na(attendance_record_note), "", paste0(" ", attendance_record_note)),
+                       ifelse(is.na(price_record_note), "", paste0(" ", price_record_note)),
+                       ifelse(is.na(festival_note), "", paste0(" ", festival_note)))
 
 # recording-derived stats ------------------------------------------------------------------------------------------------------
 
@@ -378,6 +628,7 @@ recap <- function(mygid,
   release_breakdown_text <- NA_character_
   tracklist <- NULL
   paragraph2 <- ""
+  paragraph3 <- ""
   recorded_by <- NA_character_
   mastered_by <- NA_character_
   original_source <- NA_character_
@@ -455,18 +706,27 @@ recap <- function(mygid,
       mutate(song_number = as.numeric(track), track_minutes = round(seconds/60, digits = 2)) %>%
       select(gid, song_number, track_minutes)
 
-    tracklist <- all_tracks %>%
+    # tracklist_full keeps every joined column (including each title's
+    # series-wide minutes_min/minutes_max/position_mean) for the paragraph3
+    # note-generators below to inspect; the user-facing tracklist further
+    # down trims this to the columns actually meant for display, dropping
+    # mins_max - a record-setting duration is now surfaced in prose instead
+    # (see note_record_rendition()) rather than as a bare number in the
+    # table.
+    tracklist_full <- all_tracks %>%
       left_join(show_renditions %>% select(gid, song_number, minutes, position), by = c("gid", "song_number")) %>%
       left_join(track_minutes, by = c("gid", "song_number")) %>%
       mutate(minutes = ifelse(is.na(minutes), track_minutes, minutes)) %>%
       left_join(track_lookup, by = c("gid", "song_number")) %>%
       left_join(releasesdatalookup %>% select(rid, release_date), by = "rid") %>%
-      left_join(duration_summary %>% select(title, minutes_mean, minutes_max, renditions), by = "title") %>%
+      left_join(duration_summary %>% select(title, minutes_mean, minutes_min, minutes_max, renditions), by = "title") %>%
       left_join(position_summary %>% select(title, position_mean), by = "title") %>%
       left_join(rendition_ranked, by = c("gid", "song_number")) %>%
       left_join(transition_ranked, by = c("gid", "song_number")) %>%
-      arrange(song_number) %>%
-      select(track = song_number, title, minutes, mins_mean = minutes_mean, mins_max = minutes_max,
+      arrange(song_number)
+
+    tracklist <- tracklist_full %>%
+      select(track = song_number, title, minutes, mins_mean = minutes_mean,
              position, pos_mean = position_mean, rendition = rendition_number, renditions,
              transition = transition_number, transitions = transition_count, release_date)
 
@@ -521,6 +781,29 @@ recap <- function(mygid,
                          ifelse(recording_detail_sentence=="", "", paste0(" ", recording_detail_sentence)),
                          " ", songs_sentence)
 
+    # paragraph3 collects whichever noteworthy facts apply to this show -
+    # content-notable ones first (rare tracks, unusual set position,
+    # repeats, record-setting renditions/recordings, soundcheck, curated
+    # one-offs), the untracked-interludes technical caveat last, since it
+    # qualifies the numbers just given rather than describing the show
+    # itself. Any note with nothing to say returns NA_character_ and is
+    # dropped; if none apply, paragraph3 is "" like this file's other
+    # optional sentences.
+    note_pieces <- c(
+      note_rare_tracks(mygid, Repeatr1),
+      note_out_of_position(tracklist_full),
+      note_repeated_song(mygid, Repeatr1),
+      note_record_rendition(tracklist_full),
+      note_record_show_duration(minutes, shows_data, duration_data_da),
+      note_soundcheck(mygid, Repeatr1),
+      note_curated(mygid),
+      note_untracked_interludes(music_minutes, minutes)
+    )
+
+    note_pieces <- note_pieces[is.na(note_pieces)==FALSE]
+
+    paragraph3 <- paste(note_pieces, collapse = " ")
+
   }
 
   context <- list(
@@ -558,6 +841,7 @@ recap <- function(mygid,
     release_breakdown_text = release_breakdown_text,
     paragraph1 = paragraph1,
     paragraph2 = paragraph2,
+    paragraph3 = paragraph3,
     url = url,
     fls_link = fls_link
   )

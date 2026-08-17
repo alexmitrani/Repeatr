@@ -998,6 +998,12 @@ tabPanel("flow",
                             column(12,
                                    DT::dataTableOutput("recap_tracklist_datatable")
                             )
+                          ),
+
+                          conditionalPanel(
+                            condition = "output.recap_has_notes == true",
+                            tags$br(),
+                            textOutput("recap_summary_text3")
                           )
 
                         )
@@ -3367,10 +3373,19 @@ server <- function(input, output, session) {
     recap_result()$context$paragraph2
   })
 
+  output$recap_summary_text3 <- renderText({
+    recap_result()$context$paragraph3
+  })
+
   output$recap_has_recording <- reactive({
     recap_result()$context$has_recording
   })
   outputOptions(output, "recap_has_recording", suspendWhenHidden = FALSE)
+
+  output$recap_has_notes <- reactive({
+    recap_result()$context$paragraph3!=""
+  })
+  outputOptions(output, "recap_has_notes", suspendWhenHidden = FALSE)
 
   output$recap_map <- renderLeaflet({
 
@@ -3379,19 +3394,21 @@ server <- function(input, output, session) {
     df <- data.frame(latitude = shows_data %>% filter(gid==ctx$gid) %>% pull(latitude),
                      longitude = shows_data %>% filter(gid==ctx$gid) %>% pull(longitude))
 
+    marker_radius <- sqrt(ifelse(is.na(ctx$attendance), median(shows_data$attendance, na.rm = TRUE), ctx$attendance) / pi)
+
     leaflet(data = df, options = leafletOptions(zoomControl = FALSE)) %>%
       htmlwidgets::onRender("function(el, x) {
         L.control.zoom({ position: 'bottomleft' }).addTo(this)
       }") %>%
-      setView(lng = df$longitude, lat = df$latitude, zoom = 13) %>%
+      setView(lng = df$longitude, lat = df$latitude, zoom = 16) %>%
       addProviderTiles("OpenStreetMap.Mapnik") %>%
       addScaleBar() %>%
       addCircles(
         data = df,
-        radius = 200,
+        radius = marker_radius,
         color = "#c94040",
         fillColor = "#c94040",
-        fillOpacity = 0.7,
+        fillOpacity = 0.5,
         popup = paste0(
           "<strong>Date: </strong>", ctx$datestring, "<br>",
           "<strong>Venue: </strong>", ctx$venue, "<br>",

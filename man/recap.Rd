@@ -42,7 +42,7 @@ recap(
 \item{myfls_tags}{optional \code{fls_tags} dataframe (as produced by \code{Repeatr_1()}) to be used for the raw per-track tagged duration of non-song tracks (interludes, intro/outro, etc.), which have no duration elsewhere. If omitted the currently lazy-loaded default will be used.}
 }
 \value{
-A list of three elements: \code{context} (a named list of the show's prose-summary facts, including ready-made \code{paragraph1}/\code{paragraph2} strings), \code{tracklist} (a dataframe with one row per track on the recording, songs and non-song tracks alike, or \code{NULL} if no recording exists) and \code{release_breakdown} (a dataframe of song counts by release for this show, or \code{NULL} if no recording exists).
+A list of three elements: \code{context} (a named list of the show's prose-summary facts, including ready-made \code{paragraph1}/\code{paragraph2}/\code{paragraph3} strings), \code{tracklist} (a dataframe with one row per track on the recording, songs and non-song tracks alike, or \code{NULL} if no recording exists) and \code{release_breakdown} (a dataframe of song counts by release for this show, or \code{NULL} if no recording exists).
 }
 \description{
 recap brings together all the notable facts about a single Fugazi show: date, venue, tour context, how many times the band had previously played in that country/state/city/venue, the previous and next show of the tour, and (if a recording exists) a detailed tracklist with duration, release and rendition statistics.
