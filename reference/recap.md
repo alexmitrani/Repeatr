@@ -159,11 +159,13 @@ recap(
 
 A list of three elements: `context` (a named list of the show's
 prose-summary facts, including ready-made
-`paragraph1`/`paragraph2`/`paragraph3` strings), `tracklist` (a
-dataframe with one row per track on the recording, songs and non-song
-tracks alike, or `NULL` if no recording exists) and `release_breakdown`
-(a dataframe of song counts by release for this show, or `NULL` if no
-recording exists).
+`paragraph1`/`paragraph2`/`paragraph3` strings -
+`paragraph1`/`paragraph2` are plain text, while `paragraph3` is an HTML
+"Notes:" heading plus a `<ul>` bullet list of noteworthy facts, or `""`
+if there are none), `tracklist` (a dataframe with one row per track on
+the recording, songs and non-song tracks alike, or `NULL` if no
+recording exists) and `release_breakdown` (a dataframe of song counts by
+release for this show, or `NULL` if no recording exists).
 
 ## Examples
 
