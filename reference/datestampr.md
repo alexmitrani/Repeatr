@@ -51,7 +51,7 @@ datestring <- datestampr(myusername=TRUE)
 cat(yellow(paste0("\n \n", "Hello world, have a datestamp: ", datestring, "\n \n")))
 #> 
 #>  
-#> Hello world, have a datestamp: 20260817182449
+#> Hello world, have a datestamp: 20260817184022
 #>  
 #> 
 ```
