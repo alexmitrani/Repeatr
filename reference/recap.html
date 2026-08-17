@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9243</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9246</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,7 +70,11 @@
 <span>  myothervariables <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  mytransitions_data_da <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  myfls_tags <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  rendition_percentile <span class="op">=</span> <span class="fl">5</span></span>
+<span>  rendition_percentile <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  rendition_min_count <span class="op">=</span> <span class="fl">20</span>,</span>
+<span>  rare_track_max_count <span class="op">=</span> <span class="fl">20</span>,</span>
+<span>  position_deviation_threshold <span class="op">=</span> <span class="fl">0.8</span>,</span>
+<span>  position_edge_threshold <span class="op">=</span> <span class="fl">0.3</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -124,6 +128,22 @@
 
 <dt id="arg-rendition-percentile">rendition_percentile<a class="anchor" aria-label="anchor" href="#arg-rendition-percentile"></a></dt>
 <dd><p>the percentile threshold (as a plain number, e.g. <code>5</code> for the top/bottom 5%) used by the "exceptionally long/short rendition" note: a rendition that isn't the outright longest/shortest ever recorded, but still falls among the top/bottom percentage of every recorded rendition of the same song (this one included), is called out with wording like "one of the 5% longest recorded renditions of this song". Defaults to <code>5</code>.</p></dd>
+
+
+<dt id="arg-rendition-min-count">rendition_min_count<a class="anchor" aria-label="anchor" href="#arg-rendition-min-count"></a></dt>
+<dd><p>the minimum number of recorded renditions a song must have across the whole series before the "longest/shortest/exceptionally long/short rendition" note will consider it at all - below this, neither an all-time record nor a percentile claim is meaningfully established. Defaults to <code>20</code>.</p></dd>
+
+
+<dt id="arg-rare-track-max-count">rare_track_max_count<a class="anchor" aria-label="anchor" href="#arg-rare-track-max-count"></a></dt>
+<dd><p>the maximum number of total recorded occurrences (across the whole series) a track can have before the "rarely performed track" note stops considering it rare. Defaults to <code>20</code>.</p></dd>
+
+
+<dt id="arg-position-deviation-threshold">position_deviation_threshold<a class="anchor" aria-label="anchor" href="#arg-position-deviation-threshold"></a></dt>
+<dd><p>how far (on the show's own 0-1 first-to-last scale) a song's position in the set must differ from its series-wide average position before the "performed out of its usual set position" note is triggered. Defaults to <code>0.8</code>.</p></dd>
+
+
+<dt id="arg-position-edge-threshold">position_edge_threshold<a class="anchor" aria-label="anchor" href="#arg-position-edge-threshold"></a></dt>
+<dd><p>how close to either end of the set (on the show's own 0-1 first-to-last scale) counts as "near the start"/"near the end" of the set, versus "mid-set", when describing a song's usual or actual set position - a position <code>&lt;=</code> this value is "near the start", <code>&gt;=</code> <code>1 -</code> this value is "near the end". Defaults to <code>0.3</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">

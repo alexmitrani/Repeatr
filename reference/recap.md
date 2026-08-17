@@ -21,7 +21,11 @@ recap(
   myothervariables = NULL,
   mytransitions_data_da = NULL,
   myfls_tags = NULL,
-  rendition_percentile = 5
+  rendition_percentile = 5,
+  rendition_min_count = 20,
+  rare_track_max_count = 20,
+  position_deviation_threshold = 0.8,
+  position_edge_threshold = 0.3
 )
 ```
 
@@ -113,6 +117,35 @@ recap(
   rendition of the same song (this one included), is called out with
   wording like "one of the 5% longest recorded renditions of this song".
   Defaults to `5`.
+
+- rendition_min_count:
+
+  the minimum number of recorded renditions a song must have across the
+  whole series before the "longest/shortest/exceptionally long/short
+  rendition" note will consider it at all - below this, neither an
+  all-time record nor a percentile claim is meaningfully established.
+  Defaults to `20`.
+
+- rare_track_max_count:
+
+  the maximum number of total recorded occurrences (across the whole
+  series) a track can have before the "rarely performed track" note
+  stops considering it rare. Defaults to `20`.
+
+- position_deviation_threshold:
+
+  how far (on the show's own 0-1 first-to-last scale) a song's position
+  in the set must differ from its series-wide average position before
+  the "performed out of its usual set position" note is triggered.
+  Defaults to `0.8`.
+
+- position_edge_threshold:
+
+  how close to either end of the set (on the show's own 0-1
+  first-to-last scale) counts as "near the start"/"near the end" of the
+  set, versus "mid-set", when describing a song's usual or actual set
+  position - a position `<=` this value is "near the start", `>=` `1 -`
+  this value is "near the end". Defaults to `0.3`.
 
 ## Value
 
