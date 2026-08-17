@@ -390,15 +390,26 @@ note_record_show_duration <- function(minutes, shows_data, duration_data_da) {
 
 }
 
-# When this recording's non-song content (interludes, banter, crowd noise,
-# etc.) wasn't tagged separately, song durations shown may run slightly
-# long - the same condition already used to omit music_bracket, just above.
-note_untracked_interludes <- function(music_minutes, minutes) {
+# When this recording has no track specifically titled as an interlude (as
+# opposed to just intro/outro/encore, which are structural bookends rather
+# than in-set pause content), song durations shown may run long - whether
+# because no non-song content was tagged separately at all (0%, the same
+# condition already used to omit music_bracket, just above), or because
+# some was tagged (an intro/outro/encore) but no genuine between-song pause
+# ever got split out. A proportion-based threshold was tried instead but
+# dropped: across the whole series, shows with a genuine interlude track
+# have non-music proportions ranging continuously from well under 1% up
+# past 40%, so a low percentage doesn't actually distinguish "brief but
+# fully tracked" from "under-tracked" - the presence of the interlude track
+# itself is the reliable signal, not its size.
+note_untracked_interludes <- function(music_minutes, minutes, has_interlude_track) {
 
-  if (round(music_minutes, digits = 2) < round(minutes, digits = 2)) {
-    NA_character_
-  } else {
+  if (round(music_minutes, digits = 2) >= round(minutes, digits = 2)) {
     "Interludes and other non-song content were not tracked separately for this recording, so song durations shown may be slightly over-estimated."
+  } else if (has_interlude_track==FALSE) {
+    "This show has no interlude tracks. Some song durations may be exaggerated due to possible inclusion of interludes."
+  } else {
+    NA_character_
   }
 
 }
@@ -890,6 +901,15 @@ recap <- function(mygid,
     music_minutes <- sum(show_renditions$minutes, na.rm = TRUE)
     music_proportion <- round(music_minutes / minutes * 100)
 
+    # Whether this recording has a track specifically titled as an
+    # interlude (as opposed to just intro/outro/encore, which are
+    # structural bookends rather than in-set pause content) - used by
+    # note_untracked_interludes() below to tell a genuinely brief but
+    # fully-tracked interlude apart from pauses that were never split out.
+    has_interlude_track <- Repeatr1 %>%
+      filter(gid==mygid, tracktype!=1, grepl("interlude", title, ignore.case = TRUE)) %>%
+      nrow() > 0
+
     # If music_minutes equals the total, no non-song content was tracked
     # separately for this recording (interludes/banter/etc. always exist in
     # some form) - meaning the music/other split isn't actually known for
@@ -960,7 +980,7 @@ recap <- function(mygid,
       note_record_show_duration(minutes, shows_data, duration_data_da),
       note_soundcheck(mygid, Repeatr1),
       note_curated(mygid),
-      note_untracked_interludes(music_minutes, minutes)
+      note_untracked_interludes(music_minutes, minutes, has_interlude_track)
     )
 
   }
