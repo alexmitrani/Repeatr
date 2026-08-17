@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9240</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9241</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -123,7 +123,7 @@
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A list of three elements: <code>context</code> (a named list of the show's prose-summary facts, including ready-made <code>paragraph1</code>/<code>paragraph2</code> strings), <code>tracklist</code> (a dataframe with one row per track on the recording, songs and non-song tracks alike, or <code>NULL</code> if no recording exists) and <code>release_breakdown</code> (a dataframe of song counts by release for this show, or <code>NULL</code> if no recording exists).</p>
+    <p>A list of three elements: <code>context</code> (a named list of the show's prose-summary facts, including ready-made <code>paragraph1</code>/<code>paragraph2</code>/<code>paragraph3</code> strings), <code>tracklist</code> (a dataframe with one row per track on the recording, songs and non-song tracks alike, or <code>NULL</code> if no recording exists) and <code>release_breakdown</code> (a dataframe of song counts by release for this show, or <code>NULL</code> if no recording exists).</p>
     </div>
 
     <div class="section level2">
@@ -132,19 +132,19 @@
 <span class="r-in"><span><span class="va">result</span><span class="op">$</span><span class="va">context</span><span class="op">$</span><span class="va">where_played</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "9:30 Club, Washington, DC, USA"</span>
 <span class="r-in"><span><span class="va">result</span><span class="op">$</span><span class="va">tracklist</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 24 × 12</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    track title minutes mins_mean mins_max position pos_mean rendition renditions</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>     1 open…    3.32     <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>     2 bren…    3.18      2.95     4.13     0        0.17       161        170</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>     3 bed …    2.88      3.03     5.03     0.05     0.4        123        310</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>     4 do y…    2.5       2.69     6.48     0.1      0.34       107        282</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>     5 and …    4.48      4.46     8.57     0.14     0.19       301        397</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>     6 marg…    2.73      2.7      5.1      0.19     0.45       384        467</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>     7 styr…    2.87      2.85     8.55     0.24     0.29       242        294</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>     8 caus…    2.43      2.07     2.65     0.29     0.4          2         53</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>     9 inte…    0.78     <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>    10 shut…    8.63      6.56    11.8      0.38     0.7        304        342</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 24 × 11</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    track title          minutes mins_mean position pos_mean rendition renditions</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>     1 opening remar…    3.32     <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>     2 brendan #1        3.18      2.95     0        0.17       161        170</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>     3 bed for the s…    2.88      3.03     0.05     0.4        123        310</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>     4 do you like me    2.5       2.69     0.1      0.34       107        282</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>     5 and the same      4.48      4.46     0.14     0.19       301        397</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>     6 margin walker     2.73      2.7      0.19     0.45       384        467</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>     7 styrofoam         2.87      2.85     0.24     0.29       242        294</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>     8 caustic acros…    2.43      2.07     0.29     0.4          2         53</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>     9 interlude 1       0.78     <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>    10 shut the door     8.63      6.56     0.38     0.7        304        342</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 14 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3 more variables: transition &lt;int&gt;, transitions &lt;int&gt;, release_date &lt;date&gt;</span></span>
 <span class="r-in"><span></span></span>

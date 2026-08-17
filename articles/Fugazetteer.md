@@ -496,20 +496,29 @@ country, state/province, city and venue, and (if a recording of the show
 exists) how many songs were played, how long the recording runs (and,
 where the recording’s non-song content was tagged separately, how many
 of those minutes were music), its sound quality rating, and which
-releases its songs are drawn from.
+releases its songs are drawn from. If this show set a record for
+attendance, ticket price (in USD) or was one of the handful of festival
+shows Fugazi ever played, that’s called out too.
 
 A map shows the location of the show.
 
 If a recording exists, a detailed tracklist is also shown, listing every
 track on the recording - songs and non-song content alike (interludes,
 intros, outros, encores and other one-offs) - with each track’s
-duration. For songs, it also gives: the song’s average and maximum
-recorded duration across all Fugazi shows; its position in the set and
-its average position across all recorded renditions; which numbered
-rendition of the song this was and its total number of recorded
-renditions; if it followed directly on from another song, which numbered
-occurrence of that song-to-song transition this was and its total number
-of occurrences across all shows; and the release date it is drawn from.
+duration. For songs, it also gives: the song’s average recorded duration
+across all Fugazi shows; its position in the set and its average
+position across all recorded renditions; which numbered rendition of the
+song this was and its total number of recorded renditions; if it
+followed directly on from another song, which numbered occurrence of
+that song-to-song transition this was and its total number of
+occurrences across all shows; and the release date it is drawn from.
+
+Below the tracklist, a paragraph of notes flags anything else
+exceptional or noteworthy about the show or setlist - a rarely performed
+track, a song played out of its usual set position or twice in one show,
+a record-setting rendition or recording duration, a soundcheck, and
+other one-off curiosities - and is simply omitted when there’s nothing
+to say.
 
 The whole page can be downloaded as a self-contained HTML take-away
 document using the download button at the top of the page to the right
