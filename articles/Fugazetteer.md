@@ -523,7 +523,11 @@ short - by default, one of the top or bottom 5% of every recorded
 rendition of that song - and, separately, if it’s the very first or most
 recent one recorded (this last check is skipped for the single earliest
 and single most recent recorded shows themselves, since every song in
-those two setlists would otherwise trivially qualify).
+those two setlists would otherwise trivially qualify). Songs sharing the
+same longest/shortest-rendition category are grouped into a single
+sentence rather than one sentence each; an unusually short rendition
+under a set duration (60 seconds by default) is additionally named in
+its own note as possibly having an incomplete recording.
 
 The whole page can be downloaded as a self-contained HTML take-away
 document using the download button at the top of the page to the right

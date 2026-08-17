@@ -23,6 +23,7 @@ recap(
   myfls_tags = NULL,
   rendition_percentile = 5,
   rendition_min_count = 20,
+  rendition_incomplete_seconds = 60,
   rare_track_max_count = 20,
   position_deviation_threshold = 0.8,
   position_edge_threshold = 0.3
@@ -125,6 +126,13 @@ recap(
   rendition" note will consider it at all - below this, neither an
   all-time record nor a percentile claim is meaningfully established.
   Defaults to `20`.
+
+- rendition_incomplete_seconds:
+
+  the duration (in seconds) below which a song flagged as an unusually
+  short rendition (the shortest ever recorded, or among the bottom
+  `rendition_percentile`%) is additionally called out by name as
+  possibly having an incomplete recording. Defaults to `60`.
 
 - rare_track_max_count:
 

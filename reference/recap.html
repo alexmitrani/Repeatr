@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9246</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9247</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,6 +72,7 @@
 <span>  myfls_tags <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  rendition_percentile <span class="op">=</span> <span class="fl">5</span>,</span>
 <span>  rendition_min_count <span class="op">=</span> <span class="fl">20</span>,</span>
+<span>  rendition_incomplete_seconds <span class="op">=</span> <span class="fl">60</span>,</span>
 <span>  rare_track_max_count <span class="op">=</span> <span class="fl">20</span>,</span>
 <span>  position_deviation_threshold <span class="op">=</span> <span class="fl">0.8</span>,</span>
 <span>  position_edge_threshold <span class="op">=</span> <span class="fl">0.3</span></span>
@@ -132,6 +133,10 @@
 
 <dt id="arg-rendition-min-count">rendition_min_count<a class="anchor" aria-label="anchor" href="#arg-rendition-min-count"></a></dt>
 <dd><p>the minimum number of recorded renditions a song must have across the whole series before the "longest/shortest/exceptionally long/short rendition" note will consider it at all - below this, neither an all-time record nor a percentile claim is meaningfully established. Defaults to <code>20</code>.</p></dd>
+
+
+<dt id="arg-rendition-incomplete-seconds">rendition_incomplete_seconds<a class="anchor" aria-label="anchor" href="#arg-rendition-incomplete-seconds"></a></dt>
+<dd><p>the duration (in seconds) below which a song flagged as an unusually short rendition (the shortest ever recorded, or among the bottom <code>rendition_percentile</code>%) is additionally called out by name as possibly having an incomplete recording. Defaults to <code>60</code>.</p></dd>
 
 
 <dt id="arg-rare-track-max-count">rare_track_max_count<a class="anchor" aria-label="anchor" href="#arg-rare-track-max-count"></a></dt>
