@@ -96,6 +96,96 @@ additional incomplete-recording note.
   render/print-to-PDF check is still worth doing in an environment with
   pandoc available.
 
+## Follow-up: "Notes:" bullet list + reordering (2026-08-17)
+
+Two more tweaks requested after reviewing the above:
+
+### 1. `paragraph3` reformatted as a bulleted list
+
+Even after the grouping fix above, `paragraph3` was still a wall of
+consecutive sentences (several of them still starting with the same "This
+show includes"/"This show features" lead-in from the other `note_*()`
+functions - `note_out_of_position()`, `note_repeated_song()`,
+`note_first_last_rendition()`). Restructured the whole notes section as an
+HTML `<p><strong>Notes:</strong></p><ul>...</ul>` bullet list instead of a
+prose paragraph:
+
+- `note_out_of_position()`, `note_repeated_song()`, and
+  `note_first_last_rendition()` now return a plain character **vector** of
+  their individual sentences (still `NA_character_` if nothing applies)
+  instead of a single `paste(..., collapse = " ")`-joined string - each
+  element becomes its own bullet. `c()` already flattens vectors, so
+  `note_pieces`'s assembly needed no change beyond the final formatting
+  step.
+- `note_record_rendition()`'s fragments (from the earlier grouping fix)
+  additionally dropped their "This show includes"/"This show features"
+  lead-in entirely (e.g. "The longest rendition of X..." instead of "This
+  show includes the longest rendition of X..."), since repeating that
+  lead-in on every bullet in a list would just recreate the same
+  repetition problem one level up. Only `note_record_rendition()` was
+  reworded this way, on request - the other `note_*()` functions' sentence
+  text is unchanged, just now rendered as individual bullets rather than
+  concatenated sentences.
+- `recap()`'s `paragraph3` assembly now wraps the final `note_pieces`
+  vector in the `<ul><li>...</li></ul>` markup (`""` still means "no
+  notes", unchanged).
+- Updated the roxygen `@return` doc to note `paragraph3` is now HTML
+  (unlike `paragraph1`/`paragraph2`, which stay plain text);
+  `devtools::document()` re-run.
+
+Both places that consume `paragraph3` had to switch from plain-text to
+HTML rendering, since it's no longer safe to treat as escaped text:
+
+- `inst/shiny/Fugazetteer/app.R`: `output$recap_summary_text3` changed
+  from `renderText` to `renderUI({ HTML(...) })`, and the UI element from
+  `textOutput` to `uiOutput` - otherwise the `<ul>`/`<li>` tags would show
+  up as literal text in the live app instead of rendering as a list.
+- `inst/shiny/Fugazetteer/recap_template.Rmd`: dropped the old
+  `cat("<p>", ctx$paragraph3, "</p>")` wrapper (nesting the now-block-level
+  `paragraph3` HTML inside a `<p>` was invalid) in favor of a plain
+  `cat(ctx$paragraph3)`, since `paragraph3` already carries its own
+  heading/list markup.
+
+### 2. Moved the notes section above the map
+
+Previously `paragraph3` rendered at the very bottom of the page, after the
+tracklist table - easy to miss on a long page. Moved it up to directly
+after `paragraph2` (the recording-details paragraph) and before the map,
+in both `app.R`'s UI (new `conditionalPanel` gated on
+`recap_has_recording && recap_has_notes`, placed before `leafletOutput`)
+and `recap_template.Rmd` (moved the `summary-text-3` chunk up to right
+after `summary-text-2`, before the `map` chunk). Keeps all the prose
+together at the top of the page instead of splitting it across both ends.
+
+### Verification
+
+- Reloaded the package and re-ran the same `paragraph3` checks as the
+  first round (`berlin-germany-62892` plus the other 6 spot-check shows) -
+  each note is now correctly rendered as its own `<li>`, e.g.
+  `berlin-germany-62892`:
+  `<p><strong>Notes:</strong></p><ul><li>The longest rendition of repeater
+  recorded anywhere in the Fugazi Live Series.</li><li>One of the 5%
+  longest recorded renditions of latin roots, suggestion, song #1, and
+  glueman.</li><li>One of the 5% shortest recorded renditions of sweet and
+  low.</li></ul>` - matches the requested "Notes:" + bullet format, no
+  repeated "This show includes".
+- Re-ran the full-corpus scan (`recap()` on all 1049 shows in
+  `shows_data`) - 0 errors.
+- This time actually launched the live Shiny app (`shiny::runApp()` on
+  `inst/shiny/Fugazetteer`, port 8765) and drove it in a real browser
+  (`berlin-germany-62892` in the recap tab): confirmed the "Notes:"
+  heading and bullet list render correctly as real HTML (not escaped
+  text), and that they appear directly under the recording paragraph,
+  above the map - both tweaks confirmed working end-to-end in the actual
+  app, not just via direct `recap()` calls. Still could not render
+  `recap_template.Rmd` (the downloadable "takeaway" doc) end-to-end, since
+  pandoc remains unavailable in this environment - it shares the exact
+  same `ctx$paragraph3` HTML string already verified above and only needed
+  a mechanical `cat()` change, so risk there is low, but a real
+  render/print-to-PDF check is still worth doing where pandoc is
+  available.
+
 ## Version
 
-Bumped `DESCRIPTION` from `0.0.0.9246` to `0.0.0.9247`.
+Bumped `DESCRIPTION` from `0.0.0.9246` to `0.0.0.9247` for the grouping
+fix, then to `0.0.0.9248` for the bullet-list/reordering follow-up.

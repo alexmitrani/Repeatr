@@ -42,6 +42,12 @@ if (ctx$has_recording) {
 }
 ```
 
+```{r summary-text-3, results='asis'}
+if (ctx$has_recording & ctx$paragraph3!="") {
+  cat(ctx$paragraph3)
+}
+```
+
 ```{r map}
 df <- shows_data %>% filter(gid == ctx$gid)
 marker_radius <- sqrt(ifelse(is.na(df$attendance), median(shows_data$attendance, na.rm = TRUE), df$attendance) / pi)
@@ -68,12 +74,6 @@ leaflet(data = df, options = leafletOptions(zoomControl = FALSE)) %>%
 ```{r tracklist, eval=ctx$has_recording}
 options(knitr.kable.NA = "")
 knitr::kable(result$tracklist, row.names = FALSE)
-```
-
-```{r summary-text-3, results='asis'}
-if (ctx$has_recording & ctx$paragraph3!="") {
-  cat("<p>", ctx$paragraph3, "</p>")
-}
 ```
 
 ```{r footer, results='asis'}

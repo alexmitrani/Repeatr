@@ -171,15 +171,13 @@ note_out_of_position <- function(tracklist_full, position_deviation_threshold = 
     return(NA_character_)
   }
 
-  sentences <- vapply(seq_len(nrow(out_of_position)), function(i) {
+  vapply(seq_len(nrow(out_of_position)), function(i) {
     title <- out_of_position$title[i]
     usual <- position_bucket(out_of_position$position_mean[i])
     actual <- position_bucket(out_of_position$position[i])
     paste0(toupper(substr(title, 1, 1)), substr(title, 2, nchar(title)),
            ", normally performed ", usual, ", was performed ", actual, " this time.")
   }, character(1))
-
-  paste(sentences, collapse = " ")
 
 }
 
@@ -195,14 +193,12 @@ note_repeated_song <- function(mygid, Repeatr1) {
     return(NA_character_)
   }
 
-  sentences <- vapply(seq_len(nrow(repeat_counts)), function(i) {
+  vapply(seq_len(nrow(repeat_counts)), function(i) {
     title <- repeat_counts$title[i]
     times_word <- ifelse(repeat_counts$n[i]==2, "twice", paste0(repeat_counts$n[i], " times"))
     paste0(toupper(substr(title, 1, 1)), substr(title, 2, nchar(title)),
            " was performed ", times_word, " in this show.")
   }, character(1))
-
-  paste(sentences, collapse = " ")
 
 }
 
@@ -218,13 +214,17 @@ note_repeated_song <- function(mygid, Repeatr1) {
 # and the wording adapts cleanly if the parameter changes. Songs are
 # bucketed by which of the four categories they fall into (a song only
 # ever matches one, in this priority order) and each non-empty bucket
-# becomes a single oxford-joined sentence, rather than one sentence per
-# song, to avoid a run of near-identical consecutive sentences (issue
-# #257). A flagged short rendition under `incomplete_seconds` gets named
-# in a separate trailing "may be incomplete" sentence, rather than folded
-# into the shortest-rendition sentence itself, since which songs are
-# unusually short and which are possibly-incomplete-short are related but
-# distinct claims.
+# becomes a single oxford-joined fragment, rather than one fragment per
+# song, to avoid a run of near-identical consecutive notes (issue #257).
+# Fragments omit the "This show includes"-style lead-in other note_*()
+# functions use, since each becomes its own bullet under the "Notes:"
+# heading (see paragraph3 assembly in recap()) rather than a standalone
+# sentence, and repeating that lead-in on every bullet would recreate the
+# same repetition problem one level up. A flagged short rendition under
+# `incomplete_seconds` gets named in a separate trailing "may be
+# incomplete" fragment, rather than folded into the shortest-rendition
+# fragment itself, since which songs are unusually short and which are
+# possibly-incomplete-short are related but distinct claims.
 note_record_rendition <- function(tracklist_full, mygid, duration_data_da, percentile = 5, min_renditions = 20, incomplete_seconds = 60) {
 
   eligible <- tracklist_full %>%
@@ -285,20 +285,20 @@ note_record_rendition <- function(tracklist_full, mygid, duration_data_da, perce
 
   sentences <- c(
     rendition_sentence(longest_record,
-                        "This show includes the longest rendition of ",
-                        "This show includes the longest renditions of ",
+                        "The longest rendition of ",
+                        "The longest renditions of ",
                         " recorded anywhere in the Fugazi Live Series."),
     rendition_sentence(longest_percentile,
-                        paste0("This show includes one of the ", percentile, "% longest recorded renditions of "),
-                        paste0("This show includes one of the ", percentile, "% longest recorded renditions of "),
+                        paste0("One of the ", percentile, "% longest recorded renditions of "),
+                        paste0("One of the ", percentile, "% longest recorded renditions of "),
                         "."),
     rendition_sentence(shortest_record,
-                        "This show includes the shortest rendition of ",
-                        "This show includes the shortest renditions of ",
+                        "The shortest rendition of ",
+                        "The shortest renditions of ",
                         " recorded anywhere in the Fugazi Live Series."),
     rendition_sentence(shortest_percentile,
-                        paste0("This show includes one of the ", percentile, "% shortest recorded renditions of "),
-                        paste0("This show includes one of the ", percentile, "% shortest recorded renditions of "),
+                        paste0("One of the ", percentile, "% shortest recorded renditions of "),
+                        paste0("One of the ", percentile, "% shortest recorded renditions of "),
                         "."),
     rendition_sentence(incomplete_titles,
                         "The recording of ",
@@ -308,7 +308,7 @@ note_record_rendition <- function(tracklist_full, mygid, duration_data_da, perce
 
   sentences <- sentences[is.na(sentences)==FALSE]
 
-  if (length(sentences)==0) NA_character_ else paste(sentences, collapse = " ")
+  if (length(sentences)==0) NA_character_ else sentences
 
 }
 
@@ -370,7 +370,7 @@ note_first_last_rendition <- function(mygid, this_show_date, show_renditions, du
   sentences <- c(only_sentence, debut_sentence, farewell_sentence)
   sentences <- sentences[is.na(sentences)==FALSE]
 
-  if (length(sentences)==0) NA_character_ else paste(sentences, collapse = " ")
+  if (length(sentences)==0) NA_character_ else sentences
 
 }
 
@@ -513,7 +513,7 @@ note_festival <- function(venue, shows_data) {
 #' @param position_deviation_threshold how far (on the show's own 0-1 first-to-last scale) a song's position in the set must differ from its series-wide average position before the "performed out of its usual set position" note is triggered. Defaults to `0.8`.
 #' @param position_edge_threshold how close to either end of the set (on the show's own 0-1 first-to-last scale) counts as "near the start"/"near the end" of the set, versus "mid-set", when describing a song's usual or actual set position - a position `<=` this value is "near the start", `>=` `1 -` this value is "near the end". Defaults to `0.3`.
 #'
-#' @return A list of three elements: `context` (a named list of the show's prose-summary facts, including ready-made `paragraph1`/`paragraph2`/`paragraph3` strings), `tracklist` (a dataframe with one row per track on the recording, songs and non-song tracks alike, or `NULL` if no recording exists) and `release_breakdown` (a dataframe of song counts by release for this show, or `NULL` if no recording exists).
+#' @return A list of three elements: `context` (a named list of the show's prose-summary facts, including ready-made `paragraph1`/`paragraph2`/`paragraph3` strings - `paragraph1`/`paragraph2` are plain text, while `paragraph3` is an HTML "Notes:" heading plus a `<ul>` bullet list of noteworthy facts, or `""` if there are none), `tracklist` (a dataframe with one row per track on the recording, songs and non-song tracks alike, or `NULL` if no recording exists) and `release_breakdown` (a dataframe of song counts by release for this show, or `NULL` if no recording exists).
 #' @export
 #'
 #' @examples
@@ -941,9 +941,16 @@ recap <- function(mygid,
     # repeats, record-setting renditions/recordings, soundcheck, curated
     # one-offs), the untracked-interludes technical caveat last, since it
     # qualifies the numbers just given rather than describing the show
-    # itself. Any note with nothing to say returns NA_character_ and is
-    # dropped; if none apply, paragraph3 is "" like this file's other
-    # optional sentences.
+    # itself. Each note_*() function returns either NA_character_ (nothing
+    # to say, dropped) or a character vector of one or more independent
+    # notes/facts - c() flattens those straight into note_pieces, so a
+    # function surfacing several facts (e.g. several out-of-position songs)
+    # contributes several separate bullets rather than one run-on sentence.
+    # Rendered as an HTML "Notes:" heading plus a bullet list rather than a
+    # prose paragraph, since a flat list of independent facts reads more
+    # naturally that way than as consecutive sentences (issue #257); if
+    # none apply, paragraph3 is "" like this file's other optional
+    # sentences.
     note_pieces <- c(
       note_rare_tracks(mygid, Repeatr1, rare_max_count = rare_track_max_count),
       note_out_of_position(tracklist_full, position_deviation_threshold = position_deviation_threshold,
@@ -959,7 +966,13 @@ recap <- function(mygid,
 
     note_pieces <- note_pieces[is.na(note_pieces)==FALSE]
 
-    paragraph3 <- paste(note_pieces, collapse = " ")
+    paragraph3 <- if (length(note_pieces)==0) {
+      ""
+    } else {
+      paste0("<p><strong>Notes:</strong></p><ul>",
+             paste0("<li>", note_pieces, "</li>", collapse = ""),
+             "</ul>")
+    }
 
   }
 

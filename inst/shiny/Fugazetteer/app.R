@@ -984,6 +984,12 @@ tabPanel("flow",
                           tags$br()
                         ),
 
+                        conditionalPanel(
+                          condition = "output.recap_has_recording == true && output.recap_has_notes == true",
+                          uiOutput("recap_summary_text3"),
+                          tags$br()
+                        ),
+
                         leafletOutput("recap_map"),
 
                         tags$br(),
@@ -998,12 +1004,6 @@ tabPanel("flow",
                             column(12,
                                    DT::dataTableOutput("recap_tracklist_datatable")
                             )
-                          ),
-
-                          conditionalPanel(
-                            condition = "output.recap_has_notes == true",
-                            tags$br(),
-                            textOutput("recap_summary_text3")
                           )
 
                         )
@@ -3373,8 +3373,8 @@ server <- function(input, output, session) {
     recap_result()$context$paragraph2
   })
 
-  output$recap_summary_text3 <- renderText({
-    recap_result()$context$paragraph3
+  output$recap_summary_text3 <- renderUI({
+    HTML(recap_result()$context$paragraph3)
   })
 
   output$recap_has_recording <- reactive({
