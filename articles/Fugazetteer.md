@@ -496,26 +496,27 @@ country, state/province, city and venue, and (if a recording of the show
 exists) how many songs were played, how long the recording runs (and,
 where the recording’s non-song content was tagged separately, how many
 of those minutes were music), its sound quality rating, and which
-releases its songs are drawn from. If this show set a record for
-attendance, ticket price (in USD) or was one of the handful of festival
-shows Fugazi ever played, that’s called out too.
+releases its songs are drawn from.
 
-Below that, if a recording exists, a “Notes:” bullet list flags anything
-else exceptional or noteworthy about the show or setlist - one bullet
-per fact - and is simply omitted when there’s nothing to say. This
-includes a rarely performed track, a song played out of its usual set
-position or twice in one show, a soundcheck, and other one-off
-curiosities. A song’s rendition is also called out if it’s the longest
-or shortest ever recorded, or still unusually long or short - by
-default, one of the top or bottom 5% of every recorded rendition of that
-song - and, separately, if it’s the very first or most recent one
-recorded (this last check is skipped for the single earliest and single
-most recent recorded shows themselves, since every song in those two
-setlists would otherwise trivially qualify). Songs sharing the same
-longest/shortest-rendition category are grouped into a single bullet
-rather than one bullet each; an unusually short rendition under a set
-duration (60 seconds by default) is additionally named in its own bullet
-as possibly having an incomplete recording.
+Below that, a “Notes:” bullet list flags anything unusual or noteworthy
+about the show or setlist - one bullet per fact - and is simply omitted
+when there’s nothing to say. This includes whether this show set a
+record for attendance, ticket price (in USD), or was one of the handful
+of festival shows Fugazi ever played (these apply even for shows with no
+surviving recording), and, if a recording exists: a rarely performed
+track, a song played out of its usual set position or twice in one show,
+a soundcheck, and other one-off curiosities. A song’s rendition is also
+called out if it’s the longest or shortest ever recorded, or still
+unusually long or short - by default, one of the top or bottom 5% of
+every recorded rendition of that song - and, separately, if it’s the
+very first or most recent one recorded (this last check is skipped for
+the single earliest and single most recent recorded shows themselves,
+since every song in those two setlists would otherwise trivially
+qualify). Songs sharing the same longest/shortest-rendition category are
+grouped into a single bullet rather than one bullet each; an unusually
+short rendition under a set duration (60 seconds by default) is
+additionally named in its own bullet as possibly having an incomplete
+recording.
 
 A map shows the location of the show.
 
