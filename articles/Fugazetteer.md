@@ -516,9 +516,14 @@ occurrences across all shows; and the release date it is drawn from.
 Below the tracklist, a paragraph of notes flags anything else
 exceptional or noteworthy about the show or setlist - a rarely performed
 track, a song played out of its usual set position or twice in one show,
-a record-setting rendition or recording duration, a soundcheck, and
-other one-off curiosities - and is simply omitted when there’s nothing
-to say.
+a soundcheck, and other one-off curiosities - and is simply omitted when
+there’s nothing to say. A song’s rendition is also called out if it’s
+the longest or shortest ever recorded, or still unusually long or
+short - by default, one of the top or bottom 5% of every recorded
+rendition of that song - and, separately, if it’s the very first or most
+recent one recorded (this last check is skipped for the single earliest
+and single most recent recorded shows themselves, since every song in
+those two setlists would otherwise trivially qualify).
 
 The whole page can be downloaded as a self-contained HTML take-away
 document using the download button at the top of the page to the right

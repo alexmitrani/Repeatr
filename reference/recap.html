@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9241</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9243</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,7 +69,8 @@
 <span>  myplayed_with <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  myothervariables <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  mytransitions_data_da <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  myfls_tags <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  myfls_tags <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  rendition_percentile <span class="op">=</span> <span class="fl">5</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -119,6 +120,10 @@
 
 <dt id="arg-myfls-tags">myfls_tags<a class="anchor" aria-label="anchor" href="#arg-myfls-tags"></a></dt>
 <dd><p>optional <code>fls_tags</code> dataframe (as produced by <code><a href="Repeatr_1.html">Repeatr_1()</a></code>) to be used for the raw per-track tagged duration of non-song tracks (interludes, intro/outro, etc.), which have no duration elsewhere. If omitted the currently lazy-loaded default will be used.</p></dd>
+
+
+<dt id="arg-rendition-percentile">rendition_percentile<a class="anchor" aria-label="anchor" href="#arg-rendition-percentile"></a></dt>
+<dd><p>the percentile threshold (as a plain number, e.g. <code>5</code> for the top/bottom 5%) used by the "exceptionally long/short rendition" note: a rendition that isn't the outright longest/shortest ever recorded, but still falls among the top/bottom percentage of every recorded rendition of the same song (this one included), is called out with wording like "one of the 5% longest recorded renditions of this song". Defaults to <code>5</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">

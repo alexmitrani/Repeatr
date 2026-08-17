@@ -20,7 +20,8 @@ recap(
   myplayed_with = NULL,
   myothervariables = NULL,
   mytransitions_data_da = NULL,
-  myfls_tags = NULL
+  myfls_tags = NULL,
+  rendition_percentile = 5
 )
 ```
 
@@ -102,6 +103,16 @@ recap(
   to be used for the raw per-track tagged duration of non-song tracks
   (interludes, intro/outro, etc.), which have no duration elsewhere. If
   omitted the currently lazy-loaded default will be used.
+
+- rendition_percentile:
+
+  the percentile threshold (as a plain number, e.g. `5` for the
+  top/bottom 5%) used by the "exceptionally long/short rendition" note:
+  a rendition that isn't the outright longest/shortest ever recorded,
+  but still falls among the top/bottom percentage of every recorded
+  rendition of the same song (this one included), is called out with
+  wording like "one of the 5% longest recorded renditions of this song".
+  Defaults to `5`.
 
 ## Value
 
