@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9260</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9262</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -114,6 +114,15 @@
 <dt>sound_quality</dt>
 <dd><p>Sound quality rating: Excellent, Very Good, Good, or Poor.</p></dd>
 
+<dt>distance_home_km</dt>
+<dd><p>Great-circle distance (km, via <code><a href="https://rdrr.io/pkg/geosphere/man/distGeo.html" class="external-link">geosphere::distGeo</a></code>) from this show to "home" - the location of the earliest-dated show in the series (the Wilson Center, Fugazi's first ever show in 1987). Always populated.</p></dd>
+
+<dt>distance_to_km</dt>
+<dd><p>Distance (km) traveled <em>to</em> this show: from the previous show, if this show is classified as part of the same tour chain as it (see <code>Provenance</code> below), otherwise from home (i.e. equal to <code>distance_home_km</code>, for a home-based show or the first stop of a tour chain). Always populated.</p></dd>
+
+<dt>distance_back_km</dt>
+<dd><p>Distance (km) traveled <em>back home</em> after this show. Populated only for a home-based show or the last stop of a tour chain (<code>NA</code> for every other tour stop, since the band hadn't returned home yet).</p></dd>
+
 
 </dl></div>
     <div class="section level2">
@@ -122,29 +131,30 @@
     </div>
     <div class="section level2">
     <h2 id="provenance">Provenance<a class="anchor" aria-label="anchor" href="#provenance"></a></h2>
-    <p>Derived-cleaned. Produced by <code><a href="Repeatr_1.html">Repeatr_1</a></code>. Actively consumed directly by <code>inst/shiny/Fugazetteer/app.R</code>.</p>
+    <p>Derived-cleaned. Produced by <code><a href="Repeatr_1.html">Repeatr_1</a></code>. Actively consumed directly by <code>inst/shiny/Fugazetteer/app.R</code>. The three <code>distance_*_km</code> columns (issue #259) are computed by <code>classify_show_trips()</code> in <code>R/recap.R</code>, which classifies each show as home-based or part of a moving tour chain purely from geography and dates (whether it's geographically closer to the previous show than to home, and within a plausible date gap of it) - a show within <code>home_radius_km</code> of home is always treated as home-based. This classification is deliberately independent of the <code>tour</code> column above, whose own tour/regional-dates labelling isn't reliable enough to build on; <code>tour</code> is used only as an informal sanity check against it (see <code>inst/notes</code> for the cross-check from when this was added), never as an input. These three columns are internal to Repeatr and are not exported to fugazibase.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">shows_data</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,049 × 18</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,049 × 21</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    gid   tour   year date       venue city  subdivision country attendance price</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> aals… 1990…  <span style="text-decoration: underline;">1</span>990 1990-09-23 Netw… Aalst <span style="color: #BB0000;">NA</span>          Belgium        600    <span style="color: #BB0000;">NA</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> aber… 1999…  <span style="text-decoration: underline;">1</span>999 1999-05-04 Lemo… Aber… <span style="color: #BB0000;">NA</span>          Scotla…        550     6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> adel… 1993…  <span style="text-decoration: underline;">1</span>993 1993-11-11 Dom … Adel… SA          Austra…        550    15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> adel… 1996…  <span style="text-decoration: underline;">1</span>996 1996-11-12 Adel… Adel… SA          Austra…        913    <span style="color: #BB0000;">NA</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> adel… 1991…  <span style="text-decoration: underline;">1</span>991 1991-10-22 Le R… Adel… SA          Austra…        450    <span style="color: #BB0000;">NA</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> akro… 1990…  <span style="text-decoration: underline;">1</span>990 1990-06-28 Jack… Akron OH          USA            700     5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> alba… 1993…  <span style="text-decoration: underline;">1</span>993 1993-09-20 S.U.… Alba… NY          USA           <span style="text-decoration: underline;">1</span>000     5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> albu… 1995…  <span style="text-decoration: underline;">1</span>995 1995-11-13 Five… Albu… NM          USA            895     5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> albu… 2001…  <span style="text-decoration: underline;">2</span>001 2001-04-08 Suns… Albu… NM          USA           <span style="text-decoration: underline;">1</span>100     6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> albu… 1991…  <span style="text-decoration: underline;">1</span>991 1991-09-11 Suns… Albu… NM          USA            800     5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> wash… 1987…  <span style="text-decoration: underline;">1</span>987 1987-09-03 Wils… Wash… DC          USA            300     5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> wash… 1987…  <span style="text-decoration: underline;">1</span>987 1987-09-26 St. … Wash… DC          USA            200     5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> chap… 1987…  <span style="text-decoration: underline;">1</span>987 1987-09-27 Cat'… Chap… NC          USA             50     5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> rich… 1987…  <span style="text-decoration: underline;">1</span>987 1987-10-07 New … Rich… VA          USA             50     5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> wash… 1987…  <span style="text-decoration: underline;">1</span>987 1987-10-16 dc s… Wash… DC          USA            100     5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> fred… 1987…  <span style="text-decoration: underline;">1</span>987 1987-11-25 Wein… Fred… MD          USA            133    <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> beth… 1987…  <span style="text-decoration: underline;">1</span>987 1987-12-02 BCC … Beth… MD          USA             10    <span style="color: #BB0000;">NA</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> wash… 1987…  <span style="text-decoration: underline;">1</span>987 1987-12-03 Wils… Wash… DC          USA            300     5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> midd… 1987…  <span style="text-decoration: underline;">1</span>987 1987-12-04 Wesl… Midd… CT          USA            100     5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> norw… 1987…  <span style="text-decoration: underline;">1</span>987 1987-12-05 Anth… Norw… CT          USA            100     5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1,039 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 8 more variables: currency &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 11 more variables: currency &lt;chr&gt;, latitude &lt;dbl&gt;, longitude &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   fls_notes &lt;chr&gt;, urls &lt;chr&gt;, fls_link &lt;chr&gt;, minutes &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sound_quality &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sound_quality &lt;chr&gt;, distance_home_km &lt;dbl&gt;, distance_to_km &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   distance_back_km &lt;dbl&gt;</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

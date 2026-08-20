@@ -87,6 +87,28 @@ dataframe with one row for each show in the Fugazi Live Series data.
 
   Sound quality rating: Excellent, Very Good, Good, or Poor.
 
+- distance_home_km:
+
+  Great-circle distance (km, via
+  [`geosphere::distGeo`](https://rdrr.io/pkg/geosphere/man/distGeo.html))
+  from this show to "home" - the location of the earliest-dated show in
+  the series (the Wilson Center, Fugazi's first ever show in 1987).
+  Always populated.
+
+- distance_to_km:
+
+  Distance (km) traveled *to* this show: from the previous show, if this
+  show is classified as part of the same tour chain as it (see
+  `Provenance` below), otherwise from home (i.e. equal to
+  `distance_home_km`, for a home-based show or the first stop of a tour
+  chain). Always populated.
+
+- distance_back_km:
+
+  Distance (km) traveled *back home* after this show. Populated only for
+  a home-based show or the last stop of a tour chain (`NA` for every
+  other tour stop, since the band hadn't returned home yet).
+
 ## Source
 
 https://www.dischord.com/fugazi_live_series
@@ -95,27 +117,40 @@ https://www.dischord.com/fugazi_live_series
 
 Derived-cleaned. Produced by
 [`Repeatr_1`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_1.md).
-Actively consumed directly by `inst/shiny/Fugazetteer/app.R`.
+Actively consumed directly by `inst/shiny/Fugazetteer/app.R`. The three
+`distance_*_km` columns (issue \#259) are computed by
+`classify_show_trips()` in `R/recap.R`, which classifies each show as
+home-based or part of a moving tour chain purely from geography and
+dates (whether it's geographically closer to the previous show than to
+home, and within a plausible date gap of it) - a show within
+`home_radius_km` of home is always treated as home-based. This
+classification is deliberately independent of the `tour` column above,
+whose own tour/regional-dates labelling isn't reliable enough to build
+on; `tour` is used only as an informal sanity check against it (see
+`inst/notes` for the cross-check from when this was added), never as an
+input. These three columns are internal to Repeatr and are not exported
+to fugazibase.
 
 ## Examples
 
 ``` r
 shows_data
-#> # A tibble: 1,049 × 18
+#> # A tibble: 1,049 × 21
 #>    gid   tour   year date       venue city  subdivision country attendance price
 #>    <chr> <chr> <dbl> <date>     <chr> <chr> <chr>       <chr>        <int> <dbl>
-#>  1 aals… 1990…  1990 1990-09-23 Netw… Aalst NA          Belgium        600    NA
-#>  2 aber… 1999…  1999 1999-05-04 Lemo… Aber… NA          Scotla…        550     6
-#>  3 adel… 1993…  1993 1993-11-11 Dom … Adel… SA          Austra…        550    15
-#>  4 adel… 1996…  1996 1996-11-12 Adel… Adel… SA          Austra…        913    NA
-#>  5 adel… 1991…  1991 1991-10-22 Le R… Adel… SA          Austra…        450    NA
-#>  6 akro… 1990…  1990 1990-06-28 Jack… Akron OH          USA            700     5
-#>  7 alba… 1993…  1993 1993-09-20 S.U.… Alba… NY          USA           1000     5
-#>  8 albu… 1995…  1995 1995-11-13 Five… Albu… NM          USA            895     5
-#>  9 albu… 2001…  2001 2001-04-08 Suns… Albu… NM          USA           1100     6
-#> 10 albu… 1991…  1991 1991-09-11 Suns… Albu… NM          USA            800     5
+#>  1 wash… 1987…  1987 1987-09-03 Wils… Wash… DC          USA            300     5
+#>  2 wash… 1987…  1987 1987-09-26 St. … Wash… DC          USA            200     5
+#>  3 chap… 1987…  1987 1987-09-27 Cat'… Chap… NC          USA             50     5
+#>  4 rich… 1987…  1987 1987-10-07 New … Rich… VA          USA             50     5
+#>  5 wash… 1987…  1987 1987-10-16 dc s… Wash… DC          USA            100     5
+#>  6 fred… 1987…  1987 1987-11-25 Wein… Fred… MD          USA            133    NA
+#>  7 beth… 1987…  1987 1987-12-02 BCC … Beth… MD          USA             10    NA
+#>  8 wash… 1987…  1987 1987-12-03 Wils… Wash… DC          USA            300     5
+#>  9 midd… 1987…  1987 1987-12-04 Wesl… Midd… CT          USA            100     5
+#> 10 norw… 1987…  1987 1987-12-05 Anth… Norw… CT          USA            100     5
 #> # ℹ 1,039 more rows
-#> # ℹ 8 more variables: currency <chr>, latitude <dbl>, longitude <dbl>,
+#> # ℹ 11 more variables: currency <chr>, latitude <dbl>, longitude <dbl>,
 #> #   fls_notes <chr>, urls <chr>, fls_link <chr>, minutes <dbl>,
-#> #   sound_quality <chr>
+#> #   sound_quality <chr>, distance_home_km <dbl>, distance_to_km <dbl>,
+#> #   distance_back_km <dbl>
 ```

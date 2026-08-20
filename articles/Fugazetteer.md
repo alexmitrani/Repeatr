@@ -490,13 +490,19 @@ button at the top of the page to the right of the ‘stack’ selection box.
 Here you can choose any single show (out of the shows with set lists
 available to date) and see everything about it in one place: the venue
 and date with a link to the corresponding page of the [Fugazi Live
-Series](https://www.dischord.com/fugazi_live_series) site, where it fits
-in its tour, how many times Fugazi had previously played in that
-country, state/province, city and venue, and (if a recording of the show
-exists) how many songs were played, how long the recording runs (and,
-where the recording’s non-song content was tagged separately, how many
-of those minutes were music), its sound quality rating, and which
-releases its songs are drawn from.
+Series](https://www.dischord.com/fugazi_live_series) site, its distance
+from “home” (Washington, DC, where the first-ever Fugazi show took
+place), where it fits in its tour, how many times Fugazi had previously
+played in that country, state/province, city and venue, and (if a
+recording of the show exists) how many songs were played, how long the
+recording runs (and, where the recording’s non-song content was tagged
+separately, how many of those minutes were music), its sound quality
+rating, and which releases its songs are drawn from. The previous and
+following show are also named, each with its own distance from this one
+when the two were part of the same touring trip (as opposed to two
+separate home-based outings) - this is worked out from geography and
+dates, not from the show’s named tour, so it can occasionally differ
+from what the tour name alone would suggest.
 
 Below that, a “Notes:” bullet list flags anything unusual or noteworthy
 about the show or setlist - one bullet per fact - and is simply omitted

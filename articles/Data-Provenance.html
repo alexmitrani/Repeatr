@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9260</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9262</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -401,6 +401,17 @@ live from a Google Sheet (<code>gsheet2tbl()</code>) and overwrites
 whatever <code>othervariables</code>/<code>shows_data</code> provided.
 So the deployed app’s map coordinates track that live sheet, not any
 package release.</p>
+<p><code>shows_data</code>’s
+<code>distance_home_km</code>/<code>distance_to_km</code>/<code>distance_back_km</code>
+columns (issue #259, see <code><a href="../reference/shows_data.html">?shows_data</a></code>) are an exception to
+“no judgment calls” within the Derived-cleaned tier: they depend on
+<code>classify_show_trips()</code>’s geography/date-based classification
+of each show as home-based or part of a tour chain. That classification
+is intentionally independent of - and checked against, never driven by -
+the existing <code>tour</code> column, whose own tour/regional-dates
+labelling isn’t reliable enough to build on. These three columns are
+internal to Repeatr only; ’s <code>shows</code> table selects its
+columns explicitly and doesn’t include them.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

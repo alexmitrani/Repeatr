@@ -150,3 +150,15 @@ use the package’s own `x`/`y` - at startup it re-fetches coordinates
 live from a Google Sheet (`gsheet2tbl()`) and overwrites whatever
 `othervariables`/`shows_data` provided. So the deployed app’s map
 coordinates track that live sheet, not any package release.
+
+`shows_data`’s `distance_home_km`/`distance_to_km`/`distance_back_km`
+columns (issue \#259, see
+[`?shows_data`](https://alexmitrani.github.io/Repeatr/reference/shows_data.md))
+are an exception to “no judgment calls” within the Derived-cleaned tier:
+they depend on `classify_show_trips()`’s geography/date-based
+classification of each show as home-based or part of a tour chain. That
+classification is intentionally independent of - and checked against,
+never driven by - the existing `tour` column, whose own
+tour/regional-dates labelling isn’t reliable enough to build on. These
+three columns are internal to Repeatr only; ’s `shows` table selects its
+columns explicitly and doesn’t include them.
