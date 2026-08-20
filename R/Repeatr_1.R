@@ -1438,6 +1438,20 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
       slice(1) %>%
       ungroup()
 
+    # Distances in km (issue #259) - see classify_show_trips() in R/recap.R
+    # for the full home-based/tour classification. home_lat/home_lon are the
+    # coordinates of the earliest-dated show (the Wilson Center, 1987 -
+    # Fugazi's first ever show), used as the "home" reference point.
+    home_lat <- shows_data$latitude[which.min(shows_data$date)]
+    home_lon <- shows_data$longitude[which.min(shows_data$date)]
+
+    trip_distances <- classify_show_trips(shows_data, home_lat, home_lon) %>%
+      select(gid, distance_home_km, distance_to_km, distance_back_km)
+
+    shows_data <- shows_data %>%
+      left_join(trip_distances, by = "gid") %>%
+      arrange(date)
+
     save(shows_data, file = "shows_data.rda")
 
     last_performance_data <- Repeatr1 %>%

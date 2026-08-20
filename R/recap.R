@@ -95,17 +95,90 @@ format_price <- function(p) {
 # next night" for literally-adjacent calendar days, but that read as
 # ambiguous when the sentence already names another explicit date - see
 # issue #253), omitting only the year when it's the same as this_show_date's,
-# since same-tour shows are usually within one calendar year.
-describe_other_show <- function(venue, city, subdivision, country, date, same_venue, this_show_date) {
+# since same-tour shows are usually within one calendar year. distance_km
+# (issue #259), when not NA, appends "(N km from here)" right after the
+# location - skipped when the location itself collapsed to "the same venue",
+# since a distance from oneself would be redundant (and is always ~0 anyway).
+describe_other_show <- function(venue, city, subdivision, country, date, same_venue, this_show_date, distance_km = NA_real_) {
   location_part <- if (same_venue) {
     "the same venue"
   } else {
+    distance_part <- if (is.na(distance_km)) "" else paste0(" (", distance_km, " km from here)")
     paste0(venue, ", ", city,
            ifelse(is.na(subdivision) | subdivision=="", "", paste0(", ", subdivision)),
-           ", ", country)
+           ", ", country, distance_part)
   }
   paste0(location_part, " on ",
          format_show_date(date, include_year = lubridate::year(date)!=lubridate::year(this_show_date)))
+}
+
+# distance-from-home / tour-vs-home-based classification -------------------------------------------------------------------
+# See issue #259. Whether a show was reached as a there-and-back home-based
+# trip, or was part of a moving tour, is derived purely from geography and
+# dates - never from the `tour` text field, whose own tour/regional-dates
+# labelling turned out not to be reliable enough to build on. The `tour`
+# field is used only as an independent sanity check on this classification
+# (see the data-build check in inst/notes), never as an input to it.
+
+# Vectorized great-circle distance in km (NA-safe: any NA coordinate yields
+# an NA distance, since distGeo is itself NA-safe elementwise).
+distance_km_vec <- function(lat1, lon1, lat2, lon2) {
+  round(geosphere::distGeo(cbind(lon1, lat1), cbind(lon2, lat2)) / 1000)
+}
+
+# Classifies every show in `shows` (one row per show, needs gid/date/
+# latitude/longitude) as home-based or part of a tour chain. A show within
+# `home_radius_km` of home is always home-based - close enough to home that
+# the round trip is a same-day drive, so it's never worth stringing into a
+# chain with a neighboring show even if the two happen to be closer to each
+# other than either is to home (this matters most for Washington DC-area
+# shows, which otherwise risk linking to each other on rounding alone, since
+# both distance-to-neighbor and distance-from-home are close to zero).
+# Otherwise, show i is linked to the previous show when going directly
+# between them is cheaper than an out-and-back through home for that one
+# leg - i.e. dist(prev, this) is less than distance_home(prev) +
+# distance_home(this) - and the gap between them is no more than
+# `max_gap_days` (a loose sanity bound - real tours sometimes pause for
+# several days, so this is not a strict "1-2 days" rule). An earlier version
+# compared dist(prev, this) against distance_home(this) alone, which missed
+# "return leg" shows - closer to home than the previous stop was, but still
+# nearer to that previous stop than a full round trip home would cost - by
+# comparing a two-city trip's cost against only one of its two legs; see
+# inst/notes for the Oberlin, OH show that surfaced this (its next stop was
+# ~2.7km short of qualifying under the old rule).
+# Returns a tibble keyed by gid: distance_home_km, distance_to_km,
+# distance_back_km (the three columns persisted on shows_data - see
+# ?shows_data), plus is_tour/linked_to_prev/linked_to_next (recomputed on
+# demand wherever needed, not persisted).
+classify_show_trips <- function(shows, home_lat, home_lon, max_gap_days = 21, home_radius_km = 200) {
+
+  shows <- shows %>% arrange(date)
+
+  distance_home_km <- distance_km_vec(home_lat, home_lon, shows$latitude, shows$longitude)
+  near_home <- distance_home_km <= home_radius_km
+
+  dist_to_prev_km <- distance_km_vec(dplyr::lag(shows$latitude), dplyr::lag(shows$longitude),
+                                      shows$latitude, shows$longitude)
+  days_since_prev <- as.numeric(shows$date - dplyr::lag(shows$date))
+  prev_distance_home_km <- dplyr::lag(distance_home_km)
+
+  linked_to_prev <- !is.na(dist_to_prev_km) &
+    !near_home & !dplyr::lag(near_home, default = FALSE) &
+    dist_to_prev_km < (distance_home_km + prev_distance_home_km) &
+    days_since_prev <= max_gap_days
+  linked_to_next <- dplyr::lead(linked_to_prev, default = FALSE)
+  is_tour <- linked_to_prev | linked_to_next
+
+  dplyr::tibble(
+    gid = shows$gid,
+    distance_home_km = distance_home_km,
+    distance_to_km = ifelse(linked_to_prev, dist_to_prev_km, distance_home_km),
+    distance_back_km = ifelse(!linked_to_next, distance_home_km, NA_real_),
+    is_tour = is_tour,
+    linked_to_prev = linked_to_prev,
+    linked_to_next = linked_to_next
+  )
+
 }
 
 # paragraph3 note-generators -----------------------------------------------------------------------------------------------
@@ -563,13 +636,101 @@ recap <- function(mygid,
     stop("mygid must match exactly one show in shows_data")
   }
 
+# distances and previous/next show, by strict chronological adjacency (issue #259) -----------------------------------------
+# Deliberately *not* grouped by the `tour` field - see classify_show_trips()
+# above for why: "the previous/next show" always names the actual
+# nearest-in-date show across the whole series, and gets a "(N km from
+# here)" distance appended only when that neighbor is part of the same
+# geography/date-derived tour chain as this show (linked_to_prev/next).
+# distance_home_km/distance_to_km/distance_back_km are recomputed fresh here
+# from whatever latitude/longitude this shows_data actually carries, rather
+# than trusting shows_data's own persisted distance_*_km columns (if it has
+# any) - app.R re-fetches venue coordinates live from a Google Sheet at
+# startup without recomputing those columns, so a stale persisted value
+# could otherwise drift out of sync with the coordinates actually in use.
+
+  home_lat <- shows_data$latitude[which.min(shows_data$date)]
+  home_lon <- shows_data$longitude[which.min(shows_data$date)]
+
+  trip_links <- classify_show_trips(shows_data, home_lat, home_lon)
+
+  chrono_ranked <- shows_data %>%
+    select(-dplyr::any_of(c("distance_home_km", "distance_to_km", "distance_back_km"))) %>%
+    arrange(date) %>%
+    left_join(trip_links, by = "gid") %>%
+    mutate(previous_venue = dplyr::lag(venue), previous_city = dplyr::lag(city),
+           previous_subdivision = dplyr::lag(subdivision),
+           previous_country = dplyr::lag(country), previous_date = dplyr::lag(date),
+           next_venue = dplyr::lead(venue), next_city = dplyr::lead(city),
+           next_subdivision = dplyr::lead(subdivision),
+           next_country = dplyr::lead(country), next_date = dplyr::lead(date),
+           next_distance_to_km = dplyr::lead(distance_to_km)) %>%
+    filter(gid==mygid)
+
+  is_tour <- chrono_ranked$is_tour
+  distance_home_km <- chrono_ranked$distance_home_km
+  distance_to_km <- chrono_ranked$distance_to_km
+  distance_back_km <- chrono_ranked$distance_back_km
+
+  previous_same_venue <- is.na(chrono_ranked$previous_date)==FALSE &
+    chrono_ranked$previous_venue==this_show$venue & chrono_ranked$previous_city==this_show$city &
+    chrono_ranked$previous_country==this_show$country
+
+  next_same_venue <- is.na(chrono_ranked$next_date)==FALSE &
+    chrono_ranked$next_venue==this_show$venue & chrono_ranked$next_city==this_show$city &
+    chrono_ranked$next_country==this_show$country
+
+  # The following-show clause can only collapse to "the same venue" when the
+  # previous-show clause hasn't just named a *different* venue - otherwise
+  # "the same venue" reads as anaphoric to whichever venue was mentioned
+  # immediately before it (the previous show's) rather than to this show's
+  # own, e.g. on the first night of a stand: "...at Academy, Bristol,
+  # England, the night before, and the following show was at the same
+  # venue..." would wrongly imply the *next* show was also in Bristol.
+  # The previous-show clause has no such risk, since nothing else in the
+  # sentence has been named yet when it appears.
+  next_collapses_venue <- next_same_venue & (is.na(chrono_ranked$previous_date) | previous_same_venue)
+
+  previous_show_text <- if (is.na(chrono_ranked$previous_date)) {
+    NA_character_
+  } else {
+    describe_other_show(chrono_ranked$previous_venue, chrono_ranked$previous_city, chrono_ranked$previous_subdivision,
+                         chrono_ranked$previous_country, chrono_ranked$previous_date,
+                         same_venue = previous_same_venue, this_show_date = this_show$date,
+                         distance_km = if (chrono_ranked$linked_to_prev) distance_to_km else NA_real_)
+  }
+
+  next_show_text <- if (is.na(chrono_ranked$next_date)) {
+    NA_character_
+  } else {
+    describe_other_show(chrono_ranked$next_venue, chrono_ranked$next_city, chrono_ranked$next_subdivision,
+                         chrono_ranked$next_country, chrono_ranked$next_date,
+                         same_venue = next_collapses_venue, this_show_date = this_show$date,
+                         distance_km = if (chrono_ranked$linked_to_next) chrono_ranked$next_distance_to_km else NA_real_)
+  }
+
+  # Whether this is the first/last/only show of the touring period is already
+  # conveyed by "show X of Y" (tour_clause, below) so this sentence sticks to
+  # naming the actual previous/next show (if any) and never repeats
+  # "first"/"last"/"only".
+  tour_context_sentence <- if (is.na(previous_show_text) & is.na(next_show_text)) {
+    ""
+  } else if (is.na(previous_show_text)) {
+    paste0("The following show was at ", next_show_text, ".")
+  } else if (is.na(next_show_text)) {
+    paste0("The previous show was at ", previous_show_text, ".")
+  } else {
+    paste0("The previous show was at ", previous_show_text, ", and the following show was at ", next_show_text, ".")
+  }
+
 # date string and location text -----------------------------------------------------------------------------------------------
 
   datestring <- format_show_date(this_show$date)
 
   where_played <- paste0(this_show$venue, ", ", this_show$city,
                           ifelse(is.na(this_show$subdivision) | this_show$subdivision=="", "", paste0(", ", this_show$subdivision)),
-                          ", ", this_show$country)
+                          ", ", this_show$country,
+                          " (", distance_home_km, " km from home)")
 
   bands <- played_with %>% filter(gid==mygid) %>% pull(played_with)
 
@@ -609,74 +770,19 @@ recap <- function(mygid,
 
   last_show_sentence <- if (overall_show_number==nrow(shows_data)) "This was the last Fugazi show to date." else ""
 
-# tour position and previous/next show on the same touring period -------------------------------------------------------------
+# tour position, based on the existing named `tour` field (unchanged) -----------------------------------------------------------
 
   tour_ranked <- shows_data %>%
     arrange(tour, date) %>%
     group_by(tour) %>%
-    mutate(tour_position = row_number(),
-           tour_total = n(),
-           previous_venue = dplyr::lag(venue), previous_city = dplyr::lag(city),
-           previous_subdivision = dplyr::lag(subdivision),
-           previous_country = dplyr::lag(country), previous_date = dplyr::lag(date),
-           next_venue = dplyr::lead(venue), next_city = dplyr::lead(city),
-           next_subdivision = dplyr::lead(subdivision),
-           next_country = dplyr::lead(country), next_date = dplyr::lead(date)) %>%
+    mutate(tour_position = row_number(), tour_total = n()) %>%
     ungroup() %>%
     filter(gid==mygid)
 
   tour_position <- tour_ranked$tour_position
   tour_total <- tour_ranked$tour_total
 
-  previous_same_venue <- is.na(tour_ranked$previous_date)==FALSE &
-    tour_ranked$previous_venue==this_show$venue & tour_ranked$previous_city==this_show$city &
-    tour_ranked$previous_country==this_show$country
-
-  next_same_venue <- is.na(tour_ranked$next_date)==FALSE &
-    tour_ranked$next_venue==this_show$venue & tour_ranked$next_city==this_show$city &
-    tour_ranked$next_country==this_show$country
-
-  # The following-show clause can only collapse to "the same venue" when the
-  # previous-show clause hasn't just named a *different* venue - otherwise
-  # "the same venue" reads as anaphoric to whichever venue was mentioned
-  # immediately before it (the previous show's) rather than to this show's
-  # own, e.g. on the first night of a stand: "...at Academy, Bristol,
-  # England, the night before, and the following show was at the same
-  # venue..." would wrongly imply the *next* show was also in Bristol.
-  # The previous-show clause has no such risk, since nothing else in the
-  # sentence has been named yet when it appears.
-  next_collapses_venue <- next_same_venue & (is.na(tour_ranked$previous_date) | previous_same_venue)
-
-  previous_show_text <- if (is.na(tour_ranked$previous_date)) {
-    NA_character_
-  } else {
-    describe_other_show(tour_ranked$previous_venue, tour_ranked$previous_city, tour_ranked$previous_subdivision,
-                         tour_ranked$previous_country, tour_ranked$previous_date,
-                         same_venue = previous_same_venue, this_show_date = this_show$date)
-  }
-
-  next_show_text <- if (is.na(tour_ranked$next_date)) {
-    NA_character_
-  } else {
-    describe_other_show(tour_ranked$next_venue, tour_ranked$next_city, tour_ranked$next_subdivision,
-                         tour_ranked$next_country, tour_ranked$next_date,
-                         same_venue = next_collapses_venue, this_show_date = this_show$date)
-  }
-
   tour_clause <- paste0("show ", tour_position, " of ", tour_total, " of the ", this_show$tour)
-
-  # Whether this is the first/last/only show of the touring period is already
-  # conveyed by "show X of Y" above, so this sentence sticks to naming the
-  # actual previous/next show (if any) and never repeats "first"/"last"/"only".
-  tour_context_sentence <- if (is.na(previous_show_text) & is.na(next_show_text)) {
-    ""
-  } else if (is.na(previous_show_text)) {
-    paste0("The following show was at ", next_show_text, ".")
-  } else if (is.na(next_show_text)) {
-    paste0("The previous show was at ", previous_show_text, ".")
-  } else {
-    paste0("The previous show was at ", previous_show_text, ", and the following show was at ", next_show_text, ".")
-  }
 
 # prior-visit counts, strictly before this show's date ------------------------------------------------------------------------
 
@@ -1018,6 +1124,10 @@ recap <- function(mygid,
     tour = this_show$tour,
     tour_position = tour_position,
     tour_total = tour_total,
+    is_tour = is_tour,
+    distance_home_km = distance_home_km,
+    distance_to_km = distance_to_km,
+    distance_back_km = distance_back_km,
     previous_show_text = previous_show_text,
     next_show_text = next_show_text,
     country_visit_number = country_visit_number,

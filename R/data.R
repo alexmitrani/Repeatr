@@ -282,8 +282,11 @@
 #' \item{fls_link}{a link to the corresponding page of the Fugazi Live Series site.}
 #' \item{minutes}{duration of the show in minutes if a recording is available}
 #' \item{sound_quality}{Sound quality rating: Excellent, Very Good, Good, or Poor.}
+#' \item{distance_home_km}{Great-circle distance (km, via \code{geosphere::distGeo}) from this show to "home" - the location of the earliest-dated show in the series (the Wilson Center, Fugazi's first ever show in 1987). Always populated.}
+#' \item{distance_to_km}{Distance (km) traveled *to* this show: from the previous show, if this show is classified as part of the same tour chain as it (see `Provenance` below), otherwise from home (i.e. equal to `distance_home_km`, for a home-based show or the first stop of a tour chain). Always populated.}
+#' \item{distance_back_km}{Distance (km) traveled *back home* after this show. Populated only for a home-based show or the last stop of a tour chain (`NA` for every other tour stop, since the band hadn't returned home yet).}
 #' }
-#' @section Provenance: Derived-cleaned. Produced by \code{\link{Repeatr_1}}. Actively consumed directly by `inst/shiny/Fugazetteer/app.R`.
+#' @section Provenance: Derived-cleaned. Produced by \code{\link{Repeatr_1}}. Actively consumed directly by `inst/shiny/Fugazetteer/app.R`. The three `distance_*_km` columns (issue #259) are computed by `classify_show_trips()` in `R/recap.R`, which classifies each show as home-based or part of a moving tour chain purely from geography and dates (whether it's geographically closer to the previous show than to home, and within a plausible date gap of it) - a show within `home_radius_km` of home is always treated as home-based. This classification is deliberately independent of the `tour` column above, whose own tour/regional-dates labelling isn't reliable enough to build on; `tour` is used only as an informal sanity check against it (see `inst/notes` for the cross-check from when this was added), never as an input. These three columns are internal to Repeatr and are not exported to fugazibase.
 #' @examples
 #' shows_data
 "shows_data"
