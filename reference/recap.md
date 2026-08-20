@@ -172,7 +172,7 @@ release for this show, or `NULL` if no recording exists).
 ``` r
 result <- recap(mygid = "washington-dc-usa-13196")
 result$context$where_played
-#> [1] "9:30 Club, Washington, DC, USA (2 km from home)"
+#> [1] "9:30 Club, Washington, DC, USA"
 result$tracklist
 #> # A tibble: 24 × 11
 #>    track title          minutes mins_mean position pos_mean rendition renditions
