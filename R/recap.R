@@ -729,8 +729,12 @@ recap <- function(mygid,
 
   where_played <- paste0(this_show$venue, ", ", this_show$city,
                           ifelse(is.na(this_show$subdivision) | this_show$subdivision=="", "", paste0(", ", this_show$subdivision)),
-                          ", ", this_show$country,
-                          " (", distance_home_km, " km from home)")
+                          ", ", this_show$country)
+
+  # distance-from-home text (issue #265): kept out of where_played itself so
+  # that the title (which reuses ctx$where_played verbatim in both app.R and
+  # recap_template.Rmd) doesn't show it - only the paragraph does.
+  where_played_with_distance <- paste0(where_played, " (", distance_home_km, " km from home)")
 
   bands <- played_with %>% filter(gid==mygid) %>% pull(played_with)
 
@@ -742,10 +746,10 @@ recap <- function(mygid,
   attendance <- this_show$attendance
 
   attendance_clause <- if (is.na(attendance)) {
-    paste0("Fugazi played ", where_played, played_with_text, ".")
+    paste0("Fugazi played ", where_played_with_distance, played_with_text, ".")
   } else {
     paste0("Fugazi played to ", format(round(attendance), big.mark = "", scientific = FALSE), " people in ",
-           where_played, played_with_text, ".")
+           where_played_with_distance, played_with_text, ".")
   }
 
   price <- this_show$price
