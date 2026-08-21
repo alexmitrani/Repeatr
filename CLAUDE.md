@@ -42,3 +42,8 @@ Save copies of plans in the same folder as the session notes
 the session notes and the plans can be distinguished from each other:
 `YYYYMMDDHHMM_plan_short-description.md` (e.g.
 `202607311323_plan_myshortdescription.md`).
+
+# Git and GitHub
+
+Read only. Don’t commit or push. User will review, commit and push
+approved changes.
