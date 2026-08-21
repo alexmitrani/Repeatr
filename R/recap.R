@@ -49,7 +49,7 @@ fix_caps <- function(x) {
   if (is.na(x)) {
     return(x)
   }
-  acronyms <- c("DAT", "CD", "PRS")
+  acronyms <- c("DAT", "CD", "PRS", "VHS")
   words <- strsplit(x, " ")[[1]]
   words <- vapply(words, function(w) {
     if (gsub("[[:punct:]]", "", w) %in% acronyms) {
@@ -559,6 +559,48 @@ note_record_price <- function(price, currency, shows_data) {
 
 }
 
+# Whether this show is the northernmost or southernmost Fugazi ever played,
+# by latitude (independent of has_recording, so folded into paragraph3 even
+# for shows with no surviving recording). NA-guarded (unlike
+# note_record_attendance) since geocoding coverage isn't guaranteed for
+# every venue.
+note_record_latitude <- function(latitude, shows_data) {
+
+  if (is.na(latitude)) {
+    return(NA_character_)
+  }
+
+  if (latitude==max(shows_data$latitude, na.rm = TRUE)) {
+    "This was the northernmost Fugazi show."
+  } else if (latitude==min(shows_data$latitude, na.rm = TRUE)) {
+    "This was the southernmost Fugazi show."
+  } else {
+    NA_character_
+  }
+
+}
+
+# Whether this show is the furthest from home of any Fugazi show ever
+# played (issue #267), by distance_home_km - reuses recap()'s existing
+# trip_links (see classify_show_trips(), issue #259), which already has
+# distance_home_km for every show, rather than recomputing anything.
+# Independent of has_recording, so folded into paragraph3 even for shows
+# with no surviving recording. NA-guarded, same reasoning as
+# note_record_latitude.
+note_record_distance_home <- function(distance_home_km, trip_links) {
+
+  if (is.na(distance_home_km)) {
+    return(NA_character_)
+  }
+
+  if (distance_home_km==max(trip_links$distance_home_km, na.rm = TRUE)) {
+    "This was the show furthest from home Fugazi ever played."
+  } else {
+    NA_character_
+  }
+
+}
+
 # Whether this show was a festival - Fugazi played very few, and there's no
 # separate flag for it in the data, so it's detected from the venue name
 # itself (independent of has_recording, so folded into paragraph3 even for
@@ -882,6 +924,8 @@ recap <- function(mygid,
   attendance_record_note <- note_record_attendance(attendance, shows_data)
   price_record_note <- note_record_price(price, currency, shows_data)
   festival_note <- note_festival(this_show$venue, shows_data)
+  latitude_record_note <- note_record_latitude(this_show$latitude, shows_data)
+  distance_record_note <- note_record_distance_home(distance_home_km, trip_links)
 
   paragraph1 <- paste0("On ", datestring, ", ", attendance_clause, door_price_clause, " ",
                        location_sentence,
@@ -1100,7 +1144,8 @@ recap <- function(mygid,
   # prose paragraph, since a flat list of independent facts reads more
   # naturally that way than as consecutive sentences (issue #257); if none
   # apply, paragraph3 is "" like this file's other optional sentences.
-  note_pieces <- c(attendance_record_note, price_record_note, festival_note, note_pieces)
+  note_pieces <- c(attendance_record_note, price_record_note, festival_note,
+                    latitude_record_note, distance_record_note, note_pieces)
   note_pieces <- note_pieces[is.na(note_pieces)==FALSE]
 
   paragraph3 <- if (length(note_pieces)==0) {
