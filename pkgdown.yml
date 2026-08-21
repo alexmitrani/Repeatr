@@ -2,7 +2,6 @@ pandoc: 3.8.3
 pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
-  92songs: 92songs.html
   AllAccess: AllAccess.html
   au-clair-de-la-lune: au-clair-de-la-lune.html
   CombinationLock: CombinationLock.html
@@ -10,6 +9,7 @@ articles:
   Fugazetteer: Fugazetteer.html
   in-your-memory: in-your-memory.html
   LinkTracks: LinkTracks.html
+  Ninety-Two-Songs: Ninety-Two-Songs.html
   Outsiders: Outsiders.html
   Playlist: Playlist.html
   polish-with-a-small-p: polish-with-a-small-p.html
@@ -19,7 +19,7 @@ articles:
   The-Argument: The-Argument.html
   The-Emperors-New-Outfit: The-Emperors-New-Outfit.html
   The-Tyranny-of-Distance: The-Tyranny-of-Distance.html
-last_built: 2026-08-21T00:11Z
+last_built: 2026-08-21T01:48Z
 urls:
   reference: https://alexmitrani.github.io/Repeatr/reference
   article: https://alexmitrani.github.io/Repeatr/articles

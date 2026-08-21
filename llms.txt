@@ -47,7 +47,8 @@ outlines the process by which song ratings were calculated using the
 [Fugazi Live Series](https://www.dischord.com/fugazi_live_series)
 metadata.
 
-[92 songs](https://alexmitrani.github.io/Repeatr/articles/92songs.md)
+[92
+songs](https://alexmitrani.github.io/Repeatr/articles/Ninety-Two-Songs.md)
 summarises the main results of the data processing and choice modelling
 as an interactive graph. The graph shows ratings, performance counts and
 launch dates for the 94 songs that were performed live at least twice.
@@ -275,7 +276,6 @@ Thanks.
 
 ### All vignettes
 
-- [92 songs](https://alexmitrani.github.io/Repeatr/articles/92songs.md):
 - [All
   Access](https://alexmitrani.github.io/Repeatr/articles/AllAccess.md):
 - [Au Clair de la
@@ -289,6 +289,8 @@ Thanks.
   memory](https://alexmitrani.github.io/Repeatr/articles/in-your-memory.md):
 - [Link
   Tracks](https://alexmitrani.github.io/Repeatr/articles/LinkTracks.md):
+- [92
+  songs](https://alexmitrani.github.io/Repeatr/articles/Ninety-Two-Songs.md):
 - [Outsiders](https://alexmitrani.github.io/Repeatr/articles/Outsiders.md):
 - [Playlist](https://alexmitrani.github.io/Repeatr/articles/Playlist.md):
 - [polish with a small

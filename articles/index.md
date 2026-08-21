@@ -2,7 +2,6 @@
 
 ### All vignettes
 
-- [92 songs](https://alexmitrani.github.io/Repeatr/articles/92songs.md):
 - [All
   Access](https://alexmitrani.github.io/Repeatr/articles/AllAccess.md):
 - [Au Clair de la
@@ -16,6 +15,8 @@
   memory](https://alexmitrani.github.io/Repeatr/articles/in-your-memory.md):
 - [Link
   Tracks](https://alexmitrani.github.io/Repeatr/articles/LinkTracks.md):
+- [92
+  songs](https://alexmitrani.github.io/Repeatr/articles/Ninety-Two-Songs.md):
 - [Outsiders](https://alexmitrani.github.io/Repeatr/articles/Outsiders.md):
 - [Playlist](https://alexmitrani.github.io/Repeatr/articles/Playlist.md):
 - [polish with a small
