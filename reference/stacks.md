@@ -74,8 +74,7 @@ contributed).
 ## Examples
 
 ``` r
-gid_song <- duration_data_da %>%
-  select(gid, title)
+gid_song <- dplyr::select(duration_data_da, gid, title)
 
 results <- stacks(mydf = gid_song, mygid = "washington-dc-usa-13196", mynumberofsongs = 94)
 #> Joining with `by = join_by(title)`

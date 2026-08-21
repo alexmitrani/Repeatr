@@ -48,10 +48,10 @@ datestampr is used internally by the fsm package.
 
 ``` r
 datestring <- datestampr(myusername=TRUE)
-cat(yellow(paste0("\n \n", "Hello world, have a datestamp: ", datestring, "\n \n")))
+cat(crayon::yellow(paste0("\n \n", "Hello world, have a datestamp: ", datestring, "\n \n")))
 #> 
 #>  
-#> Hello world, have a datestamp: 20260821183027
+#> Hello world, have a datestamp: 20260821192921
 #>  
 #> 
 ```

@@ -62,7 +62,7 @@ rankr
 ## Examples
 
 ``` r
-songstobecompared <- summary %>% slice(seq(from=1, to=92, by=10))
+songstobecompared <- dplyr::slice(summary, seq(from=1, to=92, by=10))
 mycomparisons <- rankr(coeftable = results_ml_Repeatr4, vcovmat = vcovmat_ml_Repeatr4, mysongidlist = songstobecompared)
 #> 
 #>  

@@ -77,5 +77,4 @@ be reinstalled.
 
 ``` r
 Repeatr_Updatr(really = "not_really")
-
 ```
