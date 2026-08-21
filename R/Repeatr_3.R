@@ -3,13 +3,6 @@
 #' @title takes a dataframe with gid, song_number, and alt, and modifies it to make it suitable for choice modelling.
 #' @description "gid" is short for "gig id"
 #'
-#' @import dplyr
-#' @import stringr
-#' @import lubridate
-#' @import fastDummies
-#' @import rlang
-#' @import knitr
-#'
 #' @param mydf optional dataframe to be used.  If omitted the default dataframe will be used.
 #' @param output_dir Optional directory to save the rebuilt `data/Repeatr3.rda` into. If omitted, defaults to `data/` under the current working directory.
 #'

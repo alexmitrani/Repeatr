@@ -42,10 +42,10 @@ This data was originally scraped from the Fugazi Live Series website by Carni Kl
 \examples{
 # What is the total number of people that Fugazi performed for in the shows that are available in the Fugazi Live Series data?
 test <- Repeatr0
-test <- test \%>\% mutate(attendancedata = nchar(attendance))
-test <- test \%>\% filter(attendancedata>0)
-test <- test \%>\% mutate(attendance = as.numeric(attendance))
-test <- test \%>\% filter(is.na(attendance)==FALSE)
+test <- dplyr::mutate(test, attendancedata = nchar(attendance))
+test <- dplyr::filter(test, attendancedata>0)
+test <- dplyr::mutate(test, attendance = as.numeric(attendance))
+test <- dplyr::filter(test, is.na(attendance)==FALSE)
 totalpeople <- sum(test$attendance)
 totalpeople
 }

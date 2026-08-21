@@ -7,8 +7,6 @@
 #' @description The function will return a one-row dataframe with the following columns: var1, var2, coefindex1, coefindex2, mycoef1, mycoef2, mycoefdiff, myz, myp, lower95ci, upper95ci
 #' @description A coefficient index of 0 will be interpreted as referring to the omitted constant, labeled "(Intercept):1" below. This is always correct, not a hardcoded assumption about which song is omitted: `Repeatr_2()` builds `alt` as a dense 1..n index (`row_number()`), so `as.factor(alt)` in `Repeatr_4()` always has 1 as its lowest level, and mlogit always drops the lowest level as the reference - whichever song that numerically is.
 #'
-#' @import crayon
-#'
 #' @param coeftable coefficients table from mlogit, with one row per coefficient
 #' @param vcovmat variance covariance matrix from mlogit, with one row and one column per coefficient
 #' @param coefindex1 index number of first coefficient to be tested

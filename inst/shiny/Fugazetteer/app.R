@@ -2,6 +2,19 @@
 # remotes::install_github("alexmitrani/Repeatr", build_vignettes = TRUE, dependencies = TRUE)
 
 library(Repeatr)
+library(shiny)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(lubridate)
+library(leaflet)
+library(plotly)
+library(scales)
+library(viridis)
+library(bslib)
+library(thematic)
+library(cols4all)
+library(gsheet)
 
 # theme -------------------------------------------------------------------
 

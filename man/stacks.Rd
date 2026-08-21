@@ -36,8 +36,7 @@ A list of two data frames: \code{stack_songs} (\code{gid}, \code{title} - one ro
 stacks puts together a set of shows that will contain a specified number of unique songs.
 }
 \examples{
-gid_song <- duration_data_da \%>\%
-  select(gid, title)
+gid_song <- dplyr::select(duration_data_da, gid, title)
 
 results <- stacks(mydf = gid_song, mygid = "washington-dc-usa-13196", mynumberofsongs = 94)
 stack1 <- results[[1]]

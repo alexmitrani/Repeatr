@@ -6,14 +6,6 @@
 #' @description `songvarslookup` (read from `inst/extdata/releases_songs_durations_wikipedia.csv`) contains the following variables: rid	track_number	title	instrumental	vocals_picciotto	vocals_mackaye	vocals_lally	duration_seconds. It is joined onto the live, classified song set by `title` text, not by a hardcoded id column - see `songid` below.
 
 #'
-#' @import dplyr
-#' @import tidyr
-#' @import stringr
-#' @import lubridate
-#' @import fastDummies
-#' @import rlang
-#' @import knitr
-#'
 #' @param myfls_data Optional data frame of Fugazi Live Series show data to use instead of `inst/extdata/fls_data.csv` (same shape: one row per show, as produced by \code{\link{scrape_fls_shows}}).
 #' @param mysongvarslookup Optional data frame of song data to use instead of `inst/extdata/releases_songs_durations_wikipedia.csv`.
 #' @param myreleases Optional data frame of releases data to use instead of `inst/extdata/releases.csv`.

@@ -7,10 +7,6 @@
 #' @description compressr is used to reduce the size of data files with double-precision storage of integer variables, by changing the storage type of these variables to integer.
 #' @details compressr is used internally by the Repeatr package.
 #'
-#' @import dplyr
-#' @import crayon
-#' @import rlang
-#'
 #' @param mydf the dataframe to be modified.
 #' @param ... a list of the variables to have their storage modes changed to integer.
 #'

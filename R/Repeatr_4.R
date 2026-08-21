@@ -2,15 +2,6 @@
 #' @title prepares data for choice modelling with mlogit, and estimates a basic choice model.
 #' @description Defines indices, makes changes to variable formats and data structure to prepare for choice modelling with mlogit.
 #'
-#' @import dplyr
-#' @import stringr
-#' @import lubridate
-#' @import fastDummies
-#' @import rlang
-#' @import knitr
-#' @import mlogit
-#'
-#'
 #' @param mydf optional dataframe to be used.  If omitted, the default dataframe will be used.  Example of use: ml_Repeatr4 <- Repeatr_4()
 #' @param output_dir Optional directory to save the rebuilt `data/results_ml_Repeatr4.rda`/`data/vcovmat_ml_Repeatr4.rda` into. If omitted, defaults to `data/` under the current working directory.
 #'

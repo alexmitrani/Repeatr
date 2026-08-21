@@ -2,15 +2,6 @@
 #' @title produces results using a coefficient table for a choice model estimated with mlogit.
 #' @description Produces a summary table that includes song performance counts, song performance intensities, and ratings based on the estimated choice model parameters.
 #'
-#' @import dplyr
-#' @import stringr
-#' @import lubridate
-#' @import fastDummies
-#' @import rlang
-#' @import knitr
-#' @import readr
-#'
-#'
 #' @param mymodeldf optional choice model coefficients dataframe to be used to generate the results. If omitted, the default choice model coefficients dataframe will be used, which is results_ml_Repeatr4.
 #' @param mysongidlookup optional `songidlookup` dataframe (the `songidlookup` element of `Repeatr_1()`'s return list). If omitted the currently lazy-loaded default will be used.
 #' @param myaltlookup optional `altlookup` dataframe (the second element of `Repeatr_2()`'s return list) used to translate `mymodeldf`'s `alt`-indexed intercept coefficients back to `songid`/`title`. If omitted the currently lazy-loaded default will be used.

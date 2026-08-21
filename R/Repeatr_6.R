@@ -4,13 +4,6 @@
 #' @description Runs sweepstack() over the full available set of shows/songs and rebuilds gid_initial_gid_sound_quality,
 #' the dataset behind the Shiny app's "stock" pages (see inst/shiny/Fugazetteer/app.R).
 #'
-#' @import dplyr
-#' @import stringr
-#' @import lubridate
-#' @import fastDummies
-#' @import rlang
-#' @import knitr
-#'
 #' @param myduration_data_da optional `duration_data_da` dataframe (as produced by `Repeatr_1()`), passed through to `sweepstack()`. If omitted the currently lazy-loaded default will be used - pass this explicitly when calling `Repeatr_6()` right after a fresh `Repeatr_1()` in the same session.
 #' @param mysummary optional `summary` dataframe (as produced by `Repeatr_5()`), passed through to `sweepstack()`/`stacks()`. If omitted the currently lazy-loaded default will be used.
 #' @param myothervariables optional `othervariables` dataframe (the clean, pre-join copy as saved by `Repeatr_1()`), passed through to `sweepstack()`/`stacks()`. If omitted the currently lazy-loaded default will be used.

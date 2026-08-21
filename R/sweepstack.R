@@ -47,7 +47,7 @@ sweepstack <- function(number_stacks = NULL, exclude_poor_sound_quality = FALSE,
   message <- paste0("stack ", 1,"\n")
   cat(yellow(message))
 
-  results <- quiet(stacks(mygid = as.character(giddf[1,1]), exclude_poor_sound_quality = exclude_poor_sound_quality,
+  results <- SimDesign::quiet(stacks(mygid = as.character(giddf[1,1]), exclude_poor_sound_quality = exclude_poor_sound_quality,
                            mysummary = mysummary, myothervariables = myothervariables, mygidsoundquality = mygidsoundquality))
 
   stack_details <- results[[1]] %>%
@@ -66,7 +66,7 @@ sweepstack <- function(number_stacks = NULL, exclude_poor_sound_quality = FALSE,
     message <- paste0("stack ", i,"\n")
     cat(yellow(message))
 
-    results <- quiet(stacks(mygid = as.character(giddf[i,1]), exclude_poor_sound_quality = exclude_poor_sound_quality,
+    results <- SimDesign::quiet(stacks(mygid = as.character(giddf[i,1]), exclude_poor_sound_quality = exclude_poor_sound_quality,
                              mysummary = mysummary, myothervariables = myothervariables, mygidsoundquality = mygidsoundquality))
 
     stack_summary2 <- results[[2]] %>%

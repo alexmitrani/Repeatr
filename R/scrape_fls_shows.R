@@ -427,11 +427,6 @@ fls_shows_to_dataframe <- function(shows) {
 #'   as a CSV (headered, UTF-8). If `NULL` (the default) the result is only
 #'   returned, not written to disk.
 #'
-#' @import rvest
-#' @import xml2
-#' @import stringr
-#' @import dplyr
-#' @import lubridate
 #' @return A data frame with one row per show and columns `gid`, `fls_id`,
 #'   `show_date`, `venue`, `door_price`, `attendance`, `recorded_by`,
 #'   `mastered_by`, `original_source`, `sound_quality`, `played_with`,
@@ -638,9 +633,6 @@ scrape_fls_shows <- function(existing_data = NULL,
 #' @param sleepseconds Seconds to wait before every request, to stay polite
 #'   to the site. Default 2.
 #'
-#' @import rvest
-#' @import xml2
-#' @import stringr
 #' @return A data frame with one row per show currently listed on the site,
 #'   columns `gid`, `tour`, `city`, `subdivision` (`NA` outside the US,
 #'   Canada, and Australia), `country`.

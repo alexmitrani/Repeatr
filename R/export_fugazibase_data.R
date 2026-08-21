@@ -21,8 +21,6 @@
 #' from the Fugazi Live Series site - see fugazibase's own `LICENSE`) - see
 #' `vignette("Data-Provenance")` for the full tier catalogue.
 #'
-#' @import dplyr
-#'
 #' @param fugazibase_dir Path to a local `fugazibase` checkout. Required - there
 #' is no default, so a caller's own local path is never hardcoded here.
 #' @param repeatr_data_dir Optional directory to read Repeatr's own already-

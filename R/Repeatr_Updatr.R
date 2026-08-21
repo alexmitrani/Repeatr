@@ -4,13 +4,6 @@
 #' @description This can take a while which is why the parameter "really" is "not_really" by default.
 #' @description To run the full update: Repeatr_Updatr(really = "really")
 #'
-#' @import dplyr
-#' @import stringr
-#' @import lubridate
-#' @import fastDummies
-#' @import rlang
-#' @import knitr
-#'
 #' @param really set to "really" to actually run the update; any other value (the default, "not_really") does nothing.
 #' @param min_song_count passed through to \code{\link{Repeatr_2}}: minimum number of performances a song needs to compete as an alternative in the choice model. Default 2. Does not affect `songid`/`songidlookup`, which cover every classified song regardless of this threshold.
 #' @param update_stacks if TRUE, the gid_initial_gid_sound_quality data will be refreshed by re-generating a set of stacks considering the full available set of relevant data.
@@ -23,7 +16,6 @@
 #'
 #' @examples
 #' Repeatr_Updatr(really = "not_really")
-#'
 #'
 Repeatr_Updatr <- function(really = "not_really", min_song_count = 2, update_stacks = FALSE,
                             myfls_data = NULL, mysongvarslookup = NULL, myreleases = NULL,

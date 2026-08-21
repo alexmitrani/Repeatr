@@ -41,5 +41,4 @@ To run the full update: Repeatr_Updatr(really = "really")
 \examples{
 Repeatr_Updatr(really = "not_really")
 
-
 }

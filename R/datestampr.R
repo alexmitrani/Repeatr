@@ -18,7 +18,7 @@
 #'
 #' @examples
 #' datestring <- datestampr(myusername=TRUE)
-#' cat(yellow(paste0("\n \n", "Hello world, have a datestamp: ", datestring, "\n \n")))
+#' cat(crayon::yellow(paste0("\n \n", "Hello world, have a datestamp: ", datestring, "\n \n")))
 #'
 datestampr <- function(dateonly = FALSE, houronly = FALSE, minuteonly = FALSE, myusername = FALSE) {
 

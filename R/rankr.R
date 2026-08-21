@@ -3,8 +3,6 @@
 #' @description The index numbers are based on the model coefficient table that comes straight out of the model, with no sorting.
 #' @description The function will return a dataframe with the results for each pair of coeeficients tested.
 #'
-#' @import readr
-#'
 #' @param coeftable coefficients table from mlogit, with one row per coefficient
 #' @param vcovmat variance covariance matrix from mlogit, with one row and one column per coefficient
 #' @param mysongidlist a dataframe containing the list of song ids to be tested.  It can contain other variables but only songid will be used.
@@ -14,7 +12,7 @@
 #' @export
 #'
 #' @examples
-#' songstobecompared <- summary %>% slice(seq(from=1, to=92, by=10))
+#' songstobecompared <- dplyr::slice(summary, seq(from=1, to=92, by=10))
 #' mycomparisons <- rankr(coeftable = results_ml_Repeatr4, vcovmat = vcovmat_ml_Repeatr4, mysongidlist = songstobecompared)
 #' mycomparisons
 #'
