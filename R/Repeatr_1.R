@@ -357,14 +357,14 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
 
   # Correct venue name and location for 1995 quebec city show
   othervariables <- othervariables %>%
-    mutate(venue = ifelse(gid=="quebec-city-qc-canada-92495", "Cégep Limoilou", venue))
+    mutate(venue = ifelse(gid=="quebec-city-qc-canada-92495", "C\u00e9gep Limoilou", venue))
 
   othervariables <- othervariables %>%
     mutate(x = ifelse(gid=="quebec-city-qc-canada-92495", -71.2283038, x),
            y = ifelse(gid=="quebec-city-qc-canada-92495", 46.8305332, y))
 
   # Correct venue name https://www.dischord.com/fugazi_live_series/campinas-brazil-81997
-  # Assampi = Associação de amigos do Parque Industrial
+  # Assampi = Associacao de amigos do Parque Industrial
   othervariables <- othervariables %>%
     mutate(venue = ifelse(gid=="campinas-brazil-81997", "Assampi", venue))
 
@@ -1166,16 +1166,16 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
       mutate(played_with = ifelse(gid=="bielefeld-germany-103188", "Pygmies", played_with))
 
     played_with <- played_with %>%
-      mutate(played_with = ifelse(gid=="rome-italy-102790", "Ratos de Porão", played_with))
+      mutate(played_with = ifelse(gid=="rome-italy-102790", "Ratos de Por\u00e3o", played_with))
 
     played_with <- played_with %>%
-      mutate(played_with = ifelse(gid=="ann-arbor-mi-usa-62390", "Ward, Phünhögg", played_with))
+      mutate(played_with = ifelse(gid=="ann-arbor-mi-usa-62390", "Ward, Ph\u00fcnh\u00f6gg", played_with))
 
     played_with <- played_with %>%
-      mutate(played_with = ifelse(gid=="bergara-spainbasque-101099", "Half Foot Outside, Lisabö", played_with))
+      mutate(played_with = ifelse(gid=="bergara-spainbasque-101099", "Half Foot Outside, Lisab\u00f6", played_with))
 
     played_with <- played_with %>%
-      mutate(played_with = ifelse(gid=="jawbone-canyon-ca-usa-90691", "Pop Defect, Sandy Duncan’s Eye, The Paper Tulips, The Offspring, The Fumes, This Great Religion, TVTV$", played_with))
+      mutate(played_with = ifelse(gid=="jawbone-canyon-ca-usa-90691", "Pop Defect, Sandy Duncan\u2019s Eye, The Paper Tulips, The Offspring, The Fumes, This Great Religion, TVTV$", played_with))
 
     played_with <- played_with %>%
       mutate(played_with = ifelse(gid=="washington-dc-usa-101589", "Fidelity Jones, Tiik, Lungfish, Juliana Experience, Weatherhead, Moss Icon, Dog Born Society, Choke, Cabal, All White Jury, Daryl Stover, Caroline Ely, 200 Stitches, Transilience, Neverman", played_with))
@@ -1238,7 +1238,7 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
       mutate(played_with = ifelse(played_with=="Nation Of Ulysses", "Nation of Ulysses", played_with))
 
     played_with <- played_with %>%
-      mutate(played_with = ifelse(played_with=="Sandy Duncan's Eye", "Sandy Duncan’s Eye", played_with))
+      mutate(played_with = ifelse(played_with=="Sandy Duncan's Eye", "Sandy Duncan\u2019s Eye", played_with))
 
     played_with <- played_with %>%
       mutate(played_with = ifelse(played_with=="Seven Souix", "Seven Sioux", played_with))

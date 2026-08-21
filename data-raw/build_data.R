@@ -73,6 +73,12 @@ fls_data <- scrape_fls_shows(
 
 Repeatr_Updatr(really = "really", update_stacks = TRUE)
 
+# Repeatr_Updatr()'s individual save() calls don't set `compress`, so this
+# recompresses every data/*.rda with the best-performing method per file
+# (matches `R CMD build --resave-data`) - without it, R CMD check warns that
+# the files are using suboptimal compression.
+tools::resaveRdaFiles("data", compress = "auto")
+
 # From here: commit the updated data/*.rda files, reinstall the package, and
 # redeploy the Shiny app - see the "Reinstalling and redeploying" section of
 # vignette("Rebuilding the Data").
