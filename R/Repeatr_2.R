@@ -50,7 +50,7 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, min_song_count = 2,
   # `alt` at all.
   songidlookup_model <- songidlookup %>%
     filter(count >= min_song_count) %>%
-    arrange(songid) %>%
+    arrange(.data$songid) %>%
     mutate(alt = row_number())
 
   nsongs <- nrow(songidlookup_model)
@@ -59,7 +59,7 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, min_song_count = 2,
   # rankr() need it to map mlogit's alt-indexed coefficients back to a
   # stable song identity, since Repeatr_3()/Repeatr_4() only ever see `alt`.
   altlookup <- songidlookup_model %>%
-    select(alt, songid, title, count)
+    select(.data$alt, .data$songid, .data$title, count)
 
   setwd(mydatadir)
   save(altlookup, file = "altlookup.rda")
@@ -73,7 +73,7 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, min_song_count = 2,
 
   } else {
 
-    Repeatr2 <- Repeatr1
+    Repeatr2 <- Repeatr::Repeatr1
 
   }
 
@@ -84,26 +84,26 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, min_song_count = 2,
   Repeatr1_current <- Repeatr2
 
   Repeatr2 <- Repeatr2 %>%
-    filter(tracktype==1)
+    filter(.data$tracktype==1)
 
   # fugazi_song_counts covers every classified song (not just the
   # min_song_count-eligible subset used for alt below), so one-off
   # performances and rarities are still visible here even though they
   # can't compete as a choice-model alternative.
   fugazi_song_counts <- Repeatr2 %>%
-    group_by(songid, title) %>%
+    group_by(.data$songid, .data$title) %>%
     summarize(count = n()) %>%
     ungroup()
 
   # Add dummy variable for each song to the disaggregate data --------------
 
-  Repeatr2 <- Repeatr2 %>% arrange(date, song_number)
+  Repeatr2 <- Repeatr2 %>% arrange(date, .data$song_number)
 
   for(myalt in 1:nsongs) {
 
     myvarname <- paste0("song.", myalt)
-    mysongname <- songidlookup_model %>% filter(alt == myalt) %>% pull(title)
-    Repeatr2 <- Repeatr2 %>% mutate(!!myvarname := ifelse(title == mysongname,1,0))
+    mysongname <- songidlookup_model %>% filter(.data$alt == myalt) %>% pull(.data$title)
+    Repeatr2 <- Repeatr2 %>% mutate(!!myvarname := ifelse(.data$title == mysongname,1,0))
 
   }
 
@@ -120,7 +120,7 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, min_song_count = 2,
     mysongvar <- rlang::sym(paste0("song.", myalt))
     myplayedvarname <- paste0("played.", myalt)
     Repeatr2 <- Repeatr2 %>%
-      group_by(gid) %>%
+      group_by(.data$gid) %>%
       mutate(!!myplayedvarname := ifelse(cumsum(!!mysongvar)>=1,1,0)) %>%
       ungroup()
 
@@ -132,11 +132,11 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, min_song_count = 2,
   ncols <- ncol(Repeatr2)
 
   Repeatr2 <- Repeatr2 %>%
-    group_by(gid, song_number) %>%
+    group_by(.data$gid, .data$song_number) %>%
     slice(1) %>%
     ungroup()
 
-  Repeatr2 <- reshape(data = Repeatr2
+  Repeatr2 <- stats::reshape(data = Repeatr2
                    , direction = "long"
                    , varying = 20:ncols
                    , idvar = c("gid", "song_number")
@@ -149,44 +149,44 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, min_song_count = 2,
   # columns above were built from - that's `alt`, the choice-model
   # alternative id, not song identity.
   Repeatr2$songid <- NULL
-  Repeatr2 <- Repeatr2 %>% rename(alt = time)
-  Repeatr2 <- Repeatr2 %>% rename(chosen = song)
-  Repeatr2 <- Repeatr2 %>% arrange(date, year, month, day, song_number, alt)
+  Repeatr2 <- Repeatr2 %>% rename(alt = .data$time)
+  Repeatr2 <- Repeatr2 %>% rename(chosen = .data$song)
+  Repeatr2 <- Repeatr2 %>% arrange(date, year, month, day, .data$song_number, .data$alt)
 
   # available_rl is repertoire-level availability: is the song available in the repertoire?  It is considered available at the repertoire level from the time of its first performance in this data onwards.
-  Repeatr2 <- Repeatr2 %>% rename(available_rl = available)
+  Repeatr2 <- Repeatr2 %>% rename(available_rl = .data$available)
 
   # Summarise the long data to check frequency counts for all songs --------------
 
   # summarise the data at gig level
   mycount2_gl <- Repeatr2 %>%
-    group_by(gid, date, alt) %>%
-    summarise(chosen= sum(chosen), available_rl=max(available_rl)) %>%
-    arrange(date, gid, alt) %>%
+    group_by(.data$gid, date, .data$alt) %>%
+    summarise(chosen= sum(.data$chosen), available_rl=max(.data$available_rl)) %>%
+    arrange(date, .data$gid, .data$alt) %>%
     ungroup()
 
   available_rl_lookup <- mycount2_gl %>%
-    select(gid, alt, available_rl)
+    select(.data$gid, .data$alt, .data$available_rl)
 
   # get the launch date of each song
   mylaunchdatelookup <- mycount2_gl %>%
-    filter(available_rl==1) %>%
-    group_by(alt) %>%
+    filter(.data$available_rl==1) %>%
+    group_by(.data$alt) %>%
     summarise(launchdate = min(date)) %>%
     ungroup()
 
 
   # add launch dates to count file
   fugazi_song_counts <- fugazi_song_counts %>%
-    left_join(songidlookup_model %>% select(songid, alt)) %>%
+    left_join(songidlookup_model %>% select(.data$songid, .data$alt)) %>%
     left_join(mylaunchdatelookup) %>%
-    select(songid, title, launchdate, count)
+    select(.data$songid, .data$title, .data$launchdate, count)
 
   knitr::kable(fugazi_song_counts, "pipe")
 
   setwd(myinputdir)
 
-  write.csv(fugazi_song_counts, "fugazi_song_counts.csv")
+  utils::write.csv(fugazi_song_counts, "fugazi_song_counts.csv")
 
   setwd(mydatadir)
 
@@ -197,30 +197,30 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, min_song_count = 2,
   # summarise the data at song level
 
   mycount2_sl <- mycount2_gl %>%
-    group_by(alt) %>%
-    summarise(chosen= sum(chosen), available_rl=sum(available_rl)) %>%
+    group_by(.data$alt) %>%
+    summarise(chosen= sum(.data$chosen), available_rl=sum(.data$available_rl)) %>%
     ungroup()
 
   mycount2_sl <- mycount2_sl %>%
-    mutate(intensity = chosen/available_rl)
+    mutate(intensity = .data$chosen/.data$available_rl)
 
   mycount2_sl <- mycount2_sl %>%
-    arrange(desc(intensity))
+    arrange(desc(.data$intensity))
 
   mycount2_sl <- mycount2_sl %>%
-    left_join(songidlookup_model %>% select(alt, songid, title))
+    left_join(songidlookup_model %>% select(.data$alt, .data$songid, .data$title))
 
   mycount2_sl <- mycount2_sl %>%
-    left_join(fugazi_song_counts %>% select(-title))
+    left_join(fugazi_song_counts %>% select(-.data$title))
 
   fugazi_song_performance_intensity <- mycount2_sl %>%
-    select(songid, title, launchdate, chosen, available_rl, intensity)
+    select(.data$songid, .data$title, .data$launchdate, .data$chosen, .data$available_rl, .data$intensity)
 
   knitr::kable(fugazi_song_performance_intensity, "pipe")
 
   setwd(myinputdir)
 
-  write.csv(fugazi_song_performance_intensity, "fugazi_song_performance_intensity.csv")
+  utils::write.csv(fugazi_song_performance_intensity, "fugazi_song_performance_intensity.csv")
 
   setwd(mydatadir)
 
@@ -231,27 +231,27 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, min_song_count = 2,
   # merge on repertoire-level availability
   Repeatr2$available_rl <- NULL
   Repeatr2 <- Repeatr2 %>% left_join(available_rl_lookup)
-  Repeatr2 <- Repeatr2 %>% left_join(songidlookup_model %>% select(alt, songid, title))
-  Repeatr2 <- Repeatr2 %>% select(gid, date, song_number, alt, songid, title, chosen, played, available_rl, first_song, last_song, rid,	release_title, track_number, instrumental,	vocals_picciotto,	vocals_mackaye,	vocals_lally,	duration_seconds)
-  Repeatr2 <- Repeatr2 %>% arrange(date, gid, song_number, alt)
+  Repeatr2 <- Repeatr2 %>% left_join(songidlookup_model %>% select(.data$alt, .data$songid, .data$title))
+  Repeatr2 <- Repeatr2 %>% select(.data$gid, date, .data$song_number, .data$alt, .data$songid, .data$title, .data$chosen, .data$played, .data$available_rl, .data$first_song, .data$last_song, .data$rid,	.data$release_title, .data$track_number, .data$instrumental,	.data$vocals_picciotto,	.data$vocals_mackaye,	.data$vocals_lally,	.data$duration_seconds)
+  Repeatr2 <- Repeatr2 %>% arrange(date, .data$gid, .data$song_number, .data$alt)
 
   # Merge on the launch date of each song and calculate how many years old each song is at the time of each gig
   Repeatr2 <- Repeatr2 %>% left_join(mylaunchdatelookup)
-  Repeatr2 <- Repeatr2 %>% relocate(launchdate, .after=date)
-  Repeatr2 <- Repeatr2 %>% mutate(yearsold = ifelse(available_rl==1,as.duration(launchdate %--% date) / dyears(1),0))
-  Repeatr2 <- Repeatr2 %>% relocate(yearsold, .after=launchdate)
+  Repeatr2 <- Repeatr2 %>% relocate(.data$launchdate, .after="date")
+  Repeatr2 <- Repeatr2 %>% mutate(yearsold = ifelse(.data$available_rl==1,as.duration(.data$launchdate %--% date) / dyears(1),0))
+  Repeatr2 <- Repeatr2 %>% relocate(.data$yearsold, .after="launchdate")
 
   # set the song "provisional" to unavailable after the launch of "reprovisional"
   Repeatr2 <- Repeatr2 %>%
-    mutate(available_rl=ifelse((date>="1989-12-29" & title=="provisional"), 0, available_rl))
+    mutate(available_rl=ifelse((date>="1989-12-29" & .data$title=="provisional"), 0, .data$available_rl))
 
   # available_gl is gig-level availability.  A song is considered available at the gig level if it is available in the repertoire and it has not already been played.
-  Repeatr2 <- Repeatr2 %>% mutate(available_gl=ifelse((played==1 & chosen==0),0,available_rl))
-  Repeatr2 <- Repeatr2 %>% relocate(available_gl, .after=available_rl)
+  Repeatr2 <- Repeatr2 %>% mutate(available_gl=ifelse((.data$played==1 & .data$chosen==0),0,.data$available_rl))
+  Repeatr2 <- Repeatr2 %>% relocate(.data$available_gl, .after="available_rl")
 
   # Remove records for unavailable songs
 
-  Repeatr2 <- Repeatr2 %>% filter(available_gl==1)
+  Repeatr2 <- Repeatr2 %>% filter(.data$available_gl==1)
 
   # Drop any choice occasion (gid, song_number) whose actually-performed
   # song isn't in the alternative set - e.g. a song too rare to meet
@@ -260,8 +260,8 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, min_song_count = 2,
   # mlogit: a choice occasion with zero chosen alternatives destabilizes the
   # Hessian during model fitting (Repeatr_4).
   Repeatr2 <- Repeatr2 %>%
-    group_by(gid, song_number) %>%
-    filter(any(chosen == 1)) %>%
+    group_by(.data$gid, .data$song_number) %>%
+    filter(any(.data$chosen == 1)) %>%
     ungroup()
 
   # Choice modelling with multinomial logit
@@ -269,10 +269,10 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, min_song_count = 2,
   # define case variable and add it to the data
 
   mycaseidlookup <- Repeatr1_current %>%
-    group_by(gid, song_number) %>%
+    group_by(.data$gid, .data$song_number) %>%
     summarise(records = n(), date=min(date)) %>%
-    arrange(date, song_number) %>%
-    select(gid, song_number) %>%
+    arrange(date, .data$song_number) %>%
+    select(.data$gid, .data$song_number) %>%
     ungroup()
 
   mycaseidlookup <- mycaseidlookup %>%
@@ -280,16 +280,16 @@ Repeatr_2 <- function(mydf = NULL, mysongidlookup = NULL, min_song_count = 2,
 
   Repeatr2 <- Repeatr2 %>%
     left_join(mycaseidlookup) %>%
-    relocate(case)
+    relocate(.data$case)
 
-  Repeatr2 <- Repeatr2 %>% rename(choice = chosen)
+  Repeatr2 <- Repeatr2 %>% rename(choice = .data$chosen)
 
   Repeatr2 <- Repeatr2 %>%
     mutate(year = year(date)) %>%
-    relocate(year, .after=date)
+    relocate(year, .after="date")
 
   Repeatr2 <- Repeatr2 %>%
-    mutate(first_song_instrumental = first_song*instrumental)
+    mutate(first_song_instrumental = .data$first_song*.data$instrumental)
 
   setwd(mydatadir)
 

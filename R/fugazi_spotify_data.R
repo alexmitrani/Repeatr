@@ -43,15 +43,15 @@ fugazi_spotify_data <- function(app_id = NULL, client_id = NULL, client_secret =
 
   # 3. Obtain the songs of each album
   albums_res <- albums %>%
-    dplyr::pull(id) %>%
+    dplyr::pull(.data$id) %>%
     purrr::map_df(
       ~{
         getAlbum(.x, token = key_spotify) %>%
-          dplyr::select(id, name)
+          dplyr::select(.data$id, .data$name)
       }) %>%
     tidyr::unnest()
   ids <- albums_res %>%
-    dplyr::pull(id)
+    dplyr::pull(.data$id)
 
   # 4. Obtain the variables for each song
   features <- ids %>%
@@ -59,11 +59,11 @@ fugazi_spotify_data <- function(app_id = NULL, client_id = NULL, client_secret =
     dplyr::left_join(albums_res, by = "id")
 
   mydf <- features %>%
-    select(-id, -uri, -analysis_url)
+    select(-.data$id, -.data$uri, -.data$analysis_url)
 
   mydf <- mydf %>%
-    relocate(name, tempo) %>%
-    arrange(name)
+    relocate(.data$name, .data$tempo) %>%
+    arrange(.data$name)
 
   return(mydf)
 

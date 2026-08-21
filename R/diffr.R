@@ -101,7 +101,7 @@ diffr <- function(coeftable = NULL, vcovmat = NULL, coefindex1 = NULL, coefindex
 
   cat(yellow(paste0("Z-statistic: ", myz, " \n \n")))
 
-  myp <- 2*pnorm(myz)
+  myp <- 2*stats::pnorm(myz)
 
   cat(yellow(paste0("P-statistic: ", myp, " \n \n")))
 

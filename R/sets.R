@@ -23,36 +23,36 @@ sets <- function(mydf = NULL, shows = NULL) {
   if(is.null(shows)==FALSE) {
 
     mydf <- mydf %>%
-      select(gid, title) %>%
-      group_by(gid, title) %>%
+      select(.data$gid, .data$title) %>%
+      group_by(.data$gid, .data$title) %>%
       mutate(instance = row_number()) %>%
       ungroup() %>%
-      filter(instance==1) %>%
-      select(gid, title)
+      filter(.data$instance==1) %>%
+      select(.data$gid, .data$title)
 
 
     sets <- mydf %>%
-      filter(gid %in% shows) %>%
+      filter(.data$gid %in% shows) %>%
       mutate(played = 1)
 
     sets <- sets %>%
-      pivot_wider(names_from = gid, values_from = played) %>%
-      arrange(title)
+      pivot_wider(names_from = "gid", values_from = "played") %>%
+      arrange(.data$title)
 
     sets <- sets %>% replace(is.na(.), 0)
 
     songs <- sets  %>%
       mutate(shows = rowSums(across(where(is.numeric)), na.rm=TRUE))  %>%
-      arrange(desc(shows), title)
+      arrange(desc(.data$shows), .data$title)
 
     total_songs <- nrow(songs)
 
     shows <- songs %>%
-      group_by(shows) %>%
+      group_by(.data$shows) %>%
       summarize(songs = n()) %>%
       ungroup() %>%
-      arrange(shows) %>%
-      mutate(proportion = round((songs / total_songs), 3))
+      arrange(.data$shows) %>%
+      mutate(proportion = round((.data$songs / total_songs), 3))
 
   } else {
 

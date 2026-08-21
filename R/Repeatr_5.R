@@ -44,7 +44,7 @@ Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NUL
 
   if(is.null(mymodeldf)==TRUE) {
 
-    mymodeldf = results_ml_Repeatr4
+    mymodeldf = Repeatr::results_ml_Repeatr4
 
   }
 
@@ -61,10 +61,10 @@ Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NUL
     mutate(alt = ifelse(grepl("(Intercept)",variable)==TRUE,readr::parse_number(variable),NA))
 
   fugazi_song_choice_model <- fugazi_song_choice_model %>%
-    left_join(altlookup %>% select(alt, title))
+    left_join(altlookup %>% select(.data$alt, .data$title))
 
   fugazi_song_choice_model <- fugazi_song_choice_model %>%
-    mutate(variable = ifelse(grepl("(Intercept)",variable)==TRUE,title,variable))
+    mutate(variable = ifelse(grepl("(Intercept)",variable)==TRUE,.data$title,variable))
 
   fugazi_song_choice_model$alt <- NULL
   fugazi_song_choice_model$title <- NULL
@@ -73,7 +73,7 @@ Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NUL
 
   setwd(myinputdir)
 
-  write.csv(fugazi_song_choice_model, "fugazi_song_choice_model.csv")
+  utils::write.csv(fugazi_song_choice_model, "fugazi_song_choice_model.csv")
 
   setwd(mydatadir)
 
@@ -94,10 +94,10 @@ Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NUL
     mutate(alt = ifelse(grepl("(Intercept)",variable)==TRUE,readr::parse_number(variable),NA))
 
   results.mymodel <- results.mymodel %>%
-    left_join(altlookup %>% select(alt, songid, title))
+    left_join(altlookup %>% select(.data$alt, .data$songid, .data$title))
 
   results.mymodel <- results.mymodel %>%
-    select(songid, title, Estimate, "z-value")
+    select(.data$songid, .data$title, .data$Estimate, "z-value")
 
   # Add back in the omitted reference song, whose intercept mlogit fixes to
   # zero by definition rather than estimating. as.factor(alt) in Repeatr_4()
@@ -105,25 +105,25 @@ Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NUL
   # mlogit drops the first level as the reference - so the omitted song is
   # always the one with the smallest alt, not a fixed song name/songid.
   results.mymodel.os <- altlookup %>%
-    filter(alt==min(alt)) %>%
-    select(songid, title) %>%
+    filter(.data$alt==min(.data$alt)) %>%
+    select(.data$songid, .data$title) %>%
     mutate(Estimate = 0) %>%
     mutate("z-value" = NA)
 
   results.mymodel <- rbind.data.frame(results.mymodel, results.mymodel.os)
 
   results.mymodel <- results.mymodel %>%
-    arrange(desc(Estimate))
+    arrange(desc(.data$Estimate))
 
   fugazi_song_preferences <- results.mymodel
 
   fugazi_song_preferences <- fugazi_song_preferences %>%
     mutate(rank_rating = row_number()) %>%
-    relocate(rank_rating)
+    relocate(.data$rank_rating)
 
   setwd(myinputdir)
 
-  write.csv(fugazi_song_preferences, "fugazi_song_preferences.csv")
+  utils::write.csv(fugazi_song_preferences, "fugazi_song_preferences.csv")
 
   setwd(mydatadir)
 
@@ -136,20 +136,20 @@ Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NUL
   mydf <- fugazi_song_preferences
 
   mydf <- mydf %>%
-    select(rank_rating, songid, title, Estimate)
+    select(.data$rank_rating, .data$songid, .data$title, .data$Estimate)
 
   mymin <- min(mydf$Estimate)
 
   mydf <- mydf %>%
-    mutate(Estimate2 = Estimate - mymin)
+    mutate(Estimate2 = .data$Estimate - mymin)
 
   mymax <- max(mydf$Estimate2)
 
   mydf <- mydf %>%
-    mutate(rating = Estimate2/mymax)
+    mutate(rating = .data$Estimate2/mymax)
 
   mydf <- mydf %>%
-    select(rank_rating, songid, rating)
+    select(.data$rank_rating, .data$songid, .data$rating)
 
   mydf2 <- fugazi_song_performance_intensity
 
@@ -157,23 +157,23 @@ Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NUL
     left_join(mydf)
 
   mydf2 <- mydf2 %>%
-    arrange(desc(rating))
+    arrange(desc(.data$rating))
 
   mydf2 <- mydf2 %>%
-    relocate(rank_rating)
+    relocate(.data$rank_rating)
 
   mydf2 <- mydf2 %>%
     left_join(songvarslookup)
 
   mydf2 <- mydf2 %>%
-    relocate(duration_seconds, .after=launchdate)
+    relocate(.data$duration_seconds, .after="launchdate")
 
   summary <- mydf2 %>%
-    select(songid, track_number, title, launchdate, duration_seconds, chosen, available_rl, intensity, rating) %>%
-    arrange(desc(rating)) %>%
+    select(.data$songid, .data$track_number, .data$title, .data$launchdate, .data$duration_seconds, .data$chosen, .data$available_rl, .data$intensity, .data$rating) %>%
+    arrange(desc(.data$rating)) %>%
     mutate(rank = row_number()) %>%
     relocate(rank) %>%
-    rename(duration = duration_seconds)
+    rename(duration = .data$duration_seconds)
 
   # Evaluation of releases using the song ratings ---------------------------
 
@@ -183,33 +183,33 @@ Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NUL
     left_join(songvarslookup)
 
   mydf2 <- mydf2 %>%
-    select(songid, rid, title, rating)
+    select(.data$songid, .data$rid, .data$title, .data$rating)
 
   mydf2 <- mydf2 %>%
     left_join(mydf)
 
   mydf2 <- mydf2 %>%
-    group_by(release_title, rid, rym_rating, release_date) %>%
-    summarise(rating = mean(rating), songs_rated = n()) %>%
+    group_by(.data$release_title, .data$rid, .data$rym_rating, .data$release_date) %>%
+    summarise(rating = mean(.data$rating), songs_rated = n()) %>%
     ungroup()
 
   mydf2 <- mydf2 %>%
-    arrange(desc(rating))
+    arrange(desc(.data$rating))
 
   # remove First Demo and Unreleased as they are not comparable to the others.
   releases_rated <- mydf2 %>%
-    filter(rid!=11) %>%
-    filter(rid!=13)
+    filter(.data$rid!=11) %>%
+    filter(.data$rid!=13)
 
   releases_rated <- releases_rated %>%
-    filter(is.na(rid)==FALSE)
+    filter(is.na(.data$rid)==FALSE)
 
   releases_rated <- releases_rated %>%
-    select(release_title, rid, release_date, songs_rated, rating)
+    select(.data$release_title, .data$rid, .data$release_date, .data$songs_rated, .data$rating)
 
   setwd(myinputdir)
 
-  write.csv(releases_rated, "releases_rated.csv")
+  utils::write.csv(releases_rated, "releases_rated.csv")
 
   setwd(mydatadir)
 
@@ -222,21 +222,21 @@ Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NUL
   # add other variables to summary table
 
   releasedates <- releasesdatalookup %>%
-    select(rid, release_date)
+    select(.data$rid, .data$release_date)
 
   mydf <- songvarslookup %>%
     left_join(releasedates) %>%
     left_join(songidlookup)
 
   mydf <- mydf %>%
-    select(songid, title, rid, release_date) %>%
-    arrange(songid)
+    select(.data$songid, .data$title, .data$rid, .data$release_date) %>%
+    arrange(.data$songid)
 
   summary <- summary %>%
     left_join(mydf) %>%
-    mutate(launchdate = as.Date(launchdate, "%d/%m/%Y")) %>%
-    mutate(lead = release_date - launchdate) %>%
-    arrange(desc(rating))
+    mutate(launchdate = as.Date(.data$launchdate, "%d/%m/%Y")) %>%
+    mutate(lead = .data$release_date - .data$launchdate) %>%
+    arrange(desc(.data$rating))
 
   summary$launchyear <- lubridate::year(summary$launchdate)
   summary$releaseyear <- lubridate::year(summary$release_date)
@@ -248,16 +248,16 @@ Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NUL
   summary$lead <- as.integer(summary$lead)
 
   releaseid_release <- releasesdatalookup %>%
-    select(rid, release_title)
+    select(.data$rid, .data$release_title)
 
   summary <- summary %>%
     left_join(releaseid_release) %>%
-    relocate(release_title, .after = rid) %>%
-    arrange(rid, track_number)
+    relocate(.data$release_title, .after = "rid") %>%
+    arrange(.data$rid, .data$track_number)
 
   setwd(myinputdir)
 
-  write.csv(summary, "summary.csv")
+  utils::write.csv(summary, "summary.csv")
 
   setwd(mydatadir)
 
@@ -266,11 +266,11 @@ Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NUL
   setwd(mydir)
 
   summary_selected <- summary %>%
-    select(rid, track_number, rating)
+    select(.data$rid, .data$track_number, .data$rating)
 
   releases_data_input <- releases_data_input %>%
     left_join(summary_selected) %>%
-    mutate(rating = round(rating, digits = 4))
+    mutate(rating = round(.data$rating, digits = 4))
 
   setwd(mydatadir)
 
@@ -279,24 +279,24 @@ Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NUL
   setwd(mydir)
 
   releases_summary <- releases_data_input %>%
-    group_by(rid, release_title, last_show) %>%
+    group_by(.data$rid, .data$release_title, .data$last_show) %>%
     summarize(count = sum(count),
               songs=n(),
               first_debut=min(date),
               last_debut=max(date),
-              first_show = min(show_num),
-              shows = round(mean(shows), digits=0),
-              intensity = round(mean(intensity), digits = 4),
-              rating = round(mean(rating), digits = 4)) %>%
+              first_show = min(.data$show_num),
+              shows = round(mean(.data$shows), digits=0),
+              intensity = round(mean(.data$intensity), digits = 4),
+              rating = round(mean(.data$rating), digits = 4)) %>%
     ungroup()
 
   releasesdatalookup <- releasesdatalookup %>%
-    select(rid, release_date)
+    select(.data$rid, .data$release_date)
 
   releases_summary <- releases_summary %>%
     left_join(releasesdatalookup) %>%
-    select(rid, release_title, first_debut, last_debut, release_date, songs, count, shows, intensity, rating) %>%
-    filter(rid>0)
+    select(.data$rid, .data$release_title, .data$first_debut, .data$last_debut, .data$release_date, .data$songs, count, .data$shows, .data$intensity, .data$rating) %>%
+    filter(.data$rid>0)
 
   setwd(mydatadir)
 

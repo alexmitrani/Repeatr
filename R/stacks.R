@@ -32,13 +32,13 @@ stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL, exclude_po
   if (is.null(mygidsoundquality)==FALSE) { gid_sound_quality <- mygidsoundquality } else { gid_sound_quality <- gid_sound_quality }
 
   song_chosen <- summarydf %>%
-    select(title, chosen) %>%
-    arrange(chosen)
+    select(.data$title, .data$chosen) %>%
+    arrange(.data$chosen)
 
   if(is.null(mydf)==TRUE){
 
-    mydf <- duration_data_da %>%
-      select(gid, title)
+    mydf <- Repeatr::duration_data_da %>%
+      select(.data$gid, .data$title)
 
   }
 
@@ -50,8 +50,8 @@ stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL, exclude_po
       left_join(gid_sound_quality)
 
     mydf <- mydf %>%
-      filter(sound_quality!="Poor") %>%
-      select(gid, title)
+      filter(.data$sound_quality!="Poor") %>%
+      select(.data$gid, .data$title)
 
   }
 
@@ -59,9 +59,9 @@ stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL, exclude_po
 
     gid_data <- mydf %>%
       left_join(song_chosen) %>%
-      arrange(chosen) %>%
+      arrange(.data$chosen) %>%
       mutate(gid_chosen = ifelse(row_number()==1, 1, 0)) %>%
-      filter(gid_chosen==1)
+      filter(.data$gid_chosen==1)
 
     mygid <- as.character(gid_data[1,1])
 
@@ -70,8 +70,8 @@ stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL, exclude_po
   }
 
   stack_songs <- mydf %>%
-    filter(gid==mygid) %>%
-    select(gid, title) %>%
+    filter(.data$gid==mygid) %>%
+    select(.data$gid, .data$title) %>%
     mutate(stack=1)
 
   minimumsongs <- nrow(stack_songs)
@@ -102,75 +102,75 @@ stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL, exclude_po
 
     gid_song_stack <- mydf %>%
       left_join(stack_songs, by = c("title")) %>%
-      rename(gid = gid.x) %>%
-      select(gid, title, stack)
+      rename(gid = .data$gid.x) %>%
+      select(.data$gid, .data$title, stack)
 
     gid_song_new <- gid_song_stack %>%
       replace(is.na(.), 0)  %>%
       mutate(new = 1-stack)  %>%
-      select(gid, title, new)
+      select(.data$gid, .data$title, .data$new)
 
     # restrict the data to shows with the next rarest song
 
     gid_data <- gid_song_new %>%
       left_join(song_chosen) %>%
-      filter(new==1)
+      filter(.data$new==1)
 
     lowest_play_count <- min(gid_data$chosen)
 
     gid_data <- gid_data %>%
-      mutate(selected_song = ifelse(chosen == lowest_play_count, 1, 0))
+      mutate(selected_song = ifelse(.data$chosen == lowest_play_count, 1, 0))
 
     gid_data <- gid_data %>%
-      group_by(gid) %>%
-      summarise(new = sum(new), selected_song = sum(selected_song), chosen = sum(chosen)) %>%
-      filter(selected_song>0) %>%
+      group_by(.data$gid) %>%
+      summarise(new = sum(.data$new), selected_song = sum(.data$selected_song), chosen = sum(.data$chosen)) %>%
+      filter(.data$selected_song>0) %>%
       ungroup()
 
     # out of all the shows with the next rarest song, pick one of the shows offering the most new songs
     # and out of those shows, pick the one with least played songs
 
     gid_selected <- gid_data %>%
-      arrange(desc(new), chosen) %>%
+      arrange(desc(.data$new), .data$chosen) %>%
       mutate(selected = ifelse(row_number()==1,1,0))
 
     gid_selected <- gid_selected %>%
-      select(gid, selected)
+      select(.data$gid, .data$selected)
 
     stack2 <- mydf %>%
       left_join(gid_selected) %>%
-      filter(selected==1) %>%
-      rename(stack = selected)
+      filter(.data$selected==1) %>%
+      rename(stack = .data$selected)
 
     stack <- as.data.frame(rbind(stack_songs, stack2))
 
     stack_songs <- stack %>%
-      group_by(title) %>%
+      group_by(.data$title) %>%
       mutate(number = row_number()) %>%
       ungroup() %>%
-      filter(number == 1) %>%
-      select(gid, title, stack)
+      filter(.data$number == 1) %>%
+      select(.data$gid, .data$title, stack)
 
     unique_songs <- nrow(stack_songs)
 
     stack_shows <- stack_songs %>%
-      group_by(gid) %>%
+      group_by(.data$gid) %>%
       summarize(selected = 1) %>%
       ungroup()
 
     stack_shows_songs <- gid_song_stack %>%
       left_join(stack_shows) %>%
-      filter(selected==1) %>%
-      group_by(gid) %>%
-      summarize(songs = sum(selected)) %>%
+      filter(.data$selected==1) %>%
+      group_by(.data$gid) %>%
+      summarize(songs = sum(.data$selected)) %>%
       ungroup()
 
     stack_shows_songs <- stack_shows_songs %>%
       left_join(othervariables) %>%
-      mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
-      mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>")) %>%
+      mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", .data$gid)) %>%
+      mutate(fls_link = paste0("<a href='",  .data$urls, "' target='_blank'>", .data$gid, "</a>")) %>%
       left_join(gid_sound_quality) %>%
-      select(fls_link, tour, date, venue, city, country, sound_quality, songs) %>%
+      select(.data$fls_link, .data$tour, date, .data$venue, .data$city, .data$country, .data$sound_quality, .data$songs) %>%
       arrange(date)
 
     if(unique_songs>=mynumberofsongs){
@@ -181,7 +181,7 @@ stacks <- function(mydf = NULL, mygid = NULL, mynumberofsongs = NULL, exclude_po
   }
 
   stack_songs <- stack_songs %>%
-    select(gid, title)
+    select(.data$gid, .data$title)
 
 
   mystacks <- list(stack_songs, stack_shows_songs)

@@ -58,7 +58,7 @@ Repeatr_4 <- function(mydf = NULL, output_dir = NULL) {
   # vcov(ml.Repeatr4) has the same row/column order as results_ml_Repeatr4
   # above (both come straight from the same fit) - save it alongside, not
   # separately, so the two can never end up describing different fits.
-  vcovmat_ml_Repeatr4 <- vcov(ml.Repeatr4)
+  vcovmat_ml_Repeatr4 <- stats::vcov(ml.Repeatr4)
 
   setwd(mydatadir)
 

@@ -50,7 +50,7 @@ Repeatr_6 <- function(myduration_data_da = NULL, mysummary = NULL, myothervariab
   results2 <- results2 %>% left_join(gid_sound_quality)
 
   gid_initial_gid_sound_quality <- results2 %>%
-    group_by(gid_initial, gid, sound_quality) %>%
+    group_by(.data$gid_initial, .data$gid, .data$sound_quality) %>%
     summarize(count = n()) %>%
     ungroup()
 
@@ -59,8 +59,8 @@ Repeatr_6 <- function(myduration_data_da = NULL, mysummary = NULL, myothervariab
   setwd(mydir)
 
   check_stacks <- gid_initial_gid_sound_quality %>%
-    filter(is.na(sound_quality)==FALSE) %>%
-    group_by(gid_initial) %>%
+    filter(is.na(.data$sound_quality)==FALSE) %>%
+    group_by(.data$gid_initial) %>%
     summarize(count = n()) %>%
     ungroup()
 

@@ -24,7 +24,7 @@ scrape_fls_data <- function(mygiddata = NULL, mylimit = 3, sleepseconds = 1, myc
 
   if (is.null(mygiddata) == TRUE) {
 
-    gid_url <- othervariables %>%
+    gid_url <- Repeatr::othervariables %>%
       select(gid) %>%
       mutate(url = paste0("https://www.dischord.com/fugazi_live_series/", gid))
 
@@ -120,7 +120,7 @@ scrape_fls_data <- function(mygiddata = NULL, mylimit = 3, sleepseconds = 1, myc
 
   # export the data frame containing the scraped data to a CSV file
   filename <- paste0("./", mycsvfilename)
-  write.csv(results, file = filename, fileEncoding = "UTF-8", row.names = FALSE)
+  utils::write.csv(results, file = filename, fileEncoding = "UTF-8", row.names = FALSE)
 
   return(results)
 

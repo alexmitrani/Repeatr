@@ -25,13 +25,13 @@ sweepstack <- function(number_stacks = NULL, exclude_poor_sound_quality = FALSE,
   if (is.null(myduration_data_da)==FALSE) { duration_data_da <- myduration_data_da } else { duration_data_da <- duration_data_da }
 
   giddf <- duration_data_da %>%
-    group_by(gid) %>%
+    group_by(.data$gid) %>%
     summarize(songs = n()) %>%
     ungroup()
 
   maxtests <- nrow(giddf)
 
-  random <- as.data.frame(runif(maxtests))
+  random <- as.data.frame(stats::runif(maxtests))
 
   colnames(random)[1] = "random"
 
@@ -52,12 +52,12 @@ sweepstack <- function(number_stacks = NULL, exclude_poor_sound_quality = FALSE,
 
   stack_details <- results[[1]] %>%
     mutate(gid_initial = as.character(giddf[1,1])) %>%
-    relocate(gid_initial) %>%
-    select(gid_initial, gid, title)
+    relocate(.data$gid_initial) %>%
+    select(.data$gid_initial, .data$gid, .data$title)
 
   stack_summary <- results[[2]] %>%
     mutate(gid = as.character(giddf[1,1])) %>%
-    group_by(gid) %>%
+    group_by(.data$gid) %>%
     summarize(shows = n()) %>%
     ungroup()
 
@@ -71,14 +71,14 @@ sweepstack <- function(number_stacks = NULL, exclude_poor_sound_quality = FALSE,
 
     stack_summary2 <- results[[2]] %>%
       mutate(gid = as.character(giddf[i,1])) %>%
-      group_by(gid) %>%
+      group_by(.data$gid) %>%
       summarize(shows = n()) %>%
       ungroup()
 
     stack_details2 <- results[[1]] %>%
       mutate(gid_initial = as.character(giddf[i,1])) %>%
-      relocate(gid_initial) %>%
-      select(gid_initial, gid, title)
+      relocate(.data$gid_initial) %>%
+      select(.data$gid_initial, .data$gid, .data$title)
 
     stack_summary <- as.data.frame(rbind(stack_summary, stack_summary2))
 
@@ -89,12 +89,12 @@ sweepstack <- function(number_stacks = NULL, exclude_poor_sound_quality = FALSE,
   # to remove duplicates
 
   stack_details <- stack_details %>%
-    group_by(gid_initial, gid, title) %>%
+    group_by(.data$gid_initial, .data$gid, .data$title) %>%
     mutate(number = row_number()) %>%
     ungroup() %>%
-    arrange(gid_initial, gid, title, number) %>%
-    filter(number==1) %>%
-    select(gid_initial, gid, title)
+    arrange(.data$gid_initial, .data$gid, .data$title, .data$number) %>%
+    filter(.data$number==1) %>%
+    select(.data$gid_initial, .data$gid, .data$title)
 
   results <- list(stack_summary, stack_details)
 

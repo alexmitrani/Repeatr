@@ -67,9 +67,9 @@ Repeatr_Updatr <- function(really = "not_really", min_song_count = 2, update_sta
       # copies of all three to data/ earlier in this exact run - load() them
       # back rather than falling through to a stale lazy binding.
       mydatadir <- if (is.null(output_dir)) paste0(getwd(), "/data") else output_dir
-      load(file.path(mydatadir, "gid_sound_quality.rda"))
-      load(file.path(mydatadir, "duration_data_da.rda"))
-      load(file.path(mydatadir, "othervariables.rda"))
+      gid_sound_quality <- get(load(file.path(mydatadir, "gid_sound_quality.rda")))
+      duration_data_da <- get(load(file.path(mydatadir, "duration_data_da.rda")))
+      othervariables <- get(load(file.path(mydatadir, "othervariables.rda")))
 
       Repeatr_6(myduration_data_da = duration_data_da,
                 mysummary = Repeatr_5_results[[3]],

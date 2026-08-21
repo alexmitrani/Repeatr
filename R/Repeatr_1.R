@@ -42,7 +42,7 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   on.exit(setwd(mydir), add = TRUE)
   mydatadir <- if (is.null(output_dir)) paste0(mydir, "/data") else output_dir
 
-  Repeatr0 <- if (is.null(myfls_data)) read.csv(system.file("extdata", "fls_data.csv", package = "Repeatr"), header = TRUE) else myfls_data
+  Repeatr0 <- if (is.null(myfls_data)) utils::read.csv(system.file("extdata", "fls_data.csv", package = "Repeatr"), header = TRUE) else myfls_data
 
   # gid_sound_quality used to be a static dataset with no regeneration path -
   # it's now rebuilt live from Repeatr0 every run, same gid/sound_quality
@@ -50,8 +50,8 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   # need no other change.
 
   gid_sound_quality <- Repeatr0 %>%
-    select(gid, sound_quality) %>%
-    filter(is.na(sound_quality)==FALSE)
+    select(.data$gid, .data$sound_quality) %>%
+    filter(is.na(.data$sound_quality)==FALSE)
 
   # washington-dc-usa-100688 (10/6/88) has no surviving recording - the FLS
   # site's own page comments confirm this, and the audio posted there is
@@ -59,30 +59,30 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   # washington-dc-usa-61588, correctly dated in fls_tags). Its sound_quality
   # rating describes that other recording, not a real one for this date.
   gid_sound_quality <- gid_sound_quality %>%
-    filter(gid!="washington-dc-usa-100688")
+    filter(.data$gid!="washington-dc-usa-100688")
 
-  songvarslookup <- if (is.null(mysongvarslookup)) read.csv(system.file("extdata", "releases_songs_durations_wikipedia.csv", package = "Repeatr"), header = TRUE) else mysongvarslookup
+  songvarslookup <- if (is.null(mysongvarslookup)) utils::read.csv(system.file("extdata", "releases_songs_durations_wikipedia.csv", package = "Repeatr"), header = TRUE) else mysongvarslookup
   songvarslookup <- songvarslookup %>%
-    rename(title = song, rid = releaseid)
+    rename(title = .data$song, rid = .data$releaseid)
 
   save(songvarslookup, file = file.path(mydatadir, "songvarslookup.rda"))
 
-  song_tempo_bpm_data <- read.csv(system.file("extdata", "song_tempo_bpm_data.csv", package = "Repeatr"), header = TRUE)
+  song_tempo_bpm_data <- utils::read.csv(system.file("extdata", "song_tempo_bpm_data.csv", package = "Repeatr"), header = TRUE)
   song_tempo_bpm_data <- song_tempo_bpm_data %>%
-    rename(title = song)
+    rename(title = .data$song)
   save(song_tempo_bpm_data, file = file.path(mydatadir, "song_tempo_bpm_data.rda"))
 
-  releasesdatalookup <- if (is.null(myreleases)) read.csv(system.file("extdata", "releases.csv", package = "Repeatr"), header = TRUE) else myreleases
+  releasesdatalookup <- if (is.null(myreleases)) utils::read.csv(system.file("extdata", "releases.csv", package = "Repeatr"), header = TRUE) else myreleases
   releasesdatalookup$X <- NULL
   releasesdatalookup <- releasesdatalookup %>%
-    rename(rid = releaseid, release_title = release, release_date = releasedate) %>%
-    mutate(release_date = as.Date(release_date, "%d/%m/%Y"))
+    rename(rid = .data$releaseid, release_title = .data$release, release_date = .data$releasedate) %>%
+    mutate(release_date = as.Date(.data$release_date, "%d/%m/%Y"))
 
   othervariables <- Repeatr0 %>%
-    select(gid, fls_id, show_date, venue, door_price, attendance, recorded_by, mastered_by, original_source, fls_notes, tour, city, subdivision, country)
+    select(.data$gid, .data$fls_id, .data$show_date, .data$venue, .data$door_price, .data$attendance, .data$recorded_by, .data$mastered_by, .data$original_source, .data$fls_notes, .data$tour, .data$city, .data$subdivision, .data$country)
 
   othervariables <- othervariables %>%
-    rename(flsid = fls_id, date = show_date, doorprice = door_price)
+    rename(flsid = .data$fls_id, date = .data$show_date, doorprice = .data$door_price)
 
   othervariables <- othervariables %>%
     mutate(date = as.Date(date, "%d/%m/%Y"),
@@ -98,33 +98,33 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
            y = NA_real_)
 
   othervariables <- othervariables %>%
-    mutate(attendance = as.numeric(attendance))
+    mutate(attendance = as.numeric(.data$attendance))
 
   othervariables <- othervariables %>%
-    mutate(country = ifelse(flsid=="FLS0970", "USA", country),
-           country = ifelse(city=="Ljubljana" & year>=1991, "Slovenia", country),
-           country = ifelse(city=="Prague" & year<=1992, "Czechoslovakia", country),
-           city = ifelse(flsid=="FLS0970", "San Francisco", city),
-           x = ifelse(flsid=="FLS0970", -122.4272376, x),
-           y = ifelse(flsid=="FLS0970", 37.760407, y),
-           tour = ifelse(flsid=="FLS0970", "2000 Summer/Fall Regional Dates", tour),
-           tour = ifelse(tour=="1993 Fall USA/Canda Tour", "1993 Fall USA/Canada Tour", tour),
-           year = ifelse(flsid=="FLS0970", 2000, year),
-           recorded_by = ifelse(flsid=="FLS0970", "Stephen Kozlowski", recorded_by),
-           checked = ifelse(flsid=="FLS0970", 1, checked))
+    mutate(country = ifelse(.data$flsid=="FLS0970", "USA", .data$country),
+           country = ifelse(.data$city=="Ljubljana" & year>=1991, "Slovenia", .data$country),
+           country = ifelse(.data$city=="Prague" & year<=1992, "Czechoslovakia", .data$country),
+           city = ifelse(.data$flsid=="FLS0970", "San Francisco", .data$city),
+           x = ifelse(.data$flsid=="FLS0970", -122.4272376, .data$x),
+           y = ifelse(.data$flsid=="FLS0970", 37.760407, .data$y),
+           tour = ifelse(.data$flsid=="FLS0970", "2000 Summer/Fall Regional Dates", .data$tour),
+           tour = ifelse(.data$tour=="1993 Fall USA/Canda Tour", "1993 Fall USA/Canada Tour", .data$tour),
+           year = ifelse(.data$flsid=="FLS0970", 2000, year),
+           recorded_by = ifelse(.data$flsid=="FLS0970", "Stephen Kozlowski", .data$recorded_by),
+           checked = ifelse(.data$flsid=="FLS0970", 1, .data$checked))
 
   othervariables <- othervariables %>%
-    mutate(city = ifelse(city=="Wesleyan", "Middletown", city))
+    mutate(city = ifelse(.data$city=="Wesleyan", "Middletown", .data$city))
 
   # mastered_by/original_source cleanup: a handful of raw scraped values are
   # a typo (missing hyphen) or too terse to be useful downstream.
   othervariables <- othervariables %>%
-    mutate(mastered_by = ifelse(mastered_by=="Warren Russell Smith", "Warren Russell-Smith", mastered_by),
+    mutate(mastered_by = ifelse(.data$mastered_by=="Warren Russell Smith", "Warren Russell-Smith", .data$mastered_by),
            original_source = case_when(
-             original_source == "?" ~ "Unknown",
-             original_source == "VHS" ~ "VHS audio",
-             original_source == "VHS Tape" ~ "VHS audio",
-             TRUE ~ original_source
+             .data$original_source == "?" ~ "Unknown",
+             .data$original_source == "VHS" ~ "VHS audio",
+             .data$original_source == "VHS Tape" ~ "VHS audio",
+             TRUE ~ .data$original_source
            ))
 
   # washington-dc-usa-100688 (10/6/88) is a real, distinct show (confirmed
@@ -134,15 +134,15 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   # mislabeled copy of the 6/15/88 recording. These three fields describe
   # that other recording, not one that exists for this show.
   othervariables <- othervariables %>%
-    mutate(recorded_by = ifelse(gid=="washington-dc-usa-100688", NA_character_, recorded_by),
-           mastered_by = ifelse(gid=="washington-dc-usa-100688", NA_character_, mastered_by),
-           original_source = ifelse(gid=="washington-dc-usa-100688", NA_character_, original_source))
+    mutate(recorded_by = ifelse(.data$gid=="washington-dc-usa-100688", NA_character_, .data$recorded_by),
+           mastered_by = ifelse(.data$gid=="washington-dc-usa-100688", NA_character_, .data$mastered_by),
+           original_source = ifelse(.data$gid=="washington-dc-usa-100688", NA_character_, .data$original_source))
 
   # One-off data-entry error on the site: this Hobart show's own "State"
   # filter link reads "TZ", while every other Hobart/Launceston show says
   # "TAS" - not a real distinct designation, just a typo to correct.
   othervariables <- othervariables %>%
-    mutate(subdivision = ifelse(city=="Hobart" & country=="Australia" & subdivision=="TZ", "TAS", subdivision))
+    mutate(subdivision = ifelse(.data$city=="Hobart" & .data$country=="Australia" & .data$subdivision=="TZ", "TAS", .data$subdivision))
 
   # The FLS site's own "State" filter link is blank for a number of
   # Australian shows (and wrong - "NSW" - for every Canberra show, which is
@@ -153,19 +153,19 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   # "Newcastle-Upon-Tyne"). Verified against each venue's own coordinates in
   # fls_venue_geocoding_v2.csv.
   othervariables <- othervariables %>%
-    mutate(subdivision = ifelse(country=="Australia" & city=="Adelaide", "SA", subdivision),
-           subdivision = ifelse(country=="Australia" & city=="Ballarat", "VIC", subdivision),
-           subdivision = ifelse(country=="Australia" & city=="Brisbane", "QLD", subdivision),
-           subdivision = ifelse(country=="Australia" & city=="Canberra", "ACT", subdivision),
-           subdivision = ifelse(country=="Australia" & city=="Darwin", "NT", subdivision),
-           subdivision = ifelse(country=="Australia" & city=="Geelong", "VIC", subdivision),
-           subdivision = ifelse(country=="Australia" & city=="Lismore", "NSW", subdivision),
-           subdivision = ifelse(country=="Australia" & city=="Manly", "NSW", subdivision),
-           subdivision = ifelse(country=="Australia" & city=="Melbourne", "VIC", subdivision),
-           subdivision = ifelse(country=="Australia" & city=="Newcastle", "NSW", subdivision),
-           subdivision = ifelse(country=="Australia" & city=="Perth", "WA", subdivision),
-           subdivision = ifelse(country=="Australia" & city=="Sydney", "NSW", subdivision),
-           subdivision = ifelse(country=="Australia" & city=="Wollongong", "NSW", subdivision))
+    mutate(subdivision = ifelse(.data$country=="Australia" & .data$city=="Adelaide", "SA", .data$subdivision),
+           subdivision = ifelse(.data$country=="Australia" & .data$city=="Ballarat", "VIC", .data$subdivision),
+           subdivision = ifelse(.data$country=="Australia" & .data$city=="Brisbane", "QLD", .data$subdivision),
+           subdivision = ifelse(.data$country=="Australia" & .data$city=="Canberra", "ACT", .data$subdivision),
+           subdivision = ifelse(.data$country=="Australia" & .data$city=="Darwin", "NT", .data$subdivision),
+           subdivision = ifelse(.data$country=="Australia" & .data$city=="Geelong", "VIC", .data$subdivision),
+           subdivision = ifelse(.data$country=="Australia" & .data$city=="Lismore", "NSW", .data$subdivision),
+           subdivision = ifelse(.data$country=="Australia" & .data$city=="Manly", "NSW", .data$subdivision),
+           subdivision = ifelse(.data$country=="Australia" & .data$city=="Melbourne", "VIC", .data$subdivision),
+           subdivision = ifelse(.data$country=="Australia" & .data$city=="Newcastle", "NSW", .data$subdivision),
+           subdivision = ifelse(.data$country=="Australia" & .data$city=="Perth", "WA", .data$subdivision),
+           subdivision = ifelse(.data$country=="Australia" & .data$city=="Sydney", "NSW", .data$subdivision),
+           subdivision = ifelse(.data$country=="Australia" & .data$city=="Wollongong", "NSW", .data$subdivision))
 
   # The FLS site's own scrape never populates subdivision outside the US/
   # Canada/Australia, so Brazil's 12 tour cities are filled in here from a
@@ -173,25 +173,25 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   # fls_venue_geocoding_v2.csv).
   othervariables <- othervariables %>%
     mutate(subdivision = case_when(
-      country == "Brazil" & city == "Belo Horizonte" ~ "MG",
-      country == "Brazil" & city == "Brasilia" ~ "DF",
-      country == "Brazil" & city == "Campinas" ~ "SP",
-      country == "Brazil" & city == "Curitiba" ~ "PR",
-      country == "Brazil" & city == "Itaborai" ~ "RJ",
-      country == "Brazil" & city == "Joinville" ~ "SC",
-      country == "Brazil" & city == "Londrina" ~ "PR",
-      country == "Brazil" & city == "Piracicaba" ~ "SP",
-      country == "Brazil" & city == "Rio De Janeiro" ~ "RJ",
-      country == "Brazil" & city == "Santos" ~ "SP",
-      country == "Brazil" & city == "Sao Paulo" ~ "SP",
-      country == "Brazil" & city == "Vitoria" ~ "ES",
-      TRUE ~ subdivision
+      .data$country == "Brazil" & .data$city == "Belo Horizonte" ~ "MG",
+      .data$country == "Brazil" & .data$city == "Brasilia" ~ "DF",
+      .data$country == "Brazil" & .data$city == "Campinas" ~ "SP",
+      .data$country == "Brazil" & .data$city == "Curitiba" ~ "PR",
+      .data$country == "Brazil" & .data$city == "Itaborai" ~ "RJ",
+      .data$country == "Brazil" & .data$city == "Joinville" ~ "SC",
+      .data$country == "Brazil" & .data$city == "Londrina" ~ "PR",
+      .data$country == "Brazil" & .data$city == "Piracicaba" ~ "SP",
+      .data$country == "Brazil" & .data$city == "Rio De Janeiro" ~ "RJ",
+      .data$country == "Brazil" & .data$city == "Santos" ~ "SP",
+      .data$country == "Brazil" & .data$city == "Sao Paulo" ~ "SP",
+      .data$country == "Brazil" & .data$city == "Vitoria" ~ "ES",
+      TRUE ~ .data$subdivision
     ))
 
   # Any subdivision still blank at this point is a pre-existing mix of NA and
   # "" for shows outside the US/Canada/Australia/Brazil - standardize to NA.
   othervariables <- othervariables %>%
-    mutate(subdivision = ifelse(subdivision == "", NA_character_, subdivision))
+    mutate(subdivision = ifelse(.data$subdivision == "", NA_character_, .data$subdivision))
 
   # doorprice is raw scraped text (currency symbols, foreign-currency
   # abbreviations, one price range, "Free", ~33% missing) - split into a
@@ -203,19 +203,19 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   # below instead. Two 1990 Yugoslavia shows are priced in Deutsche Mark
   # ("12 Marks"/"15 Marks") rather than the Yugoslav dinar - kept as DEM, not
   # the country's nominal currency, since that's what the raw text says.
-  doorprice_lookup <- read.csv(system.file("extdata", "fls_doorprice_currency_lookup.csv", package = "Repeatr"), header = TRUE, colClasses = c(doorprice = "character", price = "numeric", currency = "character", note = "character"))
+  doorprice_lookup <- utils::read.csv(system.file("extdata", "fls_doorprice_currency_lookup.csv", package = "Repeatr"), header = TRUE, colClasses = c(doorprice = "character", price = "numeric", currency = "character", note = "character"))
 
   othervariables <- othervariables %>%
     left_join(doorprice_lookup, by = "doorprice") %>%
     mutate(
-      price = ifelse(doorprice == "Free", 0, price),
+      price = ifelse(.data$doorprice == "Free", 0, .data$price),
       currency = case_when(
-        doorprice == "Free" & country == "Italy" ~ "ITL",
-        doorprice == "Free" ~ "USD",
-        TRUE ~ currency
+        .data$doorprice == "Free" & .data$country == "Italy" ~ "ITL",
+        .data$doorprice == "Free" ~ "USD",
+        TRUE ~ .data$currency
       )
     ) %>%
-    select(-doorprice, -note)
+    select(-.data$doorprice, -.data$note)
 
   # Do NOT filter out rows with no x/y here - a show's coordinates may only
   # come from a later source (the disambiguation-corrected city match, the
@@ -226,191 +226,191 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   # Disambiguation
 
   othervariables <- othervariables %>%
-    mutate(city = ifelse(country=="England" & city=="Newcastle", "Newcastle-Upon-Tyne", city),
-           city = ifelse(country=="USA" & city=="Oxford", "Oxford (USA)", city),
-           city = ifelse(country=="Australia" & city=="Croydon", "Croydon (Australia)", city),
-           city = ifelse(country=="Australia" & city=="Newcastle", "Newcastle (Australia)", city),
+    mutate(city = ifelse(.data$country=="England" & .data$city=="Newcastle", "Newcastle-Upon-Tyne", .data$city),
+           city = ifelse(.data$country=="USA" & .data$city=="Oxford", "Oxford (USA)", .data$city),
+           city = ifelse(.data$country=="Australia" & .data$city=="Croydon", "Croydon (Australia)", .data$city),
+           city = ifelse(.data$country=="Australia" & .data$city=="Newcastle", "Newcastle (Australia)", .data$city),
            # Portland and Columbia each cover multiple, differently-located
            # US cities of the same name - fls_venue_geocoding_v2.csv
            # disambiguates them as "City (ST)", so match that convention
            # using the subdivision scraped alongside city/country, or these
            # venues' coordinates can never be found there.
-           city = ifelse(country=="USA" & city=="Portland" & is.na(subdivision)==FALSE, paste0("Portland (", subdivision, ")"), city),
-           city = ifelse(country=="USA" & city=="Columbia" & is.na(subdivision)==FALSE, paste0("Columbia (", subdivision, ")"), city))
+           city = ifelse(.data$country=="USA" & .data$city=="Portland" & is.na(.data$subdivision)==FALSE, paste0("Portland (", .data$subdivision, ")"), .data$city),
+           city = ifelse(.data$country=="USA" & .data$city=="Columbia" & is.na(.data$subdivision)==FALSE, paste0("Columbia (", .data$subdivision, ")"), .data$city))
 
   othervariables <- othervariables %>%
-    mutate(venue = ifelse(country=="USA" & city=="Washington" & venue=="9:30 Club" & year<=1995, "9:30 Club (1980-1995)", venue),
-           x = ifelse(country=="USA" & city=="Washington" & venue=="9:30 Club (1980-1995)" & year<=1995, -77.0255867, x),
-           y = ifelse(country=="USA" & city=="Washington" & venue=="9:30 Club (1980-1995)" & year<=1995, 38.8971517, y))
+    mutate(venue = ifelse(.data$country=="USA" & .data$city=="Washington" & .data$venue=="9:30 Club" & year<=1995, "9:30 Club (1980-1995)", .data$venue),
+           x = ifelse(.data$country=="USA" & .data$city=="Washington" & .data$venue=="9:30 Club (1980-1995)" & year<=1995, -77.0255867, .data$x),
+           y = ifelse(.data$country=="USA" & .data$city=="Washington" & .data$venue=="9:30 Club (1980-1995)" & year<=1995, 38.8971517, .data$y))
 
 
   othervariables <- othervariables %>%
-    mutate(venue = ifelse(flsid=="FLS0050", "Frankford YWCA", venue))
+    mutate(venue = ifelse(.data$flsid=="FLS0050", "Frankford YWCA", .data$venue))
 
   othervariables <- othervariables %>%
-    mutate(venue = ifelse(flsid=="FLS0478", "Tempodrom", venue))
+    mutate(venue = ifelse(.data$flsid=="FLS0478", "Tempodrom", .data$venue))
 
   # correct values where necessary
 
   othervariables <- othervariables %>%
-    mutate(x = ifelse(city=="Newcastle-Upon-Tyne" & venue=="Riverside", -1.6051, x),
-           y = ifelse(city=="Newcastle-Upon-Tyne" & venue=="Riverside", 54.9717, y),
-           checked = ifelse(city=="Newcastle-Upon-Tyne" & venue=="Riverside", 1, checked),
-           x = ifelse(city=="Lisbon" & venue=="Gartejo", -9.1755975, x),
-           y = ifelse(city=="Lisbon" & venue=="Gartejo", 38.7042177, y),
-           checked = ifelse(city=="Lisbon" & venue=="Gartejo", 1, checked),
-           x = ifelse(country == "Japan" & city=="Osaka" & venue=="AM Hall", 135.4995612, x),
-           y = ifelse(country == "Japan" & city=="Osaka" & venue=="AM Hall", 34.7012144, y),
-           checked = ifelse(country == "Japan" & city=="Osaka" & venue=="AM Hall", 1, checked),
-           x = ifelse(country == "Japan" & city=="Osaka" & venue=="Sun Hall", 135.4808578, x),
-           y = ifelse(country == "Japan" & city=="Osaka" & venue=="Sun Hall", 34.6709861, y),
-           checked = ifelse(country == "Japan" & city=="Osaka" & venue=="Sun Hall", 1, checked),
-           x = ifelse(country == "Japan" & city=="Nagoya" & venue=="Club Quattro", 136.9082324, x),
-           y = ifelse(country == "Japan" & city=="Nagoya" & venue=="Club Quattro", 35.1637276, y),
-           checked = ifelse(country == "Japan" & city=="Nagoya" & venue=="Club Quattro", 1, checked),
-           x = ifelse(country == "Japan" & city=="Nagoya" & venue=="Heartland", 136.9192034, x),
-           y = ifelse(country == "Japan" & city=="Nagoya" & venue=="Heartland", 35.1693198, y),
-           checked = ifelse(country == "Japan" & city=="Nagoya" & venue=="Heartland", 1, checked),
-           x = ifelse(country == "USA" & city=="San Francisco" & venue=="Women's Building", -122.4228365, x),
-           y = ifelse(country == "USA" & city=="San Francisco" & venue=="Women's Building", 37.7614483, y),
-           checked = ifelse(country == "USA" & city=="San Francisco" & venue=="Women's Building", 1, checked),
-           x = ifelse(country == "USA" & city=="San Francisco" & venue=="Russian Theater", -122.4413234, x),
-           y = ifelse(country == "USA" & city=="San Francisco" & venue=="Russian Theater", 37.7854355, y),
-           checked = ifelse(country == "USA" & city=="San Francisco" & venue=="Russian Theater", 1, checked),
-           x = ifelse(country == "USA" & city=="San Francisco" & venue=="Fort Mason Pier C", -122.4314681, x),
-           y = ifelse(country == "USA" & city=="San Francisco" & venue=="Fort Mason Pier C", 37.8067481, y),
-           checked = ifelse(country == "USA" & city=="San Francisco" & venue=="Fort Mason Pier C", 1, checked),
-           x = ifelse(country == "USA" & city=="San Francisco" & venue=="Trocadero Transfer", -122.3982015, x),
-           y = ifelse(country == "USA" & city=="San Francisco" & venue=="Trocadero Transfer", 37.7790623, y),
-           checked = ifelse(country == "USA" & city=="San Francisco" & venue=="Trocadero Transfer", 1, checked),
-           x = ifelse(country == "USA" & city=="San Francisco" & venue=="Maritime", -122.3936571, x),
-           y = ifelse(country == "USA" & city=="San Francisco" & venue=="Maritime", 37.7864189, y),
-           checked = ifelse(country == "USA" & city=="San Francisco" & venue=="Maritime", 1, checked),
-           x = ifelse(country == "Germany" & city=="Bremen" & venue=="Schlachthof", 8.8099035, x),
-           y = ifelse(country == "Germany" & city=="Bremen" & venue=="Schlachthof", 53.0884866, y),
-           checked = ifelse(country == "Germany" & city=="Bremen" & venue=="Schlachthof", 1, checked),
-           x = ifelse(country == "Canada" & city=="Ottawa" & venue=="Carleton University Porter Hall", -75.6978497, x),
-           y = ifelse(country == "Canada" & city=="Ottawa" & venue=="Carleton University Porter Hall", 45.3840001, y),
-           checked = ifelse(country == "Canada" & city=="Ottawa" & venue=="Carleton University Porter Hall", 1, checked),
-           x = ifelse(country == "Australia" & city=="Sydney" & (venue=="Metro Theatre" | venue=="Metro"), 151.2066274, x),
-           y = ifelse(country == "Australia" & city=="Sydney" & (venue=="Metro Theatre" | venue=="Metro"), -33.8756943, y),
-           checked = ifelse(country == "Australia" & city=="Sydney" & (venue=="Metro Theatre" | venue=="Metro"), 1, checked),
-           x = ifelse(country == "USA" & city=="Watsonville" & venue=="Veteran's Memorial Hall", -121.7545246, x),
-           y = ifelse(country == "USA" & city=="Watsonville" & venue=="Veteran's Memorial Hall", 36.9126013, y),
-           checked = ifelse(country == "USA" & city=="Watsonville" & venue=="Veteran's Memorial Hall", 1, checked),
-           x = ifelse(country == "Australia" & city=="Wollongong" & venue=="Youth Centre", 150.8928958, x),
-           y = ifelse(country == "Australia" & city=="Wollongong" & venue=="Youth Centre", -34.4264333, y),
-           checked = ifelse(country == "Australia" & city=="Wollongong" & venue=="Youth Centre", 1, checked),
-           x = ifelse(country == "USA" & city=="Fayetteville" & venue=="Studio 225", -94.1667044, x),
-           y = ifelse(country == "USA" & city=="Fayetteville" & venue=="Studio 225", 36.0657152, y),
-           checked = ifelse(country == "USA" & city=="Fayetteville" & venue=="Studio 225", 1, checked),
-           x = ifelse(country == "USA" & city=="Columbia (SC)" & venue=="Dance Graphics", -81.0175133, x),
-           y = ifelse(country == "USA" & city=="Columbia (SC)" & venue=="Dance Graphics", 34.0032201, y),
-           checked = ifelse(country == "USA" & city=="Columbia (SC)" & venue=="Dance Graphics", 1, checked),
-           x = ifelse(country == "Brazil" & city=="Sao Paulo" & venue=="Aeroanta", -46.6949865, x),
-           y = ifelse(country == "Brazil" & city=="Sao Paulo" & venue=="Aeroanta", -23.5651133, y),
-           checked = ifelse(country == "Brazil" & city=="Sao Paulo" & venue=="Aeroanta", 1, checked),
-           venue = ifelse(venue=="Zepplin Rock", "Zeppelin Rock", venue),
-           city = ifelse(city=="San.De Campostela", "Santiago de Compostela", city),
-           x = ifelse(city=="Huntington" & venue=="Stone Monkey", -82.4201034, x),
-           y = ifelse(city=="Huntington" & venue=="Stone Monkey", 38.4272709, y),
-           checked = ifelse(city=="Huntington" & venue=="Stone Monkey", 1, checked))
+    mutate(x = ifelse(.data$city=="Newcastle-Upon-Tyne" & .data$venue=="Riverside", -1.6051, .data$x),
+           y = ifelse(.data$city=="Newcastle-Upon-Tyne" & .data$venue=="Riverside", 54.9717, .data$y),
+           checked = ifelse(.data$city=="Newcastle-Upon-Tyne" & .data$venue=="Riverside", 1, .data$checked),
+           x = ifelse(.data$city=="Lisbon" & .data$venue=="Gartejo", -9.1755975, .data$x),
+           y = ifelse(.data$city=="Lisbon" & .data$venue=="Gartejo", 38.7042177, .data$y),
+           checked = ifelse(.data$city=="Lisbon" & .data$venue=="Gartejo", 1, .data$checked),
+           x = ifelse(.data$country == "Japan" & .data$city=="Osaka" & .data$venue=="AM Hall", 135.4995612, .data$x),
+           y = ifelse(.data$country == "Japan" & .data$city=="Osaka" & .data$venue=="AM Hall", 34.7012144, .data$y),
+           checked = ifelse(.data$country == "Japan" & .data$city=="Osaka" & .data$venue=="AM Hall", 1, .data$checked),
+           x = ifelse(.data$country == "Japan" & .data$city=="Osaka" & .data$venue=="Sun Hall", 135.4808578, .data$x),
+           y = ifelse(.data$country == "Japan" & .data$city=="Osaka" & .data$venue=="Sun Hall", 34.6709861, .data$y),
+           checked = ifelse(.data$country == "Japan" & .data$city=="Osaka" & .data$venue=="Sun Hall", 1, .data$checked),
+           x = ifelse(.data$country == "Japan" & .data$city=="Nagoya" & .data$venue=="Club Quattro", 136.9082324, .data$x),
+           y = ifelse(.data$country == "Japan" & .data$city=="Nagoya" & .data$venue=="Club Quattro", 35.1637276, .data$y),
+           checked = ifelse(.data$country == "Japan" & .data$city=="Nagoya" & .data$venue=="Club Quattro", 1, .data$checked),
+           x = ifelse(.data$country == "Japan" & .data$city=="Nagoya" & .data$venue=="Heartland", 136.9192034, .data$x),
+           y = ifelse(.data$country == "Japan" & .data$city=="Nagoya" & .data$venue=="Heartland", 35.1693198, .data$y),
+           checked = ifelse(.data$country == "Japan" & .data$city=="Nagoya" & .data$venue=="Heartland", 1, .data$checked),
+           x = ifelse(.data$country == "USA" & .data$city=="San Francisco" & .data$venue=="Women's Building", -122.4228365, .data$x),
+           y = ifelse(.data$country == "USA" & .data$city=="San Francisco" & .data$venue=="Women's Building", 37.7614483, .data$y),
+           checked = ifelse(.data$country == "USA" & .data$city=="San Francisco" & .data$venue=="Women's Building", 1, .data$checked),
+           x = ifelse(.data$country == "USA" & .data$city=="San Francisco" & .data$venue=="Russian Theater", -122.4413234, .data$x),
+           y = ifelse(.data$country == "USA" & .data$city=="San Francisco" & .data$venue=="Russian Theater", 37.7854355, .data$y),
+           checked = ifelse(.data$country == "USA" & .data$city=="San Francisco" & .data$venue=="Russian Theater", 1, .data$checked),
+           x = ifelse(.data$country == "USA" & .data$city=="San Francisco" & .data$venue=="Fort Mason Pier C", -122.4314681, .data$x),
+           y = ifelse(.data$country == "USA" & .data$city=="San Francisco" & .data$venue=="Fort Mason Pier C", 37.8067481, .data$y),
+           checked = ifelse(.data$country == "USA" & .data$city=="San Francisco" & .data$venue=="Fort Mason Pier C", 1, .data$checked),
+           x = ifelse(.data$country == "USA" & .data$city=="San Francisco" & .data$venue=="Trocadero Transfer", -122.3982015, .data$x),
+           y = ifelse(.data$country == "USA" & .data$city=="San Francisco" & .data$venue=="Trocadero Transfer", 37.7790623, .data$y),
+           checked = ifelse(.data$country == "USA" & .data$city=="San Francisco" & .data$venue=="Trocadero Transfer", 1, .data$checked),
+           x = ifelse(.data$country == "USA" & .data$city=="San Francisco" & .data$venue=="Maritime", -122.3936571, .data$x),
+           y = ifelse(.data$country == "USA" & .data$city=="San Francisco" & .data$venue=="Maritime", 37.7864189, .data$y),
+           checked = ifelse(.data$country == "USA" & .data$city=="San Francisco" & .data$venue=="Maritime", 1, .data$checked),
+           x = ifelse(.data$country == "Germany" & .data$city=="Bremen" & .data$venue=="Schlachthof", 8.8099035, .data$x),
+           y = ifelse(.data$country == "Germany" & .data$city=="Bremen" & .data$venue=="Schlachthof", 53.0884866, .data$y),
+           checked = ifelse(.data$country == "Germany" & .data$city=="Bremen" & .data$venue=="Schlachthof", 1, .data$checked),
+           x = ifelse(.data$country == "Canada" & .data$city=="Ottawa" & .data$venue=="Carleton University Porter Hall", -75.6978497, .data$x),
+           y = ifelse(.data$country == "Canada" & .data$city=="Ottawa" & .data$venue=="Carleton University Porter Hall", 45.3840001, .data$y),
+           checked = ifelse(.data$country == "Canada" & .data$city=="Ottawa" & .data$venue=="Carleton University Porter Hall", 1, .data$checked),
+           x = ifelse(.data$country == "Australia" & .data$city=="Sydney" & (.data$venue=="Metro Theatre" | .data$venue=="Metro"), 151.2066274, .data$x),
+           y = ifelse(.data$country == "Australia" & .data$city=="Sydney" & (.data$venue=="Metro Theatre" | .data$venue=="Metro"), -33.8756943, .data$y),
+           checked = ifelse(.data$country == "Australia" & .data$city=="Sydney" & (.data$venue=="Metro Theatre" | .data$venue=="Metro"), 1, .data$checked),
+           x = ifelse(.data$country == "USA" & .data$city=="Watsonville" & .data$venue=="Veteran's Memorial Hall", -121.7545246, .data$x),
+           y = ifelse(.data$country == "USA" & .data$city=="Watsonville" & .data$venue=="Veteran's Memorial Hall", 36.9126013, .data$y),
+           checked = ifelse(.data$country == "USA" & .data$city=="Watsonville" & .data$venue=="Veteran's Memorial Hall", 1, .data$checked),
+           x = ifelse(.data$country == "Australia" & .data$city=="Wollongong" & .data$venue=="Youth Centre", 150.8928958, .data$x),
+           y = ifelse(.data$country == "Australia" & .data$city=="Wollongong" & .data$venue=="Youth Centre", -34.4264333, .data$y),
+           checked = ifelse(.data$country == "Australia" & .data$city=="Wollongong" & .data$venue=="Youth Centre", 1, .data$checked),
+           x = ifelse(.data$country == "USA" & .data$city=="Fayetteville" & .data$venue=="Studio 225", -94.1667044, .data$x),
+           y = ifelse(.data$country == "USA" & .data$city=="Fayetteville" & .data$venue=="Studio 225", 36.0657152, .data$y),
+           checked = ifelse(.data$country == "USA" & .data$city=="Fayetteville" & .data$venue=="Studio 225", 1, .data$checked),
+           x = ifelse(.data$country == "USA" & .data$city=="Columbia (SC)" & .data$venue=="Dance Graphics", -81.0175133, .data$x),
+           y = ifelse(.data$country == "USA" & .data$city=="Columbia (SC)" & .data$venue=="Dance Graphics", 34.0032201, .data$y),
+           checked = ifelse(.data$country == "USA" & .data$city=="Columbia (SC)" & .data$venue=="Dance Graphics", 1, .data$checked),
+           x = ifelse(.data$country == "Brazil" & .data$city=="Sao Paulo" & .data$venue=="Aeroanta", -46.6949865, .data$x),
+           y = ifelse(.data$country == "Brazil" & .data$city=="Sao Paulo" & .data$venue=="Aeroanta", -23.5651133, .data$y),
+           checked = ifelse(.data$country == "Brazil" & .data$city=="Sao Paulo" & .data$venue=="Aeroanta", 1, .data$checked),
+           venue = ifelse(.data$venue=="Zepplin Rock", "Zeppelin Rock", .data$venue),
+           city = ifelse(.data$city=="San.De Campostela", "Santiago de Compostela", .data$city),
+           x = ifelse(.data$city=="Huntington" & .data$venue=="Stone Monkey", -82.4201034, .data$x),
+           y = ifelse(.data$city=="Huntington" & .data$venue=="Stone Monkey", 38.4272709, .data$y),
+           checked = ifelse(.data$city=="Huntington" & .data$venue=="Stone Monkey", 1, .data$checked))
 
   # Correct country
   othervariables <- othervariables %>%
-    mutate(country = ifelse((city=="Belfast" | city=="Derry"), "Northern Ireland", country),
-           country = ifelse(flsid=="FLS0970", "USA", country))
+    mutate(country = ifelse((.data$city=="Belfast" | .data$city=="Derry"), "Northern Ireland", .data$country),
+           country = ifelse(.data$flsid=="FLS0970", "USA", .data$country))
 
   # Correct location of Queen's Hall, Belfast
   othervariables <- othervariables %>%
-    mutate(x = ifelse(country == "Northern Ireland" & city=="Belfast" & (venue=="Queen's Hall" | venue=="Queen's University Mandela Hall"), -5.9374134, x),
-           y = ifelse(country == "Northern Ireland" & city=="Belfast" & (venue=="Queen's Hall" | venue=="Queen's University Mandela Hall"), 54.5846991, y),
-           checked = ifelse(country == "Northern Ireland" & city=="Belfast" & (venue=="Queen's Hall" | venue=="Queen's University Mandela Hall"), 1, checked))
+    mutate(x = ifelse(.data$country == "Northern Ireland" & .data$city=="Belfast" & (.data$venue=="Queen's Hall" | .data$venue=="Queen's University Mandela Hall"), -5.9374134, .data$x),
+           y = ifelse(.data$country == "Northern Ireland" & .data$city=="Belfast" & (.data$venue=="Queen's Hall" | .data$venue=="Queen's University Mandela Hall"), 54.5846991, .data$y),
+           checked = ifelse(.data$country == "Northern Ireland" & .data$city=="Belfast" & (.data$venue=="Queen's Hall" | .data$venue=="Queen's University Mandela Hall"), 1, .data$checked))
 
   # Correct location of Rototom
   othervariables <- othervariables %>%
-    mutate(city = ifelse(venue=="Rototom", "Gaio di Spilimbergo", city))
+    mutate(city = ifelse(.data$venue=="Rototom", "Gaio di Spilimbergo", .data$city))
 
   # Correct venue of 1995 Copenhagen show
   othervariables <- othervariables %>%
-    mutate(venue = ifelse(gid=="copenhagen-denmark-71095", "Rockmaskinen", venue),
-           x = ifelse(gid=="copenhagen-denmark-71095", 12.5994855, x),
-           y = ifelse(gid=="copenhagen-denmark-71095", 55.6737142, y))
+    mutate(venue = ifelse(.data$gid=="copenhagen-denmark-71095", "Rockmaskinen", .data$venue),
+           x = ifelse(.data$gid=="copenhagen-denmark-71095", 12.5994855, .data$x),
+           y = ifelse(.data$gid=="copenhagen-denmark-71095", 55.6737142, .data$y))
 
   # Correct venue of Loppen
   othervariables <- othervariables %>%
-    mutate(x = ifelse(gid=="copenhagen-denmark-100700", 12.5973313, x),
-           y = ifelse(gid=="copenhagen-denmark-100700", 55.6740572, y))
+    mutate(x = ifelse(.data$gid=="copenhagen-denmark-100700", 12.5973313, .data$x),
+           y = ifelse(.data$gid=="copenhagen-denmark-100700", 55.6740572, .data$y))
 
   # Correct venue of 1988 Nottingham show
   othervariables <- othervariables %>%
-    mutate(x = ifelse(gid=="nottingham-england-112788", -1.1349991, x),
-           y = ifelse(gid=="nottingham-england-112788", 52.9558396, y))
+    mutate(x = ifelse(.data$gid=="nottingham-england-112788", -1.1349991, .data$x),
+           y = ifelse(.data$gid=="nottingham-england-112788", 52.9558396, .data$y))
 
   # Correct venue name and location for 1995 quebec city show
   othervariables <- othervariables %>%
-    mutate(venue = ifelse(gid=="quebec-city-qc-canada-92495", "C\u00e9gep Limoilou", venue))
+    mutate(venue = ifelse(.data$gid=="quebec-city-qc-canada-92495", "C\u00e9gep Limoilou", .data$venue))
 
   othervariables <- othervariables %>%
-    mutate(x = ifelse(gid=="quebec-city-qc-canada-92495", -71.2283038, x),
-           y = ifelse(gid=="quebec-city-qc-canada-92495", 46.8305332, y))
+    mutate(x = ifelse(.data$gid=="quebec-city-qc-canada-92495", -71.2283038, .data$x),
+           y = ifelse(.data$gid=="quebec-city-qc-canada-92495", 46.8305332, .data$y))
 
   # Correct venue name https://www.dischord.com/fugazi_live_series/campinas-brazil-81997
   # Assampi = Associacao de amigos do Parque Industrial
   othervariables <- othervariables %>%
-    mutate(venue = ifelse(gid=="campinas-brazil-81997", "Assampi", venue))
+    mutate(venue = ifelse(.data$gid=="campinas-brazil-81997", "Assampi", .data$venue))
 
   # Correct venue name https://www.dischord.com/fugazi_live_series/joinville-brazil-81597
   # Liga da Sociedade Joinvilense
   othervariables <- othervariables %>%
-    mutate(venue = ifelse(gid=="joinville-brazil-81597", "Liga da Sociedade Joinvilense", venue))
+    mutate(venue = ifelse(.data$gid=="joinville-brazil-81597", "Liga da Sociedade Joinvilense", .data$venue))
 
   # Correct venue name for 1998 quebec city show https://dischord.com/fugazi_live_series/quebec-city-qc-canada-72298
   othervariables <- othervariables %>%
-    mutate(venue = ifelse(gid=="quebec-city-qc-canada-72298", "Centre des Loisirs Saint-Sacrement", venue))
+    mutate(venue = ifelse(.data$gid=="quebec-city-qc-canada-72298", "Centre des Loisirs Saint-Sacrement", .data$venue))
 
   # impute values where they are missing
   meanattendance <- othervariables %>%
-    filter(is.na(tour)==FALSE) %>%
-    filter(is.na(attendance)==FALSE) %>%
+    filter(is.na(.data$tour)==FALSE) %>%
+    filter(is.na(.data$attendance)==FALSE) %>%
     group_by(year) %>%
-    summarise(meanattendance = mean(attendance)) %>%
+    summarise(meanattendance = mean(.data$attendance)) %>%
     ungroup()
 
   othervariables <- othervariables %>%
-    filter(is.na(tour)==FALSE) %>%
+    filter(is.na(.data$tour)==FALSE) %>%
     left_join(meanattendance) %>%
-    mutate(attendance = ifelse(is.na(attendance)==TRUE,meanattendance,attendance))
+    mutate(attendance = ifelse(is.na(.data$attendance)==TRUE,meanattendance,.data$attendance))
 
   othervariables <- othervariables %>%
     select(-meanattendance)
 
   othervariables <- othervariables %>%
-    relocate(checked, .after = year)
+    relocate(.data$checked, .after = year)
 
   # inst/extdata/fls_venue_geocoding_v2.csv is the source of truth for venue
   # coordinates (a periodically-refreshed local snapshot of a private
   # Google Sheet - not read live, since that sheet isn't reliably
   # available). Every coordinate in this table is treated as
   # checked/confirmed.
-  fls_venue_geocoding_source <- if (is.null(myfls_venue_geocoding)) read.csv(system.file("extdata", "fls_venue_geocoding_v2.csv", package = "Repeatr"), header = TRUE) else myfls_venue_geocoding
+  fls_venue_geocoding_source <- if (is.null(myfls_venue_geocoding)) utils::read.csv(system.file("extdata", "fls_venue_geocoding_v2.csv", package = "Repeatr"), header = TRUE) else myfls_venue_geocoding
 
   fls_venue_geocoding_update <- fls_venue_geocoding_source %>%
-    select(country, city, venue, x, y) %>%
-    rename(link_x = x, link_y = y) %>%
-    filter(is.na(link_x)==FALSE) %>%
+    select(.data$country, .data$city, .data$venue, .data$x, .data$y) %>%
+    rename(link_x = .data$x, link_y = .data$y) %>%
+    filter(is.na(.data$link_x)==FALSE) %>%
     mutate(geocoding_check=1)
 
   othervariables <- othervariables %>%
     left_join(fls_venue_geocoding_update)
 
   othervariables <- othervariables %>%
-    mutate(x = ifelse(is.na(link_x)==FALSE, link_x, x),
-           y = ifelse(is.na(link_y)==FALSE, link_y, y),
-           checked = ifelse(is.na(geocoding_check)==FALSE, geocoding_check, checked))
+    mutate(x = ifelse(is.na(.data$link_x)==FALSE, .data$link_x, .data$x),
+           y = ifelse(is.na(.data$link_y)==FALSE, .data$link_y, .data$y),
+           checked = ifelse(is.na(.data$geocoding_check)==FALSE, .data$geocoding_check, .data$checked))
 
   othervariables <- othervariables %>%
-    select(-link_x, -link_y, -geocoding_check)
+    select(-.data$link_x, -.data$link_y, -.data$geocoding_check)
 
   # The "City (ST)"/"City (Country)" disambiguation suffix injected above
   # (Portland, Columbia, Croydon, Oxford, Newcastle) exists only so the join
@@ -421,31 +421,31 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   # for disambiguation instead of a permanent country suffix, same as the
   # others - see app.R's city/subdivision concatenation.
   othervariables <- othervariables %>%
-    mutate(city = ifelse(city=="Portland (OR)", "Portland", city),
-           city = ifelse(city=="Portland (ME)", "Portland", city),
-           city = ifelse(city=="Columbia (SC)", "Columbia", city),
-           city = ifelse(city=="Columbia (MO)", "Columbia", city),
-           city = ifelse(city=="Columbia (MD)", "Columbia", city),
-           city = ifelse(city=="Croydon (Australia)", "Croydon", city),
-           city = ifelse(city=="Oxford (USA)", "Oxford", city),
-           city = ifelse(city=="Newcastle (Australia)", "Newcastle", city),
+    mutate(city = ifelse(.data$city=="Portland (OR)", "Portland", .data$city),
+           city = ifelse(.data$city=="Portland (ME)", "Portland", .data$city),
+           city = ifelse(.data$city=="Columbia (SC)", "Columbia", .data$city),
+           city = ifelse(.data$city=="Columbia (MO)", "Columbia", .data$city),
+           city = ifelse(.data$city=="Columbia (MD)", "Columbia", .data$city),
+           city = ifelse(.data$city=="Croydon (Australia)", "Croydon", .data$city),
+           city = ifelse(.data$city=="Oxford (USA)", "Oxford", .data$city),
+           city = ifelse(.data$city=="Newcastle (Australia)", "Newcastle", .data$city),
            # "Springfield (MO)"/"Springfield (OR)" were disambiguated this way
            # in inst/extdata/fls_data.csv itself (for the same reason - matching
            # fls_venue_geocoding's join key) but are just as
            # subdivision-disambiguated as Portland, so strip them back here too.
-           city = ifelse(city=="Springfield (MO)", "Springfield", city),
-           city = ifelse(city=="Springfield (OR)", "Springfield", city))
+           city = ifelse(.data$city=="Springfield (MO)", "Springfield", .data$city),
+           city = ifelse(.data$city=="Springfield (OR)", "Springfield", .data$city))
 
   # This is the one place a show should actually be dropped for lacking
   # coordinates - after every hardcoded per-venue correction above and the
   # fls_venue_geocoding join have both had a chance to supply x/y, not before.
   othervariables <- othervariables %>%
-    filter(is.na(x)==FALSE)
+    filter(is.na(.data$x)==FALSE)
 
   setwd(mydatadir)
 
   othervariables <- othervariables %>%
-    group_by(gid) %>%
+    group_by(.data$gid) %>%
     slice(1) %>%
     ungroup()
 
@@ -471,29 +471,29 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   fls_tags <- if (is.null(myfls_tags)) fls_tags_importer(myfilename = system.file("extdata", "fls_tags.txt", package = "Repeatr")) else myfls_tags
 
   fls_tags <- fls_tags %>%
-    mutate(name = str_to_lower(name))
+    mutate(name = str_to_lower(.data$name))
 
   fls_tags <- fls_tags %>%
-    rename(title = name)
+    rename(title = .data$name)
 
   fls_tags <- fls_tags %>%
-    mutate(album = ifelse(album == "20220218 40 Watt, Athens, GA, USA", "19930218 40 Watt, Athens, GA, USA", album))
+    mutate(album = ifelse(.data$album == "20220218 40 Watt, Athens, GA, USA", "19930218 40 Watt, Athens, GA, USA", .data$album))
 
   fls_tags <- fls_tags %>%
-    mutate(album = ifelse(album == "20010607 Archie Browning Centre, Victoria, BC, Canada", "20010706 Archie Browning Centre, Victoria, BC, Canada", album))
+    mutate(album = ifelse(.data$album == "20010607 Archie Browning Centre, Victoria, BC, Canada", "20010706 Archie Browning Centre, Victoria, BC, Canada", .data$album))
 
   # Three more known tagging-date typos (found while tracing NA gid rows in
   # fugazibase's durations table back to their source): the tagged album date
   # doesn't match the FLS-listed show date, so the date-based gid join below
   # silently fails for these otherwise-real, correctly-listed shows.
   fls_tags <- fls_tags %>%
-    mutate(album = ifelse(album == "19880122 Eastern Michigan University, Ypsilanti, MI, USA", "19880119 Eastern Michigan University, Ypsilanti, MI, USA", album))
+    mutate(album = ifelse(.data$album == "19880122 Eastern Michigan University, Ypsilanti, MI, USA", "19880119 Eastern Michigan University, Ypsilanti, MI, USA", .data$album))
 
   fls_tags <- fls_tags %>%
-    mutate(album = ifelse(album == "19980726 Asylum, Portland, ME, USA", "19980727 Asylum, Portland, ME, USA", album))
+    mutate(album = ifelse(.data$album == "19980726 Asylum, Portland, ME, USA", "19980727 Asylum, Portland, ME, USA", .data$album))
 
   fls_tags <- fls_tags %>%
-    mutate(album = ifelse(album == "20000409 E9, El Paso, TX, USA", "20010409 E9, El Paso, TX, USA", album))
+    mutate(album = ifelse(.data$album == "20000409 E9, El Paso, TX, USA", "20010409 E9, El Paso, TX, USA", .data$album))
 
   # A fourth tagging-date typo, found while tracing duplicate gid/track rows
   # in fugazibase's durations table: this block's tagged date (27th) collided
@@ -502,76 +502,76 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   # portland-me-usa-72698's gid. The FLS listing confirms Hoboken's real date
   # is the 28th (the very next tour stop after Portland).
   fls_tags <- fls_tags %>%
-    mutate(album = ifelse(album == "19980727 Maxwell's, Hoboken, NJ, USA", "19980728 Maxwell's, Hoboken, NJ, USA", album))
+    mutate(album = ifelse(.data$album == "19980727 Maxwell's, Hoboken, NJ, USA", "19980728 Maxwell's, Hoboken, NJ, USA", .data$album))
 
   fls_tags <- fls_tags %>%
-    mutate(year = str_sub(album, 1, 4),
-           month = str_sub(album, 5, 6),
-           day = str_sub(album, 7, 8),
+    mutate(year = str_sub(.data$album, 1, 4),
+           month = str_sub(.data$album, 5, 6),
+           day = str_sub(.data$album, 7, 8),
            datestring = paste0(day, "/", month, "/", year))
 
   fls_tags <- fls_tags %>%
-    mutate(album = ifelse(datestring == "11/02/1990" , "19900211 Studio 10, Baltimore, MD, USA", album))
+    mutate(album = ifelse(.data$datestring == "11/02/1990" , "19900211 Studio 10, Baltimore, MD, USA", .data$album))
 
   fls_tags <- fls_tags %>%
-    mutate(album = ifelse(datestring == "06/09/1991" , "19910906 Desert Fest, Jawbone Canyon, CA, USA", album))
+    mutate(album = ifelse(.data$datestring == "06/09/1991" , "19910906 Desert Fest, Jawbone Canyon, CA, USA", .data$album))
 
   fls_tags <- fls_tags %>%
-    mutate(album = ifelse(datestring == "14/11/1998" , "19981114 University of Wisconsin, Fire Room, Eau Claire, WI, USA", album))
+    mutate(album = ifelse(.data$datestring == "14/11/1998" , "19981114 University of Wisconsin, Fire Room, Eau Claire, WI, USA", .data$album))
 
   fls_tags <- fls_tags %>%
-    mutate(album = ifelse(datestring == "03/03/1999" , "19990303 Cal State University Shurmer Gym, Chico, CA, USA", album))
+    mutate(album = ifelse(.data$datestring == "03/03/1999" , "19990303 Cal State University Shurmer Gym, Chico, CA, USA", .data$album))
 
   fls_tags <- fls_tags %>%
-    mutate(album = ifelse(datestring == "25/04/2001" , "20010425 9:30 Club, Washington, DC, USA", album))
+    mutate(album = ifelse(.data$datestring == "25/04/2001" , "20010425 9:30 Club, Washington, DC, USA", .data$album))
 
   fls_tags <- fls_tags %>%
-    mutate(date = as.Date(datestring, "%d/%m/%Y"))
-
-  fls_tags <- fls_tags %>%
-    rowwise() %>%
-    mutate(firstcomma = unlist(gregexpr(',', album))[1])
+    mutate(date = as.Date(.data$datestring, "%d/%m/%Y"))
 
   fls_tags <- fls_tags %>%
     rowwise() %>%
-    mutate(secondcomma = unlist(gregexpr(',', album))[2])
+    mutate(firstcomma = unlist(gregexpr(',', .data$album))[1])
 
   fls_tags <- fls_tags %>%
     rowwise() %>%
-    mutate(lastcomma = tail(unlist(gregexpr(',', album)), n=1))
+    mutate(secondcomma = unlist(gregexpr(',', .data$album))[2])
 
   fls_tags <- fls_tags %>%
-    mutate(stringlength = nchar(album))
+    rowwise() %>%
+    mutate(lastcomma = utils::tail(unlist(gregexpr(',', .data$album)), n=1))
 
   fls_tags <- fls_tags %>%
-    mutate(venue = str_sub(album, 10, firstcomma-1))
+    mutate(stringlength = nchar(.data$album))
 
   fls_tags <- fls_tags %>%
-    filter(venue!="Mayfaur")
+    mutate(venue = str_sub(.data$album, 10, .data$firstcomma-1))
 
   fls_tags <- fls_tags %>%
-    mutate(city = str_sub(album, firstcomma + 2, secondcomma-1))
+    filter(.data$venue!="Mayfaur")
 
   fls_tags <- fls_tags %>%
-    mutate(country = str_sub(album, lastcomma + 2, stringlength))
+    mutate(city = str_sub(.data$album, .data$firstcomma + 2, .data$secondcomma-1))
 
   fls_tags <- fls_tags %>%
-    mutate(subdivision = ifelse(country=="USA", str_sub(album, lastcomma-2, lastcomma-1),""))
+    mutate(country = str_sub(.data$album, .data$lastcomma + 2, .data$stringlength))
 
   fls_tags <- fls_tags %>%
-    select(track, album, title, duration, seconds, date, venue, city, subdivision, country)
+    mutate(subdivision = ifelse(.data$country=="USA", str_sub(.data$album, .data$lastcomma-2, .data$lastcomma-1),""))
+
+  fls_tags <- fls_tags %>%
+    select(.data$track, .data$album, .data$title, .data$duration, .data$seconds, date, .data$venue, .data$city, .data$subdivision, .data$country)
 
   date_gid <- othervariables %>%
-    select(date, gid)
+    select(date, .data$gid)
 
   fls_tags <- fls_tags %>%
     left_join(date_gid)
 
   fls_tags <- fls_tags %>%
-    filter(venue!="Van Hall" | gid!="gent-belgium-101688")
+    filter(.data$venue!="Van Hall" | .data$gid!="gent-belgium-101688")
 
   fls_tags <- fls_tags %>%
-    filter(venue!="Democrazy" | gid!="amsterdam-netherlands-101688")
+    filter(.data$venue!="Democrazy" | .data$gid!="amsterdam-netherlands-101688")
 
   # ypsilanti-mi-eastern-michigan-university-12288 is tagged twice under two
   # album-string spellings of the same recording (identical songs/durations
@@ -580,20 +580,20 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   # fuller venue text "McKenny Union Ballroom, Eastern Michigan University"
   # and the correct date already. Drop the short-venue copy as a duplicate.
   fls_tags <- fls_tags %>%
-    filter(!(gid=="ypsilanti-mi-eastern-michigan-university-12288" & venue=="Eastern Michigan University"))
+    filter(!(.data$gid=="ypsilanti-mi-eastern-michigan-university-12288" & .data$venue=="Eastern Michigan University"))
 
   fls_tags <- fls_tags %>%
-    mutate(title = ifelse(gid=="peoria-il-usa-100995" & title=="dance rap", "interlude 4", title))
+    mutate(title = ifelse(.data$gid=="peoria-il-usa-100995" & .data$title=="dance rap", "interlude 4", .data$title))
 
   # Two single-track mistagged track numbers, found via the same duplicate
   # gid/track trace and confirmed against each show's official FLS tracklist
   # page: each collides with a different song at the wrong track number,
   # leaving a gap at the track number they should actually have.
   fls_tags <- fls_tags %>%
-    mutate(track = ifelse(gid=="groningen-netherlands-90390" & title=="repeater", "23", track))
+    mutate(track = ifelse(.data$gid=="groningen-netherlands-90390" & .data$title=="repeater", "23", .data$track))
 
   fls_tags <- fls_tags %>%
-    mutate(track = ifelse(gid=="washington-dc-usa-72089" & title=="two beats off", "16", track))
+    mutate(track = ifelse(.data$gid=="washington-dc-usa-72089" & .data$title=="two beats off", "16", .data$track))
 
   # Grouped by (gid, album) - album (not just gid) is kept as a grouping key
   # so that two distinct tag batches sharing a gid (e.g. an earlier recording
@@ -603,13 +603,13 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   # the sole authoritative source for venue/city/subdivision/country, and
   # nothing reads fls_tags_show$album.
   fls_tags_show <- fls_tags %>%
-    group_by(gid, album) %>%
-    summarize(seconds = sum(seconds)) %>%
-    mutate(duration = seconds_to_period(seconds)) %>%
+    group_by(.data$gid, .data$album) %>%
+    summarize(seconds = sum(.data$seconds)) %>%
+    mutate(duration = seconds_to_period(.data$seconds)) %>%
     ungroup()
 
   fls_tags_show <- fls_tags_show %>%
-    select(gid, duration, seconds)
+    select(.data$gid, .data$duration, .data$seconds)
 
   # venue/city/subdivision/country/album are dropped from the saved table -
   # they were only ever needed transiently above (the two mistagged-track
@@ -617,7 +617,7 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   # via gid) is the sole authoritative source for venue/city/subdivision/
   # country, and nothing downstream reads fls_tags$album.
   fls_tags <- fls_tags %>%
-    select(-venue, -city, -subdivision, -country, -album)
+    select(-.data$venue, -.data$city, -.data$subdivision, -.data$country, -.data$album)
 
   setwd(mydatadir)
 
@@ -631,7 +631,7 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   # Select the most relevant columns -------
 
   Repeatr1 <- Repeatr0 %>%
-    select(gid, date = show_date, dplyr::starts_with("track_"))
+    select(.data$gid, date = .data$show_date, dplyr::starts_with("track_"))
 
   # Define date variables ----------------------------------------------------
 
@@ -662,81 +662,81 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
       names_prefix = "track_",
       values_to = "title"
     ) %>%
-    mutate(song_number = as.integer(song_number))
+    mutate(song_number = as.integer(.data$song_number))
 
 
 # check list of songs with minimal changes to the names ------------------------
 
   raw_fls_song_list <- Repeatr1 %>%
-    mutate(title = ifelse(title=="And the Same", "And The Same", title)) %>%
-    mutate(title = ifelse(title=="Back To Base", "Back to Base", title)) %>%
-    mutate(title = ifelse(title=="Bed For The Scraping (continued)", "Bed For The Scraping", title)) %>%
-    mutate(title = ifelse(title=="Bed for the Scraping", "Bed For The Scraping", title)) %>%
-    mutate(title = ifelse(title=="Bed for the Scraping", "Bed For The Scraping", title)) %>%
-    mutate(title = ifelse(title=="Give Me the Cure", "Give Me The Cure", title)) %>%
-    mutate(title = ifelse(title=="Give me the Cure", "Give Me The Cure", title)) %>%
-    mutate(title = ifelse(title=="In Defense of Humans", "In Defense Of Humans", title)) %>%
-    mutate(title = ifelse(title=="Last Chance For a Slow Dance", "Last Chance For A Slow Dance", title)) %>%
-    mutate(title = ifelse(title=="Last Chance for a Slow Dance", "Last Chance For A Slow Dance", title)) %>%
-    mutate(title = ifelse(title=="Life And Limb", "Life and Limb", title)) %>%
-    mutate(title = ifelse(title=="Life And Limb", "Life and Limb", title)) %>%
-    mutate(title = ifelse(title=="Rend it", "Rend It", title)) %>%
-    mutate(title = ifelse(title=="Returning the Screw", "Returning The Screw", title)) %>%
-    mutate(title = ifelse(title=="Shut The Door", "Shut the Door", title)) %>%
-    mutate(title = ifelse(title=="Sieve-Fisted FInd", "Sieve-Fisted Find", title)) %>%
-    mutate(title = ifelse(title=="Sweet and Low", "Sweet And Low", title))
+    mutate(title = ifelse(.data$title=="And the Same", "And The Same", .data$title)) %>%
+    mutate(title = ifelse(.data$title=="Back To Base", "Back to Base", .data$title)) %>%
+    mutate(title = ifelse(.data$title=="Bed For The Scraping (continued)", "Bed For The Scraping", .data$title)) %>%
+    mutate(title = ifelse(.data$title=="Bed for the Scraping", "Bed For The Scraping", .data$title)) %>%
+    mutate(title = ifelse(.data$title=="Bed for the Scraping", "Bed For The Scraping", .data$title)) %>%
+    mutate(title = ifelse(.data$title=="Give Me the Cure", "Give Me The Cure", .data$title)) %>%
+    mutate(title = ifelse(.data$title=="Give me the Cure", "Give Me The Cure", .data$title)) %>%
+    mutate(title = ifelse(.data$title=="In Defense of Humans", "In Defense Of Humans", .data$title)) %>%
+    mutate(title = ifelse(.data$title=="Last Chance For a Slow Dance", "Last Chance For A Slow Dance", .data$title)) %>%
+    mutate(title = ifelse(.data$title=="Last Chance for a Slow Dance", "Last Chance For A Slow Dance", .data$title)) %>%
+    mutate(title = ifelse(.data$title=="Life And Limb", "Life and Limb", .data$title)) %>%
+    mutate(title = ifelse(.data$title=="Life And Limb", "Life and Limb", .data$title)) %>%
+    mutate(title = ifelse(.data$title=="Rend it", "Rend It", .data$title)) %>%
+    mutate(title = ifelse(.data$title=="Returning the Screw", "Returning The Screw", .data$title)) %>%
+    mutate(title = ifelse(.data$title=="Shut The Door", "Shut the Door", .data$title)) %>%
+    mutate(title = ifelse(.data$title=="Sieve-Fisted FInd", "Sieve-Fisted Find", .data$title)) %>%
+    mutate(title = ifelse(.data$title=="Sweet and Low", "Sweet And Low", .data$title))
 
   raw_fls_song_list <- raw_fls_song_list %>%
-    filter(is.na(title)==FALSE) %>%
-    group_by(title) %>%
+    filter(is.na(.data$title)==FALSE) %>%
+    group_by(.data$title) %>%
     summarize(count = n()) %>%
     ungroup() %>%
-    arrange(title)
+    arrange(.data$title)
 
   raw_fls_song_list$tracktype <- 1
 
   raw_fls_song_list$title2 <- str_to_lower(raw_fls_song_list$title)
 
   raw_fls_song_list <- raw_fls_song_list %>%
-    mutate(tracktype=ifelse(grepl("interlude", title2)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("interlude", .data$title2)==TRUE, 0, .data$tracktype))
 
   raw_fls_song_list <- raw_fls_song_list %>%
-    mutate(tracktype=ifelse(grepl("encore", title2)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("encore", .data$title2)==TRUE, 0, .data$tracktype))
 
   raw_fls_song_list <- raw_fls_song_list %>%
-    mutate(tracktype=ifelse(grepl("intro", title2)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("intro", .data$title2)==TRUE, 0, .data$tracktype))
 
   raw_fls_song_list <- raw_fls_song_list %>%
-    mutate(tracktype=ifelse(grepl("track", title2)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("track", .data$title2)==TRUE, 0, .data$tracktype))
 
   raw_fls_song_list <- raw_fls_song_list %>%
-    mutate(tracktype=ifelse(grepl("remarks", title2)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("remarks", .data$title2)==TRUE, 0, .data$tracktype))
 
   raw_fls_song_list <- raw_fls_song_list %>%
-    mutate(tracktype=ifelse(grepl("crowd", title2)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("crowd", .data$title2)==TRUE, 0, .data$tracktype))
 
   raw_fls_song_list <- raw_fls_song_list %>%
-    mutate(tracktype=ifelse(grepl("outro", title2)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("outro", .data$title2)==TRUE, 0, .data$tracktype))
 
   raw_fls_song_list <- raw_fls_song_list %>%
-    mutate(tracktype=ifelse(grepl("untitled", title2)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("untitled", .data$title2)==TRUE, 0, .data$tracktype))
 
   raw_fls_song_list <- raw_fls_song_list %>%
-    mutate(tracktype=ifelse(grepl("instrumental interlude", title2)==TRUE, 1, tracktype))
+    mutate(tracktype=ifelse(grepl("instrumental interlude", .data$title2)==TRUE, 1, .data$tracktype))
 
   raw_fls_song_list <- raw_fls_song_list %>%
-    mutate(tracktype=ifelse(grepl("comedy of life", title2)==TRUE, 1, tracktype))
+    mutate(tracktype=ifelse(grepl("comedy of life", .data$title2)==TRUE, 1, .data$tracktype))
 
   raw_fls_song_list <- raw_fls_song_list %>%
-    mutate(tracktype=ifelse(grepl("link track", title2)==TRUE, 1, tracktype))
+    mutate(tracktype=ifelse(grepl("link track", .data$title2)==TRUE, 1, .data$tracktype))
 
   raw_fls_song_list$title2 <- NULL
 
   Repeatr1 <- Repeatr1 %>%
-    arrange(gid, song_number)
+    arrange(.data$gid, .data$song_number)
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(title = str_to_lower(title))
+    mutate(title = str_to_lower(.data$title))
 
   Repeatr1$nchar <- nchar(Repeatr1$title)
 
@@ -748,10 +748,10 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   # add on outros
 
   Repeatr1_outro <- fls_tags %>%
-    filter(title=="outro") %>%
-    select(gid, date, track, title) %>%
-    rename(song_number = track) %>%
-    mutate(song_number = as.numeric(song_number))
+    filter(.data$title=="outro") %>%
+    select(.data$gid, date, .data$track, .data$title) %>%
+    rename(song_number = .data$track) %>%
+    mutate(song_number = as.numeric(.data$song_number))
 
   Repeatr1_outro <- Repeatr1_outro %>%
     mutate(date = as.Date(date, "%d/%m/%Y"))
@@ -774,33 +774,33 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
 
   # keep the original title as a different variable title_original before any changes are made, so no information is lost
   Repeatr1 <- Repeatr1 %>%
-    mutate(title_original = title)
+    mutate(title_original = .data$title)
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(title = str_replace(title, " instrumental", ""))
+    mutate(title = str_replace(.data$title, " instrumental", ""))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(title = str_replace(title, " acapella", ""))
+    mutate(title = str_replace(.data$title, " acapella", ""))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(title = str_replace(title, " drum and bass jam", ""))
+    mutate(title = str_replace(.data$title, " drum and bass jam", ""))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(title = ifelse(title=="bed for the scraping (continued)", "bed for the scraping", title))
+    mutate(title = ifelse(.data$title=="bed for the scraping (continued)", "bed for the scraping", .data$title))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(title = ifelse(title=="the argument", "argument", title))
+    mutate(title = ifelse(.data$title=="the argument", "argument", .data$title))
 
   # 'promises bit' and 'promises coda' refer to the same thing but it is only the end part of promises, not the whole song.
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(title = ifelse(title=="promises bit soundcheck", "promises coda", title))
+    mutate(title = ifelse(.data$title=="promises bit soundcheck", "promises coda", .data$title))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(title = ifelse(title=="promises coda instrumental", "promises coda", title))
+    mutate(title = ifelse(.data$title=="promises coda instrumental", "promises coda", .data$title))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(title = ifelse(title=="promises bit", "promises coda", title))
+    mutate(title = ifelse(.data$title=="promises bit", "promises coda", .data$title))
 
 
   # define track types: intros, interludes, sound checks -----------------------------------------------------------------
@@ -813,93 +813,93 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   Repeatr1$tracktype <- 1
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("interlude", title)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("interlude", .data$title)==TRUE, 0, .data$tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("encore", title)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("encore", .data$title)==TRUE, 0, .data$tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("intro", title)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("intro", .data$title)==TRUE, 0, .data$tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("track", title)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("track", .data$title)==TRUE, 0, .data$tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("remarks", title)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("remarks", .data$title)==TRUE, 0, .data$tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("outside", title)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("outside", .data$title)==TRUE, 0, .data$tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("sound check", title)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("sound check", .data$title)==TRUE, 0, .data$tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("soundcheck", title)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("soundcheck", .data$title)==TRUE, 0, .data$tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("crowd", title)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("crowd", .data$title)==TRUE, 0, .data$tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("outro", title)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("outro", .data$title)==TRUE, 0, .data$tracktype))
 
   Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("untitled", title)==TRUE, 0, tracktype))
+    mutate(tracktype=ifelse(grepl("untitled", .data$title)==TRUE, 0, .data$tracktype))
 
   # Filter to remove unreleased songs or improvised one-offs ---------------------------------------
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("heart on my chest", title)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("heart on my chest", .data$title)==TRUE, 2, .data$tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("lock dug", title)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("lock dug", .data$title)==TRUE, 2, .data$tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("nedcars", title)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("nedcars", .data$title)==TRUE, 2, .data$tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("noisy dub", title)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("noisy dub", .data$title)==TRUE, 2, .data$tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("nsa", title)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("nsa", .data$title)==TRUE, 2, .data$tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("set the charges", title)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("set the charges", .data$title)==TRUE, 2, .data$tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("she is blind", title)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("she is blind", .data$title)==TRUE, 2, .data$tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("surf tune", title)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("surf tune", .data$title)==TRUE, 2, .data$tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("world beat", title)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("world beat", .data$title)==TRUE, 2, .data$tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("preprovisional", title)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("preprovisional", .data$title)==TRUE, 2, .data$tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("hello morning seed", title)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("hello morning seed", .data$title)==TRUE, 2, .data$tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("i spent it all", title)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("i spent it all", .data$title)==TRUE, 2, .data$tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("strange disclosure", title)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("strange disclosure", .data$title)==TRUE, 2, .data$tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("promises coda", title)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("promises coda", .data$title)==TRUE, 2, .data$tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("ice cream", title)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("ice cream", .data$title)==TRUE, 2, .data$tracktype))
 
     Repeatr1 <- Repeatr1 %>%
-      mutate(tracktype=ifelse(grepl("provisional medley", title)==TRUE, 2, tracktype))
+      mutate(tracktype=ifelse(grepl("provisional medley", .data$title)==TRUE, 2, .data$tracktype))
 
   # Summarise the data to check frequency counts for all songs --------------
 
   mycount <- Repeatr1 %>%
-    filter(tracktype==1) %>%
-    group_by(title) %>%
+    filter(.data$tracktype==1) %>%
+    group_by(.data$title) %>%
     summarise(count= n()) %>%
     ungroup()
 
@@ -915,10 +915,10 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   # get an id and Wikipedia metadata (via songvarslookup) even though they
   # can't compete as a choice-model alternative.
   mycount <- mycount %>%
-    arrange((title))
+    arrange((.data$title))
 
   mycount <- mycount %>% mutate(songid = row_number())
-  mycount <- mycount %>% relocate(songid)
+  mycount <- mycount %>% relocate(.data$songid)
 
   # Create lookup table to go from song id to song title --------------
 
@@ -930,34 +930,34 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   # Redefine song index in terms of the included songs ----------------------
 
   Repeatr1 <- Repeatr1 %>%
-    arrange(gid, song_number)
+    arrange(.data$gid, .data$song_number)
 
   Repeatr1a <- Repeatr1 %>%
-    filter(tracktype==1) %>%
-    group_by(gid) %>%
+    filter(.data$tracktype==1) %>%
+    group_by(.data$gid) %>%
     mutate(song_number = row_number()) %>%
     ungroup()
 
   Repeatr1a <- Repeatr1a %>%
-    mutate(first_song = ifelse(song_number==1, 1, 0))
+    mutate(first_song = ifelse(.data$song_number==1, 1, 0))
 
   Repeatr1a <- Repeatr1a %>%
-    group_by(gid) %>%
+    group_by(.data$gid) %>%
     mutate(number_songs = n()) %>%
-    mutate(last_song = ifelse(song_number==number_songs, 1, 0)) %>%
+    mutate(last_song = ifelse(.data$song_number==.data$number_songs, 1, 0)) %>%
     ungroup()
 
   Repeatr1a <- Repeatr1a %>%
-    select(gid, title, number_songs, first_song, last_song)
+    select(.data$gid, .data$title, .data$number_songs, .data$first_song, .data$last_song)
 
   Repeatr1b <- Repeatr1a %>%
-    group_by(gid) %>%
+    group_by(.data$gid) %>%
     slice(1) %>%
-    select(gid, number_songs) %>%
+    select(.data$gid, .data$number_songs) %>%
     ungroup()
 
   Repeatr1a <- Repeatr1a %>%
-    select(-number_songs)
+    select(-.data$number_songs)
 
   Repeatr1 <- Repeatr1 %>%
     left_join(Repeatr1b)
@@ -974,7 +974,7 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   # hand-maintained CSV behind songvarslookup no longer carries its own
   # songid, precisely so it can't silently drift out of sync with the
   # songid computed above (see the reconciliation check just below).
-  songvarslookup <- songvarslookup %>% select(title, rid, track_number, instrumental, vocals_picciotto, vocals_mackaye, vocals_lally, duration_seconds)
+  songvarslookup <- songvarslookup %>% select(.data$title, .data$rid, .data$track_number, .data$instrumental, .data$vocals_picciotto, .data$vocals_mackaye, .data$vocals_lally, .data$duration_seconds)
 
   Repeatr1 <- Repeatr1 %>%
     left_join(songvarslookup)
@@ -992,7 +992,7 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   # a songid at all - that's expected, not drift, so this direction is
   # checked against every classified song regardless of tracktype, not just
   # songidlookup's tracktype==1 subset.
-  all_classified_songs <- Repeatr1 %>% distinct(title)
+  all_classified_songs <- Repeatr1 %>% distinct(.data$title)
 
   songs_missing_from_songvarslookup <- anti_join(songidlookup, songvarslookup, by = "title")$title
   songs_missing_from_songidlookup <- anti_join(songvarslookup, all_classified_songs, by = "title")$title
@@ -1012,13 +1012,13 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   # Save disaggregate data -----------------------------------
 
   Repeatr1 <- Repeatr1 %>%
-    select(gid, date, year, month, day, tracktype, song_number, songid, title, number_songs, first_song, last_song, rid,	release_title, track_number, instrumental,	vocals_picciotto,	vocals_mackaye,	vocals_lally,	duration_seconds) %>%
-    arrange(date, song_number)
+    select(.data$gid, date, year, month, day, .data$tracktype, .data$song_number, .data$songid, .data$title, .data$number_songs, .data$first_song, .data$last_song, .data$rid,	.data$release_title, .data$track_number, .data$instrumental,	.data$vocals_picciotto,	.data$vocals_mackaye,	.data$vocals_lally,	.data$duration_seconds) %>%
+    arrange(date, .data$song_number)
 
   # remove duplicates
 
   Repeatr1 <- Repeatr1 %>%
-    group_by(gid, song_number) %>%
+    group_by(.data$gid, .data$song_number) %>%
     slice(1) %>%
     ungroup()
 
@@ -1033,16 +1033,16 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
 
 
   mydf <- Repeatr1 %>%
-    filter(tracktype==1) %>%
-    select(date, title)
+    filter(.data$tracktype==1) %>%
+    select(date, .data$title)
 
   mydf <- mydf %>%
-    group_by(date, title) %>%
+    group_by(date, .data$title) %>%
     summarize(count=n()) %>%
     ungroup()
 
   mydf_wide <- mydf %>%
-    pivot_wider(names_from = title, values_from = count, values_fill = 0)
+    pivot_wider(names_from = .data$title, values_from = count, values_fill = 0)
 
   mydf_wide2 <- mydf_wide
 
@@ -1059,21 +1059,21 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     filter(count>0)
 
   releases_lookup <- Repeatr1 %>%
-    group_by(title, release_title) %>%
+    group_by(.data$title, .data$release_title) %>%
     summarize(count = n()) %>%
     ungroup() %>%
-    select(title, release_title)
+    select(.data$title, .data$release_title)
 
   mydf_long <- mydf_long %>%
     left_join(releases_lookup)
 
   cumulative_song_counts <- mydf_long %>%
-    select(date, title, release_title, count)
+    select(date, .data$title, .data$release_title, count)
 
   cumulative_song_counts <- cumulative_song_counts %>%
-    mutate(release_title = tolower(release_title)) %>%
+    mutate(release_title = tolower(.data$release_title)) %>%
     left_join(releasesdatalookup) %>%
-    select(date, title, release_title, count, release_date)
+    select(date, .data$title, .data$release_title, count, .data$release_date)
 
   setwd(mydatadir)
 
@@ -1085,26 +1085,26 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   # calculate cumulative duration counts -----------------------------------
 
   song_songid <- Repeatr1 %>%
-    filter(tracktype==1) %>%
-    group_by(title, songid) %>%
+    filter(.data$tracktype==1) %>%
+    group_by(.data$title, .data$songid) %>%
     slice(1) %>%
-    select(title, songid) %>%
+    select(.data$title, .data$songid) %>%
     ungroup()
 
   mydf <- fls_tags %>%
-    select(title, seconds) %>%
-    mutate(minutes = round(seconds/60, digits = 2)) %>%
-    select(-seconds) %>%
+    select(.data$title, .data$seconds) %>%
+    mutate(minutes = round(.data$seconds/60, digits = 2)) %>%
+    select(-.data$seconds) %>%
     left_join(song_songid) %>%
-    filter(is.na(songid)==FALSE) %>%
-    select(-songid)
+    filter(is.na(.data$songid)==FALSE) %>%
+    select(-.data$songid)
 
   mydf <- mydf %>%
-    group_by(minutes, title) %>%
+    group_by(.data$minutes, .data$title) %>%
     summarize(count=n()) %>% ungroup()
 
   mydf_wide <- mydf %>%
-    pivot_wider(names_from = title, values_from = count, values_fill = 0)
+    pivot_wider(names_from = .data$title, values_from = count, values_fill = 0)
 
   mydf_wide2 <- mydf_wide
 
@@ -1117,22 +1117,22 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   }
 
   mydf_long <- mydf_wide2 %>%
-    pivot_longer(!minutes, names_to = "title", values_to = "count") %>%
+    pivot_longer(!.data$minutes, names_to = "title", values_to = "count") %>%
     filter(count>0)
 
   releases_lookup <- Repeatr1 %>%
-    group_by(title, release_title) %>%
+    group_by(.data$title, .data$release_title) %>%
     summarize(count = n()) %>%
     ungroup() %>%
-    select(title, release_title) %>%
-    filter(title!="crowd")
+    select(.data$title, .data$release_title) %>%
+    filter(.data$title!="crowd")
 
   mydf_long <- mydf_long %>%
     left_join(releases_lookup)
 
   cumulative_duration_counts <- mydf_long %>%
-    select(minutes, title, release_title, count) %>%
-    mutate(release_title = ifelse(is.na(release_title)==TRUE, "unreleased", release_title))
+    select(.data$minutes, .data$title, .data$release_title, count) %>%
+    mutate(release_title = ifelse(is.na(.data$release_title)==TRUE, "unreleased", .data$release_title))
 
   setwd(mydatadir)
 
@@ -1148,41 +1148,41 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
 # Played with data --------------------------------------------------------
 
     played_with <- Repeatr0 %>%
-      select(gid, fls_id, played_with) %>%
+      select(.data$gid, .data$fls_id, played_with) %>%
       filter(is.na(played_with)==FALSE)
 
     played_with <- played_with %>%
       mutate_if(is.character, utf8::utf8_encode)
 
     played_with <- played_with %>%
-      mutate(played_with = ifelse(gid=="bielefeld-germany-103188", "Pygmies", played_with))
+      mutate(played_with = ifelse(.data$gid=="bielefeld-germany-103188", "Pygmies", played_with))
 
     played_with <- played_with %>%
-      mutate(played_with = ifelse(gid=="rome-italy-102790", "Ratos de Por\u00e3o", played_with))
+      mutate(played_with = ifelse(.data$gid=="rome-italy-102790", "Ratos de Por\u00e3o", played_with))
 
     played_with <- played_with %>%
-      mutate(played_with = ifelse(gid=="ann-arbor-mi-usa-62390", "Ward, Ph\u00fcnh\u00f6gg", played_with))
+      mutate(played_with = ifelse(.data$gid=="ann-arbor-mi-usa-62390", "Ward, Ph\u00fcnh\u00f6gg", played_with))
 
     played_with <- played_with %>%
-      mutate(played_with = ifelse(gid=="bergara-spainbasque-101099", "Half Foot Outside, Lisab\u00f6", played_with))
+      mutate(played_with = ifelse(.data$gid=="bergara-spainbasque-101099", "Half Foot Outside, Lisab\u00f6", played_with))
 
     played_with <- played_with %>%
-      mutate(played_with = ifelse(gid=="jawbone-canyon-ca-usa-90691", "Pop Defect, Sandy Duncan\u2019s Eye, The Paper Tulips, The Offspring, The Fumes, This Great Religion, TVTV$", played_with))
+      mutate(played_with = ifelse(.data$gid=="jawbone-canyon-ca-usa-90691", "Pop Defect, Sandy Duncan\u2019s Eye, The Paper Tulips, The Offspring, The Fumes, This Great Religion, TVTV$", played_with))
 
     played_with <- played_with %>%
-      mutate(played_with = ifelse(gid=="washington-dc-usa-101589", "Fidelity Jones, Tiik, Lungfish, Juliana Experience, Weatherhead, Moss Icon, Dog Born Society, Choke, Cabal, All White Jury, Daryl Stover, Caroline Ely, 200 Stitches, Transilience, Neverman", played_with))
+      mutate(played_with = ifelse(.data$gid=="washington-dc-usa-101589", "Fidelity Jones, Tiik, Lungfish, Juliana Experience, Weatherhead, Moss Icon, Dog Born Society, Choke, Cabal, All White Jury, Daryl Stover, Caroline Ely, 200 Stitches, Transilience, Neverman", played_with))
 
     played_with <- played_with %>%
-      mutate(played_with = ifelse(gid=="belo-horizonte-brazil-81594", "Stigmata, Jorge Cabeleira, Daizy Down, Oz, Intense Manner of Living, Virna Lisi", played_with))
+      mutate(played_with = ifelse(.data$gid=="belo-horizonte-brazil-81594", "Stigmata, Jorge Cabeleira, Daizy Down, Oz, Intense Manner of Living, Virna Lisi", played_with))
 
     played_with <- played_with %>%
-      mutate(played_with = ifelse(gid=="winnipeg-mb-canada-81491", "Carpe Diem, Propagandhi", played_with))
+      mutate(played_with = ifelse(.data$gid=="winnipeg-mb-canada-81491", "Carpe Diem, Propagandhi", played_with))
 
     played_with <- played_with %>%
-      mutate(played_with = ifelse(gid=="savannah-ga-usa-11400", "Faraquet, The Flam", played_with))
+      mutate(played_with = ifelse(.data$gid=="savannah-ga-usa-11400", "Faraquet, The Flam", played_with))
 
     played_with <- played_with %>%
-      mutate(played_with = ifelse(gid=="buenos-aires-argentina-82297", "Massacre, Dixie Dynamite, Cienfuegos, Slam Up, Hiram Walker", played_with))
+      mutate(played_with = ifelse(.data$gid=="buenos-aires-argentina-82297", "Massacre, Dixie Dynamite, Cienfuegos, Slam Up, Hiram Walker", played_with))
 
     played_with<-played_with %>%
       separate_rows(played_with, sep=",")
@@ -1260,15 +1260,15 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
       filter(played_with!="plus others")
 
     played_with <- played_with %>%
-      group_by(gid, fls_id, played_with) %>%
+      group_by(.data$gid, .data$fls_id, played_with) %>%
       summarize(count = n()) %>%
       ungroup()
 
     played_with <- played_with %>%
-      select(gid, fls_id, played_with)
+      select(.data$gid, .data$fls_id, played_with)
 
     played_with <- played_with %>%
-      arrange(fls_id, played_with)
+      arrange(.data$fls_id, played_with)
 
     setwd(mydatadir)
 
@@ -1281,29 +1281,29 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     setwd(mydatadir)
 
     releaseid_variable_colour_code <- releasesdatalookup %>%
-      select(rid, variable, colour_code)
+      select(.data$rid, .data$variable, colour_code)
 
     save(releaseid_variable_colour_code, file = "releaseid_variable_colour_code.rda")
 
     transitions_data_da1 <- Repeatr1 %>%
-      filter(tracktype==1) %>%
-      select(gid,date,song_number,title) %>%
-      rename(title1 = title)
+      filter(.data$tracktype==1) %>%
+      select(.data$gid,date,.data$song_number,.data$title) %>%
+      rename(title1 = .data$title)
 
     transitions_data_da2 <- Repeatr1 %>%
-      filter(tracktype==1) %>%
-      select(gid,date,song_number,title) %>%
-      mutate(song_number = song_number-1) %>%
-      rename(title2 = title)
+      filter(.data$tracktype==1) %>%
+      select(.data$gid,date,.data$song_number,.data$title) %>%
+      mutate(song_number = .data$song_number-1) %>%
+      rename(title2 = .data$title)
 
     transitions_data_da <- transitions_data_da1 %>%
       left_join(transitions_data_da2) %>%
-      filter(is.na(title2)==FALSE) %>%
-      rename(transition = song_number) %>%
-      mutate(url = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
-      mutate(fls_link = paste0("<a href='",  url, "' target='_blank'>", gid, "</a>")) %>%
-      select(gid, url, fls_link, date, transition, title1, title2) %>%
-      mutate(transition = as.integer(transition))
+      filter(is.na(.data$title2)==FALSE) %>%
+      rename(transition = .data$song_number) %>%
+      mutate(url = paste0("https://www.dischord.com/fugazi_live_series/", .data$gid)) %>%
+      mutate(fls_link = paste0("<a href='",  url, "' target='_blank'>", .data$gid, "</a>")) %>%
+      select(.data$gid, url, .data$fls_link, date, .data$transition, .data$title1, .data$title2) %>%
+      mutate(transition = as.integer(.data$transition))
 
     transitions_data_da$date <- format(transitions_data_da$date,'%Y-%m-%d')
 
@@ -1317,47 +1317,47 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
       ungroup() %>%
       arrange(date) %>%
       mutate(show_num = row_number(),
-             last_show = max(show_num))
+             last_show = max(.data$show_num))
 
     releases_menu_list <- releasesdatalookup %>%
-      arrange(rid) %>%
-      filter(rid!=12 & rid!=14 & rid!=15)
+      arrange(.data$rid) %>%
+      filter(.data$rid!=12 & .data$rid!=14 & .data$rid!=15)
 
     save(releases_menu_list, file = "releases_menu_list.rda")
 
     colour_code <- releasesdatalookup %>%
-      arrange(rid) %>%
-      filter(rid>0) %>%
-      select(rid, colour_code)
+      arrange(.data$rid) %>%
+      filter(.data$rid>0) %>%
+      select(.data$rid, colour_code)
 
     releases_data_input <- Repeatr1 %>%
       left_join(show_sequence) %>%
       left_join(colour_code) %>%
-      group_by(rid, release_title, track_number, title, last_show, colour_code) %>%
+      group_by(.data$rid, .data$release_title, .data$track_number, .data$title, .data$last_show, colour_code) %>%
       summarize(count = n(),
                 date=min(date),
-                show_num = min(show_num)) %>%
+                show_num = min(.data$show_num)) %>%
       ungroup()
 
     releases_data_input <- releases_data_input %>%
-      arrange(desc(rid), desc(track_number)) %>%
-      mutate(title = factor(title, levels=unique(title))) %>%
-      mutate(release_title = factor(release_title, levels=rev(unique(release_title)))) %>%
-      mutate(shows = last_show-show_num+1,
-             intensity = round(count / shows, digits=4)) %>%
-      filter(rid>0)
+      arrange(desc(.data$rid), desc(.data$track_number)) %>%
+      mutate(title = factor(.data$title, levels=unique(.data$title))) %>%
+      mutate(release_title = factor(.data$release_title, levels=rev(unique(.data$release_title)))) %>%
+      mutate(shows = .data$last_show-.data$show_num+1,
+             intensity = round(count / .data$shows, digits=4)) %>%
+      filter(.data$rid>0)
 
     save(releases_data_input, file = "releases_data_input.rda")
 
     releases_summary <- releases_data_input %>%
-      group_by(rid, release_title, last_show) %>%
+      group_by(.data$rid, .data$release_title, .data$last_show) %>%
       summarize(count = sum(count),
                 songs=n(),
                 first_debut=min(date),
                 last_debut=max(date),
-                first_show = min(show_num),
-                shows = round(mean(shows), digits=0),
-                intensity = round(mean(intensity), digits = 4)) %>%
+                first_show = min(.data$show_num),
+                shows = round(mean(.data$shows), digits=0),
+                intensity = round(mean(.data$intensity), digits = 4)) %>%
       ungroup()
 
     # Named distinctly (not reassigned to `releasesdatalookup`) so this
@@ -1366,19 +1366,19 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     # needs the full version (release_title, rym_rating, etc.), not just these
     # two columns.
     releasesdatalookup_dates <- releasesdatalookup %>%
-      select(rid, release_date)
+      select(.data$rid, .data$release_date)
 
     releases_summary <- releases_summary %>%
       left_join(releasesdatalookup_dates) %>%
-      select(rid, release_title, first_debut, last_debut, release_date, songs, count, shows, intensity) %>%
-      filter(rid>0)
+      select(.data$rid, .data$release_title, .data$first_debut, .data$last_debut, .data$release_date, .data$songs, count, .data$shows, .data$intensity) %>%
+      filter(.data$rid>0)
 
     save(releases_summary, file = "releases_summary.rda")
 
     gid_minutes <- fls_tags_show %>%
-      select(gid, seconds) %>%
-      mutate(minutes = round(seconds/60, digits = 2)) %>%
-      select(-seconds)
+      select(.data$gid, .data$seconds) %>%
+      mutate(minutes = round(.data$seconds/60, digits = 2)) %>%
+      select(-.data$seconds)
 
     # occurrence: within-show rank of each tagged appearance of a title, by
     # tag/track order - needed so a song repeated within one show (e.g. two
@@ -1388,34 +1388,34 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     # repeat) or silently duplicates one duration onto every repeat (when
     # only Repeatr1's side does).
     gid_song_minutes <- fls_tags %>%
-      mutate(minutes = round(seconds/60, digits = 2)) %>%
-      arrange(gid, title, as.numeric(track)) %>%
-      group_by(gid, title) %>%
+      mutate(minutes = round(.data$seconds/60, digits = 2)) %>%
+      arrange(.data$gid, .data$title, as.numeric(.data$track)) %>%
+      group_by(.data$gid, .data$title) %>%
       mutate(occurrence = row_number()) %>%
       ungroup() %>%
-      select(gid, title, occurrence, minutes)
+      select(.data$gid, .data$title, .data$occurrence, .data$minutes)
 
     checkmatch <- Repeatr1 %>%
       full_join(gid_song_minutes) %>%
-      filter(is.na(minutes)==TRUE | is.na(year)==TRUE) %>%
-      arrange(date, song_number)
+      filter(is.na(.data$minutes)==TRUE | is.na(year)==TRUE) %>%
+      arrange(date, .data$song_number)
 
-    tour_lookup <- othervariables %>% select(gid, tour) %>%
-      group_by(gid) %>%
+    tour_lookup <- othervariables %>% select(.data$gid, .data$tour) %>%
+      group_by(.data$gid) %>%
       slice(1) %>%
       ungroup()
 
     shows_data <- othervariables %>%
-      filter(is.na(attendance)==FALSE) %>%
-      filter(is.na(tour)==FALSE) %>%
-      mutate(attendance = as.integer(attendance)) %>%
+      filter(is.na(.data$attendance)==FALSE) %>%
+      filter(is.na(.data$tour)==FALSE) %>%
+      mutate(attendance = as.integer(.data$attendance)) %>%
       mutate(date = as.Date(date, "%d-%m-%Y")) %>%
       mutate(year = lubridate::year(date)) %>%
-      rename(latitude = y) %>%
-      rename(longitude = x) %>%
-      select(gid, tour, year, date, venue, city, subdivision, country, attendance, price, currency, latitude, longitude, fls_notes) %>%
-      mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
-      mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>")) %>%
+      rename(latitude = .data$y) %>%
+      rename(longitude = .data$x) %>%
+      select(.data$gid, .data$tour, year, date, .data$venue, .data$city, .data$subdivision, .data$country, .data$attendance, .data$price, .data$currency, .data$latitude, .data$longitude, .data$fls_notes) %>%
+      mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", .data$gid)) %>%
+      mutate(fls_link = paste0("<a href='",  .data$urls, "' target='_blank'>", .data$gid, "</a>")) %>%
       left_join(gid_minutes) %>%
       left_join(gid_sound_quality)
 
@@ -1426,7 +1426,7 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     # sharing one gid there, which would otherwise silently duplicate that
     # gid here too.
     shows_data <- shows_data %>%
-      group_by(gid) %>%
+      group_by(.data$gid) %>%
       slice(1) %>%
       ungroup()
 
@@ -1438,7 +1438,7 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     home_lon <- shows_data$longitude[which.min(shows_data$date)]
 
     trip_distances <- classify_show_trips(shows_data, home_lat, home_lon) %>%
-      select(gid, distance_home_km, distance_to_km, distance_back_km)
+      select(.data$gid, .data$distance_home_km, .data$distance_to_km, .data$distance_back_km)
 
     shows_data <- shows_data %>%
       left_join(trip_distances, by = "gid") %>%
@@ -1447,9 +1447,9 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     save(shows_data, file = "shows_data.rda")
 
     last_performance_data <- Repeatr1 %>%
-      filter(tracktype==1) %>%
-      select(date, title)%>%
-      group_by(title) %>%
+      filter(.data$tracktype==1) %>%
+      select(date, .data$title)%>%
+      group_by(.data$title) %>%
       summarize(last_performance=max(date)) %>%
       ungroup()
 
@@ -1462,86 +1462,86 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
       left_join(releasesdatalookup)
 
     xray <- xray %>%
-      mutate(unreleased = ifelse(tracktype==2 | (tracktype==1 & date<release_date),1,0))
+      mutate(unreleased = ifelse(.data$tracktype==2 | (.data$tracktype==1 & date<.data$release_date),1,0))
 
     xray2 <- Repeatr::summary %>%
-      select(songid, launchdate)
+      select(.data$songid, .data$launchdate)
 
     xray <- xray %>%
       left_join(xray2)
 
     xray <- xray %>%
-      mutate(debut = ifelse(date==launchdate,1,0)) %>%
-      mutate(debut = ifelse(is.na(debut)==TRUE,0,debut))
+      mutate(debut = ifelse(date==.data$launchdate,1,0)) %>%
+      mutate(debut = ifelse(is.na(.data$debut)==TRUE,0,.data$debut))
 
     xray <- xray %>%
       left_join(last_performance_data)
 
     xray <- xray %>%
-      mutate(last_performance=ifelse(date==last_performance,1,0)) %>%
-      mutate(last_performance = ifelse(is.na(last_performance)==TRUE,0,last_performance))
+      mutate(last_performance=ifelse(date==.data$last_performance,1,0)) %>%
+      mutate(last_performance = ifelse(is.na(.data$last_performance)==TRUE,0,.data$last_performance))
 
     # occurrence: matches gid_song_minutes's own within-(gid,title) rank (see
     # its construction above) so a title repeated within one show pairs up
     # with the correct tagged occurrence, same reasoning as duration_data_da.
     xray <- xray %>%
-      arrange(gid, title, song_number) %>%
-      group_by(gid, title) %>%
+      arrange(.data$gid, .data$title, .data$song_number) %>%
+      group_by(.data$gid, .data$title) %>%
       mutate(occurrence = row_number()) %>%
       ungroup() %>%
       left_join(gid_song_minutes, by = c("gid", "title", "occurrence")) %>%
-      select(-occurrence)
+      select(-.data$occurrence)
 
     # remove tracks from front-end data that were not actually included in the MP3 download
 
     xray <- xray %>%
-      filter(gid!="washington-dc-usa-80793" | tracktype!=0 | is.na(minutes)==FALSE)
+      filter(.data$gid!="washington-dc-usa-80793" | .data$tracktype!=0 | is.na(.data$minutes)==FALSE)
 
     xray <- xray %>%
       mutate(track = 1,
-             songtrack = ifelse(tracktype==1, 1, 0))
+             songtrack = ifelse(.data$tracktype==1, 1, 0))
 
     xray <- xray %>%
-      mutate(release_title = ifelse(is.na(release_title)==TRUE, "other", release_title))
+      mutate(release_title = ifelse(is.na(.data$release_title)==TRUE, "other", .data$release_title))
 
     xray_tracks <- xray %>%
       mutate(units = "tracks") %>%
       mutate(year = lubridate::year(date)) %>%
-      mutate(fugazi = ifelse(release_title=="fugazi",1,0),
-             margin_walker = ifelse(release_title=="margin walker",1,0),
-             three_songs = ifelse(release_title=="3 songs",1,0),
-             repeater = ifelse(release_title=="repeater",1,0),
-             steady_diet_of_nothing = ifelse(release_title=="steady diet of nothing",1,0),
-             in_on_the_killtaker = ifelse(release_title=="in on the killtaker",1,0),
-             red_medicine = ifelse(release_title=="red medicine",1,0),
-             end_hits = ifelse(release_title=="end hits",1,0),
-             the_argument = ifelse(release_title=="the argument",1,0),
-             furniture = ifelse(release_title=="furniture",1,0),
-             first_demo = ifelse(release_title=="first demo",1,0),
-             other = ifelse(release_title=="other",1,0),
-             unreleased = ifelse(unreleased==1,1,0),
-             songs = ifelse(songtrack==1,1,0))
+      mutate(fugazi = ifelse(.data$release_title=="fugazi",1,0),
+             margin_walker = ifelse(.data$release_title=="margin walker",1,0),
+             three_songs = ifelse(.data$release_title=="3 songs",1,0),
+             repeater = ifelse(.data$release_title=="repeater",1,0),
+             steady_diet_of_nothing = ifelse(.data$release_title=="steady diet of nothing",1,0),
+             in_on_the_killtaker = ifelse(.data$release_title=="in on the killtaker",1,0),
+             red_medicine = ifelse(.data$release_title=="red medicine",1,0),
+             end_hits = ifelse(.data$release_title=="end hits",1,0),
+             the_argument = ifelse(.data$release_title=="the argument",1,0),
+             furniture = ifelse(.data$release_title=="furniture",1,0),
+             first_demo = ifelse(.data$release_title=="first demo",1,0),
+             other = ifelse(.data$release_title=="other",1,0),
+             unreleased = ifelse(.data$unreleased==1,1,0),
+             songs = ifelse(.data$songtrack==1,1,0))
 
 
     xray_tracks <- xray_tracks %>%
-      group_by(gid, date, year, tour, units) %>%
-      summarize(unreleased = sum(unreleased),
-                debut = sum(debut),
-                farewell = sum(last_performance),
-                fugazi = sum(fugazi),
-                margin_walker = sum(margin_walker),
-                three_songs = sum(three_songs),
-                repeater = sum(repeater),
-                steady_diet_of_nothing = sum(steady_diet_of_nothing),
-                in_on_the_killtaker = sum(in_on_the_killtaker),
-                red_medicine = sum(red_medicine),
-                end_hits = sum(end_hits),
-                the_argument = sum(the_argument),
-                furniture = sum(furniture),
-                first_demo = sum(first_demo),
-                other = sum(other),
-                unreleased = sum(unreleased),
-                songs = sum(songs)) %>%
+      group_by(.data$gid, date, year, .data$tour, units) %>%
+      summarize(unreleased = sum(.data$unreleased),
+                debut = sum(.data$debut),
+                farewell = sum(.data$last_performance),
+                fugazi = sum(.data$fugazi),
+                margin_walker = sum(.data$margin_walker),
+                three_songs = sum(.data$three_songs),
+                repeater = sum(.data$repeater),
+                steady_diet_of_nothing = sum(.data$steady_diet_of_nothing),
+                in_on_the_killtaker = sum(.data$in_on_the_killtaker),
+                red_medicine = sum(.data$red_medicine),
+                end_hits = sum(.data$end_hits),
+                the_argument = sum(.data$the_argument),
+                furniture = sum(.data$furniture),
+                first_demo = sum(.data$first_demo),
+                other = sum(.data$other),
+                unreleased = sum(.data$unreleased),
+                songs = sum(.data$songs)) %>%
       arrange(date) %>%
       ungroup()
 
@@ -1550,40 +1550,40 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     xray_minutes <- xray %>%
       mutate(units = "minutes") %>%
       mutate(year = lubridate::year(date)) %>%
-      mutate(fugazi = ifelse(release_title=="fugazi",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
-             margin_walker = ifelse(release_title=="margin walker",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
-             three_songs = ifelse(release_title=="3 songs",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
-             repeater = ifelse(release_title=="repeater",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
-             steady_diet_of_nothing = ifelse(release_title=="steady diet of nothing",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
-             in_on_the_killtaker = ifelse(release_title=="in on the killtaker",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
-             red_medicine = ifelse(release_title=="red medicine",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
-             end_hits = ifelse(release_title=="end hits",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
-             the_argument = ifelse(release_title=="the argument",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
-             furniture = ifelse(release_title=="furniture",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
-             first_demo = ifelse(release_title=="first demo",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
-             other = ifelse(release_title=="other",ifelse(is.na(minutes)==TRUE, 0, minutes),0),
-             unreleased = ifelse(unreleased==1,ifelse(is.na(minutes)==TRUE, 0, minutes),0),
-             songs = ifelse(songtrack==1,ifelse(is.na(minutes)==TRUE, 0, minutes),0))
+      mutate(fugazi = ifelse(.data$release_title=="fugazi",ifelse(is.na(.data$minutes)==TRUE, 0, .data$minutes),0),
+             margin_walker = ifelse(.data$release_title=="margin walker",ifelse(is.na(.data$minutes)==TRUE, 0, .data$minutes),0),
+             three_songs = ifelse(.data$release_title=="3 songs",ifelse(is.na(.data$minutes)==TRUE, 0, .data$minutes),0),
+             repeater = ifelse(.data$release_title=="repeater",ifelse(is.na(.data$minutes)==TRUE, 0, .data$minutes),0),
+             steady_diet_of_nothing = ifelse(.data$release_title=="steady diet of nothing",ifelse(is.na(.data$minutes)==TRUE, 0, .data$minutes),0),
+             in_on_the_killtaker = ifelse(.data$release_title=="in on the killtaker",ifelse(is.na(.data$minutes)==TRUE, 0, .data$minutes),0),
+             red_medicine = ifelse(.data$release_title=="red medicine",ifelse(is.na(.data$minutes)==TRUE, 0, .data$minutes),0),
+             end_hits = ifelse(.data$release_title=="end hits",ifelse(is.na(.data$minutes)==TRUE, 0, .data$minutes),0),
+             the_argument = ifelse(.data$release_title=="the argument",ifelse(is.na(.data$minutes)==TRUE, 0, .data$minutes),0),
+             furniture = ifelse(.data$release_title=="furniture",ifelse(is.na(.data$minutes)==TRUE, 0, .data$minutes),0),
+             first_demo = ifelse(.data$release_title=="first demo",ifelse(is.na(.data$minutes)==TRUE, 0, .data$minutes),0),
+             other = ifelse(.data$release_title=="other",ifelse(is.na(.data$minutes)==TRUE, 0, .data$minutes),0),
+             unreleased = ifelse(.data$unreleased==1,ifelse(is.na(.data$minutes)==TRUE, 0, .data$minutes),0),
+             songs = ifelse(.data$songtrack==1,ifelse(is.na(.data$minutes)==TRUE, 0, .data$minutes),0))
 
     xray_minutes <- xray_minutes %>%
-      group_by(gid, date, year, tour, units) %>%
-      summarize(unreleased = sum(unreleased),
-                debut = sum(debut),
-                farewell = sum(last_performance),
-                fugazi = sum(fugazi),
-                margin_walker = sum(margin_walker),
-                three_songs = sum(three_songs),
-                repeater = sum(repeater),
-                steady_diet_of_nothing = sum(steady_diet_of_nothing),
-                in_on_the_killtaker = sum(in_on_the_killtaker),
-                red_medicine = sum(red_medicine),
-                end_hits = sum(end_hits),
-                the_argument = sum(the_argument),
-                furniture = sum(furniture),
-                first_demo = sum(first_demo),
-                other = sum(other),
-                unreleased = sum(unreleased),
-                songs = sum(songs)) %>%
+      group_by(.data$gid, date, year, .data$tour, units) %>%
+      summarize(unreleased = sum(.data$unreleased),
+                debut = sum(.data$debut),
+                farewell = sum(.data$last_performance),
+                fugazi = sum(.data$fugazi),
+                margin_walker = sum(.data$margin_walker),
+                three_songs = sum(.data$three_songs),
+                repeater = sum(.data$repeater),
+                steady_diet_of_nothing = sum(.data$steady_diet_of_nothing),
+                in_on_the_killtaker = sum(.data$in_on_the_killtaker),
+                red_medicine = sum(.data$red_medicine),
+                end_hits = sum(.data$end_hits),
+                the_argument = sum(.data$the_argument),
+                furniture = sum(.data$furniture),
+                first_demo = sum(.data$first_demo),
+                other = sum(.data$other),
+                unreleased = sum(.data$unreleased),
+                songs = sum(.data$songs)) %>%
       arrange(date) %>%
       ungroup()
 
@@ -1601,20 +1601,20 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     # construction and only applies to the minutes rows (tracks rows count
     # tracktype directly and aren't affected by this join at all).
     xray <- xray %>%
-      left_join(gid_minutes %>% rename(total_minutes = minutes), by = "gid") %>%
-      mutate(other = ifelse(units=="minutes", total_minutes - songs, other)) %>%
-      select(-total_minutes)
+      left_join(gid_minutes %>% rename(total_minutes = .data$minutes), by = "gid") %>%
+      mutate(other = ifelse(units=="minutes", .data$total_minutes - .data$songs, .data$other)) %>%
+      select(-.data$total_minutes)
 
     xray <- xray %>%
-      mutate(released = songs - unreleased,
-             incumbent = songs - debut - farewell)
+      mutate(released = .data$songs - .data$unreleased,
+             incumbent = .data$songs - .data$debut - .data$farewell)
 
     xray <- xray %>%
-      mutate(url = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
-      mutate(fls_link = paste0("<a href='",  url, "' target='_blank'>", gid, "</a>"))
+      mutate(url = paste0("https://www.dischord.com/fugazi_live_series/", .data$gid)) %>%
+      mutate(fls_link = paste0("<a href='",  url, "' target='_blank'>", .data$gid, "</a>"))
 
     xray <- xray %>%
-      relocate(gid, url, fls_link, year, tour, date, units, songs, released, unreleased, other, debut, farewell, incumbent, other)
+      relocate(.data$gid, url, .data$fls_link, year, .data$tour, date, units, .data$songs, .data$released, .data$unreleased, .data$other, .data$debut, .data$farewell, .data$incumbent, .data$other)
 
     rm(xray_minutes, xray_tracks, xray2)
 
@@ -1628,16 +1628,16 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     # patching a handful of "fake duplicates" the old (gid, title)-only join
     # produced - no longer needed once the join itself is unambiguous.
     duration_data_da <- Repeatr1 %>%
-      filter(tracktype==1) %>%
-      select(gid,date, song_number, title) %>%
-      mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
-      mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>")) %>%
-      arrange(gid, title, song_number) %>%
-      group_by(gid, title) %>%
+      filter(.data$tracktype==1) %>%
+      select(.data$gid,date, .data$song_number, .data$title) %>%
+      mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", .data$gid)) %>%
+      mutate(fls_link = paste0("<a href='",  .data$urls, "' target='_blank'>", .data$gid, "</a>")) %>%
+      arrange(.data$gid, .data$title, .data$song_number) %>%
+      group_by(.data$gid, .data$title) %>%
       mutate(occurrence = row_number()) %>%
       ungroup() %>%
       left_join(gid_song_minutes, by = c("gid", "title", "occurrence")) %>%
-      select(-occurrence)
+      select(-.data$occurrence)
 
     # A gid with no recording at all (every row above unmatched) shouldn't
     # appear here as a phantom all-NA "recording" - e.g.
@@ -1648,30 +1648,30 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     # occupy real slots in the rendition-count ranking downstream (recap())
     # for every title involved.
     duration_data_da <- duration_data_da %>%
-      group_by(gid) %>%
-      filter(any(is.na(minutes)==FALSE)) %>%
+      group_by(.data$gid) %>%
+      filter(any(is.na(.data$minutes)==FALSE)) %>%
       ungroup()
 
     duration_data_da <- duration_data_da %>%
-      group_by(gid) %>%
-      mutate(first_song_number = min(song_number),
-             last_song_number = max(song_number),
-             position = ifelse(last_song_number > first_song_number,
-                                round((song_number - first_song_number) / (last_song_number - first_song_number), digits = 2),
+      group_by(.data$gid) %>%
+      mutate(first_song_number = min(.data$song_number),
+             last_song_number = max(.data$song_number),
+             position = ifelse(.data$last_song_number > .data$first_song_number,
+                                round((.data$song_number - .data$first_song_number) / (.data$last_song_number - .data$first_song_number), digits = 2),
                                 0)) %>%
       ungroup() %>%
-      select(-first_song_number, -last_song_number)
+      select(-.data$first_song_number, -.data$last_song_number)
 
     save(duration_data_da, file = "duration_data_da.rda")
 
     mydf_pos <- duration_data_da %>%
-      select(position, title) %>%
-      group_by(position, title) %>%
+      select(.data$position, .data$title) %>%
+      group_by(.data$position, .data$title) %>%
       summarize(count = n()) %>%
       ungroup()
 
     mydf_pos_wide <- mydf_pos %>%
-      pivot_wider(names_from = title, values_from = count, values_fill = 0)
+      pivot_wider(names_from = .data$title, values_from = count, values_fill = 0)
 
     mydf_pos_wide2 <- mydf_pos_wide
     number_columns_pos <- ncol(mydf_pos_wide2)
@@ -1680,24 +1680,24 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     }
 
     mydf_pos_long <- mydf_pos_wide2 %>%
-      pivot_longer(!position, names_to = "title", values_to = "count") %>%
+      pivot_longer(!.data$position, names_to = "title", values_to = "count") %>%
       filter(count>0) %>%
       left_join(releases_lookup)
 
     cumulative_position_counts <- mydf_pos_long %>%
-      select(position, title, release_title, count) %>%
-      mutate(release_title = ifelse(is.na(release_title)==TRUE, "unreleased", release_title))
+      select(.data$position, .data$title, .data$release_title, count) %>%
+      mutate(release_title = ifelse(is.na(.data$release_title)==TRUE, "unreleased", .data$release_title))
 
     save(cumulative_position_counts, file = "cumulative_position_counts.rda")
 
     position_summary <- duration_data_da %>%
-      group_by(title) %>%
+      group_by(.data$title) %>%
       summarize(renditions = n(),
-                position_min = round(min(position), digits = 2),
-                position_median = round(median(position), digits = 2),
-                position_max = round(max(position), digits = 2),
-                position_mean = round(mean(position), digits = 2),
-                position_sd = round(sd(position), digits = 2)) %>%
+                position_min = round(min(.data$position), digits = 2),
+                position_median = round(stats::median(.data$position), digits = 2),
+                position_max = round(max(.data$position), digits = 2),
+                position_mean = round(mean(.data$position), digits = 2),
+                position_sd = round(stats::sd(.data$position), digits = 2)) %>%
       ungroup()
 
     save(position_summary, file = "position_summary.rda")
@@ -1715,40 +1715,40 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     # rows' minutes, not the whole title, and they still count toward
     # renditions since the performance itself is real.
     duration_summary <- duration_data_da %>%
-      group_by(title) %>%
+      group_by(.data$title) %>%
       summarize(renditions = n(),
-                minutes_min = round(min(minutes, na.rm = TRUE), digits = 2),
-                minutes_median = round(median(minutes, na.rm = TRUE), digits = 2),
-                minutes_max = round(max(minutes, na.rm = TRUE), digits = 2),
-                minutes_mean = round(mean(minutes, na.rm = TRUE), digits = 2),
-                minutes_sd = round(sd(minutes, na.rm = TRUE), digits = 2)) %>%
+                minutes_min = round(min(.data$minutes, na.rm = TRUE), digits = 2),
+                minutes_median = round(stats::median(.data$minutes, na.rm = TRUE), digits = 2),
+                minutes_max = round(max(.data$minutes, na.rm = TRUE), digits = 2),
+                minutes_mean = round(mean(.data$minutes, na.rm = TRUE), digits = 2),
+                minutes_sd = round(stats::sd(.data$minutes, na.rm = TRUE), digits = 2)) %>%
       ungroup() %>%
-      mutate(minutes_total = round(renditions*minutes_mean, digits = 2))
+      mutate(minutes_total = round(.data$renditions*.data$minutes_mean, digits = 2))
 
     save(duration_summary, file = "duration_summary.rda")
 
     othervariables <- othervariables %>%
       left_join(gid_sound_quality) %>%
-      mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
-      mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>"))
+      mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", .data$gid)) %>%
+      mutate(fls_link = paste0("<a href='",  .data$urls, "' target='_blank'>", .data$gid, "</a>"))
 
     played_with <- played_with %>%
-      select(gid, played_with)
+      select(.data$gid, played_with)
 
     played_with_data <- othervariables %>%
       left_join(played_with)
 
     played_with_data <- played_with_data %>%
-      rename(latitude = y, longitude = x) %>%
-      mutate(attendance = round(attendance, 0))
+      rename(latitude = .data$y, longitude = .data$x) %>%
+      mutate(attendance = round(.data$attendance, 0))
 
     played_with_data <- played_with_data %>%
-      select(gid, fls_link, year, tour, date, venue, city, country, played_with, attendance, sound_quality, latitude, longitude)
+      select(.data$gid, .data$fls_link, year, .data$tour, date, .data$venue, .data$city, .data$country, played_with, .data$attendance, .data$sound_quality, .data$latitude, .data$longitude)
 
     played_with_summary <- played_with_data %>%
-      group_by(year, tour, played_with) %>%
+      group_by(year, .data$tour, played_with) %>%
       summarize(shows = n()) %>%
-      arrange(desc(shows)) %>%
+      arrange(desc(.data$shows)) %>%
       ungroup()
 
     save(played_with_summary, file = "played_with_summary.rda")

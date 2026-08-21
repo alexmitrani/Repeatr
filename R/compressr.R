@@ -23,7 +23,7 @@ compressr <- function(mydf,...) {
 
   my_return_name <- deparse(substitute(mydf))
 
-  myinitialsize <- round(object.size(mydf)/1000000, digits = 3)
+  myinitialsize <- round(utils::object.size(mydf)/1000000, digits = 3)
   cat(paste0("Size of ", my_return_name, " before converting the storage modes of specified variables to integer: ", myinitialsize, " MB. \n"))
 
 
@@ -44,7 +44,7 @@ compressr <- function(mydf,...) {
 
   }
 
-  myfinalsize <- round(object.size(mydf)/1000000, digits = 3)
+  myfinalsize <- round(utils::object.size(mydf)/1000000, digits = 3)
   cat(paste0("Size of ", my_return_name, " after converting storage mode of variables to integer: ", myfinalsize, " MB. \n"))
   ramsaved <- round(myinitialsize - myfinalsize, digits = 3)
   cat(paste0("RAM saved: ", ramsaved, " MB. \n"))

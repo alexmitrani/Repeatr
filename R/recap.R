@@ -195,13 +195,13 @@ classify_show_trips <- function(shows, home_lat, home_lon, max_gap_days = 21, ho
 note_rare_tracks <- function(mygid, Repeatr1, rare_max_count = 20) {
 
   show_titles <- Repeatr1 %>%
-    filter(gid==mygid, tracktype %in% c(1, 2)) %>%
-    distinct(title) %>%
-    pull(title)
+    filter(.data$gid==mygid, .data$tracktype %in% c(1, 2)) %>%
+    distinct(.data$title) %>%
+    pull(.data$title)
 
   series_counts <- Repeatr1 %>%
-    filter(tracktype %in% c(1, 2)) %>%
-    count(title)
+    filter(.data$tracktype %in% c(1, 2)) %>%
+    count(.data$title)
 
   rare_titles <- show_titles[show_titles %in% series_counts$title[series_counts$n<rare_max_count]]
 
@@ -238,7 +238,7 @@ note_out_of_position <- function(tracklist_full, position_deviation_threshold = 
   }
 
   out_of_position <- tracklist_full %>%
-    filter(is.na(position)==FALSE, is.na(position_mean)==FALSE, abs(position - position_mean)>position_deviation_threshold)
+    filter(is.na(.data$position)==FALSE, is.na(.data$position_mean)==FALSE, abs(.data$position - .data$position_mean)>position_deviation_threshold)
 
   if (nrow(out_of_position)==0) {
     return(NA_character_)
@@ -258,8 +258,8 @@ note_out_of_position <- function(tracklist_full, position_deviation_threshold = 
 note_repeated_song <- function(mygid, Repeatr1) {
 
   repeat_counts <- Repeatr1 %>%
-    filter(gid==mygid, tracktype==1) %>%
-    count(title) %>%
+    filter(.data$gid==mygid, .data$tracktype==1) %>%
+    count(.data$title) %>%
     filter(n>=2)
 
   if (nrow(repeat_counts)==0) {
@@ -301,7 +301,7 @@ note_repeated_song <- function(mygid, Repeatr1) {
 note_record_rendition <- function(tracklist_full, mygid, duration_data_da, percentile = 5, min_renditions = 20, incomplete_seconds = 60) {
 
   eligible <- tracklist_full %>%
-    filter(is.na(renditions)==FALSE, renditions>=min_renditions)
+    filter(is.na(.data$renditions)==FALSE, .data$renditions>=min_renditions)
 
   if (nrow(eligible)==0) {
     return(NA_character_)
@@ -321,8 +321,8 @@ note_record_rendition <- function(tracklist_full, mygid, duration_data_da, perce
     row_minutes <- eligible$minutes[i]
 
     all_minutes <- duration_data_da %>%
-      filter(title==row_title) %>%
-      pull(minutes)
+      filter(.data$title==row_title) %>%
+      pull(.data$minutes)
     all_minutes <- all_minutes[is.na(all_minutes)==FALSE]
 
     if (length(all_minutes)==0 | is.na(row_minutes)) {
@@ -404,17 +404,17 @@ note_first_last_rendition <- function(mygid, this_show_date, show_renditions, du
   }
 
   title_dates <- duration_data_da %>%
-    group_by(title) %>%
+    group_by(.data$title) %>%
     summarize(first_date = min(date), last_date = max(date)) %>%
     ungroup()
 
   show_titles <- show_renditions %>%
-    distinct(title) %>%
+    distinct(.data$title) %>%
     left_join(title_dates, by = "title")
 
-  only_titles <- show_titles %>% filter(first_date==this_show_date, last_date==this_show_date) %>% pull(title)
-  debut_titles <- show_titles %>% filter(first_date==this_show_date, last_date!=this_show_date) %>% pull(title)
-  farewell_titles <- show_titles %>% filter(first_date!=this_show_date, last_date==this_show_date) %>% pull(title)
+  only_titles <- show_titles %>% filter(.data$first_date==this_show_date, .data$last_date==this_show_date) %>% pull(.data$title)
+  debut_titles <- show_titles %>% filter(.data$first_date==this_show_date, .data$last_date!=this_show_date) %>% pull(.data$title)
+  farewell_titles <- show_titles %>% filter(.data$first_date!=this_show_date, .data$last_date==this_show_date) %>% pull(.data$title)
 
   only_sentence <- if (length(only_titles)==0) {
     NA_character_
@@ -491,9 +491,9 @@ note_untracked_interludes <- function(music_minutes, minutes, has_interlude_trac
 note_soundcheck <- function(mygid, Repeatr1) {
 
   soundcheck_gids <- Repeatr1 %>%
-    filter(tracktype==0, grepl("sound.?check", title, ignore.case = TRUE)) %>%
-    distinct(gid) %>%
-    pull(gid)
+    filter(.data$tracktype==0, grepl("sound.?check", .data$title, ignore.case = TRUE)) %>%
+    distinct(.data$gid) %>%
+    pull(.data$gid)
 
   if (mygid %in% soundcheck_gids==FALSE) {
     NA_character_
@@ -672,7 +672,7 @@ recap <- function(mygid,
   if (is.null(mytransitions_data_da)==FALSE) { transitions_data_da <- mytransitions_data_da } else { transitions_data_da <- Repeatr::transitions_data_da }
   if (is.null(myfls_tags)==FALSE) { fls_tags <- myfls_tags } else { fls_tags <- Repeatr::fls_tags }
 
-  this_show <- shows_data %>% filter(gid==mygid)
+  this_show <- shows_data %>% filter(.data$gid==mygid)
 
   if (nrow(this_show)!=1) {
     stop("mygid must match exactly one show in shows_data")
@@ -700,14 +700,14 @@ recap <- function(mygid,
     select(-dplyr::any_of(c("distance_home_km", "distance_to_km", "distance_back_km"))) %>%
     arrange(date) %>%
     left_join(trip_links, by = "gid") %>%
-    mutate(previous_venue = dplyr::lag(venue), previous_city = dplyr::lag(city),
-           previous_subdivision = dplyr::lag(subdivision),
-           previous_country = dplyr::lag(country), previous_date = dplyr::lag(date),
-           next_venue = dplyr::lead(venue), next_city = dplyr::lead(city),
-           next_subdivision = dplyr::lead(subdivision),
-           next_country = dplyr::lead(country), next_date = dplyr::lead(date),
+    mutate(previous_venue = dplyr::lag(.data$venue), previous_city = dplyr::lag(.data$city),
+           previous_subdivision = dplyr::lag(.data$subdivision),
+           previous_country = dplyr::lag(.data$country), previous_date = dplyr::lag(date),
+           next_venue = dplyr::lead(.data$venue), next_city = dplyr::lead(.data$city),
+           next_subdivision = dplyr::lead(.data$subdivision),
+           next_country = dplyr::lead(.data$country), next_date = dplyr::lead(date),
            next_distance_to_km = dplyr::lead(distance_to_km)) %>%
-    filter(gid==mygid)
+    filter(.data$gid==mygid)
 
   is_tour <- chrono_ranked$is_tour
   distance_home_km <- chrono_ranked$distance_home_km
@@ -778,7 +778,7 @@ recap <- function(mygid,
   # recap_template.Rmd) doesn't show it - only the paragraph does.
   where_played_with_distance <- paste0(where_played, " (", distance_home_km, " km from home)")
 
-  bands <- played_with %>% filter(gid==mygid) %>% pull(played_with)
+  bands <- played_with %>% filter(.data$gid==mygid) %>% pull(played_with)
 
   played_with_text <- if (length(bands)==0) "" else paste0(" with ", oxford_join(bands))
 
@@ -810,7 +810,7 @@ recap <- function(mygid,
   overall_rank <- shows_data %>%
     arrange(date) %>%
     mutate(overall_show_number = row_number()) %>%
-    filter(gid==mygid)
+    filter(.data$gid==mygid)
 
   overall_show_number <- overall_rank$overall_show_number
 
@@ -819,11 +819,11 @@ recap <- function(mygid,
 # tour position, based on the existing named `tour` field (unchanged) -----------------------------------------------------------
 
   tour_ranked <- shows_data %>%
-    arrange(tour, date) %>%
-    group_by(tour) %>%
+    arrange(.data$tour, date) %>%
+    group_by(.data$tour) %>%
     mutate(tour_position = row_number(), tour_total = n()) %>%
     ungroup() %>%
-    filter(gid==mygid)
+    filter(.data$gid==mygid)
 
   tour_position <- tour_ranked$tour_position
   tour_total <- tour_ranked$tour_total
@@ -934,7 +934,7 @@ recap <- function(mygid,
 
 # recording-derived stats ------------------------------------------------------------------------------------------------------
 
-  show_renditions <- duration_data_da %>% filter(gid==mygid)
+  show_renditions <- duration_data_da %>% filter(.data$gid==mygid)
 
   has_recording <- nrow(show_renditions)>0
 
@@ -955,7 +955,7 @@ recap <- function(mygid,
 
   if (has_recording) {
 
-    show_othervars <- othervariables %>% filter(gid==mygid)
+    show_othervars <- othervariables %>% filter(.data$gid==mygid)
 
     if (nrow(show_othervars)==1) {
       recorded_by <- fix_caps(show_othervars$recorded_by[1])
@@ -964,54 +964,54 @@ recap <- function(mygid,
     }
 
     release_breakdown <- Repeatr1 %>%
-      filter(gid==mygid, tracktype==1) %>%
-      count(release_title, rid, name = "n_songs") %>%
-      mutate(release_title = ifelse(is.na(release_title), "unreleased", release_title)) %>%
-      left_join(releasesdatalookup %>% select(rid, release_date), by = "rid") %>%
-      arrange(release_date)
+      filter(.data$gid==mygid, .data$tracktype==1) %>%
+      count(.data$release_title, .data$rid, name = "n_songs") %>%
+      mutate(release_title = ifelse(is.na(.data$release_title), "unreleased", .data$release_title)) %>%
+      left_join(releasesdatalookup %>% select(.data$rid, .data$release_date), by = "rid") %>%
+      arrange(.data$release_date)
 
     release_breakdown_text <- release_breakdown %>%
-      mutate(piece = paste0(n_songs, " from ", release_title,
-                             ifelse(is.na(release_date), "", paste0(" (", lubridate::year(release_date), ")")))) %>%
-      pull(piece) %>%
+      mutate(piece = paste0(n_songs, " from ", .data$release_title,
+                             ifelse(is.na(.data$release_date), "", paste0(" (", lubridate::year(.data$release_date), ")")))) %>%
+      pull(.data$piece) %>%
       oxford_join()
 
     # nth recorded rendition of each song, across the whole series
     rendition_ranked <- duration_data_da %>%
-      arrange(date, song_number) %>%
-      group_by(title) %>%
+      arrange(date, .data$song_number) %>%
+      group_by(.data$title) %>%
       mutate(rendition_number = row_number()) %>%
       ungroup() %>%
-      filter(gid==mygid) %>%
-      select(gid, song_number, rendition_number)
+      filter(.data$gid==mygid) %>%
+      select(.data$gid, .data$song_number, .data$rendition_number)
 
     # nth occurrence of each (title1, title2) transition pair, and its total
     # count, across the whole series - attached to the *destination* song's
     # row (destination song_number = transition + 1, by construction; see
     # transitions_data_da's build in Repeatr_1.R), per issue #252.
     transition_ranked <- transitions_data_da %>%
-      arrange(date, transition) %>%
-      group_by(title1, title2) %>%
+      arrange(date, .data$transition) %>%
+      group_by(.data$title1, .data$title2) %>%
       mutate(transition_number = row_number(), transition_count = n()) %>%
       ungroup() %>%
-      filter(gid==mygid) %>%
-      mutate(song_number = transition + 1) %>%
-      select(gid, song_number, transition_number, transition_count)
+      filter(.data$gid==mygid) %>%
+      mutate(song_number = .data$transition + 1) %>%
+      select(.data$gid, .data$song_number, .data$transition_number, .data$transition_count)
 
     # release/track lookup - only rid is needed here to bring in release_date;
     # the show's own song_number (below) becomes the displayed track number,
     # not Repeatr1's studio-release track_number, which is unrelated to set order.
     track_lookup <- Repeatr1 %>%
-      filter(gid==mygid, tracktype==1) %>%
-      select(gid, song_number, rid)
+      filter(.data$gid==mygid, .data$tracktype==1) %>%
+      select(.data$gid, .data$song_number, .data$rid)
 
     # Every track as actually sequenced in the recording, including non-song
     # tracks (interludes, intro/outro, crowd noise, etc. - tracktype 0/2).
     # song_number already reflects true position across ALL tracks, so it
     # doubles as the displayed track number once every track has a row.
     all_tracks <- Repeatr1 %>%
-      filter(gid==mygid) %>%
-      select(gid, song_number, title)
+      filter(.data$gid==mygid) %>%
+      select(.data$gid, .data$song_number, .data$title)
 
     # Non-song tracks have no entry in show_renditions (built from the
     # tracktype==1-only duration_data_da), so their duration would otherwise
@@ -1022,9 +1022,9 @@ recap <- function(mygid,
     # show_renditions has no minutes for; songs keep their existing minutes
     # from show_renditions unchanged.
     track_minutes <- fls_tags %>%
-      filter(gid==mygid) %>%
-      mutate(song_number = as.numeric(track), track_minutes = round(seconds/60, digits = 2)) %>%
-      select(gid, song_number, track_minutes)
+      filter(.data$gid==mygid) %>%
+      mutate(song_number = as.numeric(.data$track), track_minutes = round(.data$seconds/60, digits = 2)) %>%
+      select(.data$gid, .data$song_number, track_minutes)
 
     # tracklist_full keeps every joined column (including each title's
     # series-wide minutes_min/minutes_max/position_mean) for the paragraph3
@@ -1034,21 +1034,21 @@ recap <- function(mygid,
     # (see note_record_rendition()) rather than as a bare number in the
     # table.
     tracklist_full <- all_tracks %>%
-      left_join(show_renditions %>% select(gid, song_number, minutes, position), by = c("gid", "song_number")) %>%
+      left_join(show_renditions %>% select(.data$gid, .data$song_number, minutes, .data$position), by = c("gid", "song_number")) %>%
       left_join(track_minutes, by = c("gid", "song_number")) %>%
       mutate(minutes = ifelse(is.na(minutes), track_minutes, minutes)) %>%
       left_join(track_lookup, by = c("gid", "song_number")) %>%
-      left_join(releasesdatalookup %>% select(rid, release_date), by = "rid") %>%
-      left_join(duration_summary %>% select(title, minutes_mean, minutes_min, minutes_max, renditions), by = "title") %>%
-      left_join(position_summary %>% select(title, position_mean), by = "title") %>%
+      left_join(releasesdatalookup %>% select(.data$rid, .data$release_date), by = "rid") %>%
+      left_join(duration_summary %>% select(.data$title, .data$minutes_mean, .data$minutes_min, .data$minutes_max, .data$renditions), by = "title") %>%
+      left_join(position_summary %>% select(.data$title, .data$position_mean), by = "title") %>%
       left_join(rendition_ranked, by = c("gid", "song_number")) %>%
       left_join(transition_ranked, by = c("gid", "song_number")) %>%
-      arrange(song_number)
+      arrange(.data$song_number)
 
     tracklist <- tracklist_full %>%
-      select(track = song_number, title, minutes, mins_mean = minutes_mean,
-             position, pos_mean = position_mean, rendition = rendition_number, renditions,
-             transition = transition_number, transitions = transition_count, release_date)
+      select(track = .data$song_number, .data$title, minutes, mins_mean = .data$minutes_mean,
+             .data$position, pos_mean = .data$position_mean, rendition = .data$rendition_number, .data$renditions,
+             transition = .data$transition_number, transitions = .data$transition_count, .data$release_date)
 
     music_minutes <- sum(show_renditions$minutes, na.rm = TRUE)
     music_proportion <- round(music_minutes / minutes * 100)
@@ -1059,7 +1059,7 @@ recap <- function(mygid,
     # note_untracked_interludes() below to tell a genuinely brief but
     # fully-tracked interlude apart from pauses that were never split out.
     has_interlude_track <- Repeatr1 %>%
-      filter(gid==mygid, tracktype!=1, grepl("interlude", title, ignore.case = TRUE)) %>%
+      filter(.data$gid==mygid, .data$tracktype!=1, grepl("interlude", .data$title, ignore.case = TRUE)) %>%
       nrow() > 0
 
     # If music_minutes equals the total, no non-song content was tracked

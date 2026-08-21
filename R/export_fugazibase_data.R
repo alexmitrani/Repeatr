@@ -78,8 +78,8 @@ export_fugazibase_data <- function(fugazibase_dir, repeatr_data_dir = NULL) {
 
   shows <- othervariables %>%
     left_join(gid_sound_quality, by = "gid") %>%
-    select(gid, flsid, date, venue, price, currency, attendance, recorded_by,
-           mastered_by, original_source, tour, city, subdivision, country, sound_quality)
+    select(.data$gid, .data$flsid, date, .data$venue, .data$price, .data$currency, .data$attendance, .data$recorded_by,
+           .data$mastered_by, .data$original_source, .data$tour, .data$city, .data$subdivision, .data$country, .data$sound_quality)
 
   check_no_na(shows, "gid", "shows")
   check_unique(shows, "gid", "shows")
@@ -97,9 +97,9 @@ export_fugazibase_data <- function(fugazibase_dir, repeatr_data_dir = NULL) {
   # venues. Stripped back off here, same as Repeatr_1() already does for
   # othervariables/shows - country/venue (not city alone) are what actually
   # keep these rows unique.
-  locations <- read.csv(system.file("extdata", "fls_venue_geocoding_v2.csv", package = "Repeatr"), header = TRUE) %>%
-    mutate(city = trimws(gsub("\\s*\\([^)]*\\)$", "", city))) %>%
-    select(country, city, venue, latitude = y, longitude = x)
+  locations <- utils::read.csv(system.file("extdata", "fls_venue_geocoding_v2.csv", package = "Repeatr"), header = TRUE) %>%
+    mutate(city = trimws(gsub("\\s*\\([^)]*\\)$", "", .data$city))) %>%
+    select(.data$country, .data$city, .data$venue, latitude = .data$y, longitude = .data$x)
   locations <- write_table(locations, "locations")
 
   # durations (was fls_tags) - already carries gid (joined in Repeatr_1()'s
@@ -107,8 +107,8 @@ export_fugazibase_data <- function(fugazibase_dir, repeatr_data_dir = NULL) {
   # seconds dropped (duplicates duration), track normalized from character
   # to integer. song renamed title.
   durations <- load_obj("fls_tags") %>%
-    select(gid, track, title, duration) %>%
-    mutate(track = as.integer(track))
+    select(.data$gid, .data$track, .data$title, .data$duration) %>%
+    mutate(track = as.integer(.data$track))
   check_no_na(durations, "gid", "durations")
   check_no_na(durations, "track", "durations")
   check_unique(durations, c("gid", "track"), "durations")
@@ -125,8 +125,8 @@ export_fugazibase_data <- function(fugazibase_dir, repeatr_data_dir = NULL) {
   # in fugazibase's own Roxygen docs instead of shipped as a column.
   # releaseid/release/releasedate renamed rid/release_title/release_date.
   discography <- load_obj("releasesdatalookup") %>%
-    filter(!rid %in% c(12, 13, 14, 15)) %>%
-    select(rid, release_title, release_date)
+    filter(!.data$rid %in% c(12, 13, 14, 15)) %>%
+    select(.data$rid, .data$release_title, .data$release_date)
   check_no_na(discography, "rid", "discography")
   check_unique(discography, "rid", "discography")
   discography <- write_table(discography, "discography")
@@ -140,15 +140,15 @@ export_fugazibase_data <- function(fugazibase_dir, repeatr_data_dir = NULL) {
   # Period to match durations$duration's format. song/releaseid renamed
   # title/rid, matching discography/durations.
   songs <- load_obj("songvarslookup") %>%
-    rename(release_track = track_number, release_duration = duration_seconds) %>%
-    mutate(release_duration = seconds_to_period(release_duration))
+    rename(release_track = .data$track_number, release_duration = .data$duration_seconds) %>%
+    mutate(release_duration = seconds_to_period(.data$release_duration))
   check_no_na(songs, "title", "songs")
   check_unique(songs, "title", "songs")
   songs <- write_table(songs, "songs")
 
   # bands (was played_with) - one row per real show+co-billed act;
   # played_with column renamed band now that the table itself is bands.
-  bands <- load_obj("played_with") %>% select(gid, band = played_with)
+  bands <- load_obj("played_with") %>% select(.data$gid, band = .data$played_with)
   check_no_na(bands, "gid", "bands")
   bands <- write_table(bands, "bands")
 

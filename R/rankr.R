@@ -23,7 +23,7 @@ rankr <- function(coeftable = NULL, vcovmat = NULL, mysongidlist = NULL, myaltlo
   if (is.null(myaltlookup)==FALSE) { altlookup <- myaltlookup } else { altlookup <- altlookup }
 
   mysongidlist <- mysongidlist %>%
-    select(songid)
+    select(.data$songid)
 
   nsongs_requested <- nrow(mysongidlist)
 
@@ -32,7 +32,7 @@ rankr <- function(coeftable = NULL, vcovmat = NULL, mysongidlist = NULL, myaltlo
   # `songid` - translate before using these as coefficient-table indices.
   # inner_join, not left_join: a songid with no alt can't be compared.
   mysongidlist <- mysongidlist %>%
-    inner_join(altlookup %>% select(songid, alt), by = "songid")
+    inner_join(altlookup %>% select(.data$songid, .data$alt), by = "songid")
 
   if (nrow(mysongidlist) < nsongs_requested) {
     warning("rankr(): dropped ", nsongs_requested - nrow(mysongidlist),
@@ -65,18 +65,18 @@ rankr <- function(coeftable = NULL, vcovmat = NULL, mysongidlist = NULL, myaltlo
   # The number embedded in var1/var2 (e.g. "(Intercept):5") is `alt`, not
   # `songid` - translate back via altlookup before attaching song names.
   myresultsdf <- myresultsdf %>%
-    mutate(alt1 = parse_number(var1)) %>%
-    mutate(alt2 = parse_number(var2))
+    mutate(alt1 = parse_number(.data$var1)) %>%
+    mutate(alt2 = parse_number(.data$var2))
 
   altlookup1 <- altlookup %>%
-    select(alt, title) %>%
-    rename(alt1 = alt) %>%
-    rename(title1 = title)
+    select(.data$alt, .data$title) %>%
+    rename(alt1 = .data$alt) %>%
+    rename(title1 = .data$title)
 
   altlookup2 <- altlookup %>%
-    select(alt, title) %>%
-    rename(alt2 = alt) %>%
-    rename(title2 = title)
+    select(.data$alt, .data$title) %>%
+    rename(alt2 = .data$alt) %>%
+    rename(title2 = .data$title)
 
   myresultsdf <- myresultsdf %>%
     left_join(altlookup1)
@@ -85,10 +85,10 @@ rankr <- function(coeftable = NULL, vcovmat = NULL, mysongidlist = NULL, myaltlo
     left_join(altlookup2)
 
   myresultsdf <- myresultsdf %>%
-    relocate(title1, title2)
+    relocate(.data$title1, .data$title2)
 
   myresultsdf <- myresultsdf %>%
-    select(title1, title2, mycoef1, mycoef2, mycoefdiff, myz, myp, lower95ci, upper95ci)
+    select(.data$title1, .data$title2, .data$mycoef1, .data$mycoef2, .data$mycoefdiff, .data$myz, .data$myp, .data$lower95ci, .data$upper95ci)
 
   return(myresultsdf)
 
