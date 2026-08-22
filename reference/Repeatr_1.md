@@ -111,7 +111,6 @@ Repeatr_1_results <- Repeatr_1(output_dir = tempdir())
 #> Joining with `by = join_by(release_title)`
 #> Joining with `by = join_by(title)`
 #> Joining with `by = join_by(title)`
-#> Joining with `by = join_by(gid, date, song_number)`
 #> Joining with `by = join_by(date)`
 #> Joining with `by = join_by(rid)`
 #> Joining with `by = join_by(rid)`

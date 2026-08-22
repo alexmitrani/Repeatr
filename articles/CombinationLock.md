@@ -37,56 +37,55 @@ have a look at the first few rows.
 
 
 mydf1 <- Repeatr1 %>%
+  filter(tracktype==1) %>%
   select(gid,song_number,title) %>%
   rename(title1 = title)
 
 print(paste0("There are ", nrow(mydf1), " rows in this dataframe."))
-#> [1] "There are 24568 rows in this dataframe."
+#> [1] "There are 18286 rows in this dataframe."
 
 head(mydf1)
 #> # A tibble: 6 × 3
 #>   gid                 song_number title1           
 #>   <chr>                     <dbl> <chr>            
-#> 1 aalst-belgium-92390           1 intro            
-#> 2 aalst-belgium-92390           2 turnover         
-#> 3 aalst-belgium-92390           3 brendan #1       
-#> 4 aalst-belgium-92390           4 merchandise      
-#> 5 aalst-belgium-92390           5 sieve-fisted find
-#> 6 aalst-belgium-92390           6 and the same
+#> 1 aalst-belgium-92390           2 turnover         
+#> 2 aalst-belgium-92390           3 brendan #1       
+#> 3 aalst-belgium-92390           4 merchandise      
+#> 4 aalst-belgium-92390           5 sieve-fisted find
+#> 5 aalst-belgium-92390           6 and the same     
+#> 6 aalst-belgium-92390           8 bulldog front
 ```
 
 In order to look at the transitions between songs, let’s get the list of
-songs that were performed at each show and match each song onto the song
-that was performed next at the same show. This way we will have one row
-of data for each transition between songs.
+songs that were performed at each show and match each song onto the next
+song performed at the same show, ignoring any interludes or other
+non-song tracks in between. This way we will have one row of data for
+each transition between songs.
 
 ``` r
 
 
-mydf2 <- Repeatr1 %>%
-  select(gid,song_number,title) %>%
-  mutate(song_number = song_number-1) %>%
-  rename(title2 = title)
-
 mydf3 <- mydf1 %>%
-  left_join(mydf2) %>%
+  arrange(gid, song_number) %>%
+  group_by(gid) %>%
+  mutate(title2 = dplyr::lead(title1)) %>%
+  ungroup() %>%
   filter(is.na(title2)==FALSE) %>%
   rename(transition_number = song_number)
-#> Joining with `by = join_by(gid, song_number)`
 
 print(paste0("There are ", nrow(mydf3), " rows in this dataframe."))
-#> [1] "There are 23614 rows in this dataframe."
+#> [1] "There are 17334 rows in this dataframe."
 
 head(mydf3)
 #> # A tibble: 6 × 4
 #>   gid                 transition_number title1            title2           
 #>   <chr>                           <dbl> <chr>             <chr>            
-#> 1 aalst-belgium-92390                 1 intro             turnover         
-#> 2 aalst-belgium-92390                 2 turnover          brendan #1       
-#> 3 aalst-belgium-92390                 3 brendan #1        merchandise      
-#> 4 aalst-belgium-92390                 4 merchandise       sieve-fisted find
-#> 5 aalst-belgium-92390                 5 sieve-fisted find and the same     
-#> 6 aalst-belgium-92390                 6 and the same      interlude 1
+#> 1 aalst-belgium-92390                 2 turnover          brendan #1       
+#> 2 aalst-belgium-92390                 3 brendan #1        merchandise      
+#> 3 aalst-belgium-92390                 4 merchandise       sieve-fisted find
+#> 4 aalst-belgium-92390                 5 sieve-fisted find and the same     
+#> 5 aalst-belgium-92390                 6 and the same      bulldog front    
+#> 6 aalst-belgium-92390                 8 bulldog front     burning too
 ```
 
 There is a simple check to see if the number of rows in this second
@@ -99,6 +98,7 @@ in the series minus the total number of shows in the series.
 
 
 checknumberofshows <- Repeatr1 %>%
+  filter(tracktype==1) %>%
   group_by(gid) %>%
   summarise(songs = n()) %>%
   ungroup()
@@ -112,19 +112,19 @@ head(checknumberofshows)
 #> # A tibble: 6 × 2
 #>   gid                          songs
 #>   <chr>                        <int>
-#> 1 aalst-belgium-92390             23
-#> 2 aberdeen-scotland-50499         27
-#> 3 adelaide-australia-111193       17
-#> 4 adelaide-australia-111296       29
-#> 5 adelaide-sa-australia-102291    26
-#> 6 akron-oh-usa-62890              26
+#> 1 aalst-belgium-92390             16
+#> 2 aberdeen-scotland-50499         22
+#> 3 adelaide-australia-111193       11
+#> 4 adelaide-australia-111296       22
+#> 5 adelaide-sa-australia-102291    19
+#> 6 akron-oh-usa-62890              18
 
 numberofsongs <- sum(checknumberofshows$songs)
 
 numberoftransitions <- numberofsongs - numberofshows
 
 print(paste0("There are ", numberofsongs, " songs, ", numberofshows, " shows, and ", numberoftransitions, " transitions between songs in the Fugazi Live Series data."  ))
-#> [1] "There are 24568 songs, 952 shows, and 23616 transitions between songs in the Fugazi Live Series data."
+#> [1] "There are 18286 songs, 952 shows, and 17334 transitions between songs in the Fugazi Live Series data."
 ```
 
 Now let’s summarise the data to count how many times each transition
@@ -156,12 +156,12 @@ head(transitions)
 #> # A tibble: 6 × 3
 #>   from              to               count
 #>   <chr>             <chr>            <int>
-#> 1 long division     blueprint          179
-#> 2 suggestion        give me the cure   170
-#> 3 repeater          reprovisional      117
-#> 4 reprovisional     outro              117
-#> 5 two beats off     repeater           116
-#> 6 sieve-fisted find reclamation        114
+#> 1 long division     blueprint          181
+#> 2 suggestion        give me the cure   176
+#> 3 repeater          reprovisional      153
+#> 4 two beats off     repeater           131
+#> 5 sieve-fisted find reclamation        119
+#> 6 give me the cure  waiting room       100
 ```
 
 ## Probabilities of transitions between songs given availability of both songs
@@ -209,12 +209,12 @@ head(transitions)
 #> # A tibble: 6 × 7
 #>   from   to    from_available_rl to_available_rl available_rl count count_scaled
 #>   <chr>  <chr>             <dbl>           <dbl>        <dbl> <int>        <dbl>
-#> 1 long … blue…               889             873          873   179        0.205
-#> 2 sugge… give…               947             939          939   170        0.181
-#> 3 break  plac…               244             244          244    38        0.156
-#> 4 life … clos…                47             211           47     7        0.149
-#> 5 argum… blue…               113             873          113    16        0.142
-#> 6 sieve… recl…               894             820          820   114        0.139
+#> 1 long … blue…               889             873          873   181        0.207
+#> 2 sugge… give…               947             939          939   176        0.187
+#> 3 repea… repr…               876             896          876   153        0.175
+#> 4 break  plac…               244             244          244    40        0.164
+#> 5 oh     clos…               149             211          149    23        0.154
+#> 6 argum… blue…               113             873          113    17        0.150
 
 transitions <- transitions %>%
   select(from, to, count, count_scaled)
@@ -279,8 +279,8 @@ The graph shows that Fugazi played a broad selection of transitions
 between songs, with a few favourite transitions that were played again
 and again. However, the band did not play all the possible transitions.
 With 92 songs there are 8372 possible transitions, and in this data
-Fugazi played 4257 of those at least once. The Fugazi Live Series data
-includes 12610 transitions between songs, with some of them used
+Fugazi played 3109 of those at least once. The Fugazi Live Series data
+includes 17334 transitions between songs, with some of them used
 repeatedly. The band played enough shows to potentially cover all the
 possible transitions. It is likely that some of the possible transitions
 just did not seem to work and so were never used.
@@ -370,20 +370,25 @@ transitions_by_group <- transitions3 %>%
 #>   (`?dplyr::dplyr_by`) instead.
 
 transitions_by_group
-#> # A tibble: 25 × 4
+#> # A tibble: 16 × 4
 #>    from_vocals  to_vocals    count proportion
 #>    <chr>        <chr>        <int>      <dbl>
-#>  1 mackaye      picciotto     5158       0.22
-#>  2 picciotto    mackaye       4989       0.21
-#>  3 NA           mackaye       2679       0.11
-#>  4 mackaye      NA            2564       0.11
-#>  5 picciotto    NA            2482       0.11
-#>  6 NA           picciotto     2272       0.1 
-#>  7 mackaye      mackaye        608       0.03
-#>  8 NA           instrumental   436       0.02
-#>  9 instrumental mackaye        357       0.02
-#> 10 mackaye      instrumental   296       0.01
-#> # ℹ 15 more rows
+#>  1 mackaye      picciotto     6875       0.4 
+#>  2 picciotto    mackaye       6804       0.39
+#>  3 mackaye      mackaye       1030       0.06
+#>  4 picciotto    picciotto      435       0.03
+#>  5 mackaye      instrumental   422       0.02
+#>  6 instrumental mackaye        413       0.02
+#>  7 instrumental picciotto      316       0.02
+#>  8 picciotto    instrumental   208       0.01
+#>  9 lally        mackaye        201       0.01
+#> 10 picciotto    lally          196       0.01
+#> 11 lally        picciotto      189       0.01
+#> 12 mackaye      lally          189       0.01
+#> 13 lally        lally           23       0   
+#> 14 instrumental instrumental    14       0   
+#> 15 instrumental lally           10       0   
+#> 16 lally        instrumental     9       0
 ```
 
 With four groups of songs there are 16 possible transitions between
