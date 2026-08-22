@@ -39,7 +39,9 @@ sets
 ## Examples
 
 ``` r
-sets <- sets(mydf = duration_data_da, shows = c("aalst-belgium-92390", "aberdeen-scotland-50499", "leeds-england-103102", "washington-dc-usa-73198"))
+sets <- sets(mydf = duration_data_da,
+              shows = c("aalst-belgium-92390", "aberdeen-scotland-50499",
+                        "leeds-england-103102", "washington-dc-usa-73198"))
 sets[[1]]
 #> # A tibble: 60 × 6
 #>    title     `aalst-belgium-92390` aberdeen-scotland-50…¹ `leeds-england-103102`

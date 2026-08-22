@@ -57,6 +57,7 @@ fugazi_spotify_data
 if (FALSE) { # \dontrun{
 library(Rspotify)
 key_spotify <- spotifyOAuth("app_id", "client_id", "client_secret")
-fugazi_tracks <- fugazi_spotify_data(app_id = "app_id", client_id = "client_id", client_secret = "client_secret")
+fugazi_tracks <- fugazi_spotify_data(app_id = "app_id", client_id = "client_id",
+                                      client_secret = "client_secret")
 } # }
 ```

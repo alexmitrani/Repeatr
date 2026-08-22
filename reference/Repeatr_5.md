@@ -105,7 +105,8 @@ into `data/`.
 ## Examples
 
 ``` r
-Repeatr_5_results <- Repeatr_5(mymodeldf = results_ml_Repeatr4, output_dir = tempdir(), input_dir = tempdir())
+Repeatr_5_results <- Repeatr_5(mymodeldf = results_ml_Repeatr4,
+                                output_dir = tempdir(), input_dir = tempdir())
 #> Joining with `by = join_by(alt)`
 #> Joining with `by = join_by(alt)`
 #> Joining with `by = join_by(songid)`

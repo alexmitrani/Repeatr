@@ -61,7 +61,8 @@ the two specified coefficients.
 ## Examples
 
 ``` r
-mytest <- diffr(coeftable = results_ml_Repeatr4, vcovmat = vcovmat_ml_Repeatr4, coefindex1 = 1, coefindex2 = 2)
+mytest <- diffr(coeftable = results_ml_Repeatr4, vcovmat = vcovmat_ml_Repeatr4,
+                 coefindex1 = 1, coefindex2 = 2)
 #> 
 #>  
 #> First coefficient: 2.53141417247347 
