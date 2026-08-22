@@ -73,6 +73,16 @@ fls_data <- scrape_fls_shows(
 
 Repeatr_Updatr(really = "really", update_stacks = TRUE)
 
+# B2. Precompute inst/shiny/Fugazetteer/app.R's sheet-independent joins
+# (year_tour_release, the tempo/discography chain, etc.) so the deployed app
+# doesn't redo them on every start. This is Shiny-presentation-only - it
+# doesn't touch fugazibase's export or any of stage B's own data/*.rda - and
+# must be re-run whenever stage B changes any of the package data it reads.
+# The app's three live Google Sheets reads stay live/runtime by design; see
+# ?build_shiny_precompute and vignette("Data-Provenance").
+
+build_shiny_precompute()
+
 # Repeatr_Updatr()'s individual save() calls don't set `compress`, so this
 # recompresses every data/*.rda with the best-performing method per file
 # (matches `R CMD build --resave-data`) - without it, R CMD check warns that

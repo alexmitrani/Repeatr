@@ -793,3 +793,130 @@
 #' @examples
 #' xray
 "xray"
+
+
+# Shiny-presentation-only cached views -------------------------------------
+#
+# The objects below exist purely to save inst/shiny/Fugazetteer/app.R from
+# recomputing, on every app start, joins/aggregations that don't depend on
+# any of its three live Google Sheets reads (fls_venue_geocoding, quizdata,
+# linktracksindexdata). Produced by build_shiny_precompute(), which mirrors
+# the exact code app.R itself used to run inline - see that function's own
+# documentation. Not part of Repeatr's canonical data model, not consumed by
+# any R/ function, and not exported to fugazibase (see
+# vignette("Data-Provenance")).
+
+#' `Repeatr1`, summarized by year/gid/release and joined with `othervariables`
+#'
+#' @format dataframe with one row for each combination of year, `gid`, and
+#'   `release_title` that appears in \code{\link{Repeatr1}}.
+#' \describe{
+#' \item{year}{year}
+#' \item{gid}{show id}
+#' \item{release_title}{name of album or EP}
+#' \item{tour}{the touring period the show belongs to, from \code{\link{othervariables}}}
+#' \item{count}{number of songs from this release performed at this show}
+#' }
+#' @section Provenance: Shiny-presentation-only. Produced by \code{\link{build_shiny_precompute}} from \code{\link{Repeatr1}} and \code{\link{othervariables}}.
+#' @examples
+#' shiny_year_tour_release
+"shiny_year_tour_release"
+
+#' `shows_data`, trimmed to `fls_link`/`year`/`tour`
+#'
+#' @format dataframe with one row for each show in \code{\link{shows_data}}.
+#' \describe{
+#' \item{fls_link}{a link to the corresponding page of the Fugazi Live Series site}
+#' \item{year}{year}
+#' \item{tour}{the touring period the show belongs to}
+#' }
+#' @section Provenance: Shiny-presentation-only. Produced by \code{\link{build_shiny_precompute}} from \code{\link{shows_data}}.
+#' @examples
+#' shiny_fls_link_year_tour
+"shiny_fls_link_year_tour"
+
+#' `transitions_data_da` joined with `shiny_fls_link_year_tour`
+#'
+#' @format dataframe with the same rows as \code{\link{transitions_data_da}}, plus `year`/`tour`.
+#' @section Provenance: Shiny-presentation-only. Produced by \code{\link{build_shiny_precompute}} from \code{\link{transitions_data_da}} and \code{\link{shiny_fls_link_year_tour}}. Not to be confused with the package's own `transitions_data_da`, which this does not overwrite.
+#' @examples
+#' shiny_transitions_data_da
+"shiny_transitions_data_da"
+
+#' `duration_data_da` joined with each song's `release_title`
+#'
+#' @format dataframe with the same rows as \code{\link{duration_data_da}}, plus `release_title`.
+#' @section Provenance: Shiny-presentation-only. Produced by \code{\link{build_shiny_precompute}} from \code{\link{duration_data_da}} and \code{\link{summary}}. Not to be confused with the package's own `duration_data_da`, which this does not overwrite.
+#' @examples
+#' shiny_duration_data_da
+"shiny_duration_data_da"
+
+#' `othervariables` joined with sound quality and dischord.com link columns
+#'
+#' The base app.R builds its own runtime `othervariables` from: joins in the
+#' live `fls_venue_geocoding` sheet for coordinates, disambiguates
+#' same-named cities, and de-duplicates by `gid`. Coordinates change if the
+#' sheet is edited, so that part must stay a live, runtime join - this
+#' object is everything upstream of it.
+#'
+#' @format dataframe with the same rows as \code{\link{othervariables}}, plus `sound_quality`, `urls`, `fls_link`.
+#' @section Provenance: Shiny-presentation-only. Produced by \code{\link{build_shiny_precompute}} from \code{\link{othervariables}} and \code{\link{gid_sound_quality}}.
+#' @examples
+#' shiny_othervariables_base
+"shiny_othervariables_base"
+
+#' `duration_data_da` joined with `othervariables`, trimmed to `year`/`tour`/`gid`/`title`
+#'
+#' @format dataframe with one row for each rendition of each song in \code{\link{duration_data_da}}.
+#' \describe{
+#' \item{year}{year}
+#' \item{tour}{the touring period the show belongs to}
+#' \item{gid}{show id}
+#' \item{title}{the name of the song}
+#' }
+#' @section Provenance: Shiny-presentation-only. Produced by \code{\link{build_shiny_precompute}} from \code{\link{duration_data_da}} and \code{\link{othervariables}}. Built from the raw (pre-live-coordinate-join) `othervariables`, since only `year`/`tour` are kept and those don't depend on the live sheet.
+#' @examples
+#' shiny_year_tour_gid_song
+"shiny_year_tour_gid_song"
+
+#' `summary`, trimmed to `title`/`release_title`
+#'
+#' @format dataframe with one row for each song in \code{\link{summary}}.
+#' \describe{
+#' \item{title}{the name of the song}
+#' \item{release_title}{name of album or EP}
+#' }
+#' @section Provenance: Shiny-presentation-only. Produced by \code{\link{build_shiny_precompute}} from \code{\link{summary}}.
+#' @examples
+#' shiny_discography
+"shiny_discography"
+
+#' `releases_data_input` enriched with tempo (BPM) and duration
+#'
+#' @format dataframe with the same rows as \code{\link{releases_data_input}}, plus `tempo_bpm`, `duration_seconds`, `minutes` (`title` becomes a factor, ordered as returned by the underlying `arrange()`).
+#' @section Provenance: Shiny-presentation-only. Produced by \code{\link{build_shiny_precompute}} from \code{\link{releases_data_input}}, \code{\link{song_tempo_bpm_data}}, and \code{\link{songvarslookup}}. Not to be confused with the package's own `releases_data_input`, which this does not overwrite.
+#' @examples
+#' shiny_releases_data_input
+"shiny_releases_data_input"
+
+#' `releases_summary` enriched with average tempo (BPM) and duration
+#'
+#' @format dataframe with the same rows as \code{\link{releases_summary}}, plus `tempo_bpm`, `minutes`.
+#' @section Provenance: Shiny-presentation-only. Produced by \code{\link{build_shiny_precompute}} from \code{\link{releases_summary}} and \code{\link{shiny_releases_data_input}}. Not to be confused with the package's own `releases_summary`, which this does not overwrite.
+#' @examples
+#' shiny_releases_summary
+"shiny_releases_summary"
+
+#' `shows_data` enriched with average tempo (BPM), before the live venue-coordinate join
+#'
+#' The base app.R builds its own runtime `shows_data` from: joins in the
+#' live `fls_venue_geocoding` sheet for coordinates, disambiguates
+#' same-named cities, and de-duplicates by `gid`. Coordinates change if the
+#' sheet is edited, so that part must stay a live, runtime join - this
+#' object is everything upstream of it.
+#'
+#' @format dataframe with the same rows as \code{\link{shows_data}}, plus `tempo_bpm`.
+#' @section Provenance: Shiny-presentation-only. Produced by \code{\link{build_shiny_precompute}} from \code{\link{shows_data}}, \code{\link{duration_data_da}}, and \code{\link{song_tempo_bpm_data}}. Not to be confused with the package's own `shows_data`, which this does not overwrite.
+#' @examples
+#' shiny_shows_data_base
+"shiny_shows_data_base"

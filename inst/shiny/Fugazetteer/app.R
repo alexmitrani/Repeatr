@@ -32,26 +32,18 @@ sourcestext = c(timestamptext, "https://alexmitrani.shinyapps.io/Fugazetteer/","
 
 datestring <- datestampr()
 
-year_tour_release <- Repeatr1 %>%
-  select(year, gid, release_title) %>%
-  group_by(year, gid, release_title) %>%
-  filter(is.na(release_title)==FALSE) %>%
-  summarize(count = n()) %>%
-  ungroup() %>%
-  left_join(othervariables) %>%
-  select(year, gid, release_title, tour, count)
+# The joins/aggregations below that don't touch any of this app's three live
+# Google Sheets reads (fls_venue_geocoding, quizdata, linktracksindexdata)
+# are precomputed at package-build time by build_shiny_precompute() and
+# shipped as data/shiny_*.rda - see ?build_shiny_precompute and
+# vignette("Data-Provenance", package = "Repeatr"). Only genuinely
+# live-sheet-dependent work stays here, at app start.
 
-fls_link_year_tour <- shows_data %>%
-  select(fls_link, year, tour)
+year_tour_release <- shiny_year_tour_release
 
-transitions_data_da <- transitions_data_da %>%
-  left_join(fls_link_year_tour)
+transitions_data_da <- shiny_transitions_data_da
 
-song_release <- summary %>%
-  select(title, release_title)
-
-duration_data_da <- duration_data_da %>%
-  left_join(song_release)
+duration_data_da <- shiny_duration_data_da
 
 # venue coordinates taken from online spreadsheet "fls_venue_geocoding_v2" to enable easy updating of the locations.
 fls_venue_geocoding <- gsheet2tbl('https://docs.google.com/spreadsheets/d/1Q8QHMM6LoPdlX0wpSJPyngEeVtFqzaoYQ9Jl_y302Cs')
@@ -59,10 +51,7 @@ fls_venue_geocoding <- gsheet2tbl('https://docs.google.com/spreadsheets/d/1Q8QHM
 fls_venue_geocoding <- fls_venue_geocoding %>%
   select(country, city, venue, x, y)
 
-othervariables <- othervariables %>%
-  left_join(gid_sound_quality) %>%
-  mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
-  mutate(fls_link = paste0("<a href='",  urls, "' target='_blank'>", gid, "</a>"))
+othervariables <- shiny_othervariables_base
 
 # fls_venue_geocoding (the live Sheet) keeps Portland/Columbia/Croydon/Oxford/
 # Newcastle under their disambiguated "City (ST/Country)" form -
@@ -120,95 +109,25 @@ played_with <- played_with %>%
 played_with <- played_with %>%
   select(fls_link, gid, year, tour, date, venue, city, subdivision, country, played_with, attendance, sound_quality, latitude, longitude)
 
-year_tour_gid_song <- duration_data_da %>%
-  left_join(othervariables) %>%
-  select(year, tour, gid, title)
+year_tour_gid_song <- shiny_year_tour_gid_song
 
-quizdata <- gsheet2tbl('https://docs.google.com/spreadsheets/d/1-QGRAxeGRNBnx2ao7FXUjcK77uTfZ-_XnN3M7mqqjMc')
+# quizdata's live fetch is deferred to the "quiz" tab's own quiz_data()
+# reactive in the server section below (Shiny outputs are suspended while
+# their tab is hidden, so this sheet isn't fetched at all unless/until a
+# user actually opens that tab) - see the "quiz" section of server().
 
-# number of players to include in the highscores table
-max_players <- nrow(quizdata)/2
+# See build_shiny_precompute() for the full tempo/discography chain these
+# come from (discography, releases_data_input, releases_summary all get
+# tempo_bpm/duration/minutes joined in at build time; shows_data gets its
+# per-gid average tempo_bpm joined in too, before the live geocoding join
+# below runs).
+discography <- shiny_discography
 
-colnames(quizdata)[47]="name"
+releases_data_input <- shiny_releases_data_input
 
-quizdata <- quizdata %>%
-  mutate(points = as.numeric(substring(Score, 1, regexpr("/", Score)-2)))
+releases_summary <- shiny_releases_summary
 
-quizdata <- quizdata %>%
-  mutate(total = as.numeric(substring(Score, regexpr("/", Score)+2)))
-
-quizdata <- quizdata %>%
-  mutate(score = round(100*round(points/total, 3),1)) %>%
-  arrange(desc(points))
-
-quizdata <- quizdata %>%
-  mutate(name = ifelse(is.na(name)==FALSE, name, "Anon.")) %>%
-  mutate(include = ifelse(row_number()<=max_players, 1, 0)) %>%
-  filter(include == 1)
-
-quizdata <- quizdata %>%
-  rename(timestamp = Timestamp, percentage = score) %>%
-  select(name, timestamp, points, total, percentage)
-
-discography <- Repeatr::summary %>%
-  select(title, release_title)
-
-song_duration_seconds <- Repeatr::songvarslookup %>%
-  select(title, duration_seconds)
-
-releases_data_input <- Repeatr::releases_data_input %>%
-  left_join(song_tempo_bpm_data) %>%
-  left_join(song_duration_seconds) %>%
-  arrange(desc(rid), desc(track_number)) %>%
-  mutate(minutes = round(duration_seconds/60, 3)) %>%
-  mutate(title = factor(title, levels=unique(title)))
-
-release_tempo_bpm_minutes <- releases_data_input %>%
-  mutate(tempo_bpm_minutes = tempo_bpm*minutes) %>%
-  group_by(release_title) %>%
-  summarise(tempo_bpm_minutes = sum(tempo_bpm_minutes),
-            minutes = sum(minutes)) %>%
-  ungroup() %>%
-  mutate(tempo_bpm = round(tempo_bpm_minutes/minutes, 3)) %>%
-  mutate(release_title = as.character(release_title)) %>%
-  mutate(minutes = round(minutes, 3)) %>%
-  select(release_title, tempo_bpm, minutes)
-
-discography_tempo_bpm <- release_tempo_bpm_minutes %>%
-  mutate(tempo_bpm_minutes = tempo_bpm*minutes) %>%
-  group_by() %>%
-  summarise(tempo_bpm_minutes = sum(tempo_bpm_minutes), minutes = sum(minutes)) %>%
-  ungroup() %>%
-  mutate(tempo_bpm = round(tempo_bpm_minutes/minutes, 3)) %>%
-  select(tempo_bpm)
-
-releases_summary <- Repeatr::releases_summary %>%
-  left_join(release_tempo_bpm_minutes)
-
-gid_tempo_bpm_minutes <- duration_data_da %>%
-  left_join(song_tempo_bpm_data) %>%
-  mutate(tempo_bpm_minutes = tempo_bpm*minutes) %>%
-  filter(is.na(minutes)==FALSE) %>%
-  group_by(gid) %>%
-  summarise(tempo_bpm_minutes = sum(tempo_bpm_minutes),
-            minutes = sum(minutes)) %>%
-  ungroup() %>%
-  mutate(tempo_bpm = round(tempo_bpm_minutes/minutes, 3)) %>%
-  select(gid, tempo_bpm, minutes)
-
-shows_tempo_bpm <- gid_tempo_bpm_minutes %>%
-  mutate(tempo_bpm_minutes = tempo_bpm*minutes) %>%
-  group_by() %>%
-  summarise(tempo_bpm_minutes = sum(tempo_bpm_minutes), minutes = sum(minutes)) %>%
-  ungroup() %>%
-  mutate(tempo_bpm = round(tempo_bpm_minutes/minutes, 3)) %>%
-  select(tempo_bpm)
-
-gid_tempo_bpm <- gid_tempo_bpm_minutes %>%
-  select(gid, tempo_bpm)
-
-shows_data <- Repeatr::shows_data %>%
-  left_join(gid_tempo_bpm)
+shows_data <- shiny_shows_data_base
 
 # fls_venue_geocoding (the live Sheet) keeps Portland/Columbia/Croydon/Oxford/
 # Newcastle under their disambiguated "City (ST/Country)" form - shows_data$city
@@ -244,10 +163,10 @@ shows_data <- shows_data %>%
          city = ifelse(city=="Newcastle (Australia)", "Newcastle", city))
 
 # Safety net, same reasoning as the othervariables one above: gid should be
-# unique in shows_data, but this section's joins (gid_tempo_bpm above, and
-# fls_venue_geocoding by country/city/venue just above) aren't all gid-keyed,
-# and shows_data is used throughout the rest of this app - one duplicated
-# gid here fans out into every page that reads shows_data.
+# unique in shows_data, but the fls_venue_geocoding join by country/city/venue
+# just above isn't gid-keyed, and shows_data is used throughout the rest of
+# this app - one duplicated gid here fans out into every page that reads
+# shows_data.
 shows_data <- shows_data %>%
   group_by(gid) %>%
   slice(1) %>%
@@ -285,20 +204,9 @@ today_data <- shows_data %>%
                                ", ", country)) %>%
   select(date, where_played, gid, fls_link, played_with, attendance, minutes, sound_quality)
 
-linktracksindexdata <- gsheet2tbl('https://docs.google.com/spreadsheets/d/160kJEHPmL_WcF25SQv5J2GztBg1wTft4QLVQ1fhLxsE')
-
-colnames(linktracksindexdata)[1]="timestamp"
-colnames(linktracksindexdata)[2]="url"
-colnames(linktracksindexdata)[3]="track"
-colnames(linktracksindexdata)[4]="track_name"
-colnames(linktracksindexdata)[5]="linktrack_name"
-colnames(linktracksindexdata)[6]="contributor_name"
-colnames(linktracksindexdata)[7]="comments"
-
-linktracksindexdata <- linktracksindexdata %>%
-  mutate(gid =  gsub('https://dischord.com/fugazi_live_series/','', url)) %>%
-  mutate(fls_link = paste0("<a href='",  url, "' target='_blank'>", gid, "</a>")) %>%
-  select(timestamp, gid, fls_link, track, track_name, linktrack_name, contributor_name, comments)
+# linktracksindexdata's live fetch is likewise deferred to the "index" tab's
+# own linktracksindex_data()/linktracksindex_data2() reactives in the server
+# section below.
 
 # user interface ----------------------------------------------------------
 ui <- fluidPage(
@@ -4037,7 +3945,37 @@ server <- function(input, output, session) {
 
 # quiz --------------------------------------------------------------------
 
+  # Live fetch, deferred to first use of this reactive - Shiny suspends
+  # outputs on hidden tabs by default, so this Google Sheet isn't read at
+  # all unless/until a user opens the "quiz" tab, instead of on every app
+  # start regardless of whether anyone visits it.
   quiz_data <- reactive({
+
+    quizdata <- gsheet2tbl('https://docs.google.com/spreadsheets/d/1-QGRAxeGRNBnx2ao7FXUjcK77uTfZ-_XnN3M7mqqjMc')
+
+    # number of players to include in the highscores table
+    max_players <- nrow(quizdata)/2
+
+    colnames(quizdata)[47]="name"
+
+    quizdata <- quizdata %>%
+      mutate(points = as.numeric(substring(Score, 1, regexpr("/", Score)-2)))
+
+    quizdata <- quizdata %>%
+      mutate(total = as.numeric(substring(Score, regexpr("/", Score)+2)))
+
+    quizdata <- quizdata %>%
+      mutate(score = round(100*round(points/total, 3),1)) %>%
+      arrange(desc(points))
+
+    quizdata <- quizdata %>%
+      mutate(name = ifelse(is.na(name)==FALSE, name, "Anon.")) %>%
+      mutate(include = ifelse(row_number()<=max_players, 1, 0)) %>%
+      filter(include == 1)
+
+    quizdata <- quizdata %>%
+      rename(timestamp = Timestamp, percentage = score) %>%
+      select(name, timestamp, points, total, percentage)
 
     quizdata
 
@@ -4075,16 +4013,40 @@ server <- function(input, output, session) {
 
 # linktracksindex --------------------------------------------------------------------
 
+  # Live fetch, deferred the same way quiz_data() is above - only reads this
+  # Google Sheet once a user opens the "index" tab. Shared by both reactives
+  # below so the sheet is fetched once per session, not twice.
+  linktracksindex_raw <- reactive({
+
+    linktracksindexdata <- gsheet2tbl('https://docs.google.com/spreadsheets/d/160kJEHPmL_WcF25SQv5J2GztBg1wTft4QLVQ1fhLxsE')
+
+    colnames(linktracksindexdata)[1]="timestamp"
+    colnames(linktracksindexdata)[2]="url"
+    colnames(linktracksindexdata)[3]="track"
+    colnames(linktracksindexdata)[4]="track_name"
+    colnames(linktracksindexdata)[5]="linktrack_name"
+    colnames(linktracksindexdata)[6]="contributor_name"
+    colnames(linktracksindexdata)[7]="comments"
+
+    linktracksindexdata <- linktracksindexdata %>%
+      mutate(gid =  gsub('https://dischord.com/fugazi_live_series/','', url)) %>%
+      mutate(fls_link = paste0("<a href='",  url, "' target='_blank'>", gid, "</a>")) %>%
+      select(timestamp, gid, fls_link, track, track_name, linktrack_name, contributor_name, comments)
+
+    linktracksindexdata
+
+  })
+
   linktracksindex_data <- reactive({
 
-    linktracksindexdata %>%
+    linktracksindex_raw() %>%
       select(-gid)
 
   })
 
   linktracksindex_data2 <- reactive({
 
-    linktracksindexdata %>%
+    linktracksindex_raw() %>%
       mutate(url = paste0("https://www.dischord.com/fugazi_live_series/", gid)) %>%
       select(timestamp, url,	track,	track_name,	linktrack_name,	contributor_name,	comments)
 
