@@ -987,16 +987,17 @@ recap <- function(mygid,
 
     # nth occurrence of each (title1, title2) transition pair, and its total
     # count, across the whole series - attached to the *destination* song's
-    # row (destination song_number = transition + 1, by construction; see
-    # transitions_data_da's build in Repeatr_1.R), per issue #252.
+    # row via transitions_data_da's own to_song_number (the destination may
+    # sit any number of tracks after the source once interludes are skipped,
+    # per issue #270 - it's no longer always transition + 1).
     transition_ranked <- transitions_data_da %>%
       arrange(date, .data$transition) %>%
       group_by(.data$title1, .data$title2) %>%
       mutate(transition_number = row_number(), transition_count = n()) %>%
       ungroup() %>%
       filter(.data$gid==mygid) %>%
-      mutate(song_number = .data$transition + 1) %>%
-      select(.data$gid, .data$song_number, .data$transition_number, .data$transition_count)
+      select(.data$gid, .data$to_song_number, .data$transition_number, .data$transition_count) %>%
+      rename(song_number = .data$to_song_number)
 
     # release/track lookup - only rid is needed here to bring in release_date;
     # the show's own song_number (below) becomes the displayed track number,

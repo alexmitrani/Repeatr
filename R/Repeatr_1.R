@@ -1285,31 +1285,35 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
 
     save(releaseid_variable_colour_code, file = "releaseid_variable_colour_code.rda")
 
-    transitions_data_da1 <- Repeatr1 %>%
+    # song-to-song transitions, skipping over interludes/other non-song
+    # tracks: filter to real songs (tracktype==1) first, then pair each song
+    # with the next real song in the same show via lead() on the
+    # already-filtered, ordered rows - this naturally skips any non-song
+    # tracks sitting between them in the raw sequence, per issue #270.
+    # to_song_number carries the destination song's raw song_number (needed
+    # to reattach transition data to the correct tracklist row downstream,
+    # since destination is no longer always transition+1); transition is a
+    # 1-indexed count of transitions within the show, matching the
+    # Fugazetteer "transition" search tab's documented semantics.
+    transitions_data_da <- Repeatr1 %>%
       filter(.data$tracktype==1) %>%
-      select(.data$gid,date,.data$song_number,.data$title) %>%
-      rename(title1 = .data$title)
-
-    transitions_data_da2 <- Repeatr1 %>%
-      filter(.data$tracktype==1) %>%
-      select(.data$gid,date,.data$song_number,.data$title) %>%
-      mutate(song_number = .data$song_number-1) %>%
-      rename(title2 = .data$title)
-
-    transitions_data_da <- transitions_data_da1 %>%
-      left_join(transitions_data_da2) %>%
+      arrange(.data$gid, .data$song_number) %>%
+      group_by(.data$gid) %>%
+      mutate(title2 = dplyr::lead(.data$title), to_song_number = dplyr::lead(.data$song_number)) %>%
+      ungroup() %>%
       filter(is.na(.data$title2)==FALSE) %>%
-      rename(transition = .data$song_number) %>%
+      rename(title1 = .data$title) %>%
+      group_by(.data$gid) %>%
+      mutate(transition = row_number()) %>%
+      ungroup() %>%
       mutate(url = paste0("https://www.dischord.com/fugazi_live_series/", .data$gid)) %>%
       mutate(fls_link = paste0("<a href='",  url, "' target='_blank'>", .data$gid, "</a>")) %>%
-      select(.data$gid, url, .data$fls_link, date, .data$transition, .data$title1, .data$title2) %>%
-      mutate(transition = as.integer(.data$transition))
+      select(.data$gid, url, .data$fls_link, date, .data$transition, .data$to_song_number, .data$title1, .data$title2) %>%
+      mutate(transition = as.integer(.data$transition), to_song_number = as.integer(.data$to_song_number))
 
     transitions_data_da$date <- format(transitions_data_da$date,'%Y-%m-%d')
 
     save(transitions_data_da, file = "transitions_data_da.rda")
-
-    rm(transitions_data_da1, transitions_data_da2)
 
     show_sequence <- Repeatr1 %>%
       group_by(date) %>%

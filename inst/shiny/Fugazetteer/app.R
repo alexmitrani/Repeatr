@@ -2688,22 +2688,19 @@ server <- function(input, output, session) {
     tourdata <- othervariables %>%
       select(gid, tour)
 
-    mydf1 <- Repeatr1 %>%
+    # pair each song with the next real song in the same show (skipping
+    # over interludes/other non-song tracks), matching the fixed
+    # transitions_data_da build in Repeatr_1.R - per issue #270.
+    mydf3 <- Repeatr1 %>%
       filter(tracktype==1) %>%
       left_join(tourdata) %>%
-      select(gid,year,date,song_number,title, tour) %>%
-      rename(title1 = title)
-
-    mydf2 <- Repeatr1 %>%
-      filter(tracktype==1) %>%
-      select(gid,year,date,song_number,title) %>%
-      mutate(song_number = song_number-1) %>%
-      rename(title2 = title)
-
-    mydf3 <- mydf1 %>%
-      left_join(mydf2) %>%
+      arrange(gid, song_number) %>%
+      group_by(gid) %>%
+      mutate(title2 = dplyr::lead(title)) %>%
+      ungroup() %>%
       filter(is.na(title2)==FALSE) %>%
-      rename(transition_number = song_number) %>%
+      rename(title1 = title, transition_number = song_number) %>%
+      select(gid,year,date,transition_number,title1,tour,title2) %>%
       filter(date >= date1 &
                date <= date2)
 

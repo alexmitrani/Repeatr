@@ -11,7 +11,8 @@ dataframe with one row for each combination of show, first song and second song 
 \item{url}{url to the corresponding page of the Fugazi Live Series site.}
 \item{fls_link}{provides a link to the corresponding page of the Fugazi Live Series site}
 \item{date}{date of the show}
-\item{transition}{Number of the transition in the show}
+\item{transition}{1-indexed number of the transition within the show (1 = the first transition in that show)}
+\item{to_song_number}{song_number (raw track position) of the second/destination song, for joining back to the show's tracklist}
 \item{title1}{Name of the first song}
 \item{title2}{Name of the second song}
 }
@@ -26,7 +27,7 @@ transitions_data_da
 Transitions Data
 }
 \section{Provenance}{
- Derived-cleaned. Produced by \code{\link{Repeatr_1}}. Not to be confused with the orphaned \code{transitions} object.
+ Derived-cleaned. Produced by \code{\link{Repeatr_1}}. Songs are paired with the next real song performed at the same show, skipping over interludes and other non-song tracks in between. Not to be confused with the orphaned \code{transitions} object.
 }
 
 \examples{

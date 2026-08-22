@@ -41,6 +41,7 @@ Let's get the data, limit it to the columns that we will be using, and have a lo
 ```{r }
 
 mydf1 <- Repeatr1 %>%
+  filter(tracktype==1) %>%
   select(gid,song_number,title) %>%
   rename(title1 = title)
 
@@ -48,19 +49,17 @@ print(paste0("There are ", nrow(mydf1), " rows in this dataframe."))
 
 head(mydf1)
 
-``` 
+```
 
-In order to look at the transitions between songs, let's get the list of songs that were performed at each show and match each song onto the song that was performed next at the same show. This way we will have one row of data for each transition between songs. 
+In order to look at the transitions between songs, let's get the list of songs that were performed at each show and match each song onto the next song performed at the same show, ignoring any interludes or other non-song tracks in between. This way we will have one row of data for each transition between songs.
 
 ```{r}
 
-mydf2 <- Repeatr1 %>%
-  select(gid,song_number,title) %>%
-  mutate(song_number = song_number-1) %>%
-  rename(title2 = title)
-
 mydf3 <- mydf1 %>%
-  left_join(mydf2) %>%
+  arrange(gid, song_number) %>%
+  group_by(gid) %>%
+  mutate(title2 = dplyr::lead(title1)) %>%
+  ungroup() %>%
   filter(is.na(title2)==FALSE) %>%
   rename(transition_number = song_number)
 
@@ -69,13 +68,14 @@ print(paste0("There are ", nrow(mydf3), " rows in this dataframe."))
 head(mydf3)
 
 
-```   
+```
 
 There is a simple check to see if the number of rows in this second dataframe is correct.  The number of transitions should be equal to the number of songs minus one for each show, and the total number of transitions in the series should be equal to the total number of songs in the series minus the total number of shows in the series.
 
 ```{r}
 
 checknumberofshows <- Repeatr1 %>%
+  filter(tracktype==1) %>%
   group_by(gid) %>%
   summarise(songs = n()) %>%
   ungroup()
