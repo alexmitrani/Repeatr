@@ -32,8 +32,12 @@ A simple function to scrape data from the Fugazi Live Series website using rvest
 \examples{
 \dontrun{
 # Makes live requests to dischord.com - not run automatically.
-scraped_data_1 <- scrape_fls_data(mygiddata = NULL, mylimit = 3, sleepseconds = 1, mycsvfilename = "gid_fls_id_sound_quality.csv", my_data_html_element = "dd strong")
-scraped_data_2 <- scrape_fls_data(mygiddata = NULL, mylimit = 3, sleepseconds = 1, mycsvfilename = "gid_fls_id_played_with.csv", my_data_html_element = "dd:nth-child(10)")
+scraped_data_1 <- scrape_fls_data(mygiddata = NULL, mylimit = 3, sleepseconds = 1,
+                                   mycsvfilename = "gid_fls_id_sound_quality.csv",
+                                   my_data_html_element = "dd strong")
+scraped_data_2 <- scrape_fls_data(mygiddata = NULL, mylimit = 3, sleepseconds = 1,
+                                   mycsvfilename = "gid_fls_id_played_with.csv",
+                                   my_data_html_element = "dd:nth-child(10)")
 }
 
 }

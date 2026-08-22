@@ -17,8 +17,12 @@
 #' @examples
 #' \dontrun{
 #' # Makes live requests to dischord.com - not run automatically.
-#' scraped_data_played_with <- scrape_fls_dtdd(mygiddata = NULL, mylimit = 5, sleepseconds = 1, mycsvfilename = "gid_fls_id_fls_data.csv", mydt_caption = "Played with:")
-#' scraped_data_original_source <- scrape_fls_dtdd(mygiddata = NULL, mylimit = 5, sleepseconds = 1, mycsvfilename = "gid_fls_id_fls_data.csv", mydt_caption = "Original Source:")
+#' scraped_data_played_with <- scrape_fls_dtdd(mygiddata = NULL, mylimit = 5, sleepseconds = 1,
+#'                                              mycsvfilename = "gid_fls_id_fls_data.csv",
+#'                                              mydt_caption = "Played with:")
+#' scraped_data_original_source <- scrape_fls_dtdd(mygiddata = NULL, mylimit = 5, sleepseconds = 1,
+#'                                                  mycsvfilename = "gid_fls_id_fls_data.csv",
+#'                                                  mydt_caption = "Original Source:")
 #' }
 #'
 scrape_fls_dtdd <- function(mygiddata = NULL, mylimit = 3, sleepseconds = 1, mycsvfilename = "gid_fls_id_sound_quality.csv", mydt_caption = "Played with:", test_page_to_scrape = NULL) {

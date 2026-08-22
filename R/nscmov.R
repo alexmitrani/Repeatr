@@ -19,7 +19,8 @@
 #' # Retired (see @description above) - kept for reference only. Has no
 #' # output_dir override, so it always writes to data/ under getwd(); not
 #' # safe to run as a documentation example.
-#' fls_venue_geocoding_update <- system.file("extdata", "fls_venue_geocoding_v2.csv", package = "Repeatr")
+#' fls_venue_geocoding_update <- system.file("extdata", "fls_venue_geocoding_v2.csv",
+#'                                            package = "Repeatr")
 #' othervariables <- nscmov(fls_venue_geocoding_update_filename = fls_venue_geocoding_update)
 #' }
 #'

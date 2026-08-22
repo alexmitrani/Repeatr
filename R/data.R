@@ -30,7 +30,8 @@
 #' }
 #' @section Provenance: Derived-cleaned. Produced by \code{\link{Repeatr_1}} from the raw scrape (\code{\link{scrape_fls_shows}}); typed/cleaned, no song classification yet.
 #' @examples
-#' # What is the total number of people that Fugazi performed for in the shows that are available in the Fugazi Live Series data?
+#' # How many people did Fugazi perform for, across the shows available in
+#' # the Fugazi Live Series data?
 #' test <- Repeatr0
 #' test <- dplyr::mutate(test, attendancedata = nchar(attendance))
 #' test <- dplyr::filter(test, attendancedata>0)

@@ -24,7 +24,8 @@
 #' \dontrun{
 #' library(Rspotify)
 #' key_spotify <- spotifyOAuth("app_id", "client_id", "client_secret")
-#' fugazi_tracks <- fugazi_spotify_data(app_id = "app_id", client_id = "client_id", client_secret = "client_secret")
+#' fugazi_tracks <- fugazi_spotify_data(app_id = "app_id", client_id = "client_id",
+#'                                       client_secret = "client_secret")
 #' }
 fugazi_spotify_data <- function(app_id = NULL, client_id = NULL, client_secret = NULL) {
 

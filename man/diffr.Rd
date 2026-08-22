@@ -32,6 +32,7 @@ The function will return a one-row dataframe with the following columns: var1, v
 A coefficient index of 0 will be interpreted as referring to the omitted constant, labeled "(Intercept):1" below. This is always correct, not a hardcoded assumption about which song is omitted: \code{Repeatr_2()} builds \code{alt} as a dense 1..n index (\code{row_number()}), so \code{as.factor(alt)} in \code{Repeatr_4()} always has 1 as its lowest level, and mlogit always drops the lowest level as the reference - whichever song that numerically is.
 }
 \examples{
-mytest <- diffr(coeftable = results_ml_Repeatr4, vcovmat = vcovmat_ml_Repeatr4, coefindex1 = 1, coefindex2 = 2)
+mytest <- diffr(coeftable = results_ml_Repeatr4, vcovmat = vcovmat_ml_Repeatr4,
+                 coefindex1 = 1, coefindex2 = 2)
 
 }

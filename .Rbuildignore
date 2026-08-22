@@ -10,3 +10,5 @@
 ^\.github$
 ^\.positai$
 ^\.claude$
+^CLAUDE\.md$
+^index\.md$

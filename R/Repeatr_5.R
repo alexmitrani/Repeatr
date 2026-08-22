@@ -16,7 +16,8 @@
 #' @export
 #'
 #' @examples
-#' Repeatr_5_results <- Repeatr_5(mymodeldf = results_ml_Repeatr4, output_dir = tempdir(), input_dir = tempdir())
+#' Repeatr_5_results <- Repeatr_5(mymodeldf = results_ml_Repeatr4,
+#'                                 output_dir = tempdir(), input_dir = tempdir())
 #'
 Repeatr_5 <- function(mymodeldf = NULL, mysongidlookup = NULL, myaltlookup = NULL,
                        myfugazi_song_performance_intensity = NULL, mysongvarslookup = NULL,

@@ -42,6 +42,7 @@ A list of 5 elements: \code{fugazi_song_choice_model} (per-variable coefficient 
 Produces a summary table that includes song performance counts, song performance intensities, and ratings based on the estimated choice model parameters.
 }
 \examples{
-Repeatr_5_results <- Repeatr_5(mymodeldf = results_ml_Repeatr4, output_dir = tempdir(), input_dir = tempdir())
+Repeatr_5_results <- Repeatr_5(mymodeldf = results_ml_Repeatr4,
+                                output_dir = tempdir(), input_dir = tempdir())
 
 }

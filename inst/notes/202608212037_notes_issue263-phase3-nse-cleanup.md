@@ -149,6 +149,39 @@ every call site:
   unrelated Shiny performance note about the `recap` show-selector's
   option count).
 
+## Follow-up: two notes only visible under a full (non-`--no-manual`) check
+
+All the verification above used `rcmdcheck::rcmdcheck(args = c("--no-manual"))`
+(matching Phase 2's convention, to avoid needing a full LaTeX toolchain).
+That flag skips PDF-manual building, which turned out to also skip the
+`checking Rd line widths` NOTE - and separately, the user's own local
+`R CMD check` run surfaced a `checking top-level files` NOTE for
+`CLAUDE.md`/`index.md` that this session's checks had likewise never
+caught. Neither is related to Phase 3's NSE work; both are pre-existing,
+fixed here since the user surfaced them directly:
+
+- **`checking top-level files`**: `CLAUDE.md` and `index.md` aren't
+  R's standard top-level package files and weren't in `.Rbuildignore`.
+  Added `^CLAUDE\.md$` and `^index\.md$` there, alongside the other
+  pkgdown-related entries (`_pkgdown.yml`, `docs`, `pkgdown`) already
+  ignored - `.Rbuildignore` only controls what's included when building
+  the package tarball, so this doesn't affect pkgdown's own site build
+  (which reads `index.md` straight from the repo, not the built package).
+- **`checking Rd line widths`**: 10 `\examples` blocks (`Repeatr0`,
+  `Repeatr_5`, `diffr`, `download_table_footer`, `fugazi_spotify_data`,
+  `nscmov`, `rankr`, `scrape_fls_data` x2, `scrape_fls_dtdd` x2, `sets`)
+  had one long example call each, over the 100-character PDF-manual
+  wrap limit. Wrapped each onto multiple lines in the corresponding
+  `R/` source file's roxygen `@examples` block (pure line-wrapping, no
+  argument/value changes) and regenerated with `devtools::document()`.
+  Confirmed via a targeted `awk` pass over just the `\examples{...}`
+  block of each regenerated `.Rd` that no line exceeds 100 characters
+  anymore - other Rd sections (`\arguments`, `\description`, `\value`)
+  can be long; only `\examples` is checked for width.
+- Re-ran a **full** `rcmdcheck::rcmdcheck()` (no `--no-manual`, so PDF
+  manual building included) to confirm both are actually gone under the
+  same conditions the user's check ran under - see final status below.
+
 ## Bookkeeping
 
 - Bumped `DESCRIPTION` version `0.0.0.9266` → `0.0.0.9267`.
