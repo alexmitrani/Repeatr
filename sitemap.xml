@@ -35,6 +35,7 @@
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/Repeatr_6.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/Repeatr_Updatr.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/altlookup.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/build_shiny_precompute.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/compressr.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/cumulative_duration_counts.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/cumulative_position_counts.html</loc></url>
@@ -77,6 +78,16 @@
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/scrape_fls_listing_data.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/scrape_fls_shows.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/sets.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/shiny_discography.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/shiny_duration_data_da.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/shiny_fls_link_year_tour.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/shiny_othervariables_base.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/shiny_releases_data_input.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/shiny_releases_summary.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/shiny_shows_data_base.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/shiny_transitions_data_da.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/shiny_year_tour_gid_song.html</loc></url>
+<url><loc>https://alexmitrani.github.io/Repeatr/reference/shiny_year_tour_release.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/shows_data.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/song_tempo_bpm_data.html</loc></url>
 <url><loc>https://alexmitrani.github.io/Repeatr/reference/songidlookup.html</loc></url>

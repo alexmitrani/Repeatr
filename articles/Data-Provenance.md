@@ -62,6 +62,12 @@ dataset without ever touching the lazy-loaded original (see the
   anywhere in `R/`, not touched by `data-raw/build_data.R`). Confirmed
   to have no consumers in `R/`, `vignettes/`, or `app.R` either, as of
   this vignette’s last update.
+- **Shiny-presentation-only** - `shiny_*` objects produced by , saved to
+  `data/*.rda` purely so `app.R` doesn’t redo, on every app start,
+  joins/aggregations that don’t depend on its three live Google Sheets
+  reads. Cached views of other tiers’ data, not a distinct source of
+  truth - not consumed by any `R/` function and not exported to
+  fugazibase.
 
 ## Data processing sequence
 
@@ -99,6 +105,17 @@ dataset without ever touching the lazy-loaded original (see the
     └─ fugazibase: shows, locations, durations, discography,
        songs, bands
 
+    (separately, from whichever of the tiers above app.R itself reads)
+            │
+            ▼
+    build_shiny_precompute()
+    └─ shiny_year_tour_release, shiny_fls_link_year_tour,
+       shiny_transitions_data_da, shiny_duration_data_da,
+       shiny_othervariables_base, shiny_year_tour_gid_song,
+       shiny_discography, shiny_releases_data_input,
+       shiny_releases_summary, shiny_shows_data_base
+                                              [Shiny-presentation-only]
+
 `songvarslookup` is joined into `Repeatr1` by `title` text, not carried
 forward with its own `songid` column - the hand-maintained CSV behind it
 (`inst/extdata/releases_songs_durations_wikipedia.csv`) doesn’t carry
@@ -134,6 +151,7 @@ for that mapping.
 | `fugazi_song_performance_intensity` | Derived-modeled | [`Repeatr_2()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_2.md); `min_song_count`-eligible songs only |
 | `results_ml_Repeatr4`, `vcovmat_ml_Repeatr4` | Derived-modeled | [`Repeatr_4()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_4.md), saved together so they always describe the same fit |
 | `fugazi_song_choice_model`, `fugazi_song_preferences`, `releases_rated`, `releases_summary`, `releases_data_input`, `summary` | Derived-modeled | [`Repeatr_5()`](https://alexmitrani.github.io/Repeatr/reference/Repeatr_5.md); `summary` is also read directly by `app.R` |
+| `shiny_year_tour_release`, `shiny_fls_link_year_tour`, `shiny_transitions_data_da`, `shiny_duration_data_da`, `shiny_othervariables_base`, `shiny_year_tour_gid_song`, `shiny_discography`, `shiny_releases_data_input`, `shiny_releases_summary`, `shiny_shows_data_base` | Shiny-presentation-only | ; read directly, and only, by `app.R` |
 
 For the full column-by-column description of any dataset, see its help
 page
@@ -142,14 +160,19 @@ For fugazibase’s own tables (`shows`, `locations`, `durations`,
 `discography`, `songs`, `bands`), see
 `vignette("Data-Catalogue", package = "fugazibase")`.
 
-Note on `app.R`: it reads `song_tempo_bpm_data` and
-`shows_data`/`othervariables` directly (via
+Note on `app.R`: it reads `song_tempo_bpm_data` directly (via
 [`library(Repeatr)`](https://alexmitrani.github.io/Repeatr)’s
-lazy-loaded data), but for venue coordinates specifically it does *not*
-use the package’s own `x`/`y` - at startup it re-fetches coordinates
-live from a Google Sheet (`gsheet2tbl()`) and overwrites whatever
-`othervariables`/`shows_data` provided. So the deployed app’s map
-coordinates track that live sheet, not any package release.
+lazy-loaded data), and the `shiny_*` objects above in place of
+recomputing their joins itself, but for venue coordinates specifically
+it does *not* use any package data’s `x`/`y` - at startup it re-fetches
+coordinates live from a Google Sheet (`gsheet2tbl()`) and joins them
+onto `shiny_othervariables_base`/`shiny_shows_data_base` (which
+deliberately carry no coordinates of their own) to produce the runtime
+`othervariables`/`shows_data`. So the deployed app’s map coordinates
+track that live sheet, not any package release. Two other live sheets
+(`quizdata`, `linktracksindexdata`) are fetched lazily, inside their own
+tab’s server-side `reactive()`, so a cold app start doesn’t pay for
+sheets nobody visits that session.
 
 `shows_data`’s `distance_home_km`/`distance_to_km`/`distance_back_km`
 columns (issue \#259, see

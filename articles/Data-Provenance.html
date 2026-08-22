@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9267</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9268</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -150,6 +150,13 @@ anywhere in <code>R/</code>, not touched by
 <code>data-raw/build_data.R</code>). Confirmed to have no consumers in
 <code>R/</code>, <code>vignettes/</code>, or <code>app.R</code> either,
 as of this vignette’s last update.</li>
+<li>
+<strong>Shiny-presentation-only</strong> - <code>shiny_*</code>
+objects produced by , saved to <code>data/*.rda</code> purely so
+<code>app.R</code> doesn’t redo, on every app start, joins/aggregations
+that don’t depend on its three live Google Sheets reads. Cached views of
+other tiers’ data, not a distinct source of truth - not consumed by any
+<code>R/</code> function and not exported to fugazibase.</li>
 </ul>
 </div>
 <div class="section level2">
@@ -187,7 +194,18 @@ Repeatr_6()
         ▼
 export_fugazibase_data()
 └─ fugazibase: shows, locations, durations, discography,
-   songs, bands</code></pre>
+   songs, bands
+
+(separately, from whichever of the tiers above app.R itself reads)
+        │
+        ▼
+build_shiny_precompute()
+└─ shiny_year_tour_release, shiny_fls_link_year_tour,
+   shiny_transitions_data_da, shiny_duration_data_da,
+   shiny_othervariables_base, shiny_year_tour_gid_song,
+   shiny_discography, shiny_releases_data_input,
+   shiny_releases_summary, shiny_shows_data_base
+                                          [Shiny-presentation-only]</code></pre>
 <p><code>songvarslookup</code> is joined into <code>Repeatr1</code> by
 <code>title</code> text, not carried forward with its own
 <code>songid</code> column - the hand-maintained CSV behind it
@@ -385,6 +403,22 @@ same fit</td>
 by <code>app.R</code>
 </td>
 </tr>
+<tr class="odd">
+<td>
+<code>shiny_year_tour_release</code>,
+<code>shiny_fls_link_year_tour</code>,
+<code>shiny_transitions_data_da</code>,
+<code>shiny_duration_data_da</code>,
+<code>shiny_othervariables_base</code>,
+<code>shiny_year_tour_gid_song</code>, <code>shiny_discography</code>,
+<code>shiny_releases_data_input</code>,
+<code>shiny_releases_summary</code>,
+<code>shiny_shows_data_base</code>
+</td>
+<td>Shiny-presentation-only</td>
+<td>; read directly, and only, by <code>app.R</code>
+</td>
+</tr>
 </tbody>
 </table>
 <p>For the full column-by-column description of any dataset, see its
@@ -393,14 +427,20 @@ help page (e.g. <code><a href="../reference/summary.html">?summary</a></code>).
 <code>discography</code>, <code>songs</code>, <code>bands</code>), see
 <code>vignette("Data-Catalogue", package = "fugazibase")</code>.</p>
 <p>Note on <code>app.R</code>: it reads <code>song_tempo_bpm_data</code>
-and <code>shows_data</code>/<code>othervariables</code> directly (via
-<code><a href="https://alexmitrani.github.io/Repeatr">library(Repeatr)</a></code>’s lazy-loaded data), but for venue
-coordinates specifically it does <em>not</em> use the package’s own
-<code>x</code>/<code>y</code> - at startup it re-fetches coordinates
-live from a Google Sheet (<code>gsheet2tbl()</code>) and overwrites
-whatever <code>othervariables</code>/<code>shows_data</code> provided.
-So the deployed app’s map coordinates track that live sheet, not any
-package release.</p>
+directly (via <code><a href="https://alexmitrani.github.io/Repeatr">library(Repeatr)</a></code>’s lazy-loaded data), and the
+<code>shiny_*</code> objects above in place of recomputing their joins
+itself, but for venue coordinates specifically it does <em>not</em> use
+any package data’s <code>x</code>/<code>y</code> - at startup it
+re-fetches coordinates live from a Google Sheet
+(<code>gsheet2tbl()</code>) and joins them onto
+<code>shiny_othervariables_base</code>/<code>shiny_shows_data_base</code>
+(which deliberately carry no coordinates of their own) to produce the
+runtime <code>othervariables</code>/<code>shows_data</code>. So the
+deployed app’s map coordinates track that live sheet, not any package
+release. Two other live sheets (<code>quizdata</code>,
+<code>linktracksindexdata</code>) are fetched lazily, inside their own
+tab’s server-side <code>reactive()</code>, so a cold app start doesn’t
+pay for sheets nobody visits that session.</p>
 <p><code>shows_data</code>’s
 <code>distance_home_km</code>/<code>distance_to_km</code>/<code>distance_back_km</code>
 columns (issue #259, see <code><a href="../reference/shows_data.html">?shows_data</a></code>) are an exception to

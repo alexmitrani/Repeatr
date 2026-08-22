@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9267</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9268</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -143,6 +143,13 @@
 
         </dt>
         <dd>Fugazi alt id lookup table (choice-model alternative index)</dd>
+
+        <dt>
+
+          <code><a href="build_shiny_precompute.html">build_shiny_precompute()</a></code>
+
+        </dt>
+        <dd>Precompute Fugazetteer's build-time-only Shiny inputs</dd>
 
         <dt>
 
@@ -430,6 +437,76 @@
 
         </dt>
         <dd>compares the setlists of two or more shows.</dd>
+
+        <dt>
+
+          <code><a href="shiny_discography.html">shiny_discography</a></code>
+
+        </dt>
+        <dd><code>summary</code>, trimmed to <code>title</code>/<code>release_title</code></dd>
+
+        <dt>
+
+          <code><a href="shiny_duration_data_da.html">shiny_duration_data_da</a></code>
+
+        </dt>
+        <dd><code>duration_data_da</code> joined with each song's <code>release_title</code></dd>
+
+        <dt>
+
+          <code><a href="shiny_fls_link_year_tour.html">shiny_fls_link_year_tour</a></code>
+
+        </dt>
+        <dd><code>shows_data</code>, trimmed to <code>fls_link</code>/<code>year</code>/<code>tour</code></dd>
+
+        <dt>
+
+          <code><a href="shiny_othervariables_base.html">shiny_othervariables_base</a></code>
+
+        </dt>
+        <dd><code>othervariables</code> joined with sound quality and dischord.com link columns</dd>
+
+        <dt>
+
+          <code><a href="shiny_releases_data_input.html">shiny_releases_data_input</a></code>
+
+        </dt>
+        <dd><code>releases_data_input</code> enriched with tempo (BPM) and duration</dd>
+
+        <dt>
+
+          <code><a href="shiny_releases_summary.html">shiny_releases_summary</a></code>
+
+        </dt>
+        <dd><code>releases_summary</code> enriched with average tempo (BPM) and duration</dd>
+
+        <dt>
+
+          <code><a href="shiny_shows_data_base.html">shiny_shows_data_base</a></code>
+
+        </dt>
+        <dd><code>shows_data</code> enriched with average tempo (BPM), before the live venue-coordinate join</dd>
+
+        <dt>
+
+          <code><a href="shiny_transitions_data_da.html">shiny_transitions_data_da</a></code>
+
+        </dt>
+        <dd><code>transitions_data_da</code> joined with <code>shiny_fls_link_year_tour</code></dd>
+
+        <dt>
+
+          <code><a href="shiny_year_tour_gid_song.html">shiny_year_tour_gid_song</a></code>
+
+        </dt>
+        <dd><code>duration_data_da</code> joined with <code>othervariables</code>, trimmed to <code>year</code>/<code>tour</code>/<code>gid</code>/<code>title</code></dd>
+
+        <dt>
+
+          <code><a href="shiny_year_tour_release.html">shiny_year_tour_release</a></code>
+
+        </dt>
+        <dd><code>Repeatr1</code>, summarized by year/gid/release and joined with <code>othervariables</code></dd>
 
         <dt>
 
