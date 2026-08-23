@@ -45,6 +45,8 @@ transitions_data_da <- shiny_transitions_data_da
 
 duration_data_da <- shiny_duration_data_da
 
+duration_data_da_song <- shiny_duration_data_da_song
+
 # venue coordinates taken from online spreadsheet "fls_venue_geocoding_v2" to enable easy updating of the locations.
 fls_venue_geocoding <- gsheet2tbl('https://docs.google.com/spreadsheets/d/1Q8QHMM6LoPdlX0wpSJPyngEeVtFqzaoYQ9Jl_y302Cs')
 
@@ -3746,11 +3748,11 @@ server <- function(input, output, session) {
   output$menuOptions_details_song <- renderUI({
 
     if (is.null(input$Input_releases)==FALSE) {
-      menudata <- cumulative_duration_counts %>%
+      menudata <- duration_data_da_song %>%
         filter(release_title %in% input$Input_releases) %>%
         arrange(title)
     } else {
-      menudata <- cumulative_duration_counts %>%
+      menudata <- duration_data_da_song %>%
         arrange(title)
     }
 
@@ -3763,17 +3765,17 @@ server <- function(input, output, session) {
   details_data <- reactive({
 
     if (is.null(input$details_song)==FALSE) {
-      duration_data_da_results <- duration_data_da %>%
+      duration_data_da_results <- duration_data_da_song %>%
         filter(title %in% input$details_song)
 
     } else if (is.null(input$Input_releases)==FALSE) {
 
-      duration_data_da_results <- duration_data_da %>%
+      duration_data_da_results <- duration_data_da_song %>%
         filter(release_title %in% input$Input_releases)
 
     } else {
 
-      duration_data_da_results <- duration_data_da
+      duration_data_da_results <- duration_data_da_song
 
     }
 
@@ -3831,11 +3833,11 @@ server <- function(input, output, session) {
   output$menuOptions_search_songs <- renderUI({
 
     if (is.null(input$Input_releases)==FALSE) {
-      menudata <- cumulative_duration_counts %>%
+      menudata <- duration_data_da_song %>%
         filter(release_title %in% input$Input_releases) %>%
         arrange(title)
     } else {
-      menudata <- cumulative_duration_counts %>%
+      menudata <- duration_data_da_song %>%
         arrange(title)
     }
 
@@ -3853,7 +3855,7 @@ server <- function(input, output, session) {
       names(mysearch)[1]<-"title"
       mysearch <- mysearch %>% mutate(hits = 1)
 
-      search_data_da_results <- duration_data_da %>%
+      search_data_da_results <- duration_data_da_song %>%
         left_join(mysearch) %>%
         left_join(gid_sound_quality)
 
@@ -3865,7 +3867,7 @@ server <- function(input, output, session) {
 
     } else if (is.null(input$Input_releases)==FALSE){
 
-      search_data_results <- duration_data_da %>%
+      search_data_results <- duration_data_da_song %>%
         filter(release_title %in% input$Input_releases) %>%
         left_join(gid_sound_quality) %>%
         group_by(gid, fls_link, date, sound_quality) %>%
@@ -3875,7 +3877,7 @@ server <- function(input, output, session) {
 
     } else {
 
-      search_data_results <- duration_data_da %>%
+      search_data_results <- duration_data_da_song %>%
         left_join(gid_sound_quality) %>%
         group_by(gid, fls_link, date, sound_quality) %>%
         summarize(hits = n()) %>%

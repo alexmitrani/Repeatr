@@ -719,9 +719,6 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     mutate(tracktype=ifelse(grepl("outro", .data$title2)==TRUE, 0, .data$tracktype))
 
   raw_fls_song_list <- raw_fls_song_list %>%
-    mutate(tracktype=ifelse(grepl("untitled", .data$title2)==TRUE, 0, .data$tracktype))
-
-  raw_fls_song_list <- raw_fls_song_list %>%
     mutate(tracktype=ifelse(grepl("instrumental interlude", .data$title2)==TRUE, 1, .data$tracktype))
 
   raw_fls_song_list <- raw_fls_song_list %>%
@@ -842,10 +839,10 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
   Repeatr1 <- Repeatr1 %>%
     mutate(tracktype=ifelse(grepl("outro", .data$title)==TRUE, 0, .data$tracktype))
 
-  Repeatr1 <- Repeatr1 %>%
-    mutate(tracktype=ifelse(grepl("untitled", .data$title)==TRUE, 0, .data$tracktype))
-
   # Filter to remove unreleased songs or improvised one-offs ---------------------------------------
+
+    Repeatr1 <- Repeatr1 %>%
+      mutate(tracktype=ifelse(grepl("untitled", .data$title)==TRUE, 2, .data$tracktype))
 
     Repeatr1 <- Repeatr1 %>%
       mutate(tracktype=ifelse(grepl("heart on my chest", .data$title)==TRUE, 2, .data$tracktype))
@@ -1637,42 +1634,62 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     # replaces what used to be five hardcoded per-gid/song_number filters
     # patching a handful of "fake duplicates" the old (gid, title)-only join
     # produced - no longer needed once the join itself is unambiguous.
-    duration_data_da <- Repeatr1 %>%
-      filter(.data$tracktype==1) %>%
-      select(.data$gid,date, .data$song_number, .data$title) %>%
-      mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", .data$gid)) %>%
-      mutate(fls_link = paste0("<a href='",  .data$urls, "' target='_blank'>", .data$gid, "</a>")) %>%
-      arrange(.data$gid, .data$title, .data$song_number) %>%
-      group_by(.data$gid, .data$title) %>%
-      mutate(occurrence = row_number()) %>%
-      ungroup() %>%
-      left_join(gid_song_minutes, by = c("gid", "title", "occurrence")) %>%
-      select(-.data$occurrence)
+    #
+    # Parameterized by tracktype_values so the same construction can build
+    # both the tracktype==1-only duration_data_da (used everywhere except the
+    # stock|details and stock|search song pickers) and duration_data_da_song
+    # (tracktype 1 and 2, used only by those two pickers so unreleased/one-off
+    # songs - including "untitled" - can be browsed there without pulling
+    # them into Discography/Variation/Recap/Stacks, which all stay on the
+    # tracktype==1-only object).
+    build_duration_data_da <- function(tracktype_values) {
 
-    # A gid with no recording at all (every row above unmatched) shouldn't
-    # appear here as a phantom all-NA "recording" - e.g.
-    # washington-dc-usa-100688 is a real show per the FLS site's own flyer,
-    # but its page comments confirm no recording survives for it (the audio
-    # posted there is a mislabeled copy of washington-dc-usa-61588's).
-    # Besides being wrong on its own terms, leaving such rows in would
-    # occupy real slots in the rendition-count ranking downstream (recap())
-    # for every title involved.
-    duration_data_da <- duration_data_da %>%
-      group_by(.data$gid) %>%
-      filter(any(is.na(.data$minutes)==FALSE)) %>%
-      ungroup()
+      mydf <- Repeatr1 %>%
+        filter(.data$tracktype %in% tracktype_values) %>%
+        select(.data$gid,date, .data$song_number, .data$title) %>%
+        mutate(urls = paste0("https://www.dischord.com/fugazi_live_series/", .data$gid)) %>%
+        mutate(fls_link = paste0("<a href='",  .data$urls, "' target='_blank'>", .data$gid, "</a>")) %>%
+        arrange(.data$gid, .data$title, .data$song_number) %>%
+        group_by(.data$gid, .data$title) %>%
+        mutate(occurrence = row_number()) %>%
+        ungroup() %>%
+        left_join(gid_song_minutes, by = c("gid", "title", "occurrence")) %>%
+        select(-.data$occurrence)
 
-    duration_data_da <- duration_data_da %>%
-      group_by(.data$gid) %>%
-      mutate(first_song_number = min(.data$song_number),
-             last_song_number = max(.data$song_number),
-             position = ifelse(.data$last_song_number > .data$first_song_number,
-                                round((.data$song_number - .data$first_song_number) / (.data$last_song_number - .data$first_song_number), digits = 2),
-                                0)) %>%
-      ungroup() %>%
-      select(-.data$first_song_number, -.data$last_song_number)
+      # A gid with no recording at all (every row above unmatched) shouldn't
+      # appear here as a phantom all-NA "recording" - e.g.
+      # washington-dc-usa-100688 is a real show per the FLS site's own flyer,
+      # but its page comments confirm no recording survives for it (the audio
+      # posted there is a mislabeled copy of washington-dc-usa-61588's).
+      # Besides being wrong on its own terms, leaving such rows in would
+      # occupy real slots in the rendition-count ranking downstream (recap())
+      # for every title involved.
+      mydf <- mydf %>%
+        group_by(.data$gid) %>%
+        filter(any(is.na(.data$minutes)==FALSE)) %>%
+        ungroup()
+
+      mydf <- mydf %>%
+        group_by(.data$gid) %>%
+        mutate(first_song_number = min(.data$song_number),
+               last_song_number = max(.data$song_number),
+               position = ifelse(.data$last_song_number > .data$first_song_number,
+                                  round((.data$song_number - .data$first_song_number) / (.data$last_song_number - .data$first_song_number), digits = 2),
+                                  0)) %>%
+        ungroup() %>%
+        select(-.data$first_song_number, -.data$last_song_number)
+
+      mydf
+
+    }
+
+    duration_data_da <- build_duration_data_da(tracktype_values = 1)
 
     save(duration_data_da, file = "duration_data_da.rda")
+
+    duration_data_da_song <- build_duration_data_da(tracktype_values = c(1, 2))
+
+    save(duration_data_da_song, file = "duration_data_da_song.rda")
 
     mydf_pos <- duration_data_da %>%
       select(.data$position, .data$title) %>%

@@ -49,6 +49,13 @@ build_shiny_precompute <- function(output_dir = NULL) {
   shiny_duration_data_da <- Repeatr::duration_data_da %>%
     left_join(song_release)
 
+  # mirrors app.R's duration_data_da_song re-join - same as
+  # shiny_duration_data_da above, but sourced from duration_data_da_song
+  # (tracktype 1 and 2) so the stock|details and stock|search song pickers
+  # can include unreleased/one-off songs (e.g. "untitled") -------------------
+  shiny_duration_data_da_song <- Repeatr::duration_data_da_song %>%
+    left_join(song_release)
+
   # mirrors app.R's othervariables pre-processing, up to (not including) the
   # live fls_venue_geocoding coordinate join/disambiguation - that part must
   # stay in app.R itself, at runtime -----------------------------------------
@@ -121,6 +128,7 @@ build_shiny_precompute <- function(output_dir = NULL) {
   save(shiny_fls_link_year_tour, file = file.path(mydatadir, "shiny_fls_link_year_tour.rda"))
   save(shiny_transitions_data_da, file = file.path(mydatadir, "shiny_transitions_data_da.rda"))
   save(shiny_duration_data_da, file = file.path(mydatadir, "shiny_duration_data_da.rda"))
+  save(shiny_duration_data_da_song, file = file.path(mydatadir, "shiny_duration_data_da_song.rda"))
   save(shiny_othervariables_base, file = file.path(mydatadir, "shiny_othervariables_base.rda"))
   save(shiny_year_tour_gid_song, file = file.path(mydatadir, "shiny_year_tour_gid_song.rda"))
   save(shiny_discography, file = file.path(mydatadir, "shiny_discography.rda"))

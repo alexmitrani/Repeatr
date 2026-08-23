@@ -87,7 +87,7 @@
 #' \item{year}{Year}
 #' \item{month}{Month, as a number}
 #' \item{day}{Day, as a number}
-#' \item{tracktype}{0 = interlude, 1 = song, 2 = other music}
+#' \item{tracktype}{0 = soundchecks/intros/interludes/encores (not a song), 1 = released song, 2 = unreleased song or one-off (e.g. "untitled" performances)}
 #' \item{song_number}{The number of the song in the sequence of songs that were performed as part of that show}
 #' \item{songid}{numeric id for each song}
 #' \item{title}{The name of the song}
@@ -497,6 +497,17 @@
 #' @examples
 #' duration_data_da
 "duration_data_da"
+
+#' Duration Data, including unreleased/one-off songs
+#'
+#' Same construction and columns as \code{\link{duration_data_da}}, but built from `tracktype %in% c(1, 2)` instead of `tracktype==1` - so it additionally includes unreleased/one-off songs (tracktype 2, e.g. "untitled" performances) alongside released songs (tracktype 1). Exists only so the Fugazetteer Shiny app's "stock \| details" and "stock \| search" song pickers can surface these performances without changing what \code{\link{duration_data_da}} itself feeds - Discography, Variation, Recap, and Stacks all keep reading the tracktype==1-only \code{\link{duration_data_da}}, unaffected by this object.
+#'
+#' @source https://www.dischord.com/fugazi_live_series
+#' @format Same format as \code{\link{duration_data_da}}.
+#' @section Provenance: Derived-cleaned. Produced by \code{\link{Repeatr_1}}. Consumed only by `inst/shiny/Fugazetteer/app.R`'s "stock \| details" and "stock \| search" tabs (via `shiny_duration_data_da_song`, precomputed by \code{\link{build_shiny_precompute}}).
+#' @examples
+#' duration_data_da_song
+"duration_data_da_song"
 
 #' Fugazi song duration summary data
 #'
