@@ -8,7 +8,7 @@ By Alex Mitrani
 
 Two Beats Off was launched as an instrumental at the 40 Watt in Athens,
 Georgia on 3 May 1989. The first rendition with vocals was at the 9:30
-Club in Washington DC on 20 July 1989. The song got it’s official
+Club in Washington DC on 19 July 1989. The song got it’s official
 release on Repeater which was released around the 1 March 1990 ([Fugazi
 1990e](#ref-fugazi1990e)). It was one of the later songs to debut that
 would be released on Repeater.
