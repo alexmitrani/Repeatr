@@ -1254,6 +1254,12 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
       mutate(played_with = ifelse(played_with=="Boom", "The Boom", played_with))
 
     played_with <- played_with %>%
+      mutate(played_with = ifelse(played_with=="L Cid", "L.Cid", played_with))
+
+    played_with <- played_with %>%
+      mutate(played_with = ifelse(played_with=="Gr'ups", "The Gr'ups", played_with))
+
+    played_with <- played_with %>%
       filter(played_with!="?")
 
     played_with <- played_with %>%
