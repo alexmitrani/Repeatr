@@ -39,7 +39,8 @@ Fugazi Live Series shows with data.
 
 - tracktype:
 
-  0 = interlude, 1 = song, 2 = other music
+  0 = soundchecks/intros/interludes/encores (not a song), 1 = released
+  song, 2 = unreleased song or one-off (e.g. "untitled" performances)
 
 - song_number:
 

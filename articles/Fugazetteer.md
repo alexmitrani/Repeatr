@@ -47,7 +47,9 @@ box.
 The data for songs is limited to songs that were played live at least
 twice in the Fugazi Live Series. That is 92 songs which feature in the
 Fugazi discography and two unreleased songs - ‘Preprovisional’ and
-‘World Beat’.
+‘World Beat’. This limit does not apply to the ‘details’ and ‘search’
+pages, which additionally include one-off and otherwise unreleased
+performances - see those pages below.
 
 The release dates are best estimates based on the available evidence.
 Actual release dates will have varied depending on the location.
@@ -730,6 +732,14 @@ shortest) renditions of a particular song, or the earliest/latest it was
 played in a set. The search box can be used to filter for a particular
 show so you can see the details of all the songs played in that show.
 
+Unlike the rest of the ‘stock’ section, the song selector here isn’t
+limited to the 92 songs from the official Fugazi discography - it also
+includes one-off and otherwise unreleased performances not on any
+release, such as ‘heart on my chest’ or ‘lock dug’, so that as many of
+the original recorded performances as possible - including the
+occasional untitled one - stay browsable even when only a single
+instance was ever recorded.
+
 - fls_link provides a link to the corresponding page of the [Fugazi Live
   Series](https://www.dischord.com/fugazi_live_series) site
 
@@ -753,6 +763,12 @@ the top of the page.
 
 This page allows you to search for shows that contain a specific
 selection of songs.
+
+Like ‘details’ above, the song selector here also includes one-off and
+otherwise unreleased performances not on any official release - so
+searching for something like ‘lock dug’ still surfaces the single show
+where it was played, rather than being limited to the 92 songs from the
+official Fugazi discography.
 
 The data table lists the shows that contain any of the specified songs
 (or all the shows if none were specified), including the following

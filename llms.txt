@@ -186,6 +186,9 @@ Thanks.
 - [`duration_data_da`](https://alexmitrani.github.io/Repeatr/reference/duration_data_da.md)
   : Duration Data
 
+- [`duration_data_da_song`](https://alexmitrani.github.io/Repeatr/reference/duration_data_da_song.md)
+  : Duration Data, including unreleased/one-off songs
+
 - [`duration_summary`](https://alexmitrani.github.io/Repeatr/reference/duration_summary.md)
   : Fugazi song duration summary data
 
