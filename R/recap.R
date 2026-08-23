@@ -208,9 +208,9 @@ note_rare_tracks <- function(mygid, Repeatr1, rare_max_count = 20) {
   if (length(rare_titles)==0) {
     NA_character_
   } else if (length(rare_titles)==1) {
-    paste0("This show features a rarely performed track: ", rare_titles, ".")
+    paste0("This show features a rarely performed song: ", rare_titles, ".")
   } else {
-    paste0("This show features rarely performed tracks: ", oxford_join(rare_titles), ".")
+    paste0("This show features rarely performed songs: ", oxford_join(rare_titles), ".")
   }
 
 }
@@ -608,11 +608,11 @@ note_record_distance_home <- function(distance_home_km, trip_links) {
 # same principle as note_soundcheck().
 note_festival <- function(venue, shows_data) {
 
-  if (grepl("festival", venue, ignore.case = TRUE)==FALSE) {
+  if (grepl("fest", venue, ignore.case = TRUE)==FALSE) {
     return(NA_character_)
   }
 
-  n_festivals <- sum(grepl("festival", shows_data$venue, ignore.case = TRUE))
+  n_festivals <- sum(grepl("fest", shows_data$venue, ignore.case = TRUE))
 
   paste0("This was one of only ", n_festivals, " festival shows Fugazi ever played.")
 

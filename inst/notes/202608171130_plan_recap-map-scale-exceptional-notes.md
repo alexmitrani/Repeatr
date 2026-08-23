@@ -324,9 +324,9 @@ note_rare_tracks <- function(mygid, Repeatr1) {
   if (length(rare_titles)==0) {
     NA_character_
   } else if (length(rare_titles)==1) {
-    paste0("This show features a rarely performed track: ", rare_titles, ".")
+    paste0("This show features a rarely performed song: ", rare_titles, ".")
   } else {
-    paste0("This show features rarely performed tracks: ", oxford_join(rare_titles), ".")
+    paste0("This show features rarely performed songs: ", oxford_join(rare_titles), ".")
   }
 
 }
