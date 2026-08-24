@@ -46,7 +46,7 @@ maxattendance
 attendancedata %>%
   filter(attendance == maxattendance)
 ```
-The biggest show was the [Food Not Bombs 20th Anniversary](https://www.dischord.com/fugazi_live_series/san-francisco-ca-usa-60400) on the 4th of June 2000 at Mission Dolores Park in San Francisco, with an estimated attendance of 15000 people.  It seems that the show was recorded but it is not available yet as part of the Fugazi Live Series.  [There is a video of the show on youtube](https://www.youtube.com/watch?v=0qYvHzS7v-Q). 
+The biggest show was the [Food Not Bombs 20th Anniversary](https://www.dischord.com/fugazi_live_series/san-francisco-ca-usa-60400) on the 4th of June 2000 at Mission Dolores Park in San Francisco, with an estimated attendance of `r maxattendance` people.  It seems that the show was recorded but it is not available yet as part of the Fugazi Live Series.  [There is a video of the show on youtube](https://www.youtube.com/watch?v=0qYvHzS7v-Q).
 
 ## What was Fugazi's longest tour?  
 
@@ -87,10 +87,13 @@ toursdata <- othervariables %>%
     arrange(desc(shows))
 
 head(toursdata, n=10)
-  
+
+longest_tour <- toursdata %>% arrange(desc(shows)) %>% slice(1)
+biggest_tour <- toursdata %>% arrange(desc(attendance)) %>% slice(1)
+
 ```
 
-On the 1990 Fall European Tour, between 1990-09-01 and 1990-11-07, Fugazi played 60 shows over 67 days, with a total attendance of 43,478 people. This tour wasn't the longest in terms of the number of days, or the biggest in terms of total attendance (the 1993 Spring USA tour had a total attendance of 74,550 people), but it was the longest tour in terms of the number of shows.
+On the `r longest_tour$tour`, between `r format(longest_tour$start)` and `r format(longest_tour$end)`, Fugazi played `r longest_tour$shows` shows over `r longest_tour$duration` days, with a total attendance of `r format(longest_tour$attendance, big.mark=",")` people. This tour wasn't the longest in terms of the number of days, or the biggest in terms of total attendance (the `r biggest_tour$tour` had a total attendance of `r format(biggest_tour$attendance, big.mark=",")` people), but it was the longest tour in terms of the number of shows.
 
 ## Leads and lags
 
@@ -98,13 +101,13 @@ Most Fugazi songs were performed live for some time before being released on an 
 
 ```{r}
 releasedates <- releasesdatalookup %>%
-  select(rid, release_date)
+  select(rid, release_title, release_date)
 
 mydf <- songvarslookup %>%
   left_join(releasedates) %>%
   left_join(songidlookup)
 mydf <- mydf %>%
-  select(songid, title, rid, release_date) %>%
+  select(songid, title, rid, release_title, release_date) %>%
   arrange(songid)
 head(mydf)
 
@@ -115,18 +118,33 @@ Now let's calculate leads and lags by getting summary data on the songs and comp
 mysummary <- Repeatr::summary %>%
   left_join(mydf) %>%
   mutate(lead = release_date - launchdate) %>%
-  select(title, launchdate, release_date, lead) %>%
+  select(title, launchdate, release_title, release_date, lead) %>%
   arrange(lead)
 
 head(mysummary, n = 10)
+
+lagged_songs <- mysummary %>%
+  filter(as.numeric(lead) < 0) %>%
+  mutate(lag_days = abs(as.numeric(lead)),
+         title = tools::toTitleCase(title),
+         release_title = tools::toTitleCase(release_title))
+
+n_lagged <- nrow(lagged_songs)
+
+lagged_songs_text <- paste(
+  paste0(lagged_songs$title, " which was first played live ", lagged_songs$lag_days,
+         " day", ifelse(lagged_songs$lag_days == 1, "", "s"), " after the launch of ", lagged_songs$release_title),
+  collapse = ", and "
+)
 ```
 
-Surprisingly, there seem to be only 2 songs whose live debuts lagged behind the corresponding release dates: Styrofoam which was first played live 58 days after the launch of Repeater, and Foreman's Dog which was first played live 4 days after the launch of End Hits. What was the average lead time for all Fugazi songs with a corresponding release?
+Surprisingly, there `r ifelse(n_lagged==1, "seems to be only one song", paste0("seem to be only ", n_lagged, " songs"))` whose live `r ifelse(n_lagged==1, "debut lagged", "debuts lagged")` behind the corresponding release date`r ifelse(n_lagged==1, "", "s")`: `r lagged_songs_text`. What was the average lead time for all Fugazi songs with a corresponding release?
 
 ```{r}
-mean(mysummary$lead)
+mean_lead <- mean(mysummary$lead)
+mean_lead
 ```
-That is over 2 years, but perhaps the mean is biased upwards by a few extreme values... 
+That is over `r floor(as.numeric(mean_lead)/365)` years, but perhaps the mean is biased upwards by a few extreme values...
 
 ```{r}
 mysummary <- mysummary %>%
@@ -138,13 +156,14 @@ head(mysummary, n = 10)
 The median lead time is probably a more reliable indicator for how long Fugazi would tend to play a song live before it featuring on a discographical release.  
 
 ```{r}
-median(mysummary$lead)
+median_lead <- median(mysummary$lead)
+median_lead
 ```
-We have discovered several interesting things: 
+We have discovered several interesting things:
 
-1) Styrofoam was the only Fugazi song whose live debut significantly lagged behind the corresponding release, although the live debut of Foreman's Dog was 4 days after the release of End Hits.   
+1) `r ifelse(n_lagged==0, "No Fugazi song's live debut lagged behind its corresponding release.", paste0(ifelse(n_lagged==1, "The only Fugazi song whose live debut lagged behind its corresponding release was ", "The Fugazi songs whose live debuts lagged behind their corresponding releases were "), lagged_songs_text, "."))`
 
-2) The median lead time for the live performance of a Fugazi song ahead of its corresponding discographical release date was approximately 1 year: 360 days. 
+2) The median lead time for the live performance of a Fugazi song ahead of its corresponding discographical release date was approximately `r round(as.numeric(median_lead)/365, 1)` year`r ifelse(round(as.numeric(median_lead)/365, 1)==1, "", "s")`: `r as.integer(median_lead)` days.
 
 ## At which venues did Fugazi play the most?  
 
@@ -164,8 +183,20 @@ venuesdata <- othervariables %>%
 
 head(venuesdata, n = 10)
 
+venues_over_10 <- venuesdata %>%
+  filter(shows > 10) %>%
+  arrange(desc(shows))
+
+top_venue_years <- shows_data %>%
+  filter(venue == venues_over_10$venue[1]) %>%
+  distinct(year) %>%
+  arrange(year) %>%
+  pull(year)
+
+top_venue_missing_years <- setdiff(min(top_venue_years):max(top_venue_years), top_venue_years)
+
 ```
-The top 10 venues are all in the USA, with the top two both in Washington DC - Fort Reno and the 9:30 club are the only 2 venues with more than 10 shows.  In the case of Fort Reno, Fugazi played shows there 12 times between 1988 and 2002, only missing 3 years (1990, 1992 and 1995). 
+The top 10 venues are all in the USA. `r venues_over_10$venue[1]`, in `r venues_over_10$city[1]`, is `r ifelse(nrow(venues_over_10)==1, "the only venue", paste0("the top venue, one of ", nrow(venues_over_10), " venues"))` with more than 10 shows. Fugazi played shows there `r venues_over_10$shows[1]` times between `r venues_over_10$from[1]` and `r venues_over_10$to[1]`, only missing `r length(top_venue_missing_years)` year`r ifelse(length(top_venue_missing_years)==1, "", "s")` (`r paste(top_venue_missing_years, collapse=", ")`).
 
 Let's have a look at the top 10 overseas venues.  
 
@@ -176,9 +207,17 @@ overseas_venuesdata <- venuesdata %>%
 
 head(overseas_venuesdata, n = 20)
 
+top_overseas_shows <- max(overseas_venuesdata$shows)
+top_overseas <- overseas_venuesdata %>% filter(shows == top_overseas_shows)
+other_overseas <- overseas_venuesdata %>% filter(shows < top_overseas_shows)
+
+countries_with_article <- c("Netherlands", "Czech Republic")
+top_overseas_country_text <- ifelse(top_overseas$country %in% countries_with_article,
+                                     paste("the", top_overseas$country), top_overseas$country)
+
 ```
 
-Overseas, the venues with most Fugazi shows were Forte Prenestino in Italy and Paradiso in the Netherlands both with 5 shows. There were 9 other overseas venues with 4 shows. Proud to see that the number 1 Fugazi venue in the UK was the Newcastle Riverside, in my home town, which was where I saw them play in 1990!  
+Overseas, the `r ifelse(nrow(top_overseas)==1, "venue", "venues")` with most Fugazi shows `r ifelse(nrow(top_overseas)==1, "was", "were")` `r paste(paste0(top_overseas$venue, " in ", top_overseas_country_text), collapse=" and ")`, `r ifelse(nrow(top_overseas)==1, "with", "each with")` `r top_overseas_shows` shows. There were `r nrow(other_overseas)` other overseas venues with `r other_overseas$shows[1]` shows. Proud to see that the number 1 Fugazi venue in the UK was the Newcastle Riverside, in my home town, which was where I saw them play in 1990!
 
 Let's have a quick look at the frequency distribution of the number of shows at each venue.  
 
@@ -196,9 +235,16 @@ overview_venuesdata <- venuesdata %>%
 
 head(overview_venuesdata, n = 11)
 
+pct_shows <- function(n) {
+  v <- overview_venuesdata$percentage[overview_venuesdata$shows == n]
+  if (length(v) == 0) 0 else v
+}
+
+pct_5_or_more <- sum(overview_venuesdata$percentage[overview_venuesdata$shows >= 5])
+
 ```
 
-Fugazi played at 733 venues but played at 79.4% of them only once, twice at 12.7% of venues, 3 shows at 3.4% of venues, and 4 shows at 2.3% of venues. Only 2.2% of venues had 5 or more shows.
+Fugazi played at `r number_venues` venues but played at `r pct_shows(1)`% of them only once, twice at `r pct_shows(2)`% of venues, 3 shows at `r pct_shows(3)`% of venues, and 4 shows at `r pct_shows(4)`% of venues. Only `r pct_5_or_more`% of venues had 5 or more shows.
 
 ## In which city did Fugazi play at the most venues?
 
@@ -219,7 +265,7 @@ venues_per_city <- venues %>%
 venues_per_city
 
 ```
-The city where Fugazi played at the most venues was Washington DC, followed by New York, and Portland.
+The city where Fugazi played at the most venues was `r venues_per_city$city[1]`, followed by `r venues_per_city$city[2]`, and `r venues_per_city$city[3]`.
 
 ## Did Fugazi pick songs to perform randomly?
 
@@ -246,7 +292,7 @@ Next, let's transform the variable for each song into a cumulative count of the 
 
 mydf_wide2 <- mydf_wide
 
-for(colindex in 2:94) {
+for(colindex in 2:ncol(mydf_wide2)) {
   
   mydf_wide2[,colindex] <- cumsum(mydf_wide2[,colindex])     
   

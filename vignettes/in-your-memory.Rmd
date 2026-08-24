@@ -22,6 +22,17 @@ knitr::opts_chunk$set(
 ```{r, include = FALSE}
 library(Repeatr)
 library(dplyr)
+
+by_you_1993 <- Repeatr1 %>% filter(title=="by you", format(date,"%Y")=="1993") %>% nrow()
+
+fell_destroyed_vocals_debut <- as.Date("1995-03-02")
+fell_destroyed_instrumental <- Repeatr1 %>% filter(title=="fell, destroyed", date < fell_destroyed_vocals_debut) %>% nrow()
+
+fs_count <- fugazi_song_counts$count[fugazi_song_counts$title=="forensic scene"]
+fs_last <- Repeatr1 %>% filter(title=="forensic scene") %>% filter(date==max(date))
+fs_last_show <- shows_data %>% filter(gid==fs_last$gid[1])
+fs_promises <- transitions_data_da %>% filter(title1=="forensic scene", title2=="promises") %>% nrow()
+fs_longdiv <- transitions_data_da %>% filter(title1=="forensic scene", title2=="long division") %>% nrow()
 ```
 
 By Alex Mitrani
@@ -30,7 +41,7 @@ By Alex Mitrani
 
 ## Introduction
 
-Forensic Scene was played live for the first time at Colégio Leão XIII in Itaboraí, RJ, Brazil on 19 August 1994 [@fugazi1994], introduced by Guy with the comment "you're probably going to hate this song but we're going to play it anyway". Forensic Scene was one of 6 songs from the forthcoming Red Medicine album to be launched on that 1994 tour of Brazil - including the full version of 'By You' (with vocals) - first played on 15 August 1994 in Belo Horizonte - which had been played 5 times in 1993 as an instrumental. 'Fell, Destroyed' was played as an instrumental at least 10 times starting in August 1993 before finally being performed with vocals on 2 March 1995, after it was recorded and not long before the release of Red Medicine.
+Forensic Scene was played live for the first time at Colégio Leão XIII in Itaboraí, RJ, Brazil on 19 August 1994 [@fugazi1994], introduced by Guy with the comment "you're probably going to hate this song but we're going to play it anyway". Forensic Scene was one of 6 songs from the forthcoming Red Medicine album to be launched on that 1994 tour of Brazil - including the full version of 'By You' (with vocals) - first played on 15 August 1994 in Belo Horizonte - which had been played `r by_you_1993` times in 1993 as an instrumental. 'Fell, Destroyed' was played as an instrumental at least `r fell_destroyed_instrumental` times starting in August 1993 before finally being performed with vocals on 2 March 1995, after it was recorded and not long before the release of Red Medicine.
 
 ```{r echo=FALSE}
 releases_data_input %>%
@@ -41,7 +52,7 @@ releases_data_input %>%
 
 ```
 
-The song got it's official release on Red Medicine which was released around the 12 May 1995 [@fugazi1995]. Fugazi played Forensic Scene at least 201 times with the last recorded version being on the 4 November 2002 in London, England - the final Fugazi show to date. It was the 5th most played song from Red Medicine. In live shows Forensic Scene tended to be used later in the set, it was often followed by Promises (31 times) or by Long Division (21 times).
+The song got it's official release on Red Medicine which was released around the 12 May 1995 [@fugazi1995]. Fugazi played Forensic Scene at least `r fs_count` times with the last recorded version being on the `r as.integer(format(fs_last$date[1], "%d"))` `r format(fs_last$date[1], "%B %Y")` in `r fs_last_show$city`, `r fs_last_show$country` - the final Fugazi show to date. It was the 5th most played song from Red Medicine. In live shows Forensic Scene tended to be used later in the set, it was often followed by Promises (`r fs_promises` times) or by Long Division (`r fs_longdiv` times).
 
 There are several interviews where Guy Picciotto has commented on the song. In 1995 he only commented in outline:
 
@@ -179,7 +190,7 @@ Outside of the chorus, this is the only line that is repeats, which gives it emp
 
 ## Music
 
-Forensic Scene is probably one of the saddest Fugazi songs if not the saddest, although it transmits other emotions as well, in particular anger and frustration. At about 80 beats per minute, it is one of the slowest songs in the Fugazi repertoire, although there are several changes to pace and volume which make it interesting. The song is structured verse 1 - chorus - verse 2 - instrumental break - chorus. It starts abruptly, is sung softly softly up to about the middle, gets a bit faster and more energetic in the instrumental break, and then gets louder and heavier towards the end, which is often stretched out a bit. There is crescendo effect over the length of the song before it grinds to a halt.
+Forensic Scene is probably one of the saddest Fugazi songs if not the saddest, although it transmits other emotions as well, in particular anger and frustration. At about `r song_tempo_bpm_data$tempo_bpm[song_tempo_bpm_data$title=="forensic scene"]` beats per minute, it is one of the slowest songs in the Fugazi repertoire, although there are several changes to pace and volume which make it interesting. The song is structured verse 1 - chorus - verse 2 - instrumental break - chorus. It starts abruptly, is sung softly softly up to about the middle, gets a bit faster and more energetic in the instrumental break, and then gets louder and heavier towards the end, which is often stretched out a bit. There is crescendo effect over the length of the song before it grinds to a halt.
 
 ## Live variations
 

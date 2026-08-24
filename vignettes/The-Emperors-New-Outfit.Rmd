@@ -60,7 +60,7 @@ The show featured some comments about the war in the interlude between And The S
 
 > Reaction... we saw it coming six months ago, hardly a reaction, saw it a year ago, saw it coming a long long time away, nothing we could do about it, yeah, I'm talking about that um, that war, you've all heard about it I'm sure. There are people who would believe, who would tell you that if you're opposed to war, then that meant that you were trying to undermine or betray the people who happen to be over there, but don't let people bullshit you, if you're opposed to the war, be opposed to the war, it's a good thing to be, who wants to be killed? - Ian MacKaye [@fugazi1991a]
 
-Nice New Outfit was played a total of 114 times, which was more than Steady Diet and Polish, but less than all of the other songs on Steady Diet of Nothing.
+Nice New Outfit was played a total of `r fugazi_song_counts$count[fugazi_song_counts$title=="nice new outfit"]` times, which was more than Steady Diet and Polish, but less than all of the other songs on Steady Diet of Nothing.
 
 Much of the song sounds like it is addressed to someone and here it is considered whether this might have been a specific person and if so, who that person might have been.
 

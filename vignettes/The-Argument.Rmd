@@ -20,13 +20,22 @@ knitr::opts_chunk$set(
 
 ```{r, include = FALSE}
 library(Repeatr)
+library(dplyr)
+
+argument_songs <- summary %>% filter(release_title == "the argument")
+recording_cutoff <- as.Date("2001-03-01")
+n_pre <- sum(argument_songs$launchdate < recording_cutoff)
+n_post <- sum(argument_songs$launchdate >= recording_cutoff)
+
+fls0998_songs <- length(unique(Repeatr1$title[which(Repeatr1$gid == "washington-dc-usa-42701" & Repeatr1$release_title == "the argument")]))
+fls1041_songs <- length(unique(Repeatr1$title[which(Repeatr1$gid == "leeds-england-103102" & Repeatr1$release_title == "the argument")]))
 ```
 
 By Alex Mitrani
 
 29 April 2026
 
-The Argument was recorded January and February 2001 at Inner Ear with piano parts on The Kill and Strangelight recorded at Dischord House. It was released in October 2001, despite everything, together with the Furniture single which contained 3 songs recorded in the same sessions as the album but kept separate because there was too much material for an album but not enough for a double album. Six of the songs had been played live prior to being recorded, with live debuts going back as far as november 1998 (Oh). The other four songs - Full Disclosure, Life and Limb, The Kill, and Strangelight - were worked out during the recording process and introduced to live audiences afterwards. That makes The Argument the Fugazi album with most studio compositions, as the previous ones were almost entirely road-tested material with maybe one or two studio compositions.
+The Argument was recorded January and February 2001 at Inner Ear with piano parts on The Kill and Strangelight recorded at Dischord House. It was released in October 2001, despite everything, together with the Furniture single which contained 3 songs recorded in the same sessions as the album but kept separate because there was too much material for an album but not enough for a double album. `r n_pre` of the songs had been played live prior to being recorded, with live debuts going back as far as november 1998 (Oh). The other `r n_post` songs - Full Disclosure, Life and Limb, The Kill, and Strangelight - were worked out during the recording process and introduced to live audiences afterwards. That makes The Argument the Fugazi album with most studio compositions, as the previous ones were almost entirely road-tested material with maybe one or two studio compositions.
 
 The cover art is a photograph showing details of a bronze engraving that is part of the Heald Square Monument in Chicago, IL, USA [@taft1941] - in particular it shows two hands of Lady Liberty pointing in opposite directions. The artwork opens out to the left and right from the vertical center line to reveal a photo of a memorial to Sandra Scheur, a victim of the 1970 shooting of students at Kent State by members of the Ohio National Guard - she is referenced in several songs by other artists including Ohio by Neil Young [@wikipediacontributors2026].
 
@@ -34,7 +43,7 @@ The untitled track at the beginning includes an extract from a field recording o
 
 Fugazi broadened and deepened their sound significantly on this album, adding a second drummer, backing vocals, cello, piano, whistling and hand claps. Jerry Busher played second drums on Epic Problem, Oh and Ex-Spectator, and also provided additional percussion on Cashout, The Kill, Strangelight, Nightshop and Argument. Brendan Canty mentioned in interviews that the addition of a second drummer was partly inspired by listening to drum & bass and jungle music at parties at the Pirate House (where Brendan and Guy were living at the time). Bridget Cross (Unrest) sang backing vocals on Life and Limb and Full Disclosure and was joined by Kathi Wilcox (Bikini Kill) who sang additional backing vocals on Full Disclosure. Amy Domingues (Garland of Hours) played cello on the untitled intro track, Cashout and Strangelight. The piano on The Kill and Strangelight was probably played by Ian MacKaye, who has said in interviews that he considers it to be his main instrument.
 
-Its interesting to hear how the songs from the Argument are performed live without all the benefits of the recording studio. Allow me to recommend two shows which have particularly good live recordings and which between them cover all 10 songs from The Argument. FLS0998 was recorded at Sacred Heart Church in Washington DC and has 7 songs from The Argument including strangelight as well as a very rare live performance of hello morning from the Furniture EP [@fugazi2001]. Strangelight and The Kill are performed without the piano parts that can be heard in the studio versions. FLS1041 was recorded at the Metropolitan University in Leeds, England and has 8 songs from The Argument plus Number 5 and Furniture from the Furniture EP [@fugazi2002]. This show features Jerry Busher playing trumpet on Full Disclosure - the trumpet in the live performance replaces the backing vocals that can be heard on the studio album.
+Its interesting to hear how the songs from the Argument are performed live without all the benefits of the recording studio. Allow me to recommend two shows which have particularly good live recordings and which between them cover all `r nrow(argument_songs)` songs from The Argument. FLS0998 was recorded at Sacred Heart Church in Washington DC and has `r fls0998_songs` songs from The Argument including strangelight as well as a very rare live performance of hello morning from the Furniture EP [@fugazi2001]. Strangelight and The Kill are performed without the piano parts that can be heard in the studio versions. FLS1041 was recorded at the Metropolitan University in Leeds, England and has `r fls1041_songs` songs from The Argument plus Number 5 and Furniture from the Furniture EP [@fugazi2002]. This show features Jerry Busher playing trumpet on Full Disclosure - the trumpet in the live performance replaces the backing vocals that can be heard on the studio album.
 
 As with other Fugazi albums, all songs are credited to the band as a whole because while people would have brought in parts, all songs were put together in practice by the band working together. Lead vocals alternate, like in the live shows: Cashout (Ian) - Full Disclosure (Guy) - Epic Problem (Ian) - Life and Limb (Guy) - The Kill (Joe) - Strangelight (Guy) - Oh (Guy) - Ex-Spectator (Ian) - Nightshop (Guy) - Argument (Ian).
 

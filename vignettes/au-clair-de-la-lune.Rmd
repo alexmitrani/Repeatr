@@ -22,6 +22,11 @@ knitr::opts_chunk$set(
 ```{r, include = FALSE}
 library(Repeatr)
 library(dplyr)
+
+tbo_count <- fugazi_song_counts$count[fugazi_song_counts$title == "two beats off"]
+tbo_last <- Repeatr1 %>% filter(title == "two beats off") %>% filter(date == max(date))
+tbo_last_show <- shows_data %>% filter(gid == tbo_last$gid[1])
+tbo_to_repeater <- transitions_data_da %>% filter(title1 == "two beats off", title2 == "repeater") %>% nrow()
 ```
 
 By Alex Mitrani
@@ -41,7 +46,7 @@ releases_data_input %>%
 
 ```
 
-Fugazi played Two Beats Off at least 371 times with the last recorded version being on the 6 July 2001 in Victoria, BC, Canada. Two Beats Off was followed by the song Repeater 109 times which makes this by far the most common transition featuring the song.
+Fugazi played Two Beats Off at least `r tbo_count` times with the last recorded version being on the `r as.integer(format(tbo_last$date[1], "%d"))` `r format(tbo_last$date[1], "%B %Y")` in `r tbo_last_show$city`, `r tbo_last_show$subdivision`, `r tbo_last_show$country`. Two Beats Off was followed by the song Repeater `r tbo_to_repeater` times which makes this by far the most common transition featuring the song.
 
 ## Title
 

@@ -18,6 +18,25 @@ knitr::opts_chunk$set(
 
 ```{r, include = FALSE}
 library(Repeatr)
+library(dplyr)
+
+period_weeks_total <- round(as.numeric(diff(range(shows_data$date))) / 7)
+
+glueman_from_shows <- sum(transitions_data_da$title1 == "glueman")
+glueman_to_shows <- sum(transitions_data_da$title2 == "glueman")
+
+swedish_2000_tour <- shows_data %>%
+  filter(country == "Sweden", tour == "2000 Fall Northern European Tour")
+
+swedish_sets <- sets(mydf = duration_data_da, shows = swedish_2000_tour$gid)
+swedish_songs <- swedish_sets[[1]]
+swedish_summary <- swedish_sets[[2]]
+
+n_shows_with_setlists <- length(unique(gid_initial_gid_sound_quality$gid_initial))
+
+stack_sizes <- gid_initial_gid_sound_quality %>%
+  group_by(gid_initial) %>%
+  summarise(n = n())
 ```
 
 # introduction
@@ -46,7 +65,7 @@ Most of the input boxes are 'selectize' controls - when you select the control a
 
 A few of the input boxes are menus where you can only select one option - these have a little down arrow to the right side of the input box.
 
-The data for songs is limited to songs that were played live at least twice in the Fugazi Live Series. That is 92 songs which feature in the Fugazi discography and two unreleased songs - 'Preprovisional' and 'World Beat'. This limit does not apply to the 'details' and 'search' pages, which additionally include one-off and otherwise unreleased performances - see those pages below.
+The data for songs is limited to songs that were played live at least twice in the Fugazi Live Series. That is `r nrow(songidlookup)` songs which feature in the Fugazi discography. This limit does not apply to the 'details' and 'search' pages, which additionally include one-off and otherwise unreleased performances - see those pages below.
 
 The release dates are best estimates based on the available evidence. Actual release dates will have varied depending on the location.
 
@@ -97,11 +116,11 @@ There are some specific controls for use with the timeline slider:
 
 -   'rewind' will move the selection back in time by one step
 
--   'home' will move the timeline slider back to the beginning and set the period to 792 weeks again, to select the entire series. It is recommended to use the home button before changing the selections in the selection boxes above the map.
+-   'home' will move the timeline slider back to the beginning and set the period to `r period_weeks_total` weeks again, to select the entire series. It is recommended to use the home button before changing the selections in the selection boxes above the map.
 
 Pressing the 'home' button reveals additional controls:
 
--   period_weeks indicates the duration of the selected period in weeks. It is initially set to 792 weeks which covers the full duration of the Fugazi Live Series.
+-   period_weeks indicates the duration of the selected period in weeks. It is initially set to `r period_weeks_total` weeks which covers the full duration of the Fugazi Live Series.
 
 -   step_days indicates the size of each step in days, this is for use with the fast forward and reverse buttons.
 
@@ -289,7 +308,7 @@ There are two filters:
 
 The filters are applied sequentially from left to right, so for instance if you specify 'life and limb' in 'from', the menu for 'to' will only show songs which followed 'life and limb'.
 
-Both filters are optional. If only one song is specified shows containing that song will be listed. If no song is specified all the shows will be listed. There is a subtle difference between searching for shows containing a single song using the 'from' box and the 'to' box: the 'from' box will omit shows where the song was the final one of the set, and the 'to' box will omit shows where the song was the first one of the set. This is why searching for 'glueman' with 'from' yields only 25 shows but searching for 'glueman' with 'to' yields 131 results - 'glueman' was a hard song to follow!
+Both filters are optional. If only one song is specified shows containing that song will be listed. If no song is specified all the shows will be listed. There is a subtle difference between searching for shows containing a single song using the 'from' box and the 'to' box: the 'from' box will omit shows where the song was the final one of the set, and the 'to' box will omit shows where the song was the first one of the set. This is why searching for 'glueman' with 'from' yields only `r glueman_from_shows` shows but searching for 'glueman' with 'to' yields `r glueman_to_shows` results - 'glueman' was a hard song to follow!
 
 The data table includes:
 
@@ -305,21 +324,21 @@ The data table includes:
 
 ## sets
 
-Here you can compare two or more shows to find out which songs are played in each, how many unique songs there are, and how many songs are played only once or in 2 or more of the shows. You can pick shows from the full series or you can filter first by year and/or tour to pick shows from a shorter list. For example, we can compare the three Swedish shows from the 2000 North European tour.
+Here you can compare two or more shows to find out which songs are played in each, how many unique songs there are, and how many songs are played only once or in 2 or more of the shows. You can pick shows from the full series or you can filter first by year and/or tour to pick shows from a shorter list. For example, we can compare the `r nrow(swedish_2000_tour)` Swedish shows from the 2000 North European tour.
 
 Note that the show identifiers are the same as those used on the Fugazi Live Series website and have the following format: city-country-(m)m-dd-yy. The month will be one or two digits depending on which month it is.
 
 Once shows have been selected, two results tables will appear. The first is a summary table.
 
-The summary table tells us that 52 unique songs were played: 32 songs were played only once, 12 songs were played twice, and 8 songs were played at all 3 shows. The three shows have 80 songs in total, including the repeated performances.
+The summary table tells us that `r nrow(swedish_songs)` unique songs were played: `r swedish_summary$songs[swedish_summary$shows==1]` songs were played only once, and `r swedish_summary$songs[swedish_summary$shows==max(swedish_summary$shows)]` songs were played at all `r nrow(swedish_2000_tour)` shows, with the remaining `r sum(swedish_summary$songs) - swedish_summary$songs[swedish_summary$shows==1] - swedish_summary$songs[swedish_summary$shows==max(swedish_summary$shows)]` songs played in some but not all of the shows. The `r nrow(swedish_2000_tour)` shows have `r sum(swedish_songs$shows)` songs in total, including the repeated performances.
 
-The Details table shows the complete list of songs, and for each song which show or shows it was performed at. The table is sorted in descending order of the number of shows each song was performed at, so in this case the top part of the table lists the 8 songs that were performed at all 3 shows.
+The Details table shows the complete list of songs, and for each song which show or shows it was performed at. The table is sorted in descending order of the number of shows each song was performed at, so in this case the top part of the table lists the `r swedish_summary$songs[swedish_summary$shows==max(swedish_summary$shows)]` songs that were performed at all `r nrow(swedish_2000_tour)` shows.
 
 The 'details' table can be downloaded as a CSV file using the download button at the top of the page to the right of the 'shows' selection box. .
 
 ## stacks
 
-Here you can choose any show (out of the 899 shows with set lists available to date) and then a stack that contains the selected show. The stacks are named after the initial show that was chosen when the stack was created. Many shows appear in only one stack but some shows appear in many stacks. Once you have chosen a show and a stack, you will get a short sequence of 9-12 shows including the selected shows and covering all 94 songs that Fugazi played live at least twice.
+Here you can choose any show (out of the `r n_shows_with_setlists` shows with set lists available to date) and then a stack that contains the selected show. The stacks are named after the initial show that was chosen when the stack was created. Many shows appear in only one stack but some shows appear in many stacks. Once you have chosen a show and a stack, you will get a short sequence of `r min(stack_sizes$n)`-`r max(stack_sizes$n)` shows including the selected shows and covering all `r nrow(songidlookup)` songs that Fugazi played live at least twice.
 
 Once a stack has been selected, two results tables will appear. The first is a summary table, including links to the shows.
 
@@ -461,7 +480,7 @@ The data table can be downloaded as a CSV file using the download button at the 
 
 On this page you can select a song and get a table listing all the shows containing the specified song, its position in that show's setlist, and the duration of each specific rendition (in minutes). You can also select more than one song. The table headers can be used to sort the data, so for instance you can find the shows with the longest (or shortest) renditions of a particular song, or the earliest/latest it was played in a set. The search box can be used to filter for a particular show so you can see the details of all the songs played in that show.
 
-Unlike the rest of the 'stock' section, the song selector here isn't limited to the 92 songs from the official Fugazi discography - it also includes one-off and otherwise unreleased performances not on any release, such as 'heart on my chest' or 'lock dug', so that as many of the original recorded performances as possible - including the occasional untitled one - stay browsable even when only a single instance was ever recorded.
+Unlike the rest of the 'stock' section, the song selector here isn't limited to the `r nrow(songidlookup)` songs from the official Fugazi discography - it also includes one-off and otherwise unreleased performances not on any release, such as 'heart on my chest' or 'lock dug', so that as many of the original recorded performances as possible - including the occasional untitled one - stay browsable even when only a single instance was ever recorded.
 
 -   fls_link provides a link to the corresponding page of the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) site
 
@@ -481,7 +500,7 @@ The table can be downloaded as a CSV file using the download button at the top o
 
 This page allows you to search for shows that contain a specific selection of songs.
 
-Like 'details' above, the song selector here also includes one-off and otherwise unreleased performances not on any official release - so searching for something like 'lock dug' still surfaces the single show where it was played, rather than being limited to the 92 songs from the official Fugazi discography.
+Like 'details' above, the song selector here also includes one-off and otherwise unreleased performances not on any official release - so searching for something like 'lock dug' still surfaces the single show where it was played, rather than being limited to the `r nrow(songidlookup)` songs from the official Fugazi discography.
 
 The data table lists the shows that contain any of the specified songs (or all the shows if none were specified), including the following columns:
 
