@@ -14,17 +14,28 @@
   consistent.
 - it is important that whatever is exported to fugazibase is also
   consistent with the data used in Repeatr
-- when making changes, make sure the documentation stays up to date both
-  in Repeatr and in fugazibase
-- when making changes, make sure the Shiny app continues to work and
-  produces consistent results with the initial version, unless
-  differences are expected
-- when making changes, make sure that the data in fugazibase and the
-  data in Repeatr stay consistent - changes to the data used by one
-  package should affect the other package.
 - bump version by a small increment every time implementation of changes
   is completed (should be once per work session unless no changes are
   made).
+
+# Checks after making changes to the package
+
+- make sure the documentation stays up to date both in Repeatr and in
+  fugazibase
+- make sure the Shiny app continues to work and produces consistent
+  results with the initial version, unless differences are expected
+- make sure that the data in fugazibase and the data in Repeatr stay
+  consistent - changes to the data used by one package should affect the
+  other package.
+- R CMD check should pass with 0 errors, 0 warnings and 0 notes.
+
+# Plans
+
+Save copies of plans in the same folder as the session notes
+(`./inst/notes`) but with a slightly different naming convention so that
+the session notes and the plans can be distinguished from each other:
+`YYYYMMDDHHMM_plan_short-description.md` (e.g.
+`202607311323_plan_myshortdescription.md`).
 
 # Session notes
 
@@ -34,14 +45,6 @@ key decisions), save it as a markdown file in `./inst/notes`, named
 `202607312024_notes_myshortdescription.md`). The timestamp prefix keeps
 multiple session notes sorting in chronological order in a plain file
 listing.
-
-# Plans
-
-Save copies of plans in the same folder as the session notes
-(`./inst/notes`) but with a slightly different naming convention so that
-the session notes and the plans can be distinguished from each other:
-`YYYYMMDDHHMM_plan_short-description.md` (e.g.
-`202607311323_plan_myshortdescription.md`).
 
 # Git and GitHub
 
