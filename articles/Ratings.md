@@ -619,7 +619,7 @@ songs further apart on the table are significant, as can be seen below.
 
 ``` r
 
-songstobecompared <- songstobecompared <- songstobecompared <- summary %>% slice(seq(from=1, to=92, by=8))
+songstobecompared <- songstobecompared <- songstobecompared <- summary %>% slice(seq(from=1, to=nrow(summary), by=8))
 mycomparisons <- rankr(coeftable = results_ml_Repeatr4, vcovmat = vcovmat_ml_Repeatr4, mysongidlist = songstobecompared)
 #> Joining with `by = join_by(alt1)`
 #> Joining with `by = join_by(alt2)`

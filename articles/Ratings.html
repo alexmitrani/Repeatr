@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9274</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9275</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -2873,7 +2873,7 @@ statistically significant. However, some of the differences between
 songs further apart on the table are significant, as can be seen
 below.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">songstobecompared</span> <span class="op">&lt;-</span> <span class="va">songstobecompared</span> <span class="op">&lt;-</span> <span class="va">songstobecompared</span> <span class="op">&lt;-</span> <span class="va">summary</span> <span class="op">%&gt;%</span> <span class="fu">slice</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from<span class="op">=</span><span class="fl">1</span>, to<span class="op">=</span><span class="fl">92</span>, by<span class="op">=</span><span class="fl">8</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">songstobecompared</span> <span class="op">&lt;-</span> <span class="va">songstobecompared</span> <span class="op">&lt;-</span> <span class="va">songstobecompared</span> <span class="op">&lt;-</span> <span class="va">summary</span> <span class="op">%&gt;%</span> <span class="fu">slice</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from<span class="op">=</span><span class="fl">1</span>, to<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">summary</span><span class="op">)</span>, by<span class="op">=</span><span class="fl">8</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">mycomparisons</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rankr.html">rankr</a></span><span class="op">(</span>coeftable <span class="op">=</span> <span class="va">results_ml_Repeatr4</span>, vcovmat <span class="op">=</span> <span class="va">vcovmat_ml_Repeatr4</span>, mysongidlist <span class="op">=</span> <span class="va">songstobecompared</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Joining with `by = join_by(alt1)`</span></span>
 <span><span class="co">#&gt; Joining with `by = join_by(alt2)`</span></span>

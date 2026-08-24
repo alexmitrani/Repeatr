@@ -46,10 +46,9 @@ box.
 
 The data for songs is limited to songs that were played live at least
 twice in the Fugazi Live Series. That is 92 songs which feature in the
-Fugazi discography and two unreleased songs - ‘Preprovisional’ and
-‘World Beat’. This limit does not apply to the ‘details’ and ‘search’
-pages, which additionally include one-off and otherwise unreleased
-performances - see those pages below.
+Fugazi discography. This limit does not apply to the ‘details’ and
+‘search’ pages, which additionally include one-off and otherwise
+unreleased performances - see those pages below.
 
 The release dates are best estimates based on the available evidence.
 Actual release dates will have varied depending on the location.
@@ -418,7 +417,7 @@ shows containing a single song using the ‘from’ box and the ‘to’ box:
 the ‘from’ box will omit shows where the song was the final one of the
 set, and the ‘to’ box will omit shows where the song was the first one
 of the set. This is why searching for ‘glueman’ with ‘from’ yields only
-25 shows but searching for ‘glueman’ with ‘to’ yields 131 results -
+32 shows but searching for ‘glueman’ with ‘to’ yields 145 results -
 ‘glueman’ was a hard song to follow!
 
 The data table includes:
@@ -442,7 +441,7 @@ Here you can compare two or more shows to find out which songs are
 played in each, how many unique songs there are, and how many songs are
 played only once or in 2 or more of the shows. You can pick shows from
 the full series or you can filter first by year and/or tour to pick
-shows from a shorter list. For example, we can compare the three Swedish
+shows from a shorter list. For example, we can compare the 4 Swedish
 shows from the 2000 North European tour.
 
 Note that the show identifiers are the same as those used on the Fugazi
@@ -453,16 +452,16 @@ on which month it is.
 Once shows have been selected, two results tables will appear. The first
 is a summary table.
 
-The summary table tells us that 52 unique songs were played: 32 songs
-were played only once, 12 songs were played twice, and 8 songs were
-played at all 3 shows. The three shows have 80 songs in total, including
-the repeated performances.
+The summary table tells us that 56 unique songs were played: 31 songs
+were played only once, and 8 songs were played at all 4 shows, with the
+remaining 17 songs played in some but not all of the shows. The 4 shows
+have 100 songs in total, including the repeated performances.
 
 The Details table shows the complete list of songs, and for each song
 which show or shows it was performed at. The table is sorted in
 descending order of the number of shows each song was performed at, so
 in this case the top part of the table lists the 8 songs that were
-performed at all 3 shows.
+performed at all 4 shows.
 
 The ‘details’ table can be downloaded as a CSV file using the download
 button at the top of the page to the right of the ‘shows’ selection box.
@@ -470,13 +469,13 @@ button at the top of the page to the right of the ‘shows’ selection box.
 
 ### stacks
 
-Here you can choose any show (out of the 899 shows with set lists
+Here you can choose any show (out of the 952 shows with set lists
 available to date) and then a stack that contains the selected show. The
 stacks are named after the initial show that was chosen when the stack
 was created. Many shows appear in only one stack but some shows appear
 in many stacks. Once you have chosen a show and a stack, you will get a
-short sequence of 9-12 shows including the selected shows and covering
-all 94 songs that Fugazi played live at least twice.
+short sequence of 10-13 shows including the selected shows and covering
+all 92 songs that Fugazi played live at least twice.
 
 Once a stack has been selected, two results tables will appear. The
 first is a summary table, including links to the shows.

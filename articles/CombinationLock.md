@@ -389,12 +389,17 @@ transitions_by_group
 #> 14 instrumental instrumental    14       0   
 #> 15 instrumental lally           10       0   
 #> 16 lally        instrumental     9       0
+
+mp_proportion <- transitions_by_group %>%
+  filter((from_vocals=="mackaye" & to_vocals=="picciotto") | (from_vocals=="picciotto" & to_vocals=="mackaye")) %>%
+  summarise(p = sum(count)/totaltransitions) %>%
+  pull(p)
 ```
 
 With four groups of songs there are 16 possible transitions between
 these groups and all of these were used in the live shows, although some
 more than others. Transitions between Mackaye and Picciotto songs
-represent approximately 80% of the cases.
+represent approximately 79% of the cases.
 
 Now let’s do another heatmap, this time grouping the transitions
 according to the four groups of songs we just looked into. The

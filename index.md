@@ -51,7 +51,7 @@ metadata.
 songs](https://alexmitrani.github.io/Repeatr/articles/Ninety-Two-Songs.md)
 summarises the main results of the data processing and choice modelling
 as an interactive graph. The graph shows ratings, performance counts and
-launch dates for the 94 songs that were performed live at least twice.
+launch dates for the 92 songs that were performed live at least twice.
 
 [Combination
 Lock](https://alexmitrani.github.io/Repeatr/articles/CombinationLock.md)

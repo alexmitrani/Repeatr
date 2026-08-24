@@ -9,9 +9,9 @@ piano parts on The Kill and Strangelight recorded at Dischord House. It
 was released in October 2001, despite everything, together with the
 Furniture single which contained 3 songs recorded in the same sessions
 as the album but kept separate because there was too much material for
-an album but not enough for a double album. Six of the songs had been
+an album but not enough for a double album. 6 of the songs had been
 played live prior to being recorded, with live debuts going back as far
-as november 1998 (Oh). The other four songs - Full Disclosure, Life and
+as november 1998 (Oh). The other 4 songs - Full Disclosure, Life and
 Limb, The Kill, and Strangelight - were worked out during the recording
 process and introduced to live audiences afterwards. That makes The
 Argument the Fugazi album with most studio compositions, as the previous

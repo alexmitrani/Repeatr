@@ -87,7 +87,7 @@ And The Same and KYEO:
 > opposed to the war, it’s a good thing to be, who wants to be killed? -
 > Ian MacKaye ([Fugazi 1991b](#ref-fugazi1991a))
 
-Nice New Outfit was played a total of 114 times, which was more than
+Nice New Outfit was played a total of 119 times, which was more than
 Steady Diet and Polish, but less than all of the other songs on Steady
 Diet of Nothing.
 

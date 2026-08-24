@@ -28,9 +28,9 @@ would be released on Repeater.
     #> 10 repeater          1989-07-19
     #> 11 blueprint         1989-09-23
 
-Fugazi played Two Beats Off at least 371 times with the last recorded
+Fugazi played Two Beats Off at least 392 times with the last recorded
 version being on the 6 July 2001 in Victoria, BC, Canada. Two Beats Off
-was followed by the song Repeater 109 times which makes this by far the
+was followed by the song Repeater 131 times which makes this by far the
 most common transition featuring the song.
 
 ## Title

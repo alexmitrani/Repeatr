@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">Repeatr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9274</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9275</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -168,11 +168,14 @@ the show on youtube</a>.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 1993 Fall USA… 1993-08-16 1993-09-29    39       44      <span style="text-decoration: underline;">58</span>075           <span style="text-decoration: underline;">1</span>489</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 1991 Spring U… 1991-05-01 1991-06-14    38       44      <span style="text-decoration: underline;">27</span>273            717</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 1989 Spring U… 1989-04-05 1989-06-16    35       72      <span style="text-decoration: underline;">11</span>162            318</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 2 more variables: startyear &lt;dbl&gt;, endyear &lt;dbl&gt;</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 2 more variables: startyear &lt;dbl&gt;, endyear &lt;dbl&gt;</span></span></span>
+<span></span>
+<span><span class="va">longest_tour</span> <span class="op">&lt;-</span> <span class="va">toursdata</span> <span class="op">%&gt;%</span> <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">shows</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">slice</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">biggest_tour</span> <span class="op">&lt;-</span> <span class="va">toursdata</span> <span class="op">%&gt;%</span> <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">attendance</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">slice</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <p>On the 1990 Fall European Tour, between 1990-09-01 and 1990-11-07,
-Fugazi played 60 shows over 67 days, with a total attendance of 43,478
+Fugazi played 60 shows over 67 days, with a total attendance of 43,476
 people. This tour wasn’t the longest in terms of the number of days, or
-the biggest in terms of total attendance (the 1993 Spring USA tour had a
+the biggest in terms of total attendance (the 1993 Spring USA Tour had a
 total attendance of 74,550 people), but it was the longest tour in terms
 of the number of shows.</p>
 </div>
@@ -187,7 +190,7 @@ dates? To find out, let’s start by getting the data on the releases and
 the corresponding release dates.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">releasedates</span> <span class="op">&lt;-</span> <span class="va">releasesdatalookup</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="va">rid</span>, <span class="va">release_date</span><span class="op">)</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">rid</span>, <span class="va">release_title</span>, <span class="va">release_date</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">mydf</span> <span class="op">&lt;-</span> <span class="va">songvarslookup</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">releasedates</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
@@ -195,16 +198,16 @@ the corresponding release dates.</p>
 <span><span class="co">#&gt; Joining with `by = join_by(rid)`</span></span>
 <span><span class="co">#&gt; Joining with `by = join_by(title)`</span></span>
 <span><span class="va">mydf</span> <span class="op">&lt;-</span> <span class="va">mydf</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="va">songid</span>, <span class="va">title</span>, <span class="va">rid</span>, <span class="va">release_date</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">songid</span>, <span class="va">title</span>, <span class="va">rid</span>, <span class="va">release_title</span>, <span class="va">release_date</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">arrange</span><span class="op">(</span><span class="va">songid</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mydf</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   songid        title rid release_date</span></span>
-<span><span class="co">#&gt; 1      1 23 beats off   6   1993-06-18</span></span>
-<span><span class="co">#&gt; 2      2 and the same   2   1989-06-15</span></span>
-<span><span class="co">#&gt; 3      3     argument   9   2001-10-16</span></span>
-<span><span class="co">#&gt; 4      4  arpeggiator   8   1998-04-24</span></span>
-<span><span class="co">#&gt; 5      5 back to base   7   1995-05-12</span></span>
-<span><span class="co">#&gt; 6      6    bad mouth   1   1988-11-19</span></span></code></pre></div>
+<span><span class="co">#&gt;   songid        title rid       release_title release_date</span></span>
+<span><span class="co">#&gt; 1      1 23 beats off   6 in on the killtaker   1993-06-18</span></span>
+<span><span class="co">#&gt; 2      2 and the same   2       margin walker   1989-06-15</span></span>
+<span><span class="co">#&gt; 3      3     argument   9        the argument   2001-10-16</span></span>
+<span><span class="co">#&gt; 4      4  arpeggiator   8            end hits   1998-04-24</span></span>
+<span><span class="co">#&gt; 5      5 back to base   7        red medicine   1995-05-12</span></span>
+<span><span class="co">#&gt; 6      6    bad mouth   1              fugazi   1988-11-19</span></span></code></pre></div>
 <p>Now let’s calculate leads and lags by getting summary data on the
 songs and comparing the song launch dates to the corresponding release
 dates.</p>
@@ -212,31 +215,46 @@ dates.</p>
 <code class="sourceCode R"><span><span class="va">mysummary</span> <span class="op">&lt;-</span> <span class="fu">Repeatr</span><span class="fu">::</span><span class="va"><a href="../reference/summary.html">summary</a></span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">left_join</span><span class="op">(</span><span class="va">mydf</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">mutate</span><span class="op">(</span>lead <span class="op">=</span> <span class="va">release_date</span> <span class="op">-</span> <span class="va">launchdate</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">select</span><span class="op">(</span><span class="va">title</span>, <span class="va">launchdate</span>, <span class="va">release_date</span>, <span class="va">lead</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">select</span><span class="op">(</span><span class="va">title</span>, <span class="va">launchdate</span>, <span class="va">release_title</span>, <span class="va">release_date</span>, <span class="va">lead</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">arrange</span><span class="op">(</span><span class="va">lead</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Joining with `by = join_by(songid, title, rid, release_date)`</span></span>
+<span><span class="co">#&gt; Joining with `by = join_by(songid, title, rid, release_title,</span></span>
+<span><span class="co">#&gt; release_date)`</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mysummary</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 4</span></span></span>
-<span><span class="co">#&gt;    title                  launchdate release_date lead    </span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;drtn&gt;</span>  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> foreman's dog          1998-05-01 1998-04-24    -7 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> provisional            1989-05-03 1989-06-15    43 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> steady diet            1991-04-12 1991-08-01   111 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> life and limb          2001-06-21 2001-10-16   117 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> public witness program 1993-02-05 1993-06-18   133 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> polish                 1991-03-06 1991-08-01   148 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> bulldog front          1988-06-15 1988-11-19   157 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> blueprint              1989-09-23 1990-03-01   159 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> nice new outfit        1991-02-20 1991-08-01   162 days</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> combination lock       1994-11-27 1995-05-12   166 days</span></span></code></pre></div>
-<p>Surprisingly, there seem to be only 2 songs whose live debuts lagged
-behind the corresponding release dates: Styrofoam which was first played
-live 58 days after the launch of Repeater, and Foreman’s Dog which was
-first played live 4 days after the launch of End Hits. What was the
-average lead time for all Fugazi songs with a corresponding release?</p>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 5</span></span></span>
+<span><span class="co">#&gt;    title                  launchdate release_title          release_date lead   </span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;drtn&gt;</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> foreman's dog          1998-05-01 end hits               1998-04-24    -7 da…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> provisional            1989-05-03 margin walker          1989-06-15    43 da…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> steady diet            1991-04-12 steady diet of nothing 1991-08-01   111 da…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> life and limb          2001-06-21 the argument           2001-10-16   117 da…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> public witness program 1993-02-05 in on the killtaker    1993-06-18   133 da…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> polish                 1991-03-06 steady diet of nothing 1991-08-01   148 da…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> bulldog front          1988-06-15 fugazi                 1988-11-19   157 da…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> blueprint              1989-09-23 repeater               1990-03-01   159 da…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> nice new outfit        1991-02-20 steady diet of nothing 1991-08-01   162 da…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> combination lock       1994-11-27 red medicine           1995-05-12   166 da…</span></span>
+<span></span>
+<span><span class="va">lagged_songs</span> <span class="op">&lt;-</span> <span class="va">mysummary</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">lead</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>lag_days <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">lead</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>         title <span class="op">=</span> <span class="fu">tools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/tools/toTitleCase.html" class="external-link">toTitleCase</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span>,</span>
+<span>         release_title <span class="op">=</span> <span class="fu">tools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/tools/toTitleCase.html" class="external-link">toTitleCase</a></span><span class="op">(</span><span class="va">release_title</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">n_lagged</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">lagged_songs</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">lagged_songs_text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">lagged_songs</span><span class="op">$</span><span class="va">title</span>, <span class="st">" which was first played live "</span>, <span class="va">lagged_songs</span><span class="op">$</span><span class="va">lag_days</span>,</span>
+<span>         <span class="st">" day"</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">lagged_songs</span><span class="op">$</span><span class="va">lag_days</span> <span class="op">==</span> <span class="fl">1</span>, <span class="st">""</span>, <span class="st">"s"</span><span class="op">)</span>, <span class="st">" after the launch of "</span>, <span class="va">lagged_songs</span><span class="op">$</span><span class="va">release_title</span><span class="op">)</span>,</span>
+<span>  collapse <span class="op">=</span> <span class="st">", and "</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>Surprisingly, there seems to be only one song whose live debut lagged
+behind the corresponding release date: Foreman’s Dog which was first
+played live 7 days after the launch of End Hits. What was the average
+lead time for all Fugazi songs with a corresponding release?</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">mysummary</span><span class="op">$</span><span class="va">lead</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">mean_lead</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">mysummary</span><span class="op">$</span><span class="va">lead</span><span class="op">)</span></span>
+<span><span class="va">mean_lead</span></span>
 <span><span class="co">#&gt; Time difference of 780.9239 days</span></span></code></pre></div>
 <p>That is over 2 years, but perhaps the mean is biased upwards by a few
 extreme values…</p>
@@ -263,16 +281,17 @@ extreme values…</p>
 long Fugazi would tend to play a song live before it featuring on a
 discographical release.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">mysummary</span><span class="op">$</span><span class="va">lead</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">median_lead</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">mysummary</span><span class="op">$</span><span class="va">lead</span><span class="op">)</span></span>
+<span><span class="va">median_lead</span></span>
 <span><span class="co">#&gt; Time difference of 347 days</span></span></code></pre></div>
 <p>We have discovered several interesting things:</p>
 <ol style="list-style-type: decimal">
-<li><p>Styrofoam was the only Fugazi song whose live debut significantly
-lagged behind the corresponding release, although the live debut of
-Foreman’s Dog was 4 days after the release of End Hits.</p></li>
+<li><p>The only Fugazi song whose live debut lagged behind its
+corresponding release was Foreman’s Dog which was first played live 7
+days after the launch of End Hits.</p></li>
 <li><p>The median lead time for the live performance of a Fugazi song
 ahead of its corresponding discographical release date was approximately
-1 year: 360 days.</p></li>
+1 year: 347 days.</p></li>
 </ol>
 </div>
 <div class="section level2">
@@ -312,12 +331,22 @@ at the venues with the largest numbers of Fugazi shows.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Wilson Center         Washington  USA         8  <span style="text-decoration: underline;">1</span>987  <span style="text-decoration: underline;">1</span>997</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Masquerade            Atlanta     USA         7  <span style="text-decoration: underline;">1</span>990  <span style="text-decoration: underline;">1</span>999</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Cat's Cradle          Chapel Hill USA         6  <span style="text-decoration: underline;">1</span>987  <span style="text-decoration: underline;">1</span>993</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Hollywood Palladium   Los Angeles USA         6  <span style="text-decoration: underline;">1</span>991  <span style="text-decoration: underline;">1</span>993</span></span></code></pre></div>
-<p>The top 10 venues are all in the USA, with the top two both in
-Washington DC - Fort Reno and the 9:30 club are the only 2 venues with
-more than 10 shows. In the case of Fort Reno, Fugazi played shows there
-12 times between 1988 and 2002, only missing 3 years (1990, 1992 and
-1995).</p>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Hollywood Palladium   Los Angeles USA         6  <span style="text-decoration: underline;">1</span>991  <span style="text-decoration: underline;">1</span>993</span></span>
+<span></span>
+<span><span class="va">venues_over_10</span> <span class="op">&lt;-</span> <span class="va">venuesdata</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">shows</span> <span class="op">&gt;</span> <span class="fl">10</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">shows</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">top_venue_years</span> <span class="op">&lt;-</span> <span class="va">shows_data</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">venue</span> <span class="op">==</span> <span class="va">venues_over_10</span><span class="op">$</span><span class="va">venue</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">distinct</span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">arrange</span><span class="op">(</span><span class="va">year</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">pull</span><span class="op">(</span><span class="va">year</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">top_venue_missing_years</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sets.html" class="external-link">setdiff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">top_venue_years</span><span class="op">)</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">top_venue_years</span><span class="op">)</span>, <span class="va">top_venue_years</span><span class="op">)</span></span></code></pre></div>
+<p>The top 10 venues are all in the USA. Fort Reno, in Washington, is
+the only venue with more than 10 shows. Fugazi played shows there 13
+times between 1988 and 2002, only missing 2 years (1990, 1995).</p>
 <p>Let’s have a look at the top 10 overseas venues.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">overseas_venuesdata</span> <span class="op">&lt;-</span> <span class="va">venuesdata</span> <span class="op">%&gt;%</span></span>
@@ -337,9 +366,17 @@ more than 10 shows. In the case of Fort Reno, Fugazi played shows there
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Riverside        Newcastle-Upon-Tyne England         4  <span style="text-decoration: underline;">1</span>989  <span style="text-decoration: underline;">1</span>999</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Rote Fabrik      Zurich              Switzerland     4  <span style="text-decoration: underline;">1</span>990  <span style="text-decoration: underline;">1</span>999</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Schlachthof      Bremen              Germany         4  <span style="text-decoration: underline;">1</span>990  <span style="text-decoration: underline;">1</span>999</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Vera             Groningen           Netherlands     4  <span style="text-decoration: underline;">1</span>989  <span style="text-decoration: underline;">1</span>995</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Vera             Groningen           Netherlands     4  <span style="text-decoration: underline;">1</span>989  <span style="text-decoration: underline;">1</span>995</span></span>
+<span></span>
+<span><span class="va">top_overseas_shows</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">overseas_venuesdata</span><span class="op">$</span><span class="va">shows</span><span class="op">)</span></span>
+<span><span class="va">top_overseas</span> <span class="op">&lt;-</span> <span class="va">overseas_venuesdata</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">shows</span> <span class="op">==</span> <span class="va">top_overseas_shows</span><span class="op">)</span></span>
+<span><span class="va">other_overseas</span> <span class="op">&lt;-</span> <span class="va">overseas_venuesdata</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">shows</span> <span class="op">&lt;</span> <span class="va">top_overseas_shows</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">countries_with_article</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Netherlands"</span>, <span class="st">"Czech Republic"</span><span class="op">)</span></span>
+<span><span class="va">top_overseas_country_text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">top_overseas</span><span class="op">$</span><span class="va">country</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">countries_with_article</span>,</span>
+<span>                                     <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"the"</span>, <span class="va">top_overseas</span><span class="op">$</span><span class="va">country</span><span class="op">)</span>, <span class="va">top_overseas</span><span class="op">$</span><span class="va">country</span><span class="op">)</span></span></code></pre></div>
 <p>Overseas, the venues with most Fugazi shows were Forte Prenestino in
-Italy and Paradiso in the Netherlands both with 5 shows. There were 9
+Italy and Paradiso in the Netherlands, each with 5 shows. There were 8
 other overseas venues with 4 shows. Proud to see that the number 1
 Fugazi venue in the UK was the Newcastle Riverside, in my home town,
 which was where I saw them play in 1990!</p>
@@ -374,10 +411,17 @@ of shows at each venue.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span>     4     16      2.13 </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span>     3     28      3.73 </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span>     2     99     13.2  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>     1    591     78.8</span></span></code></pre></div>
-<p>Fugazi played at 733 venues but played at 79.4% of them only once,
-twice at 12.7% of venues, 3 shows at 3.4% of venues, and 4 shows at 2.3%
-of venues. Only 2.2% of venues had 5 or more shows.</p>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span>     1    591     78.8</span></span>
+<span></span>
+<span><span class="va">pct_shows</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">v</span> <span class="op">&lt;-</span> <span class="va">overview_venuesdata</span><span class="op">$</span><span class="va">percentage</span><span class="op">[</span><span class="va">overview_venuesdata</span><span class="op">$</span><span class="va">shows</span> <span class="op">==</span> <span class="va">n</span><span class="op">]</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">v</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="fl">0</span> <span class="kw">else</span> <span class="va">v</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">pct_5_or_more</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">overview_venuesdata</span><span class="op">$</span><span class="va">percentage</span><span class="op">[</span><span class="va">overview_venuesdata</span><span class="op">$</span><span class="va">shows</span> <span class="op">&gt;=</span> <span class="fl">5</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<p>Fugazi played at 750 venues but played at 78.8% of them only once,
+twice at 13.2% of venues, 3 shows at 3.733% of venues, and 4 shows at
+2.133% of venues. Only 2.133% of venues had 5 or more shows.</p>
 </div>
 <div class="section level2">
 <h2 id="in-which-city-did-fugazi-play-at-the-most-venues">In which city did Fugazi play at the most venues?<a class="anchor" aria-label="anchor" href="#in-which-city-did-fugazi-play-at-the-most-venues"></a>
@@ -417,7 +461,7 @@ of venues. Only 2.2% of venues had 5 or more shows.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Richmond           6</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> San Francisco      6</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 391 more rows</span></span></span></code></pre></div>
-<p>The city where Fugazi played at the most venues was Washington DC,
+<p>The city where Fugazi played at the most venues was Washington,
 followed by New York, and Portland.</p>
 </div>
 <div class="section level2">
@@ -469,7 +513,7 @@ count of the number of times the song was played.</p>
 <code class="sourceCode R"><span></span>
 <span><span class="va">mydf_wide2</span> <span class="op">&lt;-</span> <span class="va">mydf_wide</span></span>
 <span></span>
-<span><span class="kw">for</span><span class="op">(</span><span class="va">colindex</span> <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span><span class="fl">94</span><span class="op">)</span> <span class="op">{</span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">colindex</span> <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">mydf_wide2</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  </span>
 <span>  <span class="va">mydf_wide2</span><span class="op">[</span>,<span class="va">colindex</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cumsum.html" class="external-link">cumsum</a></span><span class="op">(</span><span class="va">mydf_wide2</span><span class="op">[</span>,<span class="va">colindex</span><span class="op">]</span><span class="op">)</span>     </span>
 <span>  </span>

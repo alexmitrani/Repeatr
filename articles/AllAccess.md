@@ -164,7 +164,7 @@ which probably holds the record for the highest number of expulsions.
 ### Miniseries
 
 Here is a much shorter list that I call the ‘miniseries’ - 9 shows that
-include at least one rendition of all 94 songs that were played at least
+include at least one rendition of all 92 songs that were played at least
 twice in the Fugazi Live Series, including all the rare ones:
 
 [FLS0073, Kapu, Linz, Austria

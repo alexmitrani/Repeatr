@@ -13,9 +13,9 @@ probably going to hate this song but we’re going to play it anyway”.
 Forensic Scene was one of 6 songs from the forthcoming Red Medicine
 album to be launched on that 1994 tour of Brazil - including the full
 version of ‘By You’ (with vocals) - first played on 15 August 1994 in
-Belo Horizonte - which had been played 5 times in 1993 as an
+Belo Horizonte - which had been played 6 times in 1993 as an
 instrumental. ‘Fell, Destroyed’ was played as an instrumental at least
-10 times starting in August 1993 before finally being performed with
+14 times starting in August 1993 before finally being performed with
 vocals on 2 March 1995, after it was recorded and not long before the
 release of Red Medicine.
 
@@ -38,11 +38,11 @@ release of Red Medicine.
 
 The song got it’s official release on Red Medicine which was released
 around the 12 May 1995 ([Fugazi 1995c](#ref-fugazi1995)). Fugazi played
-Forensic Scene at least 201 times with the last recorded version being
+Forensic Scene at least 203 times with the last recorded version being
 on the 4 November 2002 in London, England - the final Fugazi show to
 date. It was the 5th most played song from Red Medicine. In live shows
 Forensic Scene tended to be used later in the set, it was often followed
-by Promises (31 times) or by Long Division (21 times).
+by Promises (34 times) or by Long Division (21 times).
 
 There are several interviews where Guy Picciotto has commented on the
 song. In 1995 he only commented in outline:
