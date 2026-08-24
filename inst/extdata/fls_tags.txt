@@ -18577,57 +18577,57 @@ track; artist; album; name; duration
 31; Fugazi; 19980725 Olympic Bingo, Halifax, NS, Canada; No Surprise; 4:16
 32; Fugazi; 19980725 Olympic Bingo, Halifax, NS, Canada; Long Division; 2:06
 33; Fugazi; 19980725 Olympic Bingo, Halifax, NS, Canada; Outro; 0:43
-01; Fugazi; 19980726 Asylum, Portland, ME, USA; Opening Remarks; 3:52
-02; Fugazi; 19980726 Asylum, Portland, ME, USA; Break; 2:09
-03; Fugazi; 19980726 Asylum, Portland, ME, USA; Do You Like Me; 2:42
-04; Fugazi; 19980726 Asylum, Portland, ME, USA; Merchandise; 3:54
-05; Fugazi; 19980726 Asylum, Portland, ME, USA; Place Position; 2:37
-06; Fugazi; 19980726 Asylum, Portland, ME, USA; Reclamation; 3:58
-07; Fugazi; 19980726 Asylum, Portland, ME, USA; Target; 3:52
-08; Fugazi; 19980726 Asylum, Portland, ME, USA; Facet Squared; 2:56
-09; Fugazi; 19980726 Asylum, Portland, ME, USA; Burning; 3:35
-10; Fugazi; 19980726 Asylum, Portland, ME, USA; Bad Mouth; 2:25
-11; Fugazi; 19980726 Asylum, Portland, ME, USA; Recap Modotti; 3:46
-12; Fugazi; 19980726 Asylum, Portland, ME, USA; No Surprise; 4:10
-13; Fugazi; 19980726 Asylum, Portland, ME, USA; Closed Captioned; 4:52
-14; Fugazi; 19980726 Asylum, Portland, ME, USA; Blueprint; 3:29
-15; Fugazi; 19980726 Asylum, Portland, ME, USA; Interlude; 1:17
-16; Fugazi; 19980726 Asylum, Portland, ME, USA; Stacks; 2:59
-17; Fugazi; 19980726 Asylum, Portland, ME, USA; Floating Boy; 5:01
-18; Fugazi; 19980726 Asylum, Portland, ME, USA; Pink Frosty; 3:44
-19; Fugazi; 19980726 Asylum, Portland, ME, USA; Rend It; 4:15
-20; Fugazi; 19980726 Asylum, Portland, ME, USA; Encore 1; 3:24
-21; Fugazi; 19980726 Asylum, Portland, ME, USA; Arpeggiator; 3:44
-22; Fugazi; 19980726 Asylum, Portland, ME, USA; Long Division; 2:18
-23; Fugazi; 19980726 Asylum, Portland, ME, USA; fd; 2:04
-24; Fugazi; 19980726 Asylum, Portland, ME, USA; Repeater; 3:37
-25; Fugazi; 19980726 Asylum, Portland, ME, USA; Outro; 0:28
-01; Fugazi; 19980727 Maxwell's, Hoboken, NJ, USA; Intro; 2:36
-02; Fugazi; 19980727 Maxwell's, Hoboken, NJ, USA; Break; 2:07
-03; Fugazi; 19980727 Maxwell's, Hoboken, NJ, USA; Do You Like Me; 2:51
-04; Fugazi; 19980727 Maxwell's, Hoboken, NJ, USA; Styrofoam; 3:11
-05; Fugazi; 19980727 Maxwell's, Hoboken, NJ, USA; Guilford Fall; 3:02
-06; Fugazi; 19980727 Maxwell's, Hoboken, NJ, USA; Five Corporations; 2:36
-07; Fugazi; 19980727 Maxwell's, Hoboken, NJ, USA; Nice New Outfit; 3:17
-08; Fugazi; 19980727 Maxwell's, Hoboken, NJ, USA; And The Same; 4:29
-09; Fugazi; 19980727 Maxwell's, Hoboken, NJ, USA; Foreman's Dog; 4:50
-10; Fugazi; 19980727 Maxwell's, Hoboken, NJ, USA; Closed Captioned; 5:00
-11; Fugazi; 19980727 Maxwell's, Hoboken, NJ, USA; Recap Modotti; 3:33
-12; Fugazi; 19980727 Maxwell's, Hoboken, NJ, USA; Burning; 3:14
-13; Fugazi; 19980727 Maxwell's, Hoboken, NJ, USA; Interlude 1; 1:06
-14; Fugazi; 19980727 Maxwell's, Hoboken, NJ, USA; Bed For The Scraping; 2:58
-15; Fugazi; 19980727 Maxwell's, Hoboken, NJ, USA; Floating Boy; 4:47
-16; Fugazi; 19980727 Maxwell's, Hoboken, NJ, USA; Long Division; 2:34
-17; Fugazi; 19980727 Maxwell's, Hoboken, NJ, USA; Target; 4:03
-18; Fugazi; 19980727 Maxwell's, Hoboken, NJ, USA; Instrument; 3:37
-19; Fugazi; 19980727 Maxwell's, Hoboken, NJ, USA; Interlude 2; 1:16
-20; Fugazi; 19980727 Maxwell's, Hoboken, NJ, USA; Arpeggiator; 4:01
-21; Fugazi; 19980727 Maxwell's, Hoboken, NJ, USA; Encore; 3:02
-22; Fugazi; 19980727 Maxwell's, Hoboken, NJ, USA; No Surprise; 4:23
-23; Fugazi; 19980727 Maxwell's, Hoboken, NJ, USA; Pink Frosty; 4:13
-24; Fugazi; 19980727 Maxwell's, Hoboken, NJ, USA; fd; 2:14
-25; Fugazi; 19980727 Maxwell's, Hoboken, NJ, USA; Sweet And Low; 4:20
-26; Fugazi; 19980727 Maxwell's, Hoboken, NJ, USA; Outro; 0:32
+01; Fugazi; 19980727 Asylum, Portland, ME, USA; Opening Remarks; 3:52
+02; Fugazi; 19980727 Asylum, Portland, ME, USA; Break; 2:09
+03; Fugazi; 19980727 Asylum, Portland, ME, USA; Do You Like Me; 2:42
+04; Fugazi; 19980727 Asylum, Portland, ME, USA; Merchandise; 3:54
+05; Fugazi; 19980727 Asylum, Portland, ME, USA; Place Position; 2:37
+06; Fugazi; 19980727 Asylum, Portland, ME, USA; Reclamation; 3:58
+07; Fugazi; 19980727 Asylum, Portland, ME, USA; Target; 3:52
+08; Fugazi; 19980727 Asylum, Portland, ME, USA; Facet Squared; 2:56
+09; Fugazi; 19980727 Asylum, Portland, ME, USA; Burning; 3:35
+10; Fugazi; 19980727 Asylum, Portland, ME, USA; Bad Mouth; 2:25
+11; Fugazi; 19980727 Asylum, Portland, ME, USA; Recap Modotti; 3:46
+12; Fugazi; 19980727 Asylum, Portland, ME, USA; No Surprise; 4:10
+13; Fugazi; 19980727 Asylum, Portland, ME, USA; Closed Captioned; 4:52
+14; Fugazi; 19980727 Asylum, Portland, ME, USA; Blueprint; 3:29
+15; Fugazi; 19980727 Asylum, Portland, ME, USA; Interlude; 1:17
+16; Fugazi; 19980727 Asylum, Portland, ME, USA; Stacks; 2:59
+17; Fugazi; 19980727 Asylum, Portland, ME, USA; Floating Boy; 5:01
+18; Fugazi; 19980727 Asylum, Portland, ME, USA; Pink Frosty; 3:44
+19; Fugazi; 19980727 Asylum, Portland, ME, USA; Rend It; 4:15
+20; Fugazi; 19980727 Asylum, Portland, ME, USA; Encore 1; 3:24
+21; Fugazi; 19980727 Asylum, Portland, ME, USA; Arpeggiator; 3:44
+22; Fugazi; 19980727 Asylum, Portland, ME, USA; Long Division; 2:18
+23; Fugazi; 19980727 Asylum, Portland, ME, USA; fd; 2:04
+24; Fugazi; 19980727 Asylum, Portland, ME, USA; Repeater; 3:37
+25; Fugazi; 19980727 Asylum, Portland, ME, USA; Outro; 0:28
+01; Fugazi; 19980728 Maxwell's, Hoboken, NJ, USA; Intro; 2:36
+02; Fugazi; 19980728 Maxwell's, Hoboken, NJ, USA; Break; 2:07
+03; Fugazi; 19980728 Maxwell's, Hoboken, NJ, USA; Do You Like Me; 2:51
+04; Fugazi; 19980728 Maxwell's, Hoboken, NJ, USA; Styrofoam; 3:11
+05; Fugazi; 19980728 Maxwell's, Hoboken, NJ, USA; Guilford Fall; 3:02
+06; Fugazi; 19980728 Maxwell's, Hoboken, NJ, USA; Five Corporations; 2:36
+07; Fugazi; 19980728 Maxwell's, Hoboken, NJ, USA; Nice New Outfit; 3:17
+08; Fugazi; 19980728 Maxwell's, Hoboken, NJ, USA; And The Same; 4:29
+09; Fugazi; 19980728 Maxwell's, Hoboken, NJ, USA; Foreman's Dog; 4:50
+10; Fugazi; 19980728 Maxwell's, Hoboken, NJ, USA; Closed Captioned; 5:00
+11; Fugazi; 19980728 Maxwell's, Hoboken, NJ, USA; Recap Modotti; 3:33
+12; Fugazi; 19980728 Maxwell's, Hoboken, NJ, USA; Burning; 3:14
+13; Fugazi; 19980728 Maxwell's, Hoboken, NJ, USA; Interlude 1; 1:06
+14; Fugazi; 19980728 Maxwell's, Hoboken, NJ, USA; Bed For The Scraping; 2:58
+15; Fugazi; 19980728 Maxwell's, Hoboken, NJ, USA; Floating Boy; 4:47
+16; Fugazi; 19980728 Maxwell's, Hoboken, NJ, USA; Long Division; 2:34
+17; Fugazi; 19980728 Maxwell's, Hoboken, NJ, USA; Target; 4:03
+18; Fugazi; 19980728 Maxwell's, Hoboken, NJ, USA; Instrument; 3:37
+19; Fugazi; 19980728 Maxwell's, Hoboken, NJ, USA; Interlude 2; 1:16
+20; Fugazi; 19980728 Maxwell's, Hoboken, NJ, USA; Arpeggiator; 4:01
+21; Fugazi; 19980728 Maxwell's, Hoboken, NJ, USA; Encore; 3:02
+22; Fugazi; 19980728 Maxwell's, Hoboken, NJ, USA; No Surprise; 4:23
+23; Fugazi; 19980728 Maxwell's, Hoboken, NJ, USA; Pink Frosty; 4:13
+24; Fugazi; 19980728 Maxwell's, Hoboken, NJ, USA; fd; 2:14
+25; Fugazi; 19980728 Maxwell's, Hoboken, NJ, USA; Sweet And Low; 4:20
+26; Fugazi; 19980728 Maxwell's, Hoboken, NJ, USA; Outro; 0:32
 01; Fugazi; 19980730 Fort Reno, Washington, DC, USA; Opening Remarks; 1:12
 02; Fugazi; 19980730 Fort Reno, Washington, DC, USA; Intro; 1:53
 03; Fugazi; 19980730 Fort Reno, Washington, DC, USA; Break; 2:07
