@@ -863,6 +863,16 @@
 #' shiny_duration_data_da
 "shiny_duration_data_da"
 
+#' `duration_data_da_song` joined with each song's `release_title`
+#'
+#' Same construction as \code{\link{shiny_duration_data_da}}, but sourced from \code{\link{duration_data_da_song}} instead of \code{\link{duration_data_da}}, so it additionally includes unreleased/one-off songs (e.g. "untitled" performances).
+#'
+#' @format dataframe with the same rows as \code{\link{duration_data_da_song}}, plus `release_title`.
+#' @section Provenance: Shiny-presentation-only. Produced by \code{\link{build_shiny_precompute}} from \code{\link{duration_data_da_song}} and \code{\link{summary}}. Consumed only by `inst/shiny/Fugazetteer/app.R`'s "stock \| details" and "stock \| search" tabs.
+#' @examples
+#' shiny_duration_data_da_song
+"shiny_duration_data_da_song"
+
 #' `othervariables` joined with sound quality and dischord.com link columns
 #'
 #' The base app.R builds its own runtime `othervariables` from: joins in the

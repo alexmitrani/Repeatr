@@ -2,6 +2,7 @@
 "_PACKAGE"
 
 ## usethis namespace: start
+#' @importFrom base64enc dataURI
 #' @importFrom bslib bs_theme
 #' @importFrom cols4all c4a
 #' @importFrom crayon yellow
