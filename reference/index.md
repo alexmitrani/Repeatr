@@ -210,6 +210,11 @@
 
   `duration_data_da` joined with each song's `release_title`
 
+- [`shiny_duration_data_da_song`](https://alexmitrani.github.io/Repeatr/reference/shiny_duration_data_da_song.md)
+  :
+
+  `duration_data_da_song` joined with each song's `release_title`
+
 - [`shiny_fls_link_year_tour`](https://alexmitrani.github.io/Repeatr/reference/shiny_fls_link_year_tour.md)
   :
 
