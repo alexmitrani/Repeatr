@@ -498,17 +498,17 @@ track; artist; album; name; duration
 15; Fugazi; 19880801 dc space, Washington, DC, USA; Glueman; 4:38
 16; Fugazi; 19880801 dc space, Washington, DC, USA; Encore; 2:18
 17; Fugazi; 19880801 dc space, Washington, DC, USA; The Word; 5:23
-01; Fugazi; 19880807 YMCA, Philadelphia, PA, USA; Intro; 1:04
-02; Fugazi; 19880807 YMCA, Philadelphia, PA, USA; Burning Too; 2:47
-03; Fugazi; 19880807 YMCA, Philadelphia, PA, USA; Song #1; 3:15
-04; Fugazi; 19880807 YMCA, Philadelphia, PA, USA; Burning; 2:51
-05; Fugazi; 19880807 YMCA, Philadelphia, PA, USA; Furniture; 3:52
-06; Fugazi; 19880807 YMCA, Philadelphia, PA, USA; Interlude 1; 0:26
-07; Fugazi; 19880807 YMCA, Philadelphia, PA, USA; Merchandise; 2:55
-08; Fugazi; 19880807 YMCA, Philadelphia, PA, USA; Interlude 2; 0:35
-09; Fugazi; 19880807 YMCA, Philadelphia, PA, USA; Give Me The Cure; 2:56
-10; Fugazi; 19880807 YMCA, Philadelphia, PA, USA; Interlude 3; 0:31
-11; Fugazi; 19880807 YMCA, Philadelphia, PA, USA; Suggestion; 2:06
+01; Fugazi; 19880807 Frankford YWCA, Philadelphia, PA, USA; Intro; 1:04
+02; Fugazi; 19880807 Frankford YWCA, Philadelphia, PA, USA; Burning Too; 2:47
+03; Fugazi; 19880807 Frankford YWCA, Philadelphia, PA, USA; Song #1; 3:15
+04; Fugazi; 19880807 Frankford YWCA, Philadelphia, PA, USA; Burning; 2:51
+05; Fugazi; 19880807 Frankford YWCA, Philadelphia, PA, USA; Furniture; 3:52
+06; Fugazi; 19880807 Frankford YWCA, Philadelphia, PA, USA; Interlude 1; 0:26
+07; Fugazi; 19880807 Frankford YWCA, Philadelphia, PA, USA; Merchandise; 2:55
+08; Fugazi; 19880807 Frankford YWCA, Philadelphia, PA, USA; Interlude 2; 0:35
+09; Fugazi; 19880807 Frankford YWCA, Philadelphia, PA, USA; Give Me The Cure; 2:56
+10; Fugazi; 19880807 Frankford YWCA, Philadelphia, PA, USA; Interlude 3; 0:31
+11; Fugazi; 19880807 Frankford YWCA, Philadelphia, PA, USA; Suggestion; 2:06
 01; Fugazi; 19881014 Chill Up, Rotterdam, Netherlands; Intro; 1:48,
 02; Fugazi; 19881014 Chill Up, Rotterdam, Netherlands; Song #1; 3:01,
 03; Fugazi; 19881014 Chill Up, Rotterdam, Netherlands; Bad Mouth; 2:33,
