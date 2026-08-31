@@ -51,7 +51,7 @@ thematic_shiny(font = "auto")
 
 timestamptext <- paste0("Made with Repeatr version ", packageVersion("Repeatr"), ", updated ", packageDate("Repeatr"), ".")
 
-sourcestext = c(timestamptext, "https://alexmitrani.shinyapps.io/Fugazetteer/","https://dischord.com/fugazi_live_series")
+sourcestext = c(timestamptext, "https://alexmitrani-fugazetteer.share.connect.posit.cloud/","https://dischord.com/fugazi_live_series")
 
 datestring <- datestampr()
 

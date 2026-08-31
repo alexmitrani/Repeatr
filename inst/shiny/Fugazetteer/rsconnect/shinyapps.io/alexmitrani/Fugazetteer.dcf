@@ -6,7 +6,7 @@ server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 10986042
 bundleId: 12478444
-url: https://alexmitrani.shinyapps.io/Fugazetteer/
+url: https://alexmitrani-fugazetteer.share.connect.posit.cloud/
 version: 1
 asMultiple: FALSE
 asStatic: FALSE

@@ -16,7 +16,7 @@ Repeatr holds all of the raw inputs, processing code, and every derived/modelled
 
 ## Fugazetteer web app
 
-A web app that presents some of the data from the Repeatr package with interactive controls can be found [here](https://alexmitrani.shinyapps.io/Fugazetteer/).
+A web app that presents some of the data from the Repeatr package with interactive controls can be found [here](https://alexmitrani-fugazetteer.share.connect.posit.cloud/).
 
 ## Quiz
 
@@ -24,7 +24,7 @@ A web app that presents some of the data from the Repeatr package with interacti
 
 ## Articles
 
-[Fugazetteer](https://alexmitrani.github.io/Repeatr/articles/Fugazetteer.html) provides documentation for the [Fugazetteer](https://alexmitrani.shinyapps.io/Fugazetteer/) web app. 
+[Fugazetteer](https://alexmitrani.github.io/Repeatr/articles/Fugazetteer.html) provides documentation for the [Fugazetteer](https://alexmitrani-fugazetteer.share.connect.posit.cloud/) web app. 
 
 [Ratings](https://alexmitrani.github.io/Repeatr/articles/Ratings.html) outlines the process by which song ratings were calculated using the [Fugazi Live Series](https://www.dischord.com/fugazi_live_series) metadata. 
 

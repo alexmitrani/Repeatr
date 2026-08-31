@@ -80,7 +80,7 @@ knitr::kable(result$tracklist, row.names = FALSE)
 cat(paste0(
   "<hr><p>",
   "Made with Repeatr version ", as.character(packageVersion("Repeatr")), ", updated ", packageDate("Repeatr"), ".<br>",
-  "<a href='https://alexmitrani.shinyapps.io/Fugazetteer/' target='_blank'>https://alexmitrani.shinyapps.io/Fugazetteer/</a><br>",
+  "<a href='https://alexmitrani-fugazetteer.share.connect.posit.cloud/' target='_blank'>https://alexmitrani-fugazetteer.share.connect.posit.cloud/</a><br>",
   "<a href='https://dischord.com/fugazi_live_series' target='_blank'>https://dischord.com/fugazi_live_series</a>",
   "</p>"
 ))
