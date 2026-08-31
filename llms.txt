@@ -30,7 +30,7 @@ fugazibase is downstream of Repeatr, not a source Repeatr reads from.
 
 A web app that presents some of the data from the Repeatr package with
 interactive controls can be found
-[here](https://alexmitrani.shinyapps.io/Fugazetteer/).
+[here](https://alexmitrani-fugazetteer.share.connect.posit.cloud/).
 
 ## Quiz
 
@@ -40,7 +40,8 @@ interactive controls can be found
 
 [Fugazetteer](https://alexmitrani.github.io/Repeatr/articles/Fugaetteer.md)
 provides documentation for the
-[Fugazetteer](https://alexmitrani.shinyapps.io/Fugazetteer/) web app.
+[Fugazetteer](https://alexmitrani-fugazetteer.share.connect.posit.cloud/)
+web app.
 
 [Ratings](https://alexmitrani.github.io/Repeatr/articles/Ratings.md)
 outlines the process by which song ratings were calculated using the

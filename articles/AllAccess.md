@@ -74,16 +74,16 @@ to something someone else had written.
 My first use of the data was to estimate implied song ratings based on
 the band’s choices of which songs to perform. This was the beginning of
 what would become the
-[Fugazetteer](https://alexmitrani.shinyapps.io/Fugazetteer/) web app. It
-was also one of my first experiences of Fugazi’s tendency to defy
-expectations. One of my assumptions was that the band would play each
-song only once on any given night. I soon heard back that there were
-several exceptions to this, and found that [Fugazi played a song twice
-on at least three
+[Fugazetteer](https://alexmitrani-fugazetteer.share.connect.posit.cloud/)
+web app. It was also one of my first experiences of Fugazi’s tendency to
+defy expectations. One of my assumptions was that the band would play
+each song only once on any given night. I soon heard back that there
+were several exceptions to this, and found that [Fugazi played a song
+twice on at least three
 occasions](https://alexmitrani.github.io/Repeatr/articles/LinkTracks.html#three-repeats-but-only-one-two-for-tuesdays).
 
 [![Fugazi song ratings from
-Fugazetteer.](images/descarga.png)](https://alexmitrani.shinyapps.io/Fugazetteer/)
+Fugazetteer.](images/descarga.png)](https://alexmitrani-fugazetteer.share.connect.posit.cloud/)
 
 ## Map
 
@@ -124,7 +124,7 @@ to the show, the ferry that they had missed, or the trip they had made
 in their time off.
 
 [![Overview of the Fugazi Live Series
-map.](images/paste-DD62F29A.png)](https://alexmitrani.shinyapps.io/Fugazetteer/)
+map.](images/paste-DD62F29A.png)](https://alexmitrani-fugazetteer.share.connect.posit.cloud/)
 
 ## Playlists
 
@@ -246,8 +246,8 @@ maps, graphs, information on the durations of shows and renditions, and
 a variety of different ways of searching for shows. Where appropriate,
 Fugazetteer provides links back to the corresponding show pages on the
 Fugazi Live Series site. You can find the Fugazetteer app
-[here](https://alexmitrani.shinyapps.io/Fugazetteer/) and the
-documentation
+[here](https://alexmitrani-fugazetteer.share.connect.posit.cloud/) and
+the documentation
 [here](https://alexmitrani.github.io/Repeatr/articles/Fugazetteer.html).
 
 ## Quiz

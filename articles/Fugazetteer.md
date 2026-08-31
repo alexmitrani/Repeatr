@@ -2,9 +2,10 @@
 
 ## introduction
 
-[Fugazetteer](https://alexmitrani.shinyapps.io/Fugazetteer/) makes it
-easy to get some insights and answer questions about the Fugazi Live
-Series. It also provides several new ways of finding shows to listen to.
+[Fugazetteer](https://alexmitrani-fugazetteer.share.connect.posit.cloud/)
+makes it easy to get some insights and answer questions about the Fugazi
+Live Series. It also provides several new ways of finding shows to
+listen to.
 
 The sections and headings below follow the app’s own page structure, so
 open the app itself alongside this vignette and follow along in the

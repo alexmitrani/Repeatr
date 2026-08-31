@@ -32,8 +32,8 @@ Most of the useful data files are produced with Repeatr_1. The other 4
 functions are used to calculate ratings for the songs based on the
 choices of songs in the Fugazi Live Series data.
 
-[Fugazetteer](https://alexmitrani.shinyapps.io/Fugazetteer/) provides
-several interactive visualisations of the Fugazi Live Series data
-processed using the code in this package, and also lists of shows which
-link back to the main [Fugazi Live
+[Fugazetteer](https://alexmitrani-fugazetteer.share.connect.posit.cloud/)
+provides several interactive visualisations of the Fugazi Live Series
+data processed using the code in this package, and also lists of shows
+which link back to the main [Fugazi Live
 Series](https://www.dischord.com/fugazi_live_series) site.
