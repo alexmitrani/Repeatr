@@ -775,7 +775,7 @@ recap <- function(mygid,
 
   # distance-from-home text (issue #265): kept out of where_played itself so
   # that the title (which reuses ctx$where_played verbatim in both app.R and
-  # recap_template.Rmd) doesn't show it - only the paragraph does.
+  # recap_template.qmd) doesn't show it - only the paragraph does.
   where_played_with_distance <- paste0(where_played, " (", distance_home_km, " km from home)")
 
   bands <- played_with %>% filter(.data$gid==mygid) %>% pull(played_with)

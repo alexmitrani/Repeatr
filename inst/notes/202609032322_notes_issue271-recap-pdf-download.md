@@ -156,15 +156,120 @@ flagged two more issues, plus asked a font-matching question:
   cvmachine's own Quarto+Typst deployment work, even though this wasn't
   directly hit here).
 
-## Open item for the user
+## Deployment fixes (found only after redeploying to Posit Connect Cloud)
 
-**Not yet verified**: whether headless Chrome (needed by `chromote`/
-`webshot2` for the map screenshot) is actually available on the deployed
-Posit Connect Cloud environment. `cvmachine`'s own Quarto+Typst deployment
-there never needed raster screenshots (pure text/Typst), so this is
-genuinely untested for this hosting target. Do an end-to-end recap PDF
-download on the live deployed app after redeploying, before considering
-this issue fully closed. If Chrome turns out to be missing there, the
-current hard-fail behavior means the PDF button would be broken until a
-graceful-degradation fallback (skip the map, print a note) is added as a
-follow-up — deliberately deferred per the decision above.
+The open item above was resolved by the user actually redeploying and
+hitting two real errors in sequence - both fixed in this round, each
+requiring a redeploy+retest to confirm since neither is reproducible
+locally (this dev machine already has `quarto`/`webshot2`/Chrome installed,
+so both bugs are specific to what's/isn't present on Posit Connect Cloud's
+environment):
+
+1. **"The 'quarto' package is required..."** — the very first download
+   attempt on the deployed app failed immediately with our own guard's
+   error message. Root cause: `quarto` and `webshot2` were declared in
+   `Suggests`, not `Imports`. `Suggests` is correct for genuinely optional
+   CRAN-style soft dependencies (and is what `R CMD check`'s "declared
+   Imports must be used" check expects for a bare `requireNamespace()`
+   guard), but it also means a deployment tool's dependency scanner isn't
+   obligated to install it - and evidently Posit Connect Cloud's didn't.
+   Since PDF export is no longer optional for this app (that's the whole
+   point of issue #271), fix: moved `quarto` and `webshot2` to `Imports`.
+2. **Chrome SIGABRT crash on launch** — after the Imports fix was deployed,
+   the download got further (quarto itself now ran) but crashed with a
+   native Chrome crash (signal 6, `sys/devices/system/cpu/cpu0/cpufreq/
+   scaling_max_freq: No such file or directory` followed by a SIGABRT
+   backtrace through `chromote:::launch_chrome`) - this is the classic
+   "headless Chrome needs `--no-sandbox` inside a restricted container"
+   failure mode, well documented in Puppeteer/Playwright Docker deployment
+   guides. `chromote` already has heuristics for this
+   (`chromote:::default_chrome_args()` auto-adds `--no-sandbox` and
+   `--disable-dev-shm-usage` when `is_inside_docker()`/`is_missing_linux_user()`
+   detect a container - checking for `/.dockerenv`, `/proc/self/cgroup`
+   containing "docker", or `id` failing), but this didn't trigger on Posit
+   Connect Cloud's container (likely not using classic Docker markers).
+   Fix: force `--no-sandbox`, `--disable-dev-shm-usage`, and `--disable-gpu`
+   unconditionally via `chromote::set_chrome_args()` in the qmd's own
+   `setup` chunk - **not** in `R/recap_pdf.R`, because `quarto::quarto_render()`
+   shells out to the Quarto CLI, which spawns a *separate* R subprocess to
+   actually run the qmd's knitr chunks; any chromote config set in our own
+   calling R session (inside `render_recap_pdf()`) would never reach that
+   child process's in-memory `chromote:::globals`. This mirrors why
+   cvmachine had to use an env var (`TYPST_FONT_PATHS`) for its own
+   subprocess-boundary problem - env vars propagate across that boundary,
+   in-memory R state doesn't. Setting the args at the top of the qmd's own
+   `setup` chunk sidesteps the whole problem, since that code runs in the
+   same session that later triggers the first Chrome launch.
+
+Follow-on R CMD check fix from moving `webshot2` to Imports: it triggered a
+new "Namespace in Imports field not imported from: 'webshot2' - All
+declared Imports should be used" NOTE, since nothing in `R/` code calls
+`webshot2::` directly (it's only ever invoked internally by knitr, and only
+from qmd-chunk code, which `R CMD check` doesn't scan). The
+`requireNamespace()`-guard idiom that silences this for `Suggests` packages
+does **not** satisfy it for `Imports` packages - confirmed by testing
+before finding the right fix. Resolved with a standalone
+`#' @importFrom webshot2 webshot \n NULL` declaration in `R/recap_pdf.R`
+(a real NAMESPACE `importFrom` entry, the standard pattern for "hard
+dependency used only by another package's internal machinery, never called
+directly by our own code"), regenerated via `devtools::document()`.
+Also replaced the earlier `requireNamespace("webshot2", ...)` runtime guard
+with a `chromote::find_chrome()` pre-flight check instead - redundant once
+`webshot2` is a guaranteed-installed Import (package-load itself would fail
+without it), and a check for the actual Chrome *binary* being locatable is
+more useful/non-redundant than re-checking an R package we already know is
+installed.
+
+Version bumped `0.0.0.9280` → `0.0.0.9281` (Imports fix) → `0.0.0.9282`
+(sandbox-args + NOTE fix). `R CMD check` re-run clean after each change (0
+errors; same two pre-existing/unrelated warnings/note as before - see
+Verification section above).
+
+The `--no-sandbox`/etc. fix worked - the next redeploy got a working PDF
+download on Posit Connect Cloud (the Chrome crash is resolved). Two things
+were reported after that redeploy:
+
+- **General app layout looked broken** (tiny unstyled content, big blank
+  space) in a screenshot of the deployed app. Investigated by launching the
+  app locally and screenshotting it with headless Chrome
+  (`chrome.exe --headless=new --screenshot=...`), which *also* showed the
+  same broken-looking layout - seemingly a local repro. Set up a
+  `git worktree` at the pre-feature commit to compare against, but before
+  finishing that comparison the user clarified: the app looks fine locally
+  in an actual browser (tested in Positron), and closing/reopening Chrome
+  with a different zoom level fixed the deployed version too. So this was
+  a Chrome rendering/zoom quirk, not a real bug - the headless-Chrome
+  screenshot was misleading (most likely captured before Shiny's
+  websocket-driven client init and `bslib`'s CSS had fully settled, since a
+  single `--screenshot` capture doesn't wait for that). Worktree removed,
+  no code change made for this. **Lesson for future sessions**: don't trust
+  a single headless-Chrome `--screenshot` snapshot as a reliable stand-in
+  for "does this Shiny app render correctly" without cross-checking against
+  a real interactive session first - it can catch the page mid-init.
+- **PDF font was Typst's default, not Inconsolata** on the deployed app,
+  despite rendering correctly locally on every prior local test. This is
+  the exact symptom cvmachine's own Quarto+Typst work already diagnosed for
+  a different font: Typst silently falls back to its default font (no hard
+  error, no warning surfaced to the user) when it can't read the font files
+  at the given `font-paths`, and that failure mode is specific to certain
+  cloud sandboxes even when the same code works locally. Applied
+  cvmachine's full fix in `render_recap_pdf()` (`R/recap_pdf.R`): explicit
+  `Sys.chmod(..., mode = "0644")` on the copied font files (forcing
+  permissions rather than trusting whatever `file.copy()` produces), plus
+  `Sys.setenv(TYPST_FONT_PATHS = font_dir)` as a redundant second path to
+  the same directory alongside the qmd's `font-paths:` YAML key - unlike
+  the Chrome-args problem, `TYPST_FONT_PATHS` is an environment variable
+  Typst itself reads directly, and env vars *do* propagate across the
+  quarto-CLI subprocess boundary (this is why cvmachine used the same
+  mechanism for their own font problem), so setting it in `render_recap_pdf()`
+  itself (not the qmd) is correct here, unlike the Chrome-args fix.
+  **Not yet confirmed fixed on Posit Connect Cloud** - verified only that
+  it doesn't break the local render (identical output, still correctly
+  showing Inconsolata). Needs a redeploy+retest to confirm the actual fix,
+  same as the two fixes above required.
+
+Version bumped `0.0.0.9280` → `0.0.0.9281` (Imports fix) → `0.0.0.9282`
+(sandbox-args + NOTE fix) → `0.0.0.9283` (font permissions/env-var fix).
+`R CMD check` re-run clean after each change (0 errors; same two
+pre-existing/unrelated warnings/note as before - see Verification section
+above).

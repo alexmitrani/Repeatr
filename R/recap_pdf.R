@@ -52,9 +52,16 @@ render_recap_pdf <- function(gid, output_dir, file_stub = "recap") {
   # installed package path) since cvmachine's Quarto+Typst PDF work hit
   # font-loading failures on shinyapps.io when Typst tried to read fonts
   # from the installed-package path directly, even though the parent R
-  # process could read it fine.
+  # process could read it fine. Permissions forced explicitly and
+  # TYPST_FONT_PATHS set as a redundant second path to the same directory
+  # (belt-and-braces, matching cvmachine's fix for the same symptom -
+  # PDF renders fine but silently falls back to Typst's default font) since
+  # the font-paths: YAML key alone wasn't enough on Posit Connect Cloud.
   fonts_src <- system.file("shiny", "Fugazetteer", "fonts", package = "Repeatr")
-  file.copy(list.files(fonts_src, full.names = TRUE), output_dir, overwrite = TRUE)
+  font_files <- list.files(fonts_src, full.names = TRUE)
+  file.copy(font_files, output_dir, overwrite = TRUE)
+  Sys.chmod(file.path(output_dir, basename(font_files)), mode = "0644")
+  Sys.setenv(TYPST_FONT_PATHS = font_dir)
 
   quarto::quarto_render(
     input = qmd_path,

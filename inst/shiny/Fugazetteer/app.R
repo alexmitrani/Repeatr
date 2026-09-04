@@ -905,8 +905,15 @@ tabPanel("flow",
 
                       fluidRow(
                         column(8, uiOutput("menuOptions_gid_recap")),
-                        # Button
-                        column(2, offset = 2, style = "margin-top: 29px;", downloadButton("downloadRecapDoc", ""))
+                        # Button - hidden until a show is selected, so there's
+                        # nothing to click that would trigger a PDF render
+                        # with no gid.
+                        column(2, offset = 2, style = "margin-top: 29px;",
+                               conditionalPanel(
+                                 condition = "input.search_shows_recap!=''",
+                                 downloadButton("downloadRecapDoc", "")
+                               )
+                        )
                       ),
 
                       conditionalPanel(
@@ -3380,6 +3387,12 @@ server <- function(input, output, session) {
   output$downloadRecapDoc <- downloadHandler(
     filename = function() paste0(datestring, "_Fugazetteer_Recap_", input$search_shows_recap, ".pdf"),
     content = function(file) {
+
+      if (!nzchar(input$search_shows_recap)) {
+        showNotification("Please select a show before downloading the recap PDF.",
+                          type = "warning")
+        req(FALSE)
+      }
 
       out_dir <- tempfile("recap_")
       dir.create(out_dir)
