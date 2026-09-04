@@ -268,9 +268,68 @@ were reported after that redeploy:
   showing Inconsolata). Needs a redeploy+retest to confirm the actual fix,
   same as the two fixes above required.
 
+**That fix did not work** - the user redeployed and checked the actual
+Posit Connect Cloud logs directly this time, which showed the exact same
+`warning: unknown font family: inconsolata` as the earlier local failure
+(before the `fontpaths` → `font-paths` key correction), even though the
+logged metadata dump showed `font-paths:` correctly resolved to an
+absolute path with real files confirmed present there. Re-investigated
+cvmachine's actual current code (not just prior session summaries) to
+compare directly:
+
+- cvmachine's own qmd YAML actually uses `fontpaths` (no hyphen) - the
+  same spelling this session found broken locally and corrected to the
+  schema-valid `font-paths` (confirmed via Quarto's own
+  yaml-intelligence-resources.json schema file, which lists `font-paths`
+  and not `fontpaths`). cvmachine's own session notes
+  (`inst/notes/202608282326_notes_issue-7-pdf-typst-export.md` in that
+  repo) admit they were never sure the YAML key was what fixed their bug -
+  their working theory is `Sys.setenv(TYPST_FONT_PATHS = ...)` was the
+  actual fix, not the (possibly-also-wrong) YAML key. That doesn't
+  directly explain this case though, since Repeatr already had both the
+  schema-correct key *and* the env var set, and it still failed.
+- Root-caused the more likely explanation instead: the previous
+  implementation baked `font-paths` into the qmd's *static* YAML via
+  `gsub()` string-substitution of a `__FONT_DIR__` placeholder - a fragile
+  mechanism with no guarantee quarto's YAML-frontmatter-merging behaves
+  identically across quarto versions/platforms. `quarto::quarto_render()`
+  has a proper `metadata` parameter for exactly this (per its own source,
+  `quarto:::quarto_render()` writes it to a temp YAML file and passes
+  `--metadata-file <path>` to the CLI - the standard, version-stable way
+  to override format options at render time, not a home-grown text hack).
+
+Switched to it: removed `font-paths` (and the `__FONT_DIR__`
+placeholder/gsub machinery) from `recap_template.qmd`'s static YAML
+entirely, keeping only `mainfont: "Inconsolata"` there; `render_recap_pdf()`
+now copies the qmd verbatim (`file.copy()`, no more `readLines`/`gsub`/
+`writeLines`) and passes
+`metadata = list(format = list(typst = list(`font-paths` = font_dir)))`
+directly to `quarto::quarto_render()`. `Sys.chmod()`/`Sys.setenv(TYPST_FONT_PATHS)`
+kept as before. Verified locally: renders identically, no font warnings,
+Inconsolata still correctly applied throughout. **Also not yet confirmed
+on Posit Connect Cloud** - this is a genuinely different, more robust
+mechanism than the previous attempt, but still unverified against the
+actual failure, which only reproduces there.
+
+If this *still* doesn't fix it on the next redeploy, the next things to
+check (in rough order of likelihood): (1) the deployed Quarto CLI's exact
+version - `quarto:::quarto_render()`'s subprocess-invocation code path
+(`quarto:::quarto_run()`) branches differently for Quarto < 1.8.13
+(constructs an explicit reduced `env` for `processx::run()` rather than
+inheriting the parent's environment outright), which could explain
+`TYPST_FONT_PATHS` not reaching the subprocess if the deployed version is
+older than that; (2) whether Posit Connect Cloud's sandbox has some
+filesystem-namespacing/MAC restriction (SELinux/AppArmor-style, not just
+standard Unix permissions) that blocks the spawned `typst` process from
+reading `/tmp/...` paths regardless of `chmod`, in which case no R-level
+fix is possible and the font requirement itself may need to be dropped
+back to Typst's default for this hosting target.
+
 Version bumped `0.0.0.9280` → `0.0.0.9281` (Imports fix) → `0.0.0.9282`
-(sandbox-args + NOTE fix) → `0.0.0.9283` (font permissions/env-var fix).
-`R CMD check` re-run clean after each change (0 errors; same two
+(sandbox-args + NOTE fix) → `0.0.0.9283` (font permissions/env-var fix) →
+`0.0.0.9284` (empty-selection guard + docs) → `0.0.0.9285` (metadata-file
+font-paths fix). `R CMD check` re-run clean after each change (0 errors;
+same two
 pre-existing/unrelated warnings/note as before - see Verification section
 above).
 

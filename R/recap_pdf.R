@@ -38,35 +38,35 @@ render_recap_pdf <- function(gid, output_dir, file_stub = "recap") {
 
   template_src <- system.file("shiny", "Fugazetteer", "recap_template.qmd",
                                package = "Repeatr")
-  qmd_lines <- readLines(template_src)
-  # font-paths needs an absolute path baked in at render time (a relative
-  # "." didn't reliably resolve to the qmd's own directory); substituted
-  # into the copied qmd rather than passed via execute_params since
-  # font-paths is a static format option, not a knitr param.
-  font_dir <- normalizePath(output_dir, winslash = "/")
-  qmd_lines <- gsub("__FONT_DIR__", font_dir, qmd_lines, fixed = TRUE)
   qmd_path <- file.path(output_dir, paste0(file_stub, ".qmd"))
-  writeLines(qmd_lines, qmd_path)
+  file.copy(template_src, qmd_path, overwrite = TRUE)
 
   # Font files copied alongside the qmd (rather than referenced at their
   # installed package path) since cvmachine's Quarto+Typst PDF work hit
   # font-loading failures on shinyapps.io when Typst tried to read fonts
   # from the installed-package path directly, even though the parent R
-  # process could read it fine. Permissions forced explicitly and
-  # TYPST_FONT_PATHS set as a redundant second path to the same directory
-  # (belt-and-braces, matching cvmachine's fix for the same symptom -
-  # PDF renders fine but silently falls back to Typst's default font) since
-  # the font-paths: YAML key alone wasn't enough on Posit Connect Cloud.
+  # process could read it fine.
   fonts_src <- system.file("shiny", "Fugazetteer", "fonts", package = "Repeatr")
   font_files <- list.files(fonts_src, full.names = TRUE)
   file.copy(font_files, output_dir, overwrite = TRUE)
   Sys.chmod(file.path(output_dir, basename(font_files)), mode = "0644")
+
+  # font-paths is a per-render absolute path, so it can't live as a static
+  # value in the qmd's own YAML - passed via quarto_render()'s `metadata`
+  # argument (written to a --metadata-file quarto merges over the qmd's
+  # frontmatter) rather than string-substituting the qmd file, since that's
+  # the mechanism quarto itself documents for this. Also set as
+  # TYPST_FONT_PATHS, which Typst reads directly - belt-and-suspenders,
+  # matching cvmachine's fix for the same symptom (PDF renders fine but
+  # silently falls back to the default font on some hosts).
+  font_dir <- normalizePath(output_dir, winslash = "/")
   Sys.setenv(TYPST_FONT_PATHS = font_dir)
 
   quarto::quarto_render(
     input = qmd_path,
     output_format = "typst",
     execute_params = list(gid = gid),
+    metadata = list(format = list(typst = list(`font-paths` = font_dir))),
     output_file = paste0(file_stub, ".pdf"),
     quiet = FALSE
   )

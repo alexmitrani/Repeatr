@@ -7,7 +7,6 @@ format:
       x: 1.5cm
       y: 2cm
     mainfont: "Inconsolata"
-    font-paths: ["__FONT_DIR__"]
 params:
   gid: NA
 ---
