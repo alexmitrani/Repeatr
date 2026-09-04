@@ -36,7 +36,6 @@ jobs:
           extra-packages: any::pkgdown, local::.
           needs: website
           cache-version: 2  # Increment this to bust the cache
-          pak-version: "none"  # Skip pak installation
 
       - name: Build site
         run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
