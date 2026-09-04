@@ -565,6 +565,91 @@ recompile the intermediate .typ directly with typst). `R CMD check`
 re-run clean after each change (0 errors; same two pre-existing/unrelated
 warnings/note as before - see Verification section above).
 
+## Font fix confirmed working; title-only font gap found and fixed
+
+The direct-typst-compile fix (`0.0.0.9289`) **worked** - the user tested
+the deployed download and confirmed body text is correctly Inconsolata.
+One remaining gap: the page's very top `title:` line ("Fugazetteer —
+Recap") was still in Typst's default font while everything else (H2 show
+heading, prose, table, footer) was correctly Inconsolata.
+
+Root-caused by reading the actual generated `.typ` source directly rather
+than guessing: Pandoc's own typst-writer template wraps the whole document
+as `#show: doc => article(title: [Fugazetteer --- Recap], ..., doc)`. The
+`article()` template function renders the title block *using its own
+`heading-family` parameter* as a discrete step before it ever evaluates
+`doc` (the rest of the document, i.e. everything from this qmd's own
+content onward, including the raw `#set text(font: "Inconsolata")`
+directive added two rounds ago). Since `heading-family` was never being
+passed (removed along with `mainfont:` when the raw-directive workaround
+was introduced), the title fell back to Typst's default regardless of the
+raw directive - which is textually *inside* `doc`, evaluated only after
+the title has already been typeset. This is a distinct bug from the
+font-path-delivery issue fixed in the previous round; the raw-directive
+approach was never going to fix it regardless of font-path plumbing, since
+it's a document-structure/evaluation-order issue, not a
+file-not-found issue.
+
+Fix: restored `mainfont: "Inconsolata"` in the qmd's YAML
+(`inst/shiny/Fugazetteer/recap_template.qmd`) alongside the existing raw
+`#set text()` directive (kept as a redundant safety net for the body, no
+longer strictly necessary but harmless). `mainfont:` is Pandoc's own
+mechanism for threading a font choice into every part of its generated
+template, including `article()`'s `heading-family` parameter specifically
+- previously this didn't fix the *original* problem because the font-path
+itself wasn't reaching the typst compiler at all (the bug fixed in
+`0.0.0.9289`); now that the direct-recompile fix ensures `--font-path` is
+genuinely honored, `mainfont:`'s own template-threading works correctly
+for the title too. Verified locally: full re-render, zero warnings, and
+the rendered PDF's title now visually matches the rest of the document
+(read and visually confirmed, not just inferred from log absence of
+warnings).
+
+## Frequent Shiny disconnects (found by the user, unrelated to the font issue)
+
+The user reported the deployed app disconnecting "much more often than
+before," with `Error reading from Shiny: websocket: close 1006 (abnormal
+closure): unexpected EOF` in the logs - the user specifically flagged the
+"unexpected EOF" phrasing, which points to the R worker process itself
+dying abruptly (an OOM-kill or crash) rather than a graceful client-side
+disconnect or idle timeout, which would show a clean close code.
+
+Root cause theory, directly tied to this session's own changes: knitr's
+htmlwidget-to-PDF screenshot mechanism starts a **persistent background
+Chrome process** via `chromote::default_chromote_object()` the first time
+a recap PDF is rendered in a given R session, and `chromote` deliberately
+*reuses* that same Chrome process across subsequent calls rather than
+spawning and closing one per screenshot (an intentional efficiency choice
+in a normal script, where the whole R process exits soon after anyway).
+But `render_recap_pdf()` runs inside a Shiny app's worker process, which
+Posit Connect Cloud keeps alive across many separate user requests/
+sessions - so a Chrome process started by the very first PDF download of
+the worker's lifetime was never being closed, and every *subsequent*
+download in that same worker's lifetime added another one. Chrome
+processes are heavy (100s of MB each); given how much repeated PDF-download
+testing happened this session, accumulating several unclosed Chrome
+instances in the same long-lived worker plausibly explains a marked
+increase in memory pressure and worker crashes that wouldn't have existed
+before this PDF feature shipped (no prior code path in this app ever
+started a Chrome process at all).
+
+Fix: `render_recap_pdf()` (`R/recap_pdf.R`) now registers an `on.exit()`
+handler (runs on both success and error) that closes the default chromote
+object (`chromote::default_chromote_object()$close()`, guarded by
+`chromote::has_default_chromote_object()` and wrapped in `tryCatch` so a
+close failure can't mask the render's own actual result) immediately after
+each render. Verified locally: `chromote::has_default_chromote_object()`
+correctly reports `FALSE` immediately after a `render_recap_pdf()` call
+completes, confirming the browser process is torn down rather than left
+running for the rest of the worker's lifetime.
+
+**Neither of these two fixes has been confirmed on Posit Connect Cloud
+yet** - both need the next redeploy+test, same as every fix in this file.
+
+Version bumped `0.0.0.9289` → `0.0.0.9290` (title font fix + Chrome
+process cleanup). `R CMD check` re-run clean (0 errors; same two
+pre-existing/unrelated warnings/note as always).
+
 ## Empty-selection error (found by the user testing the deployed app)
 
 Clicking download with no show selected in `input$search_shows_recap`

@@ -6,6 +6,7 @@ format:
     margin:
       x: 1.5cm
       y: 2cm
+    mainfont: "Inconsolata"
 params:
   gid: NA
 ---

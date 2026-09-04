@@ -35,6 +35,21 @@ render_recap_pdf <- function(gid, output_dir, file_stub = "recap") {
          "render the recap map as a static image for the PDF. See ",
          "https://rstudio.github.io/chromote/ for installation options.")
   }
+  # The map screenshot lazily starts a persistent background Chrome process
+  # via chromote's default_chromote_object() the first time it's needed,
+  # and that process stays alive for the rest of the R session (chromote
+  # reuses it across calls rather than spawning one per screenshot) - fine
+  # for a short-lived script, but this function runs inside a long-lived
+  # Shiny worker process shared across many requests, so left unclosed
+  # these accumulate one extra Chrome instance per recap PDF download for
+  # as long as the worker stays up. Closed unconditionally on exit
+  # (success or error) so each call leaves no more Chrome processes running
+  # than it found.
+  on.exit({
+    if (chromote::has_default_chromote_object()) {
+      tryCatch(chromote::default_chromote_object()$close(), error = function(e) NULL)
+    }
+  }, add = TRUE)
 
   template_src <- system.file("shiny", "Fugazetteer", "recap_template.qmd",
                                package = "Repeatr")
@@ -43,17 +58,10 @@ render_recap_pdf <- function(gid, output_dir, file_stub = "recap") {
 
   # Fonts copied into their own subdirectory of output_dir (not output_dir
   # itself) with copy.mode = FALSE (discard the source file's own
-  # permission bits rather than preserve them) plus an explicit chmod, and
-  # TYPST_FONT_PATHS set directly - this mirrors cvmachine's Quarto+Typst
-  # PDF export exactly (down to the subdirectory structure), which is
-  # confirmed working in a live deployed Shiny app on a cloud host, unlike
-  # the previous attempts here. cvmachine's own notes admit they never
-  # fully isolated which piece of this combination was the actual fix
-  # (their leading theory is TYPST_FONT_PATHS, with the copy/chmod dance
-  # possibly addressing a theory that wasn't the real cause) - kept as one
-  # unit here for the same reason: matching their confirmed-working
-  # structure exactly is a stronger bet than re-deriving a minimal fix from
-  # scratch.
+  # permission bits rather than preserve them) plus an explicit chmod.
+  # TYPST_FONT_PATHS is set as a harmless legacy fallback, but is not what
+  # actually makes the font work - see the direct `typst compile` call
+  # below, which is what does.
   fonts_src <- system.file("shiny", "Fugazetteer", "fonts", package = "Repeatr")
   font_dir_raw <- file.path(output_dir, "fonts")
   dir.create(font_dir_raw, showWarnings = FALSE)
