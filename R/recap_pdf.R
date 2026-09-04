@@ -80,6 +80,20 @@ render_recap_pdf <- function(gid, output_dir, file_stub = "recap") {
     error = function(e) paste("error:", conditionMessage(e))
   )
   message("  typst version: ", paste(typst_version, collapse = " "))
+  # Decisive test: ask the actual typst binary directly whether it sees
+  # Inconsolata at this exact path, bypassing Quarto's metadata-to-CLI
+  # translation entirely. If this also fails to list "Inconsolata", the
+  # problem is typst/the font file on this host, not quarto's plumbing; if
+  # it succeeds, quarto itself isn't forwarding font-paths to the typst
+  # subprocess correctly despite what its own metadata dump claims.
+  typst_fonts_check <- tryCatch(
+    system2(quarto_bin, c("typst", "fonts", "--font-path", font_dir,
+                           "--ignore-system-fonts"),
+            stdout = TRUE, stderr = TRUE),
+    error = function(e) paste("error:", conditionMessage(e))
+  )
+  message("  typst fonts --font-path ", font_dir, " --ignore-system-fonts:")
+  message("    ", paste(typst_fonts_check, collapse = " | "))
 
   quarto::quarto_render(
     input = qmd_path,

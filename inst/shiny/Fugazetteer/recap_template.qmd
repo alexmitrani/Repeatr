@@ -6,7 +6,6 @@ format:
     margin:
       x: 1.5cm
       y: 2cm
-    mainfont: "Inconsolata"
 params:
   gid: NA
 ---
@@ -31,6 +30,10 @@ chromote::set_chrome_args(unique(c(
 
 result <- recap(mygid = params$gid)
 ctx <- result$context
+```
+
+```{=typst}
+#set text(font: "Inconsolata")
 ```
 
 ## `r ctx$where_played` — `r ctx$datestring`

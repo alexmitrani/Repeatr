@@ -396,23 +396,95 @@ needed. Verified locally: identical output, no font warnings, Inconsolata
 still correctly applied. **Still not yet confirmed on Posit Connect
 Cloud.**
 
-If matching cvmachine's exact structure *still* doesn't fix it, that would
-be strong evidence the two apps' hosting environments simply behave
-differently for this (Repeatr is on Posit Connect Cloud; cvmachine's
-confirmed fix was on shinyapps.io per their notes - different platforms
-were conflated as "the same problem" on the assumption Quarto+Typst
-sandboxing issues generalize, which may not hold). At that point the
-pragmatic path is dropping the Inconsolata requirement for the PDF and
-accepting Typst's default font on this specific host, rather than
-continuing to spend redeploy cycles on an environment neither of us can
-inspect directly.
+**Matching cvmachine's exact subdirectory/copy.mode structure also didn't
+fix it.** Same diagnostics as before (files `exists=TRUE readable=TRUE`,
+correct sizes, `font-paths` correctly delivered), plus this round's new
+diagnostic revealed the deployed `typst version: typst 0.15.1 (9dfd3a08)` -
+**identical** to the local dev machine's version, byte-for-byte matching
+build hash. So this also rules out a Quarto/Typst version mismatch as the
+explanation.
+
+The user then corrected an assumption in the note above: cvmachine's
+Quarto+Typst PDF export continues to work today on Posit Connect Cloud
+specifically (not shinyapps.io as the earlier session-notes reference
+implied) - so the "different hosting platforms" theory floated above is
+wrong. Same platform, same typst version, same overall approach, different
+outcome. The user also asked directly whether the code was calling the
+font by the right name - a good, sharp question that hadn't actually been
+re-verified since the font files were first fetched. Checked properly this
+time via `systemfonts::font_info()` (reads the font's own internal
+OpenType name table, the same metadata Typst itself matches against, not
+just the filename): both files confirmed `family = "Inconsolata"` exactly.
+Not a naming mismatch.
+
+Re-investigated cvmachine once more per the user's memory of "something
+about reading a font dictionary" - a fresh, narrowly-scoped search (grep
+for "dict"/"dictionary"/"registry"/"manifest" across their whole repo, full
+read of `R/typst_helpers.R`) found no such structure. The user's memory
+most likely conflates `typst_font_weight()`'s inline `weight_suffixes`
+lookup vector (for the unrelated SemiBold weight-matching bug) and/or a
+one-off external `fontTools.ttLib.TTFont(path)['name']` Python inspection
+mentioned only in a code comment - not a checked-in data structure. Nothing
+new to port over from this lead.
+
+Given all path/file/version/naming evidence checks out identically to a
+working local render, but still fails identically on deployment, the
+remaining live theory is that the failure is specific to *how the font
+family name reaches Typst's compiler*, not the font/path itself. Found one
+real, previously-untried structural difference on closer comparison: this
+session's qmd set the font via Pandoc's `mainfont:` YAML key, which
+Pandoc's own typst-writer template translates into a
+`set text(font: font) if font != none` call in the generated `.typ`
+preamble (visible in every failing log - that's literally the line the
+warning points at, Pandoc-generated code). cvmachine, by contrast, never
+uses `mainfont:` at all - it only ever sets fonts via raw
+`text(font: "...", weight: "...")` calls written directly into Typst
+content, bypassing Pandoc's translation layer entirely. Switched to match:
+removed `mainfont: "Inconsolata"` from the qmd's YAML, added a raw
+`` ```{=typst}\n#set text(font: "Inconsolata")\n``` `` block right after
+the `setup` chunk instead (`inst/shiny/Fugazetteer/recap_template.qmd`).
+Verified locally: renders identically, *zero* font warnings this time
+(previously two, one for body text and one for headings, both driven by
+the same `mainfont`-derived Pandoc variables) - both resolved by the same
+single raw `#set text()` call, since headings never had their own working
+font in this session's setup to begin with (no `mainfont`-derived
+`heading-family` was ever explicitly configured, so removing the `mainfont`
+key was actually a wash for headings specifically, and the raw `#set text()`
+now legitimately governs the whole document).
+
+Also added a second, more decisive diagnostic to `render_recap_pdf()`:
+`quarto typst fonts --font-path <dir> --ignore-system-fonts`, run directly
+against the actual deployed `typst` binary right before the real render.
+This is the exact same test that originally confirmed the local setup
+worked, early in this whole investigation - run here it should
+unambiguously separate "Typst itself can't see this font on this host"
+(would also fail to list Inconsolata) from "Quarto's metadata layer isn't
+forwarding font-paths to the typst subprocess the way its own dump claims"
+(would list Inconsolata successfully, proving the bug is entirely within
+Quarto's own translation, independent of the raw-Typst-directive fix
+above). Locally this diagnostic correctly lists `Inconsolata` among the
+detected families, confirming the diagnostic itself works as intended.
+
+**Still not yet confirmed on Posit Connect Cloud** - both changes (raw
+Typst font directive + the new diagnostic) need the next redeploy+test.
+
+If this *still* doesn't resolve the warning, the `typst fonts --font-path`
+diagnostic's result is the next hard evidence to look at directly rather
+than speculating further - and if even that direct test fails to list
+Inconsolata on the deployed host despite identical files/version/path to a
+working local test, the pragmatic path is dropping the Inconsolata
+requirement for the PDF and accepting Typst's default font there, rather
+than continuing to spend redeploy cycles on a specific host-level
+difference neither of us can inspect directly.
 
 Version bumped `0.0.0.9280` → `0.0.0.9281` (Imports fix) → `0.0.0.9282`
 (sandbox-args + NOTE fix) → `0.0.0.9283` (font permissions/env-var fix) →
 `0.0.0.9284` (empty-selection guard + docs) → `0.0.0.9285` (metadata-file
 font-paths fix) → `0.0.0.9286` (font diagnostics only, no functional
 change) → `0.0.0.9287` (mirror cvmachine's exact subdirectory/copy.mode
-structure). `R CMD check` re-run clean after each change (0 errors; same two
+structure) → `0.0.0.9288` (raw Typst font directive replacing Pandoc
+`mainfont:`, plus a decisive `typst fonts --font-path` diagnostic).
+`R CMD check` re-run clean after each change (0 errors; same two
 pre-existing/unrelated warnings/note as before - see Verification section
 above).
 
