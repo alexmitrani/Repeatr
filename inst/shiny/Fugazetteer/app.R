@@ -3378,19 +3378,24 @@ server <- function(input, output, session) {
   options = list(pageLength = -1, lengthMenu = list(c(-1, 10, 25, 50), c("All", "10", "25", "50")))))
 
   output$downloadRecapDoc <- downloadHandler(
-    filename = function() paste0(datestring, "_Fugazetteer_Recap_", input$search_shows_recap, ".html"),
+    filename = function() paste0(datestring, "_Fugazetteer_Recap_", input$search_shows_recap, ".pdf"),
     content = function(file) {
 
-      template_src <- "recap_template.Rmd"
-      tmp_rmd <- file.path(tempdir(), "recap_template.Rmd")
-      file.copy(template_src, tmp_rmd, overwrite = TRUE)
+      out_dir <- tempfile("recap_")
+      dir.create(out_dir)
+      on.exit(unlink(out_dir, recursive = TRUE), add = TRUE)
 
-      rmarkdown::render(
-        input = tmp_rmd,
-        output_file = file,
-        params = list(gid = input$search_shows_recap),
-        envir = new.env(parent = globalenv())
+      pdf_path <- tryCatch(
+        Repeatr:::render_recap_pdf(gid = input$search_shows_recap, output_dir = out_dir),
+        error = function(e) {
+          showNotification(paste("Failed to generate recap PDF:", conditionMessage(e)),
+                            type = "error", duration = NULL)
+          NULL
+        }
       )
+      req(pdf_path)
+
+      file.copy(pdf_path, file, overwrite = TRUE)
 
     }
   )

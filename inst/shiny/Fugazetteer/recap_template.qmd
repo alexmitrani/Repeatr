@@ -1,20 +1,11 @@
 ---
 title: "Fugazetteer — Recap"
-output:
-  html_document:
-    self_contained: true
+format:
+  typst:
+    papersize: a4
 params:
   gid: NA
 ---
-
-<style>
-table.table { width: auto !important; }
-table { font-size: 0.85em; }
-@media print {
-  table { font-size: 7pt; }
-  th, td { padding: 2px 4px; }
-}
-</style>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
@@ -28,7 +19,7 @@ ctx <- result$context
 
 ## `r ctx$where_played` — `r ctx$datestring`
 
-`r HTML(paste0("<a href='", ctx$url, "' target='_blank'>", ctx$gid, "</a>"))`
+[`r ctx$gid`](`r ctx$url`)
 
 ```{r summary-text-1, results='asis'}
 cat(ctx$paragraph1)
@@ -48,7 +39,7 @@ if (ctx$paragraph3!="") {
 }
 ```
 
-```{r map}
+```{r map, out.width="90%", screenshot.opts=list(vwidth=700, vheight=500)}
 df <- shows_data %>% filter(gid == ctx$gid)
 marker_radius <- sqrt(ifelse(is.na(df$attendance), median(shows_data$attendance, na.rm = TRUE), df$attendance) / pi)
 
@@ -71,17 +62,24 @@ leaflet(data = df, options = leafletOptions(zoomControl = FALSE)) %>%
   )
 ```
 
+```{=typst}
+#set text(size: 8pt)
+```
+
 ```{r tracklist, eval=ctx$has_recording}
 options(knitr.kable.NA = "")
 knitr::kable(result$tracklist, row.names = FALSE)
 ```
 
+```{=typst}
+#set text(size: 11pt)
+```
+
 ```{r footer, results='asis'}
 cat(paste0(
-  "<hr><p>",
-  "Made with Repeatr version ", as.character(packageVersion("Repeatr")), ", updated ", packageDate("Repeatr"), ".<br>",
-  "<a href='https://alexmitrani-fugazetteer.share.connect.posit.cloud/' target='_blank'>https://alexmitrani-fugazetteer.share.connect.posit.cloud/</a><br>",
-  "<a href='https://dischord.com/fugazi_live_series' target='_blank'>https://dischord.com/fugazi_live_series</a>",
-  "</p>"
+  "\n---\n\n",
+  "Made with Repeatr version ", as.character(packageVersion("Repeatr")), ", updated ", packageDate("Repeatr"), ".\\\n",
+  "[https://alexmitrani-fugazetteer.share.connect.posit.cloud/](https://alexmitrani-fugazetteer.share.connect.posit.cloud/)\\\n",
+  "[https://dischord.com/fugazi_live_series](https://dischord.com/fugazi_live_series)\n"
 ))
 ```
