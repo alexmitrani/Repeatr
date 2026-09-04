@@ -49,7 +49,21 @@ render_recap_pdf <- function(gid, output_dir, file_stub = "recap") {
   fonts_src <- system.file("shiny", "Fugazetteer", "fonts", package = "Repeatr")
   font_files <- list.files(fonts_src, full.names = TRUE)
   file.copy(font_files, output_dir, overwrite = TRUE)
-  Sys.chmod(file.path(output_dir, basename(font_files)), mode = "0644")
+  dest_font_files <- file.path(output_dir, basename(font_files))
+  Sys.chmod(dest_font_files, mode = "0644")
+
+  # Diagnostic only (two rounds of font-path plumbing fixes didn't resolve
+  # this on Posit Connect Cloud, so log what's actually on disk right
+  # before the render instead of guessing further) - remove once the font
+  # issue is confirmed fixed.
+  message("recap PDF font diagnostics:")
+  message("  fonts_src = ", fonts_src, " (nzchar: ", nzchar(fonts_src), ")")
+  message("  font_files found: ", paste(font_files, collapse = "; "))
+  for (f in dest_font_files) {
+    message(sprintf("  %s exists=%s readable=%s size=%s", f,
+                     file.exists(f), file.access(f, mode = 4) == 0,
+                     if (file.exists(f)) file.size(f) else NA))
+  }
 
   # font-paths is a per-render absolute path, so it can't live as a static
   # value in the qmd's own YAML - passed via quarto_render()'s `metadata`
