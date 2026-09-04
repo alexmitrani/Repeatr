@@ -14,8 +14,23 @@ render_recap_pdf <- function(gid, output_dir, file_stub = "recap") {
 
   template_src <- system.file("shiny", "Fugazetteer", "recap_template.qmd",
                                package = "Repeatr")
+  qmd_lines <- readLines(template_src)
+  # font-paths needs an absolute path baked in at render time (a relative
+  # "." didn't reliably resolve to the qmd's own directory); substituted
+  # into the copied qmd rather than passed via execute_params since
+  # font-paths is a static format option, not a knitr param.
+  font_dir <- normalizePath(output_dir, winslash = "/")
+  qmd_lines <- gsub("__FONT_DIR__", font_dir, qmd_lines, fixed = TRUE)
   qmd_path <- file.path(output_dir, paste0(file_stub, ".qmd"))
-  file.copy(template_src, qmd_path, overwrite = TRUE)
+  writeLines(qmd_lines, qmd_path)
+
+  # Font files copied alongside the qmd (rather than referenced at their
+  # installed package path) since cvmachine's Quarto+Typst PDF work hit
+  # font-loading failures on shinyapps.io when Typst tried to read fonts
+  # from the installed-package path directly, even though the parent R
+  # process could read it fine.
+  fonts_src <- system.file("shiny", "Fugazetteer", "fonts", package = "Repeatr")
+  file.copy(list.files(fonts_src, full.names = TRUE), output_dir, overwrite = TRUE)
 
   quarto::quarto_render(
     input = qmd_path,

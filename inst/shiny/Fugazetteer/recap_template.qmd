@@ -3,6 +3,11 @@ title: "Fugazetteer — Recap"
 format:
   typst:
     papersize: a4
+    margin:
+      x: 1.5cm
+      y: 2cm
+    mainfont: "Inconsolata"
+    font-paths: ["__FONT_DIR__"]
 params:
   gid: NA
 ---
@@ -35,7 +40,10 @@ if (ctx$has_recording) {
 
 ```{r summary-text-3, results='asis'}
 if (ctx$paragraph3!="") {
-  cat(ctx$paragraph3)
+  notes_doc <- xml2::read_html(paste0("<div>", ctx$paragraph3, "</div>"))
+  notes_items <- rvest::html_text2(rvest::html_elements(notes_doc, "li"))
+  cat("**Notes:**\n\n")
+  cat(paste0("- ", notes_items, collapse = "\n"), "\n")
 }
 ```
 

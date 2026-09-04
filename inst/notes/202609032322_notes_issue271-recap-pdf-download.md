@@ -107,6 +107,55 @@ didn't know the specifics until actually rendering:
   inherit `RSTUDIO_PANDOC`; see the `reference_r_environment_repeatr` memory
   note), unrelated to this PR's changes since it doesn't touch vignettes.
 
+## Follow-up fixes (post-implementation feedback)
+
+After the initial implementation, the user reviewed a rendered PDF and
+flagged two more issues, plus asked a font-matching question:
+
+- **Table header overlap**: a screenshot showed "minutes"/"mins_mean" and
+  "position"/"pos_mean" headers visually overlapping and illegible (not
+  just the earlier-noted text-extraction concatenation artifact — this was
+  a real rendering defect). Fixed by adding `margin: {x: 1.5cm, y: 2cm}` to
+  the qmd's typst format YAML (down from Typst's ~2.5cm default), giving
+  the 11-column table enough width for the 8pt headers to wrap without
+  colliding.
+- **Notes not bulleted**: the "Notes:" section rendered as one flowing
+  paragraph instead of a bullet list. Cause: `ctx$paragraph3` (built in
+  `R/recap.R`) is raw HTML (`<p><strong>Notes:</strong></p><ul><li>...`),
+  which rendered fine in the old HTML template but gets its tags silently
+  stripped by pandoc when targeting Typst, collapsing the list into plain
+  text. Fixed entirely within the qmd (not `recap.R`, keeping `recap()`
+  template-agnostic as planned): the `summary-text-3` chunk now parses
+  `ctx$paragraph3` with `xml2::read_html()` + `rvest::html_elements(...,
+  "li")` (both already Imports — no new dependency) and re-emits it as
+  plain Pandoc markdown bullets (`- item`) instead of `cat()`-ing the raw
+  HTML.
+- **Font matching**: the user asked whether the PDF uses the same
+  Inconsolata font as the Shiny app's UI. It didn't — the app's Inconsolata
+  is CSS-embedded `.woff2` files for the browser (see
+  `202608230610_notes_bundle-inconsolata-font-locally.md`), a completely
+  separate mechanism from Typst's PDF rendering, and Typst doesn't support
+  `.woff2` at all (confirmed via `typst fonts --font-path ... --ignore-
+  system-fonts` — the bundled woff2 files simply don't appear). After
+  confirming the user wanted font parity despite Inconsolata being a
+  monospace face unusual for prose, added two new TTF assets fetched via
+  `sysfonts::font_add_google("Inconsolata")` (a one-time, user-approved
+  download, not a runtime dependency):
+  `inst/shiny/Fugazetteer/fonts/Inconsolata-{Regular,Bold}.ttf`. Wired up
+  in the qmd via `mainfont: "Inconsolata"` and `font-paths: ["__FONT_DIR__"]`
+  (note: the correct Quarto YAML key is `font-paths`, kebab-case — plain
+  `fontpaths` is silently ignored, passed through as inert metadata instead
+  of reaching the typst compiler's `--font-path` flag; this cost a
+  debugging round-trip). `__FONT_DIR__` is a placeholder `render_recap_pdf()`
+  substitutes with the render's own absolute `output_dir` at copy time
+  (`gsub()` on the qmd's lines before `writeLines()`), since a relative
+  `font-paths: ["."]` didn't reliably resolve to the qmd's directory and
+  `execute_params` can't set a static format-level YAML option like this.
+  `render_recap_pdf()` also copies both TTF files into `output_dir`
+  alongside the qmd (matching the font-loading-sandbox lesson from
+  cvmachine's own Quarto+Typst deployment work, even though this wasn't
+  directly hit here).
+
 ## Open item for the user
 
 **Not yet verified**: whether headless Chrome (needed by `chromote`/
