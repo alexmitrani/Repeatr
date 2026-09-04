@@ -63,50 +63,54 @@ render_recap_pdf <- function(gid, output_dir, file_stub = "recap") {
   font_dir <- normalizePath(font_dir_raw, winslash = "/")
   Sys.setenv(TYPST_FONT_PATHS = font_dir)
 
-  # Diagnostic only (three rounds of font-path fixes didn't resolve this on
-  # Posit Connect Cloud, so log what's actually on disk plus the deployed
-  # typst version right before the render instead of guessing further) -
-  # remove once the font issue is confirmed fixed.
-  message("recap PDF font diagnostics:")
-  message("  fonts_src = ", fonts_src, " (nzchar: ", nzchar(fonts_src), ")")
-  message("  font_dir = ", font_dir)
-  for (f in list.files(font_dir_raw, full.names = TRUE)) {
-    message(sprintf("  %s exists=%s readable=%s size=%s", f,
-                     file.exists(f), file.access(f, mode = 4) == 0,
-                     if (file.exists(f)) file.size(f) else NA))
-  }
-  typst_version <- tryCatch(
-    system2(quarto_bin, c("typst", "--version"), stdout = TRUE, stderr = TRUE),
-    error = function(e) paste("error:", conditionMessage(e))
-  )
-  message("  typst version: ", paste(typst_version, collapse = " "))
-  # Decisive test: ask the actual typst binary directly whether it sees
-  # Inconsolata at this exact path, bypassing Quarto's metadata-to-CLI
-  # translation entirely. If this also fails to list "Inconsolata", the
-  # problem is typst/the font file on this host, not quarto's plumbing; if
-  # it succeeds, quarto itself isn't forwarding font-paths to the typst
-  # subprocess correctly despite what its own metadata dump claims.
-  typst_fonts_check <- tryCatch(
+  # Pre-flight: confirm typst itself (not Quarto's translation of it) can
+  # see Inconsolata at this exact path before spending time on the full
+  # render. This also doubles as the mechanism the actual fix below relies
+  # on - see the comment there for why.
+  font_check <- tryCatch(
     system2(quarto_bin, c("typst", "fonts", "--font-path", font_dir,
                            "--ignore-system-fonts"),
             stdout = TRUE, stderr = TRUE),
-    error = function(e) paste("error:", conditionMessage(e))
+    error = function(e) character(0)
   )
-  message("  typst fonts --font-path ", font_dir, " --ignore-system-fonts:")
-  message("    ", paste(typst_fonts_check, collapse = " | "))
+  if (!any(grepl("Inconsolata", font_check, fixed = TRUE))) {
+    stop("Typst does not recognize the Inconsolata font at ", font_dir,
+         " (checked via `typst fonts --font-path`); the bundled font ",
+         "files may be missing or corrupted in this installation.")
+  }
 
   quarto::quarto_render(
     input = qmd_path,
     output_format = "typst",
     execute_params = list(gid = gid),
-    metadata = list(format = list(typst = list(`font-paths` = font_dir))),
+    debug = TRUE,
     output_file = paste0(file_stub, ".pdf"),
     quiet = FALSE
   )
 
+  # Quarto's own compile pass does not reliably forward font-paths/fontpaths
+  # to the typst subprocess it spawns internally - confirmed on Posit
+  # Connect Cloud: its own metadata dump showed font-paths correctly
+  # resolved, yet the PDF it produced still logged "unknown font family",
+  # while `typst fonts --font-path <same dir>` (the pre-flight check above)
+  # correctly found Inconsolata at that exact path on the same host. So the
+  # PDF quarto_render() itself writes is discarded, and typst is invoked
+  # directly against the intermediate .typ file it leaves behind (kept
+  # around via debug = TRUE above) with an explicit --font-path, which the
+  # pre-flight check already proved actually works.
+  typ_path <- file.path(output_dir, paste0(file_stub, ".typ"))
+  if (!file.exists(typ_path)) {
+    stop("Quarto did not leave behind an intermediate .typ file to ",
+         "recompile with the correct font.")
+  }
   pdf_path <- file.path(output_dir, paste0(file_stub, ".pdf"))
-  if (!file.exists(pdf_path)) {
-    stop("Quarto render completed but no PDF was produced.")
+  recompile <- processx::run(
+    quarto_bin,
+    args = c("typst", "compile", typ_path, pdf_path, "--font-path", font_dir),
+    error_on_status = FALSE
+  )
+  if (recompile$status != 0 || !file.exists(pdf_path)) {
+    stop("Direct typst recompile failed: ", recompile$stderr)
   }
   pdf_path
 }

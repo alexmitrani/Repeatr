@@ -465,17 +465,93 @@ Quarto's own translation, independent of the raw-Typst-directive fix
 above). Locally this diagnostic correctly lists `Inconsolata` among the
 detected families, confirming the diagnostic itself works as intended.
 
-**Still not yet confirmed on Posit Connect Cloud** - both changes (raw
-Typst font directive + the new diagnostic) need the next redeploy+test.
+**The raw-Typst-directive change didn't fix it either - but the decisive
+diagnostic finally isolated the actual root cause.** The user redeployed
+and reported the new log output: `typst fonts --font-path <dir>
+--ignore-system-fonts`, run directly against the deployed `typst` binary,
+correctly listed `Inconsolata` among the detected families. Yet in the
+*same* render, Quarto's own compile of `recap.typ` (containing the raw
+`#set text(font: "Inconsolata")` directive from the previous round, at the
+exact line the warning pointed at) still logged `unknown font family:
+inconsolata`. This is conclusive: Typst itself, given `--font-path`
+directly, correctly finds and parses the font on that host - so the font
+file, its internal name table, the path, and the typst binary are all
+fine. The failure is entirely inside **Quarto's own translation from
+whatever font-path configuration it's given (YAML `font-paths:`,
+`metadata=` `--metadata-file`, `TYPST_FONT_PATHS` env var - all tried,
+all failed identically) into the actual `--font-path` argument it passes
+to the `typst compile` subprocess it spawns internally**. Quarto's own
+metadata dump showing `font-paths: <correct path>` was a red herring -
+apparently just an echo of the document's resolved metadata for logging
+purposes, not proof that value reaches the real compile invocation.
 
-If this *still* doesn't resolve the warning, the `typst fonts --font-path`
-diagnostic's result is the next hard evidence to look at directly rather
-than speculating further - and if even that direct test fails to list
-Inconsolata on the deployed host despite identical files/version/path to a
-working local test, the pragmatic path is dropping the Inconsolata
-requirement for the PDF and accepting Typst's default font there, rather
-than continuing to spend redeploy cycles on a specific host-level
-difference neither of us can inspect directly.
+Before landing on the fix, also directly addressed two more specific leads
+the user raised, both now ruled out with hard evidence rather than
+assumption:
+- **"Are you sure the code calls the fonts by the right names?"** -
+  re-checked with `fontTools.ttLib.TTFont` (the same tool cvmachine's own
+  debugging used, reading the font's raw OpenType name table directly, not
+  a higher-level R wrapper): both files are genuinely static (no `fvar`
+  table - not variable-font instances), nameID 1 (legacy family) =
+  `"Inconsolata"` cleanly for both, and neither file even has a nameID
+  16/17 (typographic family) entry - so there's no possibility of the
+  exact ambiguous-name conflict cvmachine's own SemiBold bug was about
+  (their font had a typographic-family name conflicting with its legacy
+  one; these Inconsolata files have no typographic-family entry at all to
+  conflict with anything).
+- **"Cvmachine still works on Posit Connect Cloud today, and I recall
+  something about a font dictionary"** - corrected an earlier assumption
+  in this file that cvmachine's confirmed fix was on shinyapps.io (the
+  user clarified it's the same Posit Connect Cloud platform, still working
+  today, ruling out a "different hosting platform" explanation). A
+  follow-up targeted search for a "font dictionary/registry" in cvmachine
+  found nothing beyond what was already known (`typst_font_weight()`'s
+  inline `weight_suffixes` lookup, for the unrelated SemiBold bug) - the
+  user's memory most likely conflates that lookup vector with a one-off
+  external `fontTools` inspection mentioned only in a code comment there,
+  not a checked-in data structure to port over.
+
+**Fix**: since Quarto's own font-path plumbing cannot be trusted regardless
+of which of its documented mechanisms is used, `render_recap_pdf()`
+(`R/recap_pdf.R`) now bypasses it for the final compile step entirely.
+`quarto::quarto_render(..., debug = TRUE)` is still used to run knitr and
+produce the intermediate `recap.typ` file (`debug = TRUE` is what makes
+Quarto leave that intermediate file in place instead of deleting it after
+compiling its own, wrongly-fonted PDF) - but the PDF Quarto itself produces
+is then discarded, and `typst compile <recap.typ> <recap.pdf> --font-path
+<dir>` is invoked directly via `processx::run()` (added as an explicit
+Import, since `render_recap_pdf()` now calls it directly rather than only
+via `quarto::quarto_render()`'s own internal use of it), reusing the exact
+CLI invocation the diagnostic already proved works on the deployed host.
+The former `typst fonts --font-path` diagnostic became a genuine pre-flight
+guard rather than a log-only diagnostic: `render_recap_pdf()` now `stop()`s
+early with a clear message if Inconsolata isn't found via that direct
+check, before wasting time on the full knitr/pandoc render pipeline. The
+now-proven-ineffective `metadata = list(format = list(typst = list(...)))`
+argument to `quarto_render()` was removed as dead code. `TYPST_FONT_PATHS`
+is still set as a harmless legacy fallback, though it's no longer
+load-bearing - the direct recompile step is what actually determines the
+final PDF's font now, regardless of anything Quarto's own pipeline does or
+doesn't honor.
+
+Verified locally end-to-end: full `render_recap_pdf()` run (not just an
+isolated test script) produces a PDF with Inconsolata correctly applied
+throughout (read the resulting PDF in full - title, headings, prose, table,
+footer all correctly show the font), byte-size-consistent with every prior
+known-good local render. Also re-verified the failure path still works
+cleanly with the restructured function (an invalid gid still produces a
+`tryCatch`-catchable error with no uncaught exception, same as before).
+`R CMD check` clean (0 errors; same two pre-existing/unrelated
+warnings/note as always).
+
+**This fix is structurally different from every prior attempt** - it
+doesn't try to get Quarto to do the right thing, it stops depending on
+Quarto for this one step at all. Given the diagnostic evidence is about as
+direct as evidence gets (the same CLI invocation, run by the same code,
+confirmed to work on the exact host where the full pipeline fails), this
+is expected to actually resolve it - but per the established pattern in
+this file, "verified locally" has not meant "verified on Posit Connect
+Cloud" all session, so **still needs a redeploy+test to confirm**.
 
 Version bumped `0.0.0.9280` → `0.0.0.9281` (Imports fix) → `0.0.0.9282`
 (sandbox-args + NOTE fix) → `0.0.0.9283` (font permissions/env-var fix) →
@@ -483,10 +559,11 @@ Version bumped `0.0.0.9280` → `0.0.0.9281` (Imports fix) → `0.0.0.9282`
 font-paths fix) → `0.0.0.9286` (font diagnostics only, no functional
 change) → `0.0.0.9287` (mirror cvmachine's exact subdirectory/copy.mode
 structure) → `0.0.0.9288` (raw Typst font directive replacing Pandoc
-`mainfont:`, plus a decisive `typst fonts --font-path` diagnostic).
-`R CMD check` re-run clean after each change (0 errors; same two
-pre-existing/unrelated warnings/note as before - see Verification section
-above).
+`mainfont:`, plus a decisive `typst fonts --font-path` diagnostic) →
+`0.0.0.9289` (root-cause fix: bypass Quarto's font-path plumbing entirely,
+recompile the intermediate .typ directly with typst). `R CMD check`
+re-run clean after each change (0 errors; same two pre-existing/unrelated
+warnings/note as before - see Verification section above).
 
 ## Empty-selection error (found by the user testing the deployed app)
 
