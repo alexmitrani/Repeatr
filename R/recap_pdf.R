@@ -41,40 +41,45 @@ render_recap_pdf <- function(gid, output_dir, file_stub = "recap") {
   qmd_path <- file.path(output_dir, paste0(file_stub, ".qmd"))
   file.copy(template_src, qmd_path, overwrite = TRUE)
 
-  # Font files copied alongside the qmd (rather than referenced at their
-  # installed package path) since cvmachine's Quarto+Typst PDF work hit
-  # font-loading failures on shinyapps.io when Typst tried to read fonts
-  # from the installed-package path directly, even though the parent R
-  # process could read it fine.
+  # Fonts copied into their own subdirectory of output_dir (not output_dir
+  # itself) with copy.mode = FALSE (discard the source file's own
+  # permission bits rather than preserve them) plus an explicit chmod, and
+  # TYPST_FONT_PATHS set directly - this mirrors cvmachine's Quarto+Typst
+  # PDF export exactly (down to the subdirectory structure), which is
+  # confirmed working in a live deployed Shiny app on a cloud host, unlike
+  # the previous attempts here. cvmachine's own notes admit they never
+  # fully isolated which piece of this combination was the actual fix
+  # (their leading theory is TYPST_FONT_PATHS, with the copy/chmod dance
+  # possibly addressing a theory that wasn't the real cause) - kept as one
+  # unit here for the same reason: matching their confirmed-working
+  # structure exactly is a stronger bet than re-deriving a minimal fix from
+  # scratch.
   fonts_src <- system.file("shiny", "Fugazetteer", "fonts", package = "Repeatr")
-  font_files <- list.files(fonts_src, full.names = TRUE)
-  file.copy(font_files, output_dir, overwrite = TRUE)
-  dest_font_files <- file.path(output_dir, basename(font_files))
-  Sys.chmod(dest_font_files, mode = "0644")
+  font_dir_raw <- file.path(output_dir, "fonts")
+  dir.create(font_dir_raw, showWarnings = FALSE)
+  font_files <- list.files(fonts_src, pattern = "[.](ttf|otf|ttc)$", full.names = TRUE)
+  file.copy(font_files, font_dir_raw, overwrite = TRUE, copy.mode = FALSE)
+  Sys.chmod(list.files(font_dir_raw, full.names = TRUE), mode = "0644")
+  font_dir <- normalizePath(font_dir_raw, winslash = "/")
+  Sys.setenv(TYPST_FONT_PATHS = font_dir)
 
-  # Diagnostic only (two rounds of font-path plumbing fixes didn't resolve
-  # this on Posit Connect Cloud, so log what's actually on disk right
-  # before the render instead of guessing further) - remove once the font
-  # issue is confirmed fixed.
+  # Diagnostic only (three rounds of font-path fixes didn't resolve this on
+  # Posit Connect Cloud, so log what's actually on disk plus the deployed
+  # typst version right before the render instead of guessing further) -
+  # remove once the font issue is confirmed fixed.
   message("recap PDF font diagnostics:")
   message("  fonts_src = ", fonts_src, " (nzchar: ", nzchar(fonts_src), ")")
-  message("  font_files found: ", paste(font_files, collapse = "; "))
-  for (f in dest_font_files) {
+  message("  font_dir = ", font_dir)
+  for (f in list.files(font_dir_raw, full.names = TRUE)) {
     message(sprintf("  %s exists=%s readable=%s size=%s", f,
                      file.exists(f), file.access(f, mode = 4) == 0,
                      if (file.exists(f)) file.size(f) else NA))
   }
-
-  # font-paths is a per-render absolute path, so it can't live as a static
-  # value in the qmd's own YAML - passed via quarto_render()'s `metadata`
-  # argument (written to a --metadata-file quarto merges over the qmd's
-  # frontmatter) rather than string-substituting the qmd file, since that's
-  # the mechanism quarto itself documents for this. Also set as
-  # TYPST_FONT_PATHS, which Typst reads directly - belt-and-suspenders,
-  # matching cvmachine's fix for the same symptom (PDF renders fine but
-  # silently falls back to the default font on some hosts).
-  font_dir <- normalizePath(output_dir, winslash = "/")
-  Sys.setenv(TYPST_FONT_PATHS = font_dir)
+  typst_version <- tryCatch(
+    system2(quarto_bin, c("typst", "--version"), stdout = TRUE, stderr = TRUE),
+    error = function(e) paste("error:", conditionMessage(e))
+  )
+  message("  typst version: ", paste(typst_version, collapse = " "))
 
   quarto::quarto_render(
     input = qmd_path,

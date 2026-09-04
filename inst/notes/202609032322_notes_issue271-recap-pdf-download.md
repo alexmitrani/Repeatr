@@ -311,25 +311,108 @@ on Posit Connect Cloud** - this is a genuinely different, more robust
 mechanism than the previous attempt, but still unverified against the
 actual failure, which only reproduces there.
 
-If this *still* doesn't fix it on the next redeploy, the next things to
-check (in rough order of likelihood): (1) the deployed Quarto CLI's exact
-version - `quarto:::quarto_render()`'s subprocess-invocation code path
-(`quarto:::quarto_run()`) branches differently for Quarto < 1.8.13
-(constructs an explicit reduced `env` for `processx::run()` rather than
-inheriting the parent's environment outright), which could explain
-`TYPST_FONT_PATHS` not reaching the subprocess if the deployed version is
-older than that; (2) whether Posit Connect Cloud's sandbox has some
-filesystem-namespacing/MAC restriction (SELinux/AppArmor-style, not just
-standard Unix permissions) that blocks the spawned `typst` process from
-reading `/tmp/...` paths regardless of `chmod`, in which case no R-level
-fix is possible and the font requirement itself may need to be dropped
-back to Typst's default for this hosting target.
+**That fix didn't work either** - the user checked the Posit Connect Cloud
+logs directly again: the metadata dump confirmed `font-paths` correctly
+resolved to an absolute path via the new `--metadata-file` mechanism (so
+that layer is proven to work, ruling out the YAML-substitution fragility
+theory), yet Typst still logged the identical `unknown font family:
+inconsolata` warning. Since the *path-delivery* mechanism is now confirmed
+correct via two independently different routes (frontmatter substitution,
+then `--metadata-file`) and both failed identically, the problem is likely
+downstream of that entirely - either the font files aren't actually present
+at that path when Typst compiles on that host, or something in that
+sandbox blocks Typst's process specifically from reading them regardless of
+permissions.
+
+Rather than guess a third fix blind, added targeted diagnostic logging to
+`render_recap_pdf()` (`R/recap_pdf.R`) instead - printed via `message()`
+right before the `quarto::quarto_render()` call, so it lands in the same
+log stream the user is already reading: `fonts_src` (the resolved
+`system.file()` path and whether it's non-empty - a `system.file()` miss
+would return `""`, and `file.copy(character(0), ...)` silently copies
+nothing without erroring, which was the leading unverified hypothesis),
+the list of font files found there, and for each file actually copied into
+`output_dir`: `file.exists()`, `file.access(mode = 4)` (readable), and
+`file.size()`. This is deliberately **not a fix attempt** - purely
+instrumentation to get real evidence from the failing environment instead
+of another speculative change, since two speculative fixes in a row have
+already failed and burned real redeploy cycles. Confirmed locally the
+diagnostic block prints sane values (real absolute path, both files
+`exists=TRUE readable=TRUE size=~100000`) without otherwise changing
+render behavior.
+
+The diagnostics came back and settled the open questions definitively:
+`fonts_src` resolved correctly on Posit Connect Cloud
+(`/cloud/lib/x86_64-pc-linux-gnu-library/4.5/Repeatr/shiny/Fugazetteer/fonts`,
+both `.ttf` files found there), and both copies in the render's `output_dir`
+showed `exists=TRUE readable=TRUE` with byte-for-byte correct sizes
+(102148/101748, identical to local) - ruling out both leading hypotheses
+(packaging/deployment miss, and file-level permission/corruption). Deployed
+typst version wasn't captured this round (added after this test), but the
+`font-paths` metadata dump was again confirmed correctly delivered. Yet
+Typst still logged the identical `unknown font family: inconsolata`
+warning. So: correct path, correct real files, confirmed readable by our
+own process, delivered via two independent mechanisms - and it still
+fails. That's strong evidence the remaining gap isn't in path/file
+plumbing at all.
+
+Per the user's suggestion, re-investigated cvmachine's actual Shiny-app
+deployment context specifically (not just the render function, which the
+earlier investigation already covered) via a fresh, more targeted
+sub-agent pass. Key finding: cvmachine's own font fix was **never actually
+isolated** - their code comment
+(`render_cv_typst.R:370-390` in that repo, as of their HEAD) says outright
+it wasn't worth another deploy round-trip to find out which piece mattered,
+and their session notes' leading theory is that `TYPST_FONT_PATHS` (not the
+`fontpaths:` YAML key, not the copy/chmod dance) was the actual fix - a
+sandboxed-subprocess theory (the `typst` process Quarto spawns can't read
+what the parent R process can, even though standard `file.access()` checks
+from R report it as readable) matching this session's exact symptom
+pattern. Nothing in their Shiny app's own download handler
+(`inst/app/app.R:1032-1097` there) does anything font/permission/env-var
+specific - it's a thin synchronous wrapper with no `future`/`promises`/
+`callr`, no custom temp-dir strategy, no Posit-Connect-specific env
+detection affecting the render path. So there's no hidden "the actual
+final answer" to port over - Repeatr already had every piece cvmachine
+ever tried (fontpaths/font-paths YAML, TYPST_FONT_PATHS, file chmod) and it
+still doesn't work, unlike cvmachine's confirmed-working case.
+
+One concrete structural difference did turn up on close comparison,
+though: cvmachine copies its font files into a **subdirectory** of
+`output_dir` (`output_dir/fonts/`), not into `output_dir` itself, and uses
+`file.copy(..., copy.mode = FALSE)` (explicitly discarding the source
+file's own permission bits, rather than the previous approach here of
+copying with default `copy.mode = TRUE` then chmod-ing after). Neither is
+obviously necessary in principle, but since cvmachine's exact structure is
+the only version of this fix with confirmed, screenshot-verified success
+on a live deployed Shiny app on a cloud host, `render_recap_pdf()` was
+changed to mirror it exactly rather than continue iterating on a
+from-scratch variant: fonts now go into `output_dir/fonts/`,
+`copy.mode = FALSE` is used, and both `TYPST_FONT_PATHS` and the
+`quarto_render(metadata=...)` `font-paths` value point at that
+subdirectory. Kept the font/typst-version diagnostic logging in place for
+this next round too, in case this still doesn't work and more evidence is
+needed. Verified locally: identical output, no font warnings, Inconsolata
+still correctly applied. **Still not yet confirmed on Posit Connect
+Cloud.**
+
+If matching cvmachine's exact structure *still* doesn't fix it, that would
+be strong evidence the two apps' hosting environments simply behave
+differently for this (Repeatr is on Posit Connect Cloud; cvmachine's
+confirmed fix was on shinyapps.io per their notes - different platforms
+were conflated as "the same problem" on the assumption Quarto+Typst
+sandboxing issues generalize, which may not hold). At that point the
+pragmatic path is dropping the Inconsolata requirement for the PDF and
+accepting Typst's default font on this specific host, rather than
+continuing to spend redeploy cycles on an environment neither of us can
+inspect directly.
 
 Version bumped `0.0.0.9280` → `0.0.0.9281` (Imports fix) → `0.0.0.9282`
 (sandbox-args + NOTE fix) → `0.0.0.9283` (font permissions/env-var fix) →
 `0.0.0.9284` (empty-selection guard + docs) → `0.0.0.9285` (metadata-file
-font-paths fix). `R CMD check` re-run clean after each change (0 errors;
-same two
+font-paths fix) → `0.0.0.9286` (font diagnostics only, no functional
+change) → `0.0.0.9287` (mirror cvmachine's exact subdirectory/copy.mode
+structure). `R CMD check` re-run clean after each change (0 errors; same two
 pre-existing/unrelated warnings/note as before - see Verification section
 above).
 
