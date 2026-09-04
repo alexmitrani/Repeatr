@@ -545,11 +545,10 @@ renditions; if it followed directly on from another song, which numbered
 occurrence of that song-to-song transition this was and its total number
 of occurrences across all shows; and the release date it is drawn from.
 
-The whole page can be downloaded as a self-contained HTML take-away
+The whole page can be downloaded as a self-contained PDF take-away
 document using the download button at the top of the page to the right
-of the ‘show’ selection box. The downloaded document can also be printed
-to PDF directly from the browser (e.g. File \> Print \> Save as PDF):
-the tracklist table is sized to fit the page width so it isn’t cut off.
+of the ‘show’ selection box; the button only appears once a show is
+selected.
 
 ## stock
 
