@@ -11,6 +11,16 @@ render_recap_pdf <- function(gid, output_dir, file_stub = "recap") {
     stop("The Quarto CLI was not found; it is required to export the recap ",
          "as PDF. See https://quarto.org/docs/get-started/.")
   }
+  # Not called directly - knitr's own htmlwidget-to-PDF fallback uses
+  # webshot2 internally to rasterize the recap's Leaflet map for a non-HTML
+  # render target. Checked explicitly here so a missing webshot2 fails with
+  # a clear message up front instead of a broken/missing map partway
+  # through the render.
+  if (!requireNamespace("webshot2", quietly = TRUE)) {
+    stop("The 'webshot2' package is required to export the recap as PDF ",
+         "(used to render the map as a static image); install it with ",
+         "install.packages('webshot2').")
+  }
 
   template_src <- system.file("shiny", "Fugazetteer", "recap_template.qmd",
                                package = "Repeatr")
