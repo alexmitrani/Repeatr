@@ -18,6 +18,18 @@ library(Repeatr)
 library(leaflet)
 library(dplyr)
 
+# Set before the map chunk's htmlwidget triggers chromote's first Chrome
+# launch (knitr's own htmlwidget-to-PDF fallback calls webshot2, which uses
+# chromote's default Chrome args unless overridden here). chromote's own
+# is_inside_docker()/is_missing_linux_user() heuristics would normally add
+# --no-sandbox automatically, but they didn't trigger on Posit Connect
+# Cloud's container (Chrome crashed with SIGABRT on launch there), so these
+# are forced unconditionally rather than relying on that detection.
+chromote::set_chrome_args(unique(c(
+  chromote::get_chrome_args(),
+  "--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu"
+)))
+
 result <- recap(mygid = params$gid)
 ctx <- result$context
 ```

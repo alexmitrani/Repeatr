@@ -1,3 +1,14 @@
+# Never called directly - registered purely so NAMESPACE/R CMD check record
+# it as a used Import. The recap.qmd itself is the actual caller, indirectly
+# via knitr's htmlwidget-to-PDF screenshot fallback (that qmd runs in a
+# separate R process spawned by the Quarto CLI, so it can't pick up a
+# NAMESPACE import declared here - this is only about satisfying the
+# "all declared Imports should be used" check for a package this file's own
+# code never references directly, see the chromote::find_chrome() guard and
+# chromote::set_chrome_args() call below/in the qmd for the real usage).
+#' @importFrom webshot2 webshot
+NULL
+
 # Renders inst/shiny/Fugazetteer/recap_template.qmd to a PDF via Quarto +
 # Typst for a single show. Not exported: internal to the Shiny app's
 # recap-download button (see output$downloadRecapDoc in app.R).
@@ -11,15 +22,18 @@ render_recap_pdf <- function(gid, output_dir, file_stub = "recap") {
     stop("The Quarto CLI was not found; it is required to export the recap ",
          "as PDF. See https://quarto.org/docs/get-started/.")
   }
-  # Not called directly - knitr's own htmlwidget-to-PDF fallback uses
-  # webshot2 internally to rasterize the recap's Leaflet map for a non-HTML
-  # render target. Checked explicitly here so a missing webshot2 fails with
-  # a clear message up front instead of a broken/missing map partway
-  # through the render.
-  if (!requireNamespace("webshot2", quietly = TRUE)) {
-    stop("The 'webshot2' package is required to export the recap as PDF ",
-         "(used to render the map as a static image); install it with ",
-         "install.packages('webshot2').")
+  # webshot2 itself isn't called directly here - knitr's own htmlwidget-to-
+  # PDF fallback uses it internally to rasterize the recap's Leaflet map for
+  # a non-HTML render target, and it's guaranteed installed since it's a
+  # hard Import. What isn't guaranteed is the Chrome/Chromium binary
+  # webshot2's chromote backend needs at runtime, so that's checked
+  # explicitly - a missing browser fails clearly up front instead of a
+  # broken/missing map partway through the Quarto render.
+  chrome_bin <- tryCatch(chromote::find_chrome(), error = function(e) NA_character_)
+  if (is.na(chrome_bin) || !nzchar(chrome_bin)) {
+    stop("A Chrome/Chromium binary was not found; webshot2 needs one to ",
+         "render the recap map as a static image for the PDF. See ",
+         "https://rstudio.github.io/chromote/ for installation options.")
   }
 
   template_src <- system.file("shiny", "Fugazetteer", "recap_template.qmd",

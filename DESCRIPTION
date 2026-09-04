@@ -1,6 +1,6 @@
 Package: Repeatr
 Title: Exploring the Fugazi Live Series
-Version: 0.0.0.9281
+Version: 0.0.0.9282
 Authors@R: 
     person("Alex", "Mitrani", , "27974470+alexmitrani@users.noreply.github.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-1091-7413"))
@@ -16,6 +16,7 @@ Depends:
 Imports:
     base64enc,
     bslib(>= 0.4.2),
+    chromote,
     cols4all(>= 0.10),
     crayon(>= 1.4.1),
     dplyr(>= 1.0.7),
@@ -31,8 +32,8 @@ Imports:
     mlogit(>= 2.0-0),
     plotly(>= 4.10.0),
     purrr,
-    readr(>= 2.0.2),
     quarto,
+    readr(>= 2.0.2),
     rlang(>= 0.4.12),
     rmarkdown(>= 2.11),
     rvest(>= 1.0.3),
@@ -58,4 +59,9 @@ SystemRequirements: PDF export of the Shiny app's recap page is rendered via
     for the static PDF. Both must be present wherever the Shiny app is
     hosted; if either is unavailable, PDF export fails gracefully with a
     Shiny notification rather than crashing the app (see
-    render_recap_pdf(), R/recap_pdf.R).
+    render_recap_pdf(), R/recap_pdf.R). The recap.qmd template forces
+    Chrome's --no-sandbox/--disable-dev-shm-usage/--disable-gpu launch
+    flags unconditionally (see its setup chunk), since chromote's own
+    is_inside_docker()/is_missing_linux_user() auto-detection did not
+    reliably add them on Posit Connect Cloud's container and Chrome
+    crashed (SIGABRT) on launch without them.
