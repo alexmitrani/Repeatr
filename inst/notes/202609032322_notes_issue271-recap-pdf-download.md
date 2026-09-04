@@ -273,3 +273,47 @@ Version bumped `0.0.0.9280` → `0.0.0.9281` (Imports fix) → `0.0.0.9282`
 `R CMD check` re-run clean after each change (0 errors; same two
 pre-existing/unrelated warnings/note as before - see Verification section
 above).
+
+## Empty-selection error (found by the user testing the deployed app)
+
+Clicking download with no show selected in `input$search_shows_recap`
+crashed through to a raw, very technical error notification (the full
+quarto-CLI/knitr backtrace down to `recap()`'s own `mygid must match
+exactly one show in shows_data` validation error). Two-part fix in
+`inst/shiny/Fugazetteer/app.R`:
+
+- The download button itself (`downloadButton("downloadRecapDoc", "")`,
+  previously always visible, outside the `conditionalPanel` that already
+  gates the rest of the tab's content on a show being selected) is now
+  wrapped in the same `input.search_shows_recap!=''` `conditionalPanel`
+  condition - it simply doesn't appear until a show is chosen, matching the
+  "should do nothing" half of the request and preventing the whole
+  situation.
+- Defense-in-depth: `output$downloadRecapDoc`'s `content()` function now
+  checks `nzchar(input$search_shows_recap)` first and, if empty, shows a
+  friendly `showNotification("Please select a show before downloading the
+  recap PDF.", type = "warning")` then `req(FALSE)` to halt cleanly -
+  covers any edge case where the button is somehow triggered despite being
+  conditionally hidden (e.g. a stale client state), without ever reaching
+  `render_recap_pdf()`/the quarto render at all.
+
+Verified: the app starts with no errors with this change (structurally
+identical `conditionalPanel` pattern to the one already used successfully
+elsewhere on this same tab); the empty-string short-circuit logic itself
+was tested standalone and confirmed to halt cleanly with no uncaught
+error. Full interactive click-through (confirming the button visually
+appears/disappears correctly) wasn't independently verified this session
+since no connected browser tool was available - flagged so it's still
+worth a quick manual check.
+
+## Documentation updates
+
+Per request, updated docs referencing the recap download's old HTML
+format:
+- `vignettes/Fugazetteer.Rmd`'s "recap" section: replaced the sentence
+  describing a "self-contained HTML take-away document" (plus browser
+  print-to-PDF instructions, now obsolete) with one describing the actual
+  current behavior - a self-contained PDF download, button only visible
+  once a show is selected.
+- `R/recap.R`: fixed a stale in-code comment still referring to
+  `recap_template.Rmd` (renamed to `.qmd` earlier this session).
