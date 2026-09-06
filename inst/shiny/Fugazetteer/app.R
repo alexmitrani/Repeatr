@@ -238,8 +238,6 @@ ui <- fluidPage(
 
   theme = my_theme,
 
-  tags$head(includeHTML(("google-analytics.html"))),
-
   tags$style(type = "text/css", "html, body {width:100%; height:100%}"),
 
   img(src='fugazetteer_avatar.png', height="45", width="45", align = "left"), h1("Fugazetteer"),
