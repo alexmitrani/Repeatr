@@ -4,7 +4,7 @@ format:
   typst:
     papersize: a4
     margin:
-      x: 1.5cm
+      x: 1cm
       y: 2cm
     mainfont: "Inconsolata"
 params:
@@ -86,12 +86,32 @@ leaflet(data = df, options = leafletOptions(zoomControl = FALSE)) %>%
 ```
 
 ```{=typst}
-#set text(size: 8pt)
+#set text(size: 9pt)
 ```
 
 ```{r tracklist, eval=ctx$has_recording}
 options(knitr.kable.NA = "")
-knitr::kable(result$tracklist, row.names = FALSE)
+
+# result$tracklist is shared with the on-screen recap tab (app.R's
+# recap_tracklist_datatable), so it's left untouched here; this
+# display-only copy combines each show-specific value with its
+# series-wide aggregate into a single cell, purely for the PDF.
+pdf_tracklist <- result$tracklist %>%
+  dplyr::transmute(
+    track = track,
+    title = title,
+    `minutes (mean)` = ifelse(is.na(minutes) | is.na(mins_mean), NA_character_,
+                               sprintf("%.2f (%.2f)", minutes, mins_mean)),
+    `position (mean)` = ifelse(is.na(position) | is.na(pos_mean), NA_character_,
+                                sprintf("%.2f (%.2f)", position, pos_mean)),
+    `rendition (total)` = ifelse(is.na(rendition) | is.na(renditions), NA_character_,
+                                  sprintf("%d (%d)", as.integer(rendition), as.integer(renditions))),
+    `transition (total)` = ifelse(is.na(transition) | is.na(transitions), NA_character_,
+                                   sprintf("%d (%d)", as.integer(transition), as.integer(transitions))),
+    release_date = release_date
+  )
+
+knitr::kable(pdf_tracklist, row.names = FALSE)
 ```
 
 ```{=typst}

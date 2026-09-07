@@ -111,6 +111,27 @@ render_recap_pdf <- function(gid, output_dir, file_stub = "recap") {
     stop("Quarto did not leave behind an intermediate .typ file to ",
          "recompile with the correct font.")
   }
+
+  # kable()/pandoc size the tracklist table's columns as fixed percentages
+  # of page width, computed per-show from that show's own longest cell
+  # (title in particular varies a lot, e.g. "ice cream eating
+  # motherfucker" vs "by you") - so a percentage split that avoids
+  # wrapping the column headers for one show's data can still wrap them
+  # for another. Swapped here for "auto" (each non-title column sized
+  # exactly to fit its widest cell, never wrapping) plus "1fr" for title
+  # (absorbs the remaining width, wrapping only a long title itself,
+  # which is acceptable - unlike a wrapped header).
+  typ_lines <- readLines(typ_path)
+  tracklist_col_line <- grep("^\\s*columns: \\([0-9.]+%(, [0-9.]+%)*\\),?\\s*$", typ_lines)
+  if (length(tracklist_col_line) != 1) {
+    stop("Expected exactly one percentage-based table column spec in the ",
+         "intermediate .typ file (the tracklist table); found ",
+         length(tracklist_col_line), ". The recap template's table ",
+         "structure may have changed.")
+  }
+  typ_lines[tracklist_col_line] <- "  columns: (auto, 1fr, auto, auto, auto, auto, auto),"
+  writeLines(typ_lines, typ_path)
+
   pdf_path <- file.path(output_dir, paste0(file_stub, ".pdf"))
   recompile <- processx::run(
     quarto_bin,
