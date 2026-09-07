@@ -9,6 +9,7 @@
 ^\.httr-oauth$
 ^\.github$
 ^\.positai$
+^inst/shiny/Fugazetteer/\.posit$
 ^\.claude$
 ^CLAUDE\.md$
 ^index\.md$
