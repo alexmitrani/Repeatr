@@ -39,8 +39,10 @@ the session notes and the plans can be distinguished from each other:
 
 # Session notes
 
-Keep a written summary/record of each work session (what changed, why,
-key decisions), save it as a markdown file in `./inst/notes`, named
+Keep a written summary/record of each work session (the initial user
+request, the contents of any github issues referred to, any other user
+comments during the session, what changed, why, key decisions), save it
+as a markdown file in `./inst/notes`, named
 `YYYYMMDDHHMM_notes_short-description.md` (e.g.
 `202607312024_notes_myshortdescription.md`). The timestamp prefix keeps
 multiple session notes sorting in chronological order in a plain file
