@@ -10,7 +10,7 @@ Two Beats Off was launched as an instrumental at the 40 Watt in Athens,
 Georgia on 3 May 1989. The first rendition with vocals was at the 9:30
 Club in Washington DC on 19 July 1989. The song got it’s official
 release on Repeater which was released around the 1 March 1990 ([Fugazi
-1990e](#ref-fugazi1990e)). It was one of the later songs to debut that
+1990f](#ref-fugazi1990e)). It was one of the later songs to debut that
 would be released on Repeater.
 
     #> # A tibble: 11 × 2
@@ -48,7 +48,7 @@ many highlights of the song.
 ## Lyrics
 
 The lyrics from the studio recording will be referred to here ([Fugazi
-1990f](#ref-fugazi1990a)) - there are some variations in live
+1990g](#ref-fugazi1990a)) - there are some variations in live
 recordings. The lyric sheet uses all caps so capitalization is not
 clear. Here I’m going with all lower case.
 
@@ -309,6 +309,13 @@ and vary them with every rendition - it is hard to find any two live
 renditions of this song that are the same, and it is also a challenge to
 find a live version with exactly the same lyrics as the album version.
 
+### FLS0180 Richmond, VA, USA, 1990-02-25
+
+This one features an alternate version of the first 2 lines:
+
+> I put a kiss to your wrist but now I’ve got my head in the shape of a
+> fist” ([Fugazi 1990a](#ref-fugazi1990g))
+
 ### FLS0224 Denver, CO, USA, 1990-06-08
 
 One of the first renditions featuring a sample of ‘Summertime’ by
@@ -320,7 +327,7 @@ introduction.
 > summertime and the living is good
 >
 > your daddy’s rich and your ma’ is good looking ([Fugazi
-> 1990a](#ref-fugazi1990f))
+> 1990b](#ref-fugazi1990f))
 
 Early June might have felt like summer already in Denver although it
 would have been a few weeks ahead of the summer solstice. ‘Summertime’
@@ -337,7 +344,7 @@ This performance at Unitas features the following introduction:
 >
 > salad is the first course
 >
-> what shall I choose for the main? ([Fugazi 1990b](#ref-fugazi1990c))
+> what shall I choose for the main? ([Fugazi 1990c](#ref-fugazi1990c))
 
 These lines are from ‘First Course’ by Fire Party, on the EP ‘New
 Orleans Opera’, released as Dischord 037 in 1989 ([Fire Party
@@ -348,12 +355,12 @@ This rendition also features some variations to other lines:
 > I want a body to be seen
 >
 > not just the biggest mouth to feed of them all ([Fugazi
-> 1990b](#ref-fugazi1990c))
+> 1990c](#ref-fugazi1990c))
 
 ### FLS0272 Linkoping, Sweden 1990-10-02
 
 > Swing low, sweet chariot, coming for to carry me home ([Fugazi
-> 1990d](#ref-fugazi1990b)).
+> 1990e](#ref-fugazi1990b)).
 
 Unusually, this intro to Two Beats Off is sung by Ian MacKaye. This is
 from an old gospel song that has been performed by many artists
@@ -372,7 +379,7 @@ Jam 1978](#ref-thejam1978)), with a few changes to wording and sequence.
 > Beautiful moss and colourful flowers
 >
 > Let’s take a stand against the world ([Fugazi
-> 1990d](#ref-fugazi1990b))
+> 1990e](#ref-fugazi1990b))
 
 The main part of the song features some lines that did not make it into
 the album version but feature in many live renditions.
@@ -383,7 +390,7 @@ the album version but feature in many live renditions.
 >
 > and take it
 >
-> up against the wall ([Fugazi 1990d](#ref-fugazi1990b))
+> up against the wall ([Fugazi 1990e](#ref-fugazi1990b))
 
 The end of the song also features Ian MacKaye, who sings something that
 sounds like this:
@@ -394,7 +401,7 @@ sounds like this:
 >
 > he got here
 >
-> and disappeared ([Fugazi 1990d](#ref-fugazi1990b))
+> and disappeared ([Fugazi 1990e](#ref-fugazi1990b))
 
 ### FLS0304 Amsterdam, Netherlands 1990-11-07
 
@@ -407,7 +414,7 @@ Zetten (support point Zetten) at Paradiso in Amsterdam, Netherlands.
 > and they put them away in little psychiatric prisons where they are
 > mistreated, abused, molested… So, anyway, I think it is a rather
 > worthy cause. - Ian MacKaye, 7 November 1990 ([Fugazi
-> 1990c](#ref-fugazi1990))
+> 1990d](#ref-fugazi1990))
 
 Steunpunt Zetten was a support group and activist group working on
 behalf of young people who complained that they suffered abuse of
@@ -440,7 +447,7 @@ introduction to Two Beats Off.
 >
 > Elle va couper mon coeur
 >
-> En trois mille morceaux([Fugazi 1990c](#ref-fugazi1990))
+> En trois mille morceaux([Fugazi 1990d](#ref-fugazi1990))
 
 This is a modified version of a rude nursery rhyme ([Bouteloup
 2003](#ref-bouteloup2003)) that is sang to the tune of an older,
@@ -475,7 +482,7 @@ song, making it into more of a protest song.
 >
 > my friends
 >
-> take it to the streets ([Fugazi 1990c](#ref-fugazi1990))
+> take it to the streets ([Fugazi 1990d](#ref-fugazi1990))
 
 The extended introduction that was added to Two Beats Off made me wonder
 why this was done, and in particular it got me thinking that maybe there
@@ -877,22 +884,25 @@ Fugazi. 1989c. *FLS0148 Hoboken, NJ USA 10/8/1989*. October 8.
 Fugazi. 1989d. *FLS0151 Amsterdam, Netherlands 11/3/1989*. November 3.
 <https://dischord.com/fugazi_live_series/amsterdam-netherlands-110389>.
 
-Fugazi. 1990a. *FLS0224 Denver, CO, USA, 06/08/1990*. June 8.
+Fugazi. 1990a. *FLS0180 Richmond, VA, USA, 02/25/1990*. February 25.
+<https://dischord.com/fugazi_live_series/richmond-va-usa-22590>.
+
+Fugazi. 1990b. *FLS0224 Denver, CO, USA, 06/08/1990*. June 8.
 <https://dischord.com/fugazi_live_series/denver-co-usa-60890>.
 
-Fugazi. 1990b. *FLS0251 Wageningen, Netherlands 9/8/1990*. September 8.
+Fugazi. 1990c. *FLS0251 Wageningen, Netherlands 9/8/1990*. September 8.
 <https://dischord.com/fugazi_live_series/wageningen-netherlands-90890>.
 
-Fugazi. 1990c. *FLS0304 Amsterdam, Netherlands 11/7/1990*. November 7.
+Fugazi. 1990d. *FLS0304 Amsterdam, Netherlands 11/7/1990*. November 7.
 <https://dischord.com/fugazi_live_series/amsterdam-netherlands-110790>.
 
-Fugazi. 1990d. *Linkoping, Sweden 10/2/1990*. (Rock Lamour), October 2.
+Fugazi. 1990e. *Linkoping, Sweden 10/2/1990*. (Rock Lamour), October 2.
 <https://dischord.com/fugazi_live_series/linkoping-sweden-100290>.
 
-Fugazi. 1990e. *Repeater*. March 1.
+Fugazi. 1990f. *Repeater*. March 1.
 <https://fugazi.bandcamp.com/album/repeater-3-songs>.
 
-Fugazi. 1990f. *Two Beats Off*. March 1.
+Fugazi. 1990g. *Two Beats Off*. March 1.
 <https://fugazi.bandcamp.com/track/two-beats-off>.
 
 Fugazi. 1992. *FLS0437 Nottingham, England 5/8/1992*. May 8.
