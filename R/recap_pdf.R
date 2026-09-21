@@ -120,17 +120,23 @@ render_recap_pdf <- function(gid, output_dir, file_stub = "recap") {
   # for another. Swapped here for "auto" (each non-title column sized
   # exactly to fit its widest cell, never wrapping) plus "1fr" for title
   # (absorbs the remaining width, wrapping only a long title itself,
-  # which is acceptable - unlike a wrapped header).
+  # which is acceptable - unlike a wrapped header). Only applies when the
+  # tracklist table itself was rendered at all - a show with no surviving
+  # recording has no tracklist chunk (eval=ctx$has_recording in the qmd), so
+  # the .typ file legitimately has zero percentage-based table specs to fix
+  # up, and that's not an error.
   typ_lines <- readLines(typ_path)
   tracklist_col_line <- grep("^\\s*columns: \\([0-9.]+%(, [0-9.]+%)*\\),?\\s*$", typ_lines)
-  if (length(tracklist_col_line) != 1) {
-    stop("Expected exactly one percentage-based table column spec in the ",
+  if (length(tracklist_col_line) > 1) {
+    stop("Expected at most one percentage-based table column spec in the ",
          "intermediate .typ file (the tracklist table); found ",
          length(tracklist_col_line), ". The recap template's table ",
          "structure may have changed.")
   }
-  typ_lines[tracklist_col_line] <- "  columns: (auto, 1fr, auto, auto, auto, auto, auto),"
-  writeLines(typ_lines, typ_path)
+  if (length(tracklist_col_line) == 1) {
+    typ_lines[tracklist_col_line] <- "  columns: (auto, 1fr, auto, auto, auto, auto, auto),"
+    writeLines(typ_lines, typ_path)
+  }
 
   pdf_path <- file.path(output_dir, paste0(file_stub, ".pdf"))
   recompile <- processx::run(

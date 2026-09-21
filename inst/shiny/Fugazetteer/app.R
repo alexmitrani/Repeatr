@@ -3383,7 +3383,11 @@ server <- function(input, output, session) {
   options = list(pageLength = -1, lengthMenu = list(c(-1, 10, 25, 50), c("All", "10", "25", "50")))))
 
   output$downloadRecapDoc <- downloadHandler(
-    filename = function() paste0(datestring, "_Fugazetteer_Recap_", input$search_shows_recap, ".pdf"),
+    filename = function() {
+      show_date <- shows_data %>% filter(gid==input$search_shows_recap) %>% pull(date)
+      location_slug <- sub("-[0-9]+$", "", input$search_shows_recap)
+      paste0("Fugazetteer_Recap_", format(show_date, "%Y%m%d"), "_", location_slug, ".pdf")
+    },
     content = function(file) {
 
       if (!nzchar(input$search_shows_recap)) {
