@@ -618,6 +618,25 @@ note_festival <- function(venue, shows_data) {
 
 }
 
+# Plain-language explanation of the recap tracklist table's columns, shown
+# below the table itself - shared verbatim by both places that table
+# appears (app.R's on-screen recap tab and recap_template.qmd's downloadable
+# PDF), so the wording only ever needs to change in one place.
+recap_tracklist_columns_note <- function() {
+  paste0(
+    "Each row is one track on the recording, songs and non-song content alike ",
+    "(interludes, intros, outros, encores and other one-offs). The transition ",
+    "refers to the change to the song in question from the previous song, so ",
+    "the first song in the set doesn't have a transition. For minutes and ",
+    "position, the first figure is this show's own value and the one in ",
+    "parentheses is that song's series-wide average (position runs from 0 for ",
+    "the first song of the set to 1 for the last). For rendition and ",
+    "transition, the first figure is which numbered occurrence this is and the ",
+    "one in parentheses is the total number of times it appears in the series. ",
+    "release_date is the release date of the album or EP the song comes from."
+  )
+}
+
 #' @title recap brings together all the notable facts about a single Fugazi show: date, venue, tour context, how many times the band had previously played in that country/state/city/venue, the previous and next show of the tour, and (if a recording exists) a detailed tracklist with duration, release and rendition statistics.
 #'
 #' @param mygid gig id of the show to recap, as a string, for instance "washington-dc-usa-13196".
@@ -1141,10 +1160,13 @@ recap <- function(mygid,
   # paragraph3 collects every "something unusual about this show" fact -
   # the attendance/price/festival records first (these apply even without
   # a recording), then whichever recording-derived facts above applied.
-  # Rendered as an HTML "Notes:" heading plus a bullet list rather than a
-  # prose paragraph, since a flat list of independent facts reads more
-  # naturally that way than as consecutive sentences (issue #257); if none
-  # apply, paragraph3 is "" like this file's other optional sentences.
+  # Rendered as an HTML bullet list rather than a prose paragraph, since a
+  # flat list of independent facts reads more naturally that way than as
+  # consecutive sentences (issue #257); if none apply, paragraph3 is "" like
+  # this file's other optional sentences. Deliberately has no "Notes:"
+  # heading of its own baked in - both callers (app.R's on-screen recap tab
+  # and recap_template.qmd's PDF) supply their own "Notes" section heading
+  # around this list, so a heading here would be redundant.
   note_pieces <- c(attendance_record_note, price_record_note, festival_note,
                     latitude_record_note, distance_record_note, note_pieces)
   note_pieces <- note_pieces[is.na(note_pieces)==FALSE]
@@ -1152,9 +1174,7 @@ recap <- function(mygid,
   paragraph3 <- if (length(note_pieces)==0) {
     ""
   } else {
-    paste0("<p><strong>Notes:</strong></p><ul>",
-           paste0("<li>", note_pieces, "</li>", collapse = ""),
-           "</ul>")
+    paste0("<ul>", paste0("<li>", note_pieces, "</li>", collapse = ""), "</ul>")
   }
 
   context <- list(

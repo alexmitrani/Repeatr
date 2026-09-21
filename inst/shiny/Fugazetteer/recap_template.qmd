@@ -124,17 +124,7 @@ knitr::kable(pdf_tracklist, row.names = FALSE)
 ```
 
 ```{r tracklist-note, results='asis', eval=ctx$has_recording}
-cat(paste0(
-  "Each row is one track on the recording, songs and non-song content alike ",
-  "(interludes, intros, outros, encores and other one-offs). For minutes and ",
-  "position, the first figure is this show's own value and the one in ",
-  "parentheses is that song's series-wide average (position runs from 0 for ",
-  "the first song of the set to 1 for the last). For rendition and ",
-  "transition, the first figure is which numbered occurrence this is and the ",
-  "one in parentheses is the total number of times it has been recorded ",
-  "across the whole series. release_date is the release date of the album ",
-  "or EP the song comes from."
-))
+cat(Repeatr:::recap_tracklist_columns_note())
 ```
 
 ```{=typst}
@@ -145,7 +135,6 @@ cat(paste0(
 cat(paste0(
   "\n---\n\n",
   "Made with Repeatr version ", as.character(packageVersion("Repeatr")), ", updated ", packageDate("Repeatr"), ".\\\n",
-  "[https://alexmitrani-fugazetteer.share.connect.posit.cloud/](https://alexmitrani-fugazetteer.share.connect.posit.cloud/)\\\n",
-  "[https://dischord.com/fugazi_live_series](https://dischord.com/fugazi_live_series)\n"
+  "[https://alexmitrani-fugazetteer.share.connect.posit.cloud/](https://alexmitrani-fugazetteer.share.connect.posit.cloud/)\n"
 ))
 ```

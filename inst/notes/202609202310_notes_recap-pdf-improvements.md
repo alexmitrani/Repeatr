@@ -110,3 +110,62 @@ unexpectedly).
   touched — nothing there was affected.
 - Version bumped in `DESCRIPTION` per `CLAUDE.md` convention (see git diff
   for the exact new version).
+- The first round of changes above was committed by the user directly
+  (`7a66775b "Recap PDF: filename, template, and typst fix - to resolve
+  issue #274"`) — I noticed the commit appear mid-session without having run
+  `git commit` myself, flagged it, and the user confirmed they made it.
+
+## Follow-up (2026-09-21): GitHub issue comment with more requests
+The user commented on issue #274 with four more requests (confirmed via
+`gh issue view 274`, comment by alexmitrani, 2026-09-21T02:54:26Z):
+- In the notes below the data table, after the first sentence add: "The
+  transition refers to the change to the song in question from the previous
+  song, so the first song in the set doesn't have a transition."
+- Use "appears in the series" instead of "has been recorded across the
+  whole series".
+- Remove the final footer line on the PDF page (the
+  `dischord.com/fugazi_live_series` link) because it's redundant.
+- Make the corresponding changes to the on-screen Recap tab of the Shiny
+  app too: subtitles, explanatory notes below the data table, and "Fugazi
+  Live Series link: " before the hyperlink.
+
+**What changed:**
+- `R/recap.R`: `paragraph3` (the Notes list) no longer bakes in its own
+  `<p><strong>Notes:</strong></p>` heading - just a bare `<ul>`. Both callers
+  (app.R and the qmd) now supply their own "Notes" heading around it, so the
+  label wasn't being duplicated once app.R got a matching subtitle. Added a
+  new unexported `recap_tracklist_columns_note()` function holding the
+  column-explanation text (with the two wording changes above applied) so
+  the PDF and the on-screen tab share one copy of the wording instead of
+  duplicating it.
+- `inst/shiny/Fugazetteer/recap_template.qmd`: tracklist-note chunk now just
+  calls `Repeatr:::recap_tracklist_columns_note()`; footer chunk drops the
+  `dischord.com/fugazi_live_series` line (and its now-unneeded trailing
+  `\\` line-break marker on the line above it).
+- `inst/shiny/Fugazetteer/app.R`: `output$recap_link` gets the "Fugazi Live
+  Series link: " prefix; UI gains `h4()` subtitles (Introduction, Recording,
+  Notes, Location Map, Data Table) at the same points/conditions the
+  corresponding content already appeared (i.e. "Recording"/"Data Table"
+  still only show when `has_recording`, "Notes" only when there are notes -
+  no change to that pre-existing conditional structure, just added
+  headings); new `output$recap_tracklist_note` (`renderText`, wired to
+  `textOutput("recap_tracklist_note")` right after the tracklist datatable)
+  shows the same shared column-explanation text the PDF uses.
+
+**Verification:** reinstalled the package, re-rendered the PDF for the same
+recorded/unrecorded test shows and read the PDFs back to confirm the wording
+insert, "appears in the series" swap, and footer line removal. Ran
+`devtools::test()` (10/10 pass, including the existing test that renders a
+real recap PDF end-to-end). Launched the actual Shiny app
+(`shiny::runApp("inst/shiny/Fugazetteer", ...)`) and drove it with the
+Chrome browser tool: selected `aalst-belgium-92390` (recorded, has notes)
+and confirmed the link label, all five subtitles, and the new column note
+text appear correctly on-screen; then selected `chapel-hill-nc-usa-92787`
+(unrecorded) and confirmed Recording/Notes/Data Table are still correctly
+absent. Re-ran `R CMD check` (`devtools::check(document = FALSE, vignettes =
+FALSE, ...)` for speed, since the full vignette-rebuilding check already ran
+clean in the first round and nothing vignette-related changed): **0 errors,
+0 warnings, 0 notes** (the two notes from the first round's full check were
+tied to vignette/URL checking, which this faster run skips - already
+confirmed unrelated to this feature). Version bumped again to `0.0.0.9294`
+and package reinstalled to bake that in.

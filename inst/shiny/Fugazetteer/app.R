@@ -925,22 +925,26 @@ tabPanel("flow",
 
                         tags$br(),
 
+                        h4("Introduction"),
                         textOutput("recap_summary_text1"),
 
                         tags$br(),
 
                         conditionalPanel(
                           condition = "output.recap_has_recording == true",
+                          h4("Recording"),
                           textOutput("recap_summary_text2"),
                           tags$br()
                         ),
 
                         conditionalPanel(
                           condition = "output.recap_has_notes == true",
+                          h4("Notes"),
                           uiOutput("recap_summary_text3"),
                           tags$br()
                         ),
 
+                        h4("Location Map"),
                         leafletOutput("recap_map"),
 
                         tags$br(),
@@ -951,11 +955,17 @@ tabPanel("flow",
                           hr(),
                           tags$br(),
 
+                          h4("Data Table"),
+
                           fluidRow(
                             column(12,
                                    DT::dataTableOutput("recap_tracklist_datatable")
                             )
-                          )
+                          ),
+
+                          tags$br(),
+
+                          textOutput("recap_tracklist_note")
 
                         )
 
@@ -3309,7 +3319,7 @@ server <- function(input, output, session) {
 
     ctx <- recap_result()$context
 
-    HTML(paste0("<a href='", ctx$url, "' target='_blank'>", ctx$gid, "</a>"))
+    HTML(paste0("Fugazi Live Series link: <a href='", ctx$url, "' target='_blank'>", ctx$gid, "</a>"))
 
   })
 
@@ -3381,6 +3391,10 @@ server <- function(input, output, session) {
   style = "bootstrap",
   rownames = FALSE,
   options = list(pageLength = -1, lengthMenu = list(c(-1, 10, 25, 50), c("All", "10", "25", "50")))))
+
+  output$recap_tracklist_note <- renderText({
+    Repeatr:::recap_tracklist_columns_note()
+  })
 
   output$downloadRecapDoc <- downloadHandler(
     filename = function() {
