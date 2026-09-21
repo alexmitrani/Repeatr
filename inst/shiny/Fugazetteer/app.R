@@ -930,12 +930,10 @@ tabPanel("flow",
 
                         tags$br(),
 
-                        conditionalPanel(
-                          condition = "output.recap_has_recording == true",
-                          h4("Recording"),
-                          textOutput("recap_summary_text2"),
-                          tags$br()
-                        ),
+                        h4("Recording"),
+                        textOutput("recap_summary_text2"),
+
+                        tags$br(),
 
                         conditionalPanel(
                           condition = "output.recap_has_notes == true",
@@ -3328,7 +3326,12 @@ server <- function(input, output, session) {
   })
 
   output$recap_summary_text2 <- renderText({
-    recap_result()$context$paragraph2
+    ctx <- recap_result()$context
+    if (ctx$has_recording) {
+      ctx$paragraph2
+    } else {
+      "No recording of this show is currently available."
+    }
   })
 
   output$recap_summary_text3 <- renderUI({

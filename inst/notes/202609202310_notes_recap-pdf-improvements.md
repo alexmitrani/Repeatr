@@ -196,3 +196,31 @@ length); the unrecorded show still renders as a single page with no stray
 break. Re-ran `devtools::test()` (10/10 pass). Version bumped to
 `0.0.0.9295`; final `R CMD check` (document = FALSE, vignettes = FALSE) result
 recorded at the end of this note.
+
+## Follow-up (2026-09-21): fourth issue comment - "no recording" section missing on-screen
+User's fourth comment on #274 (2026-09-21T03:43:01Z): the PDF's "Recording /
+No recording of this show is currently available." section (for shows with
+no surviving recording) has no equivalent on the Shiny app's Recap tab.
+
+**Cause:** app.R's "Recording" heading and `textOutput("recap_summary_text2")`
+were wrapped in `conditionalPanel(condition = "output.recap_has_recording ==
+true", ...)`, so the whole section was hidden outright for unrecorded shows
+- and even if shown, `output$recap_summary_text2` just returned
+`ctx$paragraph2`, which is `""` when there's no recording (no fallback text
+was ever generated for the on-screen path).
+
+**What changed (`inst/shiny/Fugazetteer/app.R`):**
+- Removed the `conditionalPanel` around the "Recording" heading +
+  `textOutput("recap_summary_text2")` - it's now always shown, same as
+  Introduction/Location Map.
+- `output$recap_summary_text2` now checks `ctx$has_recording` and returns
+  "No recording of this show is currently available." (matching the qmd's
+  wording exactly) when it's `FALSE`, instead of the empty `paragraph2`.
+
+**Verification:** reinstalled, launched the live Shiny app, and used the
+Chrome browser tool to check both cases: `chapel-hill-nc-usa-92787`
+(unrecorded) now shows "Recording / No recording of this show is currently
+available." on-screen; `aalst-belgium-92390` (recorded) still shows its full
+paragraph2 recording summary, unaffected. Ran `devtools::test()` (10/10
+pass). Version bumped to `0.0.0.9296`; final `R CMD check` result recorded
+at the end of this note.
