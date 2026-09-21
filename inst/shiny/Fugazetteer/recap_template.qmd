@@ -91,7 +91,10 @@ leaflet(data = df, options = leafletOptions(zoomControl = FALSE)) %>%
 ```
 
 ```{r tracklist-heading, results='asis', eval=ctx$has_recording}
-cat("## Data Table\n\n")
+# Forces the Data Table section onto its own page, starting with its
+# heading - otherwise a few of the table's rows can end up stranded at the
+# foot of the previous page with the rest spilling onto the next one.
+cat("`#pagebreak()`{=typst}\n\n## Data Table\n\n")
 ```
 
 ```{=typst}

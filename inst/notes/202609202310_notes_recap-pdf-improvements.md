@@ -169,3 +169,30 @@ clean in the first round and nothing vignette-related changed): **0 errors,
 tied to vignette/URL checking, which this faster run skips - already
 confirmed unrelated to this feature). Version bumped again to `0.0.0.9294`
 and package reinstalled to bake that in.
+
+## Follow-up (2026-09-21): third issue comment - page break before Data Table
+User's third comment on #274 (2026-09-21T03:26:05Z): in the PDF, when there
+is a Data Table, put the "Data Table" heading at the top of a fresh page
+with the whole table following it - otherwise a few rows can get stranded
+at the foot of one page with the rest spilling onto the next.
+
+**What changed:** `inst/shiny/Fugazetteer/recap_template.qmd`'s
+`tracklist-heading` chunk (already `eval=ctx$has_recording`) now emits a
+raw typst `` `#pagebreak()`{=typst} `` inline span immediately before the
+`## Data Table` heading text, so the whole section always starts on its own
+page for shows that have one - no forced break at all for unrecorded shows,
+since that chunk doesn't run for them.
+
+**Verification:** reinstalled the package (the qmd is read from the
+installed copy via `system.file()`, not the source tree - reinstalling
+before re-testing matters here), re-rendered PDFs for the same
+recorded/unrecorded test shows plus a third, deliberately short-tracklist
+show (`virginia-beach-va-usa-71688`, 4 tracks) to check the forced break
+doesn't look broken on a table that would otherwise fit on page 1 - in all
+cases confirmed: recorded shows now get "Location Map" ending page 1 and
+"Data Table" starting cleanly at the top of page 2 (including the
+short-tracklist case, which is the requested behavior regardless of table
+length); the unrecorded show still renders as a single page with no stray
+break. Re-ran `devtools::test()` (10/10 pass). Version bumped to
+`0.0.0.9295`; final `R CMD check` (document = FALSE, vignettes = FALSE) result
+recorded at the end of this note.
