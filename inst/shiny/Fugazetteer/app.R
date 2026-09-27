@@ -3396,7 +3396,7 @@ server <- function(input, output, session) {
   options = list(pageLength = -1, lengthMenu = list(c(-1, 10, 25, 50), c("All", "10", "25", "50")))))
 
   output$recap_tracklist_note <- renderText({
-    Repeatr:::recap_tracklist_columns_note()
+    Repeatr:::recap_tracklist_columns_note("online")
   })
 
   output$downloadRecapDoc <- downloadHandler(

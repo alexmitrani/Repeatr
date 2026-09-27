@@ -1181,6 +1181,11 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
     played_with <- played_with %>%
       mutate(played_with = ifelse(.data$gid=="buenos-aires-argentina-82297", "Massacre, Dixie Dynamite, Cienfuegos, Slam Up, Hiram Walker", played_with))
 
+    # The site's own "Played with" field only lists Shot Maker here, but a
+    # user comment on the page confirms Graygoo also opened.
+    played_with <- played_with %>%
+      mutate(played_with = ifelse(.data$gid=="quebec-city-qc-canada-92495", "Shotmaker, Graygoo", played_with))
+
     played_with<-played_with %>%
       separate_rows(played_with, sep=",")
 
@@ -1255,6 +1260,9 @@ Repeatr_1 <- function(myfls_data = NULL, mysongvarslookup = NULL, myreleases = N
 
     played_with <- played_with %>%
       mutate(played_with = ifelse(played_with=="Gr'ups", "The Gr'ups", played_with))
+
+    played_with <- played_with %>%
+      mutate(played_with = ifelse(played_with=="Shot Maker", "Shotmaker", played_with))
 
     played_with <- played_with %>%
       filter(played_with!="?")

@@ -619,20 +619,31 @@ note_festival <- function(venue, shows_data) {
 }
 
 # Plain-language explanation of the recap tracklist table's columns, shown
-# below the table itself - shared verbatim by both places that table
-# appears (app.R's on-screen recap tab and recap_template.qmd's downloadable
-# PDF), so the wording only ever needs to change in one place.
-recap_tracklist_columns_note <- function() {
+# below the table itself in both places that table appears (app.R's
+# on-screen recap tab and recap_template.qmd's downloadable PDF), so the
+# wording only ever needs to change in one place. Only the PDF combines each
+# value with its series-wide mean/total in parentheses, so the sentences
+# explaining those figures are PDF-only.
+recap_tracklist_columns_note <- function(format = c("pdf", "online")) {
+  format <- match.arg(format)
+  pdf_only <- if (format=="pdf") {
+    paste0(
+      "For minutes and position, the first figure is this show's own value ",
+      "and the one in parentheses is that song's series-wide average ",
+      "(position goes from 0 for the first song of the set to 1 for the ",
+      "last). For rendition and transition, the first figure is which ",
+      "numbered occurrence this is and the one in parentheses is the total ",
+      "number of times it appears in the series. "
+    )
+  } else {
+    ""
+  }
   paste0(
     "Each row is one track on the recording, songs and non-song content alike ",
     "(interludes, intros, outros, encores and other one-offs). The transition ",
     "refers to the change to the song in question from the previous song, so ",
-    "the first song in the set doesn't have a transition. For minutes and ",
-    "position, the first figure is this show's own value and the one in ",
-    "parentheses is that song's series-wide average (position runs from 0 for ",
-    "the first song of the set to 1 for the last). For rendition and ",
-    "transition, the first figure is which numbered occurrence this is and the ",
-    "one in parentheses is the total number of times it appears in the series. ",
+    "the first song in the set doesn't have a transition. ",
+    pdf_only,
     "release_date is the release date of the album or EP the song comes from."
   )
 }

@@ -127,7 +127,7 @@ knitr::kable(pdf_tracklist, row.names = FALSE)
 ```
 
 ```{r tracklist-note, results='asis', eval=ctx$has_recording}
-cat(Repeatr:::recap_tracklist_columns_note())
+cat(Repeatr:::recap_tracklist_columns_note("pdf"))
 ```
 
 ```{=typst}
