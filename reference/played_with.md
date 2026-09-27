@@ -43,7 +43,7 @@ as fugazibase's `bands` table by
 
 ``` r
 played_with
-#> # A tibble: 1,669 × 3
+#> # A tibble: 1,670 × 3
 #>    gid                      fls_id  played_with     
 #>    <chr>                    <chr>   <chr>           
 #>  1 washington-dc-usa-90387  FLS0001 Fire Party      
@@ -56,5 +56,5 @@ played_with
 #>  8 chapel-hill-nc-usa-92787 FLS0003 Slush Puppies   
 #>  9 richmond-va-usa-100787   FLS0004 Killjoy         
 #> 10 richmond-va-usa-100787   FLS0004 Oi Polloi       
-#> # ℹ 1,659 more rows
+#> # ℹ 1,660 more rows
 ```
