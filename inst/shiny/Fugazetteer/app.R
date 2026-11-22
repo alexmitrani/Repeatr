@@ -1,6 +1,14 @@
 
-# remotes::install_github("alexmitrani/Repeatr", build_vignettes = TRUE, dependencies = TRUE)
-
+# 
+# Refresh Repeatr from GitHub when running interactively (e.g. from RStudio, which
+# also records the GitHub source that Posit Connect Cloud uses at publish time).
+# On the server Repeatr is already installed at deploy time, so only install it
+# if it is missing: reinstalling with dependencies = TRUE at every start-up
+# compiled dozens of packages and exceeded Connect Cloud's 60 s start-up limit.
+if (interactive() || !requireNamespace("Repeatr", quietly = TRUE)) {
+  remotes::install_github("alexmitrani/Repeatr", build_vignettes = TRUE,
+                          dependencies = TRUE, upgrade = "never")
+}
 library(Repeatr)
 library(shiny)
 library(dplyr)
