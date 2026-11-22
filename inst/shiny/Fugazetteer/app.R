@@ -293,7 +293,7 @@ tabPanel("today",
                       $(document).ready(function(){
                       var d = new Date();
                       var target = $("#clientTime");
-                      var pad = function(n){ return (n < 10 ? "0" : "") + n; };
+                      var pad = function(n){ return String(n).padStart(2, "0"); };
                       target.val(d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()));
                       target.trigger("change");
                       });
