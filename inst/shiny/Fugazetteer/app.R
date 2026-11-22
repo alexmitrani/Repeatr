@@ -1,4 +1,4 @@
-
+# remotes::install_github("alexmitrani/Repeatr", build_vignettes = TRUE, dependencies = TRUE)
 # 
 # Refresh Repeatr from GitHub when running interactively (e.g. from RStudio, which
 # also records the GitHub source that Posit Connect Cloud uses at publish time).
