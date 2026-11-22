@@ -293,11 +293,12 @@ tabPanel("today",
                       $(document).ready(function(){
                       var d = new Date();
                       var target = $("#clientTime");
-                      target.val(d.toLocaleString());
+                      var pad = function(n){ return (n < 10 ? "0" : "") + n; };
+                      target.val(d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()));
                       target.trigger("change");
                       });
                       '),
-                    textInput("clientTime", "Today's date (DD/MM/YYYY, HH:MM:SS)", value = ""),
+                    textInput("clientTime", "Today's date (YYYY-MM-DD)", value = ""),
 
                     tags$br(),
 
@@ -1296,15 +1297,14 @@ server <- function(input, output, session) {
   session$onSessionEnded(stopApp)
 
   # clientTime starts as "" (app.R's tags$script only fills it in with the
-  # browser's local time after the page has loaded, see the textInput
-  # definition below) - fall back to the server's own date for that brief
-  # window rather than letting dmy_hms("") warn ("All formats failed to
-  # parse. No formats found.") and return NA.
+  # browser's local date (as locale-independent YYYY-MM-DD) after the page has
+  # loaded, see the textInput definition below) - fall back to the server's own
+  # date for that brief window rather than letting ymd("") warn and return NA.
   session$userData$time <- reactive({
     if (is.null(input$clientTime) || input$clientTime == "") {
       return(as.Date(Sys.time()))
     }
-    as.Date(lubridate::dmy_hms(input$clientTime))
+    suppressWarnings(lubridate::ymd(input$clientTime))
   })
 
 
